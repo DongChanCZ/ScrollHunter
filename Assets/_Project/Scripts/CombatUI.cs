@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// 코스트 / 손패 4칸 / 대기열 다음 1장을 표시한다. 읽기 전용.
+/// HP / 코스트 / 손패 4칸 / 대기열 다음 1장을 표시한다. 읽기 전용.
 /// </summary>
 public class CombatUI : MonoBehaviour
 {
@@ -20,9 +20,13 @@ public class CombatUI : MonoBehaviour
 
     [SerializeField] private CostSystem costSystem;
     [SerializeField] private DeckSystem deckSystem;
+    [SerializeField] private Player player;
 
     [Tooltip("현재 코스트 (좌하단)")]
     [SerializeField] private TMP_Text costText;
+
+    [Tooltip("플레이어 HP")]
+    [SerializeField] private TMP_Text hpText;
 
     [SerializeField] private HandSlotView[] handSlots = new HandSlotView[DeckSystem.HandSize];
 
@@ -37,10 +41,14 @@ public class CombatUI : MonoBehaviour
     [Tooltip("카드가 없는 칸에 표시할 문자열")]
     [SerializeField] private string emptySlotLabel = "-";
 
+    [Tooltip("HP 표시 형식. {0}=현재, {1}=최대")]
+    [SerializeField] private string hpFormat = "{0} / {1}";
+
     private void Awake()
     {
         if (costSystem == null) costSystem = FindFirstObjectByType<CostSystem>();
         if (deckSystem == null) deckSystem = FindFirstObjectByType<DeckSystem>();
+        if (player == null) player = FindFirstObjectByType<Player>();
     }
 
     // 같은 프레임의 입력 결과까지 반영하려고 LateUpdate에서 갱신한다.
@@ -49,6 +57,13 @@ public class CombatUI : MonoBehaviour
         if (costSystem != null && costText != null)
         {
             costText.text = costSystem.Current.ToString("F1");
+        }
+
+        if (player != null && hpText != null)
+        {
+            hpText.text = string.Format(hpFormat,
+                Mathf.CeilToInt(player.CurrentHp),
+                Mathf.CeilToInt(player.MaxHp));
         }
 
         if (deckSystem == null) return;

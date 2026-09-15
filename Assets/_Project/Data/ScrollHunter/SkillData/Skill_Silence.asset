@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 549137944e26a084ab634a3f73406c70, type: 3}
   m_Name: Skill_Silence
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
-  displayName: "\uC0AC\uC77C\uB7F0\uC2A4"
-  cost: 1
+  displayName: "\uCE68\uBB35"
+  cost: 4
   category: 1
-  coefficient: 0
+  damage: 0
   hitCount: 1
   castTime: 0.2

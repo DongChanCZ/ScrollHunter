@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 549137944e26a084ab634a3f73406c70, type: 3}
-  m_Name: Skill_Barrier
+  m_Name: Skill_Pierce
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
-  displayName: "\uBC30\uB9AC\uC5B4"
-  cost: 3
-  category: 2
-  coefficient: 0
+  displayName: "\uAD00\uD1B5"
+  cost: 5
+  category: 0
+  damage: 150
   hitCount: 1
-  castTime: 0.3
+  castTime: 0.6

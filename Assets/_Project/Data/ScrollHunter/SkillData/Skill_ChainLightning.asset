@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 549137944e26a084ab634a3f73406c70, type: 3}
-  m_Name: Skill_Shield
+  m_Name: Skill_ChainLightning
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
-  displayName: "\uC2E4\uB4DC"
-  cost: 2
-  category: 2
-  coefficient: 0
-  hitCount: 1
-  castTime: 0.2
+  displayName: "\uC5F0\uC1C4\uBC88\uAC1C"
+  cost: 6
+  category: 0
+  damage: 50
+  hitCount: 3
+  castTime: 1

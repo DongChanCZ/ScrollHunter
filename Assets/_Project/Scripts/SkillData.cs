@@ -17,10 +17,10 @@ public class SkillData : ScriptableObject
 
     [SerializeField] private SkillCategory category = SkillCategory.Deal;
 
-    [Tooltip("1타 피해 = 공격력 × 계수")]
-    [SerializeField] private float coefficient = 1f;
+    [Tooltip("1타 피해량(절대값). 공격력 스탯은 없다. 카드에 적힌 이 숫자가 곧 피해다.")]
+    [SerializeField] private int damage = 0;
 
-    [Tooltip("타수. 총 피해 = 1타 피해 × 타수")]
+    [Tooltip("타수. 총 피해 = 피해량 × 타수")]
     [SerializeField] private int hitCount = 1;
 
     [Tooltip("0이면 즉발. 행동 잠금은 MAX(캐스팅 시간, 최소 GCD)")]
@@ -29,7 +29,7 @@ public class SkillData : ScriptableObject
     public string DisplayName => displayName;
     public float Cost => cost;
     public SkillCategory Category => category;
-    public float Coefficient => coefficient;
+    public int Damage => damage;
     public int HitCount => hitCount;
     public float CastTime => castTime;
 }

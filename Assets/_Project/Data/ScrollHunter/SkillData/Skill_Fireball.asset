@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 549137944e26a084ab634a3f73406c70, type: 3}
   m_Name: Skill_Fireball
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
-  displayName: "\uD30C\uC774\uC5B4\uBCFC"
+  displayName: "\uD654\uC5FC\uD0C4"
   cost: 3
   category: 0
-  coefficient: 1
+  damage: 100
   hitCount: 1
-  castTime: 0.8
+  castTime: 0.3

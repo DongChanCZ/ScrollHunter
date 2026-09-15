@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 549137944e26a084ab634a3f73406c70, type: 3}
-  m_Name: Skill_IceLance
+  m_Name: Skill_FlamePillar
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
-  displayName: "\uC544\uC774\uC2A4 \uB79C\uC2A4"
-  cost: 2
+  displayName: "\uBD88\uAE30\uB465"
+  cost: 7
   category: 0
-  coefficient: 0.8
-  hitCount: 1
-  castTime: 0.3
+  damage: 90
+  hitCount: 2
+  castTime: 1.2
