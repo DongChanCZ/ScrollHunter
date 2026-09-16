@@ -26,10 +26,18 @@ public class SkillData : ScriptableObject
     [Tooltip("0이면 즉발. 행동 잠금은 MAX(캐스팅 시간, 최소 GCD)")]
     [SerializeField] private float castTime = 0f;
 
+    [Tooltip("Shield 카드가 플레이어에게 부여하는 방어도. Deal/Interrupt는 0.")]
+    [SerializeField] private int shieldAmount = 0;
+
+    [Tooltip("체크하면 타겟과 무관하게 적 전체에 적용된다. Deal 카드에만 의미가 있다.")]
+    [SerializeField] private bool isAreaOfEffect = false;
+
     public string DisplayName => displayName;
     public float Cost => cost;
     public SkillCategory Category => category;
     public int Damage => damage;
     public int HitCount => hitCount;
     public float CastTime => castTime;
+    public int ShieldAmount => shieldAmount;
+    public bool IsAreaOfEffect => isAreaOfEffect;
 }

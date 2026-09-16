@@ -18,3 +18,5 @@ MonoBehaviour:
   damage: 0
   hitCount: 1
   castTime: 0.2
+  shieldAmount: 120
+  isAreaOfEffect: 0

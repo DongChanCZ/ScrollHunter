@@ -15,7 +15,9 @@ MonoBehaviour:
   displayName: "\uC7A1\uBAB9 A"
   maxHp: 300
   defense: 0
-  castTime: 2.5
-  castColor: 0
-  damage: 30
-  castSkillName: "\uC77C\uBC18 \uACF5\uACA9"
+  attacks:
+  - skillName: "\uC77C\uBC18 \uACF5\uACA9"
+    castColor: 0
+    castTime: 2.5
+    damage: 30
+    staggerAfterCast: 1
