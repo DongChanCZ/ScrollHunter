@@ -41,11 +41,15 @@ public class CombatUI : MonoBehaviour
     [SerializeField] private HandSlotView[] handSlots = new HandSlotView[DeckSystem.HandSize];
     [SerializeField] private TMP_Text nextCardText;
 
-    [Header("타겟 마커")]
-    [Tooltip("현재 타겟 위로 이동한다. 타겟이 없으면 숨는다.")]
-    [SerializeField] private Transform targetMarker;
+    [Header("타겟 마커 — 화면 고정 (02 문서 §2.2)")]
+    [Tooltip("Canvas 아래에 둔다. 현재 타겟 위로 이동하고, 타겟이 없으면 숨는다.")]
+    [SerializeField] private RectTransform targetMarker;
 
-    [SerializeField] private float markerHeight = 2.6f;
+    [Tooltip("기준점 높이. 적 바와 같은 값을 쓴다 (캡슐 머리 = 1.05)")]
+    [SerializeField] private float markerWorldHeight = 1.05f;
+
+    [Tooltip("적 바 위로 띄울 화면 픽셀. 바 높이(84)보다 커야 겹치지 않는다")]
+    [SerializeField] private float markerScreenOffsetY = 96f;
 
     [Tooltip("맥동 세기. 0이면 맥동 없음")]
     [SerializeField] private float markerPulse = 0.15f;
@@ -197,15 +201,19 @@ public class CombatUI : MonoBehaviour
         if (targetMarker.gameObject.activeSelf != show) targetMarker.gameObject.SetActive(show);
         if (!show) return;
 
-        targetMarker.position = target.transform.position + Vector3.up * markerHeight;
+        Camera cam = Camera.main;
+        if (cam == null) return;
+
+        // 적 바와 같은 기준점을 써서 화면 좌표로 옮긴다. 바 위에 얹히도록 픽셀만큼 더 올린다.
+        Vector3 head = target.transform.position + Vector3.up * markerWorldHeight;
+        Vector3 screen = cam.WorldToScreenPoint(head);
+        screen.y += markerScreenOffsetY;
+        targetMarker.position = screen;
 
         if (markerPulse > 0f)
         {
             float t = (Mathf.Sin(Time.unscaledTime * markerPulseSpeed) + 1f) * 0.5f;
             targetMarker.localScale = markerBaseScale * (1f + markerPulse * t);
         }
-
-        Camera cam = Camera.main;
-        if (cam != null) targetMarker.forward = cam.transform.forward;
     }
 }

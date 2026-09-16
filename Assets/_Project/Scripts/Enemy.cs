@@ -35,8 +35,12 @@ public class Enemy : MonoBehaviour
     [Tooltip("빨강을 다시 쓰려면 그 사이에 필요한 초록 횟수")]
     [SerializeField] private int redCooldownGreens = 2;
 
-    [Header("캐스팅 바")]
-    [SerializeField] private Transform castBarRoot;
+    [Header("캐스팅 바 — 화면 고정 (02 문서 §2.2)")]
+    [Tooltip("Canvas(Screen Space) 아래에 있는 바 묶음. 매 프레임 적의 머리 위 화면 좌표로 옮긴다.")]
+    [SerializeField] private RectTransform castBarRoot;
+
+    [Tooltip("바가 따라붙을 기준점의 높이. 적 transform 기준 로컬 오프셋(캡슐 머리 = 1.05)")]
+    [SerializeField] private float barWorldHeight = 1.05f;
     [SerializeField] private Image castBarFill;
     [SerializeField] private TMP_Text castSkillText;
 
@@ -255,31 +259,48 @@ public class Enemy : MonoBehaviour
         staggerTimer = 0f;
         resting = false;
         Debug.Log($"[{name}] 사망", this);
+
+        // 바는 이제 Canvas 아래에 있어 적을 꺼도 같이 사라지지 않는다. 직접 끈다.
+        if (castBarRoot != null) castBarRoot.gameObject.SetActive(false);
+
         gameObject.SetActive(false);
     }
 
     private void LateUpdate()
     {
-        if (castBarFill != null)
+        // 화면 고정. 적의 머리 위 월드 좌표를 화면 좌표로 옮겨 붙인다.
+        // 전투 중 카메라가 고정이므로 원근에 따라 바가 작아지는 문제를 피한다.
+        if (castBarRoot != null && cam != null)
         {
-            castBarFill.fillAmount = (resting || IsStaggered) ? 0f : CastProgress01;
+            Vector3 head = transform.position + Vector3.up * barWorldHeight;
+            castBarRoot.position = cam.WorldToScreenPoint(head);
         }
 
-        if (hpBarFill != null && MaxHp > 0)
-        {
-            hpBarFill.fillAmount = (float)CurrentHp / MaxHp;
-        }
+        SetFill(castBarFill, (resting || IsStaggered) ? 0f : CastProgress01);
+
+        if (MaxHp > 0) SetFill(hpBarFill, (float)CurrentHp / MaxHp);
 
         if (hpText != null)
         {
             hpText.text = string.Format(hpFormat, CurrentHp, MaxHp);
         }
 
-        // 카메라 각도를 어떻게 잡아도 바가 정면으로 보이게 한다.
-        if (castBarRoot != null && cam != null)
-        {
-            castBarRoot.forward = cam.transform.forward;
-        }
+    }
+
+    /// <summary>
+    /// 바를 t(0~1)만큼 채운다.
+    ///
+    /// Image.fillAmount를 쓰지 않는다. 그쪽은 스프라이트가 있어야 동작하는데,
+    /// 스프라이트를 쓰면 모서리가 둥글어져 바가 타원처럼 보인다.
+    /// 스프라이트 없는 Image는 각진 사각형으로 그려지므로, 대신 오른쪽 앵커를 움직인다.
+    /// </summary>
+    private static void SetFill(Image fill, float t)
+    {
+        if (fill == null) return;
+
+        Vector2 max = fill.rectTransform.anchorMax;
+        max.x = Mathf.Clamp01(t);
+        fill.rectTransform.anchorMax = max;
     }
 
     /// <summary>캐스팅 바의 색과 스킬 이름을 지금 공격에 맞춘다.</summary>
