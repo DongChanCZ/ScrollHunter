@@ -1265,7 +1265,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: df20924d15df4354983fce534f0c0f66, type: 2}
   handKeys: 71000000770000006500000072000000
   minGcd: 0.4
-  interruptStagger: 4
+  interruptStagger: 2.5
 --- !u!114 &414053920
 MonoBehaviour:
   m_ObjectHideFlags: 0

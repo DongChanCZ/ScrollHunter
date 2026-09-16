@@ -21,9 +21,10 @@ public enum SlotState
 /// 셔플 없음. 등록 순서 그대로 결정론적으로 순환한다.
 /// 손패 슬롯 위치는 고정이라 카드가 왼쪽으로 밀리지 않는다.
 ///
-/// 카드 효과는 **캐스팅이 끝나야** 적용된다. 누르는 즉시가 아니다.
+/// **코스트 소모와 손패 순환은 입력을 수락한 즉시** 끝난다 (10 문서 A14).
+/// **카드 효과만 캐스팅이 끝나야** 적용된다 (A11).
 /// 그래야 「캐스팅 중 기절당하면 캐스팅 취소」(02 E02c)가 성립한다.
-/// 끊겨도 코스트와 카드는 둘 다 나간다. 효과만 발생하지 않는다.
+/// 끊겨도 코스트와 카드는 돌아오지 않는다. 효과만 발생하지 않는다.
 /// </summary>
 public class DeckSystem : MonoBehaviour
 {
@@ -50,8 +51,8 @@ public class DeckSystem : MonoBehaviour
     private bool initialized;
 
     // 진행 중인 캐스팅. 완료돼야 효과가 난다.
+    // 손패 순환은 입력 수락 시 이미 끝났으므로 슬롯 번호를 들고 있을 필요가 없다.
     private SkillData castingCard;
-    private int castingSlot = -1;
     private float castRemaining;
 
     /// <summary>남은 행동 잠금 시간(초). MAX(캐스팅 시간, 최소 GCD)에서 줄어든다.</summary>
@@ -84,7 +85,6 @@ public class DeckSystem : MonoBehaviour
         queue.Clear();
         LockRemaining = 0f;
         castingCard = null;
-        castingSlot = -1;
         castRemaining = 0f;
         initialized = true;
         if (deck == null) return;
@@ -189,8 +189,12 @@ public class DeckSystem : MonoBehaviour
             return false;
         }
 
+        // 유효한 입력을 수락한 즉시 카드를 순환시킨다 (10 문서 A14).
+        // 효과는 캐스팅이 끝나야 나지만 손패 교체는 여기서 끝난다.
+        // 새로 들어온 카드는 행동 잠금 때문에 바로 쓸 수 없다.
+        CycleSlot(card, slot);
+
         castingCard = card;
-        castingSlot = slot;
         castRemaining = card.CastTime;
         LockRemaining = Mathf.Max(card.CastTime, minGcd);
 
@@ -200,14 +204,12 @@ public class DeckSystem : MonoBehaviour
         return true;
     }
 
-    /// <summary>캐스팅 완료. 여기서 처음으로 효과가 난다.</summary>
+    /// <summary>캐스팅 완료. 여기서 처음으로 효과가 난다. 순환은 이미 끝났다.</summary>
     private void CompleteCast()
     {
         SkillData card = castingCard;
-        int slot = castingSlot;
 
         castingCard = null;
-        castingSlot = -1;
         castRemaining = 0f;
 
         if (card == null) return;
@@ -216,28 +218,23 @@ public class DeckSystem : MonoBehaviour
         string resultLabel;
         ApplyCard(card, out targetLabel, out resultLabel);
         LogUse(card, targetLabel, resultLabel);
-
-        CycleSlot(card, slot);
     }
 
     /// <summary>
-    /// 기절로 캐스팅이 끊겼다. 코스트는 돌아오지 않고(02 E02c),
-    /// 카드도 쓴 것으로 쳐서 덱 맨 아래로 간다. 효과만 발생하지 않는다.
+    /// 기절로 캐스팅이 끊겼다. 코스트는 돌아오지 않는다 (02 E02c).
+    /// 카드는 입력 수락 시 이미 순환했으므로 **추가로 순환시키지 않는다** (10 문서 A12).
+    /// 효과만 발생하지 않는다.
     /// </summary>
     private void CancelCast()
     {
         SkillData card = castingCard;
-        int slot = castingSlot;
 
         castingCard = null;
-        castingSlot = -1;
         castRemaining = 0f;
 
         if (card == null) return;
 
-        LogUse(card, "-", "캐스팅 취소 — 기절 (코스트 반환 없음, 카드는 덱 맨 아래로)");
-
-        CycleSlot(card, slot);
+        LogUse(card, "-", "캐스팅 취소 — 기절 (코스트 반환 없음, 카드는 입력 시 이미 순환)");
     }
 
     /// <summary>
