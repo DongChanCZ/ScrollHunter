@@ -28,11 +28,15 @@ public class EnemyAttack
     [Tooltip("발동부터 다음 캐스팅 시작까지의 간격(초). 초록 1.0 / 주황 1.5 / 빨강 2.0")]
     [SerializeField] private float staggerAfterCast = 1f;
 
+    [Tooltip("발동 시 플레이어를 기절시키는 시간(초). 주황만 2.0, 나머지는 0")]
+    [SerializeField] private float stunSeconds = 0f;
+
     public string SkillName => skillName;
     public CastColor CastColor => castColor;
     public float CastTime => castTime;
     public int Damage => damage;
     public float StaggerAfterCast => staggerAfterCast;
+    public float StunSeconds => stunSeconds;
 }
 
 [CreateAssetMenu(fileName = "Enemy_", menuName = "ScrollHunter/Enemy Data")]

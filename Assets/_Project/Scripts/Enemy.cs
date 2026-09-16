@@ -43,6 +43,13 @@ public class Enemy : MonoBehaviour
     [Tooltip("차단당해 경직된 동안의 캐스팅 바 색")]
     [SerializeField] private Color staggerColor = new Color(0.55f, 0.55f, 0.6f);
 
+    [Header("HP 표시")]
+    [SerializeField] private Image hpBarFill;
+    [SerializeField] private TMP_Text hpText;
+
+    [Tooltip("{0}=현재 HP, {1}=최대 HP")]
+    [SerializeField] private string hpFormat = "{0} / {1}";
+
     private EnemyManager manager;
     private Player player;
     private Camera cam;
@@ -170,7 +177,12 @@ public class Enemy : MonoBehaviour
 
     private void Fire()
     {
-        if (player != null) player.TakeDamage(current.Damage);
+        if (player != null)
+        {
+            player.TakeDamage(current.Damage);
+            // 주황의 미대응 페널티. 피해보다 이쪽이 본체다.
+            if (current.StunSeconds > 0f) player.ApplyStun(current.StunSeconds);
+        }
         Debug.Log($"[{name}] 발동: {current.SkillName} ({current.CastColor}) 피해 {current.Damage}", this);
 
         // 쿨다운 상태 갱신
@@ -251,6 +263,16 @@ public class Enemy : MonoBehaviour
         if (castBarFill != null)
         {
             castBarFill.fillAmount = (resting || IsStaggered) ? 0f : CastProgress01;
+        }
+
+        if (hpBarFill != null && MaxHp > 0)
+        {
+            hpBarFill.fillAmount = (float)CurrentHp / MaxHp;
+        }
+
+        if (hpText != null)
+        {
+            hpText.text = string.Format(hpFormat, CurrentHp, MaxHp);
         }
 
         // 카메라 각도를 어떻게 잡아도 바가 정면으로 보이게 한다.

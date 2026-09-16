@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// HP / 방어도 / 코스트 / 손패 4칸 / 대기열 다음 1장 / 타겟 마커를 표시한다. 읽기 전용.
+/// HP / 방어도 / 코스트 / 손패 4칸 / 대기열 다음 1장 / 타겟 마커 / 기절 표시. 읽기 전용.
 /// </summary>
 public class CombatUI : MonoBehaviour
 {
@@ -30,6 +30,13 @@ public class CombatUI : MonoBehaviour
     [Tooltip("방어도. 0일 때는 숨긴다.")]
     [SerializeField] private TMP_Text shieldText;
 
+    [Header("기절 표시 (화면 중앙)")]
+    [Tooltip("기절 중에만 켜진다. 슬롯 색만으로는 손패를 안 볼 때 놓친다. (02 §6.5.4)")]
+    [SerializeField] private TMP_Text stunText;
+
+    [Tooltip("{0}=남은 시간")]
+    [SerializeField] private string stunFormat = "기절 {0:0.0}";
+
     [Header("손패")]
     [SerializeField] private HandSlotView[] handSlots = new HandSlotView[DeckSystem.HandSize];
     [SerializeField] private TMP_Text nextCardText;
@@ -45,11 +52,14 @@ public class CombatUI : MonoBehaviour
 
     [SerializeField] private float markerPulseSpeed = 3f;
 
-    [Header("슬롯 색")]
+    [Header("슬롯 색 — 비활성 사유별로 달라야 한다")]
     [SerializeField] private Color slotNormalColor = Color.white;
 
     [Tooltip("행동 잠금 중")]
     [SerializeField] private Color slotLockedColor = new Color(0.45f, 0.45f, 0.45f, 1f);
+
+    [Tooltip("기절 중. 행동 잠금(회색)과 반드시 구분되어야 한다")]
+    [SerializeField] private Color slotStunnedColor = new Color(0.42f, 0.22f, 0.55f, 1f);
 
     [Tooltip("차단 카드인데 타겟이 캐스팅 중이 아님")]
     [SerializeField] private Color slotNoTargetColor = new Color(0.30f, 0.32f, 0.40f, 1f);
@@ -115,6 +125,13 @@ public class CombatUI : MonoBehaviour
             shieldText.enabled = hasShield;
             if (hasShield) shieldText.text = string.Format(shieldFormat, player.Shield);
         }
+
+        if (stunText != null)
+        {
+            bool stunned = player.IsStunned;
+            stunText.enabled = stunned;
+            if (stunned) stunText.text = string.Format(stunFormat, player.StunRemaining);
+        }
     }
 
     private void UpdateHand()
@@ -139,12 +156,7 @@ public class CombatUI : MonoBehaviour
                 view.costText.color = state == SlotState.NotEnoughCost ? costShortColor : costNormalColor;
             }
 
-            if (view.lockText != null)
-            {
-                if (state == SlotState.ActionLocked) view.lockText.text = deckSystem.LockRemaining.ToString("F1");
-                else if (state == SlotState.NoValidTarget) view.lockText.text = noTargetLabel;
-                else view.lockText.text = string.Empty;
-            }
+            if (view.lockText != null) view.lockText.text = LockLabel(state);
 
             if (view.background != null)
                 view.background.color = SlotColor(state);
@@ -157,8 +169,18 @@ public class CombatUI : MonoBehaviour
         }
     }
 
+    private string LockLabel(SlotState state)
+    {
+        if (state == SlotState.Stunned)
+            return player != null ? player.StunRemaining.ToString("F1") : string.Empty;
+        if (state == SlotState.ActionLocked) return deckSystem.LockRemaining.ToString("F1");
+        if (state == SlotState.NoValidTarget) return noTargetLabel;
+        return string.Empty;
+    }
+
     private Color SlotColor(SlotState state)
     {
+        if (state == SlotState.Stunned) return slotStunnedColor;
         if (state == SlotState.ActionLocked) return slotLockedColor;
         if (state == SlotState.NoValidTarget) return slotNoTargetColor;
         if (state == SlotState.NotEnoughCost) return slotPoorColor;

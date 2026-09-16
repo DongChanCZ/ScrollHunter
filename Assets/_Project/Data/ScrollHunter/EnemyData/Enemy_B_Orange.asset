@@ -21,8 +21,10 @@ MonoBehaviour:
     castTime: 2.5
     damage: 30
     staggerAfterCast: 1
+    stunSeconds: 0
   - skillName: "\uAE30\uC808 \uACF5\uACA9"
     castColor: 1
     castTime: 3
     damage: 40
     staggerAfterCast: 1.5
+    stunSeconds: 2

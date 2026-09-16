@@ -1,15 +1,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>손패 슬롯이 왜 못 쓰이는지. UI가 사유별로 다르게 표시한다.</summary>
+/// <summary>손패 슬롯이 왜 못 쓰이는지. UI가 사유별로 다르게 표시한다. (02 문서 §6.5.4)</summary>
 public enum SlotState
 {
     Ready,
     Empty,
-    /// <summary>행동 잠금(GCD) 중.</summary>
+    /// <summary>기절 중. 손패 전체가 막힌다.</summary>
+    Stunned,
+    /// <summary>행동 잠금(GCD) 중. 손패 전체가 막힌다.</summary>
     ActionLocked,
-    /// <summary>차단 카드인데 타겟이 캐스팅 중이 아님. 입력 자체가 불가.</summary>
+    /// <summary>차단 카드인데 타겟이 캐스팅 중이 아님. 그 슬롯만 막힌다.</summary>
     NoValidTarget,
+    /// <summary>코스트 부족. 그 슬롯만 막힌다.</summary>
     NotEnoughCost,
 }
 
@@ -17,6 +20,10 @@ public enum SlotState
 /// 덱 8장을 손패 4칸 + 대기열로 관리하고, 카드 효과를 적용한다.
 /// 셔플 없음. 등록 순서 그대로 결정론적으로 순환한다.
 /// 손패 슬롯 위치는 고정이라 카드가 왼쪽으로 밀리지 않는다.
+///
+/// 카드 효과는 **캐스팅이 끝나야** 적용된다. 누르는 즉시가 아니다.
+/// 그래야 「캐스팅 중 기절당하면 캐스팅 취소」(02 E02c)가 성립한다.
+/// 끊겨도 코스트와 카드는 둘 다 나간다. 효과만 발생하지 않는다.
 /// </summary>
 public class DeckSystem : MonoBehaviour
 {
@@ -42,10 +49,21 @@ public class DeckSystem : MonoBehaviour
     private readonly Queue<SkillData> queue = new Queue<SkillData>();
     private bool initialized;
 
-    /// <summary>남은 행동 잠금 시간(초).</summary>
+    // 진행 중인 캐스팅. 완료돼야 효과가 난다.
+    private SkillData castingCard;
+    private int castingSlot = -1;
+    private float castRemaining;
+
+    /// <summary>남은 행동 잠금 시간(초). MAX(캐스팅 시간, 최소 GCD)에서 줄어든다.</summary>
     public float LockRemaining { get; private set; }
 
     public bool IsLocked => LockRemaining > 0f;
+
+    /// <summary>카드 캐스팅이 진행 중인지.</summary>
+    public bool IsCasting => castingCard != null;
+
+    /// <summary>캐스팅 완료까지 남은 시간(초).</summary>
+    public float CastRemaining => castRemaining;
 
     private void Awake()
     {
@@ -65,6 +83,9 @@ public class DeckSystem : MonoBehaviour
         System.Array.Clear(hand, 0, HandSize);
         queue.Clear();
         LockRemaining = 0f;
+        castingCard = null;
+        castingSlot = -1;
+        castRemaining = 0f;
         initialized = true;
         if (deck == null) return;
 
@@ -92,6 +113,9 @@ public class DeckSystem : MonoBehaviour
     {
         SkillData card = GetHandCard(slot);
         if (card == null) return SlotState.Empty;
+
+        // 손패 전체를 막는 사유가 먼저.
+        if (player != null && player.IsStunned) return SlotState.Stunned;
         if (IsLocked) return SlotState.ActionLocked;
 
         // 차단 카드는 타겟이 캐스팅 중이 아니면 아예 누를 수 없다.
@@ -112,9 +136,23 @@ public class DeckSystem : MonoBehaviour
 
     private void Update()
     {
+        // 기절이 최우선이다. 캐스팅 중이었다면 취소되고 코스트는 돌아오지 않는다.
+        if (player != null && player.IsStunned)
+        {
+            if (IsCasting) CancelCast();
+            LockRemaining = 0f;   // 기절이 행동 잠금을 대체한다
+            return;
+        }
+
         if (LockRemaining > 0f)
         {
             LockRemaining = Mathf.Max(0f, LockRemaining - Time.deltaTime);
+        }
+
+        if (IsCasting)
+        {
+            castRemaining = Mathf.Max(0f, castRemaining - Time.deltaTime);
+            if (castRemaining <= 0f) CompleteCast();
         }
 
         // 일시정지 중에는 카드를 쓸 수 없다. (패배로 timeScale이 0이 된 경우 포함)
@@ -132,6 +170,7 @@ public class DeckSystem : MonoBehaviour
         }
     }
 
+    /// <summary>카드를 쓴다. 코스트는 즉시 나가고, 효과는 캐스팅이 끝나야 난다.</summary>
     public bool TryUseSlot(int slot)
     {
         SkillData card = GetHandCard(slot);
@@ -150,19 +189,67 @@ public class DeckSystem : MonoBehaviour
             return false;
         }
 
+        castingCard = card;
+        castingSlot = slot;
+        castRemaining = card.CastTime;
+        LockRemaining = Mathf.Max(card.CastTime, minGcd);
+
+        // 캐스팅 시간이 0이면 그 자리에서 발동한다.
+        if (castRemaining <= 0f) CompleteCast();
+
+        return true;
+    }
+
+    /// <summary>캐스팅 완료. 여기서 처음으로 효과가 난다.</summary>
+    private void CompleteCast()
+    {
+        SkillData card = castingCard;
+        int slot = castingSlot;
+
+        castingCard = null;
+        castingSlot = -1;
+        castRemaining = 0f;
+
+        if (card == null) return;
+
         string targetLabel;
         string resultLabel;
         ApplyCard(card, out targetLabel, out resultLabel);
         LogUse(card, targetLabel, resultLabel);
 
-        LockRemaining = Mathf.Max(card.CastTime, minGcd);
+        CycleSlot(card, slot);
+    }
 
-        // 쓴 카드는 덱 맨 아래로, 대기열 맨 앞이 그 슬롯에 들어온다.
-        // 슬롯 인덱스는 건드리지 않으므로 카드가 왼쪽으로 밀리지 않는다.
+    /// <summary>
+    /// 기절로 캐스팅이 끊겼다. 코스트는 돌아오지 않고(02 E02c),
+    /// 카드도 쓴 것으로 쳐서 덱 맨 아래로 간다. 효과만 발생하지 않는다.
+    /// </summary>
+    private void CancelCast()
+    {
+        SkillData card = castingCard;
+        int slot = castingSlot;
+
+        castingCard = null;
+        castingSlot = -1;
+        castRemaining = 0f;
+
+        if (card == null) return;
+
+        LogUse(card, "-", "캐스팅 취소 — 기절 (코스트 반환 없음, 카드는 덱 맨 아래로)");
+
+        CycleSlot(card, slot);
+    }
+
+    /// <summary>
+    /// 쓴 카드는 덱 맨 아래로, 대기열 맨 앞이 그 슬롯에 들어온다.
+    /// 슬롯 인덱스는 건드리지 않으므로 카드가 왼쪽으로 밀리지 않는다.
+    /// </summary>
+    private void CycleSlot(SkillData card, int slot)
+    {
+        if (slot < 0 || slot >= HandSize) return;
+
         queue.Enqueue(card);
         hand[slot] = queue.Dequeue();
-
-        return true;
     }
 
     private void ApplyCard(SkillData card, out string targetLabel, out string resultLabel)
@@ -242,6 +329,8 @@ public class DeckSystem : MonoBehaviour
 
     private string StateToLabel(SlotState state)
     {
+        if (state == SlotState.Stunned)
+            return "사용 불가 — 기절 " + (player != null ? player.StunRemaining.ToString("0.0") : "?") + "초";
         if (state == SlotState.ActionLocked) return "행동 잠금 " + LockRemaining.ToString("0.0") + "초";
         if (state == SlotState.NoValidTarget) return "사용 불가 — 타겟이 캐스팅 중 아님";
         if (state == SlotState.NotEnoughCost) return "코스트 부족";
