@@ -291,7 +291,8 @@ return Mathf.Max(1, Mathf.FloorToInt(raw + 0.5f));
 
 ## 사양 변경 시
 
-1. **이 파일**을 고친다
+1. **이 파일과 `AGENTS.md`를 함께** 고친다 — 두 파일은 내용이 같아야 한다
+   Claude는 `CLAUDE.md`를, Codex는 `AGENTS.md`를 자동으로 읽는다. 한쪽만 고치면 두 AI의 사양이 갈린다
 2. `Docs/10_결정사항_로그.md`의 해당 값을 고친다
 3. 관련 기획서의 「변경 이력」 표에 기록한다
 4. `Docs/07_개발일지.md`에 한 줄 남긴다
