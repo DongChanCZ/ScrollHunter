@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Skill_Explosion
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
   displayName: "\uD3ED\uBC1C"
-  cost: 5
+  cost: 2
   category: 0
-  damage: 110
+  damage: 44
   hitCount: 1
   castTime: 0.8

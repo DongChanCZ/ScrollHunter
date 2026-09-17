@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Skill_ChainLightning
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
   displayName: "\uC5F0\uC1C4\uBC88\uAC1C"
-  cost: 6
+  cost: 3
   category: 0
-  damage: 50
+  damage: 25
   hitCount: 3
   castTime: 1

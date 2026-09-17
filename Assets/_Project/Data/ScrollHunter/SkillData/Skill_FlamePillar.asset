@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Skill_FlamePillar
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
   displayName: "\uBD88\uAE30\uB465"
-  cost: 7
+  cost: 3
   category: 0
-  damage: 90
+  damage: 39
   hitCount: 2
   castTime: 1.2

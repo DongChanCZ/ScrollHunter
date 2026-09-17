@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Skill_Pierce
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
   displayName: "\uAD00\uD1B5"
-  cost: 5
+  cost: 2
   category: 0
-  damage: 150
+  damage: 60
   hitCount: 1
   castTime: 0.6

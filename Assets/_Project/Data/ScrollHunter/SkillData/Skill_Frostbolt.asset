@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Skill_Frostbolt
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
   displayName: "\uC11C\uB9AC\uD654\uC0B4"
-  cost: 4
+  cost: 2
   category: 0
-  damage: 120
+  damage: 60
   hitCount: 1
   castTime: 0.3

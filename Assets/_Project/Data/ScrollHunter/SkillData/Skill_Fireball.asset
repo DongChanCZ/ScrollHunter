@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Skill_Fireball
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
   displayName: "\uD654\uC5FC\uD0C4"
-  cost: 3
+  cost: 2
   category: 0
-  damage: 100
+  damage: 67
   hitCount: 1
   castTime: 0.3
