@@ -18,6 +18,9 @@ public class Player : MonoBehaviour
     [Tooltip("피해 감소에 쓰인다. 감소율 = 방어력 / (방어력 + 100)")]
     [SerializeField] private float defense = 20f;
 
+    [Tooltip("4단계 계측. 비워두면 씬에서 자동으로 찾는다.")]
+    [SerializeField] private CombatMetrics metrics;
+
     public float MaxHp => maxHp;
     public float Defense => defense;
     public float CurrentHp => currentHp;
@@ -44,6 +47,8 @@ public class Player : MonoBehaviour
         Shield = 0;
         StunRemaining = 0f;
         defeatHandled = false;
+
+        if (metrics == null) metrics = FindFirstObjectByType<CombatMetrics>();
     }
 
     private void Update()
@@ -93,6 +98,9 @@ public class Player : MonoBehaviour
 
         currentHp = Mathf.Max(0f, currentHp - toHp);
 
+        // 계측은 부여량이 아니라 실제로 방어도가 막아낸 양을 센다 (09 문서 4단계 ②).
+        if (metrics != null) metrics.RecordShieldAbsorbed(absorbed);
+
         Debug.Log($"[{nameof(Player)}] 피격 {taken} (원본 {incomingDamage}) " +
                   $"방어도 흡수 {absorbed} → HP -{toHp} = {currentHp:F0}/{maxHp:F0} (방어도 {Shield})", this);
 
@@ -103,6 +111,7 @@ public class Player : MonoBehaviour
     {
         defeatHandled = true;
         StunRemaining = 0f;
+        if (metrics != null) metrics.ReportDefeat();
         Debug.Log($"[{nameof(Player)}] 패배", this);
         Time.timeScale = 0f;
     }

@@ -9,6 +9,9 @@ public class EnemyManager : MonoBehaviour
 {
     [SerializeField] private Player player;
 
+    [Tooltip("4단계 계측. 비워두면 씬에서 자동으로 찾는다.")]
+    [SerializeField] private CombatMetrics metrics;
+
     [Tooltip("비워두면 씬에서 자동으로 찾는다. 화면 배치 좌→우로 정렬된다.")]
     [SerializeField] private List<Enemy> enemies = new List<Enemy>();
 
@@ -38,10 +41,26 @@ public class EnemyManager : MonoBehaviour
 
     public bool CombatEnded => combatEnded;
 
+    /// <summary>등록된 적 수. 계측 요약이 처치 수와 함께 쓴다.</summary>
+    public int EnemyCount => enemies.Count;
+
+    /// <summary>죽은 적 수.</summary>
+    public int DeadCount
+    {
+        get
+        {
+            int dead = 0;
+            for (int i = 0; i < enemies.Count; i++)
+                if (enemies[i] == null || !enemies[i].IsAlive) dead++;
+            return dead;
+        }
+    }
+
     private void Awake()
     {
         cam = Camera.main;
         if (player == null) player = FindFirstObjectByType<Player>();
+        if (metrics == null) metrics = FindFirstObjectByType<CombatMetrics>();
 
         if (enemies.Count == 0)
         {
@@ -151,6 +170,8 @@ public class EnemyManager : MonoBehaviour
 
         // 방어도는 전투 종료 시 소멸한다.
         if (player != null) player.ClearShield();
+
+        if (metrics != null) metrics.ReportVictory();
     }
 
     public Color GetCastColor(CastColor tone)

@@ -1232,6 +1232,7 @@ GameObject:
   - component: {fileID: 414053919}
   - component: {fileID: 414053922}
   - component: {fileID: 414053923}
+  - component: {fileID: 414053924}
   m_Layer: 0
   m_Name: Systems
   m_TagString: Untagged
@@ -1254,6 +1255,7 @@ MonoBehaviour:
   costSystem: {fileID: 0}
   enemyManager: {fileID: 0}
   player: {fileID: 0}
+  metrics: {fileID: 414053924}
   startingDeck:
   - {fileID: 11400000, guid: f75c36f8b3d21664480e6425cea2704e, type: 2}
   - {fileID: 11400000, guid: e7f4d6c974e989140b027fa146e1c806, type: 2}
@@ -1281,6 +1283,7 @@ MonoBehaviour:
   regenPerSecond: 0.8
   maxCost: 10
   startCost: 3
+  metrics: {fileID: 414053924}
 --- !u!4 &414053921
 Transform:
   m_ObjectHideFlags: 0
@@ -1364,6 +1367,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyManager
   player: {fileID: 1146574286}
+  metrics: {fileID: 414053924}
   enemies: []
   minFireGap: 0.5
   greenColor: {r: 0.25, g: 0.8, b: 0.35, a: 1}
@@ -1372,6 +1376,21 @@ MonoBehaviour:
   targetLeftKey: 276
   targetRightKey: 275
   clickRayDistance: 200
+--- !u!114 &414053924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 414053918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63ec44667be4a9048ae4b4d207888001, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CombatMetrics
+  enemyManager: {fileID: 414053923}
+  player: {fileID: 1146574286}
+  logEachInput: 1
 --- !u!1 &430042657
 GameObject:
   m_ObjectHideFlags: 0
@@ -1408,10 +1427,10 @@ RectTransform:
   - {fileID: 536786158}
   m_Father: {fileID: 1684798577}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 97.5, y: -100}
+  m_SizeDelta: {x: 195, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &430042659
 CanvasRenderer:
@@ -2431,10 +2450,10 @@ RectTransform:
   - {fileID: 1912165692}
   m_Father: {fileID: 1684798577}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 742.5, y: -100}
+  m_SizeDelta: {x: 195, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &734759149
 CanvasRenderer:
@@ -3432,10 +3451,10 @@ RectTransform:
   - {fileID: 183367184}
   m_Father: {fileID: 1684798577}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 312.5, y: -100}
+  m_SizeDelta: {x: 195, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &902055543
 CanvasRenderer:
@@ -3896,6 +3915,7 @@ MonoBehaviour:
   currentHp: 500
   resetHpOnStart: 1
   defense: 20
+  metrics: {fileID: 414053924}
 --- !u!4 &1146574287
 Transform:
   m_ObjectHideFlags: 0
@@ -4359,10 +4379,10 @@ RectTransform:
   - {fileID: 646648941}
   m_Father: {fileID: 1684798577}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 527.5, y: -100}
+  m_SizeDelta: {x: 195, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1318527014
 CanvasRenderer:

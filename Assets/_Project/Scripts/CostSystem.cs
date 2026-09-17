@@ -15,17 +15,29 @@ public class CostSystem : MonoBehaviour
     [Tooltip("전투 시작값")]
     [SerializeField] private float startCost = 3f;
 
+    [Tooltip("4단계 계측. 비워두면 씬에서 자동으로 찾는다.")]
+    [SerializeField] private CombatMetrics metrics;
+
     public float Current { get; private set; }
     public float Max => maxCost;
 
     private void Awake()
     {
         Current = Mathf.Min(startCost, maxCost);
+        if (metrics == null) metrics = FindFirstObjectByType<CombatMetrics>();
     }
 
     private void Update()
     {
-        Current = Mathf.Min(Current + regenPerSecond * Time.deltaTime, maxCost);
+        // 상한을 넘긴 충전분은 소멸한다. 계측은 그 버려진 양만 누적한다
+        // (상한에 머문 시간과는 다른 값이다 — 09 문서 4단계 ②).
+        float charged = Current + regenPerSecond * Time.deltaTime;
+        if (charged > maxCost)
+        {
+            if (metrics != null) metrics.RecordCostWasted(charged - maxCost);
+            charged = maxCost;
+        }
+        Current = charged;
     }
 
     public bool CanAfford(float amount) => Current >= amount;

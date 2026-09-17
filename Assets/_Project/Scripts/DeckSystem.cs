@@ -34,6 +34,9 @@ public class DeckSystem : MonoBehaviour
     [SerializeField] private EnemyManager enemyManager;
     [SerializeField] private Player player;
 
+    [Tooltip("4단계 계측. 비워두면 씬에서 자동으로 찾는다.")]
+    [SerializeField] private CombatMetrics metrics;
+
     [Tooltip("프로토타입용 기본 덱 8장. SetDeck으로 주입하면 이 값은 쓰이지 않는다.")]
     [SerializeField] private List<SkillData> startingDeck = new List<SkillData>();
 
@@ -55,6 +58,9 @@ public class DeckSystem : MonoBehaviour
     private SkillData castingCard;
     private float castRemaining;
 
+    // 진행 중인 캐스팅의 계측 순서 번호. 효과 적용·기절 취소를 같은 번호로 잇는다.
+    private int castingUseId;
+
     /// <summary>남은 행동 잠금 시간(초). MAX(캐스팅 시간, 최소 GCD)에서 줄어든다.</summary>
     public float LockRemaining { get; private set; }
 
@@ -71,6 +77,7 @@ public class DeckSystem : MonoBehaviour
         if (costSystem == null) costSystem = FindFirstObjectByType<CostSystem>();
         if (enemyManager == null) enemyManager = FindFirstObjectByType<EnemyManager>();
         if (player == null) player = FindFirstObjectByType<Player>();
+        if (metrics == null) metrics = FindFirstObjectByType<CombatMetrics>();
     }
 
     private void Start()
@@ -86,6 +93,7 @@ public class DeckSystem : MonoBehaviour
         LockRemaining = 0f;
         castingCard = null;
         castRemaining = 0f;
+        castingUseId = 0;
         initialized = true;
         if (deck == null) return;
 
@@ -178,13 +186,19 @@ public class DeckSystem : MonoBehaviour
 
         if (state != SlotState.Ready)
         {
+            // 잠금·기절·대상 조건을 모두 통과하고 코스트만 모자란 경우만 센다 (09 문서 4단계 ②).
+            if (state == SlotState.NotEnoughCost && metrics != null) metrics.RecordCostShortInput();
+
             // 비활성 사유는 코스트를 쓰지 않는다.
             if (state != SlotState.Empty) LogUse(card, "-", StateToLabel(state));
             return false;
         }
 
+        float costBefore = costSystem.Current;
+
         if (!costSystem.TrySpend(card.Cost))
         {
+            if (metrics != null) metrics.RecordCostShortInput();
             LogUse(card, "-", "코스트 부족");
             return false;
         }
@@ -193,6 +207,11 @@ public class DeckSystem : MonoBehaviour
         // 효과는 캐스팅이 끝나야 나지만 손패 교체는 여기서 끝난다.
         // 새로 들어온 카드는 행동 잠금 때문에 바로 쓸 수 없다.
         CycleSlot(card, slot);
+
+        // 사용 1회는 여기서 센다. 효과 적용 때 다시 세지 않는다 (09 문서 4단계 ②).
+        castingUseId = metrics != null
+            ? metrics.RecordUseAccepted(SlotLabel(slot), card, DescribeTarget(card), costBefore, costSystem.Current)
+            : 0;
 
         castingCard = card;
         castRemaining = card.CastTime;
@@ -208,16 +227,20 @@ public class DeckSystem : MonoBehaviour
     private void CompleteCast()
     {
         SkillData card = castingCard;
+        int useId = castingUseId;
 
         castingCard = null;
         castRemaining = 0f;
+        castingUseId = 0;
 
         if (card == null) return;
 
         string targetLabel;
         string resultLabel;
         ApplyCard(card, out targetLabel, out resultLabel);
-        LogUse(card, targetLabel, resultLabel);
+
+        if (metrics != null) metrics.RecordUseResult(useId, card.DisplayName + " / " + targetLabel + " / " + resultLabel);
+        else LogUse(card, targetLabel, resultLabel);
     }
 
     /// <summary>
@@ -228,13 +251,19 @@ public class DeckSystem : MonoBehaviour
     private void CancelCast()
     {
         SkillData card = castingCard;
+        int useId = castingUseId;
 
         castingCard = null;
         castRemaining = 0f;
+        castingUseId = 0;
 
         if (card == null) return;
 
-        LogUse(card, "-", "캐스팅 취소 — 기절 (코스트 반환 없음, 카드는 입력 시 이미 순환)");
+        const string reason = "캐스팅 취소 — 기절 (코스트 반환 없음, 카드는 입력 시 이미 순환)";
+
+        // 사용 횟수에는 이미 들어가 있다. 결과만 취소로 구분한다.
+        if (metrics != null) metrics.RecordUseCancelled(useId, card.DisplayName + " / " + reason);
+        else LogUse(card, "-", reason);
     }
 
     /// <summary>
@@ -273,6 +302,8 @@ public class DeckSystem : MonoBehaviour
                 InterruptResult r = target != null
                     ? target.TryInterrupt(interruptStagger)
                     : InterruptResult.NotCasting;
+
+                if (r == InterruptResult.Success && metrics != null) metrics.RecordInterruptSuccess();
 
                 if (r == InterruptResult.Success)
                     resultLabel = "차단 성공 (경직 " + interruptStagger.ToString("0.#") + "초)";
@@ -322,6 +353,23 @@ public class DeckSystem : MonoBehaviour
         int dealt = DamageFormula.Compute(card.Damage, card.HitCount, target.Data.Defense);
         target.TakeDamage(dealt);
         return dealt;
+    }
+
+    /// <summary>입력 로그용 슬롯 이름. 예: 슬롯2(W)</summary>
+    private string SlotLabel(int slot)
+    {
+        if (slot < 0 || slot >= handKeys.Length) return "슬롯" + slot;
+        return "슬롯" + (slot + 1) + "(" + handKeys[slot] + ")";
+    }
+
+    /// <summary>입력 시점의 대상. 효과 적용 시점에는 달라질 수 있다.</summary>
+    private string DescribeTarget(SkillData card)
+    {
+        if (card == null) return "-";
+        if (card.Category == SkillCategory.Shield) return "자신";
+        if (card.IsAreaOfEffect) return "적 전체";
+        Enemy target = enemyManager != null ? enemyManager.CurrentTarget : null;
+        return target != null ? target.name : "-";
     }
 
     private string StateToLabel(SlotState state)
