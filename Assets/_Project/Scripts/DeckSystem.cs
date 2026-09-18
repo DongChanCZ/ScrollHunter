@@ -65,6 +65,7 @@ public class DeckSystem : MonoBehaviour
     public float LockRemaining { get; private set; }
 
     public bool IsLocked => LockRemaining > 0f;
+    public float InterruptStagger => interruptStagger;
 
     /// <summary>카드 캐스팅이 진행 중인지.</summary>
     public bool IsCasting => castingCard != null;
@@ -199,6 +200,8 @@ public class DeckSystem : MonoBehaviour
     /// <summary>카드를 쓴다. 코스트는 즉시 나가고, 효과는 캐스팅이 끝나야 난다.</summary>
     public bool TryUseSlot(int slot)
     {
+        if (Time.timeScale <= 0f || (metrics != null && metrics.Ended)
+            || (enemyManager != null && enemyManager.CombatEnded) || (player != null && !player.IsAlive)) return false;
         SkillData card = GetHandCard(slot);
         SlotState state = GetSlotState(slot);
 

@@ -101,7 +101,9 @@ public class EnemyManager : MonoBehaviour
         if (Input.GetKeyDown(targetLeftKey)) StepTarget(-1);
         else if (Input.GetKeyDown(targetRightKey)) StepTarget(1);
 
-        if (Input.GetMouseButtonDown(0)) TryClickTarget();
+        if (Input.GetMouseButtonDown(0)
+            && !(UnityEngine.EventSystems.EventSystem.current != null
+                && UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())) TryClickTarget();
     }
 
     private Enemy FirstAlive()

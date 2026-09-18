@@ -113,7 +113,8 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        if (data == null || !IsAlive) return;
+        if (data == null || !IsAlive || Time.timeScale <= 0f
+            || (manager != null && manager.CombatEnded) || (player != null && !player.IsAlive)) return;
 
         if (staggerTimer > 0f)
         {
