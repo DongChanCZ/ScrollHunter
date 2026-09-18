@@ -99,20 +99,26 @@ public class CombatMetrics : MonoBehaviour
         return id;
     }
 
-    /// <summary>같은 순서 번호에 효과 적용·차단 실패 결과를 이어 붙인다.</summary>
+    /// <summary>
+    /// 같은 순서 번호에 효과 적용·차단 실패 결과를 이어 붙인다.
+    /// 이 카드는 입력 시점에 이미 Ended가 아니었기에 수락된 것이므로(useId&gt;0),
+    /// 그 결과를 적용하는 시점에 Ended로 바뀌어 있어도(예: 이 카드가 마지막 적을 잡아 승리 확정)
+    /// 기록은 남긴다. 안 그러면 승패를 가른 바로 그 입력의 결과가 로그에서 빠진다.
+    /// </summary>
     public void RecordUseResult(int useId, string resultLabel)
     {
-        if (Ended || useId <= 0) return;
+        if (useId <= 0) return;
         if (!logEachInput) return;
 
         Debug.Log("[#" + useId + " 결과 " + Elapsed.ToString("F2") + "s / " + resultLabel + "]", this);
     }
 
-    /// <summary>기절로 캐스팅이 끊겼다. 사용 횟수에는 이미 들어가 있고 결과만 취소로 구분한다.</summary>
+    /// <summary>
+    /// 기절로 캐스팅이 끊겼다. 사용 횟수에는 이미 들어가 있고 결과만 취소로 구분한다.
+    /// RecordUseResult와 같은 이유로 Ended 여부와 무관하게 기록한다.
+    /// </summary>
     public void RecordUseCancelled(int useId, string resultLabel)
     {
-        if (Ended) return;
-
         cancelledUses++;
         if (!logEachInput || useId <= 0) return;
 
