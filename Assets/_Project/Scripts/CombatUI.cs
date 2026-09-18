@@ -16,6 +16,15 @@ public class CombatUI : MonoBehaviour
 
         [Tooltip("잠금 시간 또는 비활성 사유 표시")]
         public TMP_Text lockText;
+
+        [Tooltip("공격/방어/차단 유형 이름")]
+        public TMP_Text typeText;
+
+        [Tooltip("유형별 도형(사각·마름모·원). 색이 안 보여도 유형을 구분하기 위함")]
+        public Image typeShape;
+
+        [Tooltip("Q/W/E/R 단축키 표시(정적 텍스트). 행동 잠금·기절 중 대비를 맞추려고 참조한다")]
+        public TMP_Text keyLabel;
     }
 
     [SerializeField] private CostSystem costSystem;
@@ -75,6 +84,22 @@ public class CombatUI : MonoBehaviour
     [SerializeField] private Color costNormalColor = new Color(0.1f, 0.3f, 0.8f);
     [SerializeField] private Color costShortColor = new Color(0.9f, 0.15f, 0.15f);
 
+    [Header("카드 유형 표시 — 적 캐스팅 초록·주황·빨강, 슬롯 상태색(회색·보라)과 겹치지 않는 색만 쓸 것")]
+    [SerializeField] private string dealTypeLabel = "공격";
+    [SerializeField] private string shieldTypeLabel = "방어";
+    [SerializeField] private string interruptTypeLabel = "차단";
+
+    [SerializeField] private Color dealTypeColor = new Color(0.30f, 0.45f, 0.90f);
+    [SerializeField] private Color shieldTypeColor = new Color(0.15f, 0.65f, 0.80f);
+    [SerializeField] private Color interruptTypeColor = new Color(0.85f, 0.25f, 0.60f);
+
+    [Tooltip("방어 유형 도형(원). 비워두면 사각형으로 대체된다")]
+    [SerializeField] private Sprite shieldShapeSprite;
+
+    [Header("행동 잠금·기절 — 배경(회색·보라)은 그대로 두고 글자만 밝혀서 대비를 높인다")]
+    [Tooltip("행동 잠금·기절 중 이름·유형·코스트·단축키·남은 시간에 공통으로 쓰는 고대비 글자색. 코스트 부족의 빨강과 헷갈리지 않아야 한다")]
+    [SerializeField] private Color lockedOrStunnedTextColor = Color.white;
+
     [Header("표시 문자열")]
     [SerializeField] private string emptySlotLabel = "-";
 
@@ -89,6 +114,11 @@ public class CombatUI : MonoBehaviour
 
     private Vector3 markerBaseScale = Vector3.one;
 
+    // 행동 잠금·기절이 아닐 때 되돌릴 원래 글자색. 4슬롯 스타일이 같으므로 하나만 캐싱한다.
+    private Color defaultNameColor = Color.black;
+    private Color defaultKeyLabelColor = Color.black;
+    private Color defaultLockTextColor = Color.black;
+
     private void Awake()
     {
         if (costSystem == null) costSystem = FindFirstObjectByType<CostSystem>();
@@ -97,6 +127,22 @@ public class CombatUI : MonoBehaviour
         if (player == null) player = FindFirstObjectByType<Player>();
 
         if (targetMarker != null) markerBaseScale = targetMarker.localScale;
+
+        CacheDefaultTextColors();
+    }
+
+    private void CacheDefaultTextColors()
+    {
+        for (int i = 0; i < handSlots.Length; i++)
+        {
+            HandSlotView view = handSlots[i];
+            if (view == null) continue;
+
+            if (view.nameText != null) defaultNameColor = view.nameText.color;
+            if (view.keyLabel != null) defaultKeyLabelColor = view.keyLabel.color;
+            if (view.lockText != null) defaultLockTextColor = view.lockText.color;
+            break; // 4슬롯 모두 같은 스타일이라 첫 슬롯만 보면 된다.
+        }
     }
 
     // 같은 프레임의 입력 결과까지 반영하려고 LateUpdate에서 갱신한다.
@@ -150,20 +196,56 @@ public class CombatUI : MonoBehaviour
             SkillData card = deckSystem.GetHandCard(i);
             SlotState state = deckSystem.GetSlotState(i);
 
+            // 행동 잠금·기절은 배경(회색·보라)을 그대로 두는 대신 글자를 전부 밝혀서 대비를 확보한다.
+            bool highContrast = state == SlotState.ActionLocked || state == SlotState.Stunned;
+
             if (view.nameText != null)
+            {
                 view.nameText.text = card != null ? card.DisplayName : emptySlotLabel;
+                view.nameText.color = highContrast ? lockedOrStunnedTextColor : defaultNameColor;
+            }
 
             if (view.costText != null)
             {
                 view.costText.text = card != null ? card.Cost.ToString("0.#") : string.Empty;
                 // 코스트 부족은 숫자를 빨갛게 해서 다른 비활성 사유와 구분한다.
-                view.costText.color = state == SlotState.NotEnoughCost ? costShortColor : costNormalColor;
+                view.costText.color = highContrast ? lockedOrStunnedTextColor
+                    : (state == SlotState.NotEnoughCost ? costShortColor : costNormalColor);
             }
 
-            if (view.lockText != null) view.lockText.text = LockLabel(state);
+            if (view.lockText != null)
+            {
+                view.lockText.text = LockLabel(state);
+                // 남은 시간도 밝게 — 코스트 부족의 빨간 숫자와 헷갈리지 않게 한다.
+                view.lockText.color = highContrast ? lockedOrStunnedTextColor : defaultLockTextColor;
+            }
+
+            if (view.keyLabel != null)
+                view.keyLabel.color = highContrast ? lockedOrStunnedTextColor : defaultKeyLabelColor;
 
             if (view.background != null)
                 view.background.color = SlotColor(state);
+
+            // 유형 표시는 카드 이름표와 같은 이유로 매 프레임 카드 기준으로 다시 그린다 — 순환하면 즉시 바뀐다.
+            if (view.typeText != null)
+            {
+                view.typeText.text = card != null ? TypeLabel(card.Category) : string.Empty;
+                view.typeText.color = card == null ? defaultNameColor
+                    : (highContrast ? lockedOrStunnedTextColor : TypeColor(card.Category));
+            }
+
+            if (view.typeShape != null)
+            {
+                view.typeShape.enabled = card != null;
+                if (card != null)
+                {
+                    view.typeShape.color = highContrast ? lockedOrStunnedTextColor : TypeColor(card.Category);
+                    // 방어만 원(Knob), 나머지는 사각형 — 차단은 45도 회전한 마름모로 사각형(공격)과 구분한다.
+                    view.typeShape.sprite = card.Category == SkillCategory.Shield ? shieldShapeSprite : null;
+                    float rotation = card.Category == SkillCategory.Interrupt ? 45f : 0f;
+                    view.typeShape.rectTransform.localRotation = Quaternion.Euler(0f, 0f, rotation);
+                }
+            }
         }
 
         if (nextCardText != null)
@@ -180,6 +262,20 @@ public class CombatUI : MonoBehaviour
         if (state == SlotState.ActionLocked) return deckSystem.LockRemaining.ToString("F1");
         if (state == SlotState.NoValidTarget) return noTargetLabel;
         return string.Empty;
+    }
+
+    private string TypeLabel(SkillCategory category)
+    {
+        if (category == SkillCategory.Shield) return shieldTypeLabel;
+        if (category == SkillCategory.Interrupt) return interruptTypeLabel;
+        return dealTypeLabel;
+    }
+
+    private Color TypeColor(SkillCategory category)
+    {
+        if (category == SkillCategory.Shield) return shieldTypeColor;
+        if (category == SkillCategory.Interrupt) return interruptTypeColor;
+        return dealTypeColor;
     }
 
     private Color SlotColor(SlotState state)
