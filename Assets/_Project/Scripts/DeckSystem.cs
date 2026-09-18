@@ -72,6 +72,21 @@ public class DeckSystem : MonoBehaviour
     /// <summary>캐스팅 완료까지 남은 시간(초).</summary>
     public float CastRemaining => castRemaining;
 
+    /// <summary>
+    /// 지금 시전 중인 카드. 손패에는 입력 수락 시점에 이미 다음 카드가 들어와 있으므로(10 A14),
+    /// 시전 표시는 손패 슬롯이 아니라 이 값을 봐야 한다.
+    /// </summary>
+    public SkillData CastingCard => castingCard;
+
+    /// <summary>마지막으로 끝난 시전의 카드. 아직 없으면 null.</summary>
+    public SkillData LastCastCard { get; private set; }
+
+    /// <summary>마지막 시전이 기절로 끊겼는지. 정상 완료면 false (10 A12).</summary>
+    public bool LastCastCancelled { get; private set; }
+
+    /// <summary>마지막 시전이 끝난 시각(Time.time). 취소 표시를 얼마나 띄울지 재는 데만 쓴다.</summary>
+    public float LastCastEndTime { get; private set; }
+
     private void Awake()
     {
         if (costSystem == null) costSystem = FindFirstObjectByType<CostSystem>();
@@ -94,6 +109,9 @@ public class DeckSystem : MonoBehaviour
         castingCard = null;
         castRemaining = 0f;
         castingUseId = 0;
+        LastCastCard = null;
+        LastCastCancelled = false;
+        LastCastEndTime = 0f;
         initialized = true;
         if (deck == null) return;
 
@@ -241,6 +259,8 @@ public class DeckSystem : MonoBehaviour
 
         if (metrics != null) metrics.RecordUseResult(useId, card.DisplayName + " / " + targetLabel + " / " + resultLabel);
         else LogUse(card, targetLabel, resultLabel);
+
+        RecordCastEnd(card, false);
     }
 
     /// <summary>
@@ -264,6 +284,20 @@ public class DeckSystem : MonoBehaviour
         // 사용 횟수에는 이미 들어가 있다. 결과만 취소로 구분한다.
         if (metrics != null) metrics.RecordUseCancelled(useId, card.DisplayName + " / " + reason);
         else LogUse(card, "-", reason);
+
+        RecordCastEnd(card, true);
+    }
+
+    /// <summary>
+    /// 시전이 어떻게 끝났는지만 남긴다. UI가 정상 완료와 기절 취소를 구분할 유일한 근거다.
+    /// CompleteCast와 CancelCast는 바깥에서 보면 상태를 똑같이 비우기 때문에 이 기록이 없으면 구분할 수 없다.
+    /// 코스트·카드 순환·판정에는 관여하지 않는다.
+    /// </summary>
+    private void RecordCastEnd(SkillData card, bool cancelled)
+    {
+        LastCastCard = card;
+        LastCastCancelled = cancelled;
+        LastCastEndTime = Time.time;
     }
 
     /// <summary>

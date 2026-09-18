@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// HP / 방어도 / 코스트 / 손패 4칸 / 대기열 다음 1장 / 타겟 마커 / 기절 표시. 읽기 전용.
+/// HP / 방어도 / 코스트 / 손패 4칸 / 대기열 다음 1장 / 타겟 마커 / 기절 표시 / 플레이어 시전 표시. 읽기 전용.
 /// </summary>
 public class CombatUI : MonoBehaviour
 {
@@ -32,6 +32,9 @@ public class CombatUI : MonoBehaviour
     [SerializeField] private EnemyManager enemyManager;
     [SerializeField] private Player player;
 
+    [Tooltip("전투 종료(승리·패배) 감지용. 비워두면 씬에서 자동으로 찾는다")]
+    [SerializeField] private CombatMetrics metrics;
+
     [Header("좌하단 상태")]
     [SerializeField] private TMP_Text costText;
     [SerializeField] private TMP_Text hpText;
@@ -49,6 +52,36 @@ public class CombatUI : MonoBehaviour
     [Header("손패")]
     [SerializeField] private HandSlotView[] handSlots = new HandSlotView[DeckSystem.HandSize];
     [SerializeField] private TMP_Text nextCardText;
+
+    [Header("시전 표시 (손패 위) — 시전 시간만 쓴다. 손패 슬롯의 행동 잠금 숫자와는 다른 타이머다")]
+    [Tooltip("시전 중과 취소 표시 동안에만 켜진다. 비워두면 시전 표시를 하지 않는다")]
+    [SerializeField] private GameObject castRoot;
+
+    [Tooltip("진행 바. 오른쪽 앵커를 움직여 채운다 (Image.fillAmount는 쓰지 않는다)")]
+    [SerializeField] private Image castFill;
+
+    [SerializeField] private TMP_Text castNameText;
+    [SerializeField] private TMP_Text castTimeText;
+
+    [Tooltip("{0}=시전 중인 스킬 이름")]
+    [SerializeField] private string castFormat = "시전 {0}";
+
+    [Tooltip("{0}=남은 시전 시간(초)")]
+    [SerializeField] private string castTimeFormat = "{0:0.0}";
+
+    [Tooltip("{0}=끊긴 스킬 이름. 기절로 취소됐을 때만 잠깐 표시한다")]
+    [SerializeField] private string castCancelledFormat = "{0} 시전 취소";
+
+    [Tooltip("취소 표시를 띄워 두는 시간(초). 기절 2초보다 짧게 두어 다음 시전과 겹치지 않게 한다")]
+    [SerializeField] private float cancelNoticeSeconds = 0.8f;
+
+    [Tooltip("진행 바 색. 적 캐스팅 3색·슬롯 상태색·카드 유형색과 겹치지 않는 색만 쓸 것")]
+    [SerializeField] private Color castFillColor = new Color(0.92f, 0.94f, 0.88f, 1f);
+
+    [SerializeField] private Color castTextColor = Color.white;
+
+    [Tooltip("취소 표시 글자색. 진행 중과 한눈에 달라 보여야 한다")]
+    [SerializeField] private Color castCancelledTextColor = new Color(0.62f, 0.64f, 0.70f, 1f);
 
     [Header("타겟 마커 — 화면 고정 (02 문서 §2.2)")]
     [Tooltip("Canvas 아래에 둔다. 현재 타겟 위로 이동하고, 타겟이 없으면 숨는다.")]
@@ -125,6 +158,7 @@ public class CombatUI : MonoBehaviour
         if (deckSystem == null) deckSystem = FindFirstObjectByType<DeckSystem>();
         if (enemyManager == null) enemyManager = FindFirstObjectByType<EnemyManager>();
         if (player == null) player = FindFirstObjectByType<Player>();
+        if (metrics == null) metrics = FindFirstObjectByType<CombatMetrics>();
 
         if (targetMarker != null) markerBaseScale = targetMarker.localScale;
 
@@ -150,6 +184,7 @@ public class CombatUI : MonoBehaviour
     {
         UpdateStatus();
         UpdateHand();
+        UpdateCast();
         UpdateMarker();
     }
 
@@ -253,6 +288,101 @@ public class CombatUI : MonoBehaviour
             SkillData next = deckSystem.PeekNext();
             nextCardText.text = next != null ? next.DisplayName : emptySlotLabel;
         }
+    }
+
+    /// <summary>
+    /// 지금 시전 중인 카드를 손패 위에 보여준다.
+    ///
+    /// 손패 슬롯은 입력 수락 즉시 다음 카드로 바뀌므로(10 A14) 슬롯이 아니라
+    /// <see cref="DeckSystem.CastingCard"/>를 읽는다. 진행률 분모도 그 카드의 캐스팅 시간이다 —
+    /// 행동 잠금 MAX(캐스팅, 최소 GCD)로 나누면 0.2초짜리 카드가 절반만 찬 것처럼 보인다.
+    /// 남은 시간도 <see cref="DeckSystem.CastRemaining"/>만 쓴다. 손패 슬롯의 잠금 숫자와는 다른 타이머다.
+    ///
+    /// 시간을 여기서 따로 적분하지 않는 이유: 캐스팅 진행은 DeckSystem이 Time.deltaTime으로 돌리므로
+    /// 일시정지 중 정지(02 E13)와 2배속 비례(E14)가 저절로 지켜진다.
+    /// </summary>
+    private void UpdateCast()
+    {
+        if (castRoot == null) return;
+
+        // 전투가 끝나면 남기지 않는다. 특히 패배는 timeScale이 0이 되어 시전 타이머가 멈추므로
+        // 그대로 두면 남은 시간을 띄운 채 영구히 박힌다.
+        bool combatOver = (metrics != null && metrics.Ended)
+                          || (enemyManager != null && enemyManager.CombatEnded);
+
+        SkillData casting = !combatOver && deckSystem != null ? deckSystem.CastingCard : null;
+        if (casting != null)
+        {
+            ShowCast(casting, deckSystem.CastRemaining);
+            return;
+        }
+
+        // 기절로 끊긴 직후에만 잠깐 남긴다. 정상 완료는 조용히 끄기만 한다 —
+        // 완료가 곧 성공은 아니기 때문이다 (10 T10 빨강 대상 차단은 완료지만 실패).
+        bool showCancelled = !combatOver
+                             && deckSystem != null
+                             && deckSystem.LastCastCancelled
+                             && deckSystem.LastCastCard != null
+                             && Time.time - deckSystem.LastCastEndTime < cancelNoticeSeconds;
+
+        if (showCancelled)
+        {
+            ShowCastCancelled(deckSystem.LastCastCard);
+            return;
+        }
+
+        if (castRoot.activeSelf) castRoot.SetActive(false);
+    }
+
+    private void ShowCast(SkillData card, float remaining)
+    {
+        if (!castRoot.activeSelf) castRoot.SetActive(true);
+
+        float total = card.CastTime;
+        SetFill(castFill, total > 0f ? 1f - remaining / total : 1f);
+        if (castFill != null) castFill.color = castFillColor;
+
+        if (castNameText != null)
+        {
+            castNameText.text = string.Format(castFormat, card.DisplayName);
+            castNameText.color = castTextColor;
+        }
+
+        if (castTimeText != null)
+        {
+            castTimeText.text = string.Format(castTimeFormat, remaining);
+            castTimeText.color = castTextColor;
+        }
+    }
+
+    /// <summary>기절로 끊긴 표시. 바를 비워서 진행 중과 한눈에 구분되게 한다.</summary>
+    private void ShowCastCancelled(SkillData card)
+    {
+        if (!castRoot.activeSelf) castRoot.SetActive(true);
+
+        SetFill(castFill, 0f);
+
+        if (castNameText != null)
+        {
+            castNameText.text = string.Format(castCancelledFormat, card.DisplayName);
+            castNameText.color = castCancelledTextColor;
+        }
+
+        if (castTimeText != null) castTimeText.text = string.Empty;
+    }
+
+    /// <summary>
+    /// 바를 t(0~1)만큼 채운다. Image.fillAmount를 쓰지 않는 이유는 Enemy 쪽 바와 같다 —
+    /// 스프라이트가 있어야 동작하는데 스프라이트를 쓰면 모서리가 둥글어진다.
+    /// Enemy.SetFill은 private이라 호출할 수 없어 같은 방식을 여기에 둔다.
+    /// </summary>
+    private static void SetFill(Image fill, float t)
+    {
+        if (fill == null) return;
+
+        Vector2 max = fill.rectTransform.anchorMax;
+        max.x = Mathf.Clamp01(t);
+        fill.rectTransform.anchorMax = max;
     }
 
     private string LockLabel(SlotState state)
