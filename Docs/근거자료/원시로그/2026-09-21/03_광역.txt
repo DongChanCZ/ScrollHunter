@@ -1,0 +1,627 @@
+[#1 입력 1.54s / 슬롯3(E) / 수정방패 / 코스트 3 / 자신 / 보유 4.24→1.24]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseAccepted (string,SkillData,string,single,single) (at Assets/_Project/Scripts/CombatMetrics.cs:94)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:233)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[#1 결과 1.74s / 수정방패 / 자신 / 방어도 +120 (누적 120)]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseResult (int,string) (at Assets/_Project/Scripts/CombatMetrics.cs:113)
+DeckSystem:CompleteCast () (at Assets/_Project/Scripts/DeckSystem.cs:263)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:182)
+
+[Player] 피격 25 (원본 30) 방어도 흡수 25 → HP -0 = 500/500 (방어도 95)
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Player:TakeDamage (int) (at Assets/_Project/Scripts/Player.cs:104)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:187)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:149)
+
+[Enemy_A_Green] 발동: 일반 공격 (Green) 피해 30
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:191)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:149)
+
+[Player] 피격 33 (원본 40) 방어도 흡수 33 → HP -0 = 500/500 (방어도 62)
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Player:TakeDamage (int) (at Assets/_Project/Scripts/Player.cs:104)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:187)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:149)
+
+[Player] 기절 2초
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Player:ApplyStun (single) (at Assets/_Project/Scripts/Player.cs:84)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:189)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:149)
+
+[Enemy_B_Orange] 발동: 기절 공격 (Orange) 피해 40
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:191)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:149)
+
+[Player] 피격 125 (원본 150) 방어도 흡수 62 → HP -63 = 437/500 (방어도 0)
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Player:TakeDamage (int) (at Assets/_Project/Scripts/Player.cs:104)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:187)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:149)
+
+[Enemy_C_Red] 발동: 대형 피해 (Red) 피해 150
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:191)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:149)
+
+[#2 입력 5.24s / 슬롯2(W) / 서리화살 / 코스트 2 / Enemy_C_Red / 보유 4.21→2.21]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseAccepted (string,SkillData,string,single,single) (at Assets/_Project/Scripts/CombatMetrics.cs:94)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:233)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[#2 결과 5.55s / 서리화살 / Enemy_C_Red / 피해 60 → HP 240/300]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseResult (int,string) (at Assets/_Project/Scripts/CombatMetrics.cs:113)
+DeckSystem:CompleteCast () (at Assets/_Project/Scripts/DeckSystem.cs:263)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:182)
+
+[Player] 피격 25 (원본 30) 방어도 흡수 0 → HP -25 = 412/500 (방어도 0)
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Player:TakeDamage (int) (at Assets/_Project/Scripts/Player.cs:104)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:187)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:149)
+
+[Enemy_A_Green] 발동: 일반 공격 (Green) 피해 30
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:191)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:149)
+
+[#3 입력 6.43s / 슬롯1(Q) / 화염탄 / 코스트 2 / Enemy_C_Red / 보유 3.16→1.16]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseAccepted (string,SkillData,string,single,single) (at Assets/_Project/Scripts/CombatMetrics.cs:94)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:233)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[#3 결과 6.74s / 화염탄 / Enemy_C_Red / 피해 67 → HP 173/300]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseResult (int,string) (at Assets/_Project/Scripts/CombatMetrics.cs:113)
+DeckSystem:CompleteCast () (at Assets/_Project/Scripts/DeckSystem.cs:263)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:182)
+
+[Player] 피격 25 (원본 30) 방어도 흡수 0 → HP -25 = 387/500 (방어도 0)
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Player:TakeDamage (int) (at Assets/_Project/Scripts/Player.cs:104)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:187)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:149)
+
+[Enemy_B_Orange] 발동: 일반 공격 (Green) 피해 30
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:191)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:149)
+
+[#4 입력 7.78s / 슬롯1(Q) / 관통 / 코스트 2 / Enemy_C_Red / 보유 2.24→0.24]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseAccepted (string,SkillData,string,single,single) (at Assets/_Project/Scripts/CombatMetrics.cs:94)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:233)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[#4 결과 8.38s / 관통 / Enemy_C_Red / 피해 60 → HP 113/300]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseResult (int,string) (at Assets/_Project/Scripts/CombatMetrics.cs:113)
+DeckSystem:CompleteCast () (at Assets/_Project/Scripts/DeckSystem.cs:263)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:182)
+
+[Player] 피격 25 (원본 30) 방어도 흡수 0 → HP -25 = 362/500 (방어도 0)
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Player:TakeDamage (int) (at Assets/_Project/Scripts/Player.cs:104)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:187)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:149)
+
+[Enemy_C_Red] 발동: 일반 공격 (Green) 피해 30
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:191)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:149)
+
+[Player] 피격 25 (원본 30) 방어도 흡수 0 → HP -25 = 337/500 (방어도 0)
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Player:TakeDamage (int) (at Assets/_Project/Scripts/Player.cs:104)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:187)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:149)
+
+[Enemy_A_Green] 발동: 일반 공격 (Green) 피해 30
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:191)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:149)
+
+[Player] 피격 33 (원본 40) 방어도 흡수 0 → HP -33 = 304/500 (방어도 0)
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Player:TakeDamage (int) (at Assets/_Project/Scripts/Player.cs:104)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:187)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:149)
+
+[Player] 기절 2초
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Player:ApplyStun (single) (at Assets/_Project/Scripts/Player.cs:84)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:189)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:149)
+
+[Enemy_B_Orange] 발동: 기절 공격 (Orange) 피해 40
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:191)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:149)
+
+[Player] 피격 25 (원본 30) 방어도 흡수 0 → HP -25 = 279/500 (방어도 0)
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Player:TakeDamage (int) (at Assets/_Project/Scripts/Player.cs:104)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:187)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:149)
+
+[Enemy_C_Red] 발동: 일반 공격 (Green) 피해 30
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:191)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:149)
+
+[Player] 피격 25 (원본 30) 방어도 흡수 0 → HP -25 = 254/500 (방어도 0)
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Player:TakeDamage (int) (at Assets/_Project/Scripts/Player.cs:104)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:187)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:149)
+
+[Enemy_A_Green] 발동: 일반 공격 (Green) 피해 30
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:191)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:149)
+
+[#5 입력 13.45s / 슬롯1(Q) / 불기둥(광역) / 코스트 3 / 적 전체 / 보유 4.77→1.77]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseAccepted (string,SkillData,string,single,single) (at Assets/_Project/Scripts/CombatMetrics.cs:94)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:233)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[Player] 피격 25 (원본 30) 방어도 흡수 0 → HP -25 = 229/500 (방어도 0)
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Player:TakeDamage (int) (at Assets/_Project/Scripts/Player.cs:104)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:187)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:149)
+
+[Enemy_B_Orange] 발동: 일반 공격 (Green) 피해 30
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:191)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:149)
+
+[#5 결과 15.45s / 불기둥(광역) / 적 전체 3체 / 피해 180]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseResult (int,string) (at Assets/_Project/Scripts/CombatMetrics.cs:113)
+DeckSystem:CompleteCast () (at Assets/_Project/Scripts/DeckSystem.cs:263)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:182)
+
+[#6 입력 15.67s / 슬롯1(Q) / 수정방패 / 코스트 3 / 자신 / 보유 3.55→0.55]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseAccepted (string,SkillData,string,single,single) (at Assets/_Project/Scripts/CombatMetrics.cs:94)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:233)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[#6 결과 15.87s / 수정방패 / 자신 / 방어도 +120 (누적 120)]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseResult (int,string) (at Assets/_Project/Scripts/CombatMetrics.cs:113)
+DeckSystem:CompleteCast () (at Assets/_Project/Scripts/DeckSystem.cs:263)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:182)
+
+[Player] 피격 25 (원본 30) 방어도 흡수 25 → HP -0 = 229/500 (방어도 95)
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Player:TakeDamage (int) (at Assets/_Project/Scripts/Player.cs:104)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:187)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:149)
+
+[Enemy_A_Green] 발동: 일반 공격 (Green) 피해 30
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:191)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:149)
+
+[Player] 피격 125 (원본 150) 방어도 흡수 95 → HP -30 = 199/500 (방어도 0)
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Player:TakeDamage (int) (at Assets/_Project/Scripts/Player.cs:104)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:187)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:149)
+
+[Enemy_C_Red] 발동: 대형 피해 (Red) 피해 150
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:191)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:149)
+
+[#7 입력 17.74s / 슬롯1(Q) / 서리화살 / 코스트 2 / Enemy_C_Red / 보유 2.20→0.20]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseAccepted (string,SkillData,string,single,single) (at Assets/_Project/Scripts/CombatMetrics.cs:94)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:233)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[Enemy_C_Red] 사망
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Enemy:Die () (at Assets/_Project/Scripts/Enemy.cs:262)
+Enemy:TakeDamage (int) (at Assets/_Project/Scripts/Enemy.cs:253)
+DeckSystem:DealTo (Enemy,SkillData) (at Assets/_Project/Scripts/DeckSystem.cs:391)
+DeckSystem:ApplyCard (SkillData,string&,string&) (at Assets/_Project/Scripts/DeckSystem.cs:376)
+DeckSystem:CompleteCast () (at Assets/_Project/Scripts/DeckSystem.cs:261)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:182)
+
+[#7 결과 18.04s / 서리화살 / Enemy_C_Red / 피해 60 → HP 0/300]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseResult (int,string) (at Assets/_Project/Scripts/CombatMetrics.cs:113)
+DeckSystem:CompleteCast () (at Assets/_Project/Scripts/DeckSystem.cs:263)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:182)
+
+[Player] 피격 33 (원본 40) 방어도 흡수 0 → HP -33 = 166/500 (방어도 0)
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Player:TakeDamage (int) (at Assets/_Project/Scripts/Player.cs:104)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:187)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:149)
+
+[Player] 기절 2초
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Player:ApplyStun (single) (at Assets/_Project/Scripts/Player.cs:84)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:189)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:149)
+
+[Enemy_B_Orange] 발동: 기절 공격 (Orange) 피해 40
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:191)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:149)
+
+[Player] 피격 25 (원본 30) 방어도 흡수 0 → HP -25 = 141/500 (방어도 0)
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Player:TakeDamage (int) (at Assets/_Project/Scripts/Player.cs:104)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:187)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:149)
+
+[Enemy_A_Green] 발동: 일반 공격 (Green) 피해 30
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:191)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:149)
+
+[#8 입력 21.01s / 슬롯1(Q) / 화염탄 / 코스트 2 / Enemy_B_Orange / 보유 2.82→0.82]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseAccepted (string,SkillData,string,single,single) (at Assets/_Project/Scripts/CombatMetrics.cs:94)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:233)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[#8 결과 21.31s / 화염탄 / Enemy_B_Orange / 피해 67 → HP 173/300]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseResult (int,string) (at Assets/_Project/Scripts/CombatMetrics.cs:113)
+DeckSystem:CompleteCast () (at Assets/_Project/Scripts/DeckSystem.cs:263)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:182)
+
+[#9 입력 22.91s / 슬롯2(W) / 폭발 / 코스트 2 / Enemy_A_Green / 보유 2.34→0.34]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseAccepted (string,SkillData,string,single,single) (at Assets/_Project/Scripts/CombatMetrics.cs:94)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:233)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[Player] 피격 25 (원본 30) 방어도 흡수 0 → HP -25 = 116/500 (방어도 0)
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Player:TakeDamage (int) (at Assets/_Project/Scripts/Player.cs:104)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:187)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:149)
+
+[Enemy_B_Orange] 발동: 일반 공격 (Green) 피해 30
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:191)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:149)
+
+[Player] 피격 25 (원본 30) 방어도 흡수 0 → HP -25 = 91/500 (방어도 0)
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Player:TakeDamage (int) (at Assets/_Project/Scripts/Player.cs:104)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:187)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:149)
+
+[Enemy_A_Green] 발동: 일반 공격 (Green) 피해 30
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:191)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:149)
+
+[#9 결과 23.71s / 폭발 / Enemy_A_Green / 피해 44 → HP 196/300]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseResult (int,string) (at Assets/_Project/Scripts/CombatMetrics.cs:113)
+DeckSystem:CompleteCast () (at Assets/_Project/Scripts/DeckSystem.cs:263)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:182)
+
+[#10 입력 25.81s / 슬롯1(Q) / 관통 / 코스트 2 / Enemy_A_Green / 보유 2.66→0.66]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseAccepted (string,SkillData,string,single,single) (at Assets/_Project/Scripts/CombatMetrics.cs:94)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:233)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[#10 결과 26.41s / 관통 / Enemy_A_Green / 피해 60 → HP 136/300]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseResult (int,string) (at Assets/_Project/Scripts/CombatMetrics.cs:113)
+DeckSystem:CompleteCast () (at Assets/_Project/Scripts/DeckSystem.cs:263)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:182)
+
+[Player] 피격 33 (원본 40) 방어도 흡수 0 → HP -33 = 58/500 (방어도 0)
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Player:TakeDamage (int) (at Assets/_Project/Scripts/Player.cs:104)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:187)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:149)
+
+[Player] 기절 2초
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Player:ApplyStun (single) (at Assets/_Project/Scripts/Player.cs:84)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:189)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:149)
+
+[Enemy_B_Orange] 발동: 기절 공격 (Orange) 피해 40
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:191)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:149)
+
+[Player] 피격 25 (원본 30) 방어도 흡수 0 → HP -25 = 33/500 (방어도 0)
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Player:TakeDamage (int) (at Assets/_Project/Scripts/Player.cs:104)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:187)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:149)
+
+[Enemy_A_Green] 발동: 일반 공격 (Green) 피해 30
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:191)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:149)
+
+[#11 입력 29.44s / 슬롯1(Q) / 수정방패 / 코스트 3 / 자신 / 보유 3.57→0.57]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseAccepted (string,SkillData,string,single,single) (at Assets/_Project/Scripts/CombatMetrics.cs:94)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:233)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[#11 결과 29.65s / 수정방패 / 자신 / 방어도 +120 (누적 120)]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseResult (int,string) (at Assets/_Project/Scripts/CombatMetrics.cs:113)
+DeckSystem:CompleteCast () (at Assets/_Project/Scripts/DeckSystem.cs:263)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:182)
+
+[Player] 피격 25 (원본 30) 방어도 흡수 25 → HP -0 = 33/500 (방어도 95)
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Player:TakeDamage (int) (at Assets/_Project/Scripts/Player.cs:104)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:187)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:149)
+
+[Enemy_B_Orange] 발동: 일반 공격 (Green) 피해 30
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:191)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:149)
+
+[Player] 피격 25 (원본 30) 방어도 흡수 25 → HP -0 = 33/500 (방어도 70)
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Player:TakeDamage (int) (at Assets/_Project/Scripts/Player.cs:104)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:187)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:149)
+
+[Enemy_A_Green] 발동: 일반 공격 (Green) 피해 30
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:191)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:149)
+
+[#12 입력 32.32s / 슬롯1(Q) / 서리화살 / 코스트 2 / Enemy_A_Green / 보유 2.86→0.86]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseAccepted (string,SkillData,string,single,single) (at Assets/_Project/Scripts/CombatMetrics.cs:94)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:233)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[#12 결과 32.62s / 서리화살 / Enemy_A_Green / 피해 60 → HP 76/300]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseResult (int,string) (at Assets/_Project/Scripts/CombatMetrics.cs:113)
+DeckSystem:CompleteCast () (at Assets/_Project/Scripts/DeckSystem.cs:263)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:182)
+
+[Player] 피격 33 (원본 40) 방어도 흡수 33 → HP -0 = 33/500 (방어도 37)
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Player:TakeDamage (int) (at Assets/_Project/Scripts/Player.cs:104)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:187)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:149)
+
+[Player] 기절 2초
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Player:ApplyStun (single) (at Assets/_Project/Scripts/Player.cs:84)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:189)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:149)
+
+[Enemy_B_Orange] 발동: 기절 공격 (Orange) 피해 40
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:191)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:149)
+
+[Player] 피격 25 (원본 30) 방어도 흡수 25 → HP -0 = 33/500 (방어도 12)
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Player:TakeDamage (int) (at Assets/_Project/Scripts/Player.cs:104)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:187)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:149)
+
+[Enemy_A_Green] 발동: 일반 공격 (Green) 피해 30
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:191)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:149)
+
+[#13 입력 37.04s / 슬롯1(Q) / 화염탄 / 코스트 2 / Enemy_A_Green / 보유 4.65→2.65]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseAccepted (string,SkillData,string,single,single) (at Assets/_Project/Scripts/CombatMetrics.cs:94)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:233)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[#13 결과 37.34s / 화염탄 / Enemy_A_Green / 피해 67 → HP 9/300]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseResult (int,string) (at Assets/_Project/Scripts/CombatMetrics.cs:113)
+DeckSystem:CompleteCast () (at Assets/_Project/Scripts/DeckSystem.cs:263)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:182)
+
+[#14 입력 38.21s / 슬롯1(Q) / 폭발 / 코스트 2 / Enemy_A_Green / 보유 3.58→1.58]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseAccepted (string,SkillData,string,single,single) (at Assets/_Project/Scripts/CombatMetrics.cs:94)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:233)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[Enemy_A_Green] 사망
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Enemy:Die () (at Assets/_Project/Scripts/Enemy.cs:262)
+Enemy:TakeDamage (int) (at Assets/_Project/Scripts/Enemy.cs:253)
+DeckSystem:DealTo (Enemy,SkillData) (at Assets/_Project/Scripts/DeckSystem.cs:391)
+DeckSystem:ApplyCard (SkillData,string&,string&) (at Assets/_Project/Scripts/DeckSystem.cs:376)
+DeckSystem:CompleteCast () (at Assets/_Project/Scripts/DeckSystem.cs:261)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:182)
+
+[#14 결과 39.02s / 폭발 / Enemy_A_Green / 피해 44 → HP 0/300]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseResult (int,string) (at Assets/_Project/Scripts/CombatMetrics.cs:113)
+DeckSystem:CompleteCast () (at Assets/_Project/Scripts/DeckSystem.cs:263)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:182)
+
+[Player] 피격 25 (원본 30) 방어도 흡수 12 → HP -13 = 20/500 (방어도 0)
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Player:TakeDamage (int) (at Assets/_Project/Scripts/Player.cs:104)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:187)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:149)
+
+[Enemy_B_Orange] 발동: 일반 공격 (Green) 피해 30
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:191)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:149)
+
+[#15 입력 40.27s / 슬롯1(Q) / 관통 / 코스트 2 / Enemy_B_Orange / 보유 3.23→1.23]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseAccepted (string,SkillData,string,single,single) (at Assets/_Project/Scripts/CombatMetrics.cs:94)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:233)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[#15 결과 40.87s / 관통 / Enemy_B_Orange / 피해 60 → HP 113/300]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseResult (int,string) (at Assets/_Project/Scripts/CombatMetrics.cs:113)
+DeckSystem:CompleteCast () (at Assets/_Project/Scripts/DeckSystem.cs:263)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:182)
+
+[#16 입력 42.79s / 슬롯1(Q) / 수정방패 / 코스트 3 / 자신 / 보유 3.24→0.24]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseAccepted (string,SkillData,string,single,single) (at Assets/_Project/Scripts/CombatMetrics.cs:94)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:233)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[#16 결과 42.99s / 수정방패 / 자신 / 방어도 +120 (누적 120)]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseResult (int,string) (at Assets/_Project/Scripts/CombatMetrics.cs:113)
+DeckSystem:CompleteCast () (at Assets/_Project/Scripts/DeckSystem.cs:263)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:182)
+
+[Player] 피격 33 (원본 40) 방어도 흡수 33 → HP -0 = 20/500 (방어도 87)
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Player:TakeDamage (int) (at Assets/_Project/Scripts/Player.cs:104)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:187)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:149)
+
+[Player] 기절 2초
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Player:ApplyStun (single) (at Assets/_Project/Scripts/Player.cs:84)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:189)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:149)
+
+[Enemy_B_Orange] 발동: 기절 공격 (Orange) 피해 40
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:191)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:149)
+
+[#17 입력 46.80s / 슬롯4(R) / 침묵 / 코스트 2 / Enemy_B_Orange / 보유 3.45→1.45]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseAccepted (string,SkillData,string,single,single) (at Assets/_Project/Scripts/CombatMetrics.cs:94)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:233)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[#17 결과 47.00s / 침묵 / Enemy_B_Orange / 차단 성공 (경직 2.5초)]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseResult (int,string) (at Assets/_Project/Scripts/CombatMetrics.cs:113)
+DeckSystem:CompleteCast () (at Assets/_Project/Scripts/DeckSystem.cs:263)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:182)
+
+[#18 입력 48.44s / 슬롯1(Q) / 서리화살 / 코스트 2 / Enemy_B_Orange / 보유 2.77→0.77]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseAccepted (string,SkillData,string,single,single) (at Assets/_Project/Scripts/CombatMetrics.cs:94)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:233)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[#18 결과 48.74s / 서리화살 / Enemy_B_Orange / 피해 60 → HP 53/300]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseResult (int,string) (at Assets/_Project/Scripts/CombatMetrics.cs:113)
+DeckSystem:CompleteCast () (at Assets/_Project/Scripts/DeckSystem.cs:263)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:182)
+
+[#19 입력 50.32s / 슬롯1(Q) / 폭발 / 코스트 2 / Enemy_B_Orange / 보유 2.27→0.27]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseAccepted (string,SkillData,string,single,single) (at Assets/_Project/Scripts/CombatMetrics.cs:94)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:233)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[#19 결과 51.13s / 폭발 / Enemy_B_Orange / 피해 44 → HP 9/300]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseResult (int,string) (at Assets/_Project/Scripts/CombatMetrics.cs:113)
+DeckSystem:CompleteCast () (at Assets/_Project/Scripts/DeckSystem.cs:263)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:182)
+
+[Player] 피격 25 (원본 30) 방어도 흡수 25 → HP -0 = 20/500 (방어도 62)
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Player:TakeDamage (int) (at Assets/_Project/Scripts/Player.cs:104)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:187)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:149)
+
+[Enemy_B_Orange] 발동: 일반 공격 (Green) 피해 30
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:191)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:149)
+
+[#20 입력 52.81s / 슬롯1(Q) / 관통 / 코스트 2 / Enemy_B_Orange / 보유 2.26→0.26]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseAccepted (string,SkillData,string,single,single) (at Assets/_Project/Scripts/CombatMetrics.cs:94)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:233)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[Enemy_B_Orange] 사망
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Enemy:Die () (at Assets/_Project/Scripts/Enemy.cs:262)
+Enemy:TakeDamage (int) (at Assets/_Project/Scripts/Enemy.cs:253)
+DeckSystem:DealTo (Enemy,SkillData) (at Assets/_Project/Scripts/DeckSystem.cs:391)
+DeckSystem:ApplyCard (SkillData,string&,string&) (at Assets/_Project/Scripts/DeckSystem.cs:376)
+DeckSystem:CompleteCast () (at Assets/_Project/Scripts/DeckSystem.cs:261)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:182)
+
+[EnemyManager] 승리
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+EnemyManager:EndCombat () (at Assets/_Project/Scripts/EnemyManager.cs:171)
+EnemyManager:NotifyEnemyDied () (at Assets/_Project/Scripts/EnemyManager.cs:164)
+DeckSystem:ApplyCard (SkillData,string&,string&) (at Assets/_Project/Scripts/DeckSystem.cs:381)
+DeckSystem:CompleteCast () (at Assets/_Project/Scripts/DeckSystem.cs:261)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:182)
+
+──────── 전투 종료 요약 ────────
+승패: 승리
+전투 시간: 53.41초 (게임 내, 배속 반영·일시정지 제외)
+남은 HP: 20 / 500
+처치 수: 3 / 3
+
+카드 사용 20회 (기절 취소 0회 포함)
+  수정방패 : 4회
+  서리화살 : 4회
+  화염탄 : 3회
+  관통 : 4회
+  불기둥(광역) : 1회
+  폭발 : 3회
+  침묵 : 1회
+
+차단 시도 1회 / 성공 1회
+방어 카드 사용 4회 / 실제 방어도 흡수 418
+코스트 부족으로 거절된 입력 0회
+상한 초과로 버린 코스트 0.00
+────────────────────────────
+
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:Report (bool) (at Assets/_Project/Scripts/CombatMetrics.cs:196)
+CombatMetrics:ReportVictory () (at Assets/_Project/Scripts/CombatMetrics.cs:163)
+EnemyManager:EndCombat () (at Assets/_Project/Scripts/EnemyManager.cs:176)
+EnemyManager:NotifyEnemyDied () (at Assets/_Project/Scripts/EnemyManager.cs:164)
+DeckSystem:ApplyCard (SkillData,string&,string&) (at Assets/_Project/Scripts/DeckSystem.cs:381)
+DeckSystem:CompleteCast () (at Assets/_Project/Scripts/DeckSystem.cs:261)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:182)
+
+[#20 결과 53.41s / 관통 / Enemy_B_Orange / 피해 60 → HP 0/300]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseResult (int,string) (at Assets/_Project/Scripts/CombatMetrics.cs:113)
+DeckSystem:CompleteCast () (at Assets/_Project/Scripts/DeckSystem.cs:263)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:182)
+
