@@ -62,6 +62,19 @@ public class Player : MonoBehaviour
         if (!IsAlive && !defeatHandled) Defeat();
     }
 
+    public void BeginBattle(bool restoreHp)
+    {
+        if (restoreHp) currentHp = maxHp;
+        EndBattle();
+        defeatHandled = false;
+    }
+
+    public void EndBattle()
+    {
+        ClearShield();
+        StunRemaining = 0f;
+    }
+
     public void AddShield(int amount)
     {
         if (amount <= 0) return;
@@ -78,7 +91,7 @@ public class Player : MonoBehaviour
     /// </summary>
     public void ApplyStun(float seconds)
     {
-        if (seconds <= 0f || !IsAlive) return;
+        if (seconds <= 0f || !IsAlive || (metrics != null && metrics.Ended)) return;
 
         StunRemaining = Mathf.Max(StunRemaining, seconds);
         Debug.Log($"[{nameof(Player)}] 기절 {StunRemaining:0.#}초", this);
@@ -87,7 +100,7 @@ public class Player : MonoBehaviour
     /// <param name="incomingDamage">방어력 적용 전 피해량(절대값).</param>
     public void TakeDamage(int incomingDamage)
     {
-        if (!IsAlive) return;
+        if (!IsAlive || (metrics != null && metrics.Ended)) return;
 
         int taken = DamageFormula.Compute(incomingDamage, 1, defense);
 
@@ -110,7 +123,7 @@ public class Player : MonoBehaviour
     private void Defeat()
     {
         defeatHandled = true;
-        StunRemaining = 0f;
+        EndBattle();
         if (metrics != null) metrics.ReportDefeat();
         Debug.Log($"[{nameof(Player)}] 패배", this);
         Time.timeScale = 0f;

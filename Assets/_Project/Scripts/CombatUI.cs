@@ -65,6 +65,7 @@ public class CombatUI : MonoBehaviour
 
     [Tooltip("{0}=시전 중인 스킬 이름")]
     [SerializeField] private string castFormat = "시전 {0}";
+    [SerializeField] private string channelFormat = "채널링 {0}";
 
     [Tooltip("{0}=남은 시전 시간(초)")]
     [SerializeField] private string castTimeFormat = "{0:0.0}";
@@ -138,6 +139,7 @@ public class CombatUI : MonoBehaviour
 
     [Tooltip("타겟이 캐스팅 중이 아닐 때 차단 슬롯에 표시")]
     [SerializeField] private string noTargetLabel = "잠김";
+    [SerializeField] private string invalidSkillLabel = "설정 필요";
 
     [Tooltip("{0}=현재 HP, {1}=최대 HP")]
     [SerializeField] private string hpFormat = "{0} / {1}";
@@ -344,7 +346,7 @@ public class CombatUI : MonoBehaviour
 
         if (castNameText != null)
         {
-            castNameText.text = string.Format(castFormat, card.DisplayName);
+            castNameText.text = string.Format(card.IsChanneling ? channelFormat : castFormat, card.DisplayName);
             castNameText.color = castTextColor;
         }
 
@@ -391,6 +393,7 @@ public class CombatUI : MonoBehaviour
             return player != null ? player.StunRemaining.ToString("F1") : string.Empty;
         if (state == SlotState.ActionLocked) return deckSystem.LockRemaining.ToString("F1");
         if (state == SlotState.NoValidTarget) return noTargetLabel;
+        if (state == SlotState.InvalidConfiguration) return invalidSkillLabel;
         return string.Empty;
     }
 
@@ -412,7 +415,7 @@ public class CombatUI : MonoBehaviour
     {
         if (state == SlotState.Stunned) return slotStunnedColor;
         if (state == SlotState.ActionLocked) return slotLockedColor;
-        if (state == SlotState.NoValidTarget) return slotNoTargetColor;
+        if (state == SlotState.NoValidTarget || state == SlotState.InvalidConfiguration) return slotNoTargetColor;
         if (state == SlotState.NotEnoughCost) return slotPoorColor;
         return slotNormalColor;
     }

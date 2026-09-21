@@ -28,6 +28,7 @@ public class CombatMetrics : MonoBehaviour
 
     /// <summary>전투가 끝났는지. 끝나면 모든 집계가 멈춘다.</summary>
     public bool Ended { get; private set; }
+    public int BattleNumber { get; private set; }
 
     private float startTime;
     private float endTime;
@@ -60,7 +61,21 @@ public class CombatMetrics : MonoBehaviour
 
     private void Start()
     {
+        if (BattleNumber == 0) BeginBattle(1);
+    }
+
+    public void BeginBattle(int number)
+    {
+        BattleNumber = number;
+        Ended = false;
         startTime = Time.time;
+        endTime = 0f;
+        nextUseId = 1;
+        totalUses = cancelledUses = interruptAttempts = interruptSuccesses = 0;
+        shieldUses = shieldAbsorbed = costShortInputs = 0;
+        costWasted = 0f;
+        cardOrder.Clear();
+        cardUses.Clear();
     }
 
     // ── 입력 계측 ──────────────────────────────────────────────
@@ -172,6 +187,7 @@ public class CombatMetrics : MonoBehaviour
 
         var sb = new StringBuilder();
         sb.AppendLine("──────── 전투 종료 요약 ────────");
+        sb.AppendLine("전투 번호: " + BattleNumber);
         sb.AppendLine("승패: " + (won ? "승리" : "패배"));
         sb.AppendLine("전투 시간: " + Elapsed.ToString("F2") + "초 (게임 내, 배속 반영·일시정지 제외)");
         sb.AppendLine("남은 HP: " + (player != null ? player.CurrentHp.ToString("F0") + " / " + player.MaxHp.ToString("F0") : "-"));

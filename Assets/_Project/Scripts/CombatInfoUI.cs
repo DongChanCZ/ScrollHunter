@@ -25,6 +25,8 @@ public class CombatInfoUI : MonoBehaviour
     [SerializeField] private string hint = "카드에 마우스: 정보 / 우클릭: 정지·재개";
     [SerializeField] private string pausedHint = "일시정지 — 정보 확인만 가능 / 우클릭 또는 재개";
     [SerializeField] private string cardFormat = "{0}\n{1} · {2}\n코스트 {3:0.#} / 시전 {4:0.##}초\n{5}";
+    [SerializeField] private string channelCardFormat = "{0}\n{1} · {2}\n코스트 {3:0.#} / 채널링 {4:0.##}초\n{5}";
+    [SerializeField] private string channelUnconfiguredLabel = "채널링 효과 연결 필요";
     [SerializeField] private string damageFormat = "기본 피해 {0} × {1}회\n방어력 적용 전 피해";
     [SerializeField] private string shieldFormat = "방어도 +{0}";
     [SerializeField] private string interruptFormat = "캐스팅 중인 대상에게 사용\n효과 적용 시 초록·주황이면 차단\n성공 경직 {0:0.##}초\n빨강·적 선발동: 실패, 코스트·카드 소모";
@@ -81,6 +83,14 @@ public class CombatInfoUI : MonoBehaviour
         else if (Input.GetMouseButtonDown(0) && hovered >= 0 && deck != null) deck.TryUseSlot(hovered);
     }
 
+    public void BeginBattle()
+    {
+        IsInfoPaused = false;
+        selectedSlot = -1;
+        resumeScale = 1f;
+        if (cardPanel != null) cardPanel.SetActive(false);
+    }
+
     public void InspectSlot(int slot)
     {
         if (BattleEnded || deck == null || deck.GetHandCard(slot) == null) return;
@@ -128,6 +138,11 @@ public class CombatInfoUI : MonoBehaviour
         { type = shieldLabel; target = selfLabel; effect = string.Format(shieldFormat, card.ShieldAmount); }
         else if (card.Category == SkillCategory.Interrupt)
         { type = interruptLabel; target = singleLabel; effect = string.Format(interruptFormat, deck.InterruptStagger); }
+        if (card.IsChanneling)
+        {
+            effect = card.ChannelEffect != null ? card.ChannelEffect.Describe(card) : channelUnconfiguredLabel;
+            return string.Format(channelCardFormat, card.DisplayName, type, target, card.Cost, card.CastTime, effect);
+        }
         return string.Format(cardFormat, card.DisplayName, type, target, card.Cost, card.CastTime, effect);
     }
 

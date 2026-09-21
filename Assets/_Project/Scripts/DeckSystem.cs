@@ -14,6 +14,8 @@ public enum SlotState
     NoValidTarget,
     /// <summary>코스트 부족. 그 슬롯만 막힌다.</summary>
     NotEnoughCost,
+    /// <summary>채널링 시간 또는 효과 연결이 유효하지 않음.</summary>
+    InvalidConfiguration,
 }
 
 /// <summary>
@@ -22,9 +24,9 @@ public enum SlotState
 /// 손패 슬롯 위치는 고정이라 카드가 왼쪽으로 밀리지 않는다.
 ///
 /// **코스트 소모와 손패 순환은 입력을 수락한 즉시** 끝난다 (10 문서 A14).
-/// **카드 효과만 캐스팅이 끝나야** 적용된다 (A11).
-/// 그래야 「캐스팅 중 기절당하면 캐스팅 취소」(02 E02c)가 성립한다.
-/// 끊겨도 코스트와 카드는 돌아오지 않는다. 효과만 발생하지 않는다.
+/// 일반 시전은 완료 시 효과 적용(A11), 채널링은 진행 중 효과 유지/발생(A18).
+/// 기절로 끊겨도 코스트와 카드는 돌아오지 않는다.
+/// 채널링 중 이미 적용된 결과는 유지하고, 진행 중인 유지 효과만 정리한다.
 /// </summary>
 public class DeckSystem : MonoBehaviour
 {
@@ -53,10 +55,12 @@ public class DeckSystem : MonoBehaviour
     private readonly Queue<SkillData> queue = new Queue<SkillData>();
     private bool initialized;
 
-    // 진행 중인 캐스팅. 완료돼야 효과가 난다.
+    // 일반 시전과 채널링이 공유하는 진행 상태.
     // 손패 순환은 입력 수락 시 이미 끝났으므로 슬롯 번호를 들고 있을 필요가 없다.
     private SkillData castingCard;
     private float castRemaining;
+    private ChannelEffect activeChannel;
+    private ChannelContext channelContext;
 
     // 진행 중인 캐스팅의 계측 순서 번호. 효과 적용·기절 취소를 같은 번호로 잇는다.
     private int castingUseId;
@@ -64,11 +68,15 @@ public class DeckSystem : MonoBehaviour
     /// <summary>남은 행동 잠금 시간(초). MAX(캐스팅 시간, 최소 GCD)에서 줄어든다.</summary>
     public float LockRemaining { get; private set; }
 
-    public bool IsLocked => LockRemaining > 0f;
+    public bool IsLocked => LockRemaining > 0f || IsCasting;
     public float InterruptStagger => interruptStagger;
 
     /// <summary>카드 캐스팅이 진행 중인지.</summary>
     public bool IsCasting => castingCard != null;
+    public bool IsChanneling => castingCard != null && castingCard.IsChanneling;
+
+    private bool BattleEnded => (metrics != null && metrics.Ended)
+        || (enemyManager != null && enemyManager.CombatEnded) || (player != null && !player.IsAlive);
 
     /// <summary>캐스팅 완료까지 남은 시간(초).</summary>
     public float CastRemaining => castRemaining;
@@ -101,9 +109,18 @@ public class DeckSystem : MonoBehaviour
         if (!initialized) SetDeck(startingDeck);
     }
 
+    public void ResetStartingDeck() => SetDeck(startingDeck);
+
+    public void EndBattle()
+    {
+        FinishCast(ChannelEndReason.CombatEnded);
+        LockRemaining = 0f;
+    }
+
     /// <summary>덱을 외부에서 주입한다. 앞 4장이 손패, 나머지가 대기열.</summary>
     public void SetDeck(IList<SkillData> deck)
     {
+        FinishCast(ChannelEndReason.DeckReset);
         System.Array.Clear(hand, 0, HandSize);
         queue.Clear();
         LockRemaining = 0f;
@@ -145,6 +162,8 @@ public class DeckSystem : MonoBehaviour
         if (player != null && player.IsStunned) return SlotState.Stunned;
         if (IsLocked) return SlotState.ActionLocked;
 
+        if (!card.HasValidChannel) return SlotState.InvalidConfiguration;
+
         // 차단 카드는 타겟이 캐스팅 중이 아니면 아예 누를 수 없다.
         if (card.Category == SkillCategory.Interrupt && !HasInterruptableTarget())
             return SlotState.NoValidTarget;
@@ -163,30 +182,8 @@ public class DeckSystem : MonoBehaviour
 
     private void Update()
     {
-        // 기절이 최우선이다. 캐스팅 중이었다면 취소되고 코스트는 돌아오지 않는다.
-        if (player != null && player.IsStunned)
-        {
-            if (IsCasting) CancelCast();
-            LockRemaining = 0f;   // 기절이 행동 잠금을 대체한다
-            return;
-        }
-
-        if (LockRemaining > 0f)
-        {
-            LockRemaining = Mathf.Max(0f, LockRemaining - Time.deltaTime);
-        }
-
-        if (IsCasting)
-        {
-            castRemaining = Mathf.Max(0f, castRemaining - Time.deltaTime);
-            if (castRemaining <= 0f) CompleteCast();
-        }
-
-        // 일시정지 중에는 카드를 쓸 수 없다. (패배로 timeScale이 0이 된 경우 포함)
-        if (Time.timeScale <= 0f) return;
-
-        // 잠금 중 입력은 버퍼에 저장하지 않고 무시한다.
-        if (IsLocked) return;
+        AdvanceCast(Time.deltaTime);
+        if (Time.timeScale <= 0f || BattleEnded || IsLocked || (player != null && player.IsStunned)) return;
 
         int count = Mathf.Min(handKeys.Length, HandSize);
         for (int i = 0; i < count; i++)
@@ -197,11 +194,50 @@ public class DeckSystem : MonoBehaviour
         }
     }
 
-    /// <summary>카드를 쓴다. 코스트는 즉시 나가고, 효과는 캐스팅이 끝나야 난다.</summary>
+    private void AdvanceCast(float deltaTime)
+    {
+        // 종료/기절 정리는 timeScale 0에서도 실행한다. 정지 중에는 효과 진행만 멈춘다.
+        if (BattleEnded) { FinishCast(ChannelEndReason.CombatEnded); LockRemaining = 0f; return; }
+        if (player != null && player.IsStunned)
+        {
+            FinishCast(ChannelEndReason.Stunned);
+            LockRemaining = 0f;
+            return;
+        }
+        if (Time.timeScale <= 0f || deltaTime <= 0f) return;
+
+        LockRemaining = Mathf.Max(0f, LockRemaining - deltaTime);
+        if (!IsCasting) return;
+
+        float elapsed = Mathf.Min(deltaTime, castRemaining);
+        castRemaining = Mathf.Max(0f, castRemaining - deltaTime);
+        if (activeChannel != null)
+        {
+            try { activeChannel.Tick(channelContext, elapsed); }
+            catch (System.Exception exception)
+            {
+                Debug.LogException(exception, this);
+                FinishCast(ChannelEndReason.Error);
+                return;
+            }
+        }
+
+        // 효과 자체가 마지막 적을 죽이거나 플레이어에게 기절을 줄 수도 있다.
+        if (BattleEnded) FinishCast(ChannelEndReason.CombatEnded);
+        else if (player != null && player.IsStunned) FinishCast(ChannelEndReason.Stunned);
+        else if (castRemaining <= 0f) FinishCast(ChannelEndReason.Completed);
+    }
+
+    private void OnDisable()
+    {
+        FinishCast(ChannelEndReason.Disabled);
+        LockRemaining = 0f;
+    }
+
+    /// <summary>입력 수락 시 코스트·카드 소모. 발동 방식에 따라 효과를 시작한다.</summary>
     public bool TryUseSlot(int slot)
     {
-        if (Time.timeScale <= 0f || (metrics != null && metrics.Ended)
-            || (enemyManager != null && enemyManager.CombatEnded) || (player != null && !player.IsAlive)) return false;
+        if (Time.timeScale <= 0f || BattleEnded) return false;
         SkillData card = GetHandCard(slot);
         SlotState state = GetSlotState(slot);
 
@@ -225,7 +261,7 @@ public class DeckSystem : MonoBehaviour
         }
 
         // 유효한 입력을 수락한 즉시 카드를 순환시킨다 (10 문서 A14).
-        // 효과는 캐스팅이 끝나야 나지만 손패 교체는 여기서 끝난다.
+        // 효과 적용 시점과 무관하게 손패 교체는 여기서 끝난다.
         // 새로 들어온 카드는 행동 잠금 때문에 바로 쓸 수 없다.
         CycleSlot(card, slot);
 
@@ -238,62 +274,72 @@ public class DeckSystem : MonoBehaviour
         castRemaining = card.CastTime;
         LockRemaining = Mathf.Max(card.CastTime, minGcd);
 
-        // 캐스팅 시간이 0이면 그 자리에서 발동한다.
-        if (castRemaining <= 0f) CompleteCast();
+        if (card.IsChanneling)
+        {
+            channelContext = new ChannelContext(card, player, enemyManager);
+            activeChannel = Instantiate(card.ChannelEffect);
+            try { activeChannel.Begin(channelContext); }
+            catch (System.Exception exception)
+            {
+                Debug.LogException(exception, this);
+                FinishCast(ChannelEndReason.Error);
+            }
+            if (BattleEnded) FinishCast(ChannelEndReason.CombatEnded);
+            else if (player != null && player.IsStunned) FinishCast(ChannelEndReason.Stunned);
+        }
+        else if (castRemaining <= 0f) FinishCast(ChannelEndReason.Completed);
 
         return true;
     }
 
-    /// <summary>캐스팅 완료. 여기서 처음으로 효과가 난다. 순환은 이미 끝났다.</summary>
-    private void CompleteCast()
+    private void FinishCast(ChannelEndReason reason)
     {
         SkillData card = castingCard;
+        if (card == null) return;
         int useId = castingUseId;
+        ChannelEffect effect = activeChannel;
+        ChannelContext context = channelContext;
 
+        // End에서 정리가 다시 요청되더라도 중복 호출하지 않는다.
         castingCard = null;
         castRemaining = 0f;
         castingUseId = 0;
+        activeChannel = null;
+        channelContext = null;
+        if (reason != ChannelEndReason.Completed) LockRemaining = 0f;
 
-        if (card == null) return;
+        if (effect != null)
+        {
+            try { effect.End(context, reason); }
+            catch (System.Exception exception) { Debug.LogException(exception, this); }
+            finally
+            {
+                if (Application.isPlaying) Destroy(effect);
+                else DestroyImmediate(effect);
+            }
+        }
 
-        string targetLabel;
+        string targetLabel = "-";
         string resultLabel;
-        ApplyCard(card, out targetLabel, out resultLabel);
+        if (reason == ChannelEndReason.Completed && !card.IsChanneling)
+            ApplyCard(card, out targetLabel, out resultLabel);
+        else
+            resultLabel = (card.IsChanneling ? "채널링 종료 — " : "시전 종료 — ") + reason;
 
-        if (metrics != null) metrics.RecordUseResult(useId, card.DisplayName + " / " + targetLabel + " / " + resultLabel);
+        // 완료된 채널링에는 기존 ApplyCard를 덧붙이지 않는다.
+        if (metrics != null)
+        {
+            string label = card.DisplayName + " / " + targetLabel + " / " + resultLabel;
+            if (reason == ChannelEndReason.Stunned) metrics.RecordUseCancelled(useId, label);
+            else metrics.RecordUseResult(useId, label);
+        }
         else LogUse(card, targetLabel, resultLabel);
-
-        RecordCastEnd(card, false);
-    }
-
-    /// <summary>
-    /// 기절로 캐스팅이 끊겼다. 코스트는 돌아오지 않는다 (02 E02c).
-    /// 카드는 입력 수락 시 이미 순환했으므로 **추가로 순환시키지 않는다** (10 문서 A12).
-    /// 효과만 발생하지 않는다.
-    /// </summary>
-    private void CancelCast()
-    {
-        SkillData card = castingCard;
-        int useId = castingUseId;
-
-        castingCard = null;
-        castRemaining = 0f;
-        castingUseId = 0;
-
-        if (card == null) return;
-
-        const string reason = "캐스팅 취소 — 기절 (코스트 반환 없음, 카드는 입력 시 이미 순환)";
-
-        // 사용 횟수에는 이미 들어가 있다. 결과만 취소로 구분한다.
-        if (metrics != null) metrics.RecordUseCancelled(useId, card.DisplayName + " / " + reason);
-        else LogUse(card, "-", reason);
-
-        RecordCastEnd(card, true);
+        RecordCastEnd(card, reason == ChannelEndReason.Stunned);
     }
 
     /// <summary>
     /// 시전이 어떻게 끝났는지만 남긴다. UI가 정상 완료와 기절 취소를 구분할 유일한 근거다.
-    /// CompleteCast와 CancelCast는 바깥에서 보면 상태를 똑같이 비우기 때문에 이 기록이 없으면 구분할 수 없다.
+    /// 정상 완료와 기절 취소 모두 진행 상태를 비우므로 종료 이유를 따로 보관한다.
     /// 코스트·카드 순환·판정에는 관여하지 않는다.
     /// </summary>
     private void RecordCastEnd(SkillData card, bool cancelled)
@@ -416,6 +462,7 @@ public class DeckSystem : MonoBehaviour
         if (state == SlotState.ActionLocked) return "행동 잠금 " + LockRemaining.ToString("0.0") + "초";
         if (state == SlotState.NoValidTarget) return "사용 불가 — 타겟이 캐스팅 중 아님";
         if (state == SlotState.NotEnoughCost) return "코스트 부족";
+        if (state == SlotState.InvalidConfiguration) return "채널링 설정 확인 — 양수 시간과 효과 연결 필요";
         return state.ToString();
     }
 

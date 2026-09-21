@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -17,6 +17,10 @@ public class EnemyManager : MonoBehaviour
 
     [Tooltip("적끼리 발동이 겹치지 않도록 강제하는 최소 간격(초)")]
     [SerializeField] private float minFireGap = 0.5f;
+
+    [Header("전투 시작 배치")]
+    [SerializeField] private Vector3 formationCenter = new Vector3(0f, 1f, 0f);
+    [Min(0f)] [SerializeField] private float sideOffset = 3.2f;
 
     [Header("캐스팅 3색")]
     [SerializeField] private Color greenColor = new Color(0.25f, 0.80f, 0.35f);
@@ -85,9 +89,34 @@ public class EnemyManager : MonoBehaviour
         CurrentTarget = FirstAlive();   // 전투 시작 시 1번 적 자동 지정
     }
 
+    public void BeginBattle(IList<Enemy> combatants, Enemy centerEnemy = null)
+    {
+        foreach (Enemy enemy in enemies)
+            if (enemy != null) enemy.SetEncounterActive(false);
+        enemies = new List<Enemy>(combatants);
+        // 3체는 지정한 강적을 중앙에, 나머지는 등록 순서대로 좌우에 둔다.
+        if (enemies.Count == 3 && centerEnemy != null && enemies.Remove(centerEnemy))
+            enemies.Insert(1, centerEnemy);
+        for (int i = 0; i < enemies.Count; i++)
+        {
+            float offset = enemies.Count == 1 ? 0f : enemies.Count == 2
+                ? (i == 0 ? -sideOffset : sideOffset) : (i - 1) * sideOffset;
+            enemies[i].transform.position = formationCenter + Vector3.right * offset;
+        }
+        enemies.Sort((a, b) => a.transform.position.x.CompareTo(b.transform.position.x));
+        combatEnded = false;
+        lastFireTime = float.NegativeInfinity;
+        foreach (Enemy enemy in enemies)
+        {
+            enemy.Initialize(this, player);
+            enemy.BeginBattle();
+        }
+        CurrentTarget = FirstAlive();
+    }
+
     private void Update()
     {
-        if (combatEnded) return;
+        if (combatEnded || (metrics != null && metrics.Ended) || (player != null && !player.IsAlive)) return;
 
         // 타겟이 죽었으면 자동으로 다음 생존 적으로
         if (CurrentTarget == null || !CurrentTarget.IsAlive) CurrentTarget = FirstAlive();

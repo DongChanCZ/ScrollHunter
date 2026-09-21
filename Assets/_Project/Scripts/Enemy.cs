@@ -108,6 +108,23 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
+        if (current == null) BeginNextCast();
+    }
+
+    public void SetEncounterActive(bool active)
+    {
+        gameObject.SetActive(active);
+        if (castBarRoot != null) castBarRoot.gameObject.SetActive(active);
+    }
+
+    public void BeginBattle()
+    {
+        SetEncounterActive(true);
+        CurrentHp = MaxHp;
+        greenCount = 0;
+        greenAtLastOrange = greenAtLastRed = int.MinValue / 2;
+        lastWasUpper = false;
+        restTimer = 0f;
         BeginNextCast();
     }
 
@@ -247,7 +264,8 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
-        if (!IsAlive || amount <= 0) return;
+        if (!IsAlive || amount <= 0 || (manager != null && manager.CombatEnded)
+            || (player != null && !player.IsAlive)) return;
 
         CurrentHp = Mathf.Max(0, CurrentHp - amount);
         if (!IsAlive) Die();

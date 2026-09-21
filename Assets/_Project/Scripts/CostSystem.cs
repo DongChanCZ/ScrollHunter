@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 /// <summary>
 /// 코스트 자원. 초당 일정량 충전되고 상한을 넘은 분은 소멸한다.
@@ -23,12 +23,15 @@ public class CostSystem : MonoBehaviour
 
     private void Awake()
     {
-        Current = Mathf.Min(startCost, maxCost);
+        BeginBattle();
         if (metrics == null) metrics = FindFirstObjectByType<CombatMetrics>();
     }
 
+    public void BeginBattle() => Current = Mathf.Clamp(startCost, 0f, maxCost);
+
     private void Update()
     {
+        if (metrics != null && metrics.Ended) return;
         // 상한을 넘긴 충전분은 소멸한다. 계측은 그 버려진 양만 누적한다
         // (상한에 머문 시간과는 다른 값이다 — 09 문서 4단계 ②).
         float charged = Current + regenPerSecond * Time.deltaTime;
