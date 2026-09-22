@@ -25,6 +25,7 @@ public class BattleFlow : MonoBehaviour
     [SerializeField] private EnemyManager enemies;
     [SerializeField] private CombatMetrics metrics;
     [SerializeField] private CombatInfoUI information;
+    [SerializeField] private DamageNumberUI damageNumbers;
 
     [Header("진행 화면")]
     [SerializeField] private TMP_Text progressText;
@@ -49,6 +50,7 @@ public class BattleFlow : MonoBehaviour
         if (enemies == null) enemies = FindFirstObjectByType<EnemyManager>();
         if (metrics == null) metrics = FindFirstObjectByType<CombatMetrics>();
         if (information == null) information = FindFirstObjectByType<CombatInfoUI>();
+        if (damageNumbers == null) damageNumbers = FindFirstObjectByType<DamageNumberUI>();
         if (nextButton != null) nextButton.onClick.AddListener(NextBattle);
         if (restartButton != null) restartButton.onClick.AddListener(RestartRun);
     }
@@ -100,6 +102,7 @@ public class BattleFlow : MonoBehaviour
     {
         Time.timeScale = 0f;
         // 이전 효과의 종료 처리를 먼저 끝내고, 그 다음에 새 전투 계측을 연다.
+        if (damageNumbers != null) damageNumbers.Clear();
         deck.ResetStartingDeck();
         player.BeginBattle(restoreHp);
         cost.BeginBattle();

@@ -34,6 +34,7 @@
 | SFX | [ ] | [ ] | [ ] | [ CC0 ] | 불필요 |
 | BGM | [ ] | [ ] | [ ] | [ ] | [ ] |
 | 폰트 | [ ] | [ ] | [ ] | [ ] | [ ] |
+| 폰트 (피해 숫자) | NEXON Maplestory Bold | NEXON | 사용자 제공 `Assets/_Project/Fonts/NEXON_Maplestory/TTF/Maplestory Bold.ttf` | 제공 원문 확인 전 | 확인 전 |
 | 셰이더 / 툴 | [ ] | [ ] | [ ] | [ ] | [ ] |
 
 ---

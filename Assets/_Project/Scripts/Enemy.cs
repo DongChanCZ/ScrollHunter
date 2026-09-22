@@ -262,12 +262,16 @@ public class Enemy : MonoBehaviour
         lastWasUpper = true;
     }
 
-    public void TakeDamage(int amount)
+    /// <summary>확정 피해와 치명타 결과를 숫자 UI에 전달. 표시가 피해를 다시 계산하지 않는다.</summary>
+    public static event System.Action<Vector3, int, bool> DamageTaken;
+
+    public void TakeDamage(int amount, bool isCritical = false)
     {
         if (!IsAlive || amount <= 0 || (manager != null && manager.CombatEnded)
             || (player != null && !player.IsAlive)) return;
 
         CurrentHp = Mathf.Max(0, CurrentHp - amount);
+        DamageTaken?.Invoke(transform.position, amount, isCritical);
         if (!IsAlive) Die();
     }
 
