@@ -5,7 +5,7 @@ using TMPro;
 using UnityEditor;
 using UnityEngine;
 
-/// <summary>Play 모드에서 숫자 표시·피해 보존·정리 확인 후 첫 전투로 복귀.</summary>
+/// <summary>Play 모드에서 피해·차단 표시·피해 보존·정리 확인 후 첫 전투로 복귀.</summary>
 public static class DamageNumberChecks
 {
     private const BindingFlags Hidden = BindingFlags.Instance | BindingFlags.NonPublic;
@@ -71,7 +71,59 @@ public static class DamageNumberChecks
             check(ui.ActiveCount == 0, "final damage can finish after victory");
             flow.NextBattle();
             check(flow.BattleNumber == 2 && ui.ActiveCount == 0, "next battle clean");
-            return "Damage number checks passed: " + passed;
+            // 빨강 대상은 입력을 수락해도 성공 문구가 생기지 않는다.
+            var deck = UnityEngine.Object.FindFirstObjectByType<DeckSystem>();
+            target = enemies.CurrentTarget;
+            check(target.CastColor == CastColor.Red && deck.TryUseSlot(3), "red silence input accepted");
+            Call(deck, "AdvanceCast", 0.21f);
+            check(ui.ActiveCount == 0 && target.IsCasting, "red failure emits no interrupt popup");
+
+            flow.RestartRun();
+            target = enemies.CurrentTarget;
+            check(target.CastColor == CastColor.Orange && deck.TryUseSlot(3)
+                && ui.ActiveCount == 0, "orange silence has no premature popup");
+            Call(deck, "AdvanceCast", 0.21f);
+            check(target.IsStaggered && ui.ActiveCount == 1, "actual orange interrupt emits once");
+            TMP_Text interrupt = ui.GetComponentsInChildren<TMP_Text>().Single();
+            TMP_Text template = (TMP_Text)Get(ui, "numberTemplate");
+            check(interrupt.text == "차단!" && interrupt.color == (Color)Get(ui, "interruptColor")
+                && interrupt.fontSize > template.fontSize, "large purple interrupt text");
+            check(interrupt.font == template.font && "차단!".All(c => interrupt.font.HasCharacter(c))
+                && interrupt.fontSharedMaterial == template.fontSharedMaterial
+                && interrupt.fontSharedMaterial.IsKeywordEnabled("OUTLINE_ON")
+                && !interrupt.raycastTarget, "same font and outline, glyphs present, no click blocking");
+            Vector2 interruptStart = interrupt.rectTransform.anchoredPosition;
+            Vector3 projected = Camera.main.WorldToScreenPoint(target.transform.position + (Vector3)Get(ui, "worldOffset"));
+            Vector2 center;
+            RectTransformUtility.ScreenPointToLocalPointInRectangle((RectTransform)ui.transform, projected, null, out center);
+            center += (Vector2)Get(ui, "screenOffset");
+            check(Mathf.Abs(interruptStart.x - center.x) <= (float)Get(ui, "horizontalSpread")
+                && Mathf.Abs(interruptStart.y - center.y) < 0.01f, "same bounded random spawn");
+            check(target.TryInterrupt(2.5f) == InterruptResult.NotCasting && ui.ActiveCount == 1,
+                "noncasting emits no duplicate popup");
+            Call(ui, "Advance", duration * 0.6f);
+            check(interrupt.rectTransform.anchoredPosition.y > interruptStart.y
+                && interrupt.rectTransform.anchoredPosition.x == interruptStart.x
+                && interrupt.color.a > 0f && interrupt.color.a < 1f, "interrupt rises and fades with fixed X");
+            Call(ui, "Advance", duration);
+            check(ui.ActiveCount == 0, "interrupt expires");
+
+            flow.RestartRun();
+            target = enemies.CurrentTarget;
+            typeof(Enemy).GetField("current", Hidden).SetValue(target, target.Data.Find(CastColor.Green));
+            check(target.TryInterrupt(2.5f) == InterruptResult.Success && ui.ActiveCount == 1,
+                "green success also emits");
+            flow.RestartRun();
+            check(ui.ActiveCount == 0, "restart clears interrupt");
+
+            // 침묵 시전 중 대상의 초록 공격이 먼저 끝난 경우.
+            target = enemies.CurrentTarget;
+            typeof(Enemy).GetField("current", Hidden).SetValue(target, target.Data.Find(CastColor.Green));
+            check(deck.TryUseSlot(3), "late silence input accepted");
+            Call(target, "Fire");
+            Call(deck, "AdvanceCast", 0.21f);
+            check(ui.ActiveCount == 0 && !target.IsStaggered, "expired cast emits no success popup");
+            return "Damage / interrupt display checks passed: " + passed;
         }
         finally { flow.RestartRun(); }
     }

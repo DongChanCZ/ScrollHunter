@@ -3448,7 +3448,8 @@ MonoBehaviour:
   riseDistance: 100
   fadeStart: 0.25
   worldOffset: {x: 0, y: 1.05, z: 0}
-  screenOffset: {x: 45, y: 155}
+  screenOffset: {x: 0, y: 155}
+  horizontalSpread: 24
   stackSpacing: 45
 --- !u!1 &693125248
 GameObject:

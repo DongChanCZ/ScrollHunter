@@ -226,6 +226,8 @@ public class Enemy : MonoBehaviour
         RefreshBar();
     }
 
+    public static event System.Action<Vector3> InterruptSucceeded;
+
     /// <summary>차단 시도. 캐스팅 중이 아니면 코스트를 쓰지 않도록 NotCasting을 돌려준다.</summary>
     public InterruptResult TryInterrupt(float staggerDuration)
     {
@@ -242,6 +244,7 @@ public class Enemy : MonoBehaviour
         resting = false;
         staggerTimer = staggerDuration;
         RefreshBar();
+        InterruptSucceeded?.Invoke(transform.position);
         return InterruptResult.Success;
     }
 
