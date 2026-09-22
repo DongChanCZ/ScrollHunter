@@ -69,18 +69,19 @@ public static class DamageNumberChecks
             check(flow.State == BattleFlowState.BetweenBattles, "normal victory still works");
             Call(ui, "Advance", duration);
             check(ui.ActiveCount == 0, "final damage can finish after victory");
+            flow.SkipReward();
             flow.NextBattle();
             check(flow.BattleNumber == 2 && ui.ActiveCount == 0, "next battle clean");
             // 빨강 대상은 입력을 수락해도 성공 문구가 생기지 않는다.
             var deck = UnityEngine.Object.FindFirstObjectByType<DeckSystem>();
             target = enemies.CurrentTarget;
-            check(target.CastColor == CastColor.Red && deck.TryUseSlot(3), "red silence input accepted");
+            check(target.CastColor == CastColor.Red && deck.TryUseSlot(2), "red silence input accepted");
             Call(deck, "AdvanceCast", 0.21f);
             check(ui.ActiveCount == 0 && target.IsCasting, "red failure emits no interrupt popup");
 
             flow.RestartRun();
             target = enemies.CurrentTarget;
-            check(target.CastColor == CastColor.Orange && deck.TryUseSlot(3)
+            check(target.CastColor == CastColor.Orange && deck.TryUseSlot(2)
                 && ui.ActiveCount == 0, "orange silence has no premature popup");
             Call(deck, "AdvanceCast", 0.21f);
             check(target.IsStaggered && ui.ActiveCount == 1, "actual orange interrupt emits once");
@@ -119,7 +120,7 @@ public static class DamageNumberChecks
             // 침묵 시전 중 대상의 초록 공격이 먼저 끝난 경우.
             target = enemies.CurrentTarget;
             typeof(Enemy).GetField("current", Hidden).SetValue(target, target.Data.Find(CastColor.Green));
-            check(deck.TryUseSlot(3), "late silence input accepted");
+            check(deck.TryUseSlot(2), "late silence input accepted");
             Call(target, "Fire");
             Call(deck, "AdvanceCast", 0.21f);
             check(ui.ActiveCount == 0 && !target.IsStaggered, "expired cast emits no success popup");

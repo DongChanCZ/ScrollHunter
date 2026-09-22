@@ -7,7 +7,7 @@ using UnityEngine;
 ///
 /// 집계 정의는 09 문서 ②를 그대로 따른다. 헷갈리기 쉬운 것만 옮겨 적는다.
 ///  - 카드 사용: **입력이 수락되어 코스트와 카드가 나간 순간** 1회. 효과 적용 때 다시 세지 않는다
-///  - 차단 시도: 침묵 입력이 **수락되면** 1회. 비캐스팅 대상에게 거절된 입력은 세지 않는다
+///  - 차단 시도: 차단 카드 입력이 **수락되면** 1회. 비캐스팅 대상에게 거절된 입력은 세지 않는다
 ///  - 차단 성공: **효과 적용 시 실제로 적 캐스팅을 취소한 경우**만 1회
 ///  - 방어 흡수: 방어도 부여량이 아니라 **실제 피격으로 방어도에서 깎인 피해량**의 합
 ///  - 코스트 부족 입력: 잠금·기절·대상 조건이 모두 통과하고 코스트만 모자라 거절된 키 누름
@@ -30,8 +30,13 @@ public class CombatMetrics : MonoBehaviour
     public bool Ended { get; private set; }
     public int BattleNumber { get; private set; }
 
+    [SerializeField] private string speedEntryFormat = "{0:0.00}s: {1:0.#}배";
+    [SerializeField] private string speedSummaryFormat = "배속 이력(게임 초): {0}";
+    private readonly List<string> battleSpeeds = new List<string>();
+
     private float startTime;
     private float endTime;
+    private string pendingSummary;
 
     private int nextUseId = 1;
     private int totalUses;
@@ -50,6 +55,10 @@ public class CombatMetrics : MonoBehaviour
     private int costShortInputs;
     private float costWasted;
 
+    public int DamageApplied { get; private set; }
+    public int OverkillDamage { get; private set; }
+    public int RecordedHits { get; private set; }
+
     /// <summary>전투 경과 시간(게임 내 초). 배속 반영, 일시정지 제외.</summary>
     public float Elapsed => (Ended ? endTime : Time.time) - startTime;
 
@@ -66,6 +75,7 @@ public class CombatMetrics : MonoBehaviour
 
     public void BeginBattle(int number)
     {
+        FlushPendingSummary(); // 이전 전투 스냅샷은 새 집계 초기화 전에 마감.
         BattleNumber = number;
         Ended = false;
         startTime = Time.time;
@@ -74,8 +84,16 @@ public class CombatMetrics : MonoBehaviour
         totalUses = cancelledUses = interruptAttempts = interruptSuccesses = 0;
         shieldUses = shieldAbsorbed = costShortInputs = 0;
         costWasted = 0f;
+        DamageApplied = OverkillDamage = RecordedHits = 0;
+        battleSpeeds.Clear();
         cardOrder.Clear();
         cardUses.Clear();
+    }
+
+    public void RecordBattleSpeed(float speed)
+    {
+        if (Ended) return;
+        battleSpeeds.Add(string.Format(speedEntryFormat, Elapsed, speed));
     }
 
     // ── 입력 계측 ──────────────────────────────────────────────
@@ -140,6 +158,19 @@ public class CombatMetrics : MonoBehaviour
         Debug.Log("[#" + useId + " 취소 " + Elapsed.ToString("F2") + "s / " + resultLabel + "]", this);
     }
 
+    /// <summary>새 시작 덱의 타격별 피해. 사망 뒤 잔여 연출은 실피해 0으로 구분.</summary>
+    public void RecordHit(int useId, SkillData card, string target, int hitIndex,
+        int displayed, int actual, int overkill, bool visualOnly)
+    {
+        if (useId <= 0) return;
+        DamageApplied += actual;
+        OverkillDamage += overkill;
+        RecordedHits++;
+        if (logEachInput) Debug.Log("[#" + useId + " 타격 " + Elapsed.ToString("F2") + "s / "
+            + card.DisplayName + " / " + hitIndex + "타 / " + target + " / 표시 " + displayed
+            + " / 실피해 " + actual + " / 과잉 " + overkill + (visualOnly ? " / 잔여 연출" : "") + "]", this);
+    }
+
     /// <summary>효과 적용 시 실제로 적 캐스팅을 취소했다.</summary>
     public void RecordInterruptSuccess()
     {
@@ -178,6 +209,15 @@ public class CombatMetrics : MonoBehaviour
     public void ReportVictory() => Report(true);
     public void ReportDefeat() => Report(false);
 
+    /// <summary>전투 종료 정리를 마친 호출자가 한 번 출력. 새 전투 값과 섞이지 않는다.</summary>
+    public void FlushPendingSummary()
+    {
+        if (pendingSummary == null) return;
+        string summary = pendingSummary;
+        pendingSummary = null;
+        Debug.Log(summary, this);
+    }
+
     private void Report(bool won)
     {
         if (Ended) return;
@@ -190,6 +230,7 @@ public class CombatMetrics : MonoBehaviour
         sb.AppendLine("전투 번호: " + BattleNumber);
         sb.AppendLine("승패: " + (won ? "승리" : "패배"));
         sb.AppendLine("전투 시간: " + Elapsed.ToString("F2") + "초 (게임 내, 배속 반영·일시정지 제외)");
+        sb.AppendLine(string.Format(speedSummaryFormat, string.Join(" → ", battleSpeeds)));
         sb.AppendLine("남은 HP: " + (player != null ? player.CurrentHp.ToString("F0") + " / " + player.MaxHp.ToString("F0") : "-"));
         sb.AppendLine("처치 수: " + (enemyManager != null ? enemyManager.DeadCount + " / " + enemyManager.EnemyCount : "-"));
         sb.AppendLine();
@@ -203,12 +244,14 @@ public class CombatMetrics : MonoBehaviour
         if (cardOrder.Count == 0) sb.AppendLine("  (없음)");
         sb.AppendLine();
 
+        sb.AppendLine("타격별 기록 " + RecordedHits + "건 / 실피해 " + DamageApplied + " / 과잉 피해 " + OverkillDamage);
         sb.AppendLine("차단 시도 " + interruptAttempts + "회 / 성공 " + interruptSuccesses + "회");
         sb.AppendLine("방어 카드 사용 " + shieldUses + "회 / 실제 방어도 흡수 " + shieldAbsorbed);
         sb.AppendLine("코스트 부족으로 거절된 입력 " + costShortInputs + "회");
         sb.AppendLine("상한 초과로 버린 코스트 " + costWasted.ToString("F2"));
         sb.AppendLine("────────────────────────────");
 
-        Debug.Log(sb.ToString(), this);
+        // 승패·시간·집계는 지금 고정하고, 마지막 행동 로그 뒤에 출력한다.
+        pendingSummary = sb.ToString();
     }
 }

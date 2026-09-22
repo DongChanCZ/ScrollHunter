@@ -11,10 +11,12 @@ public class CombatUI : MonoBehaviour
     public class HandSlotView
     {
         public Image background;
+        [Tooltip("코스트 부족분. 12시부터 시계방향으로 걷히는 어두운 영역")]
+        public Image costCover;
         public TMP_Text nameText;
         public TMP_Text costText;
 
-        [Tooltip("잠금 시간 또는 비활성 사유 표시")]
+        [Tooltip("행동 잠금 시간 또는 비활성 사유. 기절 시간은 화면 중앙에만 표시")]
         public TMP_Text lockText;
 
         [Tooltip("공격/방어/차단 유형 이름")]
@@ -119,7 +121,8 @@ public class CombatUI : MonoBehaviour
     [SerializeField] private Color costShortColor = new Color(0.9f, 0.15f, 0.15f);
 
     [Header("카드 유형 표시 — 적 캐스팅 초록·주황·빨강, 슬롯 상태색(회색·보라)과 겹치지 않는 색만 쓸 것")]
-    [SerializeField] private string dealTypeLabel = "공격";
+    [SerializeField] private string singleTypeLabel = "단일";
+    [SerializeField] private string areaTypeLabel = "광역";
     [SerializeField] private string shieldTypeLabel = "방어";
     [SerializeField] private string interruptTypeLabel = "차단";
 
@@ -263,10 +266,12 @@ public class CombatUI : MonoBehaviour
             if (view.background != null)
                 view.background.color = SlotColor(state);
 
+            UpdateCostCover(view, card, state);
+
             // 유형 표시는 카드 이름표와 같은 이유로 매 프레임 카드 기준으로 다시 그린다 — 순환하면 즉시 바뀐다.
             if (view.typeText != null)
             {
-                view.typeText.text = card != null ? TypeLabel(card.Category) : string.Empty;
+                view.typeText.text = card != null ? TypeLabel(card) : string.Empty;
                 view.typeText.color = card == null ? defaultNameColor
                     : (highContrast ? lockedOrStunnedTextColor : TypeColor(card.Category));
             }
@@ -389,19 +394,31 @@ public class CombatUI : MonoBehaviour
 
     private string LockLabel(SlotState state)
     {
-        if (state == SlotState.Stunned)
-            return player != null ? player.StunRemaining.ToString("F1") : string.Empty;
         if (state == SlotState.ActionLocked) return deckSystem.LockRemaining.ToString("F1");
         if (state == SlotState.NoValidTarget) return noTargetLabel;
         if (state == SlotState.InvalidConfiguration) return invalidSkillLabel;
         return string.Empty;
     }
 
-    private string TypeLabel(SkillCategory category)
+    private void UpdateCostCover(HandSlotView view, SkillData card, SlotState state)
     {
+        if (view.costCover == null) return;
+        bool show = card != null && card.Cost > 0f && costSystem != null
+            && state == SlotState.NotEnoughCost;
+        view.costCover.enabled = show;
+        if (!show) return;
+        // 충전률은 현재 코스트에서 매번 계산. 카드 순환 시 이전 카드의 진행률을 넘기지 않는다.
+        // 음영은 12시부터 반시계 방향으로 남겨, 비워지는 부분이 시계 방향으로 진행하게 한다.
+        view.costCover.fillAmount = 1f - Mathf.Clamp01(costSystem.Current / card.Cost);
+        if (view.background != null) view.background.color = slotNormalColor;
+    }
+
+    private string TypeLabel(SkillData card)
+    {
+        SkillCategory category = card.Category;
         if (category == SkillCategory.Shield) return shieldTypeLabel;
         if (category == SkillCategory.Interrupt) return interruptTypeLabel;
-        return dealTypeLabel;
+        return card.IsAreaOfEffect ? areaTypeLabel : singleTypeLabel;
     }
 
     private Color TypeColor(SkillCategory category)

@@ -9,6 +9,7 @@ public enum ChannelEndReason
     DeckReset,
     Disabled,
     Error,
+    TargetDied,
 }
 
 /// <summary>효과가 사용할 전투 참조. 타겟 정책은 개별 효과가 정의한다.</summary>
@@ -18,11 +19,17 @@ public sealed class ChannelContext
     public Player Player { get; }
     public EnemyManager Enemies { get; }
 
-    public ChannelContext(SkillData skill, Player player, EnemyManager enemies)
+    private readonly System.Action<Enemy, int> applyHit;
+
+    public void ApplyHit(Enemy target, int hitIndex) => applyHit?.Invoke(target, hitIndex);
+
+    public ChannelContext(SkillData skill, Player player, EnemyManager enemies,
+        System.Action<Enemy, int> applyHit = null)
     {
         Skill = skill;
         Player = player;
         Enemies = enemies;
+        this.applyHit = applyHit;
     }
 }
 
@@ -35,6 +42,9 @@ public abstract class ChannelEffect : ScriptableObject
 {
     [SerializeField, TextArea] private string description = "";
     public virtual string Describe(SkillData skill) => description;
+    public virtual bool IsValidFor(SkillData skill) => true;
+    public virtual bool TargetLost => false;
+    public virtual float TargetLossRecoveryRemaining => 0f;
 
     public abstract void Begin(ChannelContext context);
     public abstract void Tick(ChannelContext context, float deltaTime);

@@ -30,6 +30,7 @@ public enum SlotState
 /// </summary>
 public class DeckSystem : MonoBehaviour
 {
+    public const int DeckSize = 8;
     public const int HandSize = 4;
 
     [SerializeField] private CostSystem costSystem;
@@ -49,7 +50,7 @@ public class DeckSystem : MonoBehaviour
     [SerializeField] private float minGcd = 0.4f;
 
     [Tooltip("차단 성공 시 적이 경직되는 시간(초). 10 문서 M9")]
-    [SerializeField] private float interruptStagger = 4f;
+    [SerializeField] private float interruptStagger = 2.5f;
 
     private readonly SkillData[] hand = new SkillData[HandSize];
     private readonly Queue<SkillData> queue = new Queue<SkillData>();
@@ -59,6 +60,7 @@ public class DeckSystem : MonoBehaviour
     // 손패 순환은 입력 수락 시 이미 끝났으므로 슬롯 번호를 들고 있을 필요가 없다.
     private SkillData castingCard;
     private float castRemaining;
+    private float minimumLockRemaining;
     private ChannelEffect activeChannel;
     private ChannelContext channelContext;
 
@@ -109,12 +111,13 @@ public class DeckSystem : MonoBehaviour
         if (!initialized) SetDeck(startingDeck);
     }
 
+    public List<SkillData> CopyStartingDeck() => new List<SkillData>(startingDeck);
     public void ResetStartingDeck() => SetDeck(startingDeck);
 
     public void EndBattle()
     {
         FinishCast(ChannelEndReason.CombatEnded);
-        LockRemaining = 0f;
+        LockRemaining = minimumLockRemaining = 0f;
     }
 
     /// <summary>덱을 외부에서 주입한다. 앞 4장이 손패, 나머지가 대기열.</summary>
@@ -123,7 +126,7 @@ public class DeckSystem : MonoBehaviour
         FinishCast(ChannelEndReason.DeckReset);
         System.Array.Clear(hand, 0, HandSize);
         queue.Clear();
-        LockRemaining = 0f;
+        LockRemaining = minimumLockRemaining = 0f;
         castingCard = null;
         castRemaining = 0f;
         castingUseId = 0;
@@ -173,7 +176,7 @@ public class DeckSystem : MonoBehaviour
         return SlotState.Ready;
     }
 
-    /// <summary>빨강도 캐스팅 중이므로 활성이다. 눌리면 실패하고 코스트만 나간다.</summary>
+    /// <summary>빨강도 입력 가능. 코스트·카드는 소모하고 차단은 실패한다. 피해가 있는 카드는 피해만 적용.</summary>
     private bool HasInterruptableTarget()
     {
         Enemy target = enemyManager != null ? enemyManager.CurrentTarget : null;
@@ -207,6 +210,7 @@ public class DeckSystem : MonoBehaviour
         if (Time.timeScale <= 0f || deltaTime <= 0f) return;
 
         LockRemaining = Mathf.Max(0f, LockRemaining - deltaTime);
+        minimumLockRemaining = Mathf.Max(0f, minimumLockRemaining - deltaTime);
         if (!IsCasting) return;
 
         float elapsed = Mathf.Min(deltaTime, castRemaining);
@@ -225,6 +229,12 @@ public class DeckSystem : MonoBehaviour
         // 효과 자체가 마지막 적을 죽이거나 플레이어에게 기절을 줄 수도 있다.
         if (BattleEnded) FinishCast(ChannelEndReason.CombatEnded);
         else if (player != null && player.IsStunned) FinishCast(ChannelEndReason.Stunned);
+        else if (activeChannel != null && activeChannel.TargetLost)
+        {
+            float recovery = activeChannel.TargetLossRecoveryRemaining;
+            FinishCast(ChannelEndReason.TargetDied);
+            LockRemaining = Mathf.Max(minimumLockRemaining, recovery);
+        }
         else if (castRemaining <= 0f) FinishCast(ChannelEndReason.Completed);
     }
 
@@ -273,10 +283,13 @@ public class DeckSystem : MonoBehaviour
         castingCard = card;
         castRemaining = card.CastTime;
         LockRemaining = Mathf.Max(card.CastTime, minGcd);
+        minimumLockRemaining = minGcd;
 
         if (card.IsChanneling)
         {
-            channelContext = new ChannelContext(card, player, enemyManager);
+            int acceptedUseId = castingUseId;
+            channelContext = new ChannelContext(card, player, enemyManager,
+                (target, hitIndex) => DealHit(target, card, acceptedUseId, hitIndex, false));
             activeChannel = Instantiate(card.ChannelEffect);
             try { activeChannel.Begin(channelContext); }
             catch (System.Exception exception)
@@ -322,7 +335,7 @@ public class DeckSystem : MonoBehaviour
         string targetLabel = "-";
         string resultLabel;
         if (reason == ChannelEndReason.Completed && !card.IsChanneling)
-            ApplyCard(card, out targetLabel, out resultLabel);
+            ApplyCard(card, useId, out targetLabel, out resultLabel);
         else
             resultLabel = (card.IsChanneling ? "채널링 종료 — " : "시전 종료 — ") + reason;
 
@@ -361,7 +374,7 @@ public class DeckSystem : MonoBehaviour
         hand[slot] = queue.Dequeue();
     }
 
-    private void ApplyCard(SkillData card, out string targetLabel, out string resultLabel)
+    private void ApplyCard(SkillData card, int useId, out string targetLabel, out string resultLabel)
     {
         targetLabel = "-";
         resultLabel = "-";
@@ -382,9 +395,16 @@ public class DeckSystem : MonoBehaviour
                 Enemy target = enemyManager != null ? enemyManager.CurrentTarget : null;
                 targetLabel = target != null ? target.name : "-";
 
-                InterruptResult r = target != null
-                    ? target.TryInterrupt(interruptStagger)
-                    : InterruptResult.NotCasting;
+                if (target == null || !target.IsAlive) { resultLabel = "대상 없음"; break; }
+                // 제압: 피해를 먼저 처리. 처치한 대상에는 차단 성공을 부여하지 않는다.
+                int dealt = card.Damage > 0 ? DealTo(target, card, useId) : 0;
+                if (!target.IsAlive)
+                {
+                    resultLabel = "피해 " + dealt + " / 대상 처치 — 차단 판정 없음";
+                    enemyManager.NotifyEnemyDied();
+                    break;
+                }
+                InterruptResult r = target.TryInterrupt(interruptStagger);
 
                 if (r == InterruptResult.Success && metrics != null) metrics.RecordInterruptSuccess();
 
@@ -394,6 +414,7 @@ public class DeckSystem : MonoBehaviour
                     resultLabel = "차단 실패 — 빨강 캐스팅";
                 else
                     resultLabel = "차단 실패 — 캐스팅 중 아님";
+                if (card.Damage > 0) resultLabel = "피해 " + dealt + " / " + resultLabel;
                 break;
             }
 
@@ -406,7 +427,7 @@ public class DeckSystem : MonoBehaviour
                     List<Enemy> all = enemyManager.GetAliveEnemies();
                     targetLabel = "적 전체 " + all.Count + "체";
                     int total = 0;
-                    for (int i = 0; i < all.Count; i++) total += DealTo(all[i], card);
+                    for (int i = 0; i < all.Count; i++) total += DealTo(all[i], card, useId);
                     resultLabel = "피해 " + total;
                 }
                 else
@@ -419,7 +440,7 @@ public class DeckSystem : MonoBehaviour
                     }
                     else
                     {
-                        int dealt = DealTo(target, card);
+                        int dealt = DealTo(target, card, useId);
                         resultLabel = "피해 " + dealt + " → HP " + target.CurrentHp + "/" + target.MaxHp;
                     }
                 }
@@ -430,12 +451,35 @@ public class DeckSystem : MonoBehaviour
         }
     }
 
-    private int DealTo(Enemy target, SkillData card)
+    private int DealTo(Enemy target, SkillData card, int useId)
     {
         if (target == null) return 0;
+        if (card.ResolveHitsSeparately)
+        {
+            int total = 0;
+            for (int hit = 1; hit <= card.HitCount; hit++)
+                total += DealHit(target, card, useId, hit, true);
+            return total;
+        }
         int dealt = DamageFormula.Compute(card.Damage, card.HitCount, target.Data.Defense);
         target.TakeDamage(dealt);
         return dealt;
+    }
+
+    // 일반 개별 타격과 채널링이 공유한다. 사용 횟수는 여기서 늘리지 않는다.
+    private int DealHit(Enemy target, SkillData card, int useId, int hitIndex, bool allowRemainingVisual)
+    {
+        if (target == null) return 0;
+        int amount = DamageFormula.Compute(card.Damage, 1, target.Data.Defense);
+        int before = target.CurrentHp;
+        bool visualOnly = !target.IsAlive;
+        if (!visualOnly && !BattleEnded) target.TakeDamage(amount);
+        else if (visualOnly && allowRemainingVisual) target.ShowOverkill(amount);
+        else return 0;
+        int actual = Mathf.Max(0, before - target.CurrentHp);
+        if (metrics != null) metrics.RecordHit(useId, card, target.name, hitIndex,
+            amount, actual, amount - actual, visualOnly);
+        return amount;
     }
 
     /// <summary>입력 로그용 슬롯 이름. 예: 슬롯2(W)</summary>

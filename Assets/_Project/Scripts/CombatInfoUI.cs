@@ -30,6 +30,7 @@ public class CombatInfoUI : MonoBehaviour
     [SerializeField] private string damageFormat = "기본 피해 {0} × {1}회\n방어력 적용 전 피해";
     [SerializeField] private string shieldFormat = "방어도 +{0}";
     [SerializeField] private string interruptFormat = "캐스팅 중인 대상에게 사용\n효과 적용 시 초록·주황이면 차단\n성공 경직 {0:0.##}초\n빨강·적 선발동: 실패, 코스트·카드 소모";
+    [SerializeField] private string damagingInterruptFormat = "기본 피해 {0} × {1}회\n피해 후 생존 대상에게 차단 판정\n초록·주황: 성공 경직 {2:0.##}초\n빨강·시전 종료: 피해만 적용\n입력은 캐스팅 중인 대상에게만 가능";
     [SerializeField] private string enemyFormat = "{0}\n{1}\n기본 피해 {2} (방어력 적용 전)\n시전 {3:0.##}초 / {4}\n{5}";
     [SerializeField] private string stunFormat = "기절 {0:0.##}초";
     [SerializeField] private string restingFormat = "{0}\n현재 시전 중인 공격 없음";
@@ -43,6 +44,14 @@ public class CombatInfoUI : MonoBehaviour
     [SerializeField] private string cannotInterruptLabel = "차단 불가";
     [SerializeField] private string noEffectLabel = "추가 효과 없음";
 
+    [Header("전투 배속")]
+    [SerializeField] private RectTransform speedButton;
+    [SerializeField] private TMP_Text speedLabel;
+    [SerializeField] private float slowSpeed = 0.5f;
+    [SerializeField] private float normalSpeed = 1f;
+    [SerializeField] private string speedFormat = "속도 {0:0.#}×";
+
+    public float BattleSpeed => resumeScale;
     private int selectedSlot = -1;
     private float resumeScale = 1f;
     public bool IsInfoPaused { get; private set; }
@@ -80,6 +89,7 @@ public class CombatInfoUI : MonoBehaviour
             else if (hovered >= 0) InspectSlot(hovered);
         }
         else if (Input.GetMouseButtonDown(0) && Contains(pauseButton)) TogglePause();
+        else if (Input.GetMouseButtonDown(0) && Contains(speedButton)) ToggleSpeed();
         else if (Input.GetMouseButtonDown(0) && hovered >= 0 && deck != null) deck.TryUseSlot(hovered);
     }
 
@@ -87,7 +97,6 @@ public class CombatInfoUI : MonoBehaviour
     {
         IsInfoPaused = false;
         selectedSlot = -1;
-        resumeScale = 1f;
         if (cardPanel != null) cardPanel.SetActive(false);
     }
 
@@ -96,6 +105,15 @@ public class CombatInfoUI : MonoBehaviour
         if (BattleEnded || deck == null || deck.GetHandCard(slot) == null) return;
         selectedSlot = slot;
         Pause();
+    }
+
+    public void ToggleSpeed()
+    {
+        if (BattleEnded) return;
+        resumeScale = Mathf.Approximately(resumeScale, normalSpeed) ? slowSpeed : normalSpeed;
+        // 정보 확인 정지를 해제하지 않고 재개할 배속만 바꾼다.
+        if (!IsInfoPaused && Time.timeScale > 0f) Time.timeScale = resumeScale;
+        if (metrics != null) metrics.RecordBattleSpeed(resumeScale);
     }
 
     public void TogglePause() { if (IsInfoPaused) Resume(); else Pause(); }
@@ -119,6 +137,7 @@ public class CombatInfoUI : MonoBehaviour
     private void LateUpdate()
     {
         bool ended = BattleEnded;
+        if (speedLabel != null) speedLabel.text = string.Format(speedFormat, BattleSpeed);
         pauseLabel.text = ended ? endedText : IsInfoPaused ? resumeText : pauseText;
         hintText.text = ended ? endedText : IsInfoPaused ? pausedHint : hint;
         SkillData card = !ended && selectedSlot >= 0 ? deck.GetHandCard(selectedSlot) : null;
@@ -137,7 +156,12 @@ public class CombatInfoUI : MonoBehaviour
         if (card.Category == SkillCategory.Shield)
         { type = shieldLabel; target = selfLabel; effect = string.Format(shieldFormat, card.ShieldAmount); }
         else if (card.Category == SkillCategory.Interrupt)
-        { type = interruptLabel; target = singleLabel; effect = string.Format(interruptFormat, deck.InterruptStagger); }
+        {
+            type = interruptLabel; target = singleLabel;
+            effect = card.Damage > 0
+                ? string.Format(damagingInterruptFormat, card.Damage, card.HitCount, deck.InterruptStagger)
+                : string.Format(interruptFormat, deck.InterruptStagger);
+        }
         if (card.IsChanneling)
         {
             effect = card.ChannelEffect != null ? card.ChannelEffect.Describe(card) : channelUnconfiguredLabel;

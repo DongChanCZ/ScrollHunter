@@ -1,11 +1,12 @@
 using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public enum BattleFlowState { Fighting, BetweenBattles, Victory, Defeat }
 
-/// <summary>한 씬의 적을 재사용하는 시연 전투 진행. 보상/덱 편집은 아직 연결하지 않는다.</summary>
+/// <summary>한 씬의 적을 재사용하는 시연 전투 진행. 승리 후 보상·덱 교체를 거쳐 다음 전투에 편성을 이월한다.</summary>
 [DefaultExecutionOrder(-50)]
 public class BattleFlow : MonoBehaviour
 {
@@ -38,6 +39,23 @@ public class BattleFlow : MonoBehaviour
     [SerializeField] private string completeFormat = "3전투 완료\n남은 HP {0:0} / {1:0}";
     [SerializeField] private string defeatFormat = "전투 {0} 패배\n처음부터 다시 도전할 수 있습니다.";
 
+    [Header("시연 보상")]
+    [SerializeField] private BattleRewardOption[] rewardPool;
+    [SerializeField] private BattleRewardUI rewardUI;
+    [SerializeField] private int rewardChoiceLimit = 3;
+    [SerializeField] private string replaceLogFormat = "[보상 전투 {0}] 덱 {1}번: {2} → {3}";
+    [SerializeField] private string skipLogFormat = "[보상 전투 {0}] 스킵 — 편성 유지";
+    private List<SkillData> runDeck = new List<SkillData>();
+    private readonly List<BattleRewardOption> rewardChoices = new List<BattleRewardOption>();
+    private readonly List<RunRewardEffect> acquiredEffects = new List<RunRewardEffect>();
+    [SerializeField] private string effectLogFormat = "[보상 전투 {0}] {1} 획득";
+    public SkillData SelectedReward { get; private set; }
+    public bool RewardResolved { get; private set; }
+    public int RewardChoiceCount => rewardChoices.Count;
+    public int DeckCount => runDeck.Count;
+    public SkillData GetDeckCard(int index) => index >= 0 && index < runDeck.Count ? runDeck[index] : null;
+    public BattleRewardOption GetRewardChoice(int index) => index >= 0 && index < rewardChoices.Count ? rewardChoices[index] : null;
+
     public int BattleNumber { get; private set; }
     public BattleFlowState State { get; private set; }
     public int BattleCount => encounters != null ? encounters.Length : 0;
@@ -60,19 +78,101 @@ public class BattleFlow : MonoBehaviour
     public void RestartRun()
     {
         if (!IsConfigured()) return;
+        ClearRunRewards();
+        runDeck = deck.CopyStartingDeck();
         BeginBattle(0, true);
     }
 
     public void NextBattle()
     {
-        if (State != BattleFlowState.BetweenBattles || BattleNumber >= BattleCount) return;
+        if (State != BattleFlowState.BetweenBattles || BattleNumber >= BattleCount || !RewardResolved) return;
         BeginBattle(BattleNumber, false);
+    }
+
+    public bool SelectReward(int index)
+    {
+        BattleRewardOption option = GetRewardChoice(index);
+        if (State != BattleFlowState.BetweenBattles || RewardResolved || option == null
+            || !option.CanOffer(runDeck, player, cost)) return false;
+        if (option.Card == null)
+        {
+            RunRewardEffect instance = Instantiate(option.Effect);
+            try { instance.Apply(player, cost); }
+            catch (Exception error) { ReleaseEffect(instance); Debug.LogException(error, this); return false; }
+            acquiredEffects.Add(instance);
+            SelectedReward = null;
+            RewardResolved = true;
+            Debug.Log(string.Format(effectLogFormat, BattleNumber, option.DisplayName), this);
+        }
+        else SelectedReward = option.Card;
+        RefreshUI();
+        return true;
+    }
+
+    public void CancelRewardSelection()
+    {
+        if (State != BattleFlowState.BetweenBattles || RewardResolved) return;
+        SelectedReward = null;
+        RefreshUI();
+    }
+
+    public bool ReplaceDeckCard(int index)
+    {
+        if (State != BattleFlowState.BetweenBattles || RewardResolved || SelectedReward == null
+            || index < 0 || index >= runDeck.Count || runDeck.Contains(SelectedReward)) return false;
+        SkillData removed = runDeck[index];
+        runDeck[index] = SelectedReward;
+        Debug.Log(string.Format(replaceLogFormat, BattleNumber, index + 1, removed.DisplayName, SelectedReward.DisplayName), this);
+        SelectedReward = null;
+        RewardResolved = true;
+        RefreshUI();
+        return true;
+    }
+
+    public bool SkipReward()
+    {
+        if (State != BattleFlowState.BetweenBattles || RewardResolved) return false;
+        SelectedReward = null;
+        RewardResolved = true;
+        Debug.Log(string.Format(skipLogFormat, BattleNumber), this);
+        RefreshUI();
+        return true;
+    }
+
+    private void PrepareRewards()
+    {
+        rewardChoices.Clear();
+        if (rewardPool == null) return;
+        foreach (BattleRewardOption option in rewardPool)
+        {
+            if (rewardChoices.Count >= rewardChoiceLimit) break;
+            if (option == null || !option.CanOffer(runDeck, player, cost)) continue;
+            if (rewardChoices.Exists(other => other.Card == option.Card && other.Effect == option.Effect)) continue;
+            rewardChoices.Add(option);
+        }
+    }
+
+    private void ClearRunRewards()
+    {
+        for (int i = acquiredEffects.Count - 1; i >= 0; i--) ReleaseEffect(acquiredEffects[i]);
+        acquiredEffects.Clear();
+    }
+
+    private void ReleaseEffect(RunRewardEffect effect)
+    {
+        if (effect == null) return;
+        try { effect.Remove(); }
+        catch (Exception error) { Debug.LogException(error, this); }
+        finally { if (Application.isPlaying) Destroy(effect); else DestroyImmediate(effect); }
     }
 
     private bool IsConfigured()
     {
         if (player == null || deck == null || cost == null || enemies == null || metrics == null
             || BattleCount == 0) return ConfigurationError();
+        List<SkillData> initial = deck.CopyStartingDeck();
+        if (initial.Count != DeckSystem.DeckSize || initial.Contains(null) || new HashSet<SkillData>(initial).Count != initial.Count)
+            return ConfigurationError();
         foreach (Encounter encounter in encounters)
         {
             if (encounter == null || encounter.enemies == null || encounter.enemies.Length == 0 || encounter.enemies.Length > 3)
@@ -101,9 +201,15 @@ public class BattleFlow : MonoBehaviour
     private void BeginBattle(int index, bool restoreHp)
     {
         Time.timeScale = 0f;
+        // Update의 종료 처리 전에 재시작해도 마지막 결과와 요약을 먼저 마감한다.
+        if (metrics.Ended) deck.EndBattle();
+        metrics.FlushPendingSummary();
         // 이전 효과의 종료 처리를 먼저 끝내고, 그 다음에 새 전투 계측을 연다.
         if (damageNumbers != null) damageNumbers.Clear();
-        deck.ResetStartingDeck();
+        deck.SetDeck(runDeck);
+        SelectedReward = null;
+        RewardResolved = false;
+        rewardChoices.Clear();
         player.BeginBattle(restoreHp);
         cost.BeginBattle();
         if (information != null) information.BeginBattle();
@@ -112,7 +218,8 @@ public class BattleFlow : MonoBehaviour
         enemies.BeginBattle(encounters[index].enemies, encounters[index].centerEnemy);
         State = BattleFlowState.Fighting;
         RefreshUI();
-        Time.timeScale = 1f;
+        Time.timeScale = information != null ? information.BattleSpeed : 1f;
+        metrics.RecordBattleSpeed(Time.timeScale);
     }
 
     private void Update()
@@ -126,25 +233,37 @@ public class BattleFlow : MonoBehaviour
         deck.EndBattle();
         player.EndBattle();
         if (information != null) information.BeginBattle();
+        if (State == BattleFlowState.BetweenBattles) PrepareRewards();
         RefreshUI();
+        metrics.FlushPendingSummary();
     }
 
     private void RefreshUI()
     {
         if (progressText != null)
             progressText.text = string.Format(progressFormat, BattleNumber, BattleCount, encounters[BattleNumber - 1].label);
-        bool ended = State != BattleFlowState.Fighting;
+        bool ended = State != BattleFlowState.Fighting && State != BattleFlowState.BetweenBattles;
         if (resultPanel != null) resultPanel.SetActive(ended);
-        if (nextButton != null) nextButton.gameObject.SetActive(State == BattleFlowState.BetweenBattles);
+        if (nextButton != null) nextButton.gameObject.SetActive(State == BattleFlowState.BetweenBattles && RewardResolved);
         if (restartButton != null) restartButton.gameObject.SetActive(State == BattleFlowState.Victory || State == BattleFlowState.Defeat);
+        if (rewardUI != null) rewardUI.Refresh();
         if (resultText == null || !ended) return;
         resultText.text = State == BattleFlowState.Defeat ? string.Format(defeatFormat, BattleNumber)
             : State == BattleFlowState.Victory ? string.Format(completeFormat, player.CurrentHp, player.MaxHp)
             : string.Format(victoryFormat, BattleNumber, player.CurrentHp, player.MaxHp);
     }
 
+    private void OnDisable()
+    {
+        // 승패 확정 직후 Play를 멈춘 경우에도 대기 중 요약을 잃지 않는다.
+        if (metrics == null || !metrics.Ended) return;
+        if (deck != null) deck.EndBattle();
+        metrics.FlushPendingSummary();
+    }
+
     private void OnDestroy()
     {
+        ClearRunRewards();
         if (nextButton != null) nextButton.onClick.RemoveListener(NextBattle);
         if (restartButton != null) restartButton.onClick.RemoveListener(RestartRun);
     }

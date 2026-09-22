@@ -278,6 +278,12 @@ public class Enemy : MonoBehaviour
         if (!IsAlive) Die();
     }
 
+    /// <summary>이미 수락된 다단히트의 사망 후 잔여 표시. HP·사망 판정은 호출하지 않는다.</summary>
+    public void ShowOverkill(int amount)
+    {
+        if (!IsAlive && amount > 0) DamageTaken?.Invoke(transform.position, amount, false);
+    }
+
     private void Die()
     {
         current = null;

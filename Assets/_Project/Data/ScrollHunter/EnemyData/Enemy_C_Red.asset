@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Enemy_C_Red
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   displayName: "\uC7A1\uBAB9 C"
-  maxHp: 300
+  maxHp: 500
   defense: 0
   attacks:
   - skillName: "\uC77C\uBC18 \uACF5\uACA9"
