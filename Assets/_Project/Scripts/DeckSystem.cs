@@ -71,7 +71,7 @@ public class DeckSystem : MonoBehaviour
     public float LockRemaining { get; private set; }
 
     public bool IsLocked => LockRemaining > 0f || IsCasting;
-    public float InterruptStagger => interruptStagger;
+    public float InterruptStagger => Mathf.Max(0f, interruptStagger + (player != null ? player.InterruptStaggerBonus : 0f));
 
     /// <summary>카드 캐스팅이 진행 중인지.</summary>
     public bool IsCasting => castingCard != null;
@@ -383,10 +383,10 @@ public class DeckSystem : MonoBehaviour
         {
             case SkillCategory.Shield:
             {
-                if (player != null) player.AddShield(card.ShieldAmount);
+                int granted = player != null ? player.AddShield(card.ShieldAmount) : 0;
                 int stack = player != null ? player.Shield : 0;
                 targetLabel = "자신";
-                resultLabel = "방어도 +" + card.ShieldAmount + " (누적 " + stack + ")";
+                resultLabel = "방어도 +" + granted + " (누적 " + stack + ")";
                 break;
             }
 
@@ -404,12 +404,12 @@ public class DeckSystem : MonoBehaviour
                     enemyManager.NotifyEnemyDied();
                     break;
                 }
-                InterruptResult r = target.TryInterrupt(interruptStagger);
+                InterruptResult r = target.TryInterrupt(InterruptStagger);
 
                 if (r == InterruptResult.Success && metrics != null) metrics.RecordInterruptSuccess();
 
                 if (r == InterruptResult.Success)
-                    resultLabel = "차단 성공 (경직 " + interruptStagger.ToString("0.#") + "초)";
+                    resultLabel = "차단 성공 (경직 " + InterruptStagger.ToString("0.#") + "초)";
                 else if (r == InterruptResult.FailedRed)
                     resultLabel = "차단 실패 — 빨강 캐스팅";
                 else

@@ -154,7 +154,7 @@ public class CombatInfoUI : MonoBehaviour
         string target = card.IsAreaOfEffect ? allLabel : singleLabel;
         string effect = string.Format(damageFormat, card.Damage, card.HitCount);
         if (card.Category == SkillCategory.Shield)
-        { type = shieldLabel; target = selfLabel; effect = string.Format(shieldFormat, card.ShieldAmount); }
+        { type = shieldLabel; target = selfLabel; effect = string.Format(shieldFormat, player != null ? player.GetShieldAmount(card.ShieldAmount) : card.ShieldAmount); }
         else if (card.Category == SkillCategory.Interrupt)
         {
             type = interruptLabel; target = singleLabel;

@@ -64,7 +64,7 @@ public static class StartingDeckChecks
             foreach (Enemy e in new[] { a, b, c })
             {
                 EnemyAttack green = e.Data.Find(CastColor.Green);
-                Check(e.MaxHp == 300 && e.Data.Defense == 0 && green.Damage == 30
+                Check(e.MaxHp == e.Data.MaxHp && e.MaxHp > 0 && e.Data.Defense == 0 && green.Damage == 30
                     && green.CastTime == 2.5f && green.StaggerAfterCast == 1f, "enemy green / HP / defense " + e.name);
             }
             var orange = b.Data.Find(CastColor.Orange); var red = c.Data.Find(CastColor.Red);
@@ -87,20 +87,20 @@ public static class StartingDeckChecks
             try
             {
                 Set(zeroHits, "hitCount", 0); Reset(zeroHits); deck.TryUseSlot(0);
-                Check(b.CurrentHp == 270 && metrics.RecordedHits == 1, "zero hit count normalized to one");
+                Check(b.CurrentHp == b.MaxHp - 30 && metrics.RecordedHits == 1, "zero hit count normalized to one");
             }
             finally { deck.SetDeck(null); UnityEngine.Object.DestroyImmediate(zeroHits); }
             var zeroChannel = UnityEngine.Object.Instantiate(ice);
             try
             {
                 Set(zeroChannel, "hitCount", 0); Reset(zeroChannel); deck.TryUseSlot(0); Step(2.8f);
-                Check(b.CurrentHp == 265 && metrics.RecordedHits == 1, "channel zero count normalized to one");
+                Check(b.CurrentHp == b.MaxHp - 35 && metrics.RecordedHits == 1, "channel zero count normalized to one");
             }
             finally { deck.SetDeck(null); UnityEngine.Object.DestroyImmediate(zeroChannel); }
 
             Reset(fire);
             Check(deck.TryUseSlot(0), "fire accepted");
-            Check(b.CurrentHp == 270 && !deck.IsCasting && Near(deck.LockRemaining, 0.4f), "fire immediate 30 / GCD");
+            Check(b.CurrentHp == b.MaxHp - 30 && !deck.IsCasting && Near(deck.LockRemaining, 0.4f), "fire immediate 30 / GCD");
             Check(cost.Current == 9f && (int)Get(metrics, "totalUses") == 1, "fire pays once");
             Check(!deck.TryUseSlot(1), "minimum GCD rejects input");
             Step(0.4f); Check(!deck.IsLocked, "minimum GCD ends");
@@ -108,21 +108,21 @@ public static class StartingDeckChecks
             Reset(pillar, true);
             Check(deck.TryUseSlot(0) && cost.Current == 6f, "pillar cost");
             Check(deck.GetHandCard(0) == fire, "input cycles same slot");
-            Step(0.99f); Check(a.CurrentHp == 300 && b.CurrentHp == 300 && c.CurrentHp == 300, "pillar waits for cast");
-            a.TakeDamage(300); enemies.NotifyEnemyDied(); Step(0.011f);
-            Check(a.CurrentHp == 0 && b.CurrentHp == 250 && c.CurrentHp == 250, "pillar alive targets only");
+            Step(0.99f); Check(a.CurrentHp == a.MaxHp && b.CurrentHp == b.MaxHp && c.CurrentHp == c.MaxHp, "pillar waits for cast");
+            a.TakeDamage(a.CurrentHp); enemies.NotifyEnemyDied(); Step(0.011f);
+            Check(a.CurrentHp == 0 && b.CurrentHp == b.MaxHp - 50 && c.CurrentHp == c.MaxHp - 50, "pillar alive targets only");
             Check(metrics.RecordedHits == 2 && metrics.DamageApplied == 100, "pillar records two targets / one use");
             Reset(pillar, true); deck.TryUseSlot(0); Step(1f);
-            Check(a.CurrentHp == 250 && b.CurrentHp == 250 && c.CurrentHp == 250, "pillar three targets 150");
+            Check(a.CurrentHp == a.MaxHp - 50 && b.CurrentHp == b.MaxHp - 50 && c.CurrentHp == c.MaxHp - 50, "pillar three targets 150");
 
             Reset(spear); deck.TryUseSlot(0); Step(0.79f);
-            Check(b.CurrentHp == 300 && cost.Current == 6f, "spear cost and pre-cast");
-            Step(0.011f); Check(b.CurrentHp == 165 && c.CurrentHp == 300, "spear single 135");
+            Check(b.CurrentHp == b.MaxHp && cost.Current == 6f, "spear cost and pre-cast");
+            Step(0.011f); Check(b.CurrentHp == b.MaxHp - 135 && c.CurrentHp == c.MaxHp, "spear single 135");
 
             Reset(cutter); deck.TryUseSlot(0);
-            Check(b.CurrentHp == 240 && metrics.RecordedHits == 2 && ui.ActiveCount == 2, "cutter two immediate numbers");
+            Check(b.CurrentHp == b.MaxHp - 60 && metrics.RecordedHits == 2 && ui.ActiveCount == 2, "cutter two immediate numbers");
             Reset(cutter); SetHp(b, 20); deck.TryUseSlot(0);
-            Check(!b.IsAlive && c.CurrentHp == 300 && ui.ActiveCount == 2, "cutter remaining visual never retargets");
+            Check(!b.IsAlive && c.CurrentHp == c.MaxHp && ui.ActiveCount == 2, "cutter remaining visual never retargets");
             Check(metrics.DamageApplied == 20 && metrics.OverkillDamage == 40 && metrics.RecordedHits == 2, "cutter actual / overkill split");
             Reset(cutter); enemies.BeginBattle(new[] { b }); SetHp(b, 20); deck.TryUseSlot(0);
             Check(enemies.CombatEnded && metrics.RecordedHits == 2 && metrics.DamageApplied == 20
@@ -130,41 +130,41 @@ public static class StartingDeckChecks
 
             Reset(ice); Check(deck.TryUseSlot(0) && cost.Current == 5f, "ice input pays once");
             Call(enemies, "StepTarget", 1); Check(enemies.CurrentTarget == c, "selection can change");
-            Step(0.49f); Check(b.CurrentHp == 300 && c.CurrentHp == 300, "ice no early damage");
-            Step(0.01f); Check(b.CurrentHp == 265 && c.CurrentHp == 300, "ice fixed input target first hit");
+            Step(0.49f); Check(b.CurrentHp == b.MaxHp && c.CurrentHp == c.MaxHp, "ice no early damage");
+            Step(0.01f); Check(b.CurrentHp == b.MaxHp - 35 && c.CurrentHp == c.MaxHp, "ice fixed input target first hit");
             for (int i = 0; i < 4; i++) Step(0.5f);
-            Check(b.CurrentHp == 125 && metrics.RecordedHits == 5 && deck.IsChanneling
+            Check(b.CurrentHp == b.MaxHp - 175 && metrics.RecordedHits == 5 && deck.IsChanneling
                 && Near(deck.LockRemaining, 0.3f), "ice five hits then tail");
             Check(!deck.TryUseSlot(1), "ice tail blocks other cards");
             Step(0.301f); Check(!deck.IsCasting && !deck.IsLocked && metrics.RecordedHits == 5, "ice tail ends without sixth hit");
             Check(cost.Current == 5f && (int)Get(metrics, "totalUses") == 1 && deck.GetHandCard(0) == fire, "ice no repeat cost / cycle / uses");
             Reset(ice); deck.TryUseSlot(0); Step(2.8f);
-            Check(b.CurrentHp == 125 && metrics.RecordedHits == 5 && !deck.IsLocked, "large frame catches five ice hits");
+            Check(b.CurrentHp == b.MaxHp - 175 && metrics.RecordedHits == 5 && !deck.IsLocked, "large frame catches five ice hits");
 
             Reset(ice); SetHp(b, 30); deck.TryUseSlot(0); Step(0.5f);
-            Check(!b.IsAlive && !deck.IsCasting && Near(deck.LockRemaining, 0.3f) && c.CurrentHp == 300, "target death replaces channel with 0.3 recovery");
+            Check(!b.IsAlive && !deck.IsCasting && Near(deck.LockRemaining, 0.3f) && c.CurrentHp == c.MaxHp, "target death replaces channel with 0.3 recovery");
             Check(!deck.TryUseSlot(1), "death recovery rejects input"); Step(0.301f);
             Check(!deck.IsLocked && metrics.RecordedHits == 1, "death recovery ends and no more hits");
-            Reset(ice); deck.TryUseSlot(0); b.TakeDamage(300); enemies.NotifyEnemyDied(); Step(0.1f);
+            Reset(ice); deck.TryUseSlot(0); b.TakeDamage(b.CurrentHp); enemies.NotifyEnemyDied(); Step(0.1f);
             Check(!deck.IsCasting && Near(deck.LockRemaining, 0.3f), "external early death retains input minimum GCD");
             Step(0.301f); Check(deck.TryUseSlot(1), "input allowed after early death GCD");
             Reset(ice); SetHp(b, 30); deck.TryUseSlot(0); Step(1f);
             Check(!deck.IsLocked && metrics.RecordedHits == 1, "large frame accounts recovery elapsed after kill");
 
             Reset(spark, true); deck.TryUseSlot(0); Step(0.249f);
-            Check(a.CurrentHp == 300 && b.CurrentHp == 300 && c.CurrentHp == 300, "spark no early hit");
-            Step(0.001f); Check(a.CurrentHp == 295 && b.CurrentHp == 295 && c.CurrentHp == 295, "spark first 5 to all");
+            Check(a.CurrentHp == a.MaxHp && b.CurrentHp == b.MaxHp && c.CurrentHp == c.MaxHp, "spark no early hit");
+            Step(0.001f); Check(a.CurrentHp == a.MaxHp - 5 && b.CurrentHp == b.MaxHp - 5 && c.CurrentHp == c.MaxHp - 5, "spark first 5 to all");
             for (int i = 0; i < 7; i++) Step(0.25f);
-            Check(a.CurrentHp == 260 && b.CurrentHp == 260 && c.CurrentHp == 260
+            Check(a.CurrentHp == a.MaxHp - 40 && b.CurrentHp == b.MaxHp - 40 && c.CurrentHp == c.MaxHp - 40
                 && metrics.RecordedHits == 24 && Near(deck.LockRemaining, 0.2f), "spark eight hits each / tail");
             Step(0.201f); Check(!deck.IsLocked && metrics.RecordedHits == 24 && cost.Current == 7f, "spark completes no extra hit or cost");
             Reset(spark); SetHp(b, 5); deck.TryUseSlot(0); Step(2.2f);
-            Check(!b.IsAlive && c.CurrentHp == 260 && metrics.RecordedHits == 9 && !deck.IsLocked, "spark continues on survivors");
+            Check(!b.IsAlive && c.CurrentHp == c.MaxHp - 40 && metrics.RecordedHits == 9 && !deck.IsLocked, "spark continues on survivors");
 
             foreach (SkillData card in new[] { pillar, spear, ice, spark, armor, silence })
             {
                 Reset(card); deck.TryUseSlot(0); player.ApplyStun(2f); Step(0.1f);
-                Check(!deck.IsCasting && deck.LockRemaining == 0f && b.CurrentHp == 300
+                Check(!deck.IsCasting && deck.LockRemaining == 0f && b.CurrentHp == b.MaxHp
                     && player.Shield == 0 && cost.Current == 10f - card.Cost
                     && deck.GetHandCard(0) == fire, "pre-effect stun: " + card.DisplayName);
                 Check(!deck.TryUseSlot(1), "stunned input rejected: " + card.DisplayName);
@@ -175,14 +175,14 @@ public static class StartingDeckChecks
             {
                 Reset(card); deck.TryUseSlot(0); Step(0.5f); int hp = b.CurrentHp;
                 player.ApplyStun(2f); Step(1f);
-                Check(hp < 300 && b.CurrentHp == hp && !deck.IsCasting, "partial channel damage retained: " + card.DisplayName);
+                Check(hp < b.MaxHp && b.CurrentHp == hp && !deck.IsCasting, "partial channel damage retained: " + card.DisplayName);
                 Reset(card); deck.TryUseSlot(0); Step(0.2f); float remain = deck.CastRemaining;
                 Time.timeScale = 0f; Step(5f);
                 Check(deck.CastRemaining == remain && metrics.RecordedHits == 0 && !deck.TryUseSlot(1), "pause freezes channel: " + card.DisplayName);
                 Time.timeScale = 1f; Step(card.CastTime);
                 Check(!deck.IsCasting && metrics.RecordedHits > 0, "resume completes channel: " + card.DisplayName);
                 Reset(card); deck.TryUseSlot(0); Step(0.5f); flow.RestartRun(); Step(5f);
-                Check(!deck.IsCasting && b.CurrentHp == 300 && cost.Current == 3f && metrics.RecordedHits == 0, "restart cancels old channel: " + card.DisplayName);
+                Check(!deck.IsCasting && b.CurrentHp == b.MaxHp && cost.Current == 3f && metrics.RecordedHits == 0, "restart cancels old channel: " + card.DisplayName);
                 Reset(card); deck.TryUseSlot(0); Step(0.5f); player.TakeDamage(10000); Step(1f);
                 Check(!deck.IsCasting && metrics.Ended && !deck.TryUseSlot(1), "defeat cancels channel: " + card.DisplayName);
                 Reset(card); enemies.BeginBattle(new[] { b }); SetHp(b, 1); deck.TryUseSlot(0); Step(card.CastTime);

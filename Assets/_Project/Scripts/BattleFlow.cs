@@ -59,6 +59,9 @@ public class BattleFlow : MonoBehaviour
     private readonly System.Random rewardRandom = new System.Random();
     [SerializeField] private string replaceLogFormat = "[보상 전투 {0}] 덱 {1}번: {2} → {3}";
     [SerializeField] private string skipLogFormat = "[보상 전투 {0}] 스킵 — 편성 유지";
+    [SerializeField] private string resourceStatusFormat = "HP {0:0}/{1:0} · 포션 {2}/{3} · 시작 코스트 {4:0.#} / 상한 {5:0.#} · 방어도 배율 {6:0.##} · 차단 경직 {7:0.##}초";
+    private string ResourceStatus => string.Format(resourceStatusFormat, player.CurrentHp, player.MaxHp,
+        player.PotionsRemaining, player.PotionCapacity, cost.StartingCost, cost.Max, player.ShieldGainMultiplier, deck.InterruptStagger);
     private List<SkillData> runDeck = new List<SkillData>();
     private readonly List<BattleRewardOption> rewardChoices = new List<BattleRewardOption>();
     private readonly List<RunRewardEffect> acquiredEffects = new List<RunRewardEffect>();
@@ -157,7 +160,7 @@ public class BattleFlow : MonoBehaviour
             effectStacks[option.Effect] = GetPassiveStacks(option.Effect) + 1;
             SelectedReward = null;
             RewardResolved = true;
-            Debug.Log(string.Format(effectLogFormat, BattleNumber, option.DisplayName, GetPassiveStacks(option.Effect), cost.RegenerationPerSecond, player.CriticalChance), this);
+            Debug.Log(string.Format(effectLogFormat, BattleNumber, option.DisplayName, GetPassiveStacks(option.Effect), cost.RegenerationPerSecond, player.CriticalChance) + " / " + ResourceStatus, this);
         }
         else SelectedReward = option.Card;
         RefreshUI();
@@ -200,15 +203,25 @@ public class BattleFlow : MonoBehaviour
         if (rewardPool == null) return;
         var cards = new List<BattleRewardOption>();
         var passives = new List<BattleRewardOption>();
+        var rare = new List<BattleRewardOption>();
         foreach (BattleRewardOption option in rewardPool)
         {
             if (!CanOffer(option)) continue;
-            var candidates = option.Card != null ? cards : passives;
+            var candidates = option.Card != null ? cards : option.Effect.IsRareReward ? rare : passives;
             if (!candidates.Exists(other => other.Card == option.Card && other.Effect == option.Effect))
                 candidates.Add(option);
         }
         TakeChoices(cards, cardChoiceLimit);
-        TakeChoices(passives, passiveChoiceLimit);
+        for (int i = 0; i < passiveChoiceLimit; i++)
+        {
+            BattleRewardOption special = rare.Count > 0 ? rare[rewardRandom.Next(rare.Count)] : null;
+            if (special != null && rewardRandom.NextDouble() < special.Effect.OfferChance)
+            {
+                rewardChoices.Add(special);
+                rare.Remove(special);
+            }
+            else TakeChoices(passives, 1);
+        }
     }
 
     private void TakeChoices(List<BattleRewardOption> candidates, int limit)
@@ -285,7 +298,7 @@ public class BattleFlow : MonoBehaviour
         if (information != null) information.BeginBattle();
         BattleNumber = index + 1;
         metrics.BeginBattle(BattleNumber);
-        metrics.RecordRunModifiers(cost.RegenerationPerSecond, player.CriticalChance, PassiveSummary);
+        metrics.RecordRunModifiers(cost.RegenerationPerSecond, player.CriticalChance, PassiveSummary, ResourceStatus);
         enemies.BeginBattle(encounters[index].enemies, encounters[index].centerEnemy);
         State = BattleFlowState.Fighting;
         RefreshUI();

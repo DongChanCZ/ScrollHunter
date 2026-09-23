@@ -35,10 +35,22 @@ public class CombatMetrics : MonoBehaviour
     [SerializeField] private string criticalHitLabel = " / 크리티컬";
     [SerializeField] private string criticalSummaryFormat = "크리티컬 {0}회 / 유효 피해 타격 {1}회 (사망 후 잔여 연출 제외)";
     [SerializeField] private string runModifiersFormat = "시작 조건: 충전 {0:0.0}/초 / 크리티컬 {1:0.#}% / {2}";
-    private string runModifiers;
-    public void RecordRunModifiers(float regeneration, float criticalChance, string passives)
+    [SerializeField] private string potionLogFormat = "[포션 {0:0.00}s] 실회복 {1:0} / 남은 {2}/{3}";
+    [SerializeField] private string potionSummaryFormat = "포션 사용 {0}회 / 실제 회복 {1:0}";
+    public int PotionUses { get; private set; }
+    public float PotionHealing { get; private set; }
+    public void RecordPotionUsed(float healed, int remaining, int maximum)
     {
-        if (!Ended) runModifiers = string.Format(runModifiersFormat, regeneration, criticalChance, passives);
+        if (Ended) return;
+        PotionUses++;
+        PotionHealing += healed;
+        Debug.Log(string.Format(potionLogFormat, Elapsed, healed, remaining, maximum), this);
+    }
+    private string runModifiers;
+    public void RecordRunModifiers(float regeneration, float criticalChance, string passives, string resources = null)
+    {
+        if (!Ended) runModifiers = string.Format(runModifiersFormat, regeneration, criticalChance, passives)
+            + (resources != null ? "\n" + resources : string.Empty);
     }
 
     private readonly List<string> battleSpeeds = new List<string>();
@@ -105,6 +117,8 @@ public class CombatMetrics : MonoBehaviour
         DamageApplied = OverkillDamage = RecordedHits = CriticalHits = CriticalEligibleHits = 0;
         battleSpeeds.Clear();
         runModifiers = null;
+        PotionUses = 0;
+        PotionHealing = 0f;
         cardOrder.Clear();
         cardUses.Clear();
     }
@@ -274,6 +288,7 @@ public class CombatMetrics : MonoBehaviour
         sb.AppendLine(string.Format(criticalSummaryFormat, CriticalHits, CriticalEligibleHits));
         sb.AppendLine("차단 시도 " + interruptAttempts + "회 / 성공 " + interruptSuccesses + "회");
         sb.AppendLine("방어 카드 사용 " + shieldUses + "회 / 실제 방어도 흡수 " + shieldAbsorbed);
+        sb.AppendLine(string.Format(potionSummaryFormat, PotionUses, PotionHealing));
         sb.AppendLine("코스트 부족으로 거절된 입력 " + costShortInputs + "회");
         sb.AppendLine("상한 초과로 버린 코스트 " + costWasted.ToString("F2"));
         sb.AppendLine("────────────────────────────");

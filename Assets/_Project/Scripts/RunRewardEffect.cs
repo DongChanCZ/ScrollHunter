@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// 덱 교체가 없는 런 보상의 확장 지점. 실제 패시브는 아직 없다.
+/// 덱 교체 없이 즉시 적용하는 런 보상. 지속 증가분과 일회 회복을 구분한다.
 /// Apply는 획득별 복제본에서 호출된다. Remove는 부분 적용 실패·재시작·런 폐기 시에도
 /// 자신이 부여한 상태만 해제해야 한다. 전투 시작 시 초기화되는 임시 상태와 구분할 것.
 /// </summary>
@@ -13,6 +13,10 @@ public abstract class RunRewardEffect : ScriptableObject
     [SerializeField, TextArea] private string description;
     [Tooltip("같은 보상의 획득 상한. 0이면 상한 없음.")]
     [SerializeField, Min(0)] private int maxStacks;
+    [SerializeField] private bool rareReward;
+    [SerializeField, Range(0f, 1f)] private float offerChance = 0.01f;
+    public bool IsRareReward => rareReward;
+    public float OfferChance => Mathf.Clamp01(offerChance);
     public int MaxStacks => maxStacks;
     public string DisplayName => displayName;
     public string Description => description;

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8881c46311f00034bb01947529699d5f, type: 3}
+  m_Name: PS03_Endurance
+  m_EditorClassIdentifier: Assembly-CSharp::StatRewardEffect
+  displayName: "\uC778\uB0B4\uC758 \uC2A4\uD06C\uB864"
+  description: "\uCD5C\uB300 HP +50\n\uD604\uC7AC HP\uB294 \uD68C\uBCF5\uD558\uC9C0
+    \uC54A\uC74C"
+  maxStacks: 0
+  rareReward: 0
+  offerChance: 0.01
+  stat: 2
+  amount: 50
+  additionalBonuses: []

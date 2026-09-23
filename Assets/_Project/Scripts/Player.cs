@@ -36,7 +36,55 @@ public class Player : MonoBehaviour
         return chance > 0f && (chance >= 100f || Random.value * 100f < chance);
     }
 
-    public float MaxHp => maxHp;
+    private float maxHpBonus;
+    private float shieldGainBonus;
+    private float interruptStaggerBonus;
+    private int potionCapacityBonus;
+    [SerializeField, Min(0)] private int basePotionCapacity = 3;
+    [SerializeField, Range(0f, 1f)] private float potionHealFraction = 0.3f;
+    [SerializeField] private KeyCode potionKey = KeyCode.LeftShift;
+    [SerializeField] private KeyCode alternatePotionKey = KeyCode.RightShift;
+    public int PotionsRemaining { get; private set; }
+    public float PotionHealAmount => Mathf.Max(0, Mathf.FloorToInt(MaxHp * potionHealFraction + 0.5f));
+    public bool CanUsePotion => Time.timeScale > 0f && IsAlive && !IsStunned
+        && PotionsRemaining > 0 && currentHp < MaxHp && PotionHealAmount > 0f
+        && (metrics == null || !metrics.Ended);
+    public bool TryUsePotion()
+    {
+        if (!CanUsePotion) return false;
+        float healed = Heal(PotionHealAmount);
+        PotionsRemaining--;
+        if (metrics != null) metrics.RecordPotionUsed(healed, PotionsRemaining, PotionCapacity);
+        return true;
+    }
+    public int PotionCapacity => Mathf.Max(0, basePotionCapacity + potionCapacityBonus);
+    public float MaxHp => Mathf.Max(1f, maxHp + maxHpBonus);
+    public float ShieldGainMultiplier => Mathf.Max(0f, 1f + shieldGainBonus);
+    public float InterruptStaggerBonus => interruptStaggerBonus;
+    public void AddShieldGainBonus(float amount) => shieldGainBonus += amount;
+    public void AddInterruptStaggerBonus(float seconds) => interruptStaggerBonus += seconds;
+    public void AddMaxHpBonus(float amount)
+    {
+        maxHpBonus += amount;
+        currentHp = Mathf.Min(currentHp, MaxHp);
+    }
+    public void AddPotionCapacityBonus(int amount)
+    {
+        potionCapacityBonus += amount;
+        PotionsRemaining = Mathf.Min(PotionsRemaining, PotionCapacity);
+    }
+    public int GetShieldAmount(int baseAmount) => baseAmount <= 0 ? 0
+        : Mathf.Max(0, Mathf.FloorToInt(baseAmount * ShieldGainMultiplier + 0.5f));
+
+    [SerializeField] private string healLogFormat = "[Player] 회복 {0:0} / 요청 {1:0} → HP {2:0}/{3:0}";
+    public float Heal(float amount)
+    {
+        if (!IsAlive || amount <= 0f || float.IsNaN(amount) || float.IsInfinity(amount)) return 0f;
+        float restored = Mathf.Min(amount, MaxHp - currentHp);
+        currentHp += restored;
+        Debug.Log(string.Format(healLogFormat, restored, amount, currentHp, MaxHp), this);
+        return restored;
+    }
     public float Defense => defense;
     public float CurrentHp => currentHp;
     public bool IsAlive => currentHp > 0f;
@@ -56,8 +104,9 @@ public class Player : MonoBehaviour
         // 직전 실행이 패배로 끝나 timeScale이 0인 채 남는 것을 막는다.
         Time.timeScale = 1f;
 
-        if (resetHpOnStart) currentHp = maxHp;
-        currentHp = Mathf.Clamp(currentHp, 0f, maxHp);
+        if (resetHpOnStart) currentHp = MaxHp;
+        PotionsRemaining = PotionCapacity;
+        currentHp = Mathf.Clamp(currentHp, 0f, MaxHp);
 
         Shield = 0;
         StunRemaining = 0f;
@@ -73,13 +122,15 @@ public class Player : MonoBehaviour
             StunRemaining = Mathf.Max(0f, StunRemaining - Time.deltaTime);
         }
 
+        if (Input.GetKeyDown(potionKey) || Input.GetKeyDown(alternatePotionKey)) TryUsePotion();
+
         // 인스펙터에서 HP를 0으로 내린 경우에도 패배가 걸리게 한다.
         if (!IsAlive && !defeatHandled) Defeat();
     }
 
     public void BeginBattle(bool restoreHp)
     {
-        if (restoreHp) currentHp = maxHp;
+        if (restoreHp) { currentHp = MaxHp; PotionsRemaining = PotionCapacity; }
         EndBattle();
         defeatHandled = false;
     }
@@ -90,10 +141,11 @@ public class Player : MonoBehaviour
         StunRemaining = 0f;
     }
 
-    public void AddShield(int amount)
+    public int AddShield(int baseAmount)
     {
-        if (amount <= 0) return;
-        Shield += amount;
+        int granted = GetShieldAmount(baseAmount);
+        Shield += granted;
+        return granted;
     }
 
     /// <summary>전투 종료 시 호출. 방어도는 이월되지 않는다.</summary>
@@ -130,7 +182,7 @@ public class Player : MonoBehaviour
         if (metrics != null) metrics.RecordShieldAbsorbed(absorbed);
 
         Debug.Log($"[{nameof(Player)}] 피격 {taken} (원본 {incomingDamage}) " +
-                  $"방어도 흡수 {absorbed} → HP -{toHp} = {currentHp:F0}/{maxHp:F0} (방어도 {Shield})", this);
+                  $"방어도 흡수 {absorbed} → HP -{toHp} = {currentHp:F0}/{MaxHp:F0} (방어도 {Shield})", this);
 
         if (!IsAlive) Defeat();
     }
@@ -148,7 +200,7 @@ public class Player : MonoBehaviour
     private void OnValidate()
     {
         if (maxHp < 1f) maxHp = 1f;
-        currentHp = Mathf.Clamp(currentHp, 0f, maxHp);
+        currentHp = Mathf.Clamp(currentHp, 0f, MaxHp);
     }
 #endif
 }

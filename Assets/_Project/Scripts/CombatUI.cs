@@ -40,6 +40,9 @@ public class CombatUI : MonoBehaviour
     [Header("좌하단 상태")]
     [SerializeField] private TMP_Text costText;
     [SerializeField] private TMP_Text hpText;
+    [SerializeField] private TMP_Text potionText;
+    [SerializeField] private string potionFormat = "포션 {0}/{1} · Shift";
+    [SerializeField] private Color potionUnavailableColor = new Color(0.65f, 0.65f, 0.65f, 1f);
 
     [Tooltip("방어도. 0일 때는 숨긴다.")]
     [SerializeField] private TMP_Text shieldText;
@@ -150,6 +153,8 @@ public class CombatUI : MonoBehaviour
     [Tooltip("{0}=방어도")]
     [SerializeField] private string shieldFormat = "방어도 {0}";
 
+    [SerializeField] private string costFormat = "{0:0.0} / {1:0}";
+
     private Vector3 markerBaseScale = Vector3.one;
 
     // 행동 잠금·기절이 아닐 때 되돌릴 원래 글자색. 4슬롯 스타일이 같으므로 하나만 캐싱한다.
@@ -197,11 +202,16 @@ public class CombatUI : MonoBehaviour
     {
         if (costSystem != null && costText != null)
         {
-            costText.text = costSystem.Current.ToString("F1");
+            costText.text = string.Format(costFormat, costSystem.Current, costSystem.Max);
         }
 
         if (player == null) return;
 
+        if (potionText != null)
+        {
+            potionText.text = string.Format(potionFormat, player.PotionsRemaining, player.PotionCapacity);
+            potionText.color = player.CanUsePotion ? Color.white : potionUnavailableColor;
+        }
         if (hpText != null)
         {
             hpText.text = string.Format(hpFormat,

@@ -45,7 +45,9 @@ public static class PassiveRewardChecks
         try
         {
             flow.RestartRun();
-            check(pool.Length == 5 && pool.Count(x => x.Card != null) == 3 && pool.Count(x => x.Effect != null) == 2, "saved mixed pool");
+            check(pool.Length == 13 && pool.Count(x => x.Card != null) == 3 && pool.Count(x => x.Effect != null) == 10, "saved mixed pool");
+            // 이하 기존 2종의 회귀 검사는 후보를 두 종으로 고정한다.
+            Set(flow, "rewardPool", pool.Take(3).Concat(new[] { ps04, ps09 }).ToArray());
             check(ps04.Effect.MaxStacks == 4 && ps09.Effect.MaxStacks == 3, "per-PS serialized caps");
             check(near(cost.RegenerationPerSecond, .8f) && player.CriticalChance == 15, "base rates");
             check(flow.GetPassiveStacks(ps04.Effect) == 0 && flow.GetPassiveStacks(ps09.Effect) == 0, "fresh empty stacks");

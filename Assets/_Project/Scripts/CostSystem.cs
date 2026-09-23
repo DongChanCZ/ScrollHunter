@@ -23,7 +23,16 @@ public class CostSystem : MonoBehaviour
     public void AddRegenerationBonus(float amount) => regenerationBonus += amount;
 
     public float Current { get; private set; }
-    public float Max => maxCost;
+    private float startingCostBonus;
+    private float maximumCostBonus;
+    public float Max => Mathf.Max(0f, maxCost + maximumCostBonus);
+    public float StartingCost => Mathf.Clamp(startCost + startingCostBonus, 0f, Max);
+    public void AddStartingCostBonus(float amount) => startingCostBonus += amount;
+    public void AddMaximumCostBonus(float amount)
+    {
+        maximumCostBonus += amount;
+        Current = Mathf.Min(Current, Max); // 증가 시 보충하지 않는다.
+    }
 
     private void Awake()
     {
@@ -31,7 +40,7 @@ public class CostSystem : MonoBehaviour
         if (metrics == null) metrics = FindFirstObjectByType<CombatMetrics>();
     }
 
-    public void BeginBattle() => Current = Mathf.Clamp(startCost, 0f, maxCost);
+    public void BeginBattle() => Current = StartingCost;
 
     private void Update()
     {
@@ -39,10 +48,10 @@ public class CostSystem : MonoBehaviour
         // 상한을 넘긴 충전분은 소멸한다. 계측은 그 버려진 양만 누적한다
         // (상한에 머문 시간과는 다른 값이다 — 09 문서 4단계 ②).
         float charged = Current + RegenerationPerSecond * Time.deltaTime;
-        if (charged > maxCost)
+        if (charged > Max)
         {
-            if (metrics != null) metrics.RecordCostWasted(charged - maxCost);
-            charged = maxCost;
+            if (metrics != null) metrics.RecordCostWasted(charged - Max);
+            charged = Max;
         }
         Current = charged;
     }
