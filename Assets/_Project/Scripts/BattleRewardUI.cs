@@ -47,6 +47,9 @@ public class BattleRewardUI : MonoBehaviour
         backButton.onClick.AddListener(flow.CancelRewardSelection);
     }
 
+    [SerializeField] private string passiveChoiceFormat = "패시브 · {0}\n보유 {1}/{2}\n선택 즉시 적용 · 덱 유지";
+    [SerializeField] private string unlimitedPassiveChoiceFormat = "패시브 · {0}\n보유 {1}\n선택 즉시 적용 · 덱 유지";
+
     public void Refresh()
     {
         bool between = flow != null && flow.State == BattleFlowState.BetweenBattles;
@@ -67,7 +70,9 @@ public class BattleRewardUI : MonoBehaviour
             BattleRewardOption option = flow.GetRewardChoice(i);
             choiceButtons[i].gameObject.SetActive(option != null);
             choiceButtons[i].interactable = choosing;
-            choiceLabels[i].text = option != null ? option.Describe(information) : string.Empty;
+            choiceLabels[i].text = option == null ? string.Empty : option.Effect == null ? option.Describe(information)
+                : string.Format(option.Effect.MaxStacks > 0 ? passiveChoiceFormat : unlimitedPassiveChoiceFormat,
+                    option.Describe(information), flow.GetPassiveStacks(option.Effect), option.Effect.MaxStacks);
         }
         for (int i = 0; i < deckButtons.Length; i++)
         {

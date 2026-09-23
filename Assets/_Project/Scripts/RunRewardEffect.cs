@@ -11,6 +11,9 @@ public abstract class RunRewardEffect : ScriptableObject
 {
     [SerializeField] private string displayName;
     [SerializeField, TextArea] private string description;
+    [Tooltip("같은 보상의 획득 상한. 0이면 상한 없음.")]
+    [SerializeField, Min(0)] private int maxStacks;
+    public int MaxStacks => maxStacks;
     public string DisplayName => displayName;
     public string Description => description;
     public virtual bool CanOffer(Player player, CostSystem cost) => true;

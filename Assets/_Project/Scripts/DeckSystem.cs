@@ -454,31 +454,28 @@ public class DeckSystem : MonoBehaviour
     private int DealTo(Enemy target, SkillData card, int useId)
     {
         if (target == null) return 0;
-        if (card.ResolveHitsSeparately)
-        {
-            int total = 0;
-            for (int hit = 1; hit <= card.HitCount; hit++)
-                total += DealHit(target, card, useId, hit, true);
-            return total;
-        }
-        int dealt = DamageFormula.Compute(card.Damage, card.HitCount, target.Data.Defense);
-        target.TakeDamage(dealt);
-        return dealt;
+        // 일반 시전도 채널링과 같은 타격별 판정·반올림·계측 경로를 사용한다.
+        int total = 0;
+        for (int hit = 1; hit <= card.HitCount; hit++) total += DealHit(target, card, useId, hit, true);
+        return total;
     }
 
     // 일반 개별 타격과 채널링이 공유한다. 사용 횟수는 여기서 늘리지 않는다.
     private int DealHit(Enemy target, SkillData card, int useId, int hitIndex, bool allowRemainingVisual)
     {
-        if (target == null) return 0;
-        int amount = DamageFormula.Compute(card.Damage, 1, target.Data.Defense);
-        int before = target.CurrentHp;
+        if (target == null || card.Damage <= 0 || BattleEnded) return 0;
         bool visualOnly = !target.IsAlive;
-        if (!visualOnly && !BattleEnded) target.TakeDamage(amount);
-        else if (visualOnly && allowRemainingVisual) target.ShowOverkill(amount);
-        else return 0;
+        if (visualOnly && !allowRemainingVisual) return 0;
+        // 사망 후 잔여 숫자는 기존 일반 피해로 표시하며 추첨·치명타 집계에 넣지 않는다.
+        bool critical = !visualOnly && player != null && player.RollCritical();
+        int amount = DamageFormula.Compute(card.Damage, 1, target.Data.Defense,
+            critical ? player.CriticalMultiplier : 1f);
+        int before = target.CurrentHp;
+        if (visualOnly) target.ShowOverkill(amount);
+        else target.TakeDamage(amount, critical);
         int actual = Mathf.Max(0, before - target.CurrentHp);
         if (metrics != null) metrics.RecordHit(useId, card, target.name, hitIndex,
-            amount, actual, amount - actual, visualOnly);
+            amount, actual, amount - actual, visualOnly, critical);
         return amount;
     }
 

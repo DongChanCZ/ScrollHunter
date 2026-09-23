@@ -20,6 +20,7 @@ public static class BattleFlowChecks
         var flow = UnityEngine.Object.FindFirstObjectByType<BattleFlow>();
         if (flow == null) throw new InvalidOperationException("BattleFlow가 없습니다.");
         var player = UnityEngine.Object.FindFirstObjectByType<Player>();
+        float originalCriticalChance = (float)typeof(Player).GetField("criticalChance", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(player);
         var deck = UnityEngine.Object.FindFirstObjectByType<DeckSystem>();
         var cost = UnityEngine.Object.FindFirstObjectByType<CostSystem>();
         var enemies = UnityEngine.Object.FindFirstObjectByType<EnemyManager>();
@@ -31,6 +32,7 @@ public static class BattleFlowChecks
         passed = 0;
         try
         {
+            typeof(Player).GetField("criticalChance", Hidden).SetValue(player, 0f);
             flow.RestartRun();
             SkillData first = deck.GetHandCard(0);
             Check(flow.BattleCount == 3 && flow.BattleNumber == 1 && enemies.EnemyCount == 1
@@ -139,6 +141,7 @@ public static class BattleFlowChecks
         }
         finally
         {
+            typeof(Player).GetField("criticalChance", Hidden).SetValue(player, originalCriticalChance);
             typeof(BattleFlow).GetField("encounters", Hidden).SetValue(flow, originalEncounters);
             flow.RestartRun();
         }

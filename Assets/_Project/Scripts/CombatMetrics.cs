@@ -32,6 +32,15 @@ public class CombatMetrics : MonoBehaviour
 
     [SerializeField] private string speedEntryFormat = "{0:0.00}s: {1:0.#}배";
     [SerializeField] private string speedSummaryFormat = "배속 이력(게임 초): {0}";
+    [SerializeField] private string criticalHitLabel = " / 크리티컬";
+    [SerializeField] private string criticalSummaryFormat = "크리티컬 {0}회 / 유효 피해 타격 {1}회 (사망 후 잔여 연출 제외)";
+    [SerializeField] private string runModifiersFormat = "시작 조건: 충전 {0:0.0}/초 / 크리티컬 {1:0.#}% / {2}";
+    private string runModifiers;
+    public void RecordRunModifiers(float regeneration, float criticalChance, string passives)
+    {
+        if (!Ended) runModifiers = string.Format(runModifiersFormat, regeneration, criticalChance, passives);
+    }
+
     private readonly List<string> battleSpeeds = new List<string>();
 
     private float startTime;
@@ -58,6 +67,8 @@ public class CombatMetrics : MonoBehaviour
     public int DamageApplied { get; private set; }
     public int OverkillDamage { get; private set; }
     public int RecordedHits { get; private set; }
+    public int CriticalHits { get; private set; }
+    public int CriticalEligibleHits { get; private set; }
 
     /// <summary>전투 경과 시간(게임 내 초). 배속 반영, 일시정지 제외.</summary>
     public float Elapsed => (Ended ? endTime : Time.time) - startTime;
@@ -91,8 +102,9 @@ public class CombatMetrics : MonoBehaviour
         totalUses = cancelledUses = interruptAttempts = interruptSuccesses = 0;
         shieldUses = shieldAbsorbed = costShortInputs = 0;
         costWasted = 0f;
-        DamageApplied = OverkillDamage = RecordedHits = 0;
+        DamageApplied = OverkillDamage = RecordedHits = CriticalHits = CriticalEligibleHits = 0;
         battleSpeeds.Clear();
+        runModifiers = null;
         cardOrder.Clear();
         cardUses.Clear();
     }
@@ -167,15 +179,21 @@ public class CombatMetrics : MonoBehaviour
 
     /// <summary>새 시작 덱의 타격별 피해. 사망 뒤 잔여 연출은 실피해 0으로 구분.</summary>
     public void RecordHit(int useId, SkillData card, string target, int hitIndex,
-        int displayed, int actual, int overkill, bool visualOnly)
+        int displayed, int actual, int overkill, bool visualOnly, bool critical = false)
     {
         if (useId <= 0) return;
         DamageApplied += actual;
         OverkillDamage += overkill;
         RecordedHits++;
+        if (!visualOnly && displayed > 0)
+        {
+            CriticalEligibleHits++;
+            if (critical) CriticalHits++;
+        }
         if (logEachInput) Debug.Log("[#" + useId + " 타격 " + Elapsed.ToString("F2") + "s / "
             + card.DisplayName + " / " + hitIndex + "타 / " + target + " / 표시 " + displayed
-            + " / 실피해 " + actual + " / 과잉 " + overkill + (visualOnly ? " / 잔여 연출" : "") + "]", this);
+            + " / 실피해 " + actual + " / 과잉 " + overkill + (critical ? criticalHitLabel : "")
+            + (visualOnly ? " / 잔여 연출" : "") + "]", this);
     }
 
     /// <summary>효과 적용 시 실제로 적 캐스팅을 취소했다.</summary>
@@ -238,6 +256,7 @@ public class CombatMetrics : MonoBehaviour
         sb.AppendLine("승패: " + (won ? "승리" : "패배"));
         sb.AppendLine("전투 시간: " + Elapsed.ToString("F2") + "초 (게임 내, 배속 반영·일시정지 제외)");
         sb.AppendLine(string.Format(speedSummaryFormat, string.Join(" → ", battleSpeeds)));
+        if (runModifiers != null) sb.AppendLine(runModifiers);
         sb.AppendLine("남은 HP: " + (player != null ? player.CurrentHp.ToString("F0") + " / " + player.MaxHp.ToString("F0") : "-"));
         sb.AppendLine("처치 수: " + (enemyManager != null ? enemyManager.DeadCount + " / " + enemyManager.EnemyCount : "-"));
         sb.AppendLine();
@@ -252,6 +271,7 @@ public class CombatMetrics : MonoBehaviour
         sb.AppendLine();
 
         sb.AppendLine("타격별 기록 " + RecordedHits + "건 / 실피해 " + DamageApplied + " / 과잉 피해 " + OverkillDamage);
+        sb.AppendLine(string.Format(criticalSummaryFormat, CriticalHits, CriticalEligibleHits));
         sb.AppendLine("차단 시도 " + interruptAttempts + "회 / 성공 " + interruptSuccesses + "회");
         sb.AppendLine("방어 카드 사용 " + shieldUses + "회 / 실제 방어도 흡수 " + shieldAbsorbed);
         sb.AppendLine("코스트 부족으로 거절된 입력 " + costShortInputs + "회");

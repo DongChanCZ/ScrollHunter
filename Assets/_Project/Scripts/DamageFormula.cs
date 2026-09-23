@@ -20,7 +20,7 @@ public static class DamageFormula
     /// <param name="damage">피해량(절대값). 0 이하면 피해가 없는 카드이므로 0을 돌려준다.</param>
     /// <param name="hitCount">타수. 1 미만은 1로 본다.</param>
     /// <param name="targetDefense">대상의 방어력.</param>
-    /// <param name="critMultiplier">크리티컬 시 1.8, 아니면 1.0.</param>
+    /// <param name="critMultiplier">호출 시 전달한 크리티컬 배율. 플레이어 기본 1.5, 일반 1.0.</param>
     public static int Compute(int damage, int hitCount, float targetDefense, float critMultiplier = 1f)
     {
         int hits = Mathf.Max(1, hitCount);

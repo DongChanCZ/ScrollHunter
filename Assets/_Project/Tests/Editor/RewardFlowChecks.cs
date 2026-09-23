@@ -19,6 +19,7 @@ public static class RewardFlowChecks
         var flow = UnityEngine.Object.FindFirstObjectByType<BattleFlow>();
         var deck = UnityEngine.Object.FindFirstObjectByType<DeckSystem>();
         var player = UnityEngine.Object.FindFirstObjectByType<Player>();
+        float originalCriticalChance = (float)typeof(Player).GetField("criticalChance", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(player);
         var cost = UnityEngine.Object.FindFirstObjectByType<CostSystem>();
         var enemies = UnityEngine.Object.FindFirstObjectByType<EnemyManager>();
         var metrics = UnityEngine.Object.FindFirstObjectByType<CombatMetrics>();
@@ -47,19 +48,21 @@ public static class RewardFlowChecks
         RewardProbeEffect probe = null;
         try
         {
+            typeof(Player).GetField("criticalChance", Hidden).SetValue(player, 0f);
+            Set(flow, "rewardPool", new[] { pool[0], pool[2] });
             flow.RestartRun();
             check(flow.DeckCount == 8 && Enumerable.Range(0, 8).All(i => flow.GetDeckCard(i) == original[i]), "initial deck");
             check(!flow.SelectReward(0) && !flow.ReplaceDeckCard(0) && !flow.SkipReward(), "no rewards during combat");
             flow.NextBattle(); check(flow.BattleNumber == 1, "cannot skip combat");
             player.TakeDamage(60); float carried = player.CurrentHp; player.AddShield(10); win();
             check(flow.State == BattleFlowState.BetweenBattles && Time.timeScale == 0 && player.Shield == 0, "victory stopped and cleaned");
-            check(flow.RewardChoiceCount == 3 && choices.All(x => x.gameObject.activeInHierarchy), "three choices visible");
+            check(flow.RewardChoiceCount == 2 && choices.Take(2).All(x => x.gameObject.activeInHierarchy), "two card choices visible");
             check(!next.gameObject.activeInHierarchy && !deck.TryUseSlot(0), "no next/combat before reward");
             flow.NextBattle(); check(flow.BattleNumber == 1, "unresolved reward blocks next");
-            Click(choices[0]); check(flow.SelectedReward == impact && slots.All(x => x.gameObject.activeInHierarchy && x.interactable), "card opens eight replacement slots");
+            Click(choices[Enumerable.Range(0, flow.RewardChoiceCount).First(i => flow.GetRewardChoice(i).Card == impact)]); check(flow.SelectedReward == impact && slots.All(x => x.gameObject.activeInHierarchy && x.interactable), "card opens eight replacement slots");
             check(!flow.ReplaceDeckCard(-1) && !flow.ReplaceDeckCard(8), "invalid replacement rejected");
             Click((Button)Get(ui, "backButton")); check(flow.SelectedReward == null && flow.GetDeckCard(0) == original[0], "back does not acquire");
-            Click(choices[0]); Click(slots[0]);
+            Click(choices[Enumerable.Range(0, flow.RewardChoiceCount).First(i => flow.GetRewardChoice(i).Card == impact)]); Click(slots[0]);
             check(flow.RewardResolved && flow.SelectedReward == null && flow.GetDeckCard(0) == impact, "replacement resolves once");
             check(flow.DeckCount == 8 && Enumerable.Range(1, 7).All(i => flow.GetDeckCard(i) == original[i]), "same index, other order preserved");
             check(!flow.SkipReward() && !flow.ReplaceDeckCard(1) && !flow.SelectReward(1), "double acquisition blocked");
@@ -69,15 +72,15 @@ public static class RewardFlowChecks
             check(flow.BattleNumber == 2 && deck.GetHandCard(0) == impact && player.CurrentHp == carried && cost.Current == 3, "new deck and HP enter C");
             int hp = c.CurrentHp;
             check(deck.TryUseSlot(0) && c.CurrentHp == hp - 120 && cost.Current == 0 && metrics.RecordedHits == 3, "acquired impact immediately playable");
-            win();
+            Set(flow, "rewardPool", pool.Take(3).ToArray()); win();
             check(flow.RewardChoiceCount == 2 && Enumerable.Range(0, 2).All(i => flow.GetRewardChoice(i).Card != impact), "owned reward excluded next time");
             check(!choices[2].gameObject.activeSelf, "unused third choice hidden");
-            Click(choices[1]); Click(slots[2]); Click(next);
+            Click(choices[Enumerable.Range(0, flow.RewardChoiceCount).First(i => flow.GetRewardChoice(i).Card == suppression)]); Click(slots[2]); Click(next);
             check(flow.BattleNumber == 3 && deck.GetHandCard(0) == impact && deck.GetHandCard(2) == suppression, "two acquired cards retained in BC");
             win(); check(flow.State == BattleFlowState.Victory && !((GameObject)Get(ui, "panel")).activeSelf && !flow.SelectReward(0), "final victory has no reward");
             flow.RestartRun(); check(player.CurrentHp == player.MaxHp && Enumerable.Range(0, 8).All(i => flow.GetDeckCard(i) == original[i]), "restart resets original deck and HP");
             win(); flow.SelectReward(0); Click((Button)Get(ui, "skipButton")); Click(next); win();
-            check(flow.RewardChoiceCount == 3 && flow.GetDeckCard(0) == original[0], "skip pending selection keeps deck and all choices");
+            check(flow.RewardChoiceCount == 2 && flow.GetDeckCard(0) == original[0], "skip pending selection keeps deck and all choices");
             flow.SkipReward(); flow.NextBattle(); player.TakeDamage(100000); Call(flow, "Update");
             check(flow.State == BattleFlowState.Defeat && !flow.SelectReward(0), "defeat has no reward");
             flow.RestartRun(); Set(flow, "rewardPool", new BattleRewardOption[0]); win();
@@ -136,6 +139,7 @@ public static class RewardFlowChecks
         }
         finally
         {
+            typeof(Player).GetField("criticalChance", Hidden).SetValue(player, originalCriticalChance);
             Set(flow, "rewardPool", pool); flow.RestartRun();
             if (probe != null) UnityEngine.Object.DestroyImmediate(probe);
             RewardProbeEffect.Received = null;

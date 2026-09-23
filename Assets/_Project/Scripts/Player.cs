@@ -21,6 +21,21 @@ public class Player : MonoBehaviour
     [Tooltip("4단계 계측. 비워두면 씬에서 자동으로 찾는다.")]
     [SerializeField] private CombatMetrics metrics;
 
+    [Tooltip("플레이어 공격의 타격·적마다 판정하는 크리티컬 확률(%).")]
+    [SerializeField, Range(0f, 100f)] private float criticalChance = 15f;
+    [SerializeField, Min(1f)] private float criticalMultiplier = 1.5f;
+
+    private float criticalChanceBonus;
+    public void AddCriticalChanceBonus(float percentagePoints) => criticalChanceBonus += percentagePoints;
+    public float CriticalChance => Mathf.Clamp(criticalChance + criticalChanceBonus, 0f, 100f);
+    public float CriticalMultiplier => Mathf.Max(1f, criticalMultiplier);
+
+    public bool RollCritical()
+    {
+        float chance = CriticalChance;
+        return chance > 0f && (chance >= 100f || Random.value * 100f < chance);
+    }
+
     public float MaxHp => maxHp;
     public float Defense => defense;
     public float CurrentHp => currentHp;

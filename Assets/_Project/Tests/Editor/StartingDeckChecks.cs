@@ -44,10 +44,12 @@ public static class StartingDeckChecks
         var cutter = Load("Skill_SK03_MagicCutter");
         var ice = Load("Skill_SK02_IceArrow");
         var ui = UnityEngine.Object.FindFirstObjectByType<DamageNumberUI>();
+        float originalCriticalChance = (float)typeof(Player).GetField("criticalChance", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(player);
         bool wasLogging = (bool)Get(metrics, "logEachInput");
         passed = 0;
         try
         {
+            Set(player, "criticalChance", 0f);
             Set(metrics, "logEachInput", false);
             var actualDeck = ((System.Collections.Generic.List<SkillData>)Get(deck, "startingDeck")).ToArray();
             var expected = new[] { fire, pillar, silence, armor, spark, spear, cutter, ice };
@@ -200,7 +202,7 @@ public static class StartingDeckChecks
             Check(!deck.TryUseSlot(0) && cost.Current == 10f && deck.GetHandCard(0) == silence, "noncasting rejects without cost or cycle");
             return "Starting deck checks passed: " + passed;
         }
-        finally { Time.timeScale = 1f; Set(metrics, "logEachInput", wasLogging); flow.RestartRun(); }
+        finally { Set(player, "criticalChance", originalCriticalChance); Time.timeScale = 1f; Set(metrics, "logEachInput", wasLogging); flow.RestartRun(); }
     }
 
     private static void Reset(SkillData card, bool three = false)

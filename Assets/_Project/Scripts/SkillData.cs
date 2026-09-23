@@ -30,8 +30,8 @@ public class SkillData : ScriptableObject
     [Tooltip("타수. 총 피해 = 피해량 × 타수")]
     [SerializeField] private int hitCount = 1;
 
-    [Tooltip("일반 공격의 타격을 각각 계산·표시. 기존 합산형 에셋은 체크하지 않는다.")]
-    [SerializeField] private bool resolveHitsSeparately = false;
+    // 구 에셋 직렬화 호환용. 현재 피해는 이 값과 무관하게 타격별로 처리한다.
+    [SerializeField, HideInInspector] private bool resolveHitsSeparately = false;
 
     [SerializeField] private SkillActivation activation = SkillActivation.Cast;
 
