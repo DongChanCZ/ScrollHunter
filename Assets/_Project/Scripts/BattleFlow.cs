@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum BattleFlowState { Fighting, BetweenBattles, Victory, Defeat }
+public enum BattleFlowState { Fighting, BetweenBattles, Victory, Defeat, Title }
 
 /// <summary>한 씬의 적을 재사용하는 시연 전투 진행. 승리 후 보상·덱 교체를 거쳐 다음 전투에 편성을 이월한다.</summary>
 [DefaultExecutionOrder(-50)]
@@ -27,6 +27,10 @@ public class BattleFlow : MonoBehaviour
     [SerializeField] private CombatMetrics metrics;
     [SerializeField] private CombatInfoUI information;
     [SerializeField] private DamageNumberUI damageNumbers;
+
+    [Header("시작 화면")]
+    [SerializeField] private GameObject startPanel;
+    [SerializeField] private Button startButton;
 
     [Header("진행 화면")]
     [SerializeField] private TMP_Text progressText;
@@ -57,7 +61,7 @@ public class BattleFlow : MonoBehaviour
     public BattleRewardOption GetRewardChoice(int index) => index >= 0 && index < rewardChoices.Count ? rewardChoices[index] : null;
 
     public int BattleNumber { get; private set; }
-    public BattleFlowState State { get; private set; }
+    public BattleFlowState State { get; private set; } = BattleFlowState.Title;
     public int BattleCount => encounters != null ? encounters.Length : 0;
 
     private void Awake()
@@ -69,11 +73,25 @@ public class BattleFlow : MonoBehaviour
         if (metrics == null) metrics = FindFirstObjectByType<CombatMetrics>();
         if (information == null) information = FindFirstObjectByType<CombatInfoUI>();
         if (damageNumbers == null) damageNumbers = FindFirstObjectByType<DamageNumberUI>();
+        if (startButton != null) startButton.onClick.AddListener(StartRun);
         if (nextButton != null) nextButton.onClick.AddListener(NextBattle);
         if (restartButton != null) restartButton.onClick.AddListener(RestartRun);
     }
 
-    private void Start() => RestartRun();
+    private void Start()
+    {
+        if (!IsConfigured()) return;
+        // 모든 Awake 이후 대기 상태로 전환한다. 전투 계측은 시작 버튼에서 연다.
+        metrics.WaitForBattle();
+        enemies.WaitForBattle();
+        Time.timeScale = 0f;
+        RefreshUI();
+    }
+
+    public void StartRun()
+    {
+        if (State == BattleFlowState.Title) RestartRun();
+    }
 
     public void RestartRun()
     {
@@ -240,9 +258,15 @@ public class BattleFlow : MonoBehaviour
 
     private void RefreshUI()
     {
+        bool title = State == BattleFlowState.Title;
+        if (startPanel != null) startPanel.SetActive(title);
         if (progressText != null)
-            progressText.text = string.Format(progressFormat, BattleNumber, BattleCount, encounters[BattleNumber - 1].label);
-        bool ended = State != BattleFlowState.Fighting && State != BattleFlowState.BetweenBattles;
+        {
+            progressText.gameObject.SetActive(!title);
+            if (BattleNumber > 0)
+                progressText.text = string.Format(progressFormat, BattleNumber, BattleCount, encounters[BattleNumber - 1].label);
+        }
+        bool ended = State == BattleFlowState.Victory || State == BattleFlowState.Defeat;
         if (resultPanel != null) resultPanel.SetActive(ended);
         if (nextButton != null) nextButton.gameObject.SetActive(State == BattleFlowState.BetweenBattles && RewardResolved);
         if (restartButton != null) restartButton.gameObject.SetActive(State == BattleFlowState.Victory || State == BattleFlowState.Defeat);
@@ -264,6 +288,7 @@ public class BattleFlow : MonoBehaviour
     private void OnDestroy()
     {
         ClearRunRewards();
+        if (startButton != null) startButton.onClick.RemoveListener(StartRun);
         if (nextButton != null) nextButton.onClick.RemoveListener(NextBattle);
         if (restartButton != null) restartButton.onClick.RemoveListener(RestartRun);
     }

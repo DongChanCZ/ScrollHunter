@@ -1,0 +1,1369 @@
+[보상 전투 1] 스킵 — 편성 유지
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+BattleFlow:SkipReward () (at Assets/_Project/Scripts/BattleFlow.cs:137)
+BattleRewardUI:<Awake>b__22_0 () (at Assets/_Project/Scripts/BattleRewardUI.cs:46)
+UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.unity.ugui@2e4da8434a5c/Runtime/UGUI/EventSystem/EventSystem.cs:514)
+
+[#1 입력 2.04s / 슬롯4(R) / 매직아머 / 코스트 3 / 자신 / 보유 4.63→1.63]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseAccepted (string,SkillData,string,single,single) (at Assets/_Project/Scripts/CombatMetrics.cs:127)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:279)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[#1 결과 2.24s / 매직아머 / 자신 / 방어도 +120 (누적 120)]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseResult (int,string) (at Assets/_Project/Scripts/CombatMetrics.cs:146)
+DeckSystem:FinishCast (ChannelEndReason) (at Assets/_Project/Scripts/DeckSystem.cs:347)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:238)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[Player] 피격 125 (원본 150) 방어도 흡수 120 → HP -5 = 495/500 (방어도 0)
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Player:TakeDamage (int) (at Assets/_Project/Scripts/Player.cs:117)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:204)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:166)
+
+[Enemy_C_Red] 발동: 대형 피해 (Red) 피해 150
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:208)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:166)
+
+[#2 입력 8.21s / 슬롯3(E) / 침묵 / 코스트 2 / Enemy_C_Red / 보유 6.56→4.56]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseAccepted (string,SkillData,string,single,single) (at Assets/_Project/Scripts/CombatMetrics.cs:127)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:279)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[#2 결과 8.41s / 침묵 / Enemy_C_Red / 차단 성공 (경직 2.5초)]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseResult (int,string) (at Assets/_Project/Scripts/CombatMetrics.cs:146)
+DeckSystem:FinishCast (ChannelEndReason) (at Assets/_Project/Scripts/DeckSystem.cs:347)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:238)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[#3 입력 9.13s / 슬롯4(R) / 매직 스파크 / 코스트 3 / 적 전체 / 보유 5.30→2.30]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseAccepted (string,SkillData,string,single,single) (at Assets/_Project/Scripts/CombatMetrics.cs:127)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:279)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[#3 타격 9.38s / 매직 스파크 / 1타 / Enemy_C_Red / 표시 5 / 실피해 5 / 과잉 0]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordHit (int,SkillData,string,int,int,int,int,bool) (at Assets/_Project/Scripts/CombatMetrics.cs:169)
+DeckSystem:DealHit (Enemy,SkillData,int,int,bool) (at Assets/_Project/Scripts/DeckSystem.cs:480)
+DeckSystem/<>c__DisplayClass62_0:<TryUseSlot>b__0 (Enemy,int) (at Assets/_Project/Scripts/DeckSystem.cs:292)
+ChannelContext:ApplyHit (Enemy,int) (at Assets/_Project/Scripts/ChannelEffect.cs:24)
+DamageChannelEffect:Tick (ChannelContext,single) (at Assets/_Project/Scripts/DamageChannelEffect.cs:64)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:220)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[#3 타격 9.63s / 매직 스파크 / 2타 / Enemy_C_Red / 표시 5 / 실피해 5 / 과잉 0]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordHit (int,SkillData,string,int,int,int,int,bool) (at Assets/_Project/Scripts/CombatMetrics.cs:169)
+DeckSystem:DealHit (Enemy,SkillData,int,int,bool) (at Assets/_Project/Scripts/DeckSystem.cs:480)
+DeckSystem/<>c__DisplayClass62_0:<TryUseSlot>b__0 (Enemy,int) (at Assets/_Project/Scripts/DeckSystem.cs:292)
+ChannelContext:ApplyHit (Enemy,int) (at Assets/_Project/Scripts/ChannelEffect.cs:24)
+DamageChannelEffect:Tick (ChannelContext,single) (at Assets/_Project/Scripts/DamageChannelEffect.cs:64)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:220)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[#3 타격 9.88s / 매직 스파크 / 3타 / Enemy_C_Red / 표시 5 / 실피해 5 / 과잉 0]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordHit (int,SkillData,string,int,int,int,int,bool) (at Assets/_Project/Scripts/CombatMetrics.cs:169)
+DeckSystem:DealHit (Enemy,SkillData,int,int,bool) (at Assets/_Project/Scripts/DeckSystem.cs:480)
+DeckSystem/<>c__DisplayClass62_0:<TryUseSlot>b__0 (Enemy,int) (at Assets/_Project/Scripts/DeckSystem.cs:292)
+ChannelContext:ApplyHit (Enemy,int) (at Assets/_Project/Scripts/ChannelEffect.cs:24)
+DamageChannelEffect:Tick (ChannelContext,single) (at Assets/_Project/Scripts/DamageChannelEffect.cs:64)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:220)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[#3 타격 10.13s / 매직 스파크 / 4타 / Enemy_C_Red / 표시 5 / 실피해 5 / 과잉 0]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordHit (int,SkillData,string,int,int,int,int,bool) (at Assets/_Project/Scripts/CombatMetrics.cs:169)
+DeckSystem:DealHit (Enemy,SkillData,int,int,bool) (at Assets/_Project/Scripts/DeckSystem.cs:480)
+DeckSystem/<>c__DisplayClass62_0:<TryUseSlot>b__0 (Enemy,int) (at Assets/_Project/Scripts/DeckSystem.cs:292)
+ChannelContext:ApplyHit (Enemy,int) (at Assets/_Project/Scripts/ChannelEffect.cs:24)
+DamageChannelEffect:Tick (ChannelContext,single) (at Assets/_Project/Scripts/DamageChannelEffect.cs:64)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:220)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[#3 타격 10.38s / 매직 스파크 / 5타 / Enemy_C_Red / 표시 5 / 실피해 5 / 과잉 0]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordHit (int,SkillData,string,int,int,int,int,bool) (at Assets/_Project/Scripts/CombatMetrics.cs:169)
+DeckSystem:DealHit (Enemy,SkillData,int,int,bool) (at Assets/_Project/Scripts/DeckSystem.cs:480)
+DeckSystem/<>c__DisplayClass62_0:<TryUseSlot>b__0 (Enemy,int) (at Assets/_Project/Scripts/DeckSystem.cs:292)
+ChannelContext:ApplyHit (Enemy,int) (at Assets/_Project/Scripts/ChannelEffect.cs:24)
+DamageChannelEffect:Tick (ChannelContext,single) (at Assets/_Project/Scripts/DamageChannelEffect.cs:64)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:220)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[#3 타격 10.63s / 매직 스파크 / 6타 / Enemy_C_Red / 표시 5 / 실피해 5 / 과잉 0]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordHit (int,SkillData,string,int,int,int,int,bool) (at Assets/_Project/Scripts/CombatMetrics.cs:169)
+DeckSystem:DealHit (Enemy,SkillData,int,int,bool) (at Assets/_Project/Scripts/DeckSystem.cs:480)
+DeckSystem/<>c__DisplayClass62_0:<TryUseSlot>b__0 (Enemy,int) (at Assets/_Project/Scripts/DeckSystem.cs:292)
+ChannelContext:ApplyHit (Enemy,int) (at Assets/_Project/Scripts/ChannelEffect.cs:24)
+DamageChannelEffect:Tick (ChannelContext,single) (at Assets/_Project/Scripts/DamageChannelEffect.cs:64)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:220)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[#3 타격 10.88s / 매직 스파크 / 7타 / Enemy_C_Red / 표시 5 / 실피해 5 / 과잉 0]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordHit (int,SkillData,string,int,int,int,int,bool) (at Assets/_Project/Scripts/CombatMetrics.cs:169)
+DeckSystem:DealHit (Enemy,SkillData,int,int,bool) (at Assets/_Project/Scripts/DeckSystem.cs:480)
+DeckSystem/<>c__DisplayClass62_0:<TryUseSlot>b__0 (Enemy,int) (at Assets/_Project/Scripts/DeckSystem.cs:292)
+ChannelContext:ApplyHit (Enemy,int) (at Assets/_Project/Scripts/ChannelEffect.cs:24)
+DamageChannelEffect:Tick (ChannelContext,single) (at Assets/_Project/Scripts/DamageChannelEffect.cs:64)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:220)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[#3 타격 11.13s / 매직 스파크 / 8타 / Enemy_C_Red / 표시 5 / 실피해 5 / 과잉 0]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordHit (int,SkillData,string,int,int,int,int,bool) (at Assets/_Project/Scripts/CombatMetrics.cs:169)
+DeckSystem:DealHit (Enemy,SkillData,int,int,bool) (at Assets/_Project/Scripts/DeckSystem.cs:480)
+DeckSystem/<>c__DisplayClass62_0:<TryUseSlot>b__0 (Enemy,int) (at Assets/_Project/Scripts/DeckSystem.cs:292)
+ChannelContext:ApplyHit (Enemy,int) (at Assets/_Project/Scripts/ChannelEffect.cs:24)
+DamageChannelEffect:Tick (ChannelContext,single) (at Assets/_Project/Scripts/DamageChannelEffect.cs:64)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:220)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[#3 결과 11.33s / 매직 스파크 / - / 채널링 종료 — Completed]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseResult (int,string) (at Assets/_Project/Scripts/CombatMetrics.cs:146)
+DeckSystem:FinishCast (ChannelEndReason) (at Assets/_Project/Scripts/DeckSystem.cs:347)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:238)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[#4 입력 11.66s / 슬롯4(R) / 매직 커터 / 코스트 2 / Enemy_C_Red / 보유 4.32→2.32]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseAccepted (string,SkillData,string,single,single) (at Assets/_Project/Scripts/CombatMetrics.cs:127)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:279)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[#4 타격 11.66s / 매직 커터 / 1타 / Enemy_C_Red / 표시 30 / 실피해 30 / 과잉 0]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordHit (int,SkillData,string,int,int,int,int,bool) (at Assets/_Project/Scripts/CombatMetrics.cs:169)
+DeckSystem:DealHit (Enemy,SkillData,int,int,bool) (at Assets/_Project/Scripts/DeckSystem.cs:480)
+DeckSystem:DealTo (Enemy,SkillData,int) (at Assets/_Project/Scripts/DeckSystem.cs:461)
+DeckSystem:ApplyCard (SkillData,int,string&,string&) (at Assets/_Project/Scripts/DeckSystem.cs:443)
+DeckSystem:FinishCast (ChannelEndReason) (at Assets/_Project/Scripts/DeckSystem.cs:338)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:303)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[#4 타격 11.66s / 매직 커터 / 2타 / Enemy_C_Red / 표시 30 / 실피해 30 / 과잉 0]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordHit (int,SkillData,string,int,int,int,int,bool) (at Assets/_Project/Scripts/CombatMetrics.cs:169)
+DeckSystem:DealHit (Enemy,SkillData,int,int,bool) (at Assets/_Project/Scripts/DeckSystem.cs:480)
+DeckSystem:DealTo (Enemy,SkillData,int) (at Assets/_Project/Scripts/DeckSystem.cs:461)
+DeckSystem:ApplyCard (SkillData,int,string&,string&) (at Assets/_Project/Scripts/DeckSystem.cs:443)
+DeckSystem:FinishCast (ChannelEndReason) (at Assets/_Project/Scripts/DeckSystem.cs:338)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:303)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[#4 결과 11.66s / 매직 커터 / Enemy_C_Red / 피해 60 → HP 400/500]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseResult (int,string) (at Assets/_Project/Scripts/CombatMetrics.cs:146)
+DeckSystem:FinishCast (ChannelEndReason) (at Assets/_Project/Scripts/DeckSystem.cs:347)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:303)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[#5 입력 12.31s / 슬롯1(Q) / 파이어볼 / 코스트 1 / Enemy_C_Red / 보유 2.85→1.85]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseAccepted (string,SkillData,string,single,single) (at Assets/_Project/Scripts/CombatMetrics.cs:127)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:279)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[#5 타격 12.31s / 파이어볼 / 1타 / Enemy_C_Red / 표시 30 / 실피해 30 / 과잉 0]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordHit (int,SkillData,string,int,int,int,int,bool) (at Assets/_Project/Scripts/CombatMetrics.cs:169)
+DeckSystem:DealHit (Enemy,SkillData,int,int,bool) (at Assets/_Project/Scripts/DeckSystem.cs:480)
+DeckSystem:DealTo (Enemy,SkillData,int) (at Assets/_Project/Scripts/DeckSystem.cs:461)
+DeckSystem:ApplyCard (SkillData,int,string&,string&) (at Assets/_Project/Scripts/DeckSystem.cs:443)
+DeckSystem:FinishCast (ChannelEndReason) (at Assets/_Project/Scripts/DeckSystem.cs:338)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:303)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[#5 결과 12.31s / 파이어볼 / Enemy_C_Red / 피해 30 → HP 370/500]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseResult (int,string) (at Assets/_Project/Scripts/CombatMetrics.cs:146)
+DeckSystem:FinishCast (ChannelEndReason) (at Assets/_Project/Scripts/DeckSystem.cs:347)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:303)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[Player] 피격 25 (원본 30) 방어도 흡수 0 → HP -25 = 470/500 (방어도 0)
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Player:TakeDamage (int) (at Assets/_Project/Scripts/Player.cs:117)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:204)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:166)
+
+[Enemy_C_Red] 발동: 일반 공격 (Green) 피해 30
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:208)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:166)
+
+[#6 입력 13.99s / 슬롯1(Q) / 매직아머 / 코스트 3 / 자신 / 보유 3.19→0.19]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseAccepted (string,SkillData,string,single,single) (at Assets/_Project/Scripts/CombatMetrics.cs:127)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:279)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[#6 결과 14.20s / 매직아머 / 자신 / 방어도 +120 (누적 120)]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseResult (int,string) (at Assets/_Project/Scripts/CombatMetrics.cs:146)
+DeckSystem:FinishCast (ChannelEndReason) (at Assets/_Project/Scripts/DeckSystem.cs:347)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:238)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[#7 입력 16.38s / 슬롯1(Q) / 침묵 / 코스트 2 / Enemy_C_Red / 보유 2.10→0.10]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseAccepted (string,SkillData,string,single,single) (at Assets/_Project/Scripts/CombatMetrics.cs:127)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:279)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[#7 결과 16.58s / 침묵 / Enemy_C_Red / 차단 성공 (경직 2.5초)]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseResult (int,string) (at Assets/_Project/Scripts/CombatMetrics.cs:146)
+DeckSystem:FinishCast (ChannelEndReason) (at Assets/_Project/Scripts/DeckSystem.cs:347)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:238)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[Player] 피격 25 (원본 30) 방어도 흡수 25 → HP -0 = 470/500 (방어도 95)
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Player:TakeDamage (int) (at Assets/_Project/Scripts/Player.cs:117)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:204)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:166)
+
+[Enemy_C_Red] 발동: 일반 공격 (Green) 피해 30
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:208)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:166)
+
+[#8 입력 22.62s / 슬롯4(R) / 아이스애로우 / 코스트 5 / Enemy_C_Red / 보유 5.09→0.09]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseAccepted (string,SkillData,string,single,single) (at Assets/_Project/Scripts/CombatMetrics.cs:127)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:279)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[#8 타격 23.13s / 아이스애로우 / 1타 / Enemy_C_Red / 표시 35 / 실피해 35 / 과잉 0]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordHit (int,SkillData,string,int,int,int,int,bool) (at Assets/_Project/Scripts/CombatMetrics.cs:169)
+DeckSystem:DealHit (Enemy,SkillData,int,int,bool) (at Assets/_Project/Scripts/DeckSystem.cs:480)
+DeckSystem/<>c__DisplayClass62_0:<TryUseSlot>b__0 (Enemy,int) (at Assets/_Project/Scripts/DeckSystem.cs:292)
+ChannelContext:ApplyHit (Enemy,int) (at Assets/_Project/Scripts/ChannelEffect.cs:24)
+DamageChannelEffect:Tick (ChannelContext,single) (at Assets/_Project/Scripts/DamageChannelEffect.cs:66)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:220)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[#8 타격 23.62s / 아이스애로우 / 2타 / Enemy_C_Red / 표시 35 / 실피해 35 / 과잉 0]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordHit (int,SkillData,string,int,int,int,int,bool) (at Assets/_Project/Scripts/CombatMetrics.cs:169)
+DeckSystem:DealHit (Enemy,SkillData,int,int,bool) (at Assets/_Project/Scripts/DeckSystem.cs:480)
+DeckSystem/<>c__DisplayClass62_0:<TryUseSlot>b__0 (Enemy,int) (at Assets/_Project/Scripts/DeckSystem.cs:292)
+ChannelContext:ApplyHit (Enemy,int) (at Assets/_Project/Scripts/ChannelEffect.cs:24)
+DamageChannelEffect:Tick (ChannelContext,single) (at Assets/_Project/Scripts/DamageChannelEffect.cs:66)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:220)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[#8 타격 24.13s / 아이스애로우 / 3타 / Enemy_C_Red / 표시 35 / 실피해 35 / 과잉 0]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordHit (int,SkillData,string,int,int,int,int,bool) (at Assets/_Project/Scripts/CombatMetrics.cs:169)
+DeckSystem:DealHit (Enemy,SkillData,int,int,bool) (at Assets/_Project/Scripts/DeckSystem.cs:480)
+DeckSystem/<>c__DisplayClass62_0:<TryUseSlot>b__0 (Enemy,int) (at Assets/_Project/Scripts/DeckSystem.cs:292)
+ChannelContext:ApplyHit (Enemy,int) (at Assets/_Project/Scripts/ChannelEffect.cs:24)
+DamageChannelEffect:Tick (ChannelContext,single) (at Assets/_Project/Scripts/DamageChannelEffect.cs:66)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:220)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[#8 타격 24.62s / 아이스애로우 / 4타 / Enemy_C_Red / 표시 35 / 실피해 35 / 과잉 0]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordHit (int,SkillData,string,int,int,int,int,bool) (at Assets/_Project/Scripts/CombatMetrics.cs:169)
+DeckSystem:DealHit (Enemy,SkillData,int,int,bool) (at Assets/_Project/Scripts/DeckSystem.cs:480)
+DeckSystem/<>c__DisplayClass62_0:<TryUseSlot>b__0 (Enemy,int) (at Assets/_Project/Scripts/DeckSystem.cs:292)
+ChannelContext:ApplyHit (Enemy,int) (at Assets/_Project/Scripts/ChannelEffect.cs:24)
+DamageChannelEffect:Tick (ChannelContext,single) (at Assets/_Project/Scripts/DamageChannelEffect.cs:66)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:220)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[#8 타격 25.13s / 아이스애로우 / 5타 / Enemy_C_Red / 표시 35 / 실피해 35 / 과잉 0]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordHit (int,SkillData,string,int,int,int,int,bool) (at Assets/_Project/Scripts/CombatMetrics.cs:169)
+DeckSystem:DealHit (Enemy,SkillData,int,int,bool) (at Assets/_Project/Scripts/DeckSystem.cs:480)
+DeckSystem/<>c__DisplayClass62_0:<TryUseSlot>b__0 (Enemy,int) (at Assets/_Project/Scripts/DeckSystem.cs:292)
+ChannelContext:ApplyHit (Enemy,int) (at Assets/_Project/Scripts/ChannelEffect.cs:24)
+DamageChannelEffect:Tick (ChannelContext,single) (at Assets/_Project/Scripts/DamageChannelEffect.cs:66)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:220)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[#8 결과 25.42s / 아이스애로우 / - / 채널링 종료 — Completed]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseResult (int,string) (at Assets/_Project/Scripts/CombatMetrics.cs:146)
+DeckSystem:FinishCast (ChannelEndReason) (at Assets/_Project/Scripts/DeckSystem.cs:347)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:238)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[#9 입력 26.03s / 슬롯4(R) / 매직 커터 / 코스트 2 / Enemy_C_Red / 보유 2.82→0.82]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseAccepted (string,SkillData,string,single,single) (at Assets/_Project/Scripts/CombatMetrics.cs:127)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:279)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[#9 타격 26.03s / 매직 커터 / 1타 / Enemy_C_Red / 표시 30 / 실피해 30 / 과잉 0]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordHit (int,SkillData,string,int,int,int,int,bool) (at Assets/_Project/Scripts/CombatMetrics.cs:169)
+DeckSystem:DealHit (Enemy,SkillData,int,int,bool) (at Assets/_Project/Scripts/DeckSystem.cs:480)
+DeckSystem:DealTo (Enemy,SkillData,int) (at Assets/_Project/Scripts/DeckSystem.cs:461)
+DeckSystem:ApplyCard (SkillData,int,string&,string&) (at Assets/_Project/Scripts/DeckSystem.cs:443)
+DeckSystem:FinishCast (ChannelEndReason) (at Assets/_Project/Scripts/DeckSystem.cs:338)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:303)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[#9 타격 26.03s / 매직 커터 / 2타 / Enemy_C_Red / 표시 30 / 실피해 30 / 과잉 0]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordHit (int,SkillData,string,int,int,int,int,bool) (at Assets/_Project/Scripts/CombatMetrics.cs:169)
+DeckSystem:DealHit (Enemy,SkillData,int,int,bool) (at Assets/_Project/Scripts/DeckSystem.cs:480)
+DeckSystem:DealTo (Enemy,SkillData,int) (at Assets/_Project/Scripts/DeckSystem.cs:461)
+DeckSystem:ApplyCard (SkillData,int,string&,string&) (at Assets/_Project/Scripts/DeckSystem.cs:443)
+DeckSystem:FinishCast (ChannelEndReason) (at Assets/_Project/Scripts/DeckSystem.cs:338)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:303)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[#9 결과 26.03s / 매직 커터 / Enemy_C_Red / 피해 60 → HP 135/500]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseResult (int,string) (at Assets/_Project/Scripts/CombatMetrics.cs:146)
+DeckSystem:FinishCast (ChannelEndReason) (at Assets/_Project/Scripts/DeckSystem.cs:347)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:303)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[Player] 피격 125 (원본 150) 방어도 흡수 95 → HP -30 = 440/500 (방어도 0)
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Player:TakeDamage (int) (at Assets/_Project/Scripts/Player.cs:117)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:204)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:166)
+
+[Enemy_C_Red] 발동: 대형 피해 (Red) 피해 150
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:208)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:166)
+
+[#10 입력 26.93s / 슬롯4(R) / 파이어볼 / 코스트 1 / Enemy_C_Red / 보유 1.54→0.54]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseAccepted (string,SkillData,string,single,single) (at Assets/_Project/Scripts/CombatMetrics.cs:127)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:279)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[#10 타격 26.93s / 파이어볼 / 1타 / Enemy_C_Red / 표시 30 / 실피해 30 / 과잉 0]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordHit (int,SkillData,string,int,int,int,int,bool) (at Assets/_Project/Scripts/CombatMetrics.cs:169)
+DeckSystem:DealHit (Enemy,SkillData,int,int,bool) (at Assets/_Project/Scripts/DeckSystem.cs:480)
+DeckSystem:DealTo (Enemy,SkillData,int) (at Assets/_Project/Scripts/DeckSystem.cs:461)
+DeckSystem:ApplyCard (SkillData,int,string&,string&) (at Assets/_Project/Scripts/DeckSystem.cs:443)
+DeckSystem:FinishCast (ChannelEndReason) (at Assets/_Project/Scripts/DeckSystem.cs:338)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:303)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[#10 결과 26.93s / 파이어볼 / Enemy_C_Red / 피해 30 → HP 105/500]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseResult (int,string) (at Assets/_Project/Scripts/CombatMetrics.cs:146)
+DeckSystem:FinishCast (ChannelEndReason) (at Assets/_Project/Scripts/DeckSystem.cs:347)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:303)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[#11 입력 30.10s / 슬롯4(R) / 매직아머 / 코스트 3 / 자신 / 보유 3.08→0.08]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseAccepted (string,SkillData,string,single,single) (at Assets/_Project/Scripts/CombatMetrics.cs:127)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:279)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[#11 결과 30.30s / 매직아머 / 자신 / 방어도 +120 (누적 120)]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseResult (int,string) (at Assets/_Project/Scripts/CombatMetrics.cs:146)
+DeckSystem:FinishCast (ChannelEndReason) (at Assets/_Project/Scripts/DeckSystem.cs:347)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:238)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[Player] 피격 25 (원본 30) 방어도 흡수 25 → HP -0 = 440/500 (방어도 95)
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Player:TakeDamage (int) (at Assets/_Project/Scripts/Player.cs:117)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:204)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:166)
+
+[Enemy_C_Red] 발동: 일반 공격 (Green) 피해 30
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:208)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:166)
+
+[#12 입력 34.18s / 슬롯4(R) / 침묵 / 코스트 2 / Enemy_C_Red / 보유 3.34→1.34]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseAccepted (string,SkillData,string,single,single) (at Assets/_Project/Scripts/CombatMetrics.cs:127)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:279)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[#12 결과 34.39s / 침묵 / Enemy_C_Red / 차단 성공 (경직 2.5초)]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseResult (int,string) (at Assets/_Project/Scripts/CombatMetrics.cs:146)
+DeckSystem:FinishCast (ChannelEndReason) (at Assets/_Project/Scripts/DeckSystem.cs:347)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:238)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[#13 입력 37.54s / 슬롯3(E) / 라이트닝 스피어 / 코스트 4 / Enemy_C_Red / 보유 4.02→0.02]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseAccepted (string,SkillData,string,single,single) (at Assets/_Project/Scripts/CombatMetrics.cs:127)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:279)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[Enemy_C_Red] 사망
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Enemy:Die () (at Assets/_Project/Scripts/Enemy.cs:293)
+Enemy:TakeDamage (int,bool) (at Assets/_Project/Scripts/Enemy.cs:278)
+DeckSystem:DealHit (Enemy,SkillData,int,int,bool) (at Assets/_Project/Scripts/DeckSystem.cs:476)
+DeckSystem:DealTo (Enemy,SkillData,int) (at Assets/_Project/Scripts/DeckSystem.cs:461)
+DeckSystem:ApplyCard (SkillData,int,string&,string&) (at Assets/_Project/Scripts/DeckSystem.cs:443)
+DeckSystem:FinishCast (ChannelEndReason) (at Assets/_Project/Scripts/DeckSystem.cs:338)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:238)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[#13 타격 38.34s / 라이트닝 스피어 / 1타 / Enemy_C_Red / 표시 135 / 실피해 105 / 과잉 30]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordHit (int,SkillData,string,int,int,int,int,bool) (at Assets/_Project/Scripts/CombatMetrics.cs:169)
+DeckSystem:DealHit (Enemy,SkillData,int,int,bool) (at Assets/_Project/Scripts/DeckSystem.cs:480)
+DeckSystem:DealTo (Enemy,SkillData,int) (at Assets/_Project/Scripts/DeckSystem.cs:461)
+DeckSystem:ApplyCard (SkillData,int,string&,string&) (at Assets/_Project/Scripts/DeckSystem.cs:443)
+DeckSystem:FinishCast (ChannelEndReason) (at Assets/_Project/Scripts/DeckSystem.cs:338)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:238)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[EnemyManager] 승리
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+EnemyManager:EndCombat () (at Assets/_Project/Scripts/EnemyManager.cs:200)
+EnemyManager:NotifyEnemyDied () (at Assets/_Project/Scripts/EnemyManager.cs:193)
+DeckSystem:ApplyCard (SkillData,int,string&,string&) (at Assets/_Project/Scripts/DeckSystem.cs:448)
+DeckSystem:FinishCast (ChannelEndReason) (at Assets/_Project/Scripts/DeckSystem.cs:338)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:238)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[#13 결과 38.34s / 라이트닝 스피어 / Enemy_C_Red / 피해 135 → HP 0/500]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseResult (int,string) (at Assets/_Project/Scripts/CombatMetrics.cs:146)
+DeckSystem:FinishCast (ChannelEndReason) (at Assets/_Project/Scripts/DeckSystem.cs:347)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:238)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+──────── 전투 종료 요약 ────────
+전투 번호: 2
+승패: 승리
+전투 시간: 38.34초 (게임 내, 배속 반영·일시정지 제외)
+배속 이력(게임 초): 0.00s: 1배
+남은 HP: 440 / 500
+처치 수: 1 / 1
+
+카드 사용 13회 (기절 취소 0회 포함)
+  매직아머 : 3회
+  침묵 : 3회
+  매직 스파크 : 1회
+  매직 커터 : 2회
+  파이어볼 : 2회
+  아이스애로우 : 1회
+  라이트닝 스피어 : 1회
+
+타격별 기록 20건 / 실피해 500 / 과잉 피해 30
+차단 시도 3회 / 성공 3회
+방어 카드 사용 3회 / 실제 방어도 흡수 265
+코스트 부족으로 거절된 입력 0회
+상한 초과로 버린 코스트 0.00
+────────────────────────────
+
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:FlushPendingSummary () (at Assets/_Project/Scripts/CombatMetrics.cs:218)
+BattleFlow:Update () (at Assets/_Project/Scripts/BattleFlow.cs:238)
+
+[보상 전투 2] 스킵 — 편성 유지
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+BattleFlow:SkipReward () (at Assets/_Project/Scripts/BattleFlow.cs:137)
+BattleRewardUI:<Awake>b__22_0 () (at Assets/_Project/Scripts/BattleRewardUI.cs:46)
+UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.unity.ugui@2e4da8434a5c/Runtime/UGUI/EventSystem/EventSystem.cs:514)
+
+[#1 입력 0.89s / 슬롯4(R) / 매직아머 / 코스트 3 / 자신 / 보유 3.71→0.71]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseAccepted (string,SkillData,string,single,single) (at Assets/_Project/Scripts/CombatMetrics.cs:127)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:279)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[#1 결과 1.09s / 매직아머 / 자신 / 방어도 +120 (누적 120)]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseResult (int,string) (at Assets/_Project/Scripts/CombatMetrics.cs:146)
+DeckSystem:FinishCast (ChannelEndReason) (at Assets/_Project/Scripts/DeckSystem.cs:347)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:238)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[Player] 피격 33 (원본 40) 방어도 흡수 33 → HP -0 = 440/500 (방어도 87)
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Player:TakeDamage (int) (at Assets/_Project/Scripts/Player.cs:117)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:204)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:166)
+
+[Player] 기절 2초
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Player:ApplyStun (single) (at Assets/_Project/Scripts/Player.cs:97)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:206)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:166)
+
+[Enemy_B_Orange] 발동: 기절 공격 (Orange) 피해 40
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:208)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:166)
+
+[Player] 피격 125 (원본 150) 방어도 흡수 87 → HP -38 = 402/500 (방어도 0)
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Player:TakeDamage (int) (at Assets/_Project/Scripts/Player.cs:117)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:204)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:166)
+
+[Enemy_C_Red] 발동: 대형 피해 (Red) 피해 150
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:208)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:166)
+
+[Player] 피격 25 (원본 30) 방어도 흡수 0 → HP -25 = 377/500 (방어도 0)
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Player:TakeDamage (int) (at Assets/_Project/Scripts/Player.cs:117)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:204)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:166)
+
+[Enemy_B_Orange] 발동: 일반 공격 (Green) 피해 30
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:208)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:166)
+
+[#2 입력 8.24s / 슬롯3(E) / 침묵 / 코스트 2 / Enemy_C_Red / 보유 6.59→4.59]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseAccepted (string,SkillData,string,single,single) (at Assets/_Project/Scripts/CombatMetrics.cs:127)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:279)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[#2 결과 8.44s / 침묵 / Enemy_C_Red / 차단 성공 (경직 2.5초)]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseResult (int,string) (at Assets/_Project/Scripts/CombatMetrics.cs:146)
+DeckSystem:FinishCast (ChannelEndReason) (at Assets/_Project/Scripts/DeckSystem.cs:347)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:238)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[#3 입력 9.62s / 슬롯1(Q) / 파이어볼 / 코스트 1 / Enemy_B_Orange / 보유 5.69→4.69]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseAccepted (string,SkillData,string,single,single) (at Assets/_Project/Scripts/CombatMetrics.cs:127)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:279)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[#3 타격 9.62s / 파이어볼 / 1타 / Enemy_B_Orange / 표시 30 / 실피해 30 / 과잉 0]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordHit (int,SkillData,string,int,int,int,int,bool) (at Assets/_Project/Scripts/CombatMetrics.cs:169)
+DeckSystem:DealHit (Enemy,SkillData,int,int,bool) (at Assets/_Project/Scripts/DeckSystem.cs:480)
+DeckSystem:DealTo (Enemy,SkillData,int) (at Assets/_Project/Scripts/DeckSystem.cs:461)
+DeckSystem:ApplyCard (SkillData,int,string&,string&) (at Assets/_Project/Scripts/DeckSystem.cs:443)
+DeckSystem:FinishCast (ChannelEndReason) (at Assets/_Project/Scripts/DeckSystem.cs:338)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:303)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[#3 결과 9.62s / 파이어볼 / Enemy_B_Orange / 피해 30 → HP 420/450]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseResult (int,string) (at Assets/_Project/Scripts/CombatMetrics.cs:146)
+DeckSystem:FinishCast (ChannelEndReason) (at Assets/_Project/Scripts/DeckSystem.cs:347)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:303)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[Player] 피격 33 (원본 40) 방어도 흡수 0 → HP -33 = 344/500 (방어도 0)
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Player:TakeDamage (int) (at Assets/_Project/Scripts/Player.cs:117)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:204)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:166)
+
+[Player] 기절 2초
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Player:ApplyStun (single) (at Assets/_Project/Scripts/Player.cs:97)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:206)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:166)
+
+[Enemy_B_Orange] 발동: 기절 공격 (Orange) 피해 40
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:208)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:166)
+
+[Player] 피격 25 (원본 30) 방어도 흡수 0 → HP -25 = 319/500 (방어도 0)
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Player:TakeDamage (int) (at Assets/_Project/Scripts/Player.cs:117)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:204)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:166)
+
+[Enemy_C_Red] 발동: 일반 공격 (Green) 피해 30
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:208)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:166)
+
+[#4 입력 14.18s / 슬롯3(E) / 라이트닝 스피어 / 코스트 4 / Enemy_B_Orange / 보유 8.34→4.34]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseAccepted (string,SkillData,string,single,single) (at Assets/_Project/Scripts/CombatMetrics.cs:127)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:279)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[#4 타격 14.99s / 라이트닝 스피어 / 1타 / Enemy_B_Orange / 표시 135 / 실피해 135 / 과잉 0]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordHit (int,SkillData,string,int,int,int,int,bool) (at Assets/_Project/Scripts/CombatMetrics.cs:169)
+DeckSystem:DealHit (Enemy,SkillData,int,int,bool) (at Assets/_Project/Scripts/DeckSystem.cs:480)
+DeckSystem:DealTo (Enemy,SkillData,int) (at Assets/_Project/Scripts/DeckSystem.cs:461)
+DeckSystem:ApplyCard (SkillData,int,string&,string&) (at Assets/_Project/Scripts/DeckSystem.cs:443)
+DeckSystem:FinishCast (ChannelEndReason) (at Assets/_Project/Scripts/DeckSystem.cs:338)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:238)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[#4 결과 14.99s / 라이트닝 스피어 / Enemy_B_Orange / 피해 135 → HP 285/450]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseResult (int,string) (at Assets/_Project/Scripts/CombatMetrics.cs:146)
+DeckSystem:FinishCast (ChannelEndReason) (at Assets/_Project/Scripts/DeckSystem.cs:347)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:238)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[Player] 피격 25 (원본 30) 방어도 흡수 0 → HP -25 = 294/500 (방어도 0)
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Player:TakeDamage (int) (at Assets/_Project/Scripts/Player.cs:117)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:204)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:166)
+
+[Enemy_B_Orange] 발동: 일반 공격 (Green) 피해 30
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:208)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:166)
+
+[#5 입력 15.54s / 슬롯3(E) / 아이스애로우 / 코스트 5 / Enemy_B_Orange / 보유 5.43→0.43]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseAccepted (string,SkillData,string,single,single) (at Assets/_Project/Scripts/CombatMetrics.cs:127)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:279)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[#5 타격 16.04s / 아이스애로우 / 1타 / Enemy_B_Orange / 표시 35 / 실피해 35 / 과잉 0]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordHit (int,SkillData,string,int,int,int,int,bool) (at Assets/_Project/Scripts/CombatMetrics.cs:169)
+DeckSystem:DealHit (Enemy,SkillData,int,int,bool) (at Assets/_Project/Scripts/DeckSystem.cs:480)
+DeckSystem/<>c__DisplayClass62_0:<TryUseSlot>b__0 (Enemy,int) (at Assets/_Project/Scripts/DeckSystem.cs:292)
+ChannelContext:ApplyHit (Enemy,int) (at Assets/_Project/Scripts/ChannelEffect.cs:24)
+DamageChannelEffect:Tick (ChannelContext,single) (at Assets/_Project/Scripts/DamageChannelEffect.cs:66)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:220)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[#5 타격 16.54s / 아이스애로우 / 2타 / Enemy_B_Orange / 표시 35 / 실피해 35 / 과잉 0]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordHit (int,SkillData,string,int,int,int,int,bool) (at Assets/_Project/Scripts/CombatMetrics.cs:169)
+DeckSystem:DealHit (Enemy,SkillData,int,int,bool) (at Assets/_Project/Scripts/DeckSystem.cs:480)
+DeckSystem/<>c__DisplayClass62_0:<TryUseSlot>b__0 (Enemy,int) (at Assets/_Project/Scripts/DeckSystem.cs:292)
+ChannelContext:ApplyHit (Enemy,int) (at Assets/_Project/Scripts/ChannelEffect.cs:24)
+DamageChannelEffect:Tick (ChannelContext,single) (at Assets/_Project/Scripts/DamageChannelEffect.cs:66)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:220)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[Player] 피격 25 (원본 30) 방어도 흡수 0 → HP -25 = 269/500 (방어도 0)
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Player:TakeDamage (int) (at Assets/_Project/Scripts/Player.cs:117)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:204)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:166)
+
+[Enemy_C_Red] 발동: 일반 공격 (Green) 피해 30
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:208)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:166)
+
+[#5 타격 17.04s / 아이스애로우 / 3타 / Enemy_B_Orange / 표시 35 / 실피해 35 / 과잉 0]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordHit (int,SkillData,string,int,int,int,int,bool) (at Assets/_Project/Scripts/CombatMetrics.cs:169)
+DeckSystem:DealHit (Enemy,SkillData,int,int,bool) (at Assets/_Project/Scripts/DeckSystem.cs:480)
+DeckSystem/<>c__DisplayClass62_0:<TryUseSlot>b__0 (Enemy,int) (at Assets/_Project/Scripts/DeckSystem.cs:292)
+ChannelContext:ApplyHit (Enemy,int) (at Assets/_Project/Scripts/ChannelEffect.cs:24)
+DamageChannelEffect:Tick (ChannelContext,single) (at Assets/_Project/Scripts/DamageChannelEffect.cs:66)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:220)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[#5 타격 17.54s / 아이스애로우 / 4타 / Enemy_B_Orange / 표시 35 / 실피해 35 / 과잉 0]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordHit (int,SkillData,string,int,int,int,int,bool) (at Assets/_Project/Scripts/CombatMetrics.cs:169)
+DeckSystem:DealHit (Enemy,SkillData,int,int,bool) (at Assets/_Project/Scripts/DeckSystem.cs:480)
+DeckSystem/<>c__DisplayClass62_0:<TryUseSlot>b__0 (Enemy,int) (at Assets/_Project/Scripts/DeckSystem.cs:292)
+ChannelContext:ApplyHit (Enemy,int) (at Assets/_Project/Scripts/ChannelEffect.cs:24)
+DamageChannelEffect:Tick (ChannelContext,single) (at Assets/_Project/Scripts/DamageChannelEffect.cs:66)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:220)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[#5 타격 18.04s / 아이스애로우 / 5타 / Enemy_B_Orange / 표시 35 / 실피해 35 / 과잉 0]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordHit (int,SkillData,string,int,int,int,int,bool) (at Assets/_Project/Scripts/CombatMetrics.cs:169)
+DeckSystem:DealHit (Enemy,SkillData,int,int,bool) (at Assets/_Project/Scripts/DeckSystem.cs:480)
+DeckSystem/<>c__DisplayClass62_0:<TryUseSlot>b__0 (Enemy,int) (at Assets/_Project/Scripts/DeckSystem.cs:292)
+ChannelContext:ApplyHit (Enemy,int) (at Assets/_Project/Scripts/ChannelEffect.cs:24)
+DamageChannelEffect:Tick (ChannelContext,single) (at Assets/_Project/Scripts/DamageChannelEffect.cs:66)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:220)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[#5 결과 18.34s / 아이스애로우 / - / 채널링 종료 — Completed]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseResult (int,string) (at Assets/_Project/Scripts/CombatMetrics.cs:146)
+DeckSystem:FinishCast (ChannelEndReason) (at Assets/_Project/Scripts/DeckSystem.cs:347)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:238)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[Player] 피격 33 (원본 40) 방어도 흡수 0 → HP -33 = 236/500 (방어도 0)
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Player:TakeDamage (int) (at Assets/_Project/Scripts/Player.cs:117)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:204)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:166)
+
+[Player] 기절 2초
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Player:ApplyStun (single) (at Assets/_Project/Scripts/Player.cs:97)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:206)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:166)
+
+[Enemy_B_Orange] 발동: 기절 공격 (Orange) 피해 40
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:208)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:166)
+
+[#6 입력 21.09s / 슬롯3(E) / 매직아머 / 코스트 3 / 자신 / 보유 4.87→1.87]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseAccepted (string,SkillData,string,single,single) (at Assets/_Project/Scripts/CombatMetrics.cs:127)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:279)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[#6 결과 21.29s / 매직아머 / 자신 / 방어도 +120 (누적 120)]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseResult (int,string) (at Assets/_Project/Scripts/CombatMetrics.cs:146)
+DeckSystem:FinishCast (ChannelEndReason) (at Assets/_Project/Scripts/DeckSystem.cs:347)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:238)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[Player] 피격 125 (원본 150) 방어도 흡수 120 → HP -5 = 231/500 (방어도 0)
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Player:TakeDamage (int) (at Assets/_Project/Scripts/Player.cs:117)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:204)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:166)
+
+[Enemy_C_Red] 발동: 대형 피해 (Red) 피해 150
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:208)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:166)
+
+[Player] 피격 25 (원본 30) 방어도 흡수 0 → HP -25 = 206/500 (방어도 0)
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Player:TakeDamage (int) (at Assets/_Project/Scripts/Player.cs:117)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:204)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:166)
+
+[Enemy_B_Orange] 발동: 일반 공격 (Green) 피해 30
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:208)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:166)
+
+[#7 입력 25.98s / 슬롯3(E) / 침묵 / 코스트 2 / Enemy_C_Red / 보유 5.78→3.78]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseAccepted (string,SkillData,string,single,single) (at Assets/_Project/Scripts/CombatMetrics.cs:127)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:279)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[#7 결과 26.19s / 침묵 / Enemy_C_Red / 차단 성공 (경직 2.5초)]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseResult (int,string) (at Assets/_Project/Scripts/CombatMetrics.cs:146)
+DeckSystem:FinishCast (ChannelEndReason) (at Assets/_Project/Scripts/DeckSystem.cs:347)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:238)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[Player] 피격 33 (원본 40) 방어도 흡수 0 → HP -33 = 173/500 (방어도 0)
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Player:TakeDamage (int) (at Assets/_Project/Scripts/Player.cs:117)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:204)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:166)
+
+[Player] 기절 2초
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Player:ApplyStun (single) (at Assets/_Project/Scripts/Player.cs:97)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:206)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:166)
+
+[Enemy_B_Orange] 발동: 기절 공격 (Orange) 피해 40
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:208)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:166)
+
+[#8 입력 29.56s / 슬롯2(W) / 파이어 필라 / 코스트 4 / 적 전체 / 보유 6.64→2.64]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseAccepted (string,SkillData,string,single,single) (at Assets/_Project/Scripts/CombatMetrics.cs:127)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:279)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[#8 타격 30.56s / 파이어 필라 / 1타 / Enemy_B_Orange / 표시 50 / 실피해 50 / 과잉 0]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordHit (int,SkillData,string,int,int,int,int,bool) (at Assets/_Project/Scripts/CombatMetrics.cs:169)
+DeckSystem:DealHit (Enemy,SkillData,int,int,bool) (at Assets/_Project/Scripts/DeckSystem.cs:480)
+DeckSystem:DealTo (Enemy,SkillData,int) (at Assets/_Project/Scripts/DeckSystem.cs:461)
+DeckSystem:ApplyCard (SkillData,int,string&,string&) (at Assets/_Project/Scripts/DeckSystem.cs:430)
+DeckSystem:FinishCast (ChannelEndReason) (at Assets/_Project/Scripts/DeckSystem.cs:338)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:238)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[#8 타격 30.56s / 파이어 필라 / 1타 / Enemy_C_Red / 표시 50 / 실피해 50 / 과잉 0]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordHit (int,SkillData,string,int,int,int,int,bool) (at Assets/_Project/Scripts/CombatMetrics.cs:169)
+DeckSystem:DealHit (Enemy,SkillData,int,int,bool) (at Assets/_Project/Scripts/DeckSystem.cs:480)
+DeckSystem:DealTo (Enemy,SkillData,int) (at Assets/_Project/Scripts/DeckSystem.cs:461)
+DeckSystem:ApplyCard (SkillData,int,string&,string&) (at Assets/_Project/Scripts/DeckSystem.cs:430)
+DeckSystem:FinishCast (ChannelEndReason) (at Assets/_Project/Scripts/DeckSystem.cs:338)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:238)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[#8 결과 30.56s / 파이어 필라 / 적 전체 2체 / 피해 100]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseResult (int,string) (at Assets/_Project/Scripts/CombatMetrics.cs:146)
+DeckSystem:FinishCast (ChannelEndReason) (at Assets/_Project/Scripts/DeckSystem.cs:347)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:238)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[Player] 피격 25 (원본 30) 방어도 흡수 0 → HP -25 = 148/500 (방어도 0)
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Player:TakeDamage (int) (at Assets/_Project/Scripts/Player.cs:117)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:204)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:166)
+
+[Enemy_B_Orange] 발동: 일반 공격 (Green) 피해 30
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:208)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:166)
+
+[#9 입력 31.52s / 슬롯4(R) / 매직 스파크 / 코스트 3 / 적 전체 / 보유 4.21→1.21]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseAccepted (string,SkillData,string,single,single) (at Assets/_Project/Scripts/CombatMetrics.cs:127)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:279)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[Player] 피격 25 (원본 30) 방어도 흡수 0 → HP -25 = 123/500 (방어도 0)
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Player:TakeDamage (int) (at Assets/_Project/Scripts/Player.cs:117)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:204)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:166)
+
+[Enemy_C_Red] 발동: 일반 공격 (Green) 피해 30
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:208)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:166)
+
+[#9 타격 31.78s / 매직 스파크 / 1타 / Enemy_B_Orange / 표시 5 / 실피해 5 / 과잉 0]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordHit (int,SkillData,string,int,int,int,int,bool) (at Assets/_Project/Scripts/CombatMetrics.cs:169)
+DeckSystem:DealHit (Enemy,SkillData,int,int,bool) (at Assets/_Project/Scripts/DeckSystem.cs:480)
+DeckSystem/<>c__DisplayClass62_0:<TryUseSlot>b__0 (Enemy,int) (at Assets/_Project/Scripts/DeckSystem.cs:292)
+ChannelContext:ApplyHit (Enemy,int) (at Assets/_Project/Scripts/ChannelEffect.cs:24)
+DamageChannelEffect:Tick (ChannelContext,single) (at Assets/_Project/Scripts/DamageChannelEffect.cs:64)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:220)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[#9 타격 31.78s / 매직 스파크 / 1타 / Enemy_C_Red / 표시 5 / 실피해 5 / 과잉 0]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordHit (int,SkillData,string,int,int,int,int,bool) (at Assets/_Project/Scripts/CombatMetrics.cs:169)
+DeckSystem:DealHit (Enemy,SkillData,int,int,bool) (at Assets/_Project/Scripts/DeckSystem.cs:480)
+DeckSystem/<>c__DisplayClass62_0:<TryUseSlot>b__0 (Enemy,int) (at Assets/_Project/Scripts/DeckSystem.cs:292)
+ChannelContext:ApplyHit (Enemy,int) (at Assets/_Project/Scripts/ChannelEffect.cs:24)
+DamageChannelEffect:Tick (ChannelContext,single) (at Assets/_Project/Scripts/DamageChannelEffect.cs:64)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:220)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[#9 타격 32.03s / 매직 스파크 / 2타 / Enemy_B_Orange / 표시 5 / 실피해 5 / 과잉 0]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordHit (int,SkillData,string,int,int,int,int,bool) (at Assets/_Project/Scripts/CombatMetrics.cs:169)
+DeckSystem:DealHit (Enemy,SkillData,int,int,bool) (at Assets/_Project/Scripts/DeckSystem.cs:480)
+DeckSystem/<>c__DisplayClass62_0:<TryUseSlot>b__0 (Enemy,int) (at Assets/_Project/Scripts/DeckSystem.cs:292)
+ChannelContext:ApplyHit (Enemy,int) (at Assets/_Project/Scripts/ChannelEffect.cs:24)
+DamageChannelEffect:Tick (ChannelContext,single) (at Assets/_Project/Scripts/DamageChannelEffect.cs:64)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:220)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[#9 타격 32.03s / 매직 스파크 / 2타 / Enemy_C_Red / 표시 5 / 실피해 5 / 과잉 0]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordHit (int,SkillData,string,int,int,int,int,bool) (at Assets/_Project/Scripts/CombatMetrics.cs:169)
+DeckSystem:DealHit (Enemy,SkillData,int,int,bool) (at Assets/_Project/Scripts/DeckSystem.cs:480)
+DeckSystem/<>c__DisplayClass62_0:<TryUseSlot>b__0 (Enemy,int) (at Assets/_Project/Scripts/DeckSystem.cs:292)
+ChannelContext:ApplyHit (Enemy,int) (at Assets/_Project/Scripts/ChannelEffect.cs:24)
+DamageChannelEffect:Tick (ChannelContext,single) (at Assets/_Project/Scripts/DamageChannelEffect.cs:64)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:220)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[#9 타격 32.27s / 매직 스파크 / 3타 / Enemy_B_Orange / 표시 5 / 실피해 5 / 과잉 0]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordHit (int,SkillData,string,int,int,int,int,bool) (at Assets/_Project/Scripts/CombatMetrics.cs:169)
+DeckSystem:DealHit (Enemy,SkillData,int,int,bool) (at Assets/_Project/Scripts/DeckSystem.cs:480)
+DeckSystem/<>c__DisplayClass62_0:<TryUseSlot>b__0 (Enemy,int) (at Assets/_Project/Scripts/DeckSystem.cs:292)
+ChannelContext:ApplyHit (Enemy,int) (at Assets/_Project/Scripts/ChannelEffect.cs:24)
+DamageChannelEffect:Tick (ChannelContext,single) (at Assets/_Project/Scripts/DamageChannelEffect.cs:64)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:220)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[#9 타격 32.27s / 매직 스파크 / 3타 / Enemy_C_Red / 표시 5 / 실피해 5 / 과잉 0]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordHit (int,SkillData,string,int,int,int,int,bool) (at Assets/_Project/Scripts/CombatMetrics.cs:169)
+DeckSystem:DealHit (Enemy,SkillData,int,int,bool) (at Assets/_Project/Scripts/DeckSystem.cs:480)
+DeckSystem/<>c__DisplayClass62_0:<TryUseSlot>b__0 (Enemy,int) (at Assets/_Project/Scripts/DeckSystem.cs:292)
+ChannelContext:ApplyHit (Enemy,int) (at Assets/_Project/Scripts/ChannelEffect.cs:24)
+DamageChannelEffect:Tick (ChannelContext,single) (at Assets/_Project/Scripts/DamageChannelEffect.cs:64)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:220)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[#9 타격 32.52s / 매직 스파크 / 4타 / Enemy_B_Orange / 표시 5 / 실피해 5 / 과잉 0]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordHit (int,SkillData,string,int,int,int,int,bool) (at Assets/_Project/Scripts/CombatMetrics.cs:169)
+DeckSystem:DealHit (Enemy,SkillData,int,int,bool) (at Assets/_Project/Scripts/DeckSystem.cs:480)
+DeckSystem/<>c__DisplayClass62_0:<TryUseSlot>b__0 (Enemy,int) (at Assets/_Project/Scripts/DeckSystem.cs:292)
+ChannelContext:ApplyHit (Enemy,int) (at Assets/_Project/Scripts/ChannelEffect.cs:24)
+DamageChannelEffect:Tick (ChannelContext,single) (at Assets/_Project/Scripts/DamageChannelEffect.cs:64)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:220)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[#9 타격 32.52s / 매직 스파크 / 4타 / Enemy_C_Red / 표시 5 / 실피해 5 / 과잉 0]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordHit (int,SkillData,string,int,int,int,int,bool) (at Assets/_Project/Scripts/CombatMetrics.cs:169)
+DeckSystem:DealHit (Enemy,SkillData,int,int,bool) (at Assets/_Project/Scripts/DeckSystem.cs:480)
+DeckSystem/<>c__DisplayClass62_0:<TryUseSlot>b__0 (Enemy,int) (at Assets/_Project/Scripts/DeckSystem.cs:292)
+ChannelContext:ApplyHit (Enemy,int) (at Assets/_Project/Scripts/ChannelEffect.cs:24)
+DamageChannelEffect:Tick (ChannelContext,single) (at Assets/_Project/Scripts/DamageChannelEffect.cs:64)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:220)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[#9 타격 32.77s / 매직 스파크 / 5타 / Enemy_B_Orange / 표시 5 / 실피해 5 / 과잉 0]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordHit (int,SkillData,string,int,int,int,int,bool) (at Assets/_Project/Scripts/CombatMetrics.cs:169)
+DeckSystem:DealHit (Enemy,SkillData,int,int,bool) (at Assets/_Project/Scripts/DeckSystem.cs:480)
+DeckSystem/<>c__DisplayClass62_0:<TryUseSlot>b__0 (Enemy,int) (at Assets/_Project/Scripts/DeckSystem.cs:292)
+ChannelContext:ApplyHit (Enemy,int) (at Assets/_Project/Scripts/ChannelEffect.cs:24)
+DamageChannelEffect:Tick (ChannelContext,single) (at Assets/_Project/Scripts/DamageChannelEffect.cs:64)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:220)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[#9 타격 32.77s / 매직 스파크 / 5타 / Enemy_C_Red / 표시 5 / 실피해 5 / 과잉 0]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordHit (int,SkillData,string,int,int,int,int,bool) (at Assets/_Project/Scripts/CombatMetrics.cs:169)
+DeckSystem:DealHit (Enemy,SkillData,int,int,bool) (at Assets/_Project/Scripts/DeckSystem.cs:480)
+DeckSystem/<>c__DisplayClass62_0:<TryUseSlot>b__0 (Enemy,int) (at Assets/_Project/Scripts/DeckSystem.cs:292)
+ChannelContext:ApplyHit (Enemy,int) (at Assets/_Project/Scripts/ChannelEffect.cs:24)
+DamageChannelEffect:Tick (ChannelContext,single) (at Assets/_Project/Scripts/DamageChannelEffect.cs:64)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:220)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[#9 타격 33.02s / 매직 스파크 / 6타 / Enemy_B_Orange / 표시 5 / 실피해 5 / 과잉 0]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordHit (int,SkillData,string,int,int,int,int,bool) (at Assets/_Project/Scripts/CombatMetrics.cs:169)
+DeckSystem:DealHit (Enemy,SkillData,int,int,bool) (at Assets/_Project/Scripts/DeckSystem.cs:480)
+DeckSystem/<>c__DisplayClass62_0:<TryUseSlot>b__0 (Enemy,int) (at Assets/_Project/Scripts/DeckSystem.cs:292)
+ChannelContext:ApplyHit (Enemy,int) (at Assets/_Project/Scripts/ChannelEffect.cs:24)
+DamageChannelEffect:Tick (ChannelContext,single) (at Assets/_Project/Scripts/DamageChannelEffect.cs:64)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:220)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[#9 타격 33.02s / 매직 스파크 / 6타 / Enemy_C_Red / 표시 5 / 실피해 5 / 과잉 0]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordHit (int,SkillData,string,int,int,int,int,bool) (at Assets/_Project/Scripts/CombatMetrics.cs:169)
+DeckSystem:DealHit (Enemy,SkillData,int,int,bool) (at Assets/_Project/Scripts/DeckSystem.cs:480)
+DeckSystem/<>c__DisplayClass62_0:<TryUseSlot>b__0 (Enemy,int) (at Assets/_Project/Scripts/DeckSystem.cs:292)
+ChannelContext:ApplyHit (Enemy,int) (at Assets/_Project/Scripts/ChannelEffect.cs:24)
+DamageChannelEffect:Tick (ChannelContext,single) (at Assets/_Project/Scripts/DamageChannelEffect.cs:64)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:220)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[#9 타격 33.27s / 매직 스파크 / 7타 / Enemy_B_Orange / 표시 5 / 실피해 5 / 과잉 0]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordHit (int,SkillData,string,int,int,int,int,bool) (at Assets/_Project/Scripts/CombatMetrics.cs:169)
+DeckSystem:DealHit (Enemy,SkillData,int,int,bool) (at Assets/_Project/Scripts/DeckSystem.cs:480)
+DeckSystem/<>c__DisplayClass62_0:<TryUseSlot>b__0 (Enemy,int) (at Assets/_Project/Scripts/DeckSystem.cs:292)
+ChannelContext:ApplyHit (Enemy,int) (at Assets/_Project/Scripts/ChannelEffect.cs:24)
+DamageChannelEffect:Tick (ChannelContext,single) (at Assets/_Project/Scripts/DamageChannelEffect.cs:64)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:220)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[#9 타격 33.27s / 매직 스파크 / 7타 / Enemy_C_Red / 표시 5 / 실피해 5 / 과잉 0]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordHit (int,SkillData,string,int,int,int,int,bool) (at Assets/_Project/Scripts/CombatMetrics.cs:169)
+DeckSystem:DealHit (Enemy,SkillData,int,int,bool) (at Assets/_Project/Scripts/DeckSystem.cs:480)
+DeckSystem/<>c__DisplayClass62_0:<TryUseSlot>b__0 (Enemy,int) (at Assets/_Project/Scripts/DeckSystem.cs:292)
+ChannelContext:ApplyHit (Enemy,int) (at Assets/_Project/Scripts/ChannelEffect.cs:24)
+DamageChannelEffect:Tick (ChannelContext,single) (at Assets/_Project/Scripts/DamageChannelEffect.cs:64)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:220)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[#9 타격 33.53s / 매직 스파크 / 8타 / Enemy_B_Orange / 표시 5 / 실피해 5 / 과잉 0]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordHit (int,SkillData,string,int,int,int,int,bool) (at Assets/_Project/Scripts/CombatMetrics.cs:169)
+DeckSystem:DealHit (Enemy,SkillData,int,int,bool) (at Assets/_Project/Scripts/DeckSystem.cs:480)
+DeckSystem/<>c__DisplayClass62_0:<TryUseSlot>b__0 (Enemy,int) (at Assets/_Project/Scripts/DeckSystem.cs:292)
+ChannelContext:ApplyHit (Enemy,int) (at Assets/_Project/Scripts/ChannelEffect.cs:24)
+DamageChannelEffect:Tick (ChannelContext,single) (at Assets/_Project/Scripts/DamageChannelEffect.cs:64)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:220)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[#9 타격 33.53s / 매직 스파크 / 8타 / Enemy_C_Red / 표시 5 / 실피해 5 / 과잉 0]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordHit (int,SkillData,string,int,int,int,int,bool) (at Assets/_Project/Scripts/CombatMetrics.cs:169)
+DeckSystem:DealHit (Enemy,SkillData,int,int,bool) (at Assets/_Project/Scripts/DeckSystem.cs:480)
+DeckSystem/<>c__DisplayClass62_0:<TryUseSlot>b__0 (Enemy,int) (at Assets/_Project/Scripts/DeckSystem.cs:292)
+ChannelContext:ApplyHit (Enemy,int) (at Assets/_Project/Scripts/ChannelEffect.cs:24)
+DamageChannelEffect:Tick (ChannelContext,single) (at Assets/_Project/Scripts/DamageChannelEffect.cs:64)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:220)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[#9 결과 33.72s / 매직 스파크 / - / 채널링 종료 — Completed]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseResult (int,string) (at Assets/_Project/Scripts/CombatMetrics.cs:146)
+DeckSystem:FinishCast (ChannelEndReason) (at Assets/_Project/Scripts/DeckSystem.cs:347)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:238)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[#10 입력 34.82s / 슬롯3(E) / 파이어볼 / 코스트 1 / Enemy_B_Orange / 보유 3.85→2.85]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseAccepted (string,SkillData,string,single,single) (at Assets/_Project/Scripts/CombatMetrics.cs:127)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:279)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[Enemy_B_Orange] 사망
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Enemy:Die () (at Assets/_Project/Scripts/Enemy.cs:293)
+Enemy:TakeDamage (int,bool) (at Assets/_Project/Scripts/Enemy.cs:278)
+DeckSystem:DealHit (Enemy,SkillData,int,int,bool) (at Assets/_Project/Scripts/DeckSystem.cs:476)
+DeckSystem:DealTo (Enemy,SkillData,int) (at Assets/_Project/Scripts/DeckSystem.cs:461)
+DeckSystem:ApplyCard (SkillData,int,string&,string&) (at Assets/_Project/Scripts/DeckSystem.cs:443)
+DeckSystem:FinishCast (ChannelEndReason) (at Assets/_Project/Scripts/DeckSystem.cs:338)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:303)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[#10 타격 34.82s / 파이어볼 / 1타 / Enemy_B_Orange / 표시 30 / 실피해 20 / 과잉 10]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordHit (int,SkillData,string,int,int,int,int,bool) (at Assets/_Project/Scripts/CombatMetrics.cs:169)
+DeckSystem:DealHit (Enemy,SkillData,int,int,bool) (at Assets/_Project/Scripts/DeckSystem.cs:480)
+DeckSystem:DealTo (Enemy,SkillData,int) (at Assets/_Project/Scripts/DeckSystem.cs:461)
+DeckSystem:ApplyCard (SkillData,int,string&,string&) (at Assets/_Project/Scripts/DeckSystem.cs:443)
+DeckSystem:FinishCast (ChannelEndReason) (at Assets/_Project/Scripts/DeckSystem.cs:338)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:303)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[#10 결과 34.82s / 파이어볼 / Enemy_B_Orange / 피해 30 → HP 0/450]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseResult (int,string) (at Assets/_Project/Scripts/CombatMetrics.cs:146)
+DeckSystem:FinishCast (ChannelEndReason) (at Assets/_Project/Scripts/DeckSystem.cs:347)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:303)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[Player] 피격 25 (원본 30) 방어도 흡수 0 → HP -25 = 98/500 (방어도 0)
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Player:TakeDamage (int) (at Assets/_Project/Scripts/Player.cs:117)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:204)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:166)
+
+[Enemy_C_Red] 발동: 일반 공격 (Green) 피해 30
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:208)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:166)
+
+[#11 입력 37.22s / 슬롯3(E) / 매직아머 / 코스트 3 / 자신 / 보유 4.78→1.78]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseAccepted (string,SkillData,string,single,single) (at Assets/_Project/Scripts/CombatMetrics.cs:127)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:279)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[#11 결과 37.43s / 매직아머 / 자신 / 방어도 +120 (누적 120)]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseResult (int,string) (at Assets/_Project/Scripts/CombatMetrics.cs:146)
+DeckSystem:FinishCast (ChannelEndReason) (at Assets/_Project/Scripts/DeckSystem.cs:347)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:238)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[Player] 피격 125 (원본 150) 방어도 흡수 120 → HP -5 = 93/500 (방어도 0)
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Player:TakeDamage (int) (at Assets/_Project/Scripts/Player.cs:117)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:204)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:166)
+
+[Enemy_C_Red] 발동: 대형 피해 (Red) 피해 150
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:208)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:166)
+
+[#12 입력 41.69s / 슬롯4(R) / 아이스애로우 / 코스트 5 / Enemy_C_Red / 보유 5.35→0.35]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseAccepted (string,SkillData,string,single,single) (at Assets/_Project/Scripts/CombatMetrics.cs:127)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:279)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[#12 타격 42.19s / 아이스애로우 / 1타 / Enemy_C_Red / 표시 35 / 실피해 35 / 과잉 0]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordHit (int,SkillData,string,int,int,int,int,bool) (at Assets/_Project/Scripts/CombatMetrics.cs:169)
+DeckSystem:DealHit (Enemy,SkillData,int,int,bool) (at Assets/_Project/Scripts/DeckSystem.cs:480)
+DeckSystem/<>c__DisplayClass62_0:<TryUseSlot>b__0 (Enemy,int) (at Assets/_Project/Scripts/DeckSystem.cs:292)
+ChannelContext:ApplyHit (Enemy,int) (at Assets/_Project/Scripts/ChannelEffect.cs:24)
+DamageChannelEffect:Tick (ChannelContext,single) (at Assets/_Project/Scripts/DamageChannelEffect.cs:66)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:220)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[#12 타격 42.69s / 아이스애로우 / 2타 / Enemy_C_Red / 표시 35 / 실피해 35 / 과잉 0]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordHit (int,SkillData,string,int,int,int,int,bool) (at Assets/_Project/Scripts/CombatMetrics.cs:169)
+DeckSystem:DealHit (Enemy,SkillData,int,int,bool) (at Assets/_Project/Scripts/DeckSystem.cs:480)
+DeckSystem/<>c__DisplayClass62_0:<TryUseSlot>b__0 (Enemy,int) (at Assets/_Project/Scripts/DeckSystem.cs:292)
+ChannelContext:ApplyHit (Enemy,int) (at Assets/_Project/Scripts/ChannelEffect.cs:24)
+DamageChannelEffect:Tick (ChannelContext,single) (at Assets/_Project/Scripts/DamageChannelEffect.cs:66)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:220)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[#12 타격 43.19s / 아이스애로우 / 3타 / Enemy_C_Red / 표시 35 / 실피해 35 / 과잉 0]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordHit (int,SkillData,string,int,int,int,int,bool) (at Assets/_Project/Scripts/CombatMetrics.cs:169)
+DeckSystem:DealHit (Enemy,SkillData,int,int,bool) (at Assets/_Project/Scripts/DeckSystem.cs:480)
+DeckSystem/<>c__DisplayClass62_0:<TryUseSlot>b__0 (Enemy,int) (at Assets/_Project/Scripts/DeckSystem.cs:292)
+ChannelContext:ApplyHit (Enemy,int) (at Assets/_Project/Scripts/ChannelEffect.cs:24)
+DamageChannelEffect:Tick (ChannelContext,single) (at Assets/_Project/Scripts/DamageChannelEffect.cs:66)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:220)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[#12 타격 43.69s / 아이스애로우 / 4타 / Enemy_C_Red / 표시 35 / 실피해 35 / 과잉 0]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordHit (int,SkillData,string,int,int,int,int,bool) (at Assets/_Project/Scripts/CombatMetrics.cs:169)
+DeckSystem:DealHit (Enemy,SkillData,int,int,bool) (at Assets/_Project/Scripts/DeckSystem.cs:480)
+DeckSystem/<>c__DisplayClass62_0:<TryUseSlot>b__0 (Enemy,int) (at Assets/_Project/Scripts/DeckSystem.cs:292)
+ChannelContext:ApplyHit (Enemy,int) (at Assets/_Project/Scripts/ChannelEffect.cs:24)
+DamageChannelEffect:Tick (ChannelContext,single) (at Assets/_Project/Scripts/DamageChannelEffect.cs:66)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:220)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[#12 타격 44.19s / 아이스애로우 / 5타 / Enemy_C_Red / 표시 35 / 실피해 35 / 과잉 0]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordHit (int,SkillData,string,int,int,int,int,bool) (at Assets/_Project/Scripts/CombatMetrics.cs:169)
+DeckSystem:DealHit (Enemy,SkillData,int,int,bool) (at Assets/_Project/Scripts/DeckSystem.cs:480)
+DeckSystem/<>c__DisplayClass62_0:<TryUseSlot>b__0 (Enemy,int) (at Assets/_Project/Scripts/DeckSystem.cs:292)
+ChannelContext:ApplyHit (Enemy,int) (at Assets/_Project/Scripts/ChannelEffect.cs:24)
+DamageChannelEffect:Tick (ChannelContext,single) (at Assets/_Project/Scripts/DamageChannelEffect.cs:66)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:220)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[#12 결과 44.49s / 아이스애로우 / - / 채널링 종료 — Completed]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseResult (int,string) (at Assets/_Project/Scripts/CombatMetrics.cs:146)
+DeckSystem:FinishCast (ChannelEndReason) (at Assets/_Project/Scripts/DeckSystem.cs:347)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:238)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[Player] 피격 25 (원본 30) 방어도 흡수 0 → HP -25 = 68/500 (방어도 0)
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Player:TakeDamage (int) (at Assets/_Project/Scripts/Player.cs:117)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:204)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:166)
+
+[Enemy_C_Red] 발동: 일반 공격 (Green) 피해 30
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:208)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:166)
+
+[#13 입력 47.50s / 슬롯3(E) / 침묵 / 코스트 2 / Enemy_C_Red / 보유 5.00→3.00]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseAccepted (string,SkillData,string,single,single) (at Assets/_Project/Scripts/CombatMetrics.cs:127)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:279)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[#13 결과 47.71s / 침묵 / Enemy_C_Red / 차단 성공 (경직 2.5초)]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseResult (int,string) (at Assets/_Project/Scripts/CombatMetrics.cs:146)
+DeckSystem:FinishCast (ChannelEndReason) (at Assets/_Project/Scripts/DeckSystem.cs:347)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:238)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[#14 입력 49.77s / 슬롯2(W) / 라이트닝 스피어 / 코스트 4 / Enemy_C_Red / 보유 4.81→0.81]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseAccepted (string,SkillData,string,single,single) (at Assets/_Project/Scripts/CombatMetrics.cs:127)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:279)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[#14 타격 50.57s / 라이트닝 스피어 / 1타 / Enemy_C_Red / 표시 135 / 실피해 135 / 과잉 0]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordHit (int,SkillData,string,int,int,int,int,bool) (at Assets/_Project/Scripts/CombatMetrics.cs:169)
+DeckSystem:DealHit (Enemy,SkillData,int,int,bool) (at Assets/_Project/Scripts/DeckSystem.cs:480)
+DeckSystem:DealTo (Enemy,SkillData,int) (at Assets/_Project/Scripts/DeckSystem.cs:461)
+DeckSystem:ApplyCard (SkillData,int,string&,string&) (at Assets/_Project/Scripts/DeckSystem.cs:443)
+DeckSystem:FinishCast (ChannelEndReason) (at Assets/_Project/Scripts/DeckSystem.cs:338)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:238)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[#14 결과 50.57s / 라이트닝 스피어 / Enemy_C_Red / 피해 135 → HP 100/500]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseResult (int,string) (at Assets/_Project/Scripts/CombatMetrics.cs:146)
+DeckSystem:FinishCast (ChannelEndReason) (at Assets/_Project/Scripts/DeckSystem.cs:347)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:238)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[#15 입력 51.94s / 슬롯2(W) / 파이어볼 / 코스트 1 / Enemy_C_Red / 보유 2.55→1.55]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseAccepted (string,SkillData,string,single,single) (at Assets/_Project/Scripts/CombatMetrics.cs:127)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:279)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[#15 타격 51.94s / 파이어볼 / 1타 / Enemy_C_Red / 표시 30 / 실피해 30 / 과잉 0]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordHit (int,SkillData,string,int,int,int,int,bool) (at Assets/_Project/Scripts/CombatMetrics.cs:169)
+DeckSystem:DealHit (Enemy,SkillData,int,int,bool) (at Assets/_Project/Scripts/DeckSystem.cs:480)
+DeckSystem:DealTo (Enemy,SkillData,int) (at Assets/_Project/Scripts/DeckSystem.cs:461)
+DeckSystem:ApplyCard (SkillData,int,string&,string&) (at Assets/_Project/Scripts/DeckSystem.cs:443)
+DeckSystem:FinishCast (ChannelEndReason) (at Assets/_Project/Scripts/DeckSystem.cs:338)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:303)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[#15 결과 51.94s / 파이어볼 / Enemy_C_Red / 피해 30 → HP 70/500]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseResult (int,string) (at Assets/_Project/Scripts/CombatMetrics.cs:146)
+DeckSystem:FinishCast (ChannelEndReason) (at Assets/_Project/Scripts/DeckSystem.cs:347)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:303)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[Player] 피격 25 (원본 30) 방어도 흡수 0 → HP -25 = 43/500 (방어도 0)
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Player:TakeDamage (int) (at Assets/_Project/Scripts/Player.cs:117)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:204)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:166)
+
+[Enemy_C_Red] 발동: 일반 공격 (Green) 피해 30
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:208)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:166)
+
+[#16 입력 54.00s / 슬롯2(W) / 매직아머 / 코스트 3 / 자신 / 보유 3.20→0.20]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseAccepted (string,SkillData,string,single,single) (at Assets/_Project/Scripts/CombatMetrics.cs:127)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:279)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[#16 결과 54.20s / 매직아머 / 자신 / 방어도 +120 (누적 120)]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseResult (int,string) (at Assets/_Project/Scripts/CombatMetrics.cs:146)
+DeckSystem:FinishCast (ChannelEndReason) (at Assets/_Project/Scripts/DeckSystem.cs:347)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:238)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[#17 입력 56.35s / 슬롯1(Q) / 매직 커터 / 코스트 2 / Enemy_C_Red / 보유 2.08→0.08]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseAccepted (string,SkillData,string,single,single) (at Assets/_Project/Scripts/CombatMetrics.cs:127)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:279)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[#17 타격 56.35s / 매직 커터 / 1타 / Enemy_C_Red / 표시 30 / 실피해 30 / 과잉 0]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordHit (int,SkillData,string,int,int,int,int,bool) (at Assets/_Project/Scripts/CombatMetrics.cs:169)
+DeckSystem:DealHit (Enemy,SkillData,int,int,bool) (at Assets/_Project/Scripts/DeckSystem.cs:480)
+DeckSystem:DealTo (Enemy,SkillData,int) (at Assets/_Project/Scripts/DeckSystem.cs:461)
+DeckSystem:ApplyCard (SkillData,int,string&,string&) (at Assets/_Project/Scripts/DeckSystem.cs:443)
+DeckSystem:FinishCast (ChannelEndReason) (at Assets/_Project/Scripts/DeckSystem.cs:338)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:303)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[#17 타격 56.35s / 매직 커터 / 2타 / Enemy_C_Red / 표시 30 / 실피해 30 / 과잉 0]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordHit (int,SkillData,string,int,int,int,int,bool) (at Assets/_Project/Scripts/CombatMetrics.cs:169)
+DeckSystem:DealHit (Enemy,SkillData,int,int,bool) (at Assets/_Project/Scripts/DeckSystem.cs:480)
+DeckSystem:DealTo (Enemy,SkillData,int) (at Assets/_Project/Scripts/DeckSystem.cs:461)
+DeckSystem:ApplyCard (SkillData,int,string&,string&) (at Assets/_Project/Scripts/DeckSystem.cs:443)
+DeckSystem:FinishCast (ChannelEndReason) (at Assets/_Project/Scripts/DeckSystem.cs:338)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:303)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[#17 결과 56.35s / 매직 커터 / Enemy_C_Red / 피해 60 → HP 10/500]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseResult (int,string) (at Assets/_Project/Scripts/CombatMetrics.cs:146)
+DeckSystem:FinishCast (ChannelEndReason) (at Assets/_Project/Scripts/DeckSystem.cs:347)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:303)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[Player] 피격 125 (원본 150) 방어도 흡수 120 → HP -5 = 38/500 (방어도 0)
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Player:TakeDamage (int) (at Assets/_Project/Scripts/Player.cs:117)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:204)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:166)
+
+[Enemy_C_Red] 발동: 대형 피해 (Red) 피해 150
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Enemy:Fire () (at Assets/_Project/Scripts/Enemy.cs:208)
+Enemy:Update () (at Assets/_Project/Scripts/Enemy.cs:166)
+
+[#18 입력 60.07s / 슬롯3(E) / 매직 스파크 / 코스트 3 / 적 전체 / 보유 3.05→0.05]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseAccepted (string,SkillData,string,single,single) (at Assets/_Project/Scripts/CombatMetrics.cs:127)
+DeckSystem:TryUseSlot (int) (at Assets/_Project/Scripts/DeckSystem.cs:279)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:195)
+
+[#18 타격 60.32s / 매직 스파크 / 1타 / Enemy_C_Red / 표시 5 / 실피해 5 / 과잉 0]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordHit (int,SkillData,string,int,int,int,int,bool) (at Assets/_Project/Scripts/CombatMetrics.cs:169)
+DeckSystem:DealHit (Enemy,SkillData,int,int,bool) (at Assets/_Project/Scripts/DeckSystem.cs:480)
+DeckSystem/<>c__DisplayClass62_0:<TryUseSlot>b__0 (Enemy,int) (at Assets/_Project/Scripts/DeckSystem.cs:292)
+ChannelContext:ApplyHit (Enemy,int) (at Assets/_Project/Scripts/ChannelEffect.cs:24)
+DamageChannelEffect:Tick (ChannelContext,single) (at Assets/_Project/Scripts/DamageChannelEffect.cs:64)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:220)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[Enemy_C_Red] 사망
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+Enemy:Die () (at Assets/_Project/Scripts/Enemy.cs:293)
+Enemy:TakeDamage (int,bool) (at Assets/_Project/Scripts/Enemy.cs:278)
+DeckSystem:DealHit (Enemy,SkillData,int,int,bool) (at Assets/_Project/Scripts/DeckSystem.cs:476)
+DeckSystem/<>c__DisplayClass62_0:<TryUseSlot>b__0 (Enemy,int) (at Assets/_Project/Scripts/DeckSystem.cs:292)
+ChannelContext:ApplyHit (Enemy,int) (at Assets/_Project/Scripts/ChannelEffect.cs:24)
+DamageChannelEffect:Tick (ChannelContext,single) (at Assets/_Project/Scripts/DamageChannelEffect.cs:64)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:220)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[#18 타격 60.57s / 매직 스파크 / 2타 / Enemy_C_Red / 표시 5 / 실피해 5 / 과잉 0]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordHit (int,SkillData,string,int,int,int,int,bool) (at Assets/_Project/Scripts/CombatMetrics.cs:169)
+DeckSystem:DealHit (Enemy,SkillData,int,int,bool) (at Assets/_Project/Scripts/DeckSystem.cs:480)
+DeckSystem/<>c__DisplayClass62_0:<TryUseSlot>b__0 (Enemy,int) (at Assets/_Project/Scripts/DeckSystem.cs:292)
+ChannelContext:ApplyHit (Enemy,int) (at Assets/_Project/Scripts/ChannelEffect.cs:24)
+DamageChannelEffect:Tick (ChannelContext,single) (at Assets/_Project/Scripts/DamageChannelEffect.cs:64)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:220)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[EnemyManager] 승리
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+EnemyManager:EndCombat () (at Assets/_Project/Scripts/EnemyManager.cs:200)
+EnemyManager:NotifyEnemyDied () (at Assets/_Project/Scripts/EnemyManager.cs:193)
+DamageChannelEffect:Tick (ChannelContext,single) (at Assets/_Project/Scripts/DamageChannelEffect.cs:67)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:220)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+[#18 결과 60.57s / 매직 스파크 / - / 채널링 종료 — CombatEnded]
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:RecordUseResult (int,string) (at Assets/_Project/Scripts/CombatMetrics.cs:146)
+DeckSystem:FinishCast (ChannelEndReason) (at Assets/_Project/Scripts/DeckSystem.cs:347)
+DeckSystem:AdvanceCast (single) (at Assets/_Project/Scripts/DeckSystem.cs:230)
+DeckSystem:Update () (at Assets/_Project/Scripts/DeckSystem.cs:188)
+
+──────── 전투 종료 요약 ────────
+전투 번호: 3
+승패: 승리
+전투 시간: 60.57초 (게임 내, 배속 반영·일시정지 제외)
+배속 이력(게임 초): 0.00s: 1배
+남은 HP: 38 / 500
+처치 수: 2 / 2
+
+카드 사용 18회 (기절 취소 0회 포함)
+  매직아머 : 4회
+  침묵 : 3회
+  파이어볼 : 3회
+  라이트닝 스피어 : 2회
+  아이스애로우 : 2회
+  파이어 필라 : 1회
+  매직 스파크 : 2회
+  매직 커터 : 1회
+
+타격별 기록 37건 / 실피해 950 / 과잉 피해 10
+차단 시도 3회 / 성공 3회
+방어 카드 사용 4회 / 실제 방어도 흡수 480
+코스트 부족으로 거절된 입력 0회
+상한 초과로 버린 코스트 0.00
+────────────────────────────
+
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+CombatMetrics:FlushPendingSummary () (at Assets/_Project/Scripts/CombatMetrics.cs:218)
+BattleFlow:Update () (at Assets/_Project/Scripts/BattleFlow.cs:238)
+

@@ -70,7 +70,14 @@ public class CombatMetrics : MonoBehaviour
 
     private void Start()
     {
-        if (BattleNumber == 0) BeginBattle(1);
+        if (BattleNumber == 0 && FindFirstObjectByType<BattleFlow>() == null) BeginBattle(1);
+    }
+
+    public void WaitForBattle()
+    {
+        // 시작 전에는 종료 시와 같은 입력 차단을 쓰되 승패·요약은 만들지 않는다.
+        Ended = true;
+        startTime = endTime = Time.time;
     }
 
     public void BeginBattle(int number)

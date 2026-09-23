@@ -89,6 +89,14 @@ public class EnemyManager : MonoBehaviour
         CurrentTarget = FirstAlive();   // 전투 시작 시 1번 적 자동 지정
     }
 
+    public void WaitForBattle()
+    {
+        combatEnded = true;
+        CurrentTarget = null;
+        foreach (Enemy enemy in enemies)
+            if (enemy != null) enemy.SetEncounterActive(false);
+    }
+
     public void BeginBattle(IList<Enemy> combatants, Enemy centerEnemy = null)
     {
         foreach (Enemy enemy in enemies)
