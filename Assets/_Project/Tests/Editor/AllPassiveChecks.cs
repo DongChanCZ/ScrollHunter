@@ -68,14 +68,25 @@ public static class AllPassiveChecks
             check(ps.Count == 10 && pool.Count(o => o.Card != null) == 3, "all ten saved passives and three cards");
             check(ps["PS10"].Effect.IsRareReward && near(ps["PS10"].Effect.OfferChance, .01f), "serialized rare chance");
             check(ps.Where(p => p.Key != "PS10").All(p => !p.Value.Effect.IsRareReward), "other passives ordinary");
-            check(player.PotionsRemaining == 3 && player.PotionCapacity == 3 && player.PotionHealAmount == 150, "potion base");
+            check(player.PotionsRemaining == 1 && player.PotionCapacity == 1 && player.PotionHealAmount == 150, "potion base");
 
-            // PS01 does not refill even when stacked; capacity is per run.
-            Set(player, "currentHp", 100f); check(player.TryUsePotion() && player.PotionsRemaining == 2, "potion consumed before capacity reward");
-            acquire("PS01"); check(player.PotionCapacity == 4 && player.PotionsRemaining == 2, "capacity only");
+            // Each PS01 stack adds one capacity and grants exactly one potion.
+            Set(player, "currentHp", 100f); check(player.TryUsePotion() && player.PotionsRemaining == 0, "potion consumed before capacity reward");
+            acquire("PS01"); check(player.PotionCapacity == 2 && player.PotionsRemaining == 1, "capacity and one refill");
             acquire("PS01"); acquire("PS01"); reopen();
-            check(player.PotionCapacity == 6 && player.PotionsRemaining == 2 && flow.RewardChoiceCount == 0, "PS01 stack cap");
-            flow.RestartRun(); check(player.PotionsRemaining == 3 && player.PotionCapacity == 3, "potion reset after reward cleanup");
+            check(player.PotionCapacity == 4 && player.PotionsRemaining == 3 && flow.RewardChoiceCount == 0, "PS01 stack cap");
+            flow.RestartRun(); check(player.PotionsRemaining == 1 && player.PotionCapacity == 1, "potion reset after reward cleanup");
+            instance = UnityEngine.Object.Instantiate((StatRewardEffect)ps["PS01"].Effect);
+            instance.Apply(player, cost); instance.Apply(player, cost);
+            check(player.PotionCapacity == 2 && player.PotionsRemaining == 2, "full capacity reward and duplicate apply");
+            Set(player, "currentHp", 100f); check(player.TryUsePotion() && player.TryUsePotion(), "granted potion usable");
+            instance.Remove(); instance.Remove();
+            check(player.PotionCapacity == 1 && player.PotionsRemaining == 0, "remove does not undo consumed grant");
+            UnityEngine.Object.DestroyImmediate(instance); instance = null;
+            player.RefillPotions(3); check(player.PotionsRemaining == 1, "refill clamped to capacity");
+            player.RefillPotions(0); player.RefillPotions(-1);
+            check(player.PotionsRemaining == 1, "nonpositive refill ignored");
+            flow.RestartRun();
 
             Set(player, "currentHp", 350f); acquire("PS03");
             check(player.MaxHp == 550 && player.CurrentHp == 350 && player.PotionHealAmount == 165, "HP maximum only and live potion amount");
@@ -160,6 +171,7 @@ public static class AllPassiveChecks
             flow.RestartRun();
 
             // Potion is independent of deck lock, but never heals outside active combat.
+            acquire("PS01"); acquire("PS01"); fight();
             check(!player.TryUsePotion() && player.PotionsRemaining == 3, "full HP no consumption");
             Set(player, "currentHp", 100f); Time.timeScale = 0;
             check(!player.TryUsePotion() && player.CurrentHp == 100 && player.PotionsRemaining == 3, "pause no potion");
@@ -184,7 +196,7 @@ public static class AllPassiveChecks
             Call(ui, "UpdateStatus"); var potionText = (TMPro.TMP_Text)Get(ui, "potionText");
             check(potionText != null && potionText.text.Contains("0/3") && potionText.text.Contains("Shift"), "potion HUD count and shortcut");
             player.TakeDamage(100000); Call(flow, "Update"); check(!player.TryUsePotion(), "death no potion");
-            flow.RestartRun(); check(player.PotionsRemaining == 3 && player.CurrentHp == 500 && cost.Current == 3, "restart restores base charges");
+            flow.RestartRun(); check(player.PotionsRemaining == 1 && player.PotionCapacity == 1 && player.CurrentHp == 500 && cost.Current == 3, "restart restores base charges");
             metrics.WaitForBattle(); Set(player, "currentHp", 100f); Time.timeScale = 1;
             check(!player.TryUsePotion(), "title or ended metrics reject direct use");
             flow.RestartRun();

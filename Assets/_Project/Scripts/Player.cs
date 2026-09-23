@@ -40,7 +40,7 @@ public class Player : MonoBehaviour
     private float shieldGainBonus;
     private float interruptStaggerBonus;
     private int potionCapacityBonus;
-    [SerializeField, Min(0)] private int basePotionCapacity = 3;
+    [SerializeField, Min(0)] private int basePotionCapacity = 1;
     [SerializeField, Range(0f, 1f)] private float potionHealFraction = 0.3f;
     [SerializeField] private KeyCode potionKey = KeyCode.LeftShift;
     [SerializeField] private KeyCode alternatePotionKey = KeyCode.RightShift;
@@ -72,6 +72,10 @@ public class Player : MonoBehaviour
     {
         potionCapacityBonus += amount;
         PotionsRemaining = Mathf.Min(PotionsRemaining, PotionCapacity);
+    }
+    public void RefillPotions(int amount)
+    {
+        if (amount > 0) PotionsRemaining += Mathf.Min(amount, PotionCapacity - PotionsRemaining);
     }
     public int GetShieldAmount(int baseAmount) => baseAmount <= 0 ? 0
         : Mathf.Max(0, Mathf.FloorToInt(baseAmount * ShieldGainMultiplier + 0.5f));

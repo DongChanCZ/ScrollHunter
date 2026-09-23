@@ -8878,7 +8878,7 @@ MonoBehaviour:
   metrics: {fileID: 414053924}
   criticalChance: 15
   criticalMultiplier: 1.5
-  basePotionCapacity: 3
+  basePotionCapacity: 1
   potionHealFraction: 0.3
   potionKey: 304
   alternatePotionKey: 303

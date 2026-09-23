@@ -5,7 +5,7 @@ using UnityEngine;
 public enum RewardStat
 {
     CostRegeneration, CriticalChance, MaximumHp, StartingCost, MaximumCost,
-    ShieldGain, InterruptStagger, PotionCapacity, Healing
+    ShieldGain, InterruptStagger, PotionCapacity, Healing, Potions
 }
 
 /// <summary>획득별 복제본이 자신이 더한 값만 제거한다. 즉시 회복은 제거 시 되돌리지 않는다.</summary>
@@ -37,7 +37,7 @@ public class StatRewardEffect : RunRewardEffect
                 || float.IsInfinity(b.amount) || b.amount <= 0f) return false;
             bool needsCost = b.stat == RewardStat.CostRegeneration || b.stat == RewardStat.StartingCost || b.stat == RewardStat.MaximumCost;
             if (needsCost ? cost == null : player == null || !player.IsAlive) return false;
-            if (b.stat == RewardStat.PotionCapacity && b.amount != Mathf.Floor(b.amount)) return false;
+            if ((b.stat == RewardStat.PotionCapacity || b.stat == RewardStat.Potions) && b.amount != Mathf.Floor(b.amount)) return false;
         }
         return true;
     }
@@ -76,6 +76,7 @@ public class StatRewardEffect : RunRewardEffect
             case RewardStat.InterruptStagger: if (recipient != null) recipient.AddInterruptStaggerBonus(value); break;
             case RewardStat.PotionCapacity: if (recipient != null) recipient.AddPotionCapacityBonus((int)value); break;
             case RewardStat.Healing: if (!removing && recipient != null) recipient.Heal(value); break;
+            case RewardStat.Potions: if (!removing && recipient != null) recipient.RefillPotions((int)value); break;
         }
     }
 }

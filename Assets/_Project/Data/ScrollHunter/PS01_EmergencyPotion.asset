@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: PS01_EmergencyPotion
   m_EditorClassIdentifier: Assembly-CSharp::StatRewardEffect
   displayName: "\uC751\uAE09 \uBB3C\uC57D"
-  description: "\uD3EC\uC158 \uCD5C\uB300 \uBCF4\uC720\uB7C9 +1\n\uB0A8\uC740 \uD3EC\uC158
-    \uC218\uB294 \uB298\uC5B4\uB098\uC9C0 \uC54A\uC74C"
+  description: "포션 최대 보유량 +1\n남은 포션 +1"
   maxStacks: 3
   rareReward: 0
   offerChance: 0.01
   stat: 7
   amount: 1
-  additionalBonuses: []
+  additionalBonuses:
+  - stat: 9
+    amount: 1
