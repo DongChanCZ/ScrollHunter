@@ -65,7 +65,7 @@ public static class AllPassiveChecks
         try
         {
             flow.RestartRun();
-            check(ps.Count == 10 && pool.Count(o => o.Card != null) == 3, "all ten saved passives and three cards");
+            check(ps.Count == 10 && pool.Count(o => o.Card != null) == 6, "all ten saved passives and six cards");
             check(ps["PS10"].Effect.IsRareReward && near(ps["PS10"].Effect.OfferChance, .01f), "serialized rare chance");
             check(ps.Where(p => p.Key != "PS10").All(p => !p.Value.Effect.IsRareReward), "other passives ordinary");
             check(player.PotionsRemaining == 1 && player.PotionCapacity == 1 && player.PotionHealAmount == 150, "potion base");

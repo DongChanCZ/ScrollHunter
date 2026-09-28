@@ -101,6 +101,12 @@ public class Player : MonoBehaviour
 
     public bool IsStunned => StunRemaining > 0f;
 
+    // 생츄어리 채널링 1회가 소유하는 상태. 전투·오브젝트 종료 시에도 해제한다.
+    public bool IsInvulnerable { get; private set; }
+    public bool IsStunImmune => IsInvulnerable;
+    public void SetSanctuary(bool active) => IsInvulnerable = active;
+    private void OnDisable() => SetSanctuary(false);
+
     private bool defeatHandled;
 
     private void Awake()
@@ -141,6 +147,7 @@ public class Player : MonoBehaviour
 
     public void EndBattle()
     {
+        SetSanctuary(false);
         ClearShield();
         StunRemaining = 0f;
     }
@@ -162,7 +169,7 @@ public class Player : MonoBehaviour
     /// </summary>
     public void ApplyStun(float seconds)
     {
-        if (seconds <= 0f || !IsAlive || (metrics != null && metrics.Ended)) return;
+        if (seconds <= 0f || !IsAlive || IsStunImmune || (metrics != null && metrics.Ended)) return;
 
         StunRemaining = Mathf.Max(StunRemaining, seconds);
         Debug.Log($"[{nameof(Player)}] 기절 {StunRemaining:0.#}초", this);
@@ -174,6 +181,11 @@ public class Player : MonoBehaviour
         if (!IsAlive || (metrics != null && metrics.Ended)) return;
 
         int taken = DamageFormula.Compute(incomingDamage, 1, defense);
+        if (IsInvulnerable)
+        {
+            if (metrics != null) metrics.RecordInvulnerabilityPrevented(taken);
+            return;
+        }
 
         // 방어도에서 먼저 차감하고 남은 피해만 HP로 간다.
         int absorbed = Mathf.Min(Shield, taken);

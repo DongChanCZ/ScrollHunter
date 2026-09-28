@@ -37,6 +37,15 @@ public class CombatMetrics : MonoBehaviour
     [SerializeField] private string runModifiersFormat = "시작 조건: 충전 {0:0.0}/초 / 크리티컬 {1:0.#}% / {2}";
     [SerializeField] private string potionLogFormat = "[포션 {0:0.00}s] 실회복 {1:0} / 남은 {2}/{3}";
     [SerializeField] private string potionSummaryFormat = "포션 사용 {0}회 / 실제 회복 {1:0}";
+    [SerializeField] private string invulnerabilityLogFormat = "[무적 {0:0.00}s] 피해 무효화 {1} (방어력 적용 후 / HP·방어도 감소 0)";
+    [SerializeField] private string invulnerabilitySummaryFormat = "무적 무효화 피해 {0} (방어도 흡수와 별도)";
+    public int InvulnerabilityPrevented { get; private set; }
+    public void RecordInvulnerabilityPrevented(int amount)
+    {
+        if (Ended || amount <= 0) return;
+        InvulnerabilityPrevented += amount;
+        if (logEachInput) Debug.Log(string.Format(invulnerabilityLogFormat, Elapsed, amount), this);
+    }
     public int PotionUses { get; private set; }
     public float PotionHealing { get; private set; }
     public void RecordPotionUsed(float healed, int remaining, int maximum)
@@ -119,6 +128,7 @@ public class CombatMetrics : MonoBehaviour
         runModifiers = null;
         PotionUses = 0;
         PotionHealing = 0f;
+        InvulnerabilityPrevented = 0;
         cardOrder.Clear();
         cardUses.Clear();
     }
@@ -288,6 +298,7 @@ public class CombatMetrics : MonoBehaviour
         sb.AppendLine(string.Format(criticalSummaryFormat, CriticalHits, CriticalEligibleHits));
         sb.AppendLine("차단 시도 " + interruptAttempts + "회 / 성공 " + interruptSuccesses + "회");
         sb.AppendLine("방어 카드 사용 " + shieldUses + "회 / 실제 방어도 흡수 " + shieldAbsorbed);
+        sb.AppendLine(string.Format(invulnerabilitySummaryFormat, InvulnerabilityPrevented));
         sb.AppendLine(string.Format(potionSummaryFormat, PotionUses, PotionHealing));
         sb.AppendLine("코스트 부족으로 거절된 입력 " + costShortInputs + "회");
         sb.AppendLine("상한 초과로 버린 코스트 " + costWasted.ToString("F2"));
