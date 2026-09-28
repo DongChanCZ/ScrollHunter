@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 593c5b4bd9f007948b51815f6b3c6456, type: 3}
-  m_Name: Enemy_A_Green
+  m_Name: Enemy_D_Mixed
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
-  displayName: "\uC7A1\uBAB9 A"
-  maxHp: 350
+  displayName: "\uC7A1\uBAB9 D"
+  maxHp: 800
   defense: 0
   attacks:
   - skillName: "\uC77C\uBC18 \uACF5\uACA9"
@@ -21,4 +21,16 @@ MonoBehaviour:
     castTime: 2.5
     damage: 30
     staggerAfterCast: 1
+    stunSeconds: 0
+  - skillName: "\uAE30\uC808 \uACF5\uACA9"
+    castColor: 1
+    castTime: 2.5
+    damage: 40
+    staggerAfterCast: 1.5
+    stunSeconds: 2
+  - skillName: "\uB300\uD615 \uD53C\uD574"
+    castColor: 2
+    castTime: 3.5
+    damage: 150
+    staggerAfterCast: 2
     stunSeconds: 0

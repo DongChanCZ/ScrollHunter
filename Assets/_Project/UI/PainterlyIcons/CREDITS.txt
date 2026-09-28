@@ -16,3 +16,6 @@ fire-arrows-3.png       — Part 4 https://opengameart.org/content/painterly-spe
 slice-sky-2.png         — Part 4 https://opengameart.org/content/painterly-spell-icons-part-4
 rip-magenta-3.png       — Part 4 https://opengameart.org/content/painterly-spell-icons-part-4
 link-eerie-2.png        — Part 4 https://opengameart.org/content/painterly-spell-icons-part-4
+beam-royal-3.png        — Part 2 https://opengameart.org/content/painterly-spell-icons-part-2
+wind-sky-3.png          — Part 3 https://opengameart.org/content/painterly-spell-icons-part-3
+light-sky-3.png         — Part 4 https://opengameart.org/content/painterly-spell-icons-part-4

@@ -159,6 +159,21 @@ public class CombatUI : MonoBehaviour
 
     [SerializeField] private string costFormat = "{0:0.0} / {1:0}";
 
+    [Header("생츄어리 — 무적 중 금빛 화면 테두리")]
+    [SerializeField] private GameObject sanctuaryFrame;
+
+    private void UpdateSanctuary()
+    {
+        if (sanctuaryFrame != null)
+            sanctuaryFrame.SetActive(player != null && player.IsInvulnerable && player.IsAlive
+                && (metrics == null || !metrics.Ended));
+    }
+
+    private void OnDisable()
+    {
+        if (sanctuaryFrame != null) sanctuaryFrame.SetActive(false);
+    }
+
     private Vector3 markerBaseScale = Vector3.one;
 
     // 행동 잠금·기절이 아닐 때 되돌릴 원래 글자색. 4슬롯 스타일이 같으므로 하나만 캐싱한다.
@@ -197,6 +212,7 @@ public class CombatUI : MonoBehaviour
     private void LateUpdate()
     {
         UpdateStatus();
+        UpdateSanctuary();
         UpdateHand();
         UpdateCast();
         UpdateMarker();

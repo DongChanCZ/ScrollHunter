@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 549137944e26a084ab634a3f73406c70, type: 3}
+  m_Name: Skill_SK14_Sanctuary
+  m_EditorClassIdentifier: Assembly-CSharp::SkillData
+  displayName: "\uC0DD\uCE04\uC5B4\uB9AC"
+  icon: {fileID: 21300000, guid: 1cf70bb8136eeeb47bca6f48e0a1b464, type: 3}
+  cost: 4
+  category: 2
+  damage: 0
+  hitCount: 1
+  resolveHitsSeparately: 1
+  activation: 1
+  castTime: 2.5
+  shieldAmount: 0
+  isAreaOfEffect: 0
+  channelEffect: {fileID: 11400000, guid: 71cd24f7503d3524e9aaf94117040497, type: 2}
