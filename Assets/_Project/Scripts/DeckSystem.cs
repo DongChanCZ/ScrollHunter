@@ -98,6 +98,14 @@ public class DeckSystem : MonoBehaviour
     /// <summary>마지막 시전이 끝난 시각(Time.time). 취소 표시를 얼마나 띄울지 재는 데만 쓴다.</summary>
     public float LastCastEndTime { get; private set; }
 
+    // 연출 전용 알림. 판정·계측·순서에 관여하지 않으며 구독자가 없어도 동작은 같다.
+    /// <summary>입력 수락으로 시전(0초 포함)이 시작됐을 때.</summary>
+    public event System.Action<SkillData> CastStarted;
+    /// <summary>카드의 타격 1회가 대상에 적용됐을 때(사망 후 잔여 연출 포함).</summary>
+    public event System.Action<SkillData, Enemy> HitApplied;
+    /// <summary>방어 카드가 방어도를 부여했을 때. 두 번째 값은 실제 부여량.</summary>
+    public event System.Action<SkillData, int> ShieldApplied;
+
     private void Awake()
     {
         if (costSystem == null) costSystem = FindFirstObjectByType<CostSystem>();
@@ -284,6 +292,7 @@ public class DeckSystem : MonoBehaviour
         castRemaining = card.CastTime;
         LockRemaining = Mathf.Max(card.CastTime, minGcd);
         minimumLockRemaining = minGcd;
+        NotifyVfx(() => CastStarted?.Invoke(card));
 
         if (card.IsChanneling)
         {
@@ -385,6 +394,7 @@ public class DeckSystem : MonoBehaviour
             {
                 int granted = player != null ? player.AddShield(card.ShieldAmount) : 0;
                 int stack = player != null ? player.Shield : 0;
+                NotifyVfx(() => ShieldApplied?.Invoke(card, granted));
                 targetLabel = "자신";
                 resultLabel = "방어도 +" + granted + " (누적 " + stack + ")";
                 break;
@@ -476,7 +486,15 @@ public class DeckSystem : MonoBehaviour
         int actual = Mathf.Max(0, before - target.CurrentHp);
         if (metrics != null) metrics.RecordHit(useId, card, target.name, hitIndex,
             amount, actual, amount - actual, visualOnly, critical);
+        NotifyVfx(() => HitApplied?.Invoke(card, target));
         return amount;
+    }
+
+    /// <summary>연출 알림에서 난 예외가 전투 처리를 끊지 않게 격리한다.</summary>
+    private void NotifyVfx(System.Action notify)
+    {
+        try { notify(); }
+        catch (System.Exception exception) { Debug.LogException(exception, this); }
     }
 
     /// <summary>입력 로그용 슬롯 이름. 예: 슬롯2(W)</summary>

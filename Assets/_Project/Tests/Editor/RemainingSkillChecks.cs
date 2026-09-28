@@ -58,7 +58,8 @@ public static class RemainingSkillChecks
             Check(blizzard.Cost == 5 && blizzard.CastTime == 1 && blizzard.Damage == 20 && blizzard.HitCount == 4 && blizzard.IsAreaOfEffect && !blizzard.IsChanneling, "SK09 saved specification");
             Check(sanctuary.Cost == 4 && sanctuary.CastTime == 2.5f && sanctuary.Category == SkillCategory.Shield && sanctuary.IsChanneling && sanctuary.HasValidChannel, "SK14 saved specification");
             Check(info.DescribeCard(sanctuary).Contains("무적") && !info.DescribeCard(sanctuary).Contains("방어도 +0"), "sanctuary tooltip explains protection");
-            Check(frame != null && frame.GetComponentsInChildren<Image>(true).Length == 4 && frame.GetComponentsInChildren<Image>(true).All(i => !i.raycastTarget), "gold frame never intercepts input");
+            // 신성한 빛 연출(빛 띠·광원·빛줄기·반짝임)의 이미지 수와 무관하게 입력을 가로채지 않아야 한다.
+            Check(frame != null && frame.GetComponentsInChildren<Image>(true).Length > 0 && frame.GetComponentsInChildren<Image>(true).All(i => !i.raycastTarget), "gold frame never intercepts input");
 
             Reset(judgment); Check(deck.TryUseSlot(0) && cost.Current == 4 && deck.GetHandCard(0) == original[4], "judgment input pays and cycles");
             Step(2.74f); Check(metrics.RecordedHits == 0, "judgment waits until completion");

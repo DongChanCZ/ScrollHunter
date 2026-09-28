@@ -24,6 +24,12 @@
 
 ## 현재 단계
 
+> **2026-09-28 병합 후 검토(Codex):** 병합 커밋 `54d0460`의 UI·신규 스킬·HP 연결 확인, 기존 검사 705개 통과. 발견된 게임 병합 오류 없음. 09의 구형 UI 도구/씬 복구 안내와 10의 현재 아이콘 표기 정정. 근거·한계는 `Docs/07#d10-merge-review`. 게임 파일·수치 변경 없음.
+
+> **2026-09-28 스킬 연출 3종(Claude):** 사용자 요청으로 파이어볼 타격 폭발, 라이트닝 스피어 시전 중 전기 집중→완료 번개, 매직아머 방어도 부여 시 보호막 UI 연출 추가(Kenney Particle Pack CC0, `Assets/_Project/VFX/`). `DeckSystem`에 판정 무관 연출 이벤트 3개와 `SkillVfx.cs` 추가. 기존 검사 688개 통과. 원본 `Docs/10#skill-vfx-20260928`, 기록 `Docs/07#d10-skill-vfx`.
+
+> **2026-09-28 생츄어리 신성한 빛 연출(Claude):** 사용자 요청으로 무적 중 노란 테두리를 진한 금색 성역 결계 연출(가장자리 빛·바닥 회전 마법진·솟는 빛기둥·떠오르는 빛 입자, Kenney Light Masks·Particle Pack CC0)로 교체. UI Image·Animator만 사용(파티클 시스템 없음), UI 뒤·3D 위 배치, 입력 통과·표시 조건 동일. 검사 1줄 정정, 남은 스킬 77·가독성 33 통과. 기록 `Docs/07#d10-sanctuary-vfx`.
+
 > **2026-09-28 무료 UI 시험 후속:** 정사각형 스킬 아이콘·양피지 정보창으로 변경. 하단 패널·적 게이지 장식 제거. SkillData.Icon·CombatUI 표시 연결, 가독성 검사 33개 통과. 사양은 `Docs/10#fantasy-ui-trial-20260928`, 확인은 `Docs/07#d10-fantasy-ui`, 실행·복구는 `Docs/09#fantasy-ui-trial`, 출처는 CREDITS. 전투 수치·편성 유지. 이전 대화의 HP 변경·신규 스킬 작업을 현재 저장 구현으로 간주하지 말 것. (당시 기준. 이후 home 브랜치 병합으로 A29 신규 스킬·A30 HP가 반영됨 — 아래 병합 항목 참조)
 
 > **2026-09-28 UI 외형 후속(Claude):** 스킬 아이콘을 컬러 Painterly Spell Icons(J. W. Bjerk, CC BY 3.0)로 교체하고 손패 프레임·글자 칩, 정보창 크림 글자 영역·Kenney 테두리(CC0)를 추가. 전투 수치·적 게이지 변경 없음, SkillData는 icon만 변경. 이어진 요청으로 카드 정보창·보상 후보·교체 화면에도 스킬 아이콘 표시(`CombatInfoUI.ShowIcon`·`BattleRewardUI` 아이콘 참조만 추가, 판정·보상 로직 무변경, 패시브 후보는 아이콘 숨김·문구 세로 가운데, 정보창은 세로형). 확인·미확인은 `Docs/07#d10-fantasy-ui` 후속 항목, 출처는 CREDITS. `Apply Fantasy UI Trial` 재실행 시 1차 상태로 돌아가므로 실행하지 말 것.
