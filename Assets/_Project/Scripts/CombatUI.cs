@@ -11,6 +11,7 @@ public class CombatUI : MonoBehaviour
     public class HandSlotView
     {
         public Image background;
+        public Image skillIcon;
         [Tooltip("코스트 부족분. 12시부터 시계방향으로 걷히는 어두운 영역")]
         public Image costCover;
         public TMP_Text nameText;
@@ -57,6 +58,9 @@ public class CombatUI : MonoBehaviour
     [Header("손패")]
     [SerializeField] private HandSlotView[] handSlots = new HandSlotView[DeckSystem.HandSize];
     [SerializeField] private TMP_Text nextCardText;
+    [SerializeField] private Image nextCardIcon;
+    [SerializeField] private Color iconColor = new Color(.93f, .86f, .70f, 1f);
+    [SerializeField] private Color inactiveIconColor = new Color(1f, 1f, 1f, .35f);
 
     [Header("시전 표시 (손패 위) — 시전 시간만 쓴다. 손패 슬롯의 행동 잠금 숫자와는 다른 타이머다")]
     [Tooltip("시전 중과 취소 표시 동안에만 켜진다. 비워두면 시전 표시를 하지 않는다")]
@@ -249,8 +253,17 @@ public class CombatUI : MonoBehaviour
             // 행동 잠금·기절은 배경(회색·보라)을 그대로 두는 대신 글자를 전부 밝혀서 대비를 확보한다.
             bool highContrast = state == SlotState.ActionLocked || state == SlotState.Stunned;
 
+            bool hasIcon = card != null && card.Icon != null && view.skillIcon != null;
+            if (view.skillIcon != null)
+            {
+                view.skillIcon.sprite = card != null ? card.Icon : null;
+                view.skillIcon.enabled = hasIcon;
+                view.skillIcon.color = highContrast || state == SlotState.NoValidTarget
+                    ? inactiveIconColor : iconColor;
+            }
             if (view.nameText != null)
             {
+                view.nameText.enabled = !hasIcon;
                 view.nameText.text = card != null ? card.DisplayName : emptySlotLabel;
                 view.nameText.color = highContrast ? lockedOrStunnedTextColor : defaultNameColor;
             }
@@ -300,10 +313,14 @@ public class CombatUI : MonoBehaviour
             }
         }
 
+        SkillData next = deckSystem.PeekNext();
         if (nextCardText != null)
-        {
-            SkillData next = deckSystem.PeekNext();
             nextCardText.text = next != null ? next.DisplayName : emptySlotLabel;
+        if (nextCardIcon != null)
+        {
+            nextCardIcon.sprite = next != null ? next.Icon : null;
+            nextCardIcon.enabled = next != null && next.Icon != null;
+            nextCardIcon.color = iconColor;
         }
     }
 

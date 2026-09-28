@@ -1,0 +1,18 @@
+Painterly Spell Icons — J. W. Bjerk (eleazzaar)
+Attribution: J. W. Bjerk (eleazzaar) -- www.jwbjerk.com/art -- find this and other open art at: http://opengameart.org
+License used here: CC-BY 3.0 https://creativecommons.org/licenses/by/3.0/
+(The artist also offers CC-BY-SA 3.0 / CC-BY-SA 4.0 / GPL 2.0 / GPL 3.0; this project uses the CC-BY 3.0 option.)
+Original 256x256 PNG files, not edited. Only display size is changed in Unity.
+Author READMEs from part 3 and part 4 are kept next to this file (parts 1 and 2 ship without a README; license from their pages).
+
+fireball-red-2.png      — Part 1 https://opengameart.org/content/painterly-spell-icons-part-1
+protect-blue-2.png      — Part 1 https://opengameart.org/content/painterly-spell-icons-part-1
+ice-blue-2.png          — Part 2 https://opengameart.org/content/painterly-spell-icons-part-2
+lighting-sky-3.png      — Part 2 https://opengameart.org/content/painterly-spell-icons-part-2
+explosion-magenta-2.png — Part 3 https://opengameart.org/content/painterly-spell-icons-part-3
+explosion-royal-3.png   — Part 3 https://opengameart.org/content/painterly-spell-icons-part-3
+runes-blue-2.png        — Part 3 https://opengameart.org/content/painterly-spell-icons-part-3
+fire-arrows-3.png       — Part 4 https://opengameart.org/content/painterly-spell-icons-part-4
+slice-sky-2.png         — Part 4 https://opengameart.org/content/painterly-spell-icons-part-4
+rip-magenta-3.png       — Part 4 https://opengameart.org/content/painterly-spell-icons-part-4
+link-eerie-2.png        — Part 4 https://opengameart.org/content/painterly-spell-icons-part-4

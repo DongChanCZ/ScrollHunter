@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Skill_SK10_DarkEruption
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
   displayName: "\uB2E4\uD06C \uC774\uB7FD\uC158"
+  icon: {fileID: 21300000, guid: 9f8d37fad5e38f14692de24082dabc19, type: 3}
   cost: 2
   category: 0
   damage: 40

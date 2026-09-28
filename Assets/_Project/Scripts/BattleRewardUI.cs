@@ -17,6 +17,10 @@ public class BattleRewardUI : MonoBehaviour
     [SerializeField] private TMP_Text[] choiceLabels;
     [SerializeField] private Button[] deckButtons;
     [SerializeField] private TMP_Text[] deckLabels;
+    [Tooltip("보상 후보 스킬 아이콘. 패시브·빈 칸은 숨긴다")]
+    [SerializeField] private Image[] choiceIcons;
+    [Tooltip("교체 화면의 덱 카드 아이콘")]
+    [SerializeField] private Image[] deckIcons;
     [SerializeField] private Button skipButton;
     [SerializeField] private Button backButton;
     [SerializeField] private string titleFormat = "전투 {0} 승리 · HP {1:0} / {2:0}";
@@ -73,6 +77,8 @@ public class BattleRewardUI : MonoBehaviour
             choiceLabels[i].text = option == null ? string.Empty : option.Effect == null ? option.Describe(information)
                 : string.Format(option.Effect.MaxStacks > 0 ? passiveChoiceFormat : unlimitedPassiveChoiceFormat,
                     option.Describe(information), flow.GetPassiveStacks(option.Effect), option.Effect.MaxStacks);
+            if (choiceIcons != null && i < choiceIcons.Length)
+                CombatInfoUI.ShowIcon(choiceIcons[i], option != null ? option.Card : null);
         }
         for (int i = 0; i < deckButtons.Length; i++)
         {
@@ -81,6 +87,7 @@ public class BattleRewardUI : MonoBehaviour
             deckButtons[i].interactable = replacing;
             deckLabels[i].text = card == null ? string.Empty : string.Format(deckCardFormat, i + 1,
                 i < DeckSystem.HandSize ? handLabel : queueLabel, information.DescribeCard(card));
+            if (deckIcons != null && i < deckIcons.Length) CombatInfoUI.ShowIcon(deckIcons[i], card);
         }
     }
 }

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Skill_SK02_IceArrow
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
   displayName: "\uC544\uC774\uC2A4\uC560\uB85C\uC6B0"
+  icon: {fileID: 21300000, guid: 6269c3a44082644469310ba1ab0a5ab8, type: 3}
   cost: 5
   category: 0
   damage: 35

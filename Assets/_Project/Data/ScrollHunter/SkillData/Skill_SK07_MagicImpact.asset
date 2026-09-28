@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Skill_SK07_MagicImpact
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
   displayName: "\uB9E4\uC9C1 \uC784\uD329\uD2B8"
+  icon: {fileID: 21300000, guid: a352e10c649019445932bbbd27e24f36, type: 3}
   cost: 3
   category: 0
   damage: 40

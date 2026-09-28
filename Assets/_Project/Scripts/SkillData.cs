@@ -20,6 +20,9 @@ public class SkillData : ScriptableObject
     [Tooltip("화면에 표시되는 이름")]
     [SerializeField] private string displayName = "";
 
+    [Tooltip("손패 스킬 아이콘. 비워두면 이름으로 표시") ]
+    [SerializeField] private Sprite icon;
+
     [SerializeField] private float cost = 1f;
 
     [SerializeField] private SkillCategory category = SkillCategory.Deal;
@@ -54,6 +57,7 @@ public class SkillData : ScriptableObject
         && castTime > 0f && !float.IsInfinity(castTime) && !float.IsNaN(castTime)
         && channelEffect.IsValidFor(this));
 
+    public Sprite Icon => icon;
     public string DisplayName => displayName;
     public float Cost => cost;
     public SkillCategory Category => category;

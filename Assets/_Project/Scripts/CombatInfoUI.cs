@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 // Information only: card and enemy numbers always come from live combat data.
 [DefaultExecutionOrder(-100)]
@@ -14,6 +15,8 @@ public class CombatInfoUI : MonoBehaviour
     [SerializeField] private TMP_Text pauseLabel;
     [SerializeField] private GameObject cardPanel;
     [SerializeField] private TMP_Text cardText;
+    [Tooltip("정보창 스킬 아이콘. 비워두면 표시하지 않는다")]
+    [SerializeField] private Image cardIcon;
     [SerializeField] private GameObject enemyPanel;
     [SerializeField] private TMP_Text enemyText;
     [SerializeField] private TMP_Text hintText;
@@ -143,9 +146,19 @@ public class CombatInfoUI : MonoBehaviour
         SkillData card = !ended && selectedSlot >= 0 ? deck.GetHandCard(selectedSlot) : null;
         cardPanel.SetActive(card != null);
         if (card != null) cardText.text = DescribeCard(card);
+        ShowIcon(cardIcon, card);
         Enemy target = !ended && enemies != null ? enemies.CurrentTarget : null;
         enemyPanel.SetActive(target != null && target.IsAlive);
         if (target != null && target.IsAlive) enemyText.text = DescribeEnemy(target);
+    }
+
+    /// <summary>카드 아이콘 표시. 카드나 아이콘이 없으면 테두리 자식까지 함께 숨긴다 (보상 화면과 공용).</summary>
+    public static void ShowIcon(Image image, SkillData card)
+    {
+        if (image == null) return;
+        image.sprite = card != null ? card.Icon : null;
+        bool show = image.sprite != null;
+        if (image.gameObject.activeSelf != show) image.gameObject.SetActive(show);
     }
 
     public string DescribeCard(SkillData card)

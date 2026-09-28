@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Skill_SK12_Suppression
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
   displayName: "\uC81C\uC555"
+  icon: {fileID: 21300000, guid: 8cec949fb4a0b774ea31a80c5a2b7888, type: 3}
   cost: 2
   category: 1
   damage: 30

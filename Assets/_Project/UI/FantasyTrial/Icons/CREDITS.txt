@@ -1,0 +1,15 @@
+Icons made by Lorc. Available on https://game-icons.net
+License: CC BY 3.0 https://creativecommons.org/licenses/by/3.0/
+Original white-on-transparent PNGs. Display size and tint changed in Unity.
+
+fireball.png — https://game-icons.net/1x1/lorc/fireball.html
+ice-spear.png — https://game-icons.net/1x1/lorc/ice-spear.html
+slicing-arrow.png — https://game-icons.net/1x1/lorc/slicing-arrow.html
+fire-zone.png — https://game-icons.net/1x1/lorc/fire-zone.html
+charged-arrow.png — https://game-icons.net/1x1/lorc/charged-arrow.html
+lightning-arc.png — https://game-icons.net/1x1/lorc/lightning-arc.html
+punch-blast.png — https://game-icons.net/1x1/lorc/punch-blast.html
+caldera.png — https://game-icons.net/1x1/lorc/caldera.html
+silence.png — https://game-icons.net/1x1/lorc/silence.html
+magic-swirl.png — https://game-icons.net/1x1/lorc/magic-swirl.html
+magic-shield.png — https://game-icons.net/1x1/lorc/magic-shield.html

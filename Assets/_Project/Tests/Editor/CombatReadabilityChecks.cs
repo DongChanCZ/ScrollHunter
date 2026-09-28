@@ -91,17 +91,25 @@ public static class CombatReadabilityChecks
             Check(views[0].typeText.text == "단일" && views[1].typeText.text == "광역"
                 && views[2].typeText.text == "차단" && views[3].typeText.text == "방어", "four badges");
             foreach (var view in views)
-                Check(!view.costCover.raycastTarget && view.costCover.transform.GetSiblingIndex() == 0
+                Check(!view.costCover.raycastTarget && view.skillIcon != null && !view.skillIcon.raycastTarget
+                    && view.costCover.transform.GetSiblingIndex() > view.skillIcon.transform.GetSiblingIndex()
+                    && view.costCover.transform.GetSiblingIndex() < view.costText.transform.GetSiblingIndex()
                     && view.costCover.sprite != null && view.costCover.type == UnityEngine.UI.Image.Type.Filled
                     && view.costCover.fillMethod == UnityEngine.UI.Image.FillMethod.Radial360
                     && view.costCover.fillOrigin == (int)UnityEngine.UI.Image.Origin360.Top
                     && !view.costCover.fillClockwise, "clockwise reveal, behind labels and no input blocking");
+            for (int i = 0; i < views.Length; i++)
+                Check(views[i].skillIcon.sprite == deck.GetHandCard(i).Icon && views[i].skillIcon.enabled
+                    && !views[i].nameText.enabled, "current hand icon replaces name");
+            Sprite expectedIcon = deck.PeekNext().Icon;
             Set(cost, "<Current>k__BackingField", 3f);
             Check(deck.TryUseSlot(0), "input accepted");
             Call(ui, "LateUpdate");
             Check(views[0].typeText.text == "광역" && !views[0].costCover.enabled
                 && views[0].background.color == (Color)Get(ui, "slotLockedColor")
                 && !string.IsNullOrEmpty(views[0].lockText.text), "rotation updates badge and GCD timer");
+            Check(views[0].skillIcon.sprite == expectedIcon, "input rotates icon with card");
+            Check(((UnityEngine.UI.Image)Get(ui, "nextCardIcon")).sprite == deck.PeekNext().Icon, "next icon follows queue");
             player.ApplyStun(2f);
             Call(ui, "LateUpdate");
             Check(views[0].background.color == (Color)Get(ui, "slotStunnedColor") && !views[0].costCover.enabled
@@ -124,3 +132,4 @@ public static class CombatReadabilityChecks
         return "Combat readability checks: " + passed + " passed (current HP preserved)";
     }
 }
+

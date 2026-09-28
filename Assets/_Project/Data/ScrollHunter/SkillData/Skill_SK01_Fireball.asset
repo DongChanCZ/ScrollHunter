@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Skill_SK01_Fireball
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
   displayName: "\uD30C\uC774\uC5B4\uBCFC"
+  icon: {fileID: 21300000, guid: d4f33346f9999b74b9c351e91ef568db, type: 3}
   cost: 1
   category: 0
   damage: 30
