@@ -17,10 +17,16 @@ public class SkillVfx : MonoBehaviour
         public float castHeight = 3.2f;
         [Tooltip("타격 1회마다 대상 위치에 생성")]
         public GameObject impactAtTarget;
+        [Tooltip("타격마다 이 중 하나를 무작위로 사용(직전과 같은 것은 피함). 비워두면 Impact At Target 사용")]
+        public GameObject[] impactVariants;
         [Tooltip("타격 연출의 대상 기준 높이")]
         public float impactHeight = 0f;
+        [Tooltip("단일 피해 채널링의 타격보다 먼저 비행 연출을 시작하는 시간. 0이면 타격 시 생성")]
+        [Min(0f)] public float channelHitLeadTime;
         [Tooltip("방어도 부여 시 켜는 화면 연출(Animator 포함). 켤 때마다 처음부터 재생")]
         public GameObject selfEffect;
+        [Tooltip("차단 성공 시 대상 위치에 생성. 실패하면 나오지 않는다")]
+        public GameObject interruptSuccessAtTarget;
     }
 
     [SerializeField] private DeckSystem deck;
@@ -39,6 +45,63 @@ public class SkillVfx : MonoBehaviour
     private float castHeight;
     private readonly Dictionary<GameObject, float> selfEffectHideAt = new Dictionary<GameObject, float>();
     private readonly List<GameObject> expired = new List<GameObject>();
+    // 생성한 타격 연출. 전투가 끝나 시간이 멈추면 제거 타이머가 흐르지 않으므로 직접 정리한다.
+    private readonly List<GameObject> spawned = new List<GameObject>();
+
+    // 연출 전용 난수. 크리티컬 판정(UnityEngine.Random)의 순서를 바꾸지 않도록 분리한다.
+    private readonly System.Random variantRandom = new System.Random();
+    private readonly Dictionary<Entry, int> lastVariant = new Dictionary<Entry, int>();
+
+    // 그 타격으로 대상이 쓰러진 연출(막타). 다음 전투 시작·정리 때 비운다.
+    private GameObject finishingImpact;
+
+    // 아직 피해가 없는 비행 연출. 실제 타격 때 spawned로 넘기며, 중단되면 즉시 정리한다.
+    private Entry channelEntry;
+    private Enemy channelTarget;
+    private int channelHits;
+    private GameObject pendingImpact;
+
+    /// <summary>막타 연출이 아직 남아 있는지. 승리 시 결과 화면을 잠깐 늦출지 판단한다.</summary>
+    public bool HasFinishingEffect => finishingImpact != null;
+
+    /// <summary>
+    /// 전투 종료로 게임 시간이 멈춘 동안에도 남은 연출을 실제 시간으로 끝까지 재생한다.
+    /// 판정은 이미 끝났으므로 보이기만 한다. Clear에서 원래 시간 기준으로 되돌린다.
+    /// </summary>
+    public void PlayOutUnscaled()
+    {
+        spawned.RemoveAll(effect => effect == null);
+        foreach (GameObject effect in spawned)
+            foreach (ParticleSystem system in effect.GetComponentsInChildren<ParticleSystem>())
+            {
+                ParticleSystem.MainModule main = system.main;
+                main.useUnscaledTime = true;
+            }
+        foreach (GameObject effect in selfEffectHideAt.Keys)
+        {
+            if (effect == null) continue;
+            Animator animator = effect.GetComponent<Animator>();
+            if (animator != null) animator.updateMode = AnimatorUpdateMode.UnscaledTime;
+        }
+    }
+
+    /// <summary>남은 연출을 모두 즉시 지운다. 다음 전투·재시작·결과 화면 전환 때 잔여 연출이 재생되지 않게 한다.</summary>
+    public void Clear()
+    {
+        foreach (GameObject effect in spawned) if (effect != null) Destroy(effect);
+        spawned.Clear();
+        finishingImpact = null;
+        StopCast();
+        StopPendingImpact();
+        foreach (GameObject effect in selfEffectHideAt.Keys)
+        {
+            if (effect == null) continue;
+            Animator animator = effect.GetComponent<Animator>();
+            if (animator != null) animator.updateMode = AnimatorUpdateMode.Normal;
+            effect.SetActive(false);
+        }
+        selfEffectHideAt.Clear();
+    }
 
     private void Awake()
     {
@@ -52,6 +115,7 @@ public class SkillVfx : MonoBehaviour
         deck.CastStarted += OnCastStarted;
         deck.HitApplied += OnHitApplied;
         deck.ShieldApplied += OnShieldApplied;
+        deck.InterruptResolved += OnInterruptResolved;
     }
 
     private void OnDisable()
@@ -61,10 +125,9 @@ public class SkillVfx : MonoBehaviour
             deck.CastStarted -= OnCastStarted;
             deck.HitApplied -= OnHitApplied;
             deck.ShieldApplied -= OnShieldApplied;
+            deck.InterruptResolved -= OnInterruptResolved;
         }
-        StopCast();
-        foreach (var effect in selfEffectHideAt.Keys) if (effect != null) effect.SetActive(false);
-        selfEffectHideAt.Clear();
+        Clear();
     }
 
     private Entry Find(SkillData skill)
@@ -78,10 +141,18 @@ public class SkillVfx : MonoBehaviour
     private void OnCastStarted(SkillData skill)
     {
         StopCast();
+        StopPendingImpact();
         Entry entry = Find(skill);
-        if (entry == null || entry.castAtTarget == null || skill.CastTime <= 0f || enemies == null) return;
+        if (entry == null || enemies == null) return;
         Enemy target = enemies.CurrentTarget;
         if (target == null || !target.IsAlive) return;
+        if (entry.channelHitLeadTime > 0f && skill.IsChanneling && !skill.IsAreaOfEffect
+            && skill.ChannelEffect is DamageChannelEffect)
+        {
+            channelEntry = entry;
+            channelTarget = target;
+        }
+        if (entry.castAtTarget == null || skill.CastTime <= 0f) return;
         activeCastSkill = skill;
         castTarget = target;
         castHeight = entry.castHeight;
@@ -102,11 +173,53 @@ public class SkillVfx : MonoBehaviour
     private void OnHitApplied(SkillData skill, Enemy target)
     {
         Entry entry = Find(skill);
-        if (entry == null || entry.impactAtTarget == null || target == null) return;
-        // 타격이 나오면 해당 스킬의 시전 연출은 끝낸다 (완료 시점과 같은 프레임).
+        if (entry == null || target == null) return;
+        bool preparedChannel = entry == channelEntry;
+        GameObject impact = null;
+        if (preparedChannel)
+        {
+            channelHits++;
+            impact = pendingImpact;
+            pendingImpact = null;
+        }
+        if (impact == null)
+        {
+            GameObject prefab = PickImpact(entry);
+            if (prefab == null) return;
+            impact = Instantiate(prefab, Place(target, entry.impactHeight), Quaternion.identity);
+        }
+        // 프레임 지연으로 비행을 못 보여준 경우에도 실제 피해와 착탄을 같은 시점에 맞춘다.
+        // Simulate는 정확한 버스트 경계의 입자를 아직 만들지 않아 아주 조금 넘겨 표시한다.
+        if (preparedChannel) SetParticleAge(impact, entry.channelHitLeadTime + 0.00001f);
         if (skill == activeCastSkill) StopCast();
-        GameObject impact = Instantiate(entry.impactAtTarget, Place(target, entry.impactHeight), Quaternion.identity);
         Destroy(impact, impactLifetime);
+        spawned.RemoveAll(effect => effect == null);
+        spawned.Add(impact);
+        // 알림은 피해 적용 직후라, 여기서 쓰러져 있으면 이 연출이 막타다.
+        if (!target.IsAlive) finishingImpact = impact;
+    }
+
+    /// <summary>변형 목록이 있으면 직전과 다른 하나를 무작위로, 없으면 기본 타격 연출.</summary>
+    private GameObject PickImpact(Entry entry)
+    {
+        if (entry == null) return null;
+        GameObject[] variants = entry.impactVariants;
+        if (variants == null || variants.Length == 0) return entry.impactAtTarget;
+        int previous = lastVariant.TryGetValue(entry, out int last) ? last : -1;
+        int index = variantRandom.Next(variants.Length);
+        if (variants.Length > 1 && index == previous) index = (index + 1 + variantRandom.Next(variants.Length - 1)) % variants.Length;
+        lastVariant[entry] = index;
+        return variants[index] != null ? variants[index] : entry.impactAtTarget;
+    }
+
+    private void OnInterruptResolved(SkillData skill, Enemy target, bool success)
+    {
+        Entry entry = Find(skill);
+        if (!success || entry == null || entry.interruptSuccessAtTarget == null || target == null) return;
+        GameObject seal = Instantiate(entry.interruptSuccessAtTarget, Place(target, 0f), Quaternion.identity);
+        Destroy(seal, impactLifetime);
+        spawned.RemoveAll(effect => effect == null);
+        spawned.Add(seal);
     }
 
     private void OnShieldApplied(SkillData skill, int granted)
@@ -121,11 +234,15 @@ public class SkillVfx : MonoBehaviour
 
     private void LateUpdate()
     {
+        UpdateChannelImpact();
         if (activeCast != null)
         {
+            Enemy target = enemies != null ? enemies.CurrentTarget : null;
             bool stillCasting = deck != null && deck.CastingCard == activeCastSkill;
-            if (!stillCasting || castTarget == null || !castTarget.IsAlive) StopCast();
-            else activeCast.transform.position = Place(castTarget, castHeight);
+            if (!stillCasting || target == null || !target.IsAlive) StopCast();
+            // 사망 후 자동 이동 시 이전 위치의 입자까지 정리하고 새 대상에서 시작한다.
+            else if (target != castTarget) OnCastStarted(activeCastSkill);
+            else activeCast.transform.position = Place(target, castHeight);
         }
 
         if (selfEffectHideAt.Count == 0) return;
@@ -136,6 +253,45 @@ public class SkillVfx : MonoBehaviour
             if (effect != null) effect.SetActive(false);
             selfEffectHideAt.Remove(effect);
         }
+    }
+
+    private void UpdateChannelImpact()
+    {
+        if (channelEntry == null) return;
+        SkillData skill = channelEntry.skill;
+        if (deck == null || deck.CastingCard != skill || channelTarget == null || !channelTarget.IsAlive)
+        {
+            StopPendingImpact();
+            return;
+        }
+        if (pendingImpact != null || channelHits >= skill.HitCount) return;
+        var timing = (DamageChannelEffect)skill.ChannelEffect;
+        float untilHit = timing.FirstHitDelay + channelHits * timing.HitInterval
+            - (skill.CastTime - deck.CastRemaining);
+        if (untilHit > channelEntry.channelHitLeadTime) return;
+        GameObject prefab = PickImpact(channelEntry);
+        if (prefab == null) return;
+        pendingImpact = Instantiate(prefab, Place(channelTarget, channelEntry.impactHeight), Quaternion.identity);
+        SetParticleAge(pendingImpact, Mathf.Clamp(channelEntry.channelHitLeadTime - untilHit,
+            0f, channelEntry.channelHitLeadTime));
+    }
+
+    private static void SetParticleAge(GameObject effect, float age)
+    {
+        foreach (ParticleSystem system in effect.GetComponentsInChildren<ParticleSystem>())
+        {
+            system.Simulate(age, false, true, false);
+            system.Play(false);
+        }
+    }
+
+    private void StopPendingImpact()
+    {
+        if (pendingImpact != null) Destroy(pendingImpact);
+        pendingImpact = null;
+        channelEntry = null;
+        channelTarget = null;
+        channelHits = 0;
     }
 
     private void StopCast()

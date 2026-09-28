@@ -27,6 +27,11 @@ public class BattleFlow : MonoBehaviour
     [SerializeField] private CombatMetrics metrics;
     [SerializeField] private CombatInfoUI information;
     [SerializeField] private DamageNumberUI damageNumbers;
+    [SerializeField] private SkillVfx skillVfx;
+
+    [Header("전투 종료 연출")]
+    [Tooltip("막타 스킬 연출이 남아 있을 때 결과·보상 화면을 늦추는 시간(실제 초). 게임은 멈춘 채 연출만 재생. 0이면 즉시 전환")]
+    [SerializeField] private float finishingEffectHold = 0.6f;
 
     [Header("시작 화면")]
     [SerializeField] private GameObject startPanel;
@@ -112,6 +117,7 @@ public class BattleFlow : MonoBehaviour
         if (metrics == null) metrics = FindFirstObjectByType<CombatMetrics>();
         if (information == null) information = FindFirstObjectByType<CombatInfoUI>();
         if (damageNumbers == null) damageNumbers = FindFirstObjectByType<DamageNumberUI>();
+        if (skillVfx == null) skillVfx = FindFirstObjectByType<SkillVfx>();
         if (startButton != null) startButton.onClick.AddListener(StartRun);
         if (nextButton != null) nextButton.onClick.AddListener(NextBattle);
         if (restartButton != null) restartButton.onClick.AddListener(RestartRun);
@@ -289,6 +295,9 @@ public class BattleFlow : MonoBehaviour
         metrics.FlushPendingSummary();
         // 이전 효과의 종료 처리를 먼저 끝내고, 그 다음에 새 전투 계측을 연다.
         if (damageNumbers != null) damageNumbers.Clear();
+        // 이전 전투 종료 때 멈춰 있던 스킬 연출이 새 전투에서 재생되지 않게 지운다.
+        panelHoldRemaining = 0f;
+        if (skillVfx != null) skillVfx.Clear();
         deck.SetDeck(runDeck);
         SelectedReward = null;
         RewardResolved = false;
@@ -308,6 +317,7 @@ public class BattleFlow : MonoBehaviour
 
     private void Update()
     {
+        if (TickPanelHold()) return;
         if (BattleNumber == 0 || State != BattleFlowState.Fighting) return;
         if (!metrics.Ended && !enemies.CombatEnded && player.IsAlive) return;
         bool won = player.IsAlive && enemies.CombatEnded;
@@ -318,8 +328,33 @@ public class BattleFlow : MonoBehaviour
         player.EndBattle();
         if (information != null) information.BeginBattle();
         if (State == BattleFlowState.BetweenBattles) PrepareRewards();
+        // 승리의 막타 연출이 남아 있으면 결과·보상 화면만 잠깐 늦춘다. 상태·보상·요약은 즉시 처리한다.
+        bool showFinishing = won && finishingEffectHold > 0f && skillVfx != null && skillVfx.HasFinishingEffect;
+        if (showFinishing)
+        {
+            panelHoldRemaining = finishingEffectHold;
+            skillVfx.PlayOutUnscaled();
+        }
+        // 결과 화면 뒤에서 멈춘 채 남을 연출을 지운다 (다음 전투에서 재생되는 잔여 연출 방지).
+        else if (skillVfx != null) skillVfx.Clear();
         RefreshUI();
         metrics.FlushPendingSummary();
+    }
+
+    // 막타 연출을 보여주는 동안 결과·보상 화면을 숨겨 두는 남은 시간(실제 초).
+    private float panelHoldRemaining;
+    private bool PanelHeld => panelHoldRemaining > 0f;
+
+    /// <summary>화면 보류 시간을 줄이고, 끝나면 연출을 지우고 결과·보상 화면을 띄운다. 보류 중이면 true.</summary>
+    private bool TickPanelHold()
+    {
+        if (!PanelHeld) return false;
+        panelHoldRemaining -= Time.unscaledDeltaTime;
+        if (PanelHeld) return true;
+        panelHoldRemaining = 0f;
+        if (skillVfx != null) skillVfx.Clear();
+        RefreshUI();
+        return false;
     }
 
     private void RefreshUI()
@@ -338,10 +373,11 @@ public class BattleFlow : MonoBehaviour
             passiveText.text = string.Format(passiveStatusFormat, cost.RegenerationPerSecond, player.CriticalChance, PassiveSummary);
         }
         bool ended = State == BattleFlowState.Victory || State == BattleFlowState.Defeat;
-        if (resultPanel != null) resultPanel.SetActive(ended);
-        if (nextButton != null) nextButton.gameObject.SetActive(State == BattleFlowState.BetweenBattles && RewardResolved);
-        if (restartButton != null) restartButton.gameObject.SetActive(State == BattleFlowState.Victory || State == BattleFlowState.Defeat);
-        if (rewardUI != null) rewardUI.Refresh();
+        bool shown = !PanelHeld;
+        if (resultPanel != null) resultPanel.SetActive(ended && shown);
+        if (nextButton != null) nextButton.gameObject.SetActive(shown && State == BattleFlowState.BetweenBattles && RewardResolved);
+        if (restartButton != null) restartButton.gameObject.SetActive(shown && ended);
+        if (rewardUI != null && shown) rewardUI.Refresh();
         if (resultText == null || !ended) return;
         resultText.text = State == BattleFlowState.Defeat ? string.Format(defeatFormat, BattleNumber)
             : State == BattleFlowState.Victory ? string.Format(completeFormat, player.CurrentHp, player.MaxHp)

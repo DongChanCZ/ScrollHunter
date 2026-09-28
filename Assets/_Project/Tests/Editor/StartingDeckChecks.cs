@@ -103,6 +103,8 @@ public static class StartingDeckChecks
             Check(b.CurrentHp == b.MaxHp - 30 && !deck.IsCasting && Near(deck.LockRemaining, 0.4f), "fire immediate 30 / GCD");
             Check(cost.Current == 9f && (int)Get(metrics, "totalUses") == 1, "fire pays once");
             Check(!deck.TryUseSlot(1), "minimum GCD rejects input");
+            Call(enemies, "StepTarget", 1);
+            Check(enemies.CurrentTarget == c, "target selection allowed during instant skill GCD");
             Step(0.4f); Check(!deck.IsLocked, "minimum GCD ends");
 
             Reset(pillar, true);
@@ -117,7 +119,31 @@ public static class StartingDeckChecks
 
             Reset(spear); deck.TryUseSlot(0); Step(0.79f);
             Check(b.CurrentHp == b.MaxHp && cost.Current == 6f, "spear cost and pre-cast");
+            Call(enemies, "StepTarget", 1);
+            Check(enemies.CurrentTarget == b, "cast blocks arrow target change");
+            Call(enemies, "SelectTarget", c);
+            Check(enemies.CurrentTarget == b, "cast blocks click selection path");
+            Time.timeScale = 0f;
+            Call(enemies, "SelectTarget", c);
+            Check(enemies.CurrentTarget == b, "paused cast still blocks target change");
+            Time.timeScale = 1f;
             Step(0.011f); Check(b.CurrentHp == b.MaxHp - 135 && c.CurrentHp == c.MaxHp, "spear single 135");
+            Check(enemies.CurrentTarget == b, "rejected selection is not buffered");
+            Call(enemies, "SelectTarget", c);
+            Check(enemies.CurrentTarget == c, "click selection allowed after cast");
+            var vfx = UnityEngine.Object.FindFirstObjectByType<SkillVfx>();
+            Reset(spear); deck.TryUseSlot(0);
+            var originalCast = (GameObject)Get(vfx, "activeCast");
+            Call(enemies, "StepTarget", 1); Call(vfx, "LateUpdate");
+            Check((GameObject)Get(vfx, "activeCast") == originalCast && originalCast.transform.position.x < 0f,
+                "blocked target change keeps original cast visual");
+            b.TakeDamage(b.CurrentHp); enemies.NotifyEnemyDied(); Call(vfx, "LateUpdate");
+            var movedCast = (GameObject)Get(vfx, "activeCast");
+            Check(enemies.CurrentTarget == c && movedCast != null && movedCast != originalCast
+                && movedCast.transform.position.x > 0f, "death auto selection restarts cast visual on survivor");
+            Step(0.8f);
+            Check(c.CurrentHp == c.MaxHp - 135 && Get(vfx, "activeCast") == null,
+                "auto selected target takes normal cast damage and charge clears");
 
             Reset(cutter); deck.TryUseSlot(0);
             Check(b.CurrentHp == b.MaxHp - 60 && metrics.RecordedHits == 2 && ui.ActiveCount == 2, "cutter two immediate numbers");
@@ -129,7 +155,8 @@ public static class StartingDeckChecks
                 && ui.ActiveCount == 2, "last enemy retains both visuals without later damage");
 
             Reset(ice); Check(deck.TryUseSlot(0) && cost.Current == 5f, "ice input pays once");
-            Call(enemies, "StepTarget", 1); Check(enemies.CurrentTarget == c, "selection can change");
+            Call(enemies, "StepTarget", 1); Check(enemies.CurrentTarget == b, "channel blocks arrow target change");
+            Call(enemies, "SelectTarget", c); Check(enemies.CurrentTarget == b, "channel blocks click selection path");
             Step(0.49f); Check(b.CurrentHp == b.MaxHp && c.CurrentHp == c.MaxHp, "ice no early damage");
             Step(0.01f); Check(b.CurrentHp == b.MaxHp - 35 && c.CurrentHp == c.MaxHp, "ice fixed input target first hit");
             for (int i = 0; i < 4; i++) Step(0.5f);
@@ -137,9 +164,35 @@ public static class StartingDeckChecks
                 && Near(deck.LockRemaining, 0.3f), "ice five hits then tail");
             Check(!deck.TryUseSlot(1), "ice tail blocks other cards");
             Step(0.301f); Check(!deck.IsCasting && !deck.IsLocked && metrics.RecordedHits == 5, "ice tail ends without sixth hit");
+            Call(enemies, "StepTarget", 1); Check(enemies.CurrentTarget == c, "arrow selection allowed after channel");
             Check(cost.Current == 5f && (int)Get(metrics, "totalUses") == 1 && deck.GetHandCard(0) == fire, "ice no repeat cost / cycle / uses");
             Reset(ice); deck.TryUseSlot(0); Step(2.8f);
             Check(b.CurrentHp == b.MaxHp - 175 && metrics.RecordedHits == 5 && !deck.IsLocked, "large frame catches five ice hits");
+
+            Reset(ice); deck.TryUseSlot(0); Step(0.39f); Call(vfx, "LateUpdate");
+            Check(Get(vfx, "pendingImpact") == null && b.CurrentHp == b.MaxHp, "ice no premature flight or damage");
+            Step(0.02f); Call(vfx, "LateUpdate");
+            var flyingIce = (GameObject)Get(vfx, "pendingImpact");
+            Check(flyingIce != null && b.CurrentHp == b.MaxHp, "ice flies before damage");
+            Time.timeScale = 0f; Step(1f); Call(vfx, "LateUpdate");
+            Check((GameObject)Get(vfx, "pendingImpact") == flyingIce && b.CurrentHp == b.MaxHp,
+                "paused flight does not trigger hit");
+            Time.timeScale = 1f; Step(0.091f);
+            Check(Get(vfx, "pendingImpact") == null && b.CurrentHp == b.MaxHp - 35,
+                "ice damage consumes prepared visual once");
+            Check(flyingIce.GetComponentsInChildren<ParticleSystem>().Any(p => p.name == "Glint" && p.particleCount > 0),
+                "ice contact particles coincide with damage");
+            Reset(ice); deck.TryUseSlot(0); Step(0.41f); Call(vfx, "LateUpdate");
+            player.ApplyStun(2f); Step(0.1f); Call(vfx, "LateUpdate");
+            Check(Get(vfx, "pendingImpact") == null && b.CurrentHp == b.MaxHp,
+                "stun removes pending arrow without damage");
+            Reset(ice); deck.TryUseSlot(0); Step(0.41f); Call(vfx, "LateUpdate");
+            b.TakeDamage(b.CurrentHp); enemies.NotifyEnemyDied(); Step(0.1f); Call(vfx, "LateUpdate");
+            Check(Get(vfx, "pendingImpact") == null && c.CurrentHp == c.MaxHp,
+                "target death removes flight without transferring damage");
+            Reset(ice); deck.TryUseSlot(0); Step(0.41f); Call(vfx, "LateUpdate");
+            flow.RestartRun();
+            Check(Get(vfx, "pendingImpact") == null, "restart removes pending arrow");
 
             Reset(ice); SetHp(b, 30); deck.TryUseSlot(0); Step(0.5f);
             Check(!b.IsAlive && !deck.IsCasting && Near(deck.LockRemaining, 0.3f) && c.CurrentHp == c.MaxHp, "target death replaces channel with 0.3 recovery");

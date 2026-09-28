@@ -8,6 +8,7 @@ using UnityEngine;
 public class EnemyManager : MonoBehaviour
 {
     [SerializeField] private Player player;
+    [SerializeField] private DeckSystem deck;
 
     [Tooltip("4단계 계측. 비워두면 씬에서 자동으로 찾는다.")]
     [SerializeField] private CombatMetrics metrics;
@@ -64,6 +65,7 @@ public class EnemyManager : MonoBehaviour
     {
         cam = Camera.main;
         if (player == null) player = FindFirstObjectByType<Player>();
+        if (deck == null) deck = FindFirstObjectByType<DeckSystem>();
         if (metrics == null) metrics = FindFirstObjectByType<CombatMetrics>();
 
         if (enemies.Count == 0)
@@ -164,7 +166,7 @@ public class EnemyManager : MonoBehaviour
             int i = ((start + direction * step) % count + count) % count;
             if (enemies[i] != null && enemies[i].IsAlive)
             {
-                CurrentTarget = enemies[i];
+                SelectTarget(enemies[i]);
                 return;
             }
         }
@@ -178,7 +180,14 @@ public class EnemyManager : MonoBehaviour
         if (!Physics.Raycast(ray, out RaycastHit hit, clickRayDistance)) return;
 
         Enemy clicked = hit.collider.GetComponentInParent<Enemy>();
-        if (clicked != null && clicked.IsAlive) CurrentTarget = clicked;
+        SelectTarget(clicked);
+    }
+
+    // 클릭·방향키 공통 경로. 시전·채널링 중 입력은 무시하고 저장하지 않는다.
+    private void SelectTarget(Enemy target)
+    {
+        if (deck != null && deck.IsCasting) return;
+        if (target != null && target.IsAlive) CurrentTarget = target;
     }
 
     /// <summary>살아있는 적 전체. 광역 카드가 쓴다.</summary>

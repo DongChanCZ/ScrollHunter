@@ -58,3 +58,5 @@
 - 손패 상하 음영 `Assets/_Project/UI/HandSlot/SlotShade.png`는 이번 작업에서 Unity로 생성한 단순 그라데이션(외부 에셋 아님).
 - 2026-09-28 생츄어리 신성한 빛 연출: Light Masks — Kenney, https://kenney.nl/assets/light-masks — CC0 (`streaks_composed_e·g·h` 빛기둥, `ring_b` 마법진 고리). Particle Pack — Kenney, https://kenney.nl/assets/particle-pack — CC0 (`circle_05` 광원·빛 입자, `star_06` 반짝임, `magic_02` 마법진 문양). 원본 PNG 무가공, Unity에서 크기·회전·색·투명도와 Animator 맥동만 적용. 라이선스 원문은 `Assets/_Project/UI/SanctuaryVfx/`.
 - 2026-09-28 스킬 연출(파이어볼·라이트닝 스피어·매직아머): Particle Pack — Kenney, https://kenney.nl/assets/particle-pack — CC0 (`fire_01·02`, `flare_01`, `scorch_01`, `circle_02`, `smoke_04`, `spark_01·02·03·05·06` + 생츄어리용 `circle_05`·`star_06` 재사용). 원본 PNG 무가공, Unity 파티클 시스템·UI Animator로 크기·색·수명만 설정. 라이선스 원문은 `Assets/_Project/VFX/Textures/`.
+- 2026-09-28 스킬 연출 추가(아이스애로우·파이어 필라·침묵): 같은 Kenney Particle Pack(CC0)의 `flame_05·06`, `trace_01·02·06`, `magic_01` 추가 + 기존 텍스처 재사용. 원본 PNG 무가공.
+- 아이스애로우 화살 꼬리 `Assets/_Project/VFX/Textures/TrailSoft.png`는 이번 작업에서 Unity로 생성한 단순 그라데이션(외부 에셋 아님).

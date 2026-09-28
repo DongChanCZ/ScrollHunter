@@ -105,6 +105,8 @@ public class DeckSystem : MonoBehaviour
     public event System.Action<SkillData, Enemy> HitApplied;
     /// <summary>방어 카드가 방어도를 부여했을 때. 두 번째 값은 실제 부여량.</summary>
     public event System.Action<SkillData, int> ShieldApplied;
+    /// <summary>차단 카드의 판정이 끝났을 때. 세 번째 값은 차단 성공 여부.</summary>
+    public event System.Action<SkillData, Enemy, bool> InterruptResolved;
 
     private void Awake()
     {
@@ -415,6 +417,7 @@ public class DeckSystem : MonoBehaviour
                     break;
                 }
                 InterruptResult r = target.TryInterrupt(InterruptStagger);
+                NotifyVfx(() => InterruptResolved?.Invoke(card, target, r == InterruptResult.Success));
 
                 if (r == InterruptResult.Success && metrics != null) metrics.RecordInterruptSuccess();
 
