@@ -201,7 +201,7 @@ public class Enemy : MonoBehaviour
     {
         if (player != null)
         {
-            player.TakeDamage(current.Damage);
+            player.TakeDamage(current.Damage, current.CastColor);
             // 주황의 미대응 페널티. 피해보다 이쪽이 본체다.
             if (current.StunSeconds > 0f) player.ApplyStun(current.StunSeconds);
         }

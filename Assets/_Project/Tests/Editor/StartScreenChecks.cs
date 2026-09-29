@@ -39,7 +39,10 @@ public static class StartScreenChecks
         check(!flow.SkipReward() && !flow.SelectReward(0), "rewards blocked on title");
         flow.NextBattle(); check(flow.State == BattleFlowState.Title, "next battle blocked on title");
         click(start);
-        check(flow.State == BattleFlowState.Fighting && flow.BattleNumber == 1 && !panel.activeSelf, "start click opens first battle");
+        check(flow.State == BattleFlowState.Preparing && flow.BattleNumber == 0 && !panel.activeSelf, "start click opens preparation");
+        check(Time.timeScale == 0 && metrics.Ended && !deck.TryUseSlot(0), "preparation waits without combat");
+        click((Button)field("nextButton"));
+        check(flow.State == BattleFlowState.Fighting && flow.BattleNumber == 1, "confirm opens first battle");
         check(player.CurrentHp == player.MaxHp && cost.Current == 3 && Time.timeScale == 1, "starting resources and speed");
         check(!metrics.Ended && metrics.BattleNumber == 1 && metrics.Elapsed == 0 && metrics.RecordedHits == 0, "fresh metrics after title wait");
         check(enemies.EnemyCount == 1 && enemies.CurrentTarget.Data.name.Contains("B"), "B encounter selected");

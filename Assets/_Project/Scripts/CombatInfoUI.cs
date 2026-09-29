@@ -46,6 +46,7 @@ public class CombatInfoUI : MonoBehaviour
     [SerializeField] private string canInterruptLabel = "차단 가능";
     [SerializeField] private string cannotInterruptLabel = "차단 불가";
     [SerializeField] private string noEffectLabel = "추가 효과 없음";
+    [SerializeField] private string redShieldEffectFormat = "피격 직전 방어도가 있으면 피해 {0:0.#}% 감소 후 흡수";
 
     [Header("전투 배속")]
     [SerializeField] private RectTransform speedButton;
@@ -188,9 +189,15 @@ public class CombatInfoUI : MonoBehaviour
         string name = target.Data.DisplayName;
         if (!target.IsCasting || target.CurrentAttack == null) return string.Format(restingFormat, name);
         EnemyAttack attack = target.CurrentAttack;
+        string effect = attack.StunSeconds > 0f ? string.Format(stunFormat, attack.StunSeconds) : noEffectLabel;
+        if (attack.CastColor == CastColor.Red && player != null)
+        {
+            string reduction = string.Format(redShieldEffectFormat, (1f - player.RedShieldDamageMultiplier) * 100f);
+            effect = attack.StunSeconds > 0f ? effect + "\n" + reduction : reduction;
+        }
         return string.Format(enemyFormat, name, attack.SkillName, attack.Damage, attack.CastTime,
             attack.CastColor == CastColor.Red ? cannotInterruptLabel : canInterruptLabel,
-            attack.StunSeconds > 0f ? string.Format(stunFormat, attack.StunSeconds) : noEffectLabel);
+            effect);
     }
 
     private void OnDisable()

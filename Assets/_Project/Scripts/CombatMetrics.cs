@@ -40,6 +40,12 @@ public class CombatMetrics : MonoBehaviour
     [SerializeField] private string invulnerabilityLogFormat = "[무적 {0:0.00}s] 피해 무효화 {1} (방어력 적용 후 / HP·방어도 감소 0)";
     [SerializeField] private string invulnerabilitySummaryFormat = "무적 무효화 피해 {0} (방어도 흡수와 별도)";
     public int InvulnerabilityPrevented { get; private set; }
+    [SerializeField] private string redShieldSummaryFormat = "빨강 반감 감소 피해 {0} (방어도 흡수·무적과 별도)";
+    public int RedShieldPrevented { get; private set; }
+    public void RecordRedShieldPrevented(int amount)
+    {
+        if (!Ended && amount > 0) RedShieldPrevented += amount;
+    }
     public void RecordInvulnerabilityPrevented(int amount)
     {
         if (Ended || amount <= 0) return;
@@ -129,6 +135,7 @@ public class CombatMetrics : MonoBehaviour
         PotionUses = 0;
         PotionHealing = 0f;
         InvulnerabilityPrevented = 0;
+        RedShieldPrevented = 0;
         cardOrder.Clear();
         cardUses.Clear();
     }
@@ -299,6 +306,7 @@ public class CombatMetrics : MonoBehaviour
         sb.AppendLine("차단 시도 " + interruptAttempts + "회 / 성공 " + interruptSuccesses + "회");
         sb.AppendLine("방어 카드 사용 " + shieldUses + "회 / 실제 방어도 흡수 " + shieldAbsorbed);
         sb.AppendLine(string.Format(invulnerabilitySummaryFormat, InvulnerabilityPrevented));
+        sb.AppendLine(string.Format(redShieldSummaryFormat, RedShieldPrevented));
         sb.AppendLine(string.Format(potionSummaryFormat, PotionUses, PotionHealing));
         sb.AppendLine("코스트 부족으로 거절된 입력 " + costShortInputs + "회");
         sb.AppendLine("상한 초과로 버린 코스트 " + costWasted.ToString("F2"));

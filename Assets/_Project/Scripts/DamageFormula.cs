@@ -9,7 +9,7 @@ public static class DamageFormula
     public const float DefenseConstant = 100f;
 
     /// <summary>
-    /// 최종피해 = FLOOR( 피해량 × 타수 × 100 / (대상 방어력 + 100) × 크리배율 + 0.5 )
+    /// 최종피해 = FLOOR( 피해량 × 타수 × 100 / (대상 방어력 + 100) × 크리배율 × 피해배율 + 0.5 )
     ///
     /// 곱셈을 먼저 하고 마지막에 한 번만 정수화한다.
     /// (1 - 방어력/(방어력+100)) 형태로 쓰면 부동소수점 오차로 25가 24가 된다.
@@ -21,10 +21,11 @@ public static class DamageFormula
     /// <param name="hitCount">타수. 1 미만은 1로 본다.</param>
     /// <param name="targetDefense">대상의 방어력.</param>
     /// <param name="critMultiplier">호출 시 전달한 크리티컬 배율. 플레이어 기본 1.5, 일반 1.0.</param>
-    public static int Compute(int damage, int hitCount, float targetDefense, float critMultiplier = 1f)
+    /// <param name="damageMultiplier">빨강 방어도 조건 등 정수화 전 적용할 피해 배율.</param>
+    public static int Compute(int damage, int hitCount, float targetDefense, float critMultiplier = 1f, float damageMultiplier = 1f)
     {
         int hits = Mathf.Max(1, hitCount);
-        float raw = damage * hits * DefenseConstant / (targetDefense + DefenseConstant) * critMultiplier;
+        float raw = damage * hits * DefenseConstant / (targetDefense + DefenseConstant) * critMultiplier * damageMultiplier;
 
         if (raw <= 0f) return 0;
 

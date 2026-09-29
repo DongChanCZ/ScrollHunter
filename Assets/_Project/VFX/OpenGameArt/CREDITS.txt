@@ -1,8 +1,8 @@
-Free effect assets used by skill VFX (all CC0 / public domain, original PNGs unedited; colour, size and playback set in Unity)
+Free effect assets used by skill VFX (all CC0 / public domain; any processing is noted per entry; colour, size and playback set in Unity)
 
 lightning_b.png, lightning1_b.png, lightning2_b.png, lightning3_b.png
   "lightning" by wreaderror — https://opengameart.org/content/lightning — CC0
-  (purple variants; seamless 2048x512 electric arcs)
+  (purple variants; seamless 2048x512 electric arcs; alpha generated from brightness)
 
 Explosion03.png, Effect95.png
   "Explosion effects and more" by Soluna Software — https://opengameart.org/content/explosion-effects-and-more — CC0
@@ -10,4 +10,8 @@ Explosion03.png, Effect95.png
 
 weapon_slash_blue_5_strip.png
   "Weapon Slash - Effect" by Cethiel — https://opengameart.org/content/weapon-slash-effect — CC0
-  (Alternative 2 Blue, animations 2 and 5; the 6 frames of each were placed side by side into one strip, pixels unedited)
+  (Alternative 2 Blue, animation 5; the 6 frames were placed side by side into one strip, pixels unedited)
+
+summon_circle7.png, summon_circle4.png
+  "4 Summoning Circles" by Luke.RUSTLTD — https://opengameart.org/content/4-summoning-circles — CC0
+  (circle7 / circle4 PNG; black line art converted to white lines with alpha, downscaled to 512 and lines slightly thickened)

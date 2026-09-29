@@ -1,0 +1,35 @@
+2026-09-29 / A33 빨강 반감 / Unity 6000.3.18f1 / Battle 씬
+함수·이벤트·강제 상태 검사. 실제 손 입력·자연 플레이·빌드 검증 아님.
+
+Red shield checks passed: 32
+Starting deck checks passed: 117
+Critical checks passed: 100
+Remaining skill checks passed: 77
+All passive checks passed: 74
+BattleFlow checks passed: 107
+Combat readability checks: 33 passed
+총 540개 통과.
+
+첫 StartingDeckChecks 실행: red saved values 실패 (기존 기대값 150).
+A33 원본 피해 240으로 기대값을 수정한 뒤 해당 검사 117개 재실행 통과.
+다른 검사는 통과한 실행 결과를 기록했으며 중복 집계하지 않음.
+
+C 실제 Enemy.Fire 경로 / 플레이어 HP500·방어력20 / 원본 피해240:
+방어도0: HP300 / 방어도0 / 흡수0 / 반감감소0
+방어도1: HP401 / 방어도0 / 흡수1 / 반감감소100
+방어도120: HP500 / 방어도20 / 흡수100 / 반감감소100
+초록·주황 불변, 주황 기절, 빨강 차단 실패, 생츄어리 우선,
+방어도 소진·1 잔존·연속 피격 재판정·반올림·0/최소 피해·전투 종료 차단,
+피격/요약 분리·요약 마지막·전투 초기화는 RedShieldChecks에서 확인.
+
+실제 Update 관측 (기존 2전투 C, 방어도120은 검사에서 부여):
+C stepped Update: elapsed=4.020, HP=500, shield=20, reduction=100, frames=201
+EditorApplication.Step으로 201프레임 진행. 피격 후 정보 확인 정지.
+[Player] 피격 100 (원본 240) 방어도 흡수 100 → HP -0 = 500/500 (방어도 20) / 빨강 반감 감소 100
+앞선 자동 시간 진행은 elapsed=0.000으로 관측되어 검증에서 제외함.
+
+적 정보: 기본 피해240·방어력 적용 전·시전4초·차단 불가·방어도 조건50%감소 표시.
+TMP isTextOverflowing=false, preferredHeight=150.01, rectHeight=236.
+화면: 01_빨강_정보창-1.png / 03_실제프레임_빨강흡수.png
+Play 종료·Battle 씬 저장, Console error/warning 0.
+새 빌드·사용자 플레이·반복 밸런스·밸런스시트 재계산 미수행.

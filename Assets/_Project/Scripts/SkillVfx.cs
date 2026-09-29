@@ -23,6 +23,8 @@ public class SkillVfx : MonoBehaviour
         public GameObject[] impactVariants;
         [Tooltip("타격 연출의 대상 기준 높이")]
         public float impactHeight = 0f;
+        [Tooltip("한 번에 여러 타가 동시에 들어가도 대상마다 타격 연출은 1개만 생성(동시 다타 광역용). 막타 판정은 그 연출로 이어진다")]
+        public bool impactOncePerTarget;
         [Tooltip("단일 피해 채널링의 타격보다 먼저 비행 연출을 시작하는 시간. 0이면 타격 시 생성")]
         [Min(0f)] public float channelHitLeadTime;
         [Tooltip("방어도 부여 시 켜는 화면 연출(Animator 포함). 켤 때마다 처음부터 재생")]
@@ -55,6 +57,11 @@ public class SkillVfx : MonoBehaviour
     // 연출 전용 난수. 크리티컬 판정(UnityEngine.Random)의 순서를 바꾸지 않도록 분리한다.
     private readonly System.Random variantRandom = new System.Random();
     private readonly Dictionary<Entry, int> lastVariant = new Dictionary<Entry, int>();
+
+    // 같은 프레임에 이미 띄운 대상별 타격 연출. Impact Once Per Target 항목만 쓴다.
+    private readonly Dictionary<Enemy, GameObject> frameImpacts = new Dictionary<Enemy, GameObject>();
+    private Entry frameImpactsEntry;
+    private int frameImpactsFrame = -1;
 
     // 그 타격으로 대상이 쓰러진 연출(막타). 다음 전투 시작·정리 때 비운다.
     private GameObject finishingImpact;
@@ -94,6 +101,7 @@ public class SkillVfx : MonoBehaviour
     {
         foreach (GameObject effect in spawned) if (effect != null) Destroy(effect);
         spawned.Clear();
+        frameImpacts.Clear();
         finishingImpact = null;
         StopCast();
         StopZone();
@@ -196,6 +204,21 @@ public class SkillVfx : MonoBehaviour
     {
         Entry entry = Find(skill);
         if (entry == null || target == null) return;
+        if (entry.impactOncePerTarget)
+        {
+            if (frameImpactsFrame != Time.frameCount || frameImpactsEntry != entry)
+            {
+                frameImpacts.Clear();
+                frameImpactsFrame = Time.frameCount;
+                frameImpactsEntry = entry;
+            }
+            // 같은 사용의 나머지 타격은 새로 띄우지 않고, 쓰러졌으면 이미 띄운 연출을 막타로 둔다.
+            if (frameImpacts.TryGetValue(target, out GameObject shown) && shown != null)
+            {
+                if (!target.IsAlive) finishingImpact = shown;
+                return;
+            }
+        }
         bool preparedChannel = entry == channelEntry;
         GameObject impact = null;
         if (preparedChannel)
@@ -217,6 +240,7 @@ public class SkillVfx : MonoBehaviour
         Destroy(impact, impactLifetime);
         spawned.RemoveAll(effect => effect == null);
         spawned.Add(impact);
+        if (entry.impactOncePerTarget) frameImpacts[target] = impact;
         // 알림은 피해 적용 직후라, 여기서 쓰러져 있으면 이 연출이 막타다.
         if (!target.IsAlive) finishingImpact = impact;
     }

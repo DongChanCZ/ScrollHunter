@@ -70,7 +70,7 @@ public static class StartingDeckChecks
             var orange = b.Data.Find(CastColor.Orange); var red = c.Data.Find(CastColor.Red);
             Check(orange.Damage == 40 && orange.CastTime == 3f && orange.StaggerAfterCast == 1.5f
                 && orange.StunSeconds == 2f, "orange saved values");
-            Check(red.Damage == 150 && red.CastTime == 4f && red.StaggerAfterCast == 2f, "red saved values");
+            Check(red.Damage == 240 && red.CastTime == 4f && red.StaggerAfterCast == 2f, "red saved values (A33)");
             Check(DamageFormula.Compute(30,1,20) == 25 && DamageFormula.Compute(40,1,20) == 33
                 && DamageFormula.Compute(150,1,20) == 125 && DamageFormula.Compute(0,1,0) == 0
                 && DamageFormula.Compute(1,1,9999) == 1, "damage rounding / zero / minimum");
@@ -246,7 +246,8 @@ public static class StartingDeckChecks
 
             Reset(armor); Check(armor.DisplayName == "매직아머" && deck.TryUseSlot(0) && player.Shield == 0, "armor renamed / delayed");
             Step(0.2f); Check(player.Shield == 120 && Near(deck.LockRemaining, 0.2f), "armor 120 and GCD");
-            player.TakeDamage(150); Check(player.Shield == 0 && player.CurrentHp == 495, "armor red absorbs 120 / HP5");
+            player.TakeDamage(c.Data.Find(CastColor.Red).Damage, CastColor.Red);
+            Check(player.Shield == 20 && player.CurrentHp == 500, "armor red halves then absorbs 100 / shield20 / HP0");
             Reset(silence); deck.TryUseSlot(0); Step(0.2f);
             Check(b.IsStaggered && Near((float)Get(b, "staggerTimer"), 2.5f), "orange interrupt 2.5");
             Reset(silence); Call(enemies, "StepTarget", 1); deck.TryUseSlot(0); Step(0.2f);

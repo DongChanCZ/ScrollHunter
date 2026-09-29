@@ -18,6 +18,12 @@ public class Player : MonoBehaviour
     [Tooltip("피해 감소에 쓰인다. 감소율 = 방어력 / (방어력 + 100)")]
     [SerializeField] private float defense = 20f;
 
+    [Tooltip("빨강 피격 직전 방어도가 남아 있을 때의 피해 배율. 방어력 계산 후, 반올림 전에 적용한다.")]
+    [SerializeField, Range(0f, 1f)] private float redShieldDamageMultiplier = 0.5f;
+    public float RedShieldDamageMultiplier => Mathf.Clamp01(redShieldDamageMultiplier);
+    [SerializeField] private string damageLogFormat = "[Player] 피격 {0} (원본 {1}) 방어도 흡수 {2} → HP -{3} = {4:F0}/{5:F0} (방어도 {6}){7}";
+    [SerializeField] private string redShieldLogFormat = " / 빨강 반감 감소 {0}";
+
     [Tooltip("4단계 계측. 비워두면 씬에서 자동으로 찾는다.")]
     [SerializeField] private CombatMetrics metrics;
 
@@ -176,7 +182,7 @@ public class Player : MonoBehaviour
     }
 
     /// <param name="incomingDamage">방어력 적용 전 피해량(절대값).</param>
-    public void TakeDamage(int incomingDamage)
+    public void TakeDamage(int incomingDamage, CastColor attackColor = CastColor.Green)
     {
         if (!IsAlive || (metrics != null && metrics.Ended)) return;
 
@@ -185,6 +191,17 @@ public class Player : MonoBehaviour
         {
             if (metrics != null) metrics.RecordInvulnerabilityPrevented(taken);
             return;
+        }
+
+        bool redShield = attackColor == CastColor.Red && Shield > 0;
+        int prevented = 0;
+        if (redShield)
+        {
+            // 이미 반올림한 taken을 나누지 않는다. 원본에서 배율까지 계산한 뒤 한 번만 정수화.
+            int reduced = DamageFormula.Compute(incomingDamage, 1, defense, 1f, RedShieldDamageMultiplier);
+            prevented = taken - reduced;
+            taken = reduced;
+            if (metrics != null) metrics.RecordRedShieldPrevented(prevented);
         }
 
         // 방어도에서 먼저 차감하고 남은 피해만 HP로 간다.
@@ -197,8 +214,8 @@ public class Player : MonoBehaviour
         // 계측은 부여량이 아니라 실제로 방어도가 막아낸 양을 센다 (09 문서 4단계 ②).
         if (metrics != null) metrics.RecordShieldAbsorbed(absorbed);
 
-        Debug.Log($"[{nameof(Player)}] 피격 {taken} (원본 {incomingDamage}) " +
-                  $"방어도 흡수 {absorbed} → HP -{toHp} = {currentHp:F0}/{MaxHp:F0} (방어도 {Shield})", this);
+        Debug.Log(string.Format(damageLogFormat, taken, incomingDamage, absorbed, toHp, currentHp, MaxHp, Shield,
+            redShield ? string.Format(redShieldLogFormat, prevented) : string.Empty), this);
 
         if (!IsAlive) Defeat();
     }

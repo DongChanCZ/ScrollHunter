@@ -25,6 +25,6 @@ MonoBehaviour:
   - skillName: "\uB300\uD615 \uD53C\uD574"
     castColor: 2
     castTime: 4
-    damage: 150
+    damage: 240
     staggerAfterCast: 2
     stunSeconds: 0

@@ -1,0 +1,14 @@
+2026-09-29 / Unity 6000.3.18f1 / Battle 씬 / D-10
+Unity MCP execute_code에서 Editor 검사 Run() 호출 결과.
+새 기능 검사는 ExecuteEvents의 좌클릭·드래그 이벤트 포함.
+
+Deck order checks passed: 38. Function and pointer-event checks; not physical input.
+Reward checks passed: 54. Function/UI event checks; not physical input or balance validation.
+BattleFlow checks passed: 107. Function/event verification; not a manual-input or balance test.
+All passive checks passed: 74. Synthetic function/UI state checks; physical input and natural balance are separate.
+Combat readability checks: 33 passed (current HP preserved)
+Start screen checks passed: 19. Function/button event checks; not physical input.
+
+합계 325개. Console 오류/경고 0.
+화면 캡처: 시작 편성 / 드래그 중 / 저장 후.
+실제 손 조작·새 빌드·자연 플레이 완주는 미수행.

@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum BattleFlowState { Fighting, BetweenBattles, Victory, Defeat, Title }
+public enum BattleFlowState { Fighting, BetweenBattles, Victory, Defeat, Title, Preparing }
 
 /// <summary>한 씬의 적을 재사용하는 시연 전투 진행. 승리 후 보상·덱 교체를 거쳐 다음 전투에 편성을 이월한다.</summary>
 [DefaultExecutionOrder(-50)]
@@ -67,6 +67,18 @@ public class BattleFlow : MonoBehaviour
     [SerializeField] private string resourceStatusFormat = "HP {0:0}/{1:0} · 포션 {2}/{3} · 시작 코스트 {4:0.#} / 상한 {5:0.#} · 방어도 배율 {6:0.##} · 차단 경직 {7:0.##}초";
     private string ResourceStatus => string.Format(resourceStatusFormat, player.CurrentHp, player.MaxHp,
         player.PotionsRemaining, player.PotionCapacity, cost.StartingCost, cost.Max, player.ShieldGainMultiplier, deck.InterruptStagger);
+    [Header("편성 순서")]
+    [SerializeField] private TMP_Text nextButtonLabel;
+    [SerializeField] private string firstBattleText = "전투 시작";
+    [SerializeField] private string nextBattleText = "다음 전투";
+    [SerializeField] private string orderLogFormat = "[편성 전투 {0} 준비] 순서 저장: {1}";
+    private List<SkillData> orderDraft;
+    public bool IsEditingOrder => orderDraft != null;
+    public bool CanEditOrder => !PanelHeld && (State == BattleFlowState.Preparing
+        || (State == BattleFlowState.BetweenBattles && RewardResolved));
+    public SkillData GetOrderCard(int index) => IsEditingOrder && index >= 0 && index < orderDraft.Count
+        ? orderDraft[index] : GetDeckCard(index);
+
     private List<SkillData> runDeck = new List<SkillData>();
     private readonly List<BattleRewardOption> rewardChoices = new List<BattleRewardOption>();
     private readonly List<RunRewardEffect> acquiredEffects = new List<RunRewardEffect>();
@@ -135,7 +147,12 @@ public class BattleFlow : MonoBehaviour
 
     public void StartRun()
     {
-        if (State == BattleFlowState.Title) RestartRun();
+        if (State != BattleFlowState.Title || !IsConfigured()) return;
+        ClearRunRewards();
+        runDeck = deck.CopyStartingDeck();
+        State = BattleFlowState.Preparing;
+        Time.timeScale = 0f;
+        RefreshUI();
     }
 
     public void RestartRun()
@@ -148,8 +165,46 @@ public class BattleFlow : MonoBehaviour
 
     public void NextBattle()
     {
-        if (State != BattleFlowState.BetweenBattles || BattleNumber >= BattleCount || !RewardResolved) return;
-        BeginBattle(BattleNumber, false);
+        if (IsEditingOrder || PanelHeld) return;
+        if (State == BattleFlowState.Preparing) BeginBattle(0, true);
+        else if (State == BattleFlowState.BetweenBattles && BattleNumber < BattleCount && RewardResolved)
+            BeginBattle(BattleNumber, false);
+    }
+
+    public bool BeginOrderEdit()
+    {
+        if (!CanEditOrder || IsEditingOrder) return false;
+        orderDraft = new List<SkillData>(runDeck);
+        RefreshUI();
+        return true;
+    }
+
+    public bool MoveOrderCard(int from, int to)
+    {
+        if (!CanEditOrder || !IsEditingOrder || from < 0 || to < 0
+            || from >= orderDraft.Count || to >= orderDraft.Count) return false;
+        SkillData card = orderDraft[from];
+        orderDraft.RemoveAt(from);
+        orderDraft.Insert(to, card);
+        RefreshUI();
+        return true;
+    }
+
+    public bool SaveOrder()
+    {
+        if (!CanEditOrder || !IsEditingOrder) return false;
+        runDeck = orderDraft;
+        orderDraft = null;
+        Debug.Log(string.Format(orderLogFormat, State == BattleFlowState.Preparing ? 1 : BattleNumber + 1,
+            string.Join(" → ", runDeck.ConvertAll(card => card.DisplayName))), this);
+        RefreshUI();
+        return true;
+    }
+
+    public void CancelOrderEdit()
+    {
+        orderDraft = null;
+        RefreshUI();
     }
 
     public bool SelectReward(int index)
@@ -298,6 +353,7 @@ public class BattleFlow : MonoBehaviour
         // 이전 전투 종료 때 멈춰 있던 스킬 연출이 새 전투에서 재생되지 않게 지운다.
         panelHoldRemaining = 0f;
         if (skillVfx != null) skillVfx.Clear();
+        orderDraft = null;
         deck.SetDeck(runDeck);
         SelectedReward = null;
         RewardResolved = false;
@@ -360,22 +416,24 @@ public class BattleFlow : MonoBehaviour
     private void RefreshUI()
     {
         bool title = State == BattleFlowState.Title;
+        bool preparing = State == BattleFlowState.Preparing;
         if (startPanel != null) startPanel.SetActive(title);
         if (progressText != null)
         {
-            progressText.gameObject.SetActive(!title);
+            progressText.gameObject.SetActive(!title && !preparing);
             if (BattleNumber > 0)
                 progressText.text = string.Format(progressFormat, BattleNumber, BattleCount, encounters[BattleNumber - 1].label);
         }
         if (passiveText != null)
         {
-            passiveText.gameObject.SetActive(!title);
+            passiveText.gameObject.SetActive(!title && !preparing);
             passiveText.text = string.Format(passiveStatusFormat, cost.RegenerationPerSecond, player.CriticalChance, PassiveSummary);
         }
         bool ended = State == BattleFlowState.Victory || State == BattleFlowState.Defeat;
         bool shown = !PanelHeld;
         if (resultPanel != null) resultPanel.SetActive(ended && shown);
-        if (nextButton != null) nextButton.gameObject.SetActive(shown && State == BattleFlowState.BetweenBattles && RewardResolved);
+        if (nextButton != null) nextButton.gameObject.SetActive(shown && CanEditOrder && !IsEditingOrder);
+        if (nextButtonLabel != null) nextButtonLabel.text = preparing ? firstBattleText : nextBattleText;
         if (restartButton != null) restartButton.gameObject.SetActive(shown && ended);
         if (rewardUI != null && shown) rewardUI.Refresh();
         if (resultText == null || !ended) return;
