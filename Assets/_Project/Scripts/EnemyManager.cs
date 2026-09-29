@@ -23,6 +23,9 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private Vector3 formationCenter = new Vector3(0f, 1f, 0f);
     [Min(0f)] [SerializeField] private float sideOffset = 3.2f;
 
+    /// <summary>적 1~3번 자리의 가운데(2번 자리). 구역 전체를 덮는 연출의 기준점.</summary>
+    public Vector3 FormationCenter => formationCenter;
+
     [Header("캐스팅 3색")]
     [SerializeField] private Color greenColor = new Color(0.25f, 0.80f, 0.35f);
     [SerializeField] private Color orangeColor = new Color(1.00f, 0.60f, 0.10f);

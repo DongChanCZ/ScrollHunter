@@ -30,7 +30,7 @@
 
 > **2026-09-28 병합 후 검토(Codex):** 병합 커밋 `54d0460`의 UI·신규 스킬·HP 연결 확인, 기존 검사 705개 통과. 발견된 게임 병합 오류 없음. 09의 구형 UI 도구/씬 복구 안내와 10의 현재 아이콘 표기 정정. 근거·한계는 `Docs/07#d10-merge-review`. 게임 파일·수치 변경 없음.
 
-> **2026-09-28 스킬 연출 6종(Claude):** 사용자 요청으로 파이어볼 타격 폭발, 라이트닝 스피어 시전 중 전기 집중→완료 번개, 매직아머 방어도 부여 시 보호막 UI 연출, 후속으로 아이스애로우 얼음 화살·파이어 필라 적별 불기둥·침묵 차단 성공 봉인 추가(Kenney Particle Pack CC0, `Assets/_Project/VFX/`). `DeckSystem`에 판정 무관 연출 이벤트 3개와 `SkillVfx.cs` 추가, 후속 침묵 연결로 차단 판정 이벤트까지 총 4개. 기존 검사 688개 통과. 후속으로 선명도 보강, 막타 잔여 연출 버그 수정(승리 막타 연출은 결과 화면 0.6초 보류 후 표시, 전투 전환 시 연출 정리, 검사 705개 통과). 원본 `Docs/10#skill-vfx-20260928`, 기록 `Docs/07#d10-skill-vfx`.
+> **2026-09-28~29 스킬 연출 9종(Claude):** 사용자 요청으로 파이어볼 타격 폭발, 라이트닝 스피어 시전 중 전기 집중→완료 번개, 매직아머 방어도 부여 시 보호막 UI 연출, 후속으로 아이스애로우 얼음 화살·파이어 필라 적별 불기둥·침묵 차단 성공 봉인, 09-29 매직 커터 애니메이션 X자 칼날·매직 스파크 화면 폭 전체 보라 전류·매직 임팩트 마력 폭발 추가(OpenGameArt CC0), 전 연출 색·투명도 강화(Kenney Particle Pack CC0, `Assets/_Project/VFX/`). `DeckSystem`에 판정 무관 연출 이벤트 3개와 `SkillVfx.cs` 추가, 후속 침묵 연결로 차단 판정 이벤트까지 총 4개. 기존 검사 688개 통과. 후속으로 선명도 보강, 막타 잔여 연출 버그 수정(승리 막타 연출은 결과 화면 0.6초 보류 후 표시, 전투 전환 시 연출 정리, 검사 705개 통과). 원본 `Docs/10#skill-vfx-20260928`, 기록 `Docs/07#d10-skill-vfx`.
 
 > **2026-09-28 생츄어리 신성한 빛 연출(Claude):** 사용자 요청으로 무적 중 노란 테두리를 진한 금색 성역 결계 연출(가장자리 빛·바닥 회전 마법진·솟는 빛기둥·떠오르는 빛 입자, Kenney Light Masks·Particle Pack CC0)로 교체. UI Image·Animator만 사용(파티클 시스템 없음), UI 뒤·3D 위 배치, 입력 통과·표시 조건 동일. 검사 1줄 정정, 남은 스킬 77·가독성 33 통과. 기록 `Docs/07#d10-sanctuary-vfx`.
 
@@ -175,7 +175,7 @@
 - 스킬 연출은 `DeckSystem`의 연출 전용 알림(`CastStarted`·`HitApplied`·`ShieldApplied`·`InterruptResolved`)을 받는 `SkillVfx`(Systems 오브젝트)가 재생한다. 판정·수치·계측에 관여하지 않는다.
 - **새 연출은 SkillVfx의 Entries에 스킬과 프리팹을 연결해 추가**한다. 직접 Instantiate하면 잔여 연출 정리·막타 보류가 적용되지 않는다.
   - `Impact At Target`(타격 시)·`Impact Variants`(타격마다 무작위 1개, 직전 중복 제외, 전투 난수와 분리): 잔여 정리 + 승리 막타 시 결과·보상 화면 0.6초 보류가 자동 적용. 타격 이펙트는 ParticleSystem으로 만든다.
-  - `Cast At Target`(시전 중)·`Self Effect`(방어 시 화면)·`Interrupt Success At Target`(차단 성공 시 대상): 정리만 자동. 보류를 일으키지 않는다.
+  - `Cast Zone`(시전·채널링 동안 적 1~3번 자리 구역 전체)·`Cast At Target`(시전 중)·`Self Effect`(방어 시 화면)·`Interrupt Success At Target`(차단 성공 시 대상): 정리만 자동. 보류를 일으키지 않는다.
   - 타격 이펙트 수명 2초(`SkillVfx.impactLifetime`)·보류 0.6초(`BattleFlow.finishingEffectHold`)는 전 스킬 공통값이다.
 - 막타 보류는 화면 표시만 늦춘다. 승패 판정·보상 준비·요약 출력은 즉시 처리하며, 패배·스킬 외 처치는 보류하지 않는다.
 

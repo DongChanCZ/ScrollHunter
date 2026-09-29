@@ -15,6 +15,8 @@ public class SkillVfx : MonoBehaviour
         public GameObject castAtTarget;
         [Tooltip("시전 중 연출의 대상 기준 높이")]
         public float castHeight = 3.2f;
+        [Tooltip("시전·채널링 동안 적 구역 전체(배치된 적 자리들의 중심)에 유지. 끝나거나 기절로 끊기면 사라진다")]
+        public GameObject castZone;
         [Tooltip("타격 1회마다 대상 위치에 생성")]
         public GameObject impactAtTarget;
         [Tooltip("타격마다 이 중 하나를 무작위로 사용(직전과 같은 것은 피함). 비워두면 Impact At Target 사용")]
@@ -39,6 +41,8 @@ public class SkillVfx : MonoBehaviour
     [Tooltip("대상 몸체에 가려지지 않게 연출을 카메라 쪽으로 당기는 거리(월드 단위)")]
     [SerializeField] private float towardCamera = 0.9f;
 
+    private GameObject activeZone;
+    private SkillData activeZoneSkill;
     private GameObject activeCast;
     private SkillData activeCastSkill;
     private Enemy castTarget;
@@ -92,6 +96,7 @@ public class SkillVfx : MonoBehaviour
         spawned.Clear();
         finishingImpact = null;
         StopCast();
+        StopZone();
         StopPendingImpact();
         foreach (GameObject effect in selfEffectHideAt.Keys)
         {
@@ -141,9 +146,15 @@ public class SkillVfx : MonoBehaviour
     private void OnCastStarted(SkillData skill)
     {
         StopCast();
+        StopZone();
         StopPendingImpact();
         Entry entry = Find(skill);
         if (entry == null || enemies == null) return;
+        if (entry.castZone != null && skill.CastTime > 0f)
+        {
+            activeZoneSkill = skill;
+            activeZone = Instantiate(entry.castZone, ZoneCenter(), Quaternion.identity);
+        }
         Enemy target = enemies.CurrentTarget;
         if (target == null || !target.IsAlive) return;
         if (entry.channelHitLeadTime > 0f && skill.IsChanneling && !skill.IsAreaOfEffect
@@ -157,6 +168,17 @@ public class SkillVfx : MonoBehaviour
         castTarget = target;
         castHeight = entry.castHeight;
         activeCast = Instantiate(entry.castAtTarget, Place(target, castHeight), Quaternion.identity);
+    }
+
+    /// <summary>적 1~3번 자리의 중심. 몇 명이 나오든 구역 전체를 덮는 연출의 기준.</summary>
+    private Vector3 ZoneCenter()
+    {
+        Vector3 center = enemies != null ? enemies.FormationCenter : transform.position;
+        Camera view = Camera.main;
+        if (view == null || towardCamera <= 0f) return center;
+        Vector3 toCamera = view.transform.position - center;
+        toCamera.y = 0f;
+        return toCamera.sqrMagnitude > 0.0001f ? center + toCamera.normalized * towardCamera : center;
     }
 
     /// <summary>대상 기준 위치에서 카메라 쪽으로 조금 당긴 위치.</summary>
@@ -235,6 +257,7 @@ public class SkillVfx : MonoBehaviour
     private void LateUpdate()
     {
         UpdateChannelImpact();
+        if (activeZone != null && (deck == null || deck.CastingCard != activeZoneSkill)) StopZone();
         if (activeCast != null)
         {
             Enemy target = enemies != null ? enemies.CurrentTarget : null;
@@ -292,6 +315,13 @@ public class SkillVfx : MonoBehaviour
         channelEntry = null;
         channelTarget = null;
         channelHits = 0;
+    }
+
+    private void StopZone()
+    {
+        if (activeZone != null) Destroy(activeZone);
+        activeZone = null;
+        activeZoneSkill = null;
     }
 
     private void StopCast()
