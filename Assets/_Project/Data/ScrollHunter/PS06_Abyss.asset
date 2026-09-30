@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: PS06_Abyss
   m_EditorClassIdentifier: Assembly-CSharp::StatRewardEffect
   displayName: "\uC2EC\uC5F0\uC758 \uC2A4\uD06C\uB864"
-  description: "\uCF54\uC2A4\uD2B8 \uC0C1\uD55C +2\n\uD604\uC7AC \uCF54\uC2A4\uD2B8\uB294
-    \uBCF4\uCDA9\uD558\uC9C0 \uC54A\uC74C"
+  description: "\uD604\uC7AC \uCF54\uC2A4\uD2B8\uB294 \uBCF4\uCDA9\uD558\uC9C0 \uC54A\uC74C"
   maxStacks: 2
   rareReward: 0
   offerChance: 0.01

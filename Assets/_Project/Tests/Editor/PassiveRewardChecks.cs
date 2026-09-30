@@ -61,7 +61,11 @@ public static class PassiveRewardChecks
             flow.CancelRewardSelection(); ui.Refresh();
             check(offered().SequenceEqual(snapshot) && !flow.RewardResolved, "back/refresh do not reroll");
             var selected = flow.GetRewardChoice(2).Effect;
-            check(labels[2].text.Contains("0/") && labels[2].text.Contains("덱 유지"), "passive candidate states stacks and immediate application");
+            // 패시브는 전용 영역(보유·안내)에 표시하고 스킬용 설명 라벨은 비운다.
+            object passiveSlot = ((Array)Get(ui, "passiveSlots")).GetValue(2);
+            Func<string, string> slotText = field => ((TMPro.TMP_Text)passiveSlot.GetType().GetField(field).GetValue(passiveSlot)).text;
+            check(slotText("stacks").Contains("0</b> / 최대") && slotText("guide").Contains("덱 유지") && labels[2].text.Length == 0,
+                "passive candidate states stacks and immediate application");
             Click(choices[2]);
             check(flow.RewardResolved && flow.SelectedReward == null && flow.GetPassiveStacks(selected) == 1, "passive button immediately resolves");
             check(Enumerable.Range(0, 8).All(i => flow.GetDeckCard(i) == starting[i]), "passive preserves all eight deck positions");

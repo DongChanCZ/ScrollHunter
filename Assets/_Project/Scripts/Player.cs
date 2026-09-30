@@ -46,13 +46,14 @@ public class Player : MonoBehaviour
     private float shieldGainBonus;
     private float interruptStaggerBonus;
     private int potionCapacityBonus;
-    [SerializeField, Min(0)] private int basePotionCapacity = 1;
+    [SerializeField, Min(0)] private int basePotionCapacity = 2;
     [SerializeField, Range(0f, 1f)] private float potionHealFraction = 0.3f;
     [SerializeField] private KeyCode potionKey = KeyCode.LeftShift;
     [SerializeField] private KeyCode alternatePotionKey = KeyCode.RightShift;
     public int PotionsRemaining { get; private set; }
     public float PotionHealAmount => Mathf.Max(0, Mathf.FloorToInt(MaxHp * potionHealFraction + 0.5f));
     public bool CanUsePotion => Time.timeScale > 0f && IsAlive && !IsStunned
+        && (tutorial == null || !tutorial.BlocksOtherControls)
         && PotionsRemaining > 0 && currentHp < MaxHp && PotionHealAmount > 0f
         && (metrics == null || !metrics.Ended);
     public bool TryUsePotion()
@@ -114,9 +115,11 @@ public class Player : MonoBehaviour
     private void OnDisable() => SetSanctuary(false);
 
     private bool defeatHandled;
+    private TutorialFlow tutorial;
 
     private void Awake()
     {
+        tutorial = FindFirstObjectByType<TutorialFlow>();
         // 직전 실행이 패배로 끝나 timeScale이 0인 채 남는 것을 막는다.
         Time.timeScale = 1f;
 

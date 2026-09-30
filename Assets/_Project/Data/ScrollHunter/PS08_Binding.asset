@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: PS08_Binding
   m_EditorClassIdentifier: Assembly-CSharp::StatRewardEffect
   displayName: "\uC18D\uBC15\uC758 \uC2A4\uD06C\uB864"
-  description: "\uCC28\uB2E8 \uC131\uACF5 \uACBD\uC9C1 +0.5\uCD08\n\uD50C\uB808\uC774\uC5B4
-    \uAE30\uC808 \uC2DC\uAC04\uC740 \uC720\uC9C0"
+  description: "\uD50C\uB808\uC774\uC5B4 \uAE30\uC808 \uC2DC\uAC04\uC740 \uC720\uC9C0"
   maxStacks: 2
   rareReward: 0
   offerChance: 0.01

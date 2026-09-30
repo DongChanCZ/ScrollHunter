@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum BattleFlowState { Fighting, BetweenBattles, Victory, Defeat, Title, Preparing }
+public enum BattleFlowState { Fighting, BetweenBattles, Victory, Defeat, Title, Preparing, TutorialComplete, CountingDown }
 
 /// <summary>한 씬의 적을 재사용하는 시연 전투 진행. 승리 후 보상·덱 교체를 거쳐 다음 전투에 편성을 이월한다.</summary>
 [DefaultExecutionOrder(-50)]
@@ -20,6 +20,8 @@ public class BattleFlow : MonoBehaviour
     }
 
     [SerializeField] private Encounter[] encounters;
+    [SerializeField] private TutorialFlow tutorial;
+    private bool HasTutorial => tutorial != null && tutorial.isActiveAndEnabled;
     [SerializeField] private Player player;
     [SerializeField] private DeckSystem deck;
     [SerializeField] private CostSystem cost;
@@ -33,6 +35,14 @@ public class BattleFlow : MonoBehaviour
     [Tooltip("막타 스킬 연출이 남아 있을 때 결과·보상 화면을 늦추는 시간(실제 초). 게임은 멈춘 채 연출만 재생. 0이면 즉시 전환")]
     [SerializeField] private float finishingEffectHold = 0.6f;
 
+    [Header("전투 준비")]
+    [SerializeField, Min(0)] private float countdownSeconds = 3f;
+    [SerializeField, TextArea] private string countdownFormat = "전투 준비\n<size=140%>{0}</size>";
+    private float countdownRemaining;
+    private GameObject countdownPanel;
+    private TMP_Text countdownText;
+    public bool IsCountingDown => State == BattleFlowState.CountingDown;
+
     [Header("시작 화면")]
     [SerializeField] private GameObject startPanel;
     [SerializeField] private Button startButton;
@@ -45,7 +55,7 @@ public class BattleFlow : MonoBehaviour
     [SerializeField] private Button restartButton;
     [SerializeField] private string progressFormat = "전투 {0} / {1}  ·  {2}";
     [SerializeField] private string victoryFormat = "전투 {0} 승리\n남은 HP {1:0} / {2:0}\n이 HP로 다음 전투를 시작합니다.";
-    [SerializeField] private string completeFormat = "3전투 완료\n남은 HP {0:0} / {1:0}";
+    [SerializeField] private string completeFormat = "모험 완료\n남은 HP {0:0} / {1:0}";
     [SerializeField] private string defeatFormat = "전투 {0} 패배\n처음부터 다시 도전할 수 있습니다.";
 
     [Header("시연 보상")]
@@ -74,7 +84,7 @@ public class BattleFlow : MonoBehaviour
     [SerializeField] private string orderLogFormat = "[편성 전투 {0} 준비] 순서 저장: {1}";
     private List<SkillData> orderDraft;
     public bool IsEditingOrder => orderDraft != null;
-    public bool CanEditOrder => !PanelHeld && (State == BattleFlowState.Preparing
+    public bool CanEditOrder => !PanelHeld && (!HasTutorial || (!tutorial.ShowingGuide && !tutorial.BlocksInputThisFrame)) && (State == BattleFlowState.Preparing
         || (State == BattleFlowState.BetweenBattles && RewardResolved));
     public SkillData GetOrderCard(int index) => IsEditingOrder && index >= 0 && index < orderDraft.Count
         ? orderDraft[index] : GetDeckCard(index);
@@ -122,6 +132,7 @@ public class BattleFlow : MonoBehaviour
 
     private void Awake()
     {
+        if (tutorial == null) tutorial = FindFirstObjectByType<TutorialFlow>();
         if (player == null) player = FindFirstObjectByType<Player>();
         if (deck == null) deck = FindFirstObjectByType<DeckSystem>();
         if (cost == null) cost = FindFirstObjectByType<CostSystem>();
@@ -133,6 +144,7 @@ public class BattleFlow : MonoBehaviour
         if (startButton != null) startButton.onClick.AddListener(StartRun);
         if (nextButton != null) nextButton.onClick.AddListener(NextBattle);
         if (restartButton != null) restartButton.onClick.AddListener(RestartRun);
+        BuildCountdownUI();
     }
 
     private void Start()
@@ -150,6 +162,7 @@ public class BattleFlow : MonoBehaviour
         if (State != BattleFlowState.Title || !IsConfigured()) return;
         ClearRunRewards();
         runDeck = deck.CopyStartingDeck();
+        if (HasTutorial) { BeginTutorial(false); return; }
         State = BattleFlowState.Preparing;
         Time.timeScale = 0f;
         RefreshUI();
@@ -158,17 +171,19 @@ public class BattleFlow : MonoBehaviour
     public void RestartRun()
     {
         if (!IsConfigured()) return;
+        if (HasTutorial && tutorial.Active) { BeginTutorial(true); return; }
         ClearRunRewards();
         runDeck = deck.CopyStartingDeck();
-        BeginBattle(0, true);
+        if (HasTutorial) BeginTutorial(false);
+        else BeginBattle(0, true);
     }
 
     public void NextBattle()
     {
-        if (IsEditingOrder || PanelHeld) return;
-        if (State == BattleFlowState.Preparing) BeginBattle(0, true);
+        if (IsEditingOrder || PanelHeld || (HasTutorial && (tutorial.ShowingGuide || tutorial.BlocksInputThisFrame))) return;
+        if (State == BattleFlowState.Preparing) StartBattleCountdown(0, true);
         else if (State == BattleFlowState.BetweenBattles && BattleNumber < BattleCount && RewardResolved)
-            BeginBattle(BattleNumber, false);
+            StartBattleCountdown(BattleNumber, false);
     }
 
     public bool BeginOrderEdit()
@@ -342,8 +357,97 @@ public class BattleFlow : MonoBehaviour
         return false;
     }
 
-    private void BeginBattle(int index, bool restoreHp)
+    public void BeginTutorial(bool retry)
     {
+        int hp = retry ? tutorial.Enemy.CurrentHp : tutorial.Enemy.MaxHp;
+        runDeck = deck.CopyStartingDeck();
+        BeginBattle(0, true, new[] { tutorial.Enemy });
+        tutorial.Begin(hp, retry);
+        RefreshUI();
+    }
+
+    public void FinishTutorial(bool skipped)
+    {
+        Time.timeScale = 0f;
+        deck.EndBattle();
+        player.EndBattle();
+        metrics.FlushPendingSummary();
+        metrics.WaitForBattle();
+        enemies.WaitForBattle();
+        if (information != null) information.BeginBattle();
+        if (skillVfx != null) skillVfx.Clear();
+        if (damageNumbers != null) damageNumbers.Clear();
+        panelHoldRemaining = 0f;
+        State = skipped ? BattleFlowState.Preparing : BattleFlowState.TutorialComplete;
+        Debug.Log(skipped ? "[튜토리얼] 스킵 — 보상 없이 편성" : "[튜토리얼] 학습·처치 완료 — 완료 안내 확인 대기", this);
+        RefreshUI();
+    }
+
+    internal void OpenTutorialPreparation()
+    {
+        if (State != BattleFlowState.TutorialComplete) return;
+        State = BattleFlowState.Preparing;
+        Debug.Log("[튜토리얼] 완료 안내 확인 — 편성 학습", this);
+        RefreshUI();
+    }
+
+    public void RefreshTutorialUI() => RefreshUI();
+
+    private void StartBattleCountdown(int index, bool restoreHp)
+    {
+        BeginBattle(index, restoreHp);
+        if (countdownSeconds <= 0f) return;
+        countdownRemaining = countdownSeconds;
+        State = BattleFlowState.CountingDown;
+        Time.timeScale = 0f;
+        countdownPanel.SetActive(true);
+        countdownPanel.transform.SetAsLastSibling();
+        countdownText.text = string.Format(countdownFormat, Mathf.CeilToInt(countdownRemaining));
+        RefreshUI();
+    }
+
+    private void AdvanceCountdown(float unscaledDelta)
+    {
+        if (!IsCountingDown) return;
+        countdownRemaining = Mathf.Max(0f, countdownRemaining - unscaledDelta);
+        if (countdownRemaining > 0f)
+        {
+            countdownText.text = string.Format(countdownFormat, Mathf.CeilToInt(countdownRemaining));
+            return;
+        }
+        countdownPanel.SetActive(false);
+        State = BattleFlowState.Fighting;
+        Time.timeScale = information != null ? information.BattleSpeed : 1f;
+        RefreshUI();
+    }
+
+    private void BuildCountdownUI()
+    {
+        Canvas canvas = progressText != null ? progressText.GetComponentInParent<Canvas>() : FindFirstObjectByType<Canvas>();
+        if (canvas == null) return;
+        countdownPanel = new GameObject("BattleCountdown", typeof(RectTransform), typeof(Image));
+        countdownPanel.transform.SetParent(canvas.transform, false);
+        var root = (RectTransform)countdownPanel.transform;
+        root.anchorMin = Vector2.zero; root.anchorMax = Vector2.one;
+        root.offsetMin = root.offsetMax = Vector2.zero;
+        countdownPanel.GetComponent<Image>().color = new Color(0, 0, 0, .35f);
+        var label = new GameObject("CountdownText", typeof(RectTransform), typeof(TextMeshProUGUI));
+        label.transform.SetParent(root, false);
+        countdownText = label.GetComponent<TextMeshProUGUI>();
+        if (progressText != null) countdownText.font = progressText.font;
+        countdownText.fontSize = 64f;
+        countdownText.color = new Color32(231, 203, 135, 255);
+        countdownText.alignment = TextAlignmentOptions.Center;
+        countdownText.raycastTarget = false;
+        countdownText.rectTransform.anchorMin = countdownText.rectTransform.anchorMax = new Vector2(.5f, .5f);
+        countdownText.rectTransform.sizeDelta = new Vector2(800, 260);
+        countdownPanel.SetActive(false);
+    }
+
+    private void BeginBattle(int index, bool restoreHp, Enemy[] tutorialEnemies = null)
+    {
+        countdownRemaining = 0f;
+        if (countdownPanel != null) countdownPanel.SetActive(false);
         Time.timeScale = 0f;
         // Update의 종료 처리 전에 재시작해도 마지막 결과와 요약을 먼저 마감한다.
         if (metrics.Ended) deck.EndBattle();
@@ -361,10 +465,10 @@ public class BattleFlow : MonoBehaviour
         player.BeginBattle(restoreHp);
         cost.BeginBattle();
         if (information != null) information.BeginBattle();
-        BattleNumber = index + 1;
+        BattleNumber = tutorialEnemies != null ? 0 : index + 1;
         metrics.BeginBattle(BattleNumber);
-        metrics.RecordRunModifiers(cost.RegenerationPerSecond, player.CriticalChance, PassiveSummary, ResourceStatus);
-        enemies.BeginBattle(encounters[index].enemies, encounters[index].centerEnemy);
+        metrics.RecordRunModifiers(cost.RegenerationPerSecond, player.CriticalChance, tutorialEnemies != null ? "튜토리얼 (일반 전투와 별도)" : PassiveSummary, ResourceStatus);
+        enemies.BeginBattle(tutorialEnemies ?? encounters[index].enemies, tutorialEnemies != null ? null : encounters[index].centerEnemy);
         State = BattleFlowState.Fighting;
         RefreshUI();
         Time.timeScale = information != null ? information.BattleSpeed : 1f;
@@ -373,6 +477,8 @@ public class BattleFlow : MonoBehaviour
 
     private void Update()
     {
+        if (IsCountingDown) { AdvanceCountdown(Time.unscaledDeltaTime); return; }
+        if (HasTutorial && tutorial.Active) { tutorial.TickCombat(); return; }
         if (TickPanelHold()) return;
         if (BattleNumber == 0 || State != BattleFlowState.Fighting) return;
         if (!metrics.Ended && !enemies.CombatEnded && player.IsAlive) return;
@@ -416,12 +522,13 @@ public class BattleFlow : MonoBehaviour
     private void RefreshUI()
     {
         bool title = State == BattleFlowState.Title;
-        bool preparing = State == BattleFlowState.Preparing;
+        bool preparing = State == BattleFlowState.Preparing || State == BattleFlowState.TutorialComplete;
         if (startPanel != null) startPanel.SetActive(title);
         if (progressText != null)
         {
             progressText.gameObject.SetActive(!title && !preparing);
-            if (BattleNumber > 0)
+            if (HasTutorial && tutorial.Active) progressText.text = "튜토리얼 · 깡패";
+            else if (BattleNumber > 0)
                 progressText.text = string.Format(progressFormat, BattleNumber, BattleCount, encounters[BattleNumber - 1].label);
         }
         if (passiveText != null)

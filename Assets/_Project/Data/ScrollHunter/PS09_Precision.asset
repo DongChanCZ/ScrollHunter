@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: PS09_Precision
   m_EditorClassIdentifier: Assembly-CSharp::StatRewardEffect
   displayName: "\uC815\uBC00\uC758 \uC2A4\uD06C\uB864"
-  description: "\uD06C\uB9AC\uD2F0\uCEEC \uD655\uB960 +5%p"
+  description: 
   maxStacks: 3
+  rareReward: 0
+  offerChance: 0.01
   stat: 1
   amount: 5
+  additionalBonuses: []

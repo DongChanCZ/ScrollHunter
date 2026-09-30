@@ -17,7 +17,12 @@ public class BattleRewardUI : MonoBehaviour
     [SerializeField] private Button[] choiceButtons;
     [SerializeField] private TMP_Text[] choiceLabels;
     [SerializeField] private Button[] deckButtons;
+    [Tooltip("편성 카드의 상세 설명(효과·조건). 정해진 위치에서 아래로 늘어난다")]
     [SerializeField] private TMP_Text[] deckLabels;
+    [Tooltip("편성 카드 영역. 모든 카드가 같은 위치·크기를 쓰므로 설명 길이와 관계없이 순번·이름·주요 정보가 정렬된다")]
+    [SerializeField] private TMP_Text[] deckSlotLabels;
+    [SerializeField] private TMP_Text[] deckNameLabels;
+    [SerializeField] private TMP_Text[] deckInfoLabels;
     [Tooltip("보상 후보 스킬 아이콘. 패시브·빈 칸은 숨긴다")]
     [SerializeField] private Image[] choiceIcons;
     [Tooltip("교체 화면의 덱 카드 아이콘")]
@@ -29,7 +34,8 @@ public class BattleRewardUI : MonoBehaviour
     [SerializeField] private string noChoicesText = "받을 수 있는 보상이 없습니다. 스킵 후 진행하세요.";
     [SerializeField] private string replaceFormat = "{0} 선택 · 교체할 카드 1장을 누르세요.";
     [SerializeField] private string readyText = "편성을 확인하고 다음 전투로 진행하세요.";
-    [SerializeField] private string deckCardFormat = "{0}번 · {1}\n{2}";
+    [Tooltip("{0} 순번, {1} 시작 손패·대기열")]
+    [SerializeField] private string deckSlotFormat = "{0}번 · {1}";
     [SerializeField] private string handLabel = "시작 손패";
     [SerializeField] private string queueLabel = "대기열";
 
@@ -66,8 +72,49 @@ public class BattleRewardUI : MonoBehaviour
         if (cancelOrderButton != null) cancelOrderButton.onClick.AddListener(flow.CancelOrderEdit);
     }
 
-    [SerializeField] private string passiveChoiceFormat = "패시브 · {0}\n보유 {1}/{2}\n선택 즉시 적용 · 덱 유지";
-    [SerializeField] private string unlimitedPassiveChoiceFormat = "패시브 · {0}\n보유 {1}\n선택 즉시 적용 · 덱 유지";
+    /// <summary>후보 슬롯의 패시브 전용 영역. 스킬 후보일 때는 꺼진다.</summary>
+    [System.Serializable]
+    private class PassiveSlot
+    {
+        public GameObject root;
+        public TMP_Text category;
+        public TMP_Text title;
+        public TMP_Text effect;
+        public TMP_Text stacks;
+        public TMP_Text guide;
+    }
+
+    [System.Serializable]
+    private struct StatText
+    {
+        public RewardStat stat;
+        [Tooltip("{0} 패시브 데이터의 수치. 핵심 수치만 <b>로 강조")]
+        public string format;
+    }
+
+    [Header("패시브 후보")]
+    [Tooltip("choiceButtons와 같은 순서. 분류·이름·효과는 위에서 고정 위치, 보유·안내는 아래 고정 영역")]
+    [SerializeField] private PassiveSlot[] passiveSlots;
+    [SerializeField] private string passiveCategoryText = "패시브";
+    [SerializeField] private string passiveStackFormat = "보유 <b>{0}</b> / 최대 {1}";
+    [SerializeField] private string unlimitedPassiveStackFormat = "보유 <b>{0}</b>";
+    [SerializeField] private string passiveGuideText = "선택 즉시 적용 · 덱 유지";
+    [Tooltip("패시브 설명(조건·주의)을 효과 줄 아래에 흐리게 표시")]
+    [SerializeField] private string passiveNoteFormat = "<alpha=#CC>{0}<alpha=#FF>";
+    [Tooltip("능력치별 효과 문구. 수치·단위는 패시브 데이터(능력치 종류·수치)에서 정해진다")]
+    [SerializeField] private StatText[] passiveStatFormats =
+    {
+        new StatText { stat = RewardStat.PotionCapacity, format = "포션 최대 보유량 <b>+{0:0}</b>" },
+        new StatText { stat = RewardStat.Potions, format = "현재 포션 <b>{0:0}개</b> 보충" },
+        new StatText { stat = RewardStat.Healing, format = "즉시 HP <b>{0:0}</b> 회복" },
+        new StatText { stat = RewardStat.MaximumHp, format = "최대 HP <b>+{0:0}</b>" },
+        new StatText { stat = RewardStat.CostRegeneration, format = "초당 코스트 충전 <b>+{0:0.##}</b>" },
+        new StatText { stat = RewardStat.StartingCost, format = "매 전투 시작 코스트 <b>+{0:0.#}</b>" },
+        new StatText { stat = RewardStat.MaximumCost, format = "코스트 상한 <b>+{0:0.#}</b>" },
+        new StatText { stat = RewardStat.ShieldGain, format = "방어도 부여량 <b>+{0:0%}</b>" },
+        new StatText { stat = RewardStat.InterruptStagger, format = "차단 성공 경직 <b>+{0:0.##}초</b>" },
+        new StatText { stat = RewardStat.CriticalChance, format = "크리티컬 확률 <b>+{0:0.#}%p</b>" },
+    };
 
     public void Refresh()
     {
@@ -95,9 +142,14 @@ public class BattleRewardUI : MonoBehaviour
             BattleRewardOption option = flow.GetRewardChoice(i);
             choiceButtons[i].gameObject.SetActive(option != null);
             choiceButtons[i].interactable = choosing;
-            choiceLabels[i].text = option == null ? string.Empty : option.Effect == null ? option.Describe(information)
-                : string.Format(option.Effect.MaxStacks > 0 ? passiveChoiceFormat : unlimitedPassiveChoiceFormat,
-                    option.Describe(information), flow.GetPassiveStacks(option.Effect), option.Effect.MaxStacks);
+            RunRewardEffect passive = option != null ? option.Effect : null;
+            PassiveSlot slot = passiveSlots != null && i < passiveSlots.Length ? passiveSlots[i] : null;
+            bool split = passive != null && slot != null && slot.root != null;
+            // 스킬과 패시브가 같은 슬롯을 번갈아 쓰므로 쓰지 않는 쪽의 글자·아이콘을 비우고 끈다.
+            choiceLabels[i].text = option == null || split ? string.Empty
+                : passive == null ? option.Describe(information) : DescribePassive(passive);
+            if (choiceLabels[i].gameObject.activeSelf == split) choiceLabels[i].gameObject.SetActive(!split);
+            ShowPassive(slot, split ? passive : null);
             if (choiceIcons != null && i < choiceIcons.Length)
                 CombatInfoUI.ShowIcon(choiceIcons[i], option != null ? option.Card : null);
         }
@@ -106,10 +158,60 @@ public class BattleRewardUI : MonoBehaviour
             SkillData card = flow.GetOrderCard(i);
             deckButtons[i].gameObject.SetActive(card != null);
             deckButtons[i].interactable = replacing || editing;
-            deckLabels[i].text = card == null ? string.Empty : string.Format(deckCardFormat, i + 1,
-                i < DeckSystem.HandSize ? handLabel : queueLabel, information.DescribeCard(card));
+            SetText(deckSlotLabels, i, card == null ? string.Empty
+                : string.Format(deckSlotFormat, i + 1, i < DeckSystem.HandSize ? handLabel : queueLabel));
+            SetText(deckNameLabels, i, card == null ? string.Empty : card.DisplayName);
+            SetText(deckInfoLabels, i, card == null ? string.Empty : information.DescribeCardInfo(card));
+            SetText(deckLabels, i, card == null ? string.Empty : information.DescribeCardEffect(card));
             if (deckIcons != null && i < deckIcons.Length) CombatInfoUI.ShowIcon(deckIcons[i], card);
         }
+    }
+
+    private static void SetText(TMP_Text[] labels, int index, string text)
+    {
+        if (labels != null && index < labels.Length && labels[index] != null) labels[index].text = text;
+    }
+
+    private static void SetLabel(TMP_Text label, string text)
+    {
+        if (label != null) label.text = text;
+    }
+
+    /// <summary>패시브 영역 표시. effect가 null이면 영역을 끄고 글자를 비운다.</summary>
+    private void ShowPassive(PassiveSlot slot, RunRewardEffect effect)
+    {
+        if (slot == null || slot.root == null) return;
+        bool show = effect != null;
+        if (slot.root.activeSelf != show) slot.root.SetActive(show);
+        SetLabel(slot.category, show ? passiveCategoryText : string.Empty);
+        SetLabel(slot.title, show ? effect.DisplayName : string.Empty);
+        SetLabel(slot.effect, show ? DescribePassiveEffect(effect) : string.Empty);
+        SetLabel(slot.stacks, show ? DescribePassiveStacks(effect) : string.Empty);
+        SetLabel(slot.guide, show ? passiveGuideText : string.Empty);
+    }
+
+    /// <summary>패시브 영역이 연결되지 않은 슬롯용 한 덩어리 설명.</summary>
+    private string DescribePassive(RunRewardEffect effect) => string.Join("\n", passiveCategoryText, effect.DisplayName,
+        DescribePassiveEffect(effect), DescribePassiveStacks(effect), passiveGuideText);
+
+    private string DescribePassiveEffect(RunRewardEffect effect)
+    {
+        string text = effect.DescribeEffect(FormatStat, "\n");
+        if (string.IsNullOrEmpty(effect.Description)) return text;
+        return (text.Length > 0 ? text + "\n" : string.Empty) + string.Format(passiveNoteFormat, effect.Description);
+    }
+
+    private string DescribePassiveStacks(RunRewardEffect effect) => effect.MaxStacks > 0
+        ? string.Format(passiveStackFormat, flow.GetPassiveStacks(effect), effect.MaxStacks)
+        : string.Format(unlimitedPassiveStackFormat, flow.GetPassiveStacks(effect));
+
+    private string FormatStat(RewardStat stat, float amount)
+    {
+        if (passiveStatFormats != null)
+            foreach (StatText entry in passiveStatFormats)
+                if (entry.stat == stat && !string.IsNullOrEmpty(entry.format)) return string.Format(entry.format, amount);
+        Debug.LogWarning($"[{nameof(BattleRewardUI)}] 패시브 문구 없음: {stat}", this);
+        return string.Format("{0} {1:0.##}", stat, amount);
     }
 
     public void BeginOrderDrag(int index, PointerEventData data)

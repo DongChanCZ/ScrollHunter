@@ -274,7 +274,7 @@ public class CombatUI : MonoBehaviour
             {
                 view.skillIcon.sprite = card != null ? card.Icon : null;
                 view.skillIcon.enabled = hasIcon;
-                view.skillIcon.color = highContrast || state == SlotState.NoValidTarget
+                view.skillIcon.color = highContrast || state == SlotState.NoValidTarget || (state == SlotState.TutorialLocked || state == SlotState.PhaseTransition)
                     ? inactiveIconColor : iconColor;
             }
             if (view.nameText != null)
@@ -435,9 +435,11 @@ public class CombatUI : MonoBehaviour
         fill.rectTransform.anchorMax = max;
     }
 
+    [SerializeField] private string phaseTransitionLabel = "전환 중";
     private string LockLabel(SlotState state)
     {
         if (state == SlotState.ActionLocked) return deckSystem.LockRemaining.ToString("F1");
+        if (state == SlotState.PhaseTransition) return phaseTransitionLabel;
         if (state == SlotState.NoValidTarget) return noTargetLabel;
         if (state == SlotState.InvalidConfiguration) return invalidSkillLabel;
         return string.Empty;
@@ -446,13 +448,14 @@ public class CombatUI : MonoBehaviour
     private void UpdateCostCover(HandSlotView view, SkillData card, SlotState state)
     {
         if (view.costCover == null) return;
-        bool show = card != null && card.Cost > 0f && costSystem != null
+        bool tutorialLocked = (state == SlotState.TutorialLocked || state == SlotState.PhaseTransition);
+        bool show = tutorialLocked || card != null && card.Cost > 0f && costSystem != null
             && state == SlotState.NotEnoughCost;
         view.costCover.enabled = show;
         if (!show) return;
         // 충전률은 현재 코스트에서 매번 계산. 카드 순환 시 이전 카드의 진행률을 넘기지 않는다.
         // 음영은 12시부터 반시계 방향으로 남겨, 비워지는 부분이 시계 방향으로 진행하게 한다.
-        view.costCover.fillAmount = 1f - Mathf.Clamp01(costSystem.Current / card.Cost);
+        view.costCover.fillAmount = tutorialLocked ? 1f : 1f - Mathf.Clamp01(costSystem.Current / card.Cost);
         if (view.background != null) view.background.color = slotNormalColor;
     }
 
@@ -473,6 +476,7 @@ public class CombatUI : MonoBehaviour
 
     private Color SlotColor(SlotState state)
     {
+        if ((state == SlotState.TutorialLocked || state == SlotState.PhaseTransition)) return slotLockedColor;
         if (state == SlotState.Stunned) return slotStunnedColor;
         if (state == SlotState.ActionLocked) return slotLockedColor;
         if (state == SlotState.NoValidTarget || state == SlotState.InvalidConfiguration) return slotNoTargetColor;

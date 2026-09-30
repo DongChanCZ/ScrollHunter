@@ -10,6 +10,7 @@ using UnityEngine;
 public abstract class RunRewardEffect : ScriptableObject
 {
     [SerializeField] private string displayName;
+    [Tooltip("조건·주의 문구(예: 현재 HP는 회복하지 않음). 효과 수치는 DescribeEffect가 효과 데이터에서 표시하므로 적지 않는다.")]
     [SerializeField, TextArea] private string description;
     [Tooltip("같은 보상의 획득 상한. 0이면 상한 없음.")]
     [SerializeField, Min(0)] private int maxStacks;
@@ -21,6 +22,8 @@ public abstract class RunRewardEffect : ScriptableObject
     public string DisplayName => displayName;
     public string Description => description;
     public virtual bool CanOffer(Player player, CostSystem cost) => true;
+    /// <summary>효과 목록. 수치는 효과 데이터에서 읽고, 문구·단위는 화면이 정한다(format(능력치, 수치)).</summary>
+    public virtual string DescribeEffect(Func<RewardStat, float, string> format, string separator) => string.Empty;
     public abstract void Apply(Player player, CostSystem cost);
     public abstract void Remove();
 }

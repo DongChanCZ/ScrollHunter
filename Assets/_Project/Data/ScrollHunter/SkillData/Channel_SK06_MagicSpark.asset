@@ -16,7 +16,7 @@ MonoBehaviour:
   firstHitDelay: 0.25
   hitInterval: 0.25
   targetDeathRecovery: 0
-  timingFormat: "\uAE30\uBCF8 \uD53C\uD574 {0} \xD7 {1}\uD68C\n\uCCAB \uD0C0\uACA9
+  timingFormat: "\uAE30\uBCF8 \uD53C\uD574 <b>{0} \xD7 {1}\uD68C</b>\n\uCCAB \uD0C0\uACA9
     {2:0.##}\uCD08 / \uAC04\uACA9 {3:0.##}\uCD08\n\uD0C0\uACA9 \uD6C4 \uB0A8\uC740
     \uC7A0\uAE08 {4:0.##}\uCD08\n{5}"
   singleTargetFormat: "\uC785\uB825 \uB300\uC0C1 \uACE0\uC815. \uC0AC\uB9DD \uC2DC

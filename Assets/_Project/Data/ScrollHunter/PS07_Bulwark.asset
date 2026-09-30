@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: PS07_Bulwark
   m_EditorClassIdentifier: Assembly-CSharp::StatRewardEffect
   displayName: "\uCCA0\uBCBD\uC758 \uC2A4\uD06C\uB864"
-  description: "\uBC29\uC5B4\uB3C4 \uBD80\uC5EC\uB7C9 +20%\n\uAE30\uBCF8 \uBD80\uC5EC\uB7C9
-    \uAE30\uC900\uC73C\uB85C \uD569\uC0B0"
+  description: "\uAE30\uBCF8 \uBD80\uC5EC\uB7C9 \uAE30\uC900\uC73C\uB85C \uD569\uC0B0"
   maxStacks: 5
   rareReward: 0
   offerChance: 0.01

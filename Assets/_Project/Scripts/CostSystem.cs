@@ -56,6 +56,8 @@ public class CostSystem : MonoBehaviour
         Current = charged;
     }
 
+    public void EnsureTutorialCost(float amount) => Current = Mathf.Clamp(Mathf.Max(Current, amount), 0f, Max);
+
     public bool CanAfford(float amount) => Current >= amount;
 
     public bool TrySpend(float amount)

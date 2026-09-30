@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: PS03_Endurance
   m_EditorClassIdentifier: Assembly-CSharp::StatRewardEffect
   displayName: "\uC778\uB0B4\uC758 \uC2A4\uD06C\uB864"
-  description: "\uCD5C\uB300 HP +50\n\uD604\uC7AC HP\uB294 \uD68C\uBCF5\uD558\uC9C0
-    \uC54A\uC74C"
+  description: "\uD604\uC7AC HP\uB294 \uD68C\uBCF5\uD558\uC9C0 \uC54A\uC74C"
   maxStacks: 0
   rareReward: 0
   offerChance: 0.01

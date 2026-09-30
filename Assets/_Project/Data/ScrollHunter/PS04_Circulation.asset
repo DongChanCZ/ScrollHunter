@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: PS04_Circulation
   m_EditorClassIdentifier: Assembly-CSharp::StatRewardEffect
   displayName: "\uC21C\uD658\uC758 \uC2A4\uD06C\uB864"
-  description: "\uCF54\uC2A4\uD2B8 \uCDA9\uC804 +0.1/\uCD08"
+  description: 
   maxStacks: 4
+  rareReward: 0
+  offerChance: 0.01
   stat: 0
   amount: 0.1
+  additionalBonuses: []

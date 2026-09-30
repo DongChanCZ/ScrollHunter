@@ -1,0 +1,27 @@
+2026-09-30 Codex / Unity MCP
+TutorialChecks.Run: 91 passed, three complete runs.
+TutorialChecks.StartFrameProbe: two successful runs, 852 stepped frames each.
+Real Update through lessons 1-6; function-issued inputs; forced kill after lesson 6; lesson 7 and AB transition.
+Time.captureDeltaTime .05, original pause/capture restored by probe.
+
+TutorialChecks.RunCombatRegression:
+Red shield 32
+Starting deck 117
+Critical 100
+Remaining skill 77
+All passive 74
+BattleFlow/log order 107
+Combat readability 33
+Reward 54
+Passive reward 73
+Damage/interrupt display 30
+Start screen 19
+Deck order 38
+Total 754.
+Legacy regression runtime fixture: tutorial disabled, B/C/BC, finishingEffectHold=0.
+Finally restores saved encounters and finishingEffectHold=.6, tutorial enabled.
+ChannelingChecks.Run: 42 passed in Edit mode temporary scene.
+Unique checks 887. Repeated tutorial assertions are not additional unique checks.
+
+Screenshots are scripted states, not physical input validation.
+Not covered: physical keyboard/mouse input, natural play or balance, new build, boss/five-battle run.

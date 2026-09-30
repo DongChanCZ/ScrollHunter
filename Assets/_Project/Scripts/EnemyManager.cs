@@ -48,6 +48,15 @@ public class EnemyManager : MonoBehaviour
     public Enemy CurrentTarget { get; private set; }
 
     public bool CombatEnded => combatEnded;
+    public bool SkillInputBlocked
+    {
+        get
+        {
+            foreach (Enemy enemy in enemies)
+                if (enemy != null && enemy.IsAlive && enemy.IsPhaseTransitioning) return true;
+            return false;
+        }
+    }
 
     /// <summary>등록된 적 수. 계측 요약이 처치 수와 함께 쓴다.</summary>
     public int EnemyCount => enemies.Count;
@@ -64,8 +73,11 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
+    private BattleFlow flow;
+
     private void Awake()
     {
+        flow = FindFirstObjectByType<BattleFlow>();
         cam = Camera.main;
         if (player == null) player = FindFirstObjectByType<Player>();
         if (deck == null) deck = FindFirstObjectByType<DeckSystem>();
@@ -189,7 +201,7 @@ public class EnemyManager : MonoBehaviour
     // 클릭·방향키 공통 경로. 시전·채널링 중 입력은 무시하고 저장하지 않는다.
     private void SelectTarget(Enemy target)
     {
-        if (deck != null && deck.IsCasting) return;
+        if ((flow != null && flow.IsCountingDown) || (deck != null && deck.IsCasting)) return;
         if (target != null && target.IsAlive) CurrentTarget = target;
     }
 

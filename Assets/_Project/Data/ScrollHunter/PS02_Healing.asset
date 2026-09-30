@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: PS02_Healing
   m_EditorClassIdentifier: Assembly-CSharp::StatRewardEffect
   displayName: "\uCE58\uC720\uC758 \uC2A4\uD06C\uB864"
-  description: "\uC989\uC2DC HP 150 \uD68C\uBCF5\n\uCD5C\uB300 HP\uB97C \uB118\uB294
-    \uD68C\uBCF5\uC740 \uBC84\uB9BC"
+  description: "\uCD5C\uB300 HP\uB97C \uB118\uB294 \uD68C\uBCF5\uC740 \uBC84\uB9BC"
   maxStacks: 0
   rareReward: 0
   offerChance: 0.01

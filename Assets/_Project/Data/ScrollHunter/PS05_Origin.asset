@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: PS05_Origin
   m_EditorClassIdentifier: Assembly-CSharp::StatRewardEffect
   displayName: "\uD0DC\uCD08\uC758 \uC2A4\uD06C\uB864"
-  description: "\uB9E4 \uC804\uD22C \uC2DC\uC791 \uCF54\uC2A4\uD2B8 +1\n\uD604\uC7AC
-    \uCF54\uC2A4\uD2B8\uB294 \uBCF4\uCDA9\uD558\uC9C0 \uC54A\uC74C"
+  description: "\uD604\uC7AC \uCF54\uC2A4\uD2B8\uB294 \uBCF4\uCDA9\uD558\uC9C0 \uC54A\uC74C"
   maxStacks: 3
   rareReward: 0
   offerChance: 0.01

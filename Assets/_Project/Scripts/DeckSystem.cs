@@ -16,6 +16,8 @@ public enum SlotState
     NotEnoughCost,
     /// <summary>채널링 시간 또는 효과 연결이 유효하지 않음.</summary>
     InvalidConfiguration,
+    TutorialLocked,
+    PhaseTransition,
 }
 
 /// <summary>
@@ -55,6 +57,8 @@ public class DeckSystem : MonoBehaviour
     private readonly SkillData[] hand = new SkillData[HandSize];
     private readonly Queue<SkillData> queue = new Queue<SkillData>();
     private bool initialized;
+    private TutorialFlow tutorial;
+    [SerializeField] private string phaseTransitionLabel = "사용 불가 — 페이즈 전환";
 
     // 일반 시전과 채널링이 공유하는 진행 상태.
     // 손패 순환은 입력 수락 시 이미 끝났으므로 슬롯 번호를 들고 있을 필요가 없다.
@@ -110,6 +114,7 @@ public class DeckSystem : MonoBehaviour
 
     private void Awake()
     {
+        tutorial = FindFirstObjectByType<TutorialFlow>();
         if (costSystem == null) costSystem = FindFirstObjectByType<CostSystem>();
         if (enemyManager == null) enemyManager = FindFirstObjectByType<EnemyManager>();
         if (player == null) player = FindFirstObjectByType<Player>();
@@ -171,8 +176,11 @@ public class DeckSystem : MonoBehaviour
         SkillData card = GetHandCard(slot);
         if (card == null) return SlotState.Empty;
 
+        if (tutorial != null && !tutorial.AllowsSlot(slot, card)) return SlotState.TutorialLocked;
+
         // 손패 전체를 막는 사유가 먼저.
         if (player != null && player.IsStunned) return SlotState.Stunned;
+        if (enemyManager != null && enemyManager.SkillInputBlocked) return SlotState.PhaseTransition;
         if (IsLocked) return SlotState.ActionLocked;
 
         if (!card.HasValidChannel) return SlotState.InvalidConfiguration;
@@ -196,7 +204,8 @@ public class DeckSystem : MonoBehaviour
     private void Update()
     {
         AdvanceCast(Time.deltaTime);
-        if (Time.timeScale <= 0f || BattleEnded || IsLocked || (player != null && player.IsStunned)) return;
+        if ((Time.timeScale <= 0f && (tutorial == null || !tutorial.WaitingForSkill))
+            || BattleEnded || IsLocked || (player != null && player.IsStunned)) return;
 
         int count = Mathf.Min(handKeys.Length, HandSize);
         for (int i = 0; i < count; i++)
@@ -257,7 +266,7 @@ public class DeckSystem : MonoBehaviour
     /// <summary>입력 수락 시 코스트·카드 소모. 발동 방식에 따라 효과를 시작한다.</summary>
     public bool TryUseSlot(int slot)
     {
-        if (Time.timeScale <= 0f || BattleEnded) return false;
+        if (BattleEnded || (Time.timeScale <= 0f && (tutorial == null || !tutorial.WaitingForSkill))) return false;
         SkillData card = GetHandCard(slot);
         SlotState state = GetSlotState(slot);
 
@@ -279,6 +288,8 @@ public class DeckSystem : MonoBehaviour
             LogUse(card, "-", "코스트 부족");
             return false;
         }
+
+        if (tutorial != null) tutorial.AcceptSkill(slot, card);
 
         // 유효한 입력을 수락한 즉시 카드를 순환시킨다 (10 문서 A14).
         // 효과 적용 시점과 무관하게 손패 교체는 여기서 끝난다.
@@ -476,7 +487,7 @@ public class DeckSystem : MonoBehaviour
     // 일반 개별 타격과 채널링이 공유한다. 사용 횟수는 여기서 늘리지 않는다.
     private int DealHit(Enemy target, SkillData card, int useId, int hitIndex, bool allowRemainingVisual)
     {
-        if (target == null || card.Damage <= 0 || BattleEnded) return 0;
+        if (target == null || target.IsInvulnerable || card.Damage <= 0 || BattleEnded) return 0;
         bool visualOnly = !target.IsAlive;
         if (visualOnly && !allowRemainingVisual) return 0;
         // 사망 후 잔여 숫자는 기존 일반 피해로 표시하며 추첨·치명타 집계에 넣지 않는다.
@@ -522,6 +533,7 @@ public class DeckSystem : MonoBehaviour
         if (state == SlotState.Stunned)
             return "사용 불가 — 기절 " + (player != null ? player.StunRemaining.ToString("0.0") : "?") + "초";
         if (state == SlotState.ActionLocked) return "행동 잠금 " + LockRemaining.ToString("0.0") + "초";
+        if (state == SlotState.PhaseTransition) return phaseTransitionLabel;
         if (state == SlotState.NoValidTarget) return "사용 불가 — 타겟이 캐스팅 중 아님";
         if (state == SlotState.NotEnoughCost) return "코스트 부족";
         if (state == SlotState.InvalidConfiguration) return "채널링 설정 확인 — 양수 시간과 효과 연결 필요";

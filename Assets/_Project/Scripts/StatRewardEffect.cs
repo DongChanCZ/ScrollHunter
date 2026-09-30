@@ -42,6 +42,14 @@ public class StatRewardEffect : RunRewardEffect
         return true;
     }
 
+    public override string DescribeEffect(Func<RewardStat, float, string> format, string separator)
+    {
+        if (format == null) return string.Empty;
+        var lines = new string[BonusCount];
+        for (int i = 0; i < lines.Length; i++) { Bonus b = GetBonus(i); lines[i] = format(b.stat, b.amount); }
+        return string.Join(separator, lines);
+    }
+
     public override void Apply(Player player, CostSystem cost)
     {
         if (appliedCount > 0) return;

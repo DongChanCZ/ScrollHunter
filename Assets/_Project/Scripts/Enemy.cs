@@ -54,6 +54,19 @@ public class Enemy : MonoBehaviour
     [Tooltip("{0}=현재 HP, {1}=최대 HP")]
     [SerializeField] private string hpFormat = "{0} / {1}";
 
+    [SerializeField] private string phaseAttackFormat = "{0}페이즈 · {1}";
+    [SerializeField] private string phaseTransitionFormat = "전환 · 무적 {0:0.0}초";
+    private int phaseIndex;
+    private int phasePatternIndex;
+    private float phaseTransitionRemaining;
+    public bool HasPhases => data != null && data.Phases.Count > 0;
+    public int PhaseNumber => HasPhases ? phaseIndex + 1 : 0;
+    public bool IsPhaseTransitioning => phaseTransitionRemaining > 0f;
+    public bool IsInvulnerable => IsAlive && IsPhaseTransitioning;
+    public float PhaseTransitionRemaining => phaseTransitionRemaining;
+    public float CurrentCastTime => current == null ? 0f : current.CastTime *
+        (HasPhases ? data.Phases[phaseIndex].CastTimeMultiplier : 1f);
+
     private EnemyManager manager;
     private Player player;
     private Camera cam;
@@ -73,12 +86,33 @@ public class Enemy : MonoBehaviour
     public EnemyData Data => data;
     public int MaxHp => data != null ? data.MaxHp : 0;
     public int CurrentHp { get; private set; }
-    public bool IsAlive => CurrentHp > 0;
+    public bool IsAlive => CurrentHp > 0 || HoldTutorialDefeat;
+    public bool HoldTutorialDefeat { get; set; }
+    private bool tutorialPattern;
+    private int tutorialAttackIndex;
+    private static readonly CastColor[] TutorialPattern = { CastColor.Green, CastColor.Orange, CastColor.Red };
+    public event System.Action CastAdvanced;
+    public event System.Action<CastColor> AttackFired;
+
+    public void BeginTutorial(int hp, int patternIndex)
+    {
+        tutorialPattern = true;
+        HoldTutorialDefeat = true;
+        CurrentHp = Mathf.Clamp(hp, 0, MaxHp);
+        tutorialAttackIndex = patternIndex;
+        BeginNextCast();
+    }
+
+    public void ReleaseTutorialDefeat()
+    {
+        HoldTutorialDefeat = false;
+        if (CurrentHp <= 0) { Die(); if (manager != null) manager.NotifyEnemyDied(); }
+    }
 
     public bool IsStaggered => staggerTimer > 0f;
 
     /// <summary>캐스팅 진행 중인지. 차단 가능 여부의 기준이다.</summary>
-    public bool IsCasting => IsAlive && !resting && !IsStaggered && current != null;
+    public bool IsCasting => IsAlive && !resting && !IsStaggered && !IsPhaseTransitioning && current != null;
 
     /// <summary>지금 캐스팅 중인 공격. 없으면 null.</summary>
     public EnemyAttack CurrentAttack => current;
@@ -89,8 +123,8 @@ public class Enemy : MonoBehaviour
     {
         get
         {
-            if (current == null || current.CastTime <= 0f) return 0f;
-            return Mathf.Clamp01(castTimer / current.CastTime);
+            if (current == null || CurrentCastTime <= 0f) return 0f;
+            return Mathf.Clamp01(castTimer / CurrentCastTime);
         }
     }
 
@@ -108,11 +142,12 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
-        if (current == null) BeginNextCast();
+        if (current == null && !IsPhaseTransitioning && !IsStaggered && !resting) BeginNextCast();
     }
 
     public void SetEncounterActive(bool active)
     {
+        if (!active) { phaseTransitionRemaining = 0f; current = null; }
         gameObject.SetActive(active);
         if (castBarRoot != null) castBarRoot.gameObject.SetActive(active);
     }
@@ -120,7 +155,10 @@ public class Enemy : MonoBehaviour
     public void BeginBattle()
     {
         SetEncounterActive(true);
+        tutorialPattern = HoldTutorialDefeat = false;
         CurrentHp = MaxHp;
+        phaseIndex = phasePatternIndex = 0;
+        phaseTransitionRemaining = 0f;
         greenCount = 0;
         greenAtLastOrange = greenAtLastRed = int.MinValue / 2;
         lastWasUpper = false;
@@ -128,42 +166,52 @@ public class Enemy : MonoBehaviour
         BeginNextCast();
     }
 
-    private void Update()
+    private void Update() => AdvanceCombat(Time.deltaTime);
+
+    private void AdvanceCombat(float deltaTime)
     {
         if (data == null || !IsAlive || Time.timeScale <= 0f
             || (manager != null && manager.CombatEnded) || (player != null && !player.IsAlive)) return;
 
-        if (staggerTimer > 0f)
+        // 전환과 발동/차단 경직은 같은 시간에 진행한다.
+        if (IsPhaseTransitioning || IsStaggered || resting)
         {
-            staggerTimer = Mathf.Max(0f, staggerTimer - Time.deltaTime);
-            if (staggerTimer <= 0f) BeginNextCast();
-            return;
-        }
-
-        if (resting)
-        {
-            restTimer -= Time.deltaTime;
-            if (restTimer <= 0f)
-            {
-                resting = false;
-                BeginNextCast();
-            }
+            phaseTransitionRemaining = Mathf.Max(0f, phaseTransitionRemaining - deltaTime);
+            staggerTimer = Mathf.Max(0f, staggerTimer - deltaTime);
+            restTimer = Mathf.Max(0f, restTimer - deltaTime);
+            if (restTimer <= 0f) resting = false;
+            RefreshBar();
+            if (!IsPhaseTransitioning && !IsStaggered && !resting) BeginNextCast();
             return;
         }
 
         if (current == null) { BeginNextCast(); return; }
-
-        if (castTimer < current.CastTime)
-        {
-            castTimer = Mathf.Min(castTimer + Time.deltaTime, current.CastTime);
-        }
-
-        if (castTimer < current.CastTime) return;
-
-        // 바가 다 찼다. 매니저가 최소 간격을 강제하므로 허가가 날 때까지 기다린다.
+        castTimer = Mathf.Min(castTimer + deltaTime, CurrentCastTime);
+        CastAdvanced?.Invoke();
+        if (Time.timeScale <= 0f || castTimer < CurrentCastTime) return;
         if (manager != null && !manager.TryFire(this)) return;
-
         Fire();
+    }
+
+    private void AdvancePattern()
+    {
+        if (HasPhases) phasePatternIndex = (phasePatternIndex + 1) % data.Phases[phaseIndex].Pattern.Count;
+    }
+
+    private void TryBeginPhaseTransition()
+    {
+        if (!HasPhases || !IsAlive || IsCasting || IsPhaseTransitioning
+            || (manager != null && manager.CombatEnded) || (player != null && !player.IsAlive)) return;
+        int next = phaseIndex;
+        for (int i = phaseIndex + 1; i < data.Phases.Count; i++)
+            if (CurrentHp <= MaxHp * data.Phases[i].HpThreshold) next = i;
+        if (next == phaseIndex) return;
+        phaseIndex = next;
+        phasePatternIndex = 0;
+        current = null;
+        phaseTransitionRemaining = data.PhaseTransitionSeconds;
+        Debug.Log($"[{name}] {PhaseNumber}페이즈 전환 {phaseTransitionRemaining:0.0}초", this);
+        RefreshBar();
     }
 
     /// <summary>패턴 쿨다운 규칙에 따라 다음 공격을 고르고 캐스팅을 시작한다.</summary>
@@ -180,6 +228,12 @@ public class Enemy : MonoBehaviour
     {
         if (data == null) return null;
 
+        if (tutorialPattern) return data.Find(TutorialPattern[tutorialAttackIndex]);
+        if (HasPhases)
+        {
+            int attackIndex = data.Phases[phaseIndex].Pattern[phasePatternIndex] - 1;
+            return data.Attacks[attackIndex];
+        }
         EnemyAttack green = data.Find(CastColor.Green);
 
         // 1. 상위 공격 직후에는 반드시 초록이 들어간다.
@@ -223,7 +277,12 @@ public class Enemy : MonoBehaviour
         resting = true;
         restTimer = current.StaggerAfterCast;
         castTimer = 0f;
+        if (tutorialPattern) tutorialAttackIndex = (tutorialAttackIndex + 1) % TutorialPattern.Length;
         RefreshBar();
+        CastColor firedColor = current.CastColor;
+        AdvancePattern();
+        TryBeginPhaseTransition();
+        AttackFired?.Invoke(firedColor);
     }
 
     public static event System.Action<Vector3> InterruptSucceeded;
@@ -239,10 +298,15 @@ public class Enemy : MonoBehaviour
         // 차단당한 캐스팅도 「그 공격을 한 번 쓴 것」으로 쳐서 쿨다운을 소모한다.
         // 안 그러면 경직이 풀리자마자 같은 주황이 다시 올라와 차단의 보상이 없다.
         ConsumeCooldownOnInterrupt(current);
+        if (tutorialPattern) tutorialAttackIndex = (tutorialAttackIndex + 1) % TutorialPattern.Length;
 
         castTimer = 0f;
         resting = false;
+        restTimer = 0f;
         staggerTimer = staggerDuration;
+        // 보스 초록 차단은 같은 순번을 다시 시전한다. 주황만 다음 순번으로 넘긴다.
+        if (current.CastColor != CastColor.Green) AdvancePattern();
+        TryBeginPhaseTransition();
         RefreshBar();
         InterruptSucceeded?.Invoke(transform.position);
         return InterruptResult.Success;
@@ -270,12 +334,13 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int amount, bool isCritical = false)
     {
-        if (!IsAlive || amount <= 0 || (manager != null && manager.CombatEnded)
+        if (!IsAlive || IsInvulnerable || amount <= 0 || (manager != null && manager.CombatEnded)
             || (player != null && !player.IsAlive)) return;
 
         CurrentHp = Mathf.Max(0, CurrentHp - amount);
         DamageTaken?.Invoke(transform.position, amount, isCritical);
         if (!IsAlive) Die();
+        else TryBeginPhaseTransition();
     }
 
     /// <summary>이미 수락된 다단히트의 사망 후 잔여 표시. HP·사망 판정은 호출하지 않는다.</summary>
@@ -290,6 +355,7 @@ public class Enemy : MonoBehaviour
         castTimer = 0f;
         staggerTimer = 0f;
         resting = false;
+        phaseTransitionRemaining = 0f;
         Debug.Log($"[{name}] 사망", this);
 
         // 바는 이제 Canvas 아래에 있어 적을 꺼도 같이 사라지지 않는다. 직접 끈다.
@@ -308,7 +374,7 @@ public class Enemy : MonoBehaviour
             castBarRoot.position = cam.WorldToScreenPoint(head);
         }
 
-        SetFill(castBarFill, (resting || IsStaggered) ? 0f : CastProgress01);
+        SetFill(castBarFill, IsPhaseTransitioning ? phaseTransitionRemaining / data.PhaseTransitionSeconds : (resting || IsStaggered) ? 0f : CastProgress01);
 
         if (MaxHp > 0) SetFill(hpBarFill, (float)CurrentHp / MaxHp);
 
@@ -339,11 +405,12 @@ public class Enemy : MonoBehaviour
     private void RefreshBar()
     {
         if (castSkillText != null)
-            castSkillText.text = current != null ? current.SkillName : string.Empty;
+            castSkillText.text = IsPhaseTransitioning ? string.Format(phaseTransitionFormat, phaseTransitionRemaining)
+                : current == null ? string.Empty : HasPhases ? string.Format(phaseAttackFormat, PhaseNumber, current.SkillName) : current.SkillName;
 
         if (castBarFill == null) return;
 
-        if (IsStaggered) { castBarFill.color = staggerColor; return; }
+        if (IsStaggered || IsPhaseTransitioning) { castBarFill.color = staggerColor; return; }
         if (manager == null || current == null) return;
         castBarFill.color = manager.GetCastColor(current.CastColor);
     }

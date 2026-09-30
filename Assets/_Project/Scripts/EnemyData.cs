@@ -28,7 +28,7 @@ public class EnemyAttack
     [Tooltip("발동부터 다음 캐스팅 시작까지의 간격(초). 초록 1.0 / 주황 1.5 / 빨강 2.0")]
     [SerializeField] private float staggerAfterCast = 1f;
 
-    [Tooltip("발동 시 플레이어를 기절시키는 시간(초). 주황만 2.0, 나머지는 0")]
+    [Tooltip("플레이어 기절 시간. 일반 주황 2초, 보스 나이트메어 5초.")]
     [SerializeField] private float stunSeconds = 0f;
 
     public string SkillName => skillName;
@@ -37,6 +37,18 @@ public class EnemyAttack
     public int Damage => damage;
     public float StaggerAfterCast => staggerAfterCast;
     public float StunSeconds => stunSeconds;
+}
+
+[System.Serializable]
+public class EnemyPhase
+{
+    [SerializeField, Range(0f, 1f)] private float hpThreshold = 1f;
+    [Tooltip("공격 목록의 1번부터 시작하는 번호. 차단도 한 순서로 소모한다.")]
+    [SerializeField] private int[] pattern = { 1 };
+    [SerializeField, Min(0.01f)] private float castTimeMultiplier = 1f;
+    public float HpThreshold => hpThreshold;
+    public IReadOnlyList<int> Pattern => pattern;
+    public float CastTimeMultiplier => castTimeMultiplier;
 }
 
 [CreateAssetMenu(fileName = "Enemy_", menuName = "ScrollHunter/Enemy Data")]
@@ -50,8 +62,14 @@ public class EnemyData : ScriptableObject
     [Tooltip("적의 방어력. 플레이어 피해 계산에 쓰인다.")]
     [SerializeField] private float defense = 0f;
 
-    [Tooltip("보유 공격. 초록을 반드시 하나 포함할 것. 순서는 상관없다.")]
+    [Tooltip("보유 공격. 초록 필수. 보스 패턴 번호는 이 목록 순서(1부터).")]
     [SerializeField] private List<EnemyAttack> attacks = new List<EnemyAttack>();
+
+    [Tooltip("비어 있으면 일반 적 규칙. 보스는 HP 기준 내림차순으로 작성한다.")]
+    [SerializeField] private List<EnemyPhase> phases = new List<EnemyPhase>();
+    [SerializeField, Min(0f)] private float phaseTransitionSeconds = 2f;
+    public IReadOnlyList<EnemyPhase> Phases => phases;
+    public float PhaseTransitionSeconds => phaseTransitionSeconds;
 
     public string DisplayName => displayName;
     public int MaxHp => maxHp;
