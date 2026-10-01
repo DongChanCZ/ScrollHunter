@@ -34,6 +34,19 @@ public class Player : MonoBehaviour
     private float criticalChanceBonus;
     public void AddCriticalChanceBonus(float percentagePoints) => criticalChanceBonus += percentagePoints;
     public float CriticalChance => Mathf.Clamp(criticalChance + criticalChanceBonus, 0f, 100f);
+    // 능력치 창 표시용 기본값·증가분(읽기 전용).
+    public float BaseCriticalChance => criticalChance;
+    public float CriticalChanceBonus => criticalChanceBonus;
+    public float BaseMaxHp => maxHp;
+    public float MaxHpBonus => maxHpBonus;
+    public float ShieldGainBonus => shieldGainBonus;
+
+    /// <summary>HUD 피격 표시용 알림(실제 HP 감소량, 방어도 흡수량). 무적으로 막은 피해는 알리지 않는다.</summary>
+    public event System.Action<int, int> Damaged;
+    /// <summary>실제 회복량. 최대 HP를 넘어 버려진 양은 포함하지 않는다.</summary>
+    public event System.Action<float> Healed;
+    /// <summary>전투 시작·재시작으로 HP·방어도를 새로 맞췄다. HUD 잔상·피해 표시 정리용.</summary>
+    public event System.Action BattleReset;
     public float CriticalMultiplier => Mathf.Max(1f, criticalMultiplier);
 
     public bool RollCritical()
@@ -62,8 +75,11 @@ public class Player : MonoBehaviour
         float healed = Heal(PotionHealAmount);
         PotionsRemaining--;
         if (metrics != null) metrics.RecordPotionUsed(healed, PotionsRemaining, PotionCapacity);
+        PotionUsed?.Invoke();
         return true;
     }
+    /// <summary>포션 사용이 수락됐다(HUD 사용 연출용). 거절된 입력은 알리지 않는다.</summary>
+    public event System.Action PotionUsed;
     public int PotionCapacity => Mathf.Max(0, basePotionCapacity + potionCapacityBonus);
     public float MaxHp => Mathf.Max(1f, maxHp + maxHpBonus);
     public float ShieldGainMultiplier => Mathf.Max(0f, 1f + shieldGainBonus);
@@ -94,6 +110,7 @@ public class Player : MonoBehaviour
         float restored = Mathf.Min(amount, MaxHp - currentHp);
         currentHp += restored;
         Debug.Log(string.Format(healLogFormat, restored, amount, currentHp, MaxHp), this);
+        if (restored > 0f) Healed?.Invoke(restored);
         return restored;
     }
     public float Defense => defense;
@@ -152,6 +169,7 @@ public class Player : MonoBehaviour
         if (restoreHp) { currentHp = MaxHp; PotionsRemaining = PotionCapacity; }
         EndBattle();
         defeatHandled = false;
+        BattleReset?.Invoke();
     }
 
     public void EndBattle()
@@ -212,6 +230,7 @@ public class Player : MonoBehaviour
         Shield -= absorbed;
         int toHp = taken - absorbed;
 
+        float hpBefore = currentHp;
         currentHp = Mathf.Max(0f, currentHp - toHp);
 
         // 계측은 부여량이 아니라 실제로 방어도가 막아낸 양을 센다 (09 문서 4단계 ②).
@@ -219,6 +238,9 @@ public class Player : MonoBehaviour
 
         Debug.Log(string.Format(damageLogFormat, taken, incomingDamage, absorbed, toHp, currentHp, MaxHp, Shield,
             redShield ? string.Format(redShieldLogFormat, prevented) : string.Empty), this);
+        // 표시는 실제로 줄어든 HP만 알린다(남은 HP를 넘는 피해는 제외).
+        int hpLost = Mathf.RoundToInt(hpBefore - currentHp);
+        if (hpLost > 0 || absorbed > 0) Damaged?.Invoke(hpLost, absorbed);
 
         if (!IsAlive) Defeat();
     }

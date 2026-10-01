@@ -28,7 +28,7 @@ public static class PassiveRewardChecks
         var ps09 = pool.Single(x => x.Effect != null && x.Effect.name == "PS09_Precision");
         var choices = (Button[])Get(ui, "choiceButtons");
         var labels = (TMPro.TMP_Text[])Get(ui, "choiceLabels");
-        var hud = (TMPro.TMP_Text)Get(flow, "passiveText");
+        var stats = UnityEngine.Object.FindFirstObjectByType<StatsPanelUI>();
         var starting = deck.CopyStartingDeck();
         var randomState = UnityEngine.Random.state;
         int passed = 0;
@@ -70,7 +70,7 @@ public static class PassiveRewardChecks
             check(flow.RewardResolved && flow.SelectedReward == null && flow.GetPassiveStacks(selected) == 1, "passive button immediately resolves");
             check(Enumerable.Range(0, 8).All(i => flow.GetDeckCard(i) == starting[i]), "passive preserves all eight deck positions");
             check(cost.Current == current && player.CurrentHp == hp && player.MaxHp == 500, "acquisition does not refill resources or change HP");
-            check(hud.gameObject.activeInHierarchy && hud.text.Contains(selected.DisplayName) && hud.text.Contains("1/"), "acquired stack HUD");
+            check(stats != null && stats.DescribePassives().Contains(selected.DisplayName) && stats.DescribePassives().Contains("1/"), "acquired stack HUD");
             check(!flow.SelectReward(2) && !flow.SkipReward() && !flow.ReplaceDeckCard(0), "resolved reward cannot be acquired twice");
             float regen = cost.RegenerationPerSecond, crit = player.CriticalChance;
             Click((Button)Get(flow, "nextButton"));
@@ -141,7 +141,7 @@ public static class PassiveRewardChecks
             player.TakeDamage(100000); Call(flow, "Update");
             check(flow.State == BattleFlowState.Defeat && near(cost.RegenerationPerSecond, .9f) && !flow.SelectReward(0), "defeat retains run effects without granting reward");
             Click((Button)Get(flow, "restartButton"));
-            check(near(cost.RegenerationPerSecond, .8f) && player.CriticalChance == 15 && player.CurrentHp == 500 && hud.text.Contains("패시브 없음"), "defeat restart button resets HUD and stats");
+            check(near(cost.RegenerationPerSecond, .8f) && player.CriticalChance == 15 && player.CurrentHp == 500 && stats.DescribePassives().Contains("패시브 없음"), "defeat restart button resets HUD and stats");
             return "Passive reward checks passed: " + passed + ". Function/UI event checks; extra reward opportunities are synthetic, not natural play.";
         }
         finally

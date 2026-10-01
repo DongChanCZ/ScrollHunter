@@ -38,15 +38,26 @@ public class CombatUI : MonoBehaviour
     [Tooltip("전투 종료(승리·패배) 감지용. 비워두면 씬에서 자동으로 찾는다")]
     [SerializeField] private CombatMetrics metrics;
 
-    [Header("좌하단 상태")]
+    [Header("자원 (10 A37 후속) — HP 게이지·피격 연출은 HpGaugeUI")]
     [SerializeField] private TMP_Text costText;
+    [Tooltip("손패 아래 코스트 게이지. 소수 충전과 최대치 변경을 그대로 반영한다")]
+    [SerializeField] private SegmentedGaugeUI costGauge;
     [SerializeField] private TMP_Text hpText;
+    [Tooltip("포션 현재/최대 개수. 최대치는 패시브 적용값")]
     [SerializeField] private TMP_Text potionText;
-    [SerializeField] private string potionFormat = "포션 {0}/{1} · Shift";
+    [SerializeField] private string potionFormat = "{0}/{1}";
+    [Tooltip("포션 사용 키 표시(Shift). 지금 사용할 수 없으면 흐리게")]
+    [SerializeField] private TMP_Text potionKeyText;
+    [SerializeField] private Image potionIcon;
     [SerializeField] private Color potionUnavailableColor = new Color(0.65f, 0.65f, 0.65f, 1f);
+    [SerializeField] private Color potionReadyColor = new Color(0.94f, 0.90f, 0.82f, 1f);
+    [SerializeField] private Color potionEmptyIconColor = new Color(0.55f, 0.55f, 0.55f, 0.45f);
 
-    [Tooltip("방어도. 0일 때는 숨긴다.")]
+    [Tooltip("방어도 숫자. 0일 때는 숨긴다.")]
     [SerializeField] private TMP_Text shieldText;
+    [Tooltip("방어도 방패 문양. 0이면 흐리게 두어 자리를 유지한다")]
+    [SerializeField] private Image shieldIcon;
+    [SerializeField] private Color shieldEmptyIconColor = new Color(1f, 1f, 1f, 0.3f);
 
     [Header("기절 표시 (화면 중앙)")]
     [Tooltip("기절 중에만 켜진다. 슬롯 색만으로는 손패를 안 볼 때 놓친다. (02 §6.5.4)")]
@@ -103,10 +114,22 @@ public class CombatUI : MonoBehaviour
     [Tooltip("적 바 위로 띄울 화면 픽셀. 바 높이(84)보다 커야 겹치지 않는다")]
     [SerializeField] private float markerScreenOffsetY = 96f;
 
-    [Tooltip("맥동 세기. 0이면 맥동 없음")]
-    [SerializeField] private float markerPulse = 0.15f;
+    [Tooltip("맥동 세기. 0이면 맥동 없음(타겟이 바뀔 때만 짧게 강조)")]
+    [SerializeField] private float markerPulse = 0f;
 
     [SerializeField] private float markerPulseSpeed = 3f;
+
+    [Tooltip("선택된 적의 HP 바를 두르는 얇은 강조선. 캐스팅 바·시전명은 가리지 않는다")]
+    [SerializeField] private RectTransform targetGaugeLine;
+    [SerializeField] private CanvasGroup targetGaugeLineGroup;
+    [Tooltip("HP 바 바깥으로 띄우는 여백(Canvas 기준)")]
+    [SerializeField] private Vector2 targetGaugeLinePadding = new Vector2(4f, 3f);
+    [SerializeField, Range(0f, 1f)] private float targetGaugeLineIdleAlpha = 0.7f;
+    [Tooltip("타겟이 바뀐 순간의 짧은 강조 시간(실제 초)")]
+    [SerializeField, Min(0.01f)] private float targetChangeSeconds = 0.3f;
+    [SerializeField, Min(1f)] private float targetChangeScale = 1.3f;
+    private Enemy lastMarkerTarget;
+    private float targetChangeRemaining;
 
     [Header("슬롯 색 — 비활성 사유별로 달라야 한다")]
     [SerializeField] private Color slotNormalColor = Color.white;
@@ -155,7 +178,7 @@ public class CombatUI : MonoBehaviour
     [SerializeField] private string hpFormat = "{0} / {1}";
 
     [Tooltip("{0}=방어도")]
-    [SerializeField] private string shieldFormat = "방어도 {0}";
+    [SerializeField] private string shieldFormat = "{0}";
 
     [SerializeField] private string costFormat = "{0:0.0} / {1:0}";
 
@@ -220,18 +243,22 @@ public class CombatUI : MonoBehaviour
 
     private void UpdateStatus()
     {
-        if (costSystem != null && costText != null)
+        if (costSystem != null)
         {
-            costText.text = string.Format(costFormat, costSystem.Current, costSystem.Max);
+            if (costText != null) costText.text = string.Format(costFormat, costSystem.Current, costSystem.Max);
+            if (costGauge != null) costGauge.Set(costSystem.Current, costSystem.Max);
         }
 
         if (player == null) return;
 
+        bool hasPotion = player.PotionsRemaining > 0;
         if (potionText != null)
         {
             potionText.text = string.Format(potionFormat, player.PotionsRemaining, player.PotionCapacity);
-            potionText.color = player.CanUsePotion ? Color.white : potionUnavailableColor;
+            potionText.color = hasPotion ? potionReadyColor : potionUnavailableColor;
         }
+        if (potionKeyText != null) potionKeyText.color = player.CanUsePotion ? potionReadyColor : potionUnavailableColor;
+        if (potionIcon != null) potionIcon.color = hasPotion ? Color.white : potionEmptyIconColor;
         if (hpText != null)
         {
             hpText.text = string.Format(hpFormat,
@@ -239,12 +266,13 @@ public class CombatUI : MonoBehaviour
                 Mathf.CeilToInt(player.MaxHp));
         }
 
+        bool hasShield = player.Shield > 0;
         if (shieldText != null)
         {
-            bool hasShield = player.Shield > 0;
             shieldText.enabled = hasShield;
             if (hasShield) shieldText.text = string.Format(shieldFormat, player.Shield);
         }
+        if (shieldIcon != null) shieldIcon.color = hasShield ? Color.white : shieldEmptyIconColor;
 
         if (stunText != null)
         {
@@ -491,7 +519,18 @@ public class CombatUI : MonoBehaviour
         Enemy target = enemyManager != null ? enemyManager.CurrentTarget : null;
         bool show = target != null && target.IsAlive;
 
+        // 타겟 변경(수동 선택·사망 후 자동 이동 포함) 순간만 짧게 강조한다. 선택 규칙은 EnemyManager 그대로.
+        if (target != lastMarkerTarget)
+        {
+            lastMarkerTarget = target;
+            targetChangeRemaining = show ? targetChangeSeconds : 0f;
+        }
+        else targetChangeRemaining = Mathf.Max(0f, targetChangeRemaining - Time.unscaledDeltaTime);
+        float emphasis = targetChangeRemaining / targetChangeSeconds;
+        emphasis *= emphasis;
+
         if (targetMarker.gameObject.activeSelf != show) targetMarker.gameObject.SetActive(show);
+        UpdateGaugeLine(show ? target : null, emphasis);
         if (!show) return;
 
         Camera cam = Camera.main;
@@ -503,10 +542,23 @@ public class CombatUI : MonoBehaviour
         screen.y += markerScreenOffsetY;
         targetMarker.position = screen;
 
+        float scale = 1f + (targetChangeScale - 1f) * emphasis;
         if (markerPulse > 0f)
-        {
-            float t = (Mathf.Sin(Time.unscaledTime * markerPulseSpeed) + 1f) * 0.5f;
-            targetMarker.localScale = markerBaseScale * (1f + markerPulse * t);
-        }
+            scale *= 1f + markerPulse * (Mathf.Sin(Time.unscaledTime * markerPulseSpeed) + 1f) * 0.5f;
+        targetMarker.localScale = markerBaseScale * scale;
+    }
+
+    /// <summary>선택된 적의 HP 바 둘레에 얇은 강조선을 맞춘다. 캐스팅 바와 시전명 영역은 덮지 않는다.</summary>
+    private void UpdateGaugeLine(Enemy target, float emphasis)
+    {
+        if (targetGaugeLine == null) return;
+        RectTransform bar = target != null ? target.HpBarRect : null;
+        bool show = bar != null && bar.gameObject.activeInHierarchy;
+        if (targetGaugeLine.gameObject.activeSelf != show) targetGaugeLine.gameObject.SetActive(show);
+        if (!show) return;
+        targetGaugeLine.position = bar.TransformPoint(bar.rect.center);
+        targetGaugeLine.sizeDelta = bar.rect.size + targetGaugeLinePadding * 2f;
+        if (targetGaugeLineGroup != null)
+            targetGaugeLineGroup.alpha = Mathf.Lerp(targetGaugeLineIdleAlpha, 1f, emphasis);
     }
 }

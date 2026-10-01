@@ -1,0 +1,43 @@
+VARCO 이미지·3D 시안 — 궁병 01
+작성일: 2026-10-01
+워크플로: ScrollHunter / b686afb0-e976-4bcc-b41f-b53e20b6de72
+요청 범위: 최초 이미지 1장. 후속 사용자 요청으로 3D 변환 진행. 리깅·Unity 적용은 진행하지 않음.
+참조: 01_약탈자_시안.png / 도적단 복장·재질·비율 참고용. 인물 복제 아님.
+프롬프트 노드: b5b39cfa-ef29-4e11-a451-dce3a3b4586f
+이미지 노드: 0cdb3fe7-c6d4-4e50-8649-fc6858904f25
+실행 ID: 26d76976-4329-40de-8a08-343aac94e998
+모델: gpt-image-2-medium / 1:1 / 1장 / 실행 전 표시 비용 20크레딧
+상태: 이미지 생성 성공. 기존 약탈자·3D·리깅 노드는 재실행하지 않음.
+출력: 03_궁병_시안.png / PNG 1024×1024 / 1,228,683바이트
+출력 참조: /api/objects/a40225579aaab951dbe8eb6051ad12fe.png
+이미지 화면 확인: 전신·T자 자세·빈손·양손 다섯 손가락·갈색 가죽/베이지 천·짧은 어깨 덮개·한쪽 팔 보호대. 무기·화살통 없음. 3D 결과 검사는 아래 후속 참조.
+외형 세부는 시안이며 최종 채택 전.
+
+3D 변환 후속 (2026-10-01)
+3D 노드: cdde15f6-0119-409e-aca8-8ba2e0690a80
+작업 ID: 5bb68094-8c26-4813-ba74-8cde0ddfb7c6
+실행 ID: ea3e24cc-b920-4a69-a8ec-9658db02b34d
+설정: 1체 / 삼각형 10,000개 / T-pose 켬 / 텍스처 2048 / 배경 제거 / PBR 채널 추가 끔
+실행 전 표시 비용: 200크레딧. 기존 이미지·약탈자 노드는 재실행하지 않음.
+저장: 03_궁병_시안.glb, 03_궁병_시안.fbx / 바닥 피벗
+검사: GLB 2.0·Blender 임포트 정상. 메시 1개·정점 7,986개·삼각형 10,000개·내장 PNG 2048×2048 2개. FBX 바이너리 헤더 정상. 뼈대·애니메이션 없음.
+화면: 03_궁병_3D_앞.png, 03_궁병_3D_뒤.png, 03_궁병_손_L/R 및 top/palm.png. 파일 검사 원문 03_궁병_모델검사.json.
+보정 필요: 양손 중지·약지가 붙은 형태. 어깨 덮개 뒷면에 문자 같은 텍스처 무늬가 생김. 생성은 성공했으나 최종 사용 가능 판정은 보류.
+남은 것: 손가락 분리·뒷면 텍스처 보정 후 리깅/손 굽힘 검사. Unity 적용·활/화살통 제작 미수행. 게임 코드·씬·수치 변경 없음.
+
+Use case: stylized-concept.
+Create ONE full-body medieval BANDIT ARCHER (궁병) character concept for Scroll Hunter, intended as the source image for later single-image 3D reconstruction.
+
+REFERENCE IMAGE: the supplied bandit raider is a STYLE, COSTUME FAMILY, MATERIAL and PROPORTION reference only. Make a different member of the SAME gang, not a copy of that man's face or bulky build. Match the reference's restrained stylized 3D fantasy game-art treatment, warm brown leather, faded beige cloth, dark trousers and worn boots.
+
+CHARACTER: adult human male archer, leaner and more agile than the raider, slim shoulders and waist but believable healthy anatomy. Narrow angular face, alert focused expression, short tidy dark-brown hair, little or no beard. Face and ears visible. Around seven heads tall; neither chibi nor exaggerated superhero.
+
+COSTUME: fitted worn brown leather vest over a faded beige linen tunic with close-fitting sleeves; a compact muted olive-brown cloth shoulder capelet covering only the upper chest/back, ending well above the elbows and leaving both arms entirely free. No hood. One broad practical leather archery bracer on the LEFT forearm, a narrow simple wrist wrap on the other arm. Bare hands and fully exposed fingers. Simple waist belt, plain dull-metal buckle and one small close-fitting hip pouch. Dark fitted cloth trousers, calf-high leather boots. Use the same gang's large stitched seams, restrained patches and muted metal fastenings, with less bulk than the raider. No loose straps or trailing fabric. Clothing should form clear volumes suitable for low-poly modeling and rigging.
+
+POSE: neutral symmetrical T-pose, both arms straight sideways at shoulder height, legs slightly separated, feet forward. Both hands EMPTY and open, palms facing the camera, thumbs visibly separated and all five fingers of EACH hand clear, naturally spaced, with believable thickness and rounded fingertips. No overlapping fingers, clenched fists, gestures or attack pose. Ensure the shoulder capelet does not obscure the arms.
+
+COMPOSITION: one character only, full body, straight-on eye-level view, near-orthographic asset presentation. Centered on a uniform light warm-gray background. Keep the entire head, both fingertips and both boots inside the frame with clear margins. No tight crop. Soft neutral studio light, readable face and hands, minimal shadow.
+
+STYLE: stylized low-poly-friendly fantasy 3D concept, softly faceted broad forms, matte hand-painted-looking materials, restrained cartoon shading, moderately detailed clothing. Match the reference's visual family. Use broad cloth folds and material shapes; avoid excessive tiny wrinkles, pores and noisy photorealistic surface detail. The archer must look distinct through silhouette and costume, while belonging beside the reference raider.
+
+EXCLUDE: bow, crossbow, arrows, quiver, dagger, sword, sheath, scabbard, staff, shield or any weapon, whether held, worn or on the back. Character body and worn clothing only; weapons and quiver will be modeled separately later. Also exclude long cloak, long skirt, heavy plate armor, oversized shoulder armor, magic effects, scenery, pedestal, floor plane, extra characters, extra limbs, turnaround panels, text, labels, logo, watermark and border.

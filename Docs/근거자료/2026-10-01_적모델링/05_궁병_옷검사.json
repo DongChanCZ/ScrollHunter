@@ -1,0 +1,251 @@
+{
+  "source": "04_궁병_손수정.glb",
+  "static": {
+    "welded_vertices": 5384,
+    "triangles": 10832,
+    "boundary_edges": 0,
+    "nonmanifold_edges": 0,
+    "zero_area_faces": 0,
+    "signed_volume": 0.017859118999336884,
+    "connected_component_vertex_counts": [
+      5384
+    ]
+  },
+  "source_hashes": {
+    "04_궁병_손수정.glb": "bd54c0afa710ec624ab0a9534810d30c7423c1fdb8e38cbb3e6f1d78770f992f",
+    "04_궁병_손수정.fbx": "bbc7158ebad5e86b364bd63c4a729666550de69d40fbe8f3a74fc733b2a8b9a1",
+    "04_궁병_손수정.blend": "acd00ed14aefa45047f626a2db16d77d28c9409b19a50e4a09154638aa4321ed"
+  },
+  "note": "Temporary 19-bone diagnostic armature with automatic weights; no final rig, bow grip, animation, or Unity verification.",
+  "auto_weight_attempts": [
+    {
+      "calculation_scale": 1,
+      "bones": 19,
+      "unweighted_vertices": 5384,
+      "raw_weight_sum_min": 0,
+      "raw_weight_sum_max": 0,
+      "raw_weight_sum_errors_over_0_01": 5384,
+      "weight_sum_errors_over_0_01": 5384
+    },
+    {
+      "calculation_scale": 10,
+      "bones": 19,
+      "unweighted_vertices": 0,
+      "raw_weight_sum_min": 0.8855387531220913,
+      "raw_weight_sum_max": 0.9999985024333,
+      "raw_weight_sum_errors_over_0_01": 3399,
+      "weight_sum_errors_over_0_01": 0
+    }
+  ],
+  "diagnostic_rig": {
+    "calculation_scale": 10,
+    "bones": 19,
+    "unweighted_vertices": 0,
+    "raw_weight_sum_min": 0.8855387531220913,
+    "raw_weight_sum_max": 0.9999985024333,
+    "raw_weight_sum_errors_over_0_01": 3399,
+    "weight_sum_errors_over_0_01": 0
+  },
+  "pose_check_status": "performed_with_diagnostic_rig",
+  "garment_measurement_region": "Upper torso and shoulder wrap band: z .68-.82, abs(x)<.19; not a separately segmented cloth mesh.",
+  "poses": [
+    {
+      "name": "Tpose",
+      "finite_positions": true,
+      "garment_edge_stretch_max": 1.0000155439989165,
+      "garment_edges_stretched_over_1_5": 0,
+      "garment_edge_count": 3351,
+      "top_stretched_edges": [
+        {
+          "ratio": 1.0000155439989165,
+          "rest_midpoint": [
+            -0.0795123279094696,
+            0.030652306973934174,
+            0.8164364099502563
+          ]
+        },
+        {
+          "ratio": 1.000013697826599,
+          "rest_midpoint": [
+            0.10065813362598419,
+            0.051370441913604736,
+            0.8050086498260498
+          ]
+        },
+        {
+          "ratio": 1.0000129431407545,
+          "rest_midpoint": [
+            0.054426319897174835,
+            -0.04184073954820633,
+            0.7492759227752686
+          ]
+        },
+        {
+          "ratio": 1.0000126690820015,
+          "rest_midpoint": [
+            0.024507973343133926,
+            0.07420148700475693,
+            0.7996417880058289
+          ]
+        },
+        {
+          "ratio": 1.0000117684216818,
+          "rest_midpoint": [
+            -0.018167544156312943,
+            -0.061544016003608704,
+            0.7177865505218506
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ArmsDown",
+      "finite_positions": true,
+      "garment_edge_stretch_max": 1.7199918400697318,
+      "garment_edges_stretched_over_1_5": 8,
+      "garment_edge_count": 3351,
+      "top_stretched_edges": [
+        {
+          "ratio": 1.7199918400697318,
+          "rest_midpoint": [
+            0.15039651095867157,
+            0.019441695883870125,
+            0.7827375531196594
+          ]
+        },
+        {
+          "ratio": 1.6953571569203487,
+          "rest_midpoint": [
+            -0.13875029981136322,
+            0.020381450653076172,
+            0.7879906892776489
+          ]
+        },
+        {
+          "ratio": 1.650139539492281,
+          "rest_midpoint": [
+            0.143856942653656,
+            0.008146647363901138,
+            0.7776442170143127
+          ]
+        },
+        {
+          "ratio": 1.6400987284465687,
+          "rest_midpoint": [
+            0.14490991830825806,
+            0.03251954913139343,
+            0.7909644246101379
+          ]
+        },
+        {
+          "ratio": 1.6194141382359704,
+          "rest_midpoint": [
+            0.15324711799621582,
+            0.04272789508104324,
+            0.7875989079475403
+          ]
+        }
+      ]
+    },
+    {
+      "name": "DrawApprox",
+      "finite_positions": true,
+      "garment_edge_stretch_max": 1.726623894276629,
+      "garment_edges_stretched_over_1_5": 11,
+      "garment_edge_count": 3351,
+      "top_stretched_edges": [
+        {
+          "ratio": 1.726623894276629,
+          "rest_midpoint": [
+            0.14757949113845825,
+            0.06977268308401108,
+            0.7631157040596008
+          ]
+        },
+        {
+          "ratio": 1.6980570527117846,
+          "rest_midpoint": [
+            0.1429862529039383,
+            0.07336317002773285,
+            0.7555148005485535
+          ]
+        },
+        {
+          "ratio": 1.6487968591126916,
+          "rest_midpoint": [
+            0.1376713216304779,
+            0.07134442776441574,
+            0.7264382243156433
+          ]
+        },
+        {
+          "ratio": 1.6134188748899265,
+          "rest_midpoint": [
+            0.13872747123241425,
+            0.07448049634695053,
+            0.7516106963157654
+          ]
+        },
+        {
+          "ratio": 1.5821178065676824,
+          "rest_midpoint": [
+            0.13559988141059875,
+            0.07538474351167679,
+            0.7394883632659912
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ArmsRaised",
+      "finite_positions": true,
+      "garment_edge_stretch_max": 1.3841034259107816,
+      "garment_edges_stretched_over_1_5": 0,
+      "garment_edge_count": 3351,
+      "top_stretched_edges": [
+        {
+          "ratio": 1.3841034259107816,
+          "rest_midpoint": [
+            -0.12696638703346252,
+            0.011397995986044407,
+            0.7163434624671936
+          ]
+        },
+        {
+          "ratio": 1.3154357389037086,
+          "rest_midpoint": [
+            0.1332208663225174,
+            0.01922309212386608,
+            0.7110886573791504
+          ]
+        },
+        {
+          "ratio": 1.3104423847047808,
+          "rest_midpoint": [
+            0.129769966006279,
+            0.003901812946423888,
+            0.724276602268219
+          ]
+        },
+        {
+          "ratio": 1.3103406623264333,
+          "rest_midpoint": [
+            0.12301857769489288,
+            0.030488155782222748,
+            0.7058229446411133
+          ]
+        },
+        {
+          "ratio": 1.3099784758898028,
+          "rest_midpoint": [
+            -0.1288457214832306,
+            0.029175613075494766,
+            0.7061854600906372
+          ]
+        }
+      ]
+    }
+  ],
+  "animation_actions": 0,
+  "delivered_sources_unchanged": true
+}

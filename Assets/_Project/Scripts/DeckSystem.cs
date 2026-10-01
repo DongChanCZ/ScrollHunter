@@ -76,6 +76,8 @@ public class DeckSystem : MonoBehaviour
 
     public bool IsLocked => LockRemaining > 0f || IsCasting;
     public float InterruptStagger => Mathf.Max(0f, interruptStagger + (player != null ? player.InterruptStaggerBonus : 0f));
+    /// <summary>패시브 증가분을 뺀 저장 기본값. 능력치 창 표시용.</summary>
+    public float BaseInterruptStagger => interruptStagger;
 
     /// <summary>카드 캐스팅이 진행 중인지.</summary>
     public bool IsCasting => castingCard != null;
@@ -103,6 +105,8 @@ public class DeckSystem : MonoBehaviour
     public float LastCastEndTime { get; private set; }
 
     // 연출 전용 알림. 판정·계측·순서에 관여하지 않으며 구독자가 없어도 동작은 같다.
+    /// <summary>슬롯 입력이 수락돼 코스트를 쓰고 카드가 순환된 직후(슬롯 번호, 사용한 카드). 효과 성공과는 별개다.</summary>
+    public event System.Action<int, SkillData> SlotAccepted;
     /// <summary>입력 수락으로 시전(0초 포함)이 시작됐을 때.</summary>
     public event System.Action<SkillData> CastStarted;
     /// <summary>카드의 타격 1회가 대상에 적용됐을 때(사망 후 잔여 연출 포함).</summary>
@@ -305,6 +309,7 @@ public class DeckSystem : MonoBehaviour
         castRemaining = card.CastTime;
         LockRemaining = Mathf.Max(card.CastTime, minGcd);
         minimumLockRemaining = minGcd;
+        NotifyVfx(() => SlotAccepted?.Invoke(slot, card));
         NotifyVfx(() => CastStarted?.Invoke(card));
 
         if (card.IsChanneling)

@@ -33,6 +33,13 @@ public class CostSystem : MonoBehaviour
         maximumCostBonus += amount;
         Current = Mathf.Min(Current, Max); // 증가 시 보충하지 않는다.
     }
+    // 능력치 창 표시용 기본값·증가분(읽기 전용).
+    public float BaseRegeneration => regenPerSecond;
+    public float RegenerationBonus => regenerationBonus;
+    public float BaseStartingCost => startCost;
+    public float StartingCostBonus => startingCostBonus;
+    public float BaseMax => maxCost;
+    public float MaximumCostBonus => maximumCostBonus;
 
     private void Awake()
     {

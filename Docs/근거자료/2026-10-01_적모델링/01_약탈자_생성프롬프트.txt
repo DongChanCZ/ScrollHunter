@@ -1,0 +1,44 @@
+VARCO 3D 이미지 시안 — 약탈자 01
+생성일: 2026-10-01
+워크플로: ScrollHunter / b686afb0-e976-4bcc-b41f-b53e20b6de72
+이미지 노드: c345c9c9-b55d-41a3-883d-738004fd9fbb
+모델: gpt-image-2-medium / 비율 1:1 / 생성 1장
+이미지 생성·3D 변환·손가락 포함 리깅 완료. 최종 외형 채택·Unity 적용 전.
+아래 의상·얼굴 디테일은 사용자의 도적단 복장 설명을 바탕으로 보완한 첫 시안이며, 확정 외형 사양이 아님.
+
+3D 변환 기록 (2026-10-01)
+원본: 01_약탈자_시안.png / 기존 이미지 재생성 없음
+3D 노드: 5ccf4a20-77ce-45fd-b8ab-c2d9168d3d58
+작업 ID: dc25af2c-84ce-4d45-a643-235481c1ce9e
+실행 ID: 3826ecec-81f3-4b4c-bc06-17edfd749537
+설정: 1체 / 삼각형 10,000개 목표 / T-pose 켬 / 텍스처 2048 / 배경 제거 / PBR 채널 추가 끔
+실행 전 표시 비용: 200크레딧 (텍스처 포함 3D 생성)
+저장: 01_약탈자_시안.glb, 01_약탈자_시안.fbx / 바닥 피벗
+파일 검사: GLB 2.0 정상, 메시 1개, 삼각형 10,000개, 정점 7,946개. 내장 PNG 2048×2048 2개(기본색·노멀), 재질 1개. 최소 Y=0. FBX 바이너리 헤더 정상.
+변환 원본 상태: 01 파일에는 뼈대·애니메이션 없음. 리깅 후속은 아래 02 파일 기록 참조.
+게임 코드·씬·전투 수치 변경 없음. 이 설정은 첫 시안용이며 전체 캐릭터의 확정 제작 규격이 아님.
+
+손가락 포함 리깅·검사 (2026-10-01)
+리깅 노드: 1818b4fb-bc27-4ac9-9c50-413369942098
+작업 ID: 328f134f-f05f-45aa-b85d-9d4eeef5b2e7
+실행 ID: 260329f3-51fb-4f60-9d14-006b69cf6e77
+설정: humanoid-fingers / 1체 / 실행 전 표시 비용 0크레딧
+저장: 02_약탈자_손가락리깅.glb, 02_약탈자_손가락리깅.fbx. 01 원본 보존.
+Blender 5.1.2에서 두 형식 임포트: 뼈대 53개, 손가락 뼈대 좌우 각 15개(총 30개). 메시 1개·정점 7,946개·삼각형 10,000개 유지. 연결 안 된 정점 0, 가중치 합 오차 0.01 초과 정점 0. glTF 임포터가 만든 Icosphere 보조물은 검사에서 제외.
+GLB 손가락 10개 개별 굽힘: 모두 메시 변형 발생, 반대편 신체 정점 이동 0. 양손 펼침·완만한 굽힘·깊은 굽힘·검지만 굽힘을 손바닥/손등 방향으로 렌더링. 원본 리깅 파일은 변경하지 않음.
+관찰: 손가락별 굽힘 가능. 확대 시 굽힌 관절이 각지고 일부 얇아 보임. 엄지 끝의 뭉툭함은 원래 메시에도 있음. 최종 무기 손잡이에 맞춘 자세·관절 변형 보정 후보.
+근거: 02_리깅검사_glb.json, 02_리깅검사_fbx.json, check_raider_rig.py, 02_hand_*.png, 02_손_리깅_비교.png.
+실행: Blender --background --factory-startup --python check_raider_rig.py -- 02_약탈자_손가락리깅.glb --render
+한계: 검사 자세는 임시 굽힘이며 최종 단검 쥐기 자세가 아님. 텍스처 없이 형태만 렌더링. 전신 애니메이션·실제 무기 관통·Unity Humanoid 매핑·게임 거리 품질·Unity 적용은 미확인. 애니메이션 클립 없음.
+
+Create ONE full-body character concept for "Scroll Hunter", a stylized low-poly medieval fantasy RPG. The character is a human BANDIT RAIDER (약탈자), an ordinary member of an organized medieval bandit gang, agile and scrappy rather than a heavily armored leader. This image will be used as the source for single-image 3D character reconstruction.
+
+BODY AND FACE: adult human man, lean practical build, believable stylized proportions around seven heads tall, strong readable silhouette, short slightly untidy dark hair, rough light stubble, alert stern expression, broad simplified facial planes. Keep the face uncovered and clearly visible.
+
+COSTUME: worn brown leather vest over a faded coarse linen tunic with sleeves ending at the forearms; a simple short cloth neck wrap, fitted dark cloth trousers, calf-high weathered leather boots, leather wrist bracers with exposed hands and fingers. A single sturdy waist belt with a plain dull-metal buckle and one small leather pouch close to the hip. Show a few large seams, reinforced patches, leather edge wear and broad fabric folds, with restrained detail. His clothes are practical medieval outlaw clothing, not noble clothing or heavy plate armor. Establish a reusable brown leather and muted earth-tone cloth costume language for the same gang's archer and leader.
+
+POSE AND COMPOSITION: exactly one character, straight-on front view at eye level, near-orthographic character asset render, centered on a plain uniform light warm-gray background. Neutral symmetrical T-pose: both arms extended straight horizontally at shoulder height, legs slightly apart, feet pointing forward, relaxed open EMPTY hands with five clearly readable fingers each. Head, fingertips, both boots and soles fully inside the frame, generous margin all around. Keep limbs separated from the torso and cloth so the silhouette and joints are clear. Show the complete character at a useful large scale.
+
+STYLE: clean stylized 3D game-art concept with a low-poly-friendly silhouette, softly faceted forms, matte hand-painted-looking materials and restrained cartoon shading. Moderate crafted detail in clothing and face, broad material separation, simple readable shapes. Not photorealistic, not chibi, not a flat mobile-game icon. Soft neutral studio lighting, enough brightness to read every part, minimal shadow.
+
+IMPORTANT: character BODY AND WORN CLOTHING ONLY. No dagger, sword, bow, arrow, quiver, staff, scabbard, sheath, shield or any other weapon in the hands, on the belt or on the back. Weapons will be modeled separately later. No attack pose. No hood, long cape, oversized shoulder armor, magical effects, floating objects, scenic background, pedestal, floor plane, text, labels, watermark, border, multiple views or extra characters.

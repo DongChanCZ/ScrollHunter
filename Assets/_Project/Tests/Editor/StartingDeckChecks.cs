@@ -64,14 +64,14 @@ public static class StartingDeckChecks
             foreach (Enemy e in new[] { a, b, c })
             {
                 EnemyAttack green = e.Data.Find(CastColor.Green);
-                Check(e.MaxHp == e.Data.MaxHp && e.MaxHp > 0 && e.Data.Defense == 0 && green.Damage == 30
+                Check(e.MaxHp == e.Data.MaxHp && e.MaxHp > 0 && e.Data.Defense == 0 && green.Damage == (e == a ? 20 : e == b ? 25 : 30)
                     && green.CastTime == 2.5f && green.StaggerAfterCast == 1f, "enemy green / HP / defense " + e.name);
             }
             var orange = b.Data.Find(CastColor.Orange); var red = c.Data.Find(CastColor.Red);
             Check(orange.Damage == 40 && orange.CastTime == 3f && orange.StaggerAfterCast == 1.5f
                 && orange.StunSeconds == 2f, "orange saved values");
             Check(red.Damage == 240 && red.CastTime == 4f && red.StaggerAfterCast == 2f, "red saved values (A33)");
-            Check(DamageFormula.Compute(30,1,20) == 25 && DamageFormula.Compute(40,1,20) == 33
+            Check(DamageFormula.Compute(20,1,20) == 17 && DamageFormula.Compute(25,1,20) == 21 && DamageFormula.Compute(30,1,20) == 25 && DamageFormula.Compute(40,1,20) == 33
                 && DamageFormula.Compute(150,1,20) == 125 && DamageFormula.Compute(0,1,0) == 0
                 && DamageFormula.Compute(1,1,9999) == 1, "damage rounding / zero / minimum");
             Reset(silence); b.TryInterrupt(2.5f); Call(b, "BeginNextCast");

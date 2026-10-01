@@ -1,0 +1,104 @@
+{
+  "source": "03_궁병_시안.glb",
+  "before_welded": {
+    "vertices": 4968,
+    "triangles": 10000,
+    "boundary_edges": 0,
+    "nonmanifold_edges": 0,
+    "loose_vertices": 0
+  },
+  "new_wall_triangles": 763,
+  "after": {
+    "vertices": 5384,
+    "triangles": 10832,
+    "boundary_edges": 0,
+    "nonmanifold_edges": 0,
+    "loose_vertices": 0
+  },
+  "protected_vertices_unchanged": true,
+  "gap_tests": [
+    {
+      "side": "L",
+      "x": 0.458,
+      "gap_open": true
+    },
+    {
+      "side": "L",
+      "x": 0.465,
+      "gap_open": true
+    },
+    {
+      "side": "L",
+      "x": 0.475,
+      "gap_open": true
+    },
+    {
+      "side": "L",
+      "x": 0.485,
+      "gap_open": true
+    },
+    {
+      "side": "L",
+      "x": 0.491,
+      "gap_open": true
+    },
+    {
+      "side": "R",
+      "x": 0.458,
+      "gap_open": true
+    },
+    {
+      "side": "R",
+      "x": 0.465,
+      "gap_open": true
+    },
+    {
+      "side": "R",
+      "x": 0.475,
+      "gap_open": true
+    },
+    {
+      "side": "R",
+      "x": 0.485,
+      "gap_open": true
+    },
+    {
+      "side": "R",
+      "x": 0.491,
+      "gap_open": true
+    }
+  ],
+  "source_sha256": "b9fed8d27bf3aa2cdb94cff5832f9eff9a70ac87a193227caa609dfede3408f4",
+  "diagnostic_flexion": [
+    {
+      "side": "L",
+      "finger": "middle",
+      "moved_vertices": 84,
+      "opposite_side_displacement": 0.0
+    },
+    {
+      "side": "L",
+      "finger": "ring",
+      "moved_vertices": 67,
+      "opposite_side_displacement": 0.0
+    },
+    {
+      "side": "R",
+      "finger": "middle",
+      "moved_vertices": 72,
+      "opposite_side_displacement": 0.0
+    },
+    {
+      "side": "R",
+      "finger": "ring",
+      "moved_vertices": 57,
+      "opposite_side_displacement": 0.0
+    }
+  ],
+  "diagnostic_note": "Procedural mesh flexion only; VARCO rigging, skin weights and bow grip are not validated.",
+  "exported": [
+    "04_궁병_손수정.glb",
+    "04_궁병_손수정.fbx",
+    "04_궁병_손수정.blend"
+  ]
+}

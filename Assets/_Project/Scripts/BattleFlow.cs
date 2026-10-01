@@ -63,8 +63,6 @@ public class BattleFlow : MonoBehaviour
     [SerializeField] private BattleRewardUI rewardUI;
     [SerializeField, Min(0)] private int cardChoiceLimit = 2;
     [SerializeField, Min(0)] private int passiveChoiceLimit = 1;
-    [SerializeField] private TMP_Text passiveText;
-    [SerializeField] private string passiveStatusFormat = "충전 {0:0.0}/초 · 크리티컬 {1:0.#}%\n{2}";
     [SerializeField] private string noPassivesText = "패시브 없음";
     [SerializeField] private string passiveStackFormat = "{0} {1}/{2}";
     [SerializeField] private string passiveMaxStackFormat = "{0} {1}/{2} MAX";
@@ -109,6 +107,9 @@ public class BattleFlow : MonoBehaviour
         int count;
         return source != null && effectStacks.TryGetValue(source, out count) ? count : 0;
     }
+
+    /// <summary>획득한 패시브와 중첩(획득 순서). 능력치 창 표시용.</summary>
+    public IEnumerable<KeyValuePair<RunRewardEffect, int>> PassiveStacks => effectStacks;
 
     public string PassiveSummary
     {
@@ -434,7 +435,7 @@ public class BattleFlow : MonoBehaviour
         var label = new GameObject("CountdownText", typeof(RectTransform), typeof(TextMeshProUGUI));
         label.transform.SetParent(root, false);
         countdownText = label.GetComponent<TextMeshProUGUI>();
-        if (progressText != null) countdownText.font = progressText.font;
+        if (progressText != null) { countdownText.font = progressText.font; countdownText.fontSharedMaterial = progressText.fontSharedMaterial; }
         countdownText.fontSize = 64f;
         countdownText.color = new Color32(231, 203, 135, 255);
         countdownText.alignment = TextAlignmentOptions.Center;
@@ -530,11 +531,6 @@ public class BattleFlow : MonoBehaviour
             if (HasTutorial && tutorial.Active) progressText.text = "튜토리얼 · 깡패";
             else if (BattleNumber > 0)
                 progressText.text = string.Format(progressFormat, BattleNumber, BattleCount, encounters[BattleNumber - 1].label);
-        }
-        if (passiveText != null)
-        {
-            passiveText.gameObject.SetActive(!title && !preparing);
-            passiveText.text = string.Format(passiveStatusFormat, cost.RegenerationPerSecond, player.CriticalChance, PassiveSummary);
         }
         bool ended = State == BattleFlowState.Victory || State == BattleFlowState.Defeat;
         bool shown = !PanelHeld;

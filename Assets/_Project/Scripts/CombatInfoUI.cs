@@ -27,13 +27,13 @@ public class CombatInfoUI : MonoBehaviour
     [SerializeField] private string endedText = "전투 종료";
     [SerializeField] private string hint = "카드에 마우스: 정보 / 우클릭: 정지·재개";
     [SerializeField] private string pausedHint = "일시정지 — 정보 확인만 가능 / 우클릭 또는 재개";
-    // 위계: 이름(145%·굵게) → 주요 정보(항목명 흐리게·수치 굵게) → 간격 → 상세 설명.
-    // 색 대신 투명도로 흐리게 해 밝은 양피지·어두운 창·보상 카드 어디서든 같은 방식으로 읽힌다.
+    // 위계: 이름(145%·굵게·아이보리) → 주요 정보(항목명 흐리게·수치만 굵게) → 간격 → 상세 설명.
+    // 설명 패널은 어두운 청흑색 판(10 A37 후속 정정). 본문은 글자색(회백색), 강조는 투명도·굵기로 구분한다.
     [Tooltip("{0} 이름, {1} 주요 정보, {2} 간격, {3} 상세 설명")]
-    [SerializeField] private string cardFormat = "<size=145%><b>{0}</b></size>\n{1}{2}\n{3}";
+    [SerializeField] private string cardFormat = "<size=145%><b><color=#F5EBD6>{0}</color></b></size>\n{1}{2}\n{3}";
     [Tooltip("주요 정보. 편성 카드는 이 줄만 따로 표시한다. {0} 분류, {1} 대상, {2} 코스트, {3} 시간")]
-    [SerializeField] private string cardInfoFormat = "<b>{0}</b><alpha=#CC> · <alpha=#FF>{1}\n<alpha=#CC>코스트 <alpha=#FF><b>{2:0.#}</b><alpha=#CC>   ·   시전 <alpha=#FF><b>{3:0.##}초</b>";
-    [SerializeField] private string channelInfoFormat = "<b>{0}</b><alpha=#CC> · <alpha=#FF>{1}\n<alpha=#CC>코스트 <alpha=#FF><b>{2:0.#}</b><alpha=#CC>   ·   채널링 <alpha=#FF><b>{3:0.##}초</b>";
+    [SerializeField] private string cardInfoFormat = "{0}<alpha=#CC> · <alpha=#FF>{1}\n<alpha=#CC>코스트 <alpha=#FF><b>{2:0.#}</b><alpha=#CC>   ·   시전 <alpha=#FF><b>{3:0.##}초</b>";
+    [SerializeField] private string channelInfoFormat = "{0}<alpha=#CC> · <alpha=#FF>{1}\n<alpha=#CC>코스트 <alpha=#FF><b>{2:0.#}</b><alpha=#CC>   ·   채널링 <alpha=#FF><b>{3:0.##}초</b>";
     [Tooltip("이름·주요 정보와 상세 설명 사이 간격")]
     [SerializeField] private string sectionBreak = "\n<size=40%> </size>";
     [SerializeField] private string channelUnconfiguredLabel = "채널링 효과 연결 필요";
@@ -41,9 +41,9 @@ public class CombatInfoUI : MonoBehaviour
     [SerializeField] private string shieldFormat = "방어도 <b>+{0}</b>";
     [SerializeField] private string interruptFormat = "캐스팅 중인 대상에게 사용\n효과 적용 때도 초록·주황\n시전 중이면 성공\n성공 경직 <b>{0:0.##}초</b>\n빨강·적 선발동: 실패, 코스트·카드 소모";
     [SerializeField] private string damagingInterruptFormat = "기본 피해 <b>{0} × {1}회</b>\n피해 후 생존 대상에게 차단 판정\n초록·주황: 성공 경직 <b>{2:0.##}초</b>\n빨강·시전 종료: 피해만 적용\n입력은 캐스팅 중인 대상에게만 가능";
-    [SerializeField] private string enemyFormat = "<size=145%><b>{0}</b></size>\n<b>{1}</b>\n<alpha=#CC>기본 피해 <alpha=#FF><b>{2}</b><alpha=#CC> (방어력 적용 전)\n시전 <alpha=#FF><b>{3:0.##}초</b><alpha=#CC> · <alpha=#FF><b>{4}</b>{6}\n{5}";
+    [SerializeField] private string enemyFormat = "<size=145%><b><color=#F5EBD6>{0}</color></b></size>\n<color=#F5EBD6>{1}</color>\n<alpha=#CC>기본 피해 <alpha=#FF><b>{2}</b><alpha=#CC> (방어력 적용 전)\n시전 <alpha=#FF><b>{3:0.##}초</b><alpha=#CC> · <alpha=#FF><color=#F5EBD6>{4}</color>{6}\n{5}";
     [SerializeField] private string stunFormat = "기절 <b>{0:0.##}초</b>";
-    [SerializeField] private string restingFormat = "<size=145%><b>{0}</b></size>\n<alpha=#CC>현재 시전 중인 공격 없음";
+    [SerializeField] private string restingFormat = "<size=145%><b><color=#F5EBD6>{0}</color></b></size>\n<alpha=#CC>현재 시전 중인 공격 없음";
     [SerializeField] private string dealLabel = "공격";
     [SerializeField] private string shieldLabel = "방어";
     [SerializeField] private string interruptLabel = "차단";
@@ -54,6 +54,12 @@ public class CombatInfoUI : MonoBehaviour
     [SerializeField] private string cannotInterruptLabel = "차단 불가";
     [SerializeField] private string noEffectLabel = "추가 효과 없음";
     [SerializeField] private string redShieldEffectFormat = "피격 직전 방어도가 있으면 피해 <b>{0:0.#}%</b> 감소 후 흡수";
+
+    [Header("능력치 창과 겹침 방지")]
+    [Tooltip("능력치 창이 열려 있으면 카드 정보창을 그 왼쪽으로 옮긴다")]
+    [SerializeField] private StatsPanelUI statsPanel;
+    [SerializeField] private float statsPanelGap = 16f;
+    private float cardPanelBaseX;
 
     [Header("설명창 높이")]
     [Tooltip("설명 글 길이에 맞춰 창 높이를 조절한다. 글이 짧아도 이보다 작아지지 않는다")]
@@ -86,6 +92,7 @@ public class CombatInfoUI : MonoBehaviour
         if (enemies == null) enemies = FindFirstObjectByType<EnemyManager>();
         if (player == null) player = FindFirstObjectByType<Player>();
         if (metrics == null) metrics = FindFirstObjectByType<CombatMetrics>();
+        if (cardPanel != null) cardPanelBaseX = ((RectTransform)cardPanel.transform).anchoredPosition.x;
     }
 
     private bool Contains(RectTransform rect)
@@ -172,7 +179,14 @@ public class CombatInfoUI : MonoBehaviour
         hintText.text = ended ? endedText : IsInfoPaused ? pausedHint : hint;
         SkillData card = !ended && selectedSlot >= 0 ? deck.GetHandCard(selectedSlot) : null;
         cardPanel.SetActive(card != null);
-        if (card != null) { cardText.text = DescribeCard(card); FitHeight(cardPanel, cardText, cardPanelMinHeight); }
+        if (card != null)
+        {
+            var rect = (RectTransform)cardPanel.transform;
+            float x = statsPanel != null && statsPanel.IsOpen ? cardPanelBaseX - statsPanel.Width - statsPanelGap : cardPanelBaseX;
+            rect.anchoredPosition = new Vector2(x, rect.anchoredPosition.y);
+            cardText.text = DescribeCard(card);
+            FitHeight(cardPanel, cardText, cardPanelMinHeight);
+        }
         ShowIcon(cardIcon, card);
         Enemy target = !ended && enemies != null ? enemies.CurrentTarget : null;
         enemyPanel.SetActive(target != null && target.IsAlive);
@@ -225,7 +239,7 @@ public class CombatInfoUI : MonoBehaviour
         return string.Format(damageFormat, card.Damage, card.HitCount);
     }
 
-    [SerializeField] private string phaseTransitionFormat = "<size=145%><b>{0}</b></size>\n<b>{1}페이즈 전환</b>\n무적 <b>{2:0.0}초</b> · 새 스킬 사용 불가";
+    [SerializeField] private string phaseTransitionFormat = "<size=145%><b><color=#F5EBD6>{0}</color></b></size>\n<color=#F5EBD6><b>{1}</b>페이즈 전환</color>\n무적 <b>{2:0.0}초</b> · 새 스킬 사용 불가";
     public string DescribeEnemy(Enemy target)
     {
         string name = target.Data.DisplayName;

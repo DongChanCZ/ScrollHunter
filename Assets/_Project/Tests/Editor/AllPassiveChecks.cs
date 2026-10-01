@@ -193,8 +193,8 @@ public static class AllPassiveChecks
             check(player.PotionsRemaining == 2 && metrics.PotionUses == 0 && metrics.PotionHealing == 0, "potion charges carry but metrics reset");
             Set(player, "currentHp", 100f); check(player.TryUsePotion() && player.TryUsePotion() && player.PotionsRemaining == 0, "last potions");
             check(!player.TryUsePotion() && player.CurrentHp == 400, "empty potion no heal");
-            Call(ui, "UpdateStatus"); var potionText = (TMPro.TMP_Text)Get(ui, "potionText");
-            check(potionText != null && potionText.text.Contains("0/4") && potionText.text.Contains("Shift"), "potion HUD count and shortcut");
+            Call(ui, "UpdateStatus"); var potionText = (TMPro.TMP_Text)Get(ui, "potionText"); var potionKey = (TMPro.TMP_Text)Get(ui, "potionKeyText");
+            check(potionText != null && potionText.text.Contains("0/4") && potionKey != null && potionKey.text.Contains("Shift"), "potion HUD count and shortcut");
             player.TakeDamage(100000); Call(flow, "Update"); check(!player.TryUsePotion(), "death no potion");
             flow.RestartRun(); check(player.PotionsRemaining == 2 && player.PotionCapacity == 2 && player.CurrentHp == 500 && cost.Current == 3, "restart restores base charges");
             metrics.WaitForBattle(); Set(player, "currentHp", 100f); Time.timeScale = 1;

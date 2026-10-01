@@ -92,6 +92,21 @@ public class BattleRewardUI : MonoBehaviour
         public string format;
     }
 
+    /// <summary>후보 슬롯의 스킬 전용 영역. 설명 길이와 관계없이 이름·주요 정보가 같은 위치에서 시작한다.</summary>
+    [System.Serializable]
+    private class SkillSlot
+    {
+        public GameObject root;
+        public TMP_Text title;
+        public TMP_Text info;
+        [Tooltip("효과·조건. 정해진 위치에서 아래로 늘어난다")]
+        public TMP_Text detail;
+    }
+
+    [Header("스킬 후보")]
+    [Tooltip("choiceButtons와 같은 순서. 연결하지 않은 슬롯은 기존 한 덩어리 설명으로 표시한다")]
+    [SerializeField] private SkillSlot[] skillSlots;
+
     [Header("패시브 후보")]
     [Tooltip("choiceButtons와 같은 순서. 분류·이름·효과는 위에서 고정 위치, 보유·안내는 아래 고정 영역")]
     [SerializeField] private PassiveSlot[] passiveSlots;
@@ -143,13 +158,18 @@ public class BattleRewardUI : MonoBehaviour
             choiceButtons[i].gameObject.SetActive(option != null);
             choiceButtons[i].interactable = choosing;
             RunRewardEffect passive = option != null ? option.Effect : null;
+            SkillData skill = option != null ? option.Card : null;
             PassiveSlot slot = passiveSlots != null && i < passiveSlots.Length ? passiveSlots[i] : null;
-            bool split = passive != null && slot != null && slot.root != null;
+            SkillSlot skillSlot = skillSlots != null && i < skillSlots.Length ? skillSlots[i] : null;
+            bool splitPassive = passive != null && slot != null && slot.root != null;
+            bool splitSkill = skill != null && skillSlot != null && skillSlot.root != null;
+            bool split = splitPassive || splitSkill;
             // 스킬과 패시브가 같은 슬롯을 번갈아 쓰므로 쓰지 않는 쪽의 글자·아이콘을 비우고 끈다.
             choiceLabels[i].text = option == null || split ? string.Empty
                 : passive == null ? option.Describe(information) : DescribePassive(passive);
             if (choiceLabels[i].gameObject.activeSelf == split) choiceLabels[i].gameObject.SetActive(!split);
-            ShowPassive(slot, split ? passive : null);
+            ShowPassive(slot, splitPassive ? passive : null);
+            ShowSkill(skillSlot, splitSkill ? skill : null);
             if (choiceIcons != null && i < choiceIcons.Length)
                 CombatInfoUI.ShowIcon(choiceIcons[i], option != null ? option.Card : null);
         }
@@ -188,6 +208,17 @@ public class BattleRewardUI : MonoBehaviour
         SetLabel(slot.effect, show ? DescribePassiveEffect(effect) : string.Empty);
         SetLabel(slot.stacks, show ? DescribePassiveStacks(effect) : string.Empty);
         SetLabel(slot.guide, show ? passiveGuideText : string.Empty);
+    }
+
+    /// <summary>스킬 영역 표시. card가 null이면 영역을 끄고 글자를 비운다.</summary>
+    private void ShowSkill(SkillSlot slot, SkillData card)
+    {
+        if (slot == null || slot.root == null) return;
+        bool show = card != null;
+        if (slot.root.activeSelf != show) slot.root.SetActive(show);
+        SetLabel(slot.title, show ? card.DisplayName : string.Empty);
+        SetLabel(slot.info, show ? information.DescribeCardInfo(card) : string.Empty);
+        SetLabel(slot.detail, show ? information.DescribeCardEffect(card) : string.Empty);
     }
 
     /// <summary>패시브 영역이 연결되지 않은 슬롯용 한 덩어리 설명.</summary>

@@ -24,6 +24,13 @@ public class TutorialFlow : MonoBehaviour
     [SerializeField] private string continueHintText = "Space";
     [SerializeField, TextArea] private string defeatPrompt = "이제 공격스킬을 써서 적을 처치하세요";
     [SerializeField, TextArea] private string completionPrompt = "<size=36><b>튜토리얼 완료</b></size>\nHP와 포션이 회복된 상태로 다음 전투를 시작합니다.\n스킬 순서를 확인하고 전투를 준비하세요.";
+    [Header("외형 (10 A37) — 비우면 단색 사각형")]
+    [SerializeField] private Sprite panelSprite;
+    [SerializeField] private Color panelColor = new Color(0.035f, 0.025f, 0.025f, 0.94f);
+    [SerializeField] private Sprite frameSprite;
+    [SerializeField] private Color frameColor = new Color(0.86f, 0.74f, 0.5f, 0.9f);
+    [SerializeField] private Sprite buttonSprite;
+    [SerializeField] private Color textColor = Color.white;
     private bool showingDefeatPrompt;
     private RectTransform skipRect;
     private RectTransform[] shades = new RectTransform[4];
@@ -248,6 +255,14 @@ public class TutorialFlow : MonoBehaviour
         return (RectTransform)obj.transform;
     }
 
+    private static void Dress(RectTransform rect, Sprite sprite)
+    {
+        if (sprite == null) return;
+        var image = rect.GetComponent<Image>();
+        image.sprite = sprite;
+        image.type = sprite.border != Vector4.zero ? Image.Type.Sliced : Image.Type.Simple;
+    }
+
     private TMP_Text Label(Transform parent, string text, float size)
     {
         var obj = new GameObject("Text", typeof(RectTransform), typeof(TextMeshProUGUI));
@@ -255,7 +270,7 @@ public class TutorialFlow : MonoBehaviour
         var label = obj.GetComponent<TextMeshProUGUI>();
         label.font = font;
         label.fontSize = size;
-        label.color = Color.white;
+        label.color = textColor;
         label.alignment = TextAlignmentOptions.Center;
         label.raycastTarget = false;
         label.text = text;
@@ -273,7 +288,15 @@ public class TutorialFlow : MonoBehaviour
         root.anchorMin = Vector2.zero; root.anchorMax = Vector2.one;
         root.offsetMin = root.offsetMax = Vector2.zero;
         for (int i = 0; i < shades.Length; i++) shades[i] = UiRect("Shade" + i, root, new Color(0, 0, 0, 0.65f));
-        guide = UiRect("TutorialGuide", root, new Color(0.035f, 0.025f, 0.025f, 0.94f));
+        guide = UiRect("TutorialGuide", root, panelColor);
+        Dress(guide, panelSprite);
+        if (frameSprite != null)
+        {
+            RectTransform frame = UiRect("Frame", guide, frameColor);
+            Dress(frame, frameSprite);
+            frame.anchorMin = Vector2.zero; frame.anchorMax = Vector2.one;
+            frame.offsetMin = frame.offsetMax = Vector2.zero;
+        }
         guide.anchorMin = guide.anchorMax = new Vector2(0.5f, 0);
         guide.pivot = new Vector2(0.5f, 0);
         guide.anchoredPosition = new Vector2(0, 255);
@@ -285,18 +308,19 @@ public class TutorialFlow : MonoBehaviour
         continueHint.alignment = TextAlignmentOptions.BottomRight;
         continueHint.color = new Color32(231, 203, 135, 255);
         continueHint.rectTransform.anchorMax = new Vector2(1, 0);
-        continueHint.rectTransform.offsetMin = new Vector2(20, 15);
-        continueHint.rectTransform.offsetMax = new Vector2(-25, 50);
-        skipRect = UiRect("SkipTutorial", canvasRoot, new Color(0.12f, 0.10f, 0.10f, 0.95f));
+        continueHint.rectTransform.offsetMin = new Vector2(20, 18);
+        continueHint.rectTransform.offsetMax = new Vector2(-44, 52);
+        skipRect = UiRect("SkipTutorial", canvasRoot, buttonSprite != null ? Color.white : new Color(0.12f, 0.10f, 0.10f, 0.95f));
+        Dress(skipRect, buttonSprite);
         skipRect.anchorMin = skipRect.anchorMax = new Vector2(1, 1);
         skipRect.pivot = new Vector2(1, 1);
         skipRect.anchoredPosition = new Vector2(-25, -25);
-        skipRect.sizeDelta = new Vector2(210, 55);
+        skipRect.sizeDelta = new Vector2(buttonSprite != null ? 228 : 210, 55);
         skipRect.GetComponent<Image>().raycastTarget = true;
         var button = skipRect.gameObject.AddComponent<Button>();
         button.targetGraphic = skipRect.GetComponent<Image>();
         button.onClick.AddListener(Skip);
-        Label(skipRect, "튜토리얼 스킵", 25);
+        Label(skipRect, "튜토리얼 스킵", buttonSprite != null ? 23 : 25);
         overlay.SetActive(false);
         skipRect.gameObject.SetActive(false);
     }

@@ -41,7 +41,7 @@ public static class RedShieldChecks
             reset(0);
             check(player.MaxHp == 500 && player.Defense == 20 && player.RedShieldDamageMultiplier == 0.5f, "saved player defaults");
             check(c.Data.Find(CastColor.Red).Damage == 240 && c.Data.Find(CastColor.Red).CastTime == 4f, "saved C red damage240 / cast4");
-            check(a.Data.Find(CastColor.Green).Damage == 30 && b.Data.Find(CastColor.Orange).Damage == 40, "green and orange data unchanged");
+            check(a.Data.Find(CastColor.Green).Damage == 20 && b.Data.Find(CastColor.Green).Damage == 25 && b.Data.Find(CastColor.Orange).Damage == 40, "A38 green20/25 and orange40");
             check(info.DescribeEnemy(c).Contains("240") && info.DescribeEnemy(c).Contains("50%")
                 && info.DescribeEnemy(c).Contains("차단 불가"), "red information uses live data and reduction");
             check(!info.DescribeEnemy(b).Contains("50%"), "orange does not advertise reduction");
@@ -60,12 +60,14 @@ public static class RedShieldChecks
             }
 
             reset(1); Call(a, "Fire");
-            check(player.CurrentHp == 476 && player.Shield == 0 && metrics.RedShieldPrevented == 0, "green no half");
+            check(player.CurrentHp == 484 && player.Shield == 0 && metrics.RedShieldPrevented == 0, "green no half");
+            reset(1); typeof(Enemy).GetField("current", Hidden).SetValue(b, b.Data.Find(CastColor.Green)); Call(b, "Fire");
+            check(player.CurrentHp == 480 && player.Shield == 0 && metrics.RedShieldPrevented == 0, "B green21 before shield, no half");
             reset(1); Call(b, "Fire");
             check(player.CurrentHp == 468 && player.IsStunned && metrics.RedShieldPrevented == 0, "orange no half and stun retained");
-            reset(25); Call(a, "Fire"); Call(c, "Fire");
+            reset(17); Call(a, "Fire"); Call(c, "Fire");
             check(player.CurrentHp == 300 && metrics.RedShieldPrevented == 0, "green exhausted shield before red");
-            reset(26); Call(a, "Fire"); Call(c, "Fire");
+            reset(18); Call(a, "Fire"); Call(c, "Fire");
             check(player.CurrentHp == 401 && metrics.RedShieldPrevented == 100, "green left one before red");
 
             reset(120); player.TakeDamage(240, CastColor.Red); player.TakeDamage(240, CastColor.Red);

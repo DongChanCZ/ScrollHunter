@@ -50,6 +50,20 @@ public class Enemy : MonoBehaviour
     [Header("HP 표시")]
     [SerializeField] private Image hpBarFill;
     [SerializeField] private TMP_Text hpText;
+    private RectTransform hpBarRect;
+
+    /// <summary>타겟 강조선 위치용 HP 바 영역(읽기 전용). 바 묶음 바로 아래에서 HP 채움을 담은 오브젝트.</summary>
+    public RectTransform HpBarRect
+    {
+        get
+        {
+            if (hpBarRect != null || hpBarFill == null || castBarRoot == null) return hpBarRect;
+            Transform t = hpBarFill.transform;
+            while (t.parent != null && t.parent != castBarRoot) t = t.parent;
+            if (t.parent == castBarRoot) hpBarRect = (RectTransform)t;
+            return hpBarRect;
+        }
+    }
 
     [Tooltip("{0}=현재 HP, {1}=최대 HP")]
     [SerializeField] private string hpFormat = "{0} / {1}";
