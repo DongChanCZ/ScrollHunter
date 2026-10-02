@@ -1,0 +1,182 @@
+[
+  {
+    "format": "glb",
+    "bytes": 10533688,
+    "bones": 53,
+    "finger_bones": 30,
+    "triangles": 13546,
+    "boundary_edges": 0,
+    "nonmanifold_edges": 0,
+    "zero_area_faces": 0,
+    "unweighted_vertices": 0,
+    "weight_sum_errors": 0,
+    "maximum_influences": 4,
+    "protected_body_position_error": 4.7009561399136146e-07,
+    "minimum_z": -6.747496428261002e-08,
+    "actions": 0,
+    "textures": [
+      {
+        "size": [
+          2048,
+          2048
+        ],
+        "packed": true
+      },
+      {
+        "size": [
+          2048,
+          2048
+        ],
+        "packed": true
+      }
+    ],
+    "finger_tests": [
+      {
+        "finger": "LeftThumb",
+        "moved_vertices": 302,
+        "opposite_side_error": 0.0
+      },
+      {
+        "finger": "LeftIndex",
+        "moved_vertices": 274,
+        "opposite_side_error": 0.0
+      },
+      {
+        "finger": "LeftMiddle",
+        "moved_vertices": 256,
+        "opposite_side_error": 0.0
+      },
+      {
+        "finger": "LeftRing",
+        "moved_vertices": 186,
+        "opposite_side_error": 0.0
+      },
+      {
+        "finger": "LeftLittle",
+        "moved_vertices": 180,
+        "opposite_side_error": 0.0
+      },
+      {
+        "finger": "RightThumb",
+        "moved_vertices": 183,
+        "opposite_side_error": 0.0
+      },
+      {
+        "finger": "RightIndex",
+        "moved_vertices": 238,
+        "opposite_side_error": 0.0
+      },
+      {
+        "finger": "RightMiddle",
+        "moved_vertices": 202,
+        "opposite_side_error": 0.0
+      },
+      {
+        "finger": "RightRing",
+        "moved_vertices": 238,
+        "opposite_side_error": 0.0
+      },
+      {
+        "finger": "RightLittle",
+        "moved_vertices": 207,
+        "opposite_side_error": 0.0
+      }
+    ],
+    "texture_pixel_errors": {
+      "BaseColor": 0.0,
+      "Normal": 0.0
+    },
+    "arm_leg_pose_finite": true
+  },
+  {
+    "format": "fbx",
+    "bytes": 10615900,
+    "bones": 53,
+    "finger_bones": 30,
+    "triangles": 13546,
+    "boundary_edges": 0,
+    "nonmanifold_edges": 0,
+    "zero_area_faces": 0,
+    "unweighted_vertices": 0,
+    "weight_sum_errors": 0,
+    "maximum_influences": 4,
+    "protected_body_position_error": 1.605336450438699e-07,
+    "minimum_z": 8.691143804639978e-09,
+    "actions": 0,
+    "textures": [
+      {
+        "size": [
+          2048,
+          2048
+        ],
+        "packed": true
+      },
+      {
+        "size": [
+          2048,
+          2048
+        ],
+        "packed": true
+      }
+    ],
+    "finger_tests": [
+      {
+        "finger": "LeftThumb",
+        "moved_vertices": 241,
+        "opposite_side_error": 0.0
+      },
+      {
+        "finger": "LeftIndex",
+        "moved_vertices": 196,
+        "opposite_side_error": 0.0
+      },
+      {
+        "finger": "LeftMiddle",
+        "moved_vertices": 187,
+        "opposite_side_error": 0.0
+      },
+      {
+        "finger": "LeftRing",
+        "moved_vertices": 137,
+        "opposite_side_error": 0.0
+      },
+      {
+        "finger": "LeftLittle",
+        "moved_vertices": 135,
+        "opposite_side_error": 0.0
+      },
+      {
+        "finger": "RightThumb",
+        "moved_vertices": 153,
+        "opposite_side_error": 0.0
+      },
+      {
+        "finger": "RightIndex",
+        "moved_vertices": 181,
+        "opposite_side_error": 0.0
+      },
+      {
+        "finger": "RightMiddle",
+        "moved_vertices": 147,
+        "opposite_side_error": 0.0
+      },
+      {
+        "finger": "RightRing",
+        "moved_vertices": 178,
+        "opposite_side_error": 0.0
+      },
+      {
+        "finger": "RightLittle",
+        "moved_vertices": 160,
+        "opposite_side_error": 0.0
+      }
+    ],
+    "texture_pixel_errors": {
+      "BaseColor": 0.0,
+      "Normal": 0.0
+    },
+    "arm_leg_pose_finite": true,
+    "head_torso_pose_finite": true,
+    "robe_stride_pose_finite": true
+  }
+]

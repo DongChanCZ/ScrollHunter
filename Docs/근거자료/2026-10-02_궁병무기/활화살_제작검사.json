@@ -1,0 +1,21 @@
+[
+  {
+    "file": "WPN_Bow_v01.fbx",
+    "meshes": [
+      "Bow_LimbUpper",
+      "Bow_LimbLower",
+      "Bow_Riser",
+      "Bow_Grip"
+    ],
+    "triangles": 2632,
+    "texture": 1024
+  },
+  {
+    "file": "WPN_Arrow_v01.fbx",
+    "meshes": [
+      "WPN_Arrow_v01"
+    ],
+    "triangles": 648,
+    "texture": 512
+  }
+]

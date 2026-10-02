@@ -1,0 +1,110 @@
+{
+  "date": "2026-10-02",
+  "scope": "궁병 모델·활·화살·Mixamo 애니메이션 1~3단계 검토. 게임 및 문서 본문 수정 없음.",
+  "passed": [
+    "EnemyModelChecks.Run: 68 통과 / 0 실패",
+    "Battle 적 B 프리팹·유효 Humanoid·Mixamo 6개 클립·루트 모션 끔 확인",
+    "Animator.Update로 Draw→Aim→Release→Idle 및 Hit 끼어들기→Idle, Death 확인",
+    "일반 전투 준비 카운트다운 실제 프레임에서 정상 대기 자세 확인",
+    "화살 연출 프리팹 Collider 0, 비행 후 삭제 확인"
+  ],
+  "findings": [
+    {
+      "priority": 1,
+      "item": "발사 직후 시위 재당김",
+      "evidence": "안정된 실제 프레임에서 발사 후 0.051초 Draw 0.146 → 0.085초 1.000 → 0.126초 0.979 → 0.182초 0.000. BowRig.releaseTimer 종료 뒤 Animator BowDraw를 다시 읽음.",
+      "file": "Assets/_Project/Scripts/BowRig.cs:85"
+    },
+    {
+      "priority": 2,
+      "item": "프리팹 기본 자세가 사망 자세",
+      "evidence": "편집 상태 프리팹 Hips (0.40,0.17,-1.49), Head (0.13,0.18,-2.09). ApplyMixamo의 SampleAnimation 반복 마지막 Death를 복원하지 않고 SaveAsPrefabAsset. 실제 프레임 카운트다운은 정상 대기 자세이므로 플레이 시작 실패로 분류하지 않음.",
+      "file": "Assets/_Project/Editor/ArcherAnimationBuilder.cs:354"
+    },
+    {
+      "priority": 2,
+      "item": "조준 시 활 끝과 캐스팅 바 겹침",
+      "evidence": "03_Aim.png"
+    },
+    {
+      "priority": 3,
+      "item": "화살통 없는 등 뒤 화살 뽑기 동작 및 사망 시 손 화살 표시",
+      "evidence": "07 d13-archer-mixamo와 저장 동작·게임 화면 대조. 무기 보완 및 5단계 상태별 화살 숨김 필요."
+    },
+    {
+      "priority": 2,
+      "item": "09 재생속도 계산 구표현",
+      "evidence": "09:36 DrawSpeed=1/시전 시간. 실제 Mixamo Draw 길이 1.06777787초이므로 클립 길이/시전 시간. 시전 2.5초에서 0.427111148 권장."
+    },
+    {
+      "priority": 3,
+      "item": "06 현재 상태 요약 구표현",
+      "evidence": "06:3 및119에는 씬·무기·동작 전이 남아 있고 궁병 행48·07·AGENTS·CLAUDE 최신 기록과 다름."
+    }
+  ],
+  "remaining": "전투 이벤트 연결·실제 피해/차단에 따른 모션·사망 표시 및 정리·나머지 적의 씬 적용은 후속 4~5단계.",
+  "limitations": [
+    "키보드/마우스 직접 플레이 아닌 함수 호출·Animator 수동 진행·일부 실제 프레임 검사",
+    "처음 프레임 정지 상태의 누운 화면은 정상 카운트다운 재현으로 확정하지 않음. 백그라운드 실행 임시 허용 후 실제 프레임에서 정상 확인, 설정 원복",
+    "신규 빌드·전체 런 완주·밸런스 검사는 수행하지 않음",
+    "Play 종료·Battle 미저장 변경 없음"
+  ],
+  "releaseLogs": [
+    {
+      "type": "Log",
+      "message": "[CodexBowStable] t=0.034 draw=0.411 dt=0.027 ready=False",
+      "file": "",
+      "line": 0,
+      "stackTrace": null
+    },
+    {
+      "type": "Log",
+      "message": "[CodexBowStable] t=0.051 draw=0.146 dt=0.011 ready=False",
+      "file": "",
+      "line": 0,
+      "stackTrace": null
+    },
+    {
+      "type": "Log",
+      "message": "[CodexBowStable] t=0.085 draw=1.000 dt=0.006 ready=False",
+      "file": "",
+      "line": 0,
+      "stackTrace": null
+    },
+    {
+      "type": "Log",
+      "message": "[CodexBowStable] t=0.126 draw=0.979 dt=0.006 ready=False",
+      "file": "",
+      "line": 0,
+      "stackTrace": null
+    },
+    {
+      "type": "Log",
+      "message": "[CodexBowStable] t=0.182 draw=0.000 dt=0.005 ready=False",
+      "file": "",
+      "line": 0,
+      "stackTrace": null
+    },
+    {
+      "type": "Log",
+      "message": "[CodexBowStable] t=0.305 draw=0.000 dt=0.006 ready=False",
+      "file": "",
+      "line": 0,
+      "stackTrace": null
+    },
+    {
+      "type": "Log",
+      "message": "[CodexBowStable] t=0.503 draw=0.000 dt=0.005 ready=False",
+      "file": "",
+      "line": 0,
+      "stackTrace": null
+    },
+    {
+      "type": "Log",
+      "message": "[CodexBowStable] t=0.804 draw=0.000 dt=0.005 ready=False",
+      "file": "",
+      "line": 0,
+      "stackTrace": null
+    }
+  ]
+}

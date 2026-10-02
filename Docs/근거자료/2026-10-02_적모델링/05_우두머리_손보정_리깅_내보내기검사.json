@@ -1,0 +1,180 @@
+[
+  {
+    "format": "glb",
+    "bytes": 11019472,
+    "bones": 53,
+    "finger_bones": 30,
+    "triangles": 14494,
+    "boundary_edges": 0,
+    "nonmanifold_edges": 0,
+    "zero_area_faces": 0,
+    "unweighted_vertices": 0,
+    "weight_sum_errors": 0,
+    "maximum_influences": 4,
+    "protected_body_position_error": 2.4620757699267415e-07,
+    "minimum_z": 9.778792531278668e-08,
+    "actions": 0,
+    "textures": [
+      {
+        "size": [
+          2048,
+          2048
+        ],
+        "packed": true
+      },
+      {
+        "size": [
+          2048,
+          2048
+        ],
+        "packed": true
+      }
+    ],
+    "finger_tests": [
+      {
+        "finger": "LeftThumb",
+        "moved_vertices": 309,
+        "opposite_side_error": 0.0
+      },
+      {
+        "finger": "LeftIndex",
+        "moved_vertices": 258,
+        "opposite_side_error": 0.0
+      },
+      {
+        "finger": "LeftMiddle",
+        "moved_vertices": 275,
+        "opposite_side_error": 0.0
+      },
+      {
+        "finger": "LeftRing",
+        "moved_vertices": 369,
+        "opposite_side_error": 0.0
+      },
+      {
+        "finger": "LeftLittle",
+        "moved_vertices": 216,
+        "opposite_side_error": 0.0
+      },
+      {
+        "finger": "RightThumb",
+        "moved_vertices": 311,
+        "opposite_side_error": 0.0
+      },
+      {
+        "finger": "RightIndex",
+        "moved_vertices": 186,
+        "opposite_side_error": 0.0
+      },
+      {
+        "finger": "RightMiddle",
+        "moved_vertices": 298,
+        "opposite_side_error": 0.0
+      },
+      {
+        "finger": "RightRing",
+        "moved_vertices": 229,
+        "opposite_side_error": 0.0
+      },
+      {
+        "finger": "RightLittle",
+        "moved_vertices": 198,
+        "opposite_side_error": 0.0
+      }
+    ],
+    "texture_pixel_errors": {
+      "BaseColor": 0.0,
+      "Normal": 0.0
+    },
+    "arm_leg_pose_finite": true
+  },
+  {
+    "format": "fbx",
+    "bytes": 11096076,
+    "bones": 53,
+    "finger_bones": 30,
+    "triangles": 14494,
+    "boundary_edges": 0,
+    "nonmanifold_edges": 0,
+    "zero_area_faces": 0,
+    "unweighted_vertices": 0,
+    "weight_sum_errors": 0,
+    "maximum_influences": 4,
+    "protected_body_position_error": 2.798248601720843e-07,
+    "minimum_z": -1.4198290543276926e-08,
+    "actions": 0,
+    "textures": [
+      {
+        "size": [
+          2048,
+          2048
+        ],
+        "packed": true
+      },
+      {
+        "size": [
+          2048,
+          2048
+        ],
+        "packed": true
+      }
+    ],
+    "finger_tests": [
+      {
+        "finger": "LeftThumb",
+        "moved_vertices": 250,
+        "opposite_side_error": 0.0
+      },
+      {
+        "finger": "LeftIndex",
+        "moved_vertices": 198,
+        "opposite_side_error": 0.0
+      },
+      {
+        "finger": "LeftMiddle",
+        "moved_vertices": 208,
+        "opposite_side_error": 0.0
+      },
+      {
+        "finger": "LeftRing",
+        "moved_vertices": 263,
+        "opposite_side_error": 0.0
+      },
+      {
+        "finger": "LeftLittle",
+        "moved_vertices": 176,
+        "opposite_side_error": 0.0
+      },
+      {
+        "finger": "RightThumb",
+        "moved_vertices": 248,
+        "opposite_side_error": 0.0
+      },
+      {
+        "finger": "RightIndex",
+        "moved_vertices": 148,
+        "opposite_side_error": 0.0
+      },
+      {
+        "finger": "RightMiddle",
+        "moved_vertices": 239,
+        "opposite_side_error": 0.0
+      },
+      {
+        "finger": "RightRing",
+        "moved_vertices": 187,
+        "opposite_side_error": 0.0
+      },
+      {
+        "finger": "RightLittle",
+        "moved_vertices": 165,
+        "opposite_side_error": 0.0
+      }
+    ],
+    "texture_pixel_errors": {
+      "BaseColor": 0.0,
+      "Normal": 0.0
+    },
+    "arm_leg_pose_finite": true
+  }
+]

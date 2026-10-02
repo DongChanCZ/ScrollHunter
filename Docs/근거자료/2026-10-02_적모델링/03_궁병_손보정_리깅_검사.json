@@ -1,0 +1,87 @@
+{
+  "source": "02_궁병여성_VARCO_손수정.glb",
+  "source_sha256": "77093574a4f3d8b4811786241e26409920cc3769b688aa5d3e65a5363b25bb10",
+  "bones": 53,
+  "finger_bones": 30,
+  "vertices": 7806,
+  "triangles": 15668,
+  "skin_color_linear": [
+    0.7411764860153198,
+    0.5333333611488342,
+    0.41568630933761597
+  ],
+  "retouched_texture_pixels": 69884,
+  "origin": "soles",
+  "animation_actions": 0,
+  "protected_body_geometry_unchanged": true,
+  "scope": "Hand repair and deform skeleton; no Unity import or authored bow animation.",
+  "topology": {
+    "boundary": 0,
+    "nonmanifold": 0,
+    "zero_area": 0
+  },
+  "unweighted_vertices": 0,
+  "weight_sum_errors": 0,
+  "finger_tests": [
+    {
+      "side": "Left",
+      "finger": "Thumb",
+      "moved": 227,
+      "opposite_side_max": 1.3546182092708877e-07
+    },
+    {
+      "side": "Left",
+      "finger": "Index",
+      "moved": 286,
+      "opposite_side_max": 1.3546182092708877e-07
+    },
+    {
+      "side": "Left",
+      "finger": "Middle",
+      "moved": 298,
+      "opposite_side_max": 1.3546182092708877e-07
+    },
+    {
+      "side": "Left",
+      "finger": "Ring",
+      "moved": 400,
+      "opposite_side_max": 1.3546182092708877e-07
+    },
+    {
+      "side": "Left",
+      "finger": "Little",
+      "moved": 321,
+      "opposite_side_max": 1.3546182092708877e-07
+    },
+    {
+      "side": "Right",
+      "finger": "Thumb",
+      "moved": 286,
+      "opposite_side_max": 1.3546182092708877e-07
+    },
+    {
+      "side": "Right",
+      "finger": "Index",
+      "moved": 215,
+      "opposite_side_max": 1.3546182092708877e-07
+    },
+    {
+      "side": "Right",
+      "finger": "Middle",
+      "moved": 306,
+      "opposite_side_max": 1.3546182092708877e-07
+    },
+    {
+      "side": "Right",
+      "finger": "Ring",
+      "moved": 294,
+      "opposite_side_max": 1.3546182092708877e-07
+    },
+    {
+      "side": "Right",
+      "finger": "Little",
+      "moved": 246,
+      "opposite_side_max": 1.3546182092708877e-07
+    }
+  ]
+}

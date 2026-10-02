@@ -1,0 +1,93 @@
+{
+  "source": "06_깡패_시안.glb",
+  "source_sha256": "8f2be267cc3e9626dbd4fd561285a08b0480c694e06aefb1ffc895b42517942f",
+  "bones": 53,
+  "finger_bones": 30,
+  "vertices": 7648,
+  "triangles": 15352,
+  "skin_color_linear": [
+    0.7450980544090271,
+    0.545098066329956,
+    0.41960787773132324
+  ],
+  "retouched_texture_pixels": 90151,
+  "scalp_pixels": 108333,
+  "scalp_color": [
+    0.7960785031318665,
+    0.5803921818733215,
+    0.45098042488098145
+  ],
+  "origin": "soles",
+  "animation_actions": 0,
+  "protected_body_geometry_unchanged": true,
+  "scope": "Hand repair and deform skeleton; no Unity import or authored combat animation.",
+  "topology": {
+    "boundary": 0,
+    "nonmanifold": 0,
+    "zero_area": 0
+  },
+  "unweighted_vertices": 0,
+  "weight_sum_errors": 0,
+  "finger_tests": [
+    {
+      "side": "Left",
+      "finger": "Thumb",
+      "moved": 394,
+      "opposite_side_max": 8.503133215392624e-08
+    },
+    {
+      "side": "Left",
+      "finger": "Index",
+      "moved": 285,
+      "opposite_side_max": 8.503133215392624e-08
+    },
+    {
+      "side": "Left",
+      "finger": "Middle",
+      "moved": 279,
+      "opposite_side_max": 8.503133215392624e-08
+    },
+    {
+      "side": "Left",
+      "finger": "Ring",
+      "moved": 263,
+      "opposite_side_max": 8.503133215392624e-08
+    },
+    {
+      "side": "Left",
+      "finger": "Little",
+      "moved": 267,
+      "opposite_side_max": 8.503133215392624e-08
+    },
+    {
+      "side": "Right",
+      "finger": "Thumb",
+      "moved": 259,
+      "opposite_side_max": 8.503133215392624e-08
+    },
+    {
+      "side": "Right",
+      "finger": "Index",
+      "moved": 183,
+      "opposite_side_max": 8.503133215392624e-08
+    },
+    {
+      "side": "Right",
+      "finger": "Middle",
+      "moved": 262,
+      "opposite_side_max": 8.503133215392624e-08
+    },
+    {
+      "side": "Right",
+      "finger": "Ring",
+      "moved": 133,
+      "opposite_side_max": 8.503133215392624e-08
+    },
+    {
+      "side": "Right",
+      "finger": "Little",
+      "moved": 143,
+      "opposite_side_max": 8.503133215392624e-08
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "source": "08_마법사_시안.glb",
+  "source_sha256": "3999346c06347178a1ba572764515bb9b577c9f48a7e201ca3618e93aee8fc46",
+  "bones": 53,
+  "finger_bones": 30,
+  "vertices": 6749,
+  "triangles": 13546,
+  "skin_color_linear": [
+    0.6901960968971252,
+    0.5490196347236633,
+    0.4549019932746887
+  ],
+  "retouched_texture_pixels": 65883,
+  "origin": "soles",
+  "animation_actions": 0,
+  "protected_body_geometry_unchanged": true,
+  "scope": "Hand repair and deform skeleton; no Unity import or authored combat animation.",
+  "topology": {
+    "boundary": 0,
+    "nonmanifold": 0,
+    "zero_area": 0
+  },
+  "unweighted_vertices": 0,
+  "weight_sum_errors": 0,
+  "finger_tests": [
+    {
+      "side": "Left",
+      "finger": "Thumb",
+      "moved": 241,
+      "opposite_side_max": 1.1934018492431453e-07
+    },
+    {
+      "side": "Left",
+      "finger": "Index",
+      "moved": 196,
+      "opposite_side_max": 1.1934018492431453e-07
+    },
+    {
+      "side": "Left",
+      "finger": "Middle",
+      "moved": 187,
+      "opposite_side_max": 1.1934018492431453e-07
+    },
+    {
+      "side": "Left",
+      "finger": "Ring",
+      "moved": 137,
+      "opposite_side_max": 1.1934018492431453e-07
+    },
+    {
+      "side": "Left",
+      "finger": "Little",
+      "moved": 135,
+      "opposite_side_max": 1.1934018492431453e-07
+    },
+    {
+      "side": "Right",
+      "finger": "Thumb",
+      "moved": 153,
+      "opposite_side_max": 1.1938741742898803e-07
+    },
+    {
+      "side": "Right",
+      "finger": "Index",
+      "moved": 181,
+      "opposite_side_max": 1.1938741742898803e-07
+    },
+    {
+      "side": "Right",
+      "finger": "Middle",
+      "moved": 147,
+      "opposite_side_max": 1.1938741742898803e-07
+    },
+    {
+      "side": "Right",
+      "finger": "Ring",
+      "moved": 178,
+      "opposite_side_max": 1.1938741742898803e-07
+    },
+    {
+      "side": "Right",
+      "finger": "Little",
+      "moved": 160,
+      "opposite_side_max": 1.1938741742898803e-07
+    }
+  ],
+  "saved_blend_texture_pixel_errors": {
+    "BaseColor": 0.0,
+    "Normal": 0.0
+  }
+}

@@ -1,0 +1,38 @@
+[
+  {
+    "model": "03_궁병_손보정_리깅",
+    "before_pixel_errors": {
+      "BaseColor": 0.7176471278071404,
+      "Normal": 0.35686276853084564
+    },
+    "after_pixel_errors": {
+      "BaseColor": 0.0,
+      "Normal": 0.0
+    },
+    "geometry_and_rig_unchanged": true
+  },
+  {
+    "model": "05_우두머리_손보정_리깅",
+    "before_pixel_errors": {
+      "BaseColor": 0.6352941384539008,
+      "Normal": 0.35686276853084564
+    },
+    "after_pixel_errors": {
+      "BaseColor": 0.0,
+      "Normal": 0.0
+    },
+    "geometry_and_rig_unchanged": true
+  },
+  {
+    "model": "07_깡패_보정_리깅",
+    "before_pixel_errors": {
+      "BaseColor": 0.7372549697756767,
+      "Normal": 0.35686276853084564
+    },
+    "after_pixel_errors": {
+      "BaseColor": 0.0,
+      "Normal": 0.0
+    },
+    "geometry_and_rig_unchanged": true
+  }
+]

@@ -45,15 +45,36 @@
 | 도구 | 용도 |
 |---|---|
 | Unity 6.3 LTS (6000.3.18f1) | 엔진 |
-| VARCO 3D | 적 이미지·3D 시안 생성, 약탈자 손가락 리깅 |
-| Blender 5.1.2 | 궁병 손 메시·UV 보정, 모델·리깅·임시 자세 검사 |
+| Adobe Mixamo | 궁병 동작 6종, 깡패·약탈자·우두머리·마법사 동작 23종 내려받기(아래 Mixamo 절) |
+| VARCO 3D | 적 이미지·3D 시안 생성, 약탈자 손가락 리깅, 여성 궁병 손 수정(10/2 파일명 기준) |
+| Blender 5.1.2 | 궁병 손 메시·UV 보정, 모델·리깅·임시 자세 검사. 10/2 깡패·여성 궁병·우두머리·마법사 손(깡패 정수리 포함) 보정·리깅·텍스처 재포장(근거자료 스크립트 기준), 궁병 활·화살, 단검·대검·지팡이 직접 제작 |
 | [ ] | [ ] |
 
-## 생성형 3D 시안 (2026-10-01, 게임 적용 전)
+## 생성형 3D 적 모델 (2026-10-01 시안, 10-02 Unity 반입)
 
 - VARCO `ScrollHunter` 워크플로에서 약탈자·궁병 이미지와 3D 생성. 약탈자는 같은 서비스에서 손가락 리깅. 궁병은 Blender로 손 분리·UV 보정 후 임시 뼈대로 옷 자세 검사.
 - 원본·수정본·실제 입력은 `Docs/근거자료/2026-10-01_적모델링/`에 보존. [약탈자 생성 기록](근거자료/2026-10-01_적모델링/01_약탈자_생성프롬프트.txt)·[궁병 생성 기록](근거자료/2026-10-01_적모델링/03_궁병_생성프롬프트.txt), 검사·가공 범위는 [07](07_개발일지.md#d12-close).
-- 두 모델은 최종 채택·Unity 적용 전. 생성물의 배포·표기 조건 확인 결과는 아직 미기록이며 CC0 에셋으로 분류하지 않는다. 애니메이션 자료는 아직 생성·반입하지 않음.
+- 10/2 깡패·여성 궁병·우두머리·마법사 시안과 Blender 보정·리깅본은 `Docs/근거자료/2026-10-02_적모델링/`에 보존. [마법사 생성 기록](근거자료/2026-10-02_적모델링/08_마법사_생성프롬프트.txt)만 입력이 남아 있음. 대조는 [07](07_개발일지.md#d13-model-files).
+- 사용자 지정 5종을 `Assets/_Project/Models/Enemies/`에 원본 바이트 그대로 반입(10/2). 가공은 Unity 임포트 설정·전용 머티리얼뿐이며 원본 메시·텍스처 파일은 바꾸지 않음. 10/1 남성 궁병은 미사용. [07](07_개발일지.md#d13-enemy-unity-import).
+- 생성물의 배포·표기 조건 확인 결과는 아직 미기록이며 CC0 에셋으로 분류하지 않는다. 동작은 VARCO가 아닌 아래 Mixamo·직접 제작 자료를 Unity에서 리타기팅해 사용.
+
+## Mixamo 궁병 동작 (2026-10-02)
+
+- 출처: Adobe Mixamo(https://www.mixamo.com), Longbow 계열 6종 — Standing Idle 01, Standing Draw Arrow, Standing Aim Idle 01, Standing Aim Recoil, Standing React Small From Front, Standing Death Backward 01. 기본 캐릭터 `akai_e_espiritu`로 FBX for Unity·Without Skin·30fps 내려받음(사용자 Adobe 계정).
+- 이용 조건: [Mixamo FAQ](https://helpx.adobe.com/creative-cloud/faq/mixamo-faq.html) 기준 캐릭터·동작은 개인·상업·비영리 프로젝트(비디오 게임 포함)에 로열티 없이 사용 가능(2026-10-02 확인). 원본 파일 단독 재배포 가능 여부는 FAQ에 없어 미확인.
+- 원본 `Docs/근거자료/2026-10-02_Mixamo원본/`, Unity 복사본 `Assets/_Project/Animations/Archer/Mixamo/`. 가공: Humanoid 리타기팅, 회전 보정, 제자리 설정, 시위 당김 곡선 추가. 기록 [07](07_개발일지.md#d13-archer-mixamo).
+
+## Mixamo 적 4종 동작 (2026-10-02)
+
+- 출처: Adobe Mixamo, 23종 — Breathing Idle, Fighting Idle, Punching, Cross Punch, Zombie Kicking, Hit Reaction, Falling Back Death, Knife Idle, Stabbing, Sword And Shield Death, Great Sword Idle, Great Sword Blocking, Great Sword Slash (Downward), Great Sword Slash, Great Sword Impact, Two Handed Sword Death, Standing Idle 03, Standing 1H Cast Spell 01, Standing 1H Magic Attack 01, Standing 2H Magic Attack 01, Standing 2H Magic Area Attack 02, Standing React Large From Front, Standing React Death Backward. 기본 캐릭터 Y Bot으로 FBX for Unity·Without Skin·30fps 내려받음(사용자 Adobe 계정).
+- 이용 조건은 위 궁병 동작과 같음(Mixamo FAQ, 2026-10-02 확인). 원본 파일 단독 재배포 가능 여부는 미확인.
+- 원본 `Docs/근거자료/2026-10-02_Mixamo원본/`(`Y Bot@*.fbx`), Unity 복사본 `Assets/_Project/Animations/Mixamo/MX_*.fbx`. 가공: Humanoid 리타기팅, 반복·제자리 설정, 회전 보정. 기록 [07](07_개발일지.md#d13-enemy-rigs).
+
+## 궁병 활·화살·기본 동작 (2026-10-02, 직접 제작)
+
+- 궁병 기본 동작 6종은 Unity 근육 값 키프레임으로 직접 제작한 이전 동작이다(`Assets/_Project/Animations/Archer/`, [07](07_개발일지.md#d13-archer-anim)). 현재는 위 Mixamo 6종을 사용하며 직접 제작본은 대체용으로 보존. 다시 쓰려면 현재 무기 소켓 각도를 맞춰야 한다.
+- 외부 에셋·생성형 AI 없이 Blender 5.1.2 스크립트로 모델링하고 절차 질감을 텍스처로 구움. 원본은 `Docs/근거자료/2026-10-02_궁병무기/`(스크립트·blend), Unity 파일은 `Assets/_Project/Models/Weapons/Archer/`. 기록은 [07](07_개발일지.md#d13-archer-bow).
+- 약탈자 단검·우두머리 대검·마법사 지팡이도 같은 방식으로 직접 제작(외부 에셋·생성형 AI 없음). 원본 `Docs/근거자료/2026-10-02_적무기/`(스크립트·blend·검사), Unity 파일 `Assets/_Project/Models/Weapons/Enemies/`. 기록 [07](07_개발일지.md#d13-enemy-rigs).
 
 ## 무료 UI 시험 (2026-09-28)
 

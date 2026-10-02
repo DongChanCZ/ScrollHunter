@@ -1,0 +1,20 @@
+[
+  {
+    "file": "WPN_Dagger_v01.fbx",
+    "triangles": 584,
+    "texture": 512,
+    "length": 0.223
+  },
+  {
+    "file": "WPN_Greatsword_v01.fbx",
+    "triangles": 1200,
+    "texture": 1024,
+    "length": 0.855
+  },
+  {
+    "file": "WPN_Staff_v01.fbx",
+    "triangles": 1568,
+    "texture": 1024,
+    "length": 1.092
+  }
+]

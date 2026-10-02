@@ -1,0 +1,87 @@
+{
+  "source": "04_우두머리_시안.glb",
+  "source_sha256": "0ee113a5db72eec5b5af93b3251784eedb39a9a5c1182f434a755e07ff212e84",
+  "bones": 53,
+  "finger_bones": 30,
+  "vertices": 7237,
+  "triangles": 14494,
+  "skin_color_linear": [
+    0.6352941393852234,
+    0.45098042488098145,
+    0.3450980484485626
+  ],
+  "retouched_texture_pixels": 89676,
+  "origin": "soles",
+  "animation_actions": 0,
+  "protected_body_geometry_unchanged": true,
+  "scope": "Hand repair and deform skeleton; no Unity import or authored greatsword animation.",
+  "topology": {
+    "boundary": 0,
+    "nonmanifold": 0,
+    "zero_area": 0
+  },
+  "unweighted_vertices": 0,
+  "weight_sum_errors": 0,
+  "finger_tests": [
+    {
+      "side": "Left",
+      "finger": "Thumb",
+      "moved": 250,
+      "opposite_side_max": 1.2065570608304177e-07
+    },
+    {
+      "side": "Left",
+      "finger": "Index",
+      "moved": 198,
+      "opposite_side_max": 1.2065570608304177e-07
+    },
+    {
+      "side": "Left",
+      "finger": "Middle",
+      "moved": 208,
+      "opposite_side_max": 1.2065570608304177e-07
+    },
+    {
+      "side": "Left",
+      "finger": "Ring",
+      "moved": 263,
+      "opposite_side_max": 1.2065570608304177e-07
+    },
+    {
+      "side": "Left",
+      "finger": "Little",
+      "moved": 176,
+      "opposite_side_max": 1.2065570608304177e-07
+    },
+    {
+      "side": "Right",
+      "finger": "Thumb",
+      "moved": 248,
+      "opposite_side_max": 1.2065570608304177e-07
+    },
+    {
+      "side": "Right",
+      "finger": "Index",
+      "moved": 148,
+      "opposite_side_max": 1.2065570608304177e-07
+    },
+    {
+      "side": "Right",
+      "finger": "Middle",
+      "moved": 239,
+      "opposite_side_max": 1.2065570608304177e-07
+    },
+    {
+      "side": "Right",
+      "finger": "Ring",
+      "moved": 187,
+      "opposite_side_max": 1.2065570608304177e-07
+    },
+    {
+      "side": "Right",
+      "finger": "Little",
+      "moved": 165,
+      "opposite_side_max": 1.2065570608304177e-07
+    }
+  ]
+}
