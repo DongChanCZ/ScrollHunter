@@ -1,0 +1,2 @@
+Enemy attack timing checks passed: 359, attacks/phases: 23, models: 5. Function/Animator checks; real frames separate.
+Enemy animation link checks passed: 188. Encounters: tutorial + 4 Function calls and manual Animator steps; real frames and physical input separate.

@@ -1,0 +1,7 @@
+Enemy_C_Red root=(0.00, 0.00, 0.00) model=(0.00, 0.00, 0.00) IK=True
+Enemy_Tutorial root=(0.00, 0.00, 0.00) model=(0.00, 25.00, 0.00) IK=True
+Enemy_Boss root=(0.00, 0.00, 0.00) model=(0.00, 0.00, 0.00) IK=True
+Enemy_B_Orange root=(0.00, 0.00, 0.00) model=(0.00, 0.00, 0.00) IK=True
+Enemy_A_Green root=(0.00, 0.00, 0.00) model=(0.00, 0.00, 0.00) IK=True
+Thug prefab=(0.00, 25.00, 0.00)
+play=False dirty=False

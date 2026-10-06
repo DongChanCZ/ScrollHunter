@@ -1,0 +1,11 @@
+Last enemy kill with Fireball accepted=True
+real=0.020 scale=0 dead=True animator=Normal current=0 next=0 trans=0 hip=(-0.0064, 0.8966, 0.0089) panelHold=0.6
+real=0.193 scale=0 dead=True animator=Normal current=0 next=0 trans=0 hip=(-0.0064, 0.8966, 0.0089) panelHold=0.4139258
+real=0.293 scale=0 dead=True animator=Normal current=0 next=0 trans=0 hip=(-0.0064, 0.8966, 0.0089) panelHold=0.31184
+real=0.390 scale=0 dead=True animator=Normal current=0 next=0 trans=0 hip=(-0.0064, 0.8966, 0.0089) panelHold=0.2150336
+real=0.492 scale=0 dead=True animator=Normal current=0 next=0 trans=0 hip=(-0.0064, 0.8966, 0.0089) panelHold=0.1126149
+real=0.589 scale=0 dead=True animator=Normal current=0 next=0 trans=0 hip=(-0.0064, 0.8966, 0.0089) panelHold=0.01569528
+real=0.707 scale=0 dead=True animator=Normal current=0 next=0 trans=0 hip=(-0.0064, 0.8966, 0.0089) panelHold=0
+real=0.823 scale=0 dead=True animator=Normal current=0 next=0 trans=0 hip=(-0.0064, 0.8966, 0.0089) panelHold=0
+real=0.925 scale=0 dead=True animator=Normal current=0 next=0 trans=0 hip=(-0.0064, 0.8966, 0.0089) panelHold=0
+real=1.026 scale=0 dead=True animator=Normal current=0 next=0 trans=0 hip=(-0.0064, 0.8966, 0.0089) panelHold=0

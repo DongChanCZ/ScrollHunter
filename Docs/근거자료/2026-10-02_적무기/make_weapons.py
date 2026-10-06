@@ -1,6 +1,8 @@
 """Scroll Hunter enemy weapons (2026-10-02): raider dagger, leader greatsword, mage staff. Procedural, no external assets.
 
-Run: blender -b --factory-startup --python make_weapons.py -- <evidence_dir> <unity_dir>
+Run: blender -b --factory-startup --python make_weapons.py -- <evidence_dir> <unity_dir> [WPN_names to export]
+With names (e.g. WPN_Greatsword_v01) only those FBX/PNG are rewritten; the blend and report always cover all three.
+10/6: greatsword blade widened (see the Greatsword block).
 Units: models are 1.0 tall (about 1.65 m). Blender: long axis +Y (tip/top), blade width X, thickness Z.
 Origin = grip point of the main hand. Imports into Unity with the long axis on +Z (same as the arrow).
 """
@@ -10,6 +12,7 @@ from pathlib import Path
 
 argv = sys.argv[sys.argv.index('--') + 1:]
 EVIDENCE, UNITY = Path(argv[0]), Path(argv[1])
+ONLY = set(argv[2:])
 EVIDENCE.mkdir(parents=True, exist_ok=True); UNITY.mkdir(parents=True, exist_ok=True)
 bpy.ops.wm.read_factory_settings(use_empty=True)
 scene = bpy.context.scene
@@ -105,9 +108,11 @@ dagger = obj(bm, 'WPN_Dagger_v01', [STEEL, DARKSTEEL, LEATHER])
 
 # ---------------- Greatsword (about 1.4 m). Origin at the right-hand (upper) grip. ----------------
 bm = bmesh.new()
-blade(bm, 0.045, 0.62, 0.042, 0.009, 0, tip=0.08)
-box(bm, 0.030, 0.045, 0.15, 0.016, 1)                                    # wide crossguard
-tube(bm, 0.022, 0.030, lambda y: 0.016, 1, 10, rz=lambda y: 0.010)      # ricasso collar
+# 10/6: broad blade (width 0.042 -> 0.084, user request). Length, grip and origin unchanged.
+# Wider blade -> slightly thicker spine, longer point, wider/deeper guard and collar so the parts still join.
+blade(bm, 0.045, 0.62, 0.084, 0.012, 0, tip=0.16)
+box(bm, 0.030, 0.045, 0.20, 0.020, 1)                                    # wide crossguard
+tube(bm, 0.022, 0.030, lambda y: 0.024, 1, 10, rz=lambda y: 0.011)      # ricasso collar
 tube(bm, -0.16, 0.022, lambda y: 0.0105 * (1 + 0.05 * math.sin(y * 2 * math.pi / 0.009)), 2, 10, 40)  # long two-hand grip
 tube(bm, -0.19, -0.16, lambda y: 0.017 * math.sin(max(0.15, (y + 0.19) / 0.03) * math.pi * 0.5), 1, 10, 6)  # pommel
 greatsword = obj(bm, 'WPN_Greatsword_v01', [STEEL, DARKSTEEL, LEATHER])
@@ -139,6 +144,9 @@ staff = obj(bm, 'WPN_Staff_v01', [WOOD, BRONZE, DARKSTEEL, LEATHER, CRYSTAL])
 
 
 def bake_and_export(ob, stem, size):
+    if ONLY and stem not in ONLY:
+        return {'file': stem + '.fbx', 'exported': False, 'triangles': sum(len(p.vertices) - 2 for p in ob.data.polygons),
+                'length': round(max(v.co.y for v in ob.data.vertices) - min(v.co.y for v in ob.data.vertices), 3)}
     bpy.ops.object.select_all(action='DESELECT'); ob.select_set(True)
     bpy.context.view_layer.objects.active = ob
     bpy.ops.object.mode_set(mode='EDIT'); bpy.ops.mesh.select_all(action='SELECT')
@@ -156,7 +164,8 @@ def bake_and_export(ob, stem, size):
                              apply_scale_options='FBX_SCALE_ALL', bake_space_transform=True, axis_forward='-Z', axis_up='Y',
                              embed_textures=False, path_mode='STRIP', bake_anim=False, add_leaf_bones=False)
     return {'file': stem + '.fbx', 'triangles': sum(len(p.vertices) - 2 for p in ob.data.polygons), 'texture': size,
-            'length': round(max(v.co.y for v in ob.data.vertices) - min(v.co.y for v in ob.data.vertices), 3)}
+            'length': round(max(v.co.y for v in ob.data.vertices) - min(v.co.y for v in ob.data.vertices), 3),
+            'blade_width': round(max(2 * abs(v.co.x) for v in ob.data.vertices if v.co.y > 0.05), 3)}
 
 
 report = [bake_and_export(dagger, 'WPN_Dagger_v01', 512), bake_and_export(greatsword, 'WPN_Greatsword_v01', 1024),

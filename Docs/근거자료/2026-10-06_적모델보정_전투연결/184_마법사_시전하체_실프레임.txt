@@ -1,0 +1,9 @@
+Mage normal combat, HP raised in runtime only
+cast segment 1 attack=매직미사일 frame=8239
+pause started
+pause released into half speed
+half speed released into normal speed
+cast segment 2 attack=사일런스 frame=8871
+cast segment 3 attack=매직미사일 frame=9721
+cast segment 4 attack=다크홀 frame=10282
+segments=4 samples=671 lowerPosition=0.001037924 lowerRotation=0 handMovement=0.8206953 pauseHandDrift=0 pass=True

@@ -1,0 +1,11 @@
+Idle clip=Assets/_Project/Animations/Mixamo/MX_MagicIdle03.fbx loop=True time= active=False
+Cast clip=Assets/_Project/Animations/Mage/Mage_CastUpper.anim loop=False time=CastTime active=True
+Hit clip=Assets/_Project/Animations/Mixamo/MX_ReactLargeFront.fbx loop=False time= active=False
+Death clip=Assets/_Project/Animations/Mixamo/MX_ReactDeathBackward.fbx loop=False time= active=False
+Fire0 clip=Assets/_Project/Animations/Mixamo/MX_1HMagicAttack01.fbx loop=False time=AttackTime active=True
+Fire1 clip=Assets/_Project/Animations/Mage/Silence.fbx loop=False time=AttackTime active=True
+Fire2 clip=Assets/_Project/Animations/Mixamo/MX_2HMagicAttack01.fbx loop=False time=AttackTime active=True
+Fire3 clip=Assets/_Project/Animations/Mage/Nightmare.fbx loop=False time=AttackTime active=True
+Fire4 clip=Assets/_Project/Animations/Mage/TheEnd.fbx loop=False time=AttackTime active=True
+pattern=True clips=5 once=Mage_CastUpper (UnityEngine.AnimationClip)
+Play=False SceneDirty=False Preview=True

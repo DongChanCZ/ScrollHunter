@@ -1,0 +1,20 @@
+Timing 293 passed. Link 188 passed.
+Docs/근거자료/2026-10-06_적모델보정_전투연결/77_우두머리_게임카메라.png [Idle:.5, Fire0:.8, Fire2:.55]
+Docs/근거자료/2026-10-06_적모델보정_전투연결/78_우두머리_손쥠최종.png [Idle:.5, Fire0:.8, Fire2:.55]
+Idle maxMiss/modelScale=0.00000
+Cast maxMiss/modelScale=0.00000
+Fire0 maxMiss/modelScale=0.01397
+Fire2 maxMiss/modelScale=0.01752
+Saved assets:
+Idle=Mixamo_GreatSwordIdle 2.000s
+Cast=Mixamo_GreatSwordIdle 2.000s
+Hit=Mixamo_GreatSwordImpact 1.200s
+Death=Mixamo_TwoHandedSwordDeath 2.400s
+Fire0=Mixamo_GreatSwordFirstSlash 0.900s
+Fire2=Mixamo_GreatSwordDownwardSlash 1.267s
+slot0 start=0 impact=0.8
+slot1 start=0 impact=0.8
+slot2 start=0 impact=0.55
+prefabScale=(2.60, 2.60, 2.60)
+sceneScale=(2.60, 2.60, 2.60)
+play=False dirty=False

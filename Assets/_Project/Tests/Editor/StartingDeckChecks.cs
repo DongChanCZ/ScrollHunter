@@ -46,9 +46,16 @@ public static class StartingDeckChecks
         var ui = UnityEngine.Object.FindFirstObjectByType<DamageNumberUI>();
         float originalCriticalChance = (float)typeof(Player).GetField("criticalChance", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(player);
         bool wasLogging = (bool)Get(metrics, "logEachInput");
+        var tutorial = UnityEngine.Object.FindFirstObjectByType<TutorialFlow>();
+        bool tutorialEnabled = tutorial != null && tutorial.enabled;
+        float countdown = (float)Get(flow, "countdownSeconds");
+        float finishHold = (float)Get(flow, "finishingEffectHold");
         passed = 0;
         try
         {
+            // 함수 검사는 학습 입력·실제 시간 카운트다운과 분리한다. finally에서 저장 설정을 돌린다.
+            if (tutorial != null) tutorial.enabled = false;
+            Set(flow, "countdownSeconds", 0f); Set(flow, "finishingEffectHold", 0f);
             Set(player, "criticalChance", 0f);
             Set(metrics, "logEachInput", false);
             var actualDeck = ((System.Collections.Generic.List<SkillData>)Get(deck, "startingDeck")).ToArray();
@@ -256,7 +263,13 @@ public static class StartingDeckChecks
             Check(!deck.TryUseSlot(0) && cost.Current == 10f && deck.GetHandCard(0) == silence, "noncasting rejects without cost or cycle");
             return "Starting deck checks passed: " + passed;
         }
-        finally { Set(player, "criticalChance", originalCriticalChance); Time.timeScale = 1f; Set(metrics, "logEachInput", wasLogging); flow.RestartRun(); }
+        finally
+        {
+            Set(player, "criticalChance", originalCriticalChance); Set(metrics, "logEachInput", wasLogging);
+            Set(flow, "countdownSeconds", countdown); Set(flow, "finishingEffectHold", finishHold);
+            if (tutorial != null) tutorial.enabled = tutorialEnabled;
+            Time.timeScale = 1f; flow.RestartRun();
+        }
     }
 
     private static void Reset(SkillData card, bool three = false)

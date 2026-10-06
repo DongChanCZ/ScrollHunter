@@ -1,0 +1,4 @@
+Fire1 clip=Mage_SilenceFront length=2.666667 loop=False timeParameter=True
+CastChargeRaise clip=Mage_ChargeRaise length=0.9520001 loop=False timeParameter=True
+CastChargeHold clip=Mage_ChargeHold length=2.4 loop=True timeParameter=False
+play=False dirty=False preview=True

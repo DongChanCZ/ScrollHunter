@@ -1,0 +1,79 @@
+BEGIN Enemy_Boss hold=3.733333 mode=UnscaledTime
+Enemy_Boss real=0.010 frame=8406 scale=0 death=0.002 hold=3.725 panel=False
+Enemy_Boss real=0.314 frame=8469 scale=0 death=0.086 hold=3.419 panel=False
+Enemy_Boss real=0.615 frame=8533 scale=0 death=0.169 hold=3.118 panel=False
+Enemy_Boss real=0.920 frame=8598 scale=0 death=0.253 hold=2.813 panel=False
+Enemy_Boss real=1.221 frame=8663 scale=0 death=0.336 hold=2.512 panel=False
+Enemy_Boss real=1.524 frame=8730 scale=0 death=0.420 hold=2.209 panel=False
+Enemy_Boss real=1.826 frame=8797 scale=0 death=0.503 hold=1.907 panel=False
+Enemy_Boss real=2.129 frame=8864 scale=0 death=0.586 hold=1.604 panel=False
+Enemy_Boss real=2.431 frame=8930 scale=0 death=0.669 hold=1.302 panel=False
+Enemy_Boss real=2.731 frame=8996 scale=0 death=0.752 hold=1.001 panel=False
+Enemy_Boss real=3.036 frame=9061 scale=0 death=0.836 hold=0.697 panel=False
+Enemy_Boss real=3.337 frame=9127 scale=0 death=0.919 hold=0.395 panel=False
+Enemy_Boss real=3.638 frame=9194 scale=0 death=1.001 hold=0.095 panel=False
+END Enemy_Boss death=1.049709 reward=True
+BEGIN Enemy_C_Red hold=1.633333 mode=UnscaledTime
+Enemy_C_Red real=0.010 frame=9233 scale=0 death=0.005 hold=1.626 panel=False
+Enemy_C_Red real=0.314 frame=9299 scale=0 death=0.205 hold=1.320 panel=False
+Enemy_C_Red real=0.616 frame=9364 scale=0 death=0.402 hold=1.018 panel=False
+Enemy_C_Red real=0.918 frame=9429 scale=0 death=0.598 hold=0.716 panel=False
+Enemy_C_Red real=1.222 frame=9493 scale=0 death=0.797 hold=0.411 panel=False
+Enemy_C_Red real=1.529 frame=9558 scale=0 death=0.997 hold=0.105 panel=False
+END Enemy_C_Red death=1.11804 reward=True
+BEGIN Enemy_A_Green hold=4 mode=UnscaledTime
+Enemy_A_Green real=0.008 frame=9587 scale=0 death=0.002 hold=3.992 panel=False
+Enemy_A_Green real=0.309 frame=9650 scale=0 death=0.079 hold=3.691 panel=False
+Enemy_A_Green real=0.612 frame=9713 scale=0 death=0.157 hold=3.388 panel=False
+Enemy_A_Green real=0.916 frame=9778 scale=0 death=0.235 hold=3.084 panel=False
+Enemy_A_Green real=1.216 frame=9842 scale=0 death=0.312 hold=2.784 panel=False
+Enemy_A_Green real=1.517 frame=9908 scale=0 death=0.389 hold=2.483 panel=False
+Enemy_A_Green real=1.819 frame=9974 scale=0 death=0.466 hold=2.181 panel=False
+Enemy_A_Green real=2.123 frame=10041 scale=0 death=0.544 hold=1.877 panel=False
+Enemy_A_Green real=2.427 frame=10108 scale=0 death=0.622 hold=1.573 panel=False
+Enemy_A_Green real=2.731 frame=10175 scale=0 death=0.700 hold=1.269 panel=False
+Enemy_A_Green real=3.031 frame=10239 scale=0 death=0.777 hold=0.969 panel=False
+Enemy_A_Green real=3.333 frame=10305 scale=0 death=0.855 hold=0.667 panel=False
+Enemy_A_Green real=3.635 frame=10371 scale=0 death=0.932 hold=0.365 panel=False
+Enemy_A_Green real=3.937 frame=10437 scale=0 death=1.010 hold=0.063 panel=False
+END Enemy_A_Green death=1.046573 reward=True
+BEGIN Enemy_Tutorial hold=2.7 mode=UnscaledTime
+Enemy_Tutorial real=0.011 frame=10469 scale=0 death=0.003 hold=2.691 panel=False
+Enemy_Tutorial real=0.312 frame=10535 scale=0 death=0.120 hold=2.387 panel=False
+Enemy_Tutorial real=0.616 frame=10602 scale=0 death=0.237 hold=2.083 panel=False
+Enemy_Tutorial real=0.918 frame=10668 scale=0 death=0.353 hold=1.781 panel=False
+Enemy_Tutorial real=1.220 frame=10735 scale=0 death=0.469 hold=1.479 panel=False
+Enemy_Tutorial real=1.523 frame=10803 scale=0 death=0.586 hold=1.176 panel=False
+Enemy_Tutorial real=1.826 frame=10871 scale=0 death=0.703 hold=0.873 panel=False
+Enemy_Tutorial real=2.127 frame=10939 scale=0 death=0.818 hold=0.572 panel=False
+Enemy_Tutorial real=2.430 frame=11007 scale=0 death=0.935 hold=0.269 panel=False
+Enemy_Tutorial real=2.735 frame=11073 scale=0 death=1.052 hold=0.000 panel=True
+END Enemy_Tutorial death=1.070493 reward=True
+BEGIN Enemy_B_Orange hold=6.687775 mode=UnscaledTime
+Enemy_B_Orange real=0.008 frame=11085 scale=0 death=0.001 hold=6.680 panel=False
+Enemy_B_Orange real=0.309 frame=11149 scale=0 death=0.047 hold=6.379 panel=False
+Enemy_B_Orange real=0.610 frame=11214 scale=0 death=0.093 hold=6.078 panel=False
+Enemy_B_Orange real=0.913 frame=11280 scale=0 death=0.139 hold=5.774 panel=False
+Enemy_B_Orange real=1.216 frame=11345 scale=0 death=0.185 hold=5.472 panel=False
+Enemy_B_Orange real=1.518 frame=11411 scale=0 death=0.230 hold=5.170 panel=False
+Enemy_B_Orange real=1.821 frame=11478 scale=0 death=0.276 hold=4.867 panel=False
+Enemy_B_Orange real=2.122 frame=11543 scale=0 death=0.322 hold=4.566 panel=False
+Enemy_B_Orange real=2.426 frame=11610 scale=0 death=0.368 hold=4.262 panel=False
+Enemy_B_Orange real=2.730 frame=11677 scale=0 death=0.414 hold=3.958 panel=False
+Enemy_B_Orange real=3.031 frame=11743 scale=0 death=0.460 hold=3.657 panel=False
+Enemy_B_Orange real=3.332 frame=11810 scale=0 death=0.506 hold=3.355 panel=False
+Enemy_B_Orange real=3.636 frame=11877 scale=0 death=0.552 hold=3.052 panel=False
+Enemy_B_Orange real=3.937 frame=11943 scale=0 death=0.598 hold=2.751 panel=False
+Enemy_B_Orange real=4.240 frame=12009 scale=0 death=0.644 hold=2.448 panel=False
+Enemy_B_Orange real=4.543 frame=12076 scale=0 death=0.690 hold=2.145 panel=False
+Enemy_B_Orange real=4.845 frame=12143 scale=0 death=0.735 hold=1.843 panel=False
+Enemy_B_Orange real=5.145 frame=12209 scale=0 death=0.781 hold=1.543 panel=False
+Enemy_B_Orange real=5.447 frame=12275 scale=0 death=0.827 hold=1.241 panel=False
+Enemy_B_Orange real=5.752 frame=12342 scale=0 death=0.873 hold=0.936 panel=False
+Enemy_B_Orange real=6.052 frame=12407 scale=0 death=0.919 hold=0.636 panel=False
+Enemy_B_Orange real=6.354 frame=12473 scale=0 death=0.964 hold=0.334 panel=False
+Enemy_B_Orange real=6.657 frame=12539 scale=0 death=1.010 hold=0.031 panel=False
+END Enemy_B_Orange death=1.027498 reward=True
+MIDBATTLE PAUSE normalizedDelta=0 mode=Normal
+MIDBATTLE HALF normalizedDelta=0.05187664 elapsed=0.404291599999851
+FINISHED frames=4329 failures=0

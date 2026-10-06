@@ -1,0 +1,1 @@
+Mage cast: 600 Animator steps at 120Hz; lower max position=0.001080634, rotation=0, right hand movement=0.7245576

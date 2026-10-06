@@ -1,0 +1,5 @@
+Idle minHips=0.3437107 minHead=0.6743751 minFoot=0.03079084
+Cast minHips=0.3437107 minHead=0.6743751 minFoot=0.03079084
+Fire0 minHips=0.2720634 minHead=0.5723363 minFoot=0.01621106
+Fire2 minHips=0.2265155 minHead=0.4916197 minFoot=0.0363332
+Hit minHips=0.34581 minHead=0.641512 minFoot=0.009488128

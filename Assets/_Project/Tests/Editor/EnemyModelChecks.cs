@@ -17,13 +17,14 @@ public static class EnemyModelChecks
     private const string UnityRoot = "Assets/_Project/Models/Enemies/";
 
     // 화면 순서: 튜토리얼·A·B·C·보스. 별도 보정 PNG가 없는 약탈자는 원본 FBX 내장 텍스처와만 대조한다.
-    private static readonly (string unity, string source, bool correctedPng)[] Models =
+    private static readonly (string unity, string source, bool correctedPng, string pngSource)[] Models =
     {
-        ("Thug/ENM_Thug_ALL_v01", "2026-10-02_적모델링/07_깡패_보정_리깅", true),
-        ("Raider/ENM_Raider_GRN_v01", "2026-10-01_적모델링/02_약탈자_손가락리깅", false),
-        ("Archer/ENM_Archer_ORG_v01", "2026-10-02_적모델링/03_궁병_손보정_리깅", true),
-        ("Leader/ENM_Leader_RED_v01", "2026-10-02_적모델링/05_우두머리_손보정_리깅", true),
-        ("Mage/BOSS_Mage_ALL_v01", "2026-10-02_적모델링/09_마법사_보정_리깅", true),
+        ("Thug/ENM_Thug_ALL_v01", "2026-10-02_적모델링/07_깡패_보정_리깅", true, null),
+        ("Raider/ENM_Raider_GRN_v01", "2026-10-01_적모델링/02_약탈자_손가락리깅", false, null),
+        ("Archer/ENM_Archer_ORG_v01", "2026-10-02_적모델링/03_궁병_손보정_리깅", true, null),
+        ("Leader/ENM_Leader_RED_v01", "2026-10-02_적모델링/05_우두머리_손보정_리깅", true, null),
+        // 10/6 손가락 가중치 작업본(원본 09 blend 보존). 텍스처는 09와 같다.
+        ("Mage/BOSS_Mage_ALL_v01", "2026-10-06_적모델보정_전투연결/10_마법사_손가락가중치", true, "2026-10-02_적모델링/09_마법사_보정_리깅"),
     };
 
     private static readonly byte[] PngSignature = { 0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A };
@@ -56,7 +57,7 @@ public static class EnemyModelChecks
                 string unityHash = Hash(File.ReadAllBytes($"{unityBase}_{label}.png"));
                 Check(embedded.Contains(unityHash), $"{m.unity} {label} = 원본 FBX 내장 텍스처");
                 if (m.correctedPng)
-                    Check(unityHash == Hash(File.ReadAllBytes($"{sourceBase}_{label}.png")), $"{m.unity} {label} = 보정 PNG");
+                    Check(unityHash == Hash(File.ReadAllBytes($"{(m.pngSource == null ? sourceBase : Path.Combine(evidence, m.pngSource))}_{label}.png")), $"{m.unity} {label} = 보정 PNG");
             }
 
             var importer = (ModelImporter)AssetImporter.GetAtPath(fbx);

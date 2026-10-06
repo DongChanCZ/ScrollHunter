@@ -1,0 +1,15 @@
+Isolated function check: tutorial disabled, enemy Update disabled, runtime HP 10000, custom repeated deck. No full manual play.
+파이어볼: accepted=True, cast=no, zone=no, impacts=1, self=False, invulnerabilityAtStart=False
+라이트닝 스피어: accepted=True, cast=yes, zone=no, impacts=1, self=False, invulnerabilityAtStart=False
+매직아머: accepted=True, cast=no, zone=no, impacts=0, self=True, invulnerabilityAtStart=False
+아이스애로우: accepted=True, cast=no, zone=no, impacts=5, self=False, invulnerabilityAtStart=False
+파이어 필라: accepted=True, cast=no, zone=no, impacts=3, self=False, invulnerabilityAtStart=False
+침묵: accepted=True, cast=no, zone=no, impacts=1, self=False, invulnerabilityAtStart=False
+매직 커터: accepted=True, cast=no, zone=no, impacts=2, self=False, invulnerabilityAtStart=False
+매직 스파크: accepted=True, cast=no, zone=yes, impacts=0, self=False, invulnerabilityAtStart=False
+매직 임팩트: accepted=True, cast=no, zone=no, impacts=3, self=False, invulnerabilityAtStart=False
+다크 이럽션: accepted=True, cast=no, zone=no, impacts=3, self=False, invulnerabilityAtStart=False
+제압: accepted=True, cast=no, zone=no, impacts=2, self=False, invulnerabilityAtStart=False
+블리자드: accepted=True, cast=no, zone=yes, impacts=3, self=False, invulnerabilityAtStart=False
+저지먼트: accepted=True, cast=yes, zone=no, impacts=1, self=False, invulnerabilityAtStart=False
+생츄어리: accepted=True, cast=no, zone=no, impacts=0, self=False, invulnerabilityAtStart=True

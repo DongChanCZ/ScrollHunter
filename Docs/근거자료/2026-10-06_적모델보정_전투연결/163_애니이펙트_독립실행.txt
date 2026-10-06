@@ -1,0 +1,78 @@
+== 요약 (done) ==
+archer-int: 1
+clean after restart: 1
+clean after transition: 1
+cleared archer-interrupt: 1
+cleared death: 1
+cleared raider-interrupt: 1
+fx VFX_ArrowRelease: 1
+fx VFX_EnemyKickHit: 1
+fx VFX_EnemyPunchHit: 2
+fx VFX_LeaderSlashHit: 2
+half-impact: 1
+impact: 7
+once next: 1
+once remain1: 1
+once restart: 1
+paused: 1
+pause-frozen: 1
+raider-int: 1
+red-fail: 1
+trail-frames A_Green #0: 93
+trail-frames C_Red #0: 20
+trail-frames C_Red #2: 89
+shots: A_Green_궤적_0, A_Green_발동_0_0, B_Orange_발동_-1_0, C_Red_궤적_2, C_Red_발동_-1_0, C_Red_발동_2_2, Tutorial_발동_0_0, Tutorial_발동_1_1, Tutorial_발동_2_2
+failures: 0
+
+== 기록 ==
+f1 t0.000 START thug
+f726 t4.002 IMPACT Enemy_Tutorial #2
+f729 t4.028 MARK Tutorial_발동_2_2
+f1704 t9.011 IMPACT Enemy_Tutorial #0
+f1707 t9.031 MARK Tutorial_발동_0_0
+f2694 t14.012 IMPACT Enemy_Tutorial #1
+f2697 t14.032 MARK Tutorial_발동_1_1
+f2697 t14.032 STAGE A+B
+f2697 t14.032 CANCEL Enemy_Tutorial
+f2697 t14.032 CANCEL Enemy_Tutorial
+f3006 t15.833 CANCEL Enemy_B_Orange
+f3006 t15.833 ACTION interrupt archer drawing Success
+f3135 t16.534 IMPACT Enemy_A_Green #0
+f3138 t16.554 MARK A_Green_발동_0_0
+f3147 t16.609 MARK A_Green_궤적_0
+f3732 t19.849 CANCEL Enemy_A_Green
+f3732 t19.849 ACTION interrupt raider during slash Success
+f3921 t20.839 IMPACT Enemy_B_Orange #0
+f3924 t20.863 MARK B_Orange_발동_-1_0
+f3924 t20.863 STAGE C
+f3924 t20.863 CANCEL Enemy_A_Green
+f3924 t20.863 CANCEL Enemy_A_Green
+f3924 t20.863 CANCEL Enemy_B_Orange
+f3924 t20.863 CANCEL Enemy_B_Orange
+f4145 t22.064 ACTION red interrupt attempt FailedRed
+f4658 t24.863 IMPACT Enemy_C_Red #2
+f4660 t24.877 MARK C_Red_궤적_2
+f4661 t24.883 MARK C_Red_발동_2_2
+f4661 t24.883 ACTION pause during slash
+f4692 t24.883 ACTION half speed
+f6188 t29.365 IMPACT Enemy_C_Red #0
+f6188 t29.365 ACTION kill during slash
+f6188 t29.365 CANCEL Enemy_C_Red
+f6191 t29.376 MARK C_Red_발동_-1_0
+f6355 t29.376 ACTION next battle
+f6355 t29.376 CANCEL Enemy_C_Red
+f6355 t29.376 CANCEL Enemy_C_Red
+f6355 t29.376 CANCEL Enemy_A_Green
+f6355 t29.376 CANCEL Enemy_C_Red
+f6355 t29.376 CANCEL Enemy_B_Orange
+f6437 t29.875 REMAIN after transition: effects 0 trails 0
+f6522 t30.373 ACTION restart
+f6522 t30.373 CANCEL Enemy_A_Green
+f6522 t30.373 CANCEL Enemy_A_Green
+f6522 t30.373 CANCEL Enemy_C_Red
+f6522 t30.373 CANCEL Enemy_C_Red
+f6522 t30.373 CANCEL Enemy_B_Orange
+f6522 t30.373 CANCEL Enemy_B_Orange
+f6522 t30.373 CANCEL Enemy_A_Green
+f6522 t30.373 CANCEL Enemy_B_Orange
+f6625 t30.974 REMAIN after restart: effects 0 trails 0

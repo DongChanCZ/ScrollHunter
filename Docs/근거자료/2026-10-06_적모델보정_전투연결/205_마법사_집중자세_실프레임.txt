@@ -1,0 +1,12 @@
+start 사일런스 phase=1 cast=3
+fire ok=True raiseEntries=0 holdSamples=0 hips=0 hipRotation=0 handMotion=0 handAboveHead=10
+start 다크홀 phase=1 cast=6
+fire ok=True raiseEntries=1 holdSamples=701 hips=1.029884E-05 hipRotation=0 handMotion=0.03261051 handAboveHead=0.4824373
+start 다크홀 phase=2 cast=4.8
+fire ok=True raiseEntries=1 holdSamples=456 hips=7.149939E-06 hipRotation=0 handMotion=0.03255731 handAboveHead=0.482437
+start 디엔드 phase=3 cast=20
+pause
+half speed
+normal speed
+fire ok=True raiseEntries=1 holdSamples=3662 hips=1.230592E-05 hipRotation=0 handMotion=0.03268979 handAboveHead=0.482437
+cases=4 frames=6902 failures=0 restoredHP=500

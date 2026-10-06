@@ -45,7 +45,7 @@
 | 도구 | 용도 |
 |---|---|
 | Unity 6.3 LTS (6000.3.18f1) | 엔진 |
-| Adobe Mixamo | 궁병 동작 6종, 깡패·약탈자·우두머리·마법사 동작 23종 내려받기(아래 Mixamo 절) |
+| Adobe Mixamo | 궁병 동작 6종, 깡패·약탈자·우두머리·마법사 동작 23종 내려받기, 약탈자 교체용 1종 추가(아래 Mixamo 절) |
 | VARCO 3D | 적 이미지·3D 시안 생성, 약탈자 손가락 리깅, 여성 궁병 손 수정(10/2 파일명 기준) |
 | Blender 5.1.2 | 궁병 손 메시·UV 보정, 모델·리깅·임시 자세 검사. 10/2 깡패·여성 궁병·우두머리·마법사 손(깡패 정수리 포함) 보정·리깅·텍스처 재포장(근거자료 스크립트 기준), 궁병 활·화살, 단검·대검·지팡이 직접 제작 |
 | [ ] | [ ] |
@@ -64,11 +64,27 @@
 - 이용 조건: [Mixamo FAQ](https://helpx.adobe.com/creative-cloud/faq/mixamo-faq.html) 기준 캐릭터·동작은 개인·상업·비영리 프로젝트(비디오 게임 포함)에 로열티 없이 사용 가능(2026-10-02 확인). 원본 파일 단독 재배포 가능 여부는 FAQ에 없어 미확인.
 - 원본 `Docs/근거자료/2026-10-02_Mixamo원본/`, Unity 복사본 `Assets/_Project/Animations/Archer/Mixamo/`. 가공: Humanoid 리타기팅, 회전 보정, 제자리 설정, 시위 당김 곡선 추가. 기록 [07](07_개발일지.md#d13-archer-mixamo).
 
+## Mixamo 약탈자 공격 교체 (2026-10-06)
+
+- 출처: Adobe Mixamo, `Standing Melee Attack 360 High`. 사용자가 직접 내려받아 제공. 사이트 첫 검색 결과·다운로드 옵션은 직접 확인하지 못함. Unity 반입 결과 30fps·3.1667초.
+- 원본 `Docs/근거자료/2026-10-02_적모델링/Standing Melee Attack 360 High.fbx`, Unity 복사본 `Assets/_Project/Animations/Mixamo/MX_StandingMeleeAttack360High.fbx`. 두 FBX 바이트 일치. 가공은 Unity Humanoid 리타기팅·회전/루트 설정·타격 시점 연결. 이전 Stabbing은 보존·미사용.
+- 이용 조건은 위 Mixamo 절의 확인 기록 참조. 적용·검사 [07](07_개발일지.md#d14-raider-motion).
+
+## 마법사 추가 동작 (2026-10-06)
+
+- 사용자 제공 `Silence.fbx`·`Nightmare.fbx`·`TheEnd.fbx`. 원본 `Docs/근거자료/2026-10-06_적모델보정_전투연결/`, Unity 복사본 `Assets/_Project/Animations/Mage/`. FBX 바이트 일치.
+- Humanoid·30fps, 반복 해제·방향 보정·스킬별 방출 시점 연결. 원 사이트의 동작명·다운로드 옵션은 미확인. 파일 출처는 사용자 제공으로 기록하며 기존 23종 목록과 구분한다.
+- 기존 사일런스 동작은 다크홀로 재배치. 적용·검사 [07](07_개발일지.md#d14-mage-skill-motions).
+- 후속: `Silence` 상체 방향 복사본, 기존 준비 동작에서 손 올리기·손 든 호흡 클립 생성. 새 외부 에셋 없음. [07](07_개발일지.md#d14-mage-charge-pose).
+
 ## Mixamo 적 4종 동작 (2026-10-02)
+
+- 2026-10-06 후속 가공: Fighting Idle에서 깡패 시전 준비용 `Thug_CastUpper.anim` 생성. 다리 곡선 고정·골반 위치 보정, 상체 곡선 유지. 원본 FBX 보존. 기록 [07](07_개발일지.md#d14-thug-upper-cast).
 
 - 출처: Adobe Mixamo, 23종 — Breathing Idle, Fighting Idle, Punching, Cross Punch, Zombie Kicking, Hit Reaction, Falling Back Death, Knife Idle, Stabbing, Sword And Shield Death, Great Sword Idle, Great Sword Blocking, Great Sword Slash (Downward), Great Sword Slash, Great Sword Impact, Two Handed Sword Death, Standing Idle 03, Standing 1H Cast Spell 01, Standing 1H Magic Attack 01, Standing 2H Magic Attack 01, Standing 2H Magic Area Attack 02, Standing React Large From Front, Standing React Death Backward. 기본 캐릭터 Y Bot으로 FBX for Unity·Without Skin·30fps 내려받음(사용자 Adobe 계정).
 - 이용 조건은 위 궁병 동작과 같음(Mixamo FAQ, 2026-10-02 확인). 원본 파일 단독 재배포 가능 여부는 미확인.
 - 원본 `Docs/근거자료/2026-10-02_Mixamo원본/`(`Y Bot@*.fbx`), Unity 복사본 `Assets/_Project/Animations/Mixamo/MX_*.fbx`. 가공: Humanoid 리타기팅, 반복·제자리 설정, 회전 보정. 기록 [07](07_개발일지.md#d13-enemy-rigs).
+- 10/6 우두머리 후속: 기존 Great Sword Slash 복사본의 첫 베기 구간만 사용(`MX_GreatSwordFirstSlash`, 원본 보존). 대기 공유·내려베기 재배치·쥠 보정, 추가 다운로드 없음. 기록 [07](07_개발일지.md#d14-leader-motion).
 
 ## 궁병 활·화살·기본 동작 (2026-10-02, 직접 제작)
 
@@ -102,3 +118,25 @@
 - 기존 출처 합성 — `Assets/_Project/UI/FantasyTrial/ButtonChamfer.png`: 같은 팩 `Button` 판 버튼의 중앙 프레임(금색 띠·안쪽 어두운 선·회색 나무결) 픽셀만 써서 좌우 끝 장식 없이 네 변을 같은 두께로 두르고 모서리를 7px 사선으로 깎아 새로 구성한 9-분할 버튼(가공물, CC BY 3.0 표기 유지). 2026-10-01 시작 버튼 시험 후 공통 조작 버튼으로 확대. 후속은 같은 이미지를 재사용하며 추가 가공 없음(07#d12-common-buttons).
 - Unity에서 생성(외부 에셋 아님): `Assets/_Project/UI/HudGauge/GaugeFill.png`(게이지 채움용 흰색 세로 그라데이션·잔결), `Vignette.png`(전체 화면 가장자리 음영). 글자 재질 `GmarketSansMedium SDF - HUD Shadow/Outline.mat`은 기존 폰트의 그림자·외곽선 설정(폰트 변경 없음).
 - 레퍼런스 게임(Torchlight II·Ravenswatch·Hand of Fate 2·Grim Dawn) 화면 이미지는 추출·사용하지 않음.
+
+## 우두머리 무료 양손검 동작 (2026-10-06)
+
+- RPG Character Mecanim Animation Pack FREE 2.5.2 — Explosive. [Unity Asset Store](https://assetstore.unity.com/packages/3d/animations/rpg-character-mecanim-animation-pack-free-65284), [제작사](https://www.explosive.ws/products/rpg-character-mecanim-animation-pack-free).
+- Standard Unity Asset Store EULA 적용. 무료 제공이며 CC0 에셋은 아님. 사용자 계정으로 내려받은 공식 `.unitypackage` 사용. 원본 단독 재배포 용도로 사용하지 않는다.
+- Unity 경로 `Assets/_Project/Animations/ExplosiveRPGFree/`. 현재 동작 5종(Idle·Attack4·Attack2·GetHit-F1·Knockdown1)과 Avatar 기준 RPG-Character 모델만 보존. 게임 외형·대검은 기존 자체 제작/VARCO 모델 유지.
+- 가공: Humanoid 리타기팅, 제자리·방향 설정, 팩의 Hit 이벤트 제거. 기존 전투 드라이버에 연결하고 손잡이 축을 보정. 제어 코드·데모 씬은 반입하지 않음. 초기 비교 목록 `근거자료/2026-10-06_적모델보정_전투연결/90_무료팩_반입목록.json`, 최종 사용/검사는 [07](07_개발일지.md#d14-leader-free-motion).
+
+## 적 공격 연출 (2026-10-06)
+
+- 새 외부 에셋·다운로드·로그인 없음. 이미 반입된 Kenney Particle Pack(https://kenney.nl/assets/particle-pack, CC0: https://creativecommons.org/publicdomain/zero/1.0/)의 `flare_01`(짧은 섬광)·`circle_05`(타격 빛)·`circle_02`(충격 고리)·`trace_01`(바람선)·`smoke_04`(궁병 발사 공기) 재사용. 원본 PNG 무가공, 라이선스 원문은 기존 `Assets/_Project/VFX/Textures/`.
+- 궤적·화살 꼬리는 기존 자체 생성 그라데이션 `TrailSoft.png`(외부 에셋 아님) 재사용.
+- 재질 `Assets/_Project/VFX/Enemy/ENM_VFX_*.mat`은 기존 URP Particles/Unlit 재질(`VFX_spark_01`·`_alpha`)을 복사해 텍스처·색만 바꿈. 파티클 프리팹 4종은 Unity 내장 ParticleSystem으로 직접 구성. 적용·검사는 [07](07_개발일지.md#d14-enemy-attack-vfx).
+
+## 마법사 보스 공격 연출 (2026-10-06)
+
+- 새 외부 다운로드·로그인·라이선스 동의 없음. 프로젝트에 이미 반입된 무료 에셋만 재사용(원본 파일 무가공, 라이선스 원문은 각 폴더).
+- Kenney Particle Pack — Kenney, https://kenney.nl/assets/particle-pack — CC0: https://creativecommons.org/publicdomain/zero/1.0/ . `fire_01`·`fire_02`·`flame_05`(불꽃), `circle_05`(빛·검은 구체 중심), `circle_02`(마력 고리·충격파), `smoke_04`(연기·그림자), `twirl_02`(소용돌이·잔상), `trace_02`(흡입·파편 줄기). `Assets/_Project/VFX/Textures/`.
+- Kenney Particle Pack(같은 CC0)의 `magic_02` — 기존 생츄어리 연출 반입본 `Assets/_Project/UI/SanctuaryVfx/particle_magic_02.png`를 사일런스 마력진으로 재사용.
+- (10/6 후속) 파이어볼을 보라 불꽃으로 바꾸며 착탄에 쓰던 OpenGameArt Explosion03(Soluna Software, CC0) 재질은 마법사 연출에서 빠짐. 플레이어 스킬 쪽 기존 사용은 그대로.
+- 파이어볼 꼬리는 기존 자체 생성 `TrailSoft.png`(외부 에셋 아님).
+- 가공: 재질 `Assets/_Project/VFX/Mage/MG_*.mat`은 기존 URP Particles/Unlit 재질(`VFX_spark_01`·`_alpha`)을 복사해 텍스처만 바꿈. 효과 프리팹 11종은 Unity 내장 ParticleSystem·TrailRenderer로 직접 구성(색·크기·수명·움직임). 데모 씬·전역 렌더링 설정 반입 없음. 적용·검사는 [07](07_개발일지.md#d14-mage-attack-vfx).

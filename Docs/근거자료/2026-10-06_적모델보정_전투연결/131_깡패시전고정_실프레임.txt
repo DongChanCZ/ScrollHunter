@@ -1,0 +1,1 @@
+Cast stable frames=1529, cycles=3, max hip/foot movement=0

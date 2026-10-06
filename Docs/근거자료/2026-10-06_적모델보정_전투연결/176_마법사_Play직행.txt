@@ -1,0 +1,3 @@
+Play start: state=Fighting, battle=4, enemies=1, enemy=Enemy_Boss, tutorial=False, title=False, scale=1
+Restart: state=Fighting, enemy=Enemy_Boss, HP=500/500, potion=2/2, cost=3, phase=1
+Preview off: state=Title, tutorialEnabled=True; StartRun -> battle=0, tutorialActive=True

@@ -34,7 +34,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 483db9101f3539a4d95d7dd228e8bc02, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.976296
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 483db9101f3539a4d95d7dd228e8bc02, type: 3}
       propertyPath: m_LocalRotation.x
@@ -42,7 +42,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 483db9101f3539a4d95d7dd228e8bc02, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.21643962
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 483db9101f3539a4d95d7dd228e8bc02, type: 3}
       propertyPath: m_LocalRotation.z
@@ -107,5 +107,86 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 483db9101f3539a4d95d7dd228e8bc02, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3867521072386918667}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 483db9101f3539a4d95d7dd228e8bc02, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8931239761650445885}
   m_SourcePrefab: {fileID: 100100000, guid: 483db9101f3539a4d95d7dd228e8bc02, type: 3}
+--- !u!1 &484087985913996375 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 483db9101f3539a4d95d7dd228e8bc02, type: 3}
+  m_PrefabInstance: {fileID: 753995204330854662}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3867521072386918667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 484087985913996375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5928c1281346ec46bf7d4ae691ab675, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyAnimationDriver
+  animator: {fileID: 0}
+  enemy: {fileID: 0}
+  crossFade: 0.12
+  attacks:
+  - clip: {fileID: -203655887218126122, guid: 57902a7a705349943b910edf5682157f, type: 3}
+    start: 0
+    impact: 0.55
+  - clip: {fileID: -203655887218126122, guid: dbb22e4d969072f4292d2d5f766e687f, type: 3}
+    start: 0
+    impact: 0.57
+  - clip: {fileID: -203655887218126122, guid: 4862180956aec6a4d8d76fbd00b5be34, type: 3}
+    start: 0
+    impact: 0.24
+  bow: {fileID: 0}
+  drawClip: {fileID: 0}
+  drawSpeedParameter: DrawSpeed
+  arrowFlightSeconds: 0.18
+  arrowTravel: 0.7
+--- !u!114 &8931239761650445885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 484087985913996375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eda5ca71cf10c74d9bbf0611c790f3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyAttackVfx
+  driver: {fileID: 3867521072386918667}
+  animator: {fileID: 6565174090884031639}
+  weaponTrail: {fileID: 0}
+  weaponTip: {fileID: 0}
+  attacks:
+  - trailStart: 0
+    trailEnd: 0
+    impactEffect: {fileID: 4181422362641033272, guid: 8d66f31b2304141479471acbd0e7815a, type: 3}
+    impactBone: 17
+    impactForward: 0.08
+  - trailStart: 0
+    trailEnd: 0
+    impactEffect: {fileID: 4181422362641033272, guid: 8d66f31b2304141479471acbd0e7815a, type: 3}
+    impactBone: 18
+    impactForward: 0.08
+  - trailStart: 0
+    trailEnd: 0
+    impactEffect: {fileID: 6114390930149830357, guid: ea94c81b032b9bf46ad62f5f32708ee9, type: 3}
+    impactBone: 20
+    impactForward: 0.03
+  bow: {fileID: 0}
+  releaseEffect: {fileID: 0}
+  releaseForward: 0.03
+--- !u!95 &6565174090884031639 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 483db9101f3539a4d95d7dd228e8bc02, type: 3}
+  m_PrefabInstance: {fileID: 753995204330854662}
+  m_PrefabAsset: {fileID: 0}

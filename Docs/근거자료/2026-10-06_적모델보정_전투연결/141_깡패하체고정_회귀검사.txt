@@ -1,0 +1,33 @@
+Enemy attack timing checks passed: 293, attacks/phases: 23, models: 5.
+Enemy animation link checks passed: 188. Encounters: tutorial + 4.
+Enemy facing checks passed: 221. Function/Animator checks.
+BOSS_Mage_ALL_v01 x-2.5 Idle: angle 116.19 -> 6.15
+BOSS_Mage_ALL_v01 x-2.5 Cast: angle 53.77 -> 0.00
+BOSS_Mage_ALL_v01 x0 Idle: angle 99.93 -> 0.00
+BOSS_Mage_ALL_v01 x0 Cast: angle 37.67 -> 0.00
+BOSS_Mage_ALL_v01 x2.5 Idle: angle 83.68 -> 0.00
+BOSS_Mage_ALL_v01 x2.5 Cast: angle 21.65 -> 0.00
+ENM_Archer_ORG_v01 x-2.5 Idle: angle 76.53 -> 0.00
+ENM_Archer_ORG_v01 x-2.5 Aim: angle 104.51 -> 0.29
+ENM_Archer_ORG_v01 x0 Idle: angle 62.16 -> 0.00
+ENM_Archer_ORG_v01 x0 Aim: angle 88.06 -> 0.00
+ENM_Archer_ORG_v01 x2.5 Idle: angle 48.38 -> 0.00
+ENM_Archer_ORG_v01 x2.5 Aim: angle 71.64 -> 0.00
+ENM_Leader_RED_v01 x-2.5 Idle: angle 37.24 -> 0.00
+ENM_Leader_RED_v01 x-2.5 Cast: angle 37.24 -> 0.00
+ENM_Leader_RED_v01 x0 Idle: angle 32.16 -> 0.00
+ENM_Leader_RED_v01 x0 Cast: angle 32.16 -> 0.00
+ENM_Leader_RED_v01 x2.5 Idle: angle 34.13 -> 0.00
+ENM_Leader_RED_v01 x2.5 Cast: angle 34.13 -> 0.00
+ENM_Raider_GRN_v01 x-2.5 Idle: angle 24.26 -> 11.31
+ENM_Raider_GRN_v01 x-2.5 Cast: angle 36.65 -> 11.31
+ENM_Raider_GRN_v01 x0 Idle: angle 20.90 -> 11.31
+ENM_Raider_GRN_v01 x0 Cast: angle 33.43 -> 11.31
+ENM_Raider_GRN_v01 x2.5 Idle: angle 28.11 -> 11.31
+ENM_Raider_GRN_v01 x2.5 Cast: angle 36.76 -> 11.31
+ENM_Thug_ALL_v01 x-2.5 Idle: angle 39.15 -> 0.00
+ENM_Thug_ALL_v01 x-2.5 Cast: angle 41.91 -> 0.00
+ENM_Thug_ALL_v01 x0 Idle: angle 23.73 -> 0.00
+ENM_Thug_ALL_v01 x0 Cast: angle 25.95 -> 0.00
+ENM_Thug_ALL_v01 x2.5 Idle: angle 10.96 -> 0.00
+ENM_Thug_ALL_v01 x2.5 Cast: angle 10.56 -> 0.00

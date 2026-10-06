@@ -1,0 +1,8 @@
+Idle speed=1
+Cast speed=0
+Hit speed=1
+Death speed=1
+Fire0 speed=1
+Fire1 speed=1
+Fire2 speed=1
+scene dirty=False play=False

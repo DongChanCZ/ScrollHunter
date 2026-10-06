@@ -51,6 +51,9 @@ public class BowRig : MonoBehaviour
 
     public bool ArrowReady => nockedArrow != null && nockedArrow.activeSelf;
 
+    /// <summary>시위 가운데가 따라가는 오늬 지점(읽기 전용, 발사 연출 방향용).</summary>
+    public Transform NockPoint => drawPoint;
+
     private void Awake()
     {
         upperRest = upperLimb.localRotation;
@@ -65,6 +68,12 @@ public class BowRig : MonoBehaviour
     public void ReadyArrow()
     {
         if (nockedArrow != null) nockedArrow.SetActive(true);
+    }
+
+    /// <summary>손의 화살을 숨긴다(사망 등). 발사 연출은 만들지 않는다.</summary>
+    public void HideArrow()
+    {
+        if (nockedArrow != null) nockedArrow.SetActive(false);
     }
 
     /// <summary>시위를 놓고 손의 화살을 숨긴다. 발사 연출 화살을 target까지 날려 돌려준다. 피해는 없다.</summary>

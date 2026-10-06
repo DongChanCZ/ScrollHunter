@@ -1,0 +1,20 @@
+start phase=1 skill=매직미사일 cast=2 clip=Mixamo_1HMagicAttack01
+fired case=0 impact=0.46 stateOk=True prep=1 phaseTransition=False
+start phase=1 skill=사일런스 cast=3 clip=Silence
+fired case=1 impact=0.55 stateOk=True prep=1 phaseTransition=False
+start phase=1 skill=다크홀 cast=6 clip=Mixamo_2HMagicAttack01
+pause
+half speed
+normal speed
+fired case=2 impact=0.54 stateOk=True prep=1 phaseTransition=False
+start phase=2 skill=매직미사일 cast=1.6 clip=Mixamo_1HMagicAttack01
+fired case=3 impact=0.46 stateOk=True prep=1 phaseTransition=False
+start phase=2 skill=사일런스 cast=2.4 clip=Silence
+fired case=4 impact=0.55 stateOk=True prep=1 phaseTransition=False
+start phase=2 skill=다크홀 cast=4.8 clip=Mixamo_2HMagicAttack01
+fired case=5 impact=0.54 stateOk=True prep=1 phaseTransition=False
+start phase=2 skill=나이트메어 cast=4 clip=Nightmare
+fired case=6 impact=0.55 stateOk=True prep=1 phaseTransition=True
+start phase=3 skill=디엔드 cast=20 clip=TheEnd
+fired case=7 impact=0.56 stateOk=True prep=1 phaseTransition=False
+actual frames=8929 cases=8 failures=0 restoredHP=500

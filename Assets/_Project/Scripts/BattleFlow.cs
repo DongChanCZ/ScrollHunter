@@ -32,7 +32,7 @@ public class BattleFlow : MonoBehaviour
     [SerializeField] private SkillVfx skillVfx;
 
     [Header("전투 종료 연출")]
-    [Tooltip("막타 스킬 연출이 남아 있을 때 결과·보상 화면을 늦추는 시간(실제 초). 게임은 멈춘 채 연출만 재생. 0이면 즉시 전환")]
+    [Tooltip("막타 스킬 연출의 기본 대기 시간(실제 초). 사망 모션이 길면 끝까지 기다린다. 게임은 멈춘 채 연출만 재생. 0이면 즉시 전환")]
     [SerializeField] private float finishingEffectHold = 0.6f;
 
     [Header("전투 준비")]
@@ -151,12 +151,46 @@ public class BattleFlow : MonoBehaviour
     private void Start()
     {
         if (!IsConfigured()) return;
+#if UNITY_EDITOR
+        if (TryBeginMagePreview()) return;
+#endif
         // 모든 Awake 이후 대기 상태로 전환한다. 전투 계측은 시작 버튼에서 연다.
         metrics.WaitForBattle();
         enemies.WaitForBattle();
         Time.timeScale = 0f;
         RefreshUI();
     }
+
+#if UNITY_EDITOR
+    // 임시 모델 확인용. 씬·빌드에는 저장하지 않고 Unity를 종료하면 해제된다.
+    private const string MagePreviewMenu = "Tools/Scroll Hunter/Mage Model Preview on Play";
+
+    [UnityEditor.MenuItem(MagePreviewMenu)]
+    private static void ToggleMagePreview()
+    {
+        bool enabled = !UnityEditor.SessionState.GetBool(MagePreviewMenu, false);
+        UnityEditor.SessionState.SetBool(MagePreviewMenu, enabled);
+        Debug.Log("[마법사 모델 테스트] Play 직행 " + (enabled ? "켜짐" : "꺼짐"));
+    }
+
+    [UnityEditor.MenuItem(MagePreviewMenu, true)]
+    private static bool ValidateMagePreview()
+    {
+        UnityEditor.Menu.SetChecked(MagePreviewMenu, UnityEditor.SessionState.GetBool(MagePreviewMenu, false));
+        return !UnityEditor.EditorApplication.isPlayingOrWillChangePlaymode;
+    }
+
+    private bool TryBeginMagePreview()
+    {
+        if (!UnityEditor.SessionState.GetBool(MagePreviewMenu, false)) return false;
+        if (tutorial != null) tutorial.enabled = false;
+        ClearRunRewards();
+        runDeck = deck.CopyStartingDeck();
+        BeginBattle(BattleCount - 1, true);
+        Debug.Log("[마법사 모델 테스트] 기본 덱·HP·포션으로 마법사 전투 시작", this);
+        return true;
+    }
+#endif
 
     public void StartRun()
     {
@@ -172,6 +206,9 @@ public class BattleFlow : MonoBehaviour
     public void RestartRun()
     {
         if (!IsConfigured()) return;
+#if UNITY_EDITOR
+        if (TryBeginMagePreview()) return;
+#endif
         if (HasTutorial && tutorial.Active) { BeginTutorial(true); return; }
         ClearRunRewards();
         runDeck = deck.CopyStartingDeck();
@@ -491,12 +528,17 @@ public class BattleFlow : MonoBehaviour
         player.EndBattle();
         if (information != null) information.BeginBattle();
         if (State == BattleFlowState.BetweenBattles) PrepareRewards();
-        // 승리의 막타 연출이 남아 있으면 결과·보상 화면만 잠깐 늦춘다. 상태·보상·요약은 즉시 처리한다.
-        bool showFinishing = won && finishingEffectHold > 0f && skillVfx != null && skillVfx.HasFinishingEffect;
-        if (showFinishing)
+        // 승패·보상·요약은 즉시 처리하고, 사망 모션과 막타 연출이 끝난 뒤 화면만 연다.
+        panelHoldRemaining = 0f;
+        if (won && finishingEffectHold > 0f)
         {
-            panelHoldRemaining = finishingEffectHold;
-            skillVfx.PlayOutUnscaled();
+            if (skillVfx != null && skillVfx.HasFinishingEffect) panelHoldRemaining = finishingEffectHold;
+            foreach (var model in FindObjectsByType<EnemyAnimationDriver>(FindObjectsSortMode.None))
+                panelHoldRemaining = Mathf.Max(panelHoldRemaining, model.PlayDeathUnscaled());
+        }
+        if (PanelHeld)
+        {
+            if (skillVfx != null) skillVfx.PlayOutUnscaled();
         }
         // 결과 화면 뒤에서 멈춘 채 남을 연출을 지운다 (다음 전투에서 재생되는 잔여 연출 방지).
         else if (skillVfx != null) skillVfx.Clear();

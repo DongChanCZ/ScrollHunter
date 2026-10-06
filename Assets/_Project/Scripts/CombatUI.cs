@@ -108,9 +108,6 @@ public class CombatUI : MonoBehaviour
     [Tooltip("Canvas 아래에 둔다. 현재 타겟 위로 이동하고, 타겟이 없으면 숨는다.")]
     [SerializeField] private RectTransform targetMarker;
 
-    [Tooltip("기준점 높이. 적 바와 같은 값을 쓴다 (캡슐 머리 = 1.05)")]
-    [SerializeField] private float markerWorldHeight = 1.05f;
-
     [Tooltip("적 바 위로 띄울 화면 픽셀. 바 높이(84)보다 커야 겹치지 않는다")]
     [SerializeField] private float markerScreenOffsetY = 96f;
 
@@ -537,7 +534,7 @@ public class CombatUI : MonoBehaviour
         if (cam == null) return;
 
         // 적 바와 같은 기준점을 써서 화면 좌표로 옮긴다. 바 위에 얹히도록 픽셀만큼 더 올린다.
-        Vector3 head = target.transform.position + Vector3.up * markerWorldHeight;
+        Vector3 head = target.BarWorldPosition;
         Vector3 screen = cam.WorldToScreenPoint(head);
         screen.y += markerScreenOffsetY;
         targetMarker.position = screen;

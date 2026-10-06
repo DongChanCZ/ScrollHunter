@@ -1,0 +1,9 @@
+Idle: speed=1 motion=Mixamo_BreathingIdle
+Cast: speed=1 motion=Thug_CastUpper
+Hit: speed=1 motion=Mixamo_HitReaction
+Death: speed=1 motion=Mixamo_FallingBackDeath
+Fire0: speed=1 motion=Mixamo_PunchingJab
+Fire1: speed=1 motion=Mixamo_CrossPunch
+Fire2: speed=1 motion=Mixamo_ZombieKicking
+Cast offset=-98.47113
+Play=False; sceneDirty=False

@@ -1,0 +1,2 @@
+Silence shoulder yaw: before -82.62531 / after -71.9174
+Hold 2 cycles: hips drift 0.00001635 / hips rotation 0 / chest motion 0.0018097 / hand motion 0.0250684 / min hand above head 0.486777 (world units)

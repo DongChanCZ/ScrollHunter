@@ -1,0 +1,23 @@
+2026-10-06 Codex 공통 공격 타이밍·차단 전용 피격 검사
+Unity 6000.3.18f1 / Battle / Editor Play
+
+EnemyAnimationLinkChecks.RunTiming(): 293 통과
+5종 모델, 23 공격/페이즈 조건(보스 전 페이즈 포함).
+완료 전 공격 준비·조기 피해 0·발동 간격 대기·실제 발동의 타격/피해·자세 복귀,
+일반 3연속 피격 무반응·정지·차단 성공·빨강 실패·취소 후 발동 없음·사망·전환·재시작.
+임시 Enemy/Player/Manager와 실제 모델 프리팹을 사용한 함수/Animator 검사. 임시 개체 제거.
+
+EnemyAnimationLinkChecks.Run(): 188 통과
+BossChecks.Run(): 315 통과
+TutorialChecks.RunCombatRegression(): 새 Play 단독 755 통과
+(빨강33, 시작덱117, 크리티컬100, 남은스킬77, 전체PS74, 진행107, 가독성33,
+ 보상54, 패시브보상73, 피해/차단30, 시작화면19, 덱순서38)
+
+EnemyAnimationFrameCheck.Start(): 40_타격동기화_실프레임.txt 참조
+모델 7,194프레임 / 실패 0 / 발동 6 / 타격 위치 일치 4 / 시전 중 공격 준비 825프레임.
+약탈자·궁병·우두머리 빨강/초록, 차단·일반 피격·사망·정지·0.5배속·전환·재시작.
+실제 Update/Animator 프레임 관측. 조작은 검사 함수 호출, 직접 손 입력과 구분.
+최종 콘솔 error/warning 0. Play 종료·백그라운드 실행 false.
+
+기존 모션 선택·우두머리 크기·깡패 하체 보정은 이번 범위 밖.
+모션 자연스러움 최종 판단·사용자 수정본 재플레이·새 빌드는 미확인.

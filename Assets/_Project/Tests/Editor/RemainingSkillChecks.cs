@@ -49,9 +49,16 @@ public static class RemainingSkillChecks
         float chance = (float)Get(player, "criticalChance");
         bool logging = (bool)Get(metrics, "logEachInput");
         var randomState = UnityEngine.Random.state;
+        var tutorial = UnityEngine.Object.FindFirstObjectByType<TutorialFlow>();
+        bool tutorialEnabled = tutorial != null && tutorial.enabled;
+        float countdown = (float)Get(flow, "countdownSeconds");
+        float finishHold = (float)Get(flow, "finishingEffectHold");
         passed = 0;
         try
         {
+            // 함수 검사는 학습 입력·실제 시간 카운트다운과 분리한다. finally에서 저장 설정을 돌린다.
+            if (tutorial != null) tutorial.enabled = false;
+            Set(flow, "countdownSeconds", 0f); Set(flow, "finishingEffectHold", 0f);
             Set(player, "criticalChance", 0f); Set(metrics, "logEachInput", false);
             Check(pool.Count(o => o.Card != null) == 6 && pool.Count(o => o.Effect != null) == 10, "six reward cards and ten passives");
             Check(judgment.Cost == 6 && judgment.CastTime == 2.75f && judgment.Damage == 365 && judgment.HitCount == 1 && !judgment.IsAreaOfEffect && !judgment.IsChanneling, "SK08 saved specification");
@@ -157,6 +164,8 @@ public static class RemainingSkillChecks
         {
             deck.enabled=true; Set(flow,"rewardPool",pool); Set(player,"criticalChance",chance);
             Set(metrics,"logEachInput",logging); UnityEngine.Random.state=randomState;
+            Set(flow,"countdownSeconds",countdown); Set(flow,"finishingEffectHold",finishHold);
+            if(tutorial!=null) tutorial.enabled=tutorialEnabled;
             Time.timeScale=1; flow.RestartRun(); Call(ui,"UpdateSanctuary");
         }
     }

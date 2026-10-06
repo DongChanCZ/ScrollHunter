@@ -1,0 +1,4 @@
+Enemy death ending checks passed: 33. Function/Animator checks; actual frames separate.
+Starting deck checks passed: 117
+Remaining skill checks passed: 77
+Enemy animation link checks passed: 188. Encounters: tutorial + 4 Function calls and manual Animator steps; real frames and physical input separate.

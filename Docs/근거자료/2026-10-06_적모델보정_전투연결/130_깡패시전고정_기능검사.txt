@@ -1,0 +1,2 @@
+Thug Cast: 120 Animator steps / 2 seconds; max hip/foot movement=0, normalizedTime=0
+Enemy attack timing checks passed: 293, attacks/phases: 23, models: 5. Function/Animator checks; real frames separate.

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEditor.Animations;
@@ -240,6 +240,9 @@ public static class ArcherAnimationBuilder
         // 지우고 새로 만들면 GUID가 바뀌어 프리팹 참조가 끊긴다. 있으면 비우고 다시 채운다.
         var controller = AssetDatabase.LoadAssetAtPath<AnimatorController>(ControllerPath) ?? AnimatorController.CreateAnimatorControllerAtPath(ControllerPath);
         foreach (var p in controller.parameters) controller.RemoveParameter(p);
+        var layers = controller.layers;
+        layers[0].iKPass = true;   // EnemyAnimationDriver의 머리 시선
+        controller.layers = layers;
         var old = controller.layers[0].stateMachine;
         foreach (var t in old.anyStateTransitions) old.RemoveAnyStateTransition(t);
         foreach (var s in old.states) old.RemoveState(s.state);

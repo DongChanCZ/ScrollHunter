@@ -1877,7 +1877,13 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4108760170761841927, guid: c7150836a082cd14db6dce7cd5c34b1d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4904961573825973237}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c7150836a082cd14db6dce7cd5c34b1d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6274259925278003534}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c7150836a082cd14db6dce7cd5c34b1d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 683073147520775077}
   m_SourcePrefab: {fileID: 100100000, guid: c7150836a082cd14db6dce7cd5c34b1d, type: 3}
 --- !u!4 &711653659881157499 stripped
 Transform:
@@ -1889,6 +1895,76 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -7921172228342233001, guid: c7150836a082cd14db6dce7cd5c34b1d, type: 3}
   m_PrefabInstance: {fileID: 3523348317655981692}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4333618915626705709 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c7150836a082cd14db6dce7cd5c34b1d, type: 3}
+  m_PrefabInstance: {fileID: 3523348317655981692}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6274259925278003534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4333618915626705709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5928c1281346ec46bf7d4ae691ab675, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyAnimationDriver
+  animator: {fileID: 7030091570902361069}
+  enemy: {fileID: 0}
+  crossFade: 0.12
+  attacks:
+  - clip: {fileID: 0}
+    start: 0
+    impact: 0.5
+  - clip: {fileID: 0}
+    start: 0
+    impact: 0.5
+  - clip: {fileID: 0}
+    start: 0
+    impact: 0.5
+  bow: {fileID: 6882292936166347584}
+  drawClip: {fileID: -203655887218126122, guid: e238c72729859424da4fc8107dbc2ca6, type: 3}
+  drawSpeedParameter: DrawSpeed
+  arrowFlightSeconds: 0.18
+  arrowTravel: 0.7
+--- !u!114 &683073147520775077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4333618915626705709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eda5ca71cf10c74d9bbf0611c790f3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyAttackVfx
+  driver: {fileID: 6274259925278003534}
+  animator: {fileID: 7030091570902361069}
+  weaponTrail: {fileID: 0}
+  weaponTip: {fileID: 0}
+  attacks:
+  - trailStart: 0
+    trailEnd: 0
+    impactEffect: {fileID: 0}
+    impactBone: 55
+    impactForward: 0
+  - trailStart: 0
+    trailEnd: 0
+    impactEffect: {fileID: 0}
+    impactBone: 55
+    impactForward: 0
+  - trailStart: 0
+    trailEnd: 0
+    impactEffect: {fileID: 0}
+    impactBone: 55
+    impactForward: 0
+  bow: {fileID: 6882292936166347584}
+  releaseEffect: {fileID: 1272362876765551443, guid: a9cdd971d05b59148882ccbce29a37fd, type: 3}
+  releaseForward: 0.03
 --- !u!95 &7030091570902361069 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: c7150836a082cd14db6dce7cd5c34b1d, type: 3}

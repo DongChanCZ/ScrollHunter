@@ -1,0 +1,13 @@
+파이어볼: cast=- zone=- hit=VFX_FireballImpact self=- interrupt=-
+라이트닝 스피어: cast=VFX_LightningCharge zone=- hit=VFX_LightningStrike self=- interrupt=-
+매직아머: cast=- zone=- hit=- self=MagicArmorVfx interrupt=-
+아이스애로우: cast=- zone=- hit=VFX_IceArrowHit self=- interrupt=-
+파이어 필라: cast=- zone=- hit=VFX_FirePillar self=- interrupt=-
+침묵: cast=- zone=- hit=- self=- interrupt=VFX_SilenceSeal
+매직 커터: cast=- zone=- hit=VFX_MagicCutterA self=- interrupt=-
+매직 스파크: cast=- zone=VFX_MagicSparkZone hit=- self=- interrupt=-
+매직 임팩트: cast=- zone=- hit=VFX_MagicImpact self=- interrupt=-
+다크 이럽션: cast=- zone=- hit=VFX_DarkEruption self=- interrupt=-
+제압: cast=- zone=- hit=VFX_SuppressionHit self=- interrupt=VFX_SuppressionSeal
+블리자드: cast=- zone=VFX_BlizzardZone hit=VFX_BlizzardHit self=- interrupt=-
+저지먼트: cast=VFX_JudgmentCharge zone=- hit=VFX_JudgmentStrike self=- interrupt=-

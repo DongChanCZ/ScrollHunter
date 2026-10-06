@@ -10361,7 +10361,6 @@ MonoBehaviour:
   castTextColor: {r: 0.94, g: 0.9, b: 0.82, a: 1}
   castCancelledTextColor: {r: 0.62, g: 0.64, b: 0.7, a: 1}
   targetMarker: {fileID: 1593742258}
-  markerWorldHeight: 1.05
   markerScreenOffsetY: 96
   markerPulse: 0
   markerPulseSpeed: 3
@@ -11041,10 +11040,10 @@ RectTransform:
   - {fileID: 1031915755}
   m_Father: {fileID: 1684798577}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 97.5, y: -97.5}
+  m_SizeDelta: {x: 195, y: 195}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &430042659
 CanvasRenderer:
@@ -16259,7 +16258,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1007684650434330349, guid: 709f20d80cdc2f74792b07a7bc9223d1, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.976296
       objectReference: {fileID: 0}
     - target: {fileID: 1007684650434330349, guid: 709f20d80cdc2f74792b07a7bc9223d1, type: 3}
       propertyPath: m_LocalRotation.x
@@ -16267,7 +16266,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1007684650434330349, guid: 709f20d80cdc2f74792b07a7bc9223d1, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.21643962
       objectReference: {fileID: 0}
     - target: {fileID: 1007684650434330349, guid: 709f20d80cdc2f74792b07a7bc9223d1, type: 3}
       propertyPath: m_LocalRotation.z
@@ -17097,10 +17096,10 @@ RectTransform:
   - {fileID: 1013850688}
   m_Father: {fileID: 1684798577}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 742.5, y: -97.5}
+  m_SizeDelta: {x: 195, y: 195}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &734759149
 CanvasRenderer:
@@ -21031,10 +21030,10 @@ RectTransform:
   - {fileID: 70588053}
   m_Father: {fileID: 1684798577}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 312.5, y: -97.5}
+  m_SizeDelta: {x: 195, y: 195}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &902055543
 CanvasRenderer:
@@ -27405,7 +27404,7 @@ MonoBehaviour:
   orangeCooldownGreens: 1
   redCooldownGreens: 2
   castBarRoot: {fileID: 1060291323}
-  barWorldHeight: 1.05
+  barWorldHeight: 1.65
   castBarFill: {fileID: 693125251}
   castSkillText: {fileID: 1609975004}
   staggerColor: {r: 0.55, g: 0.55, b: 0.6, a: 1}
@@ -27482,10 +27481,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
+  m_Radius: 0.65
+  m_Height: 2.6
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.3, z: 0}
 --- !u!33 &1212461458
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -29817,10 +29816,10 @@ RectTransform:
   - {fileID: 147334643}
   m_Father: {fileID: 1684798577}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 527.5, y: -97.5}
+  m_SizeDelta: {x: 195, y: 195}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1318527014
 CanvasRenderer:

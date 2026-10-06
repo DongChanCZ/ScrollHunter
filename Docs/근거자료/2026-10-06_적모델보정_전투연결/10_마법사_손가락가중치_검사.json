@@ -1,0 +1,32 @@
+{
+  "source": "09_마법사_보정_리깅.blend",
+  "joint_blend": 0.18,
+  "before": {
+    "0.75": {
+      "mean": 0.073,
+      "p95": 0.2561,
+      "edges": 5091
+    },
+    "1.0": {
+      "mean": 0.098,
+      "p95": 0.3329,
+      "edges": 5091
+    }
+  },
+  "changed_vertices": 2007,
+  "after": {
+    "0.75": {
+      "mean": 0.0677,
+      "p95": 0.303,
+      "edges": 5091
+    },
+    "1.0": {
+      "mean": 0.0894,
+      "p95": 0.3898,
+      "edges": 5091
+    }
+  },
+  "unweighted": 0,
+  "weight_sum_errors": 0,
+  "max_influences": 4
+}

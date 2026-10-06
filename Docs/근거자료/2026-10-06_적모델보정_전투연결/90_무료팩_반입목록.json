@@ -1,0 +1,99 @@
+{
+  "package_sha256": "dc1a1e26e14c9a2ad5db5a5a90dee6ea036078c23f3bf49a2738909090a290b2",
+  "assets": [
+    {
+      "source": "Assets/ExplosiveLLC/RPG Character Mecanim Animation Pack FREE/Animations/2Hand-Sword/RPG-Character@2Hand-Sword-Attack3.FBX",
+      "destination": "Assets/_Project/Animations/ExplosiveRPGFree/RPG-Character@2Hand-Sword-Attack3.FBX",
+      "guid": "018ce46eeecfeae4abb8016f2c6841ca"
+    },
+    {
+      "source": "Assets/ExplosiveLLC/RPG Character Mecanim Animation Pack FREE/Animations/2Hand-Sword/RPG-Character@2Hand-Sword-Attack5.FBX",
+      "destination": "Assets/_Project/Animations/ExplosiveRPGFree/RPG-Character@2Hand-Sword-Attack5.FBX",
+      "guid": "04cb27dc01c081446ba2c02f2761f01d"
+    },
+    {
+      "source": "Assets/ExplosiveLLC/RPG Character Mecanim Animation Pack FREE/Animations/2Hand-Sword/RPG-Character@2Hand-Sword-Attack8.FBX",
+      "destination": "Assets/_Project/Animations/ExplosiveRPGFree/RPG-Character@2Hand-Sword-Attack8.FBX",
+      "guid": "05576006da3e02b49b96abc065d9f607"
+    },
+    {
+      "source": "Assets/ExplosiveLLC/RPG Character Mecanim Animation Pack FREE/Animations/2Hand-Sword/RPG-Character@2Hand-Sword-Attack9.FBX",
+      "destination": "Assets/_Project/Animations/ExplosiveRPGFree/RPG-Character@2Hand-Sword-Attack9.FBX",
+      "guid": "06e24acb759a2ac4c965d56b0101f8ba"
+    },
+    {
+      "source": "Assets/ExplosiveLLC/RPG Character Mecanim Animation Pack FREE/Animations/2Hand-Sword/RPG-Character@2Hand-Sword-Knockdown1.FBX",
+      "destination": "Assets/_Project/Animations/ExplosiveRPGFree/RPG-Character@2Hand-Sword-Knockdown1.FBX",
+      "guid": "35512810a6874a749a590d405f34fa4a"
+    },
+    {
+      "source": "Assets/ExplosiveLLC/RPG Character Mecanim Animation Pack FREE/Animations/2Hand-Sword/RPG-Character@2Hand-Sword-Attack10.FBX",
+      "destination": "Assets/_Project/Animations/ExplosiveRPGFree/RPG-Character@2Hand-Sword-Attack10.FBX",
+      "guid": "5354b4f390c868842b96d7c4c201bdf8"
+    },
+    {
+      "source": "Assets/ExplosiveLLC/RPG Character Mecanim Animation Pack FREE/Animations/2Hand-Sword/RPG-Character@2Hand-Sword-Attack2.FBX",
+      "destination": "Assets/_Project/Animations/ExplosiveRPGFree/RPG-Character@2Hand-Sword-Attack2.FBX",
+      "guid": "7b5b17e2d42e0424f9c36012595dc9b6"
+    },
+    {
+      "source": "Assets/ExplosiveLLC/RPG Character Mecanim Animation Pack FREE/Animations/2Hand-Sword/RPG-Character@2Hand-Sword-Attack11.FBX",
+      "destination": "Assets/_Project/Animations/ExplosiveRPGFree/RPG-Character@2Hand-Sword-Attack11.FBX",
+      "guid": "807a4f9cdadaafe4491d43653dfab0c0"
+    },
+    {
+      "source": "Assets/ExplosiveLLC/RPG Character Mecanim Animation Pack FREE/Animations/2Hand-Sword/RPG-Character@2Hand-Sword-Idle.FBX",
+      "destination": "Assets/_Project/Animations/ExplosiveRPGFree/RPG-Character@2Hand-Sword-Idle.FBX",
+      "guid": "8370b4128ccb08c4a8944d3f0d66cebc"
+    },
+    {
+      "source": "Assets/ExplosiveLLC/RPG Character Mecanim Animation Pack FREE/Animations/2Hand-Sword/RPG-Character@2Hand-Sword-GetHit-F1.FBX",
+      "destination": "Assets/_Project/Animations/ExplosiveRPGFree/RPG-Character@2Hand-Sword-GetHit-F1.FBX",
+      "guid": "861c5aaef9829104d9122fa96811dfb9"
+    },
+    {
+      "source": "Assets/ExplosiveLLC/RPG Character Mecanim Animation Pack FREE/Models/Weapons/2Hand-Sword.FBX",
+      "destination": "Assets/_Project/Animations/ExplosiveRPGFree/2Hand-Sword.FBX",
+      "guid": "8a7b78e82902d1b4eba2923c6a4cf1c7"
+    },
+    {
+      "source": "Assets/ExplosiveLLC/RPG Character Mecanim Animation Pack FREE/Animations/2Hand-Sword/RPG-Character@2Hand-Sword-Attack7.FBX",
+      "destination": "Assets/_Project/Animations/ExplosiveRPGFree/RPG-Character@2Hand-Sword-Attack7.FBX",
+      "guid": "96ed5e4a6dc56fe4c9c2de75fc8a077c"
+    },
+    {
+      "source": "Assets/ExplosiveLLC/RPG Character Mecanim Animation Pack FREE/Animations/2Hand-Sword/RPG-Character@2Hand-Sword-Attack6.FBX",
+      "destination": "Assets/_Project/Animations/ExplosiveRPGFree/RPG-Character@2Hand-Sword-Attack6.FBX",
+      "guid": "c9cdccfb9d6cfef4d9992105a94b5d86"
+    },
+    {
+      "source": "Assets/ExplosiveLLC/RPG Character Mecanim Animation Pack FREE/Animations/2Hand-Sword/RPG-Character@2Hand-Sword-Attack4.FBX",
+      "destination": "Assets/_Project/Animations/ExplosiveRPGFree/RPG-Character@2Hand-Sword-Attack4.FBX",
+      "guid": "cdd2643e8053d5b419629acf98510a71"
+    },
+    {
+      "source": "Assets/ExplosiveLLC/RPG Character Mecanim Animation Pack FREE/Animations/2Hand-Sword/RPG-Character@2Hand-Sword-Idle-Static.FBX",
+      "destination": "Assets/_Project/Animations/ExplosiveRPGFree/RPG-Character@2Hand-Sword-Idle-Static.FBX",
+      "guid": "d92b320e0a3d752489714ffe3c1b7f13"
+    },
+    {
+      "source": "Assets/ExplosiveLLC/RPG Character Mecanim Animation Pack FREE/Animations/2Hand-Sword/RPG-Character@2Hand-Sword-Attack1.FBX",
+      "destination": "Assets/_Project/Animations/ExplosiveRPGFree/RPG-Character@2Hand-Sword-Attack1.FBX",
+      "guid": "dce280ced5e006c4cb0eb0fab2f51b75"
+    },
+    {
+      "source": "Assets/ExplosiveLLC/RPG Character Mecanim Animation Pack FREE/Models/Characters/RPG-Character.FBX",
+      "destination": "Assets/_Project/Animations/ExplosiveRPGFree/RPG-Character.FBX",
+      "guid": "e57e9b8cd5e115f4f8d7736473e5c7fd"
+    }
+  ],
+  "final_retained": [
+    "Assets/_Project/Animations/ExplosiveRPGFree/RPG-Character@2Hand-Sword-Knockdown1.FBX",
+    "Assets/_Project/Animations/ExplosiveRPGFree/RPG-Character@2Hand-Sword-Attack2.FBX",
+    "Assets/_Project/Animations/ExplosiveRPGFree/RPG-Character@2Hand-Sword-Idle.FBX",
+    "Assets/_Project/Animations/ExplosiveRPGFree/RPG-Character@2Hand-Sword-GetHit-F1.FBX",
+    "Assets/_Project/Animations/ExplosiveRPGFree/RPG-Character@2Hand-Sword-Attack4.FBX",
+    "Assets/_Project/Animations/ExplosiveRPGFree/RPG-Character.FBX"
+  ],
+  "comparison_only_removed": 11
+}

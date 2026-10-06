@@ -1,0 +1,2 @@
+Unique frames=1491; cast cycles=3; lower move=0.0002252016; lower angle=0; upper move=0.1147725; upper angle=22.07709
+Transitions excluded; active camera gaze included.

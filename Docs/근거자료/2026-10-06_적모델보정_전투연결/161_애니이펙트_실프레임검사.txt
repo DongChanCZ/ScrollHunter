@@ -1,0 +1,82 @@
+== 요약 (done) ==
+archer-int: 1
+clean after restart: 1
+clean after transition: 1
+cleared archer-interrupt: 1
+cleared death: 1
+cleared raider-interrupt: 1
+fx VFX_ArrowRelease: 5
+fx VFX_EnemyKickHit: 1
+fx VFX_EnemyPunchHit: 2
+fx VFX_LeaderSlashHit: 2
+half-impact: 1
+impact: 7
+once next: 1
+once remain1: 1
+once restart: 1
+paused: 1
+pause-frozen: 1
+raider-int: 1
+red-fail: 1
+trail-frames A_Green #0: 89
+trail-frames C_Red #0: 24
+trail-frames C_Red #2: 90
+shots: A_Green_궤적_0, A_Green_발동_0_0, B_Orange_발동_-1_0, C_Red_궤적_2, C_Red_발동_-1_0, C_Red_발동_2_2, Tutorial_발동_0_0, Tutorial_발동_1_1, Tutorial_발동_2_2
+failures: 4
+  [f2 t0.00] effect without impact this frame: VFX_ArrowRelease(Clone)
+  [f2 t0.00] effect without impact this frame: VFX_ArrowRelease(Clone)
+  [f2 t0.00] effect without impact this frame: VFX_ArrowRelease(Clone)
+  [f2 t0.00] effect without impact this frame: VFX_ArrowRelease(Clone)
+
+== 기록 ==
+f2 t0.000 START thug
+f728 t4.004 IMPACT Enemy_Tutorial #2
+f731 t4.026 MARK Tutorial_발동_2_2
+f1704 t9.010 IMPACT Enemy_Tutorial #0
+f1707 t9.032 MARK Tutorial_발동_0_0
+f2696 t14.014 IMPACT Enemy_Tutorial #1
+f2699 t14.034 MARK Tutorial_발동_1_1
+f2699 t14.034 STAGE A+B
+f2699 t14.034 CANCEL Enemy_Tutorial
+f2699 t14.034 CANCEL Enemy_Tutorial
+f3010 t15.838 CANCEL Enemy_B_Orange
+f3010 t15.838 ACTION interrupt archer drawing Success
+f3129 t16.535 IMPACT Enemy_A_Green #0
+f3132 t16.555 MARK A_Green_발동_0_0
+f3139 t16.598 MARK A_Green_궤적_0
+f3728 t19.851 CANCEL Enemy_A_Green
+f3728 t19.851 ACTION interrupt raider during slash Success
+f3845 t20.843 IMPACT Enemy_B_Orange #0
+f3848 t20.885 MARK B_Orange_발동_-1_0
+f3848 t20.885 STAGE C
+f3848 t20.885 CANCEL Enemy_A_Green
+f3848 t20.885 CANCEL Enemy_A_Green
+f3848 t20.885 CANCEL Enemy_B_Orange
+f3848 t20.885 CANCEL Enemy_B_Orange
+f4052 t22.091 ACTION red interrupt attempt FailedRed
+f4529 t24.886 IMPACT Enemy_C_Red #2
+f4531 t24.900 MARK C_Red_궤적_2
+f4532 t24.907 MARK C_Red_발동_2_2
+f4532 t24.907 ACTION pause during slash
+f4563 t24.907 ACTION half speed
+f6218 t29.390 IMPACT Enemy_C_Red #0
+f6218 t29.390 ACTION kill during slash
+f6218 t29.390 CANCEL Enemy_C_Red
+f6221 t29.399 MARK C_Red_발동_-1_0
+f6407 t29.399 ACTION next battle
+f6407 t29.399 CANCEL Enemy_C_Red
+f6407 t29.399 CANCEL Enemy_C_Red
+f6407 t29.399 CANCEL Enemy_A_Green
+f6407 t29.399 CANCEL Enemy_C_Red
+f6407 t29.399 CANCEL Enemy_B_Orange
+f6498 t29.900 REMAIN after transition: effects 0 trails 0
+f6590 t30.398 ACTION restart
+f6590 t30.398 CANCEL Enemy_A_Green
+f6590 t30.398 CANCEL Enemy_A_Green
+f6590 t30.398 CANCEL Enemy_C_Red
+f6590 t30.398 CANCEL Enemy_C_Red
+f6590 t30.398 CANCEL Enemy_B_Orange
+f6590 t30.398 CANCEL Enemy_B_Orange
+f6590 t30.398 CANCEL Enemy_A_Green
+f6590 t30.398 CANCEL Enemy_B_Orange
+f6605 t30.483 REMAIN after restart: effects 0 trails 0

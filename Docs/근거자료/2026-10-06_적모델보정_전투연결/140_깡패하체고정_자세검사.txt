@@ -1,0 +1,5 @@
+Hips move=4.025307E-05 angle=0
+LeftFoot move=0.0002093646 angle=0
+RightFoot move=0.0001863078 angle=0
+LeftHand move=0.1088313 angle=17.90876
+RightHand move=0.104332 angle=19.00871

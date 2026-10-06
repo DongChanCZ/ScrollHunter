@@ -1,0 +1,12 @@
+Leader scale=(2.60, 2.60, 2.60) rootMotion=False human=True valid=True
+Idle -> Assets/_Project/Animations/ExplosiveRPGFree/RPG-Character@2Hand-Sword-Idle.FBX
+Cast -> Assets/_Project/Animations/ExplosiveRPGFree/RPG-Character@2Hand-Sword-Idle.FBX
+Hit -> Assets/_Project/Animations/ExplosiveRPGFree/RPG-Character@2Hand-Sword-GetHit-F1.FBX
+Death -> Assets/_Project/Animations/ExplosiveRPGFree/RPG-Character@2Hand-Sword-Knockdown1.FBX
+Fire0 -> Assets/_Project/Animations/ExplosiveRPGFree/RPG-Character@2Hand-Sword-Attack4.FBX
+Fire2 -> Assets/_Project/Animations/ExplosiveRPGFree/RPG-Character@2Hand-Sword-Attack2.FBX
+Attack0 impact=0.38
+Attack1 impact=0.38
+Attack2 impact=0.39
+Leader missing scripts=0
+Socket local=(0.000029, 0.000339, 0.000086) rotation=(343.56770, 265.16690, 93.85106)

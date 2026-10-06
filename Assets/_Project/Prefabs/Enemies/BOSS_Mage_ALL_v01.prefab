@@ -25,12 +25,43 @@ Transform:
   m_GameObject: {fileID: 5352660695734154397}
   serializedVersion: 2
   m_LocalRotation: {x: -0.6938939, y: -0.7158316, z: -0.0703917, w: 0.033785865}
-  m_LocalPosition: {x: 0.0000012824821, y: 0.00012860374, z: 0.00020476677}
+  m_LocalPosition: {x: -0.000006960454, y: 0.000057712416, z: 0.00021716728}
   m_LocalScale: {x: 0.010000002, y: 0.010000002, z: 0.010000002}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 626355458976400159}
   m_Father: {fileID: 8516385524588239310}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5969499077089784845
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6182184127977311624}
+  m_Layer: 0
+  m_Name: StaffIdleTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6182184127977311624
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5969499077089784845}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.70678943, y: 0.02118463, z: -0.02118463, w: 0.7067893}
+  m_LocalPosition: {x: 0.0017700007, y: 0.00078999903, z: -0.0012999997}
+  m_LocalScale: {x: 0.01, y: 0.010000002, z: 0.010000002}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3767420642158614268}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1097747486431716596
 PrefabInstance:
@@ -185,11 +216,344 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -3100969843448865693, guid: 8c1efbc274550434b83fbc77d66e8478, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6182184127977311624}
     - targetCorrespondingSourceObject: {fileID: -7597587117723430063, guid: 8c1efbc274550434b83fbc77d66e8478, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1158731250779726683}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8c1efbc274550434b83fbc77d66e8478, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8370262456520775499}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8c1efbc274550434b83fbc77d66e8478, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4596800122687392096}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8c1efbc274550434b83fbc77d66e8478, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9126782804719383797}
   m_SourcePrefab: {fileID: 100100000, guid: 8c1efbc274550434b83fbc77d66e8478, type: 3}
+--- !u!95 &3590812491361171214 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 8c1efbc274550434b83fbc77d66e8478, type: 3}
+  m_PrefabInstance: {fileID: 6971490062078741151}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &3767420642158614268 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -3100969843448865693, guid: 8c1efbc274550434b83fbc77d66e8478, type: 3}
+  m_PrefabInstance: {fileID: 6971490062078741151}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7817928546496788430 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 8c1efbc274550434b83fbc77d66e8478, type: 3}
+  m_PrefabInstance: {fileID: 6971490062078741151}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8370262456520775499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7817928546496788430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 398884da7a04a604cad814ef3f98ac86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HandIK
+  animator: {fileID: 3590812491361171214}
+  leftHand: 1
+  target: {fileID: 6182184127977311624}
+  slideMin: 0
+  slideMax: 0
+  localTunnel: {x: 0.049318757, y: 0.14766471, z: -0.98780704}
+  localForearm: {x: -0.034739625, y: 0.98866576, z: 0.14605887}
+  localToHand: {x: 0.00069607084, y: -0.005771254, z: -0.021716483}
+  onlyStates:
+  - Idle
+  skipStates: []
+  blendSpeed: 8
+--- !u!114 &4596800122687392096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7817928546496788430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5928c1281346ec46bf7d4ae691ab675, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyAnimationDriver
+  animator: {fileID: 0}
+  enemy: {fileID: 0}
+  crossFade: 0.12
+  attacks:
+  - clip: {fileID: -203655887218126122, guid: 51a8aeeb52e1d3a4683348226cc8050b, type: 3}
+    holdRaisedHand: 0
+    start: 0
+    impact: 0.46
+  - clip: {fileID: 7400000, guid: 99d1c83532329ee4088ee4d69149d57a, type: 2}
+    holdRaisedHand: 0
+    start: 0
+    impact: 0.55
+  - clip: {fileID: -203655887218126122, guid: e19e88ed916842b4c9ee6c71b501cdd5, type: 3}
+    holdRaisedHand: 1
+    start: 0
+    impact: 0.54
+  - clip: {fileID: -203655887218126122, guid: 7602c62cc37d4de4e9ef1cd1e4587f8c, type: 3}
+    holdRaisedHand: 0
+    start: 0
+    impact: 0.55
+  - clip: {fileID: -203655887218126122, guid: 1c83a22315731bf4684260dd16dd6299, type: 3}
+    holdRaisedHand: 1
+    start: 0
+    impact: 0.56
+  useAttackOrder: 1
+  castOnceClip: {fileID: 7400000, guid: 1a50ba523f1ab8047acdf64bcb0e52a4, type: 2}
+  chargeRaiseClip: {fileID: 7400000, guid: 9b1802c55f706984797eaaec3aa75dc4, type: 2}
+  bow: {fileID: 0}
+  drawClip: {fileID: 0}
+  drawSpeedParameter: DrawSpeed
+  arrowFlightSeconds: 0.18
+  arrowTravel: 0.7
+--- !u!114 &9126782804719383797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7817928546496788430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a44277de94de4da439ac21c8c00bd94b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BossAttackVfx
+  driver: {fileID: 4596800122687392096}
+  animator: {fileID: 3590812491361171214}
+  skills:
+  - label: "\uB9E4\uC9C1\uBBF8\uC0AC\uC77C(\uD30C\uC774\uC5B4\uBCFC \uC5F0\uCD9C)"
+    charge: {fileID: 26319915784488957, guid: e63648928ef719845af585ba2c15069e, type: 3}
+    chargeSize: 1.8
+    chargeAnchor: 0
+    chargeOffset: {x: 0, y: 0, z: 0}
+    chargeStartScale: 0.35
+    chargeEndScale: 1
+    growth:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    startEmission: 0.35
+    follow: 0
+    release: {fileID: 3177400788446809744, guid: 9d0aac4391ef1ce42a42ac08ffbc262f, type: 3}
+    releaseSize: 1.5
+    releaseAnchor: 0
+    releaseOffset: {x: 0, y: 0, z: 0}
+    groundRelease: {fileID: 0}
+    chargeCollapse: 0.08
+    projectile: {fileID: 7367369208963312548, guid: 6c4b14da48db47343aa97399ba36d10e, type: 3}
+    projectileImpact: {fileID: 1199888824420490422, guid: 2077d9ac17dfe3d45a4e07c3b3ac1efd, type: 3}
+    projectileTravel: 0.5
+    projectileSeconds: 0.22
+    projectileAim: {x: 0, y: -1.6, z: 0}
+  - label: "\uC0AC\uC77C\uB7F0\uC2A4"
+    charge: {fileID: 8549536572619179145, guid: 9451f6ec5f088674ab4ab9f209c1c919, type: 3}
+    chargeSize: 2.2
+    chargeAnchor: 0
+    chargeOffset: {x: 0, y: 0, z: 0}
+    chargeStartScale: 0.4
+    chargeEndScale: 1
+    growth:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    startEmission: 0.3
+    follow: 0
+    release: {fileID: 4753527155791068178, guid: 3c144a049e1d9cb4a87ba6ed403e0e36, type: 3}
+    releaseSize: 2.4
+    releaseAnchor: 0
+    releaseOffset: {x: 0, y: 0, z: -0.05}
+    groundRelease: {fileID: 0}
+    chargeCollapse: 0.08
+    projectile: {fileID: 0}
+    projectileImpact: {fileID: 0}
+    projectileTravel: 0.5
+    projectileSeconds: 0.2
+    projectileAim: {x: 0, y: -1.6, z: 0}
+  - label: "\uB2E4\uD06C\uD640"
+    charge: {fileID: 5365012132894408468, guid: 54365ed0cfd41b8409acebad686420e6, type: 3}
+    chargeSize: 1.4
+    chargeAnchor: 3
+    chargeOffset: {x: -0.15, y: -0.1, z: -0.45}
+    chargeStartScale: 0.15
+    chargeEndScale: 0.5
+    growth:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    startEmission: 0.25
+    follow: 0.08
+    release: {fileID: 1748964315407770079, guid: 3da301eb59bea2741934a69fa0b35444, type: 3}
+    releaseSize: 1.8
+    releaseAnchor: 5
+    releaseOffset: {x: 0, y: 0, z: 0}
+    groundRelease: {fileID: 0}
+    chargeCollapse: 0.12
+    projectile: {fileID: 0}
+    projectileImpact: {fileID: 0}
+    projectileTravel: 0.5
+    projectileSeconds: 0.2
+    projectileAim: {x: 0, y: -1.6, z: 0}
+  - label: "\uB098\uC774\uD2B8\uBA54\uC5B4"
+    charge: {fileID: 3365008675123974284, guid: 39faed64d8a489f4fb7f84b05ba80a0c, type: 3}
+    chargeSize: 1.5
+    chargeAnchor: 3
+    chargeOffset: {x: 0, y: -0.1, z: -0.1}
+    chargeStartScale: 0.5
+    chargeEndScale: 1
+    growth:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    startEmission: 0.2
+    follow: 0.05
+    release: {fileID: 8437421920888542786, guid: 9cd1eff819d49bc4f98d2d7466562efe, type: 3}
+    releaseSize: 1.8
+    releaseAnchor: 3
+    releaseOffset: {x: 0, y: 0, z: -0.15}
+    groundRelease: {fileID: 0}
+    chargeCollapse: 0.15
+    projectile: {fileID: 0}
+    projectileImpact: {fileID: 0}
+    projectileTravel: 0.5
+    projectileSeconds: 0.2
+    projectileAim: {x: 0, y: -1.6, z: 0}
+  - label: "\uB514\uC5D4\uB4DC"
+    charge: {fileID: 6421797122336625706, guid: 2b376cb13b548654880a3a066b9bf462, type: 3}
+    chargeSize: 1.6
+    chargeAnchor: 4
+    chargeOffset: {x: 0, y: 0, z: 0}
+    chargeStartScale: 0.25
+    chargeEndScale: 1
+    growth:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    startEmission: 0.5
+    follow: 0.18
+    release: {fileID: 8484911088469326193, guid: 65617f9a2ef5ea94691b3a81e7738ab9, type: 3}
+    releaseSize: 1
+    releaseAnchor: 5
+    releaseOffset: {x: 0, y: 0, z: 0}
+    groundRelease: {fileID: 6220022385577353571, guid: 25a4938b978b7d14cbd57c7c33ee444e, type: 3}
+    chargeCollapse: 0.12
+    projectile: {fileID: 0}
+    projectileImpact: {fileID: 0}
+    projectileTravel: 0.5
+    projectileSeconds: 0.2
+    projectileAim: {x: 0, y: -1.6, z: 0}
+  palmForward: 0.08
+  aboveHeadHeight: 2.7
+  aboveHeadHandBlend: 0.35
 --- !u!4 &8516385524588239310 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -7597587117723430063, guid: 8c1efbc274550434b83fbc77d66e8478, type: 3}

@@ -97,6 +97,8 @@ public class Enemy : MonoBehaviour
     private int greenAtLastRed = int.MinValue / 2;
     private bool lastWasUpper;
 
+    public Vector3 BarWorldPosition => transform.position + Vector3.up * barWorldHeight;
+
     public EnemyData Data => data;
     public int MaxHp => data != null ? data.MaxHp : 0;
     public int CurrentHp { get; private set; }
@@ -107,6 +109,13 @@ public class Enemy : MonoBehaviour
     private static readonly CastColor[] TutorialPattern = { CastColor.Green, CastColor.Orange, CastColor.Red };
     public event System.Action CastAdvanced;
     public event System.Action<CastColor> AttackFired;
+
+    // 표시용 알림(10/6 모델 동작 연결). 판정·타이머·순서는 바꾸지 않고 이미 일어난 일을 알리기만 한다.
+    public event System.Action CastStarted;            // 새 캐스팅 시작
+    public event System.Action Interrupted;            // 차단 성공(경직 시작)
+    public event System.Action<int> Damaged;           // 피해 적용 직후
+    public event System.Action Died;                   // 사망 확정, 오브젝트를 끄기 직전
+    public event System.Action<bool> EncounterActiveChanging;   // 전투 편성 켜기/끄기 직전
 
     public void BeginTutorial(int hp, int patternIndex)
     {
@@ -161,6 +170,7 @@ public class Enemy : MonoBehaviour
 
     public void SetEncounterActive(bool active)
     {
+        EncounterActiveChanging?.Invoke(active);
         if (!active) { phaseTransitionRemaining = 0f; current = null; }
         gameObject.SetActive(active);
         if (castBarRoot != null) castBarRoot.gameObject.SetActive(active);
@@ -236,6 +246,7 @@ public class Enemy : MonoBehaviour
         resting = false;
         staggerTimer = 0f;
         RefreshBar();
+        if (current != null) CastStarted?.Invoke();
     }
 
     private EnemyAttack SelectNextAttack()
@@ -323,6 +334,7 @@ public class Enemy : MonoBehaviour
         TryBeginPhaseTransition();
         RefreshBar();
         InterruptSucceeded?.Invoke(transform.position);
+        Interrupted?.Invoke();
         return InterruptResult.Success;
     }
 
@@ -353,6 +365,7 @@ public class Enemy : MonoBehaviour
 
         CurrentHp = Mathf.Max(0, CurrentHp - amount);
         DamageTaken?.Invoke(transform.position, amount, isCritical);
+        Damaged?.Invoke(amount);
         if (!IsAlive) Die();
         else TryBeginPhaseTransition();
     }
@@ -371,6 +384,7 @@ public class Enemy : MonoBehaviour
         resting = false;
         phaseTransitionRemaining = 0f;
         Debug.Log($"[{name}] 사망", this);
+        Died?.Invoke();   // 모델은 이때 적에서 떼어 사망 동작을 보인다(EnemyAnimationDriver). 판정은 아래 그대로
 
         // 바는 이제 Canvas 아래에 있어 적을 꺼도 같이 사라지지 않는다. 직접 끈다.
         if (castBarRoot != null) castBarRoot.gameObject.SetActive(false);
@@ -384,7 +398,7 @@ public class Enemy : MonoBehaviour
         // 전투 중 카메라가 고정이므로 원근에 따라 바가 작아지는 문제를 피한다.
         if (castBarRoot != null && cam != null)
         {
-            Vector3 head = transform.position + Vector3.up * barWorldHeight;
+            Vector3 head = BarWorldPosition;
             castBarRoot.position = cam.WorldToScreenPoint(head);
         }
 
