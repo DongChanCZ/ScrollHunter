@@ -68,7 +68,6 @@ public class Enemy : MonoBehaviour
     [Tooltip("{0}=현재 HP, {1}=최대 HP")]
     [SerializeField] private string hpFormat = "{0} / {1}";
 
-    [SerializeField] private string phaseAttackFormat = "{0}페이즈 · {1}";
     [SerializeField] private string phaseTransitionFormat = "전환 · 무적 {0:0.0}초";
     private int phaseIndex;
     private int phasePatternIndex;
@@ -459,7 +458,7 @@ public class Enemy : MonoBehaviour
     {
         if (castSkillText != null)
             castSkillText.text = IsPhaseTransitioning ? string.Format(phaseTransitionFormat, phaseTransitionRemaining)
-                : IsBossOrb ? data.DisplayName : current == null ? string.Empty : HasPhases ? string.Format(phaseAttackFormat, PhaseNumber, current.SkillName) : current.SkillName;
+                : IsBossOrb ? data.DisplayName : current == null ? string.Empty : current.SkillName;
 
         if (castBarFill == null) return;
 

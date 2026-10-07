@@ -382,6 +382,7 @@ MonoBehaviour:
   localToHand: {x: 0.0029265932, y: -0.03391475, z: -0.0086174635}
   onlyStates: []
   skipStates:
+  - Hit
   - Death
   blendSpeed: 8
 --- !u!114 &4174553880823780494
@@ -401,14 +402,20 @@ MonoBehaviour:
   crossFade: 0.12
   attacks:
   - clip: {fileID: 7400000, guid: cdd2643e8053d5b419629acf98510a71, type: 3}
+    holdRaisedHand: 0
     start: 0
     impact: 0.38
   - clip: {fileID: 0}
+    holdRaisedHand: 0
     start: 0
     impact: 0.38
   - clip: {fileID: 7400000, guid: 7b5b17e2d42e0424f9c36012595dc9b6, type: 3}
+    holdRaisedHand: 0
     start: 0
     impact: 0.39
+  useAttackOrder: 0
+  castOnceClip: {fileID: 0}
+  chargeRaiseClip: {fileID: 0}
   bow: {fileID: 0}
   drawClip: {fileID: 0}
   drawSpeedParameter: DrawSpeed

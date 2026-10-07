@@ -21,29 +21,33 @@ public class CombatInfoUI : MonoBehaviour
     [SerializeField] private TMP_Text enemyText;
     [SerializeField] private TMP_Text hintText;
 
+    [Header("조작키")]
+    [SerializeField] private KeyCode pauseKey = KeyCode.A;
+    [SerializeField] private KeyCode speedKey = KeyCode.S;
+
     [Header("표시 문자열")]
     [SerializeField] private string pauseText = "일시정지";
     [SerializeField] private string resumeText = "재개";
     [SerializeField] private string endedText = "전투 종료";
-    [SerializeField] private string hint = "카드에 마우스: 정보 / 우클릭: 정지·재개";
-    [SerializeField] private string pausedHint = "일시정지 — 정보 확인만 가능 / 우클릭 또는 재개";
-    // 위계: 이름(145%·굵게·아이보리) → 주요 정보(항목명 흐리게·수치만 굵게) → 간격 → 상세 설명.
+    [SerializeField] private string hint = "A 정지·재개 · S 배속 · 카드에 마우스: 정보";
+    [SerializeField] private string pausedHint = "일시정지 · A/우클릭 재개 · S 배속";
+    // 위계: 이름(125%·굵게·아이보리) → 주요 정보(항목명 흐리게·수치만 굵게) → 간격 → 상세 설명.
     // 설명 패널은 어두운 청흑색 판(10 A37 후속 정정). 본문은 글자색(회백색), 강조는 투명도·굵기로 구분한다.
     [Tooltip("{0} 이름, {1} 주요 정보, {2} 간격, {3} 상세 설명")]
-    [SerializeField] private string cardFormat = "<size=145%><b><color=#F5EBD6>{0}</color></b></size>\n{1}{2}\n{3}";
+    [SerializeField] private string cardFormat = "<size=125%><b><color=#F5EBD6>{0}</color></b></size>\n<size=80%> </size>\n{1}{2}\n<size=85%>{3}</size>";
     [Tooltip("주요 정보. 편성 카드는 이 줄만 따로 표시한다. {0} 분류, {1} 대상, {2} 코스트, {3} 시간")]
     [SerializeField] private string cardInfoFormat = "{0}<alpha=#CC> · <alpha=#FF>{1}\n<alpha=#CC>코스트 <alpha=#FF><b>{2:0.#}</b><alpha=#CC>   ·   시전 <alpha=#FF><b>{3:0.##}초</b>";
     [SerializeField] private string channelInfoFormat = "{0}<alpha=#CC> · <alpha=#FF>{1}\n<alpha=#CC>코스트 <alpha=#FF><b>{2:0.#}</b><alpha=#CC>   ·   채널링 <alpha=#FF><b>{3:0.##}초</b>";
     [Tooltip("이름·주요 정보와 상세 설명 사이 간격")]
-    [SerializeField] private string sectionBreak = "\n<size=40%> </size>";
+    [SerializeField] private string sectionBreak = "\n<size=80%> </size>";
     [SerializeField] private string channelUnconfiguredLabel = "채널링 효과 연결 필요";
-    [SerializeField] private string damageFormat = "기본 피해 <b>{0} × {1}회</b>\n<alpha=#CC>방어력 적용 전 피해<alpha=#FF>";
+    [SerializeField] private string damageFormat = "피해 <b>{0}×{1}회</b> · 총합 피해 <b>{2}</b>\n<size=80%><alpha=#CC>적 1체·전 타격·크리티컬/방어 적용 전<alpha=#FF></size>";
     [SerializeField] private string shieldFormat = "방어도 <b>+{0}</b>";
     [SerializeField] private string interruptFormat = "캐스팅 중인 대상에게 사용\n효과 적용 때도 초록·주황\n시전 중이면 성공\n성공 경직 <b>{0:0.##}초</b>\n빨강·적 선발동: 실패, 코스트·카드 소모";
-    [SerializeField] private string damagingInterruptFormat = "기본 피해 <b>{0} × {1}회</b>\n피해 후 생존 대상에게 차단 판정\n초록·주황: 성공 경직 <b>{2:0.##}초</b>\n빨강·시전 종료: 피해만 적용\n입력은 캐스팅 중인 대상에게만 가능";
-    [SerializeField] private string enemyFormat = "<size=145%><b><color=#F5EBD6>{0}</color></b></size>\n<color=#F5EBD6>{1}</color>\n<alpha=#CC>기본 피해 <alpha=#FF><b>{2}</b><alpha=#CC> (방어력 적용 전)\n시전 <alpha=#FF><b>{3:0.##}초</b><alpha=#CC> · <alpha=#FF><color=#F5EBD6>{4}</color>{6}\n{5}";
+    [SerializeField] private string damagingInterruptFormat = "피해 <b>{0}×{1}회</b> · 총합 피해 <b>{3}</b>\n<size=80%><alpha=#CC>적 1체·전 타격·크리티컬/방어 적용 전<alpha=#FF></size>\n캐스팅 중에만 사용. 피해 후 차단\n초록·주황: 생존 시 경직 <b>{2:0.##}초</b>\n빨강·시전 종료: 피해만 적용";
+    [SerializeField] private string enemyFormat = "<size=125%><b><color=#F5EBD6>{0}</color></b></size>\n<size=80%> </size>\n<b><color=#F5EBD6>{1}</color></b>\n<alpha=#CC>기본 피해 <alpha=#FF><b>{2}</b><alpha=#CC> (방어력 적용 전)\n시전 <alpha=#FF><b>{3:0.##}초</b><alpha=#CC> · <alpha=#FF><color=#F5EBD6>{4}</color>{6}\n<size=85%>{5}</size>";
     [SerializeField] private string stunFormat = "기절 <b>{0:0.##}초</b>";
-    [SerializeField] private string restingFormat = "<size=145%><b><color=#F5EBD6>{0}</color></b></size>\n<alpha=#CC>현재 시전 중인 공격 없음";
+    [SerializeField] private string restingFormat = "<size=125%><b><color=#F5EBD6>{0}</color></b></size>\n<size=80%> </size>\n<alpha=#CC>현재 시전 중인 공격 없음";
     [SerializeField] private string dealLabel = "공격";
     [SerializeField] private string shieldLabel = "방어";
     [SerializeField] private string interruptLabel = "차단";
@@ -73,7 +77,7 @@ public class CombatInfoUI : MonoBehaviour
     [SerializeField] private TMP_Text speedLabel;
     [SerializeField] private float slowSpeed = 0.5f;
     [SerializeField] private float normalSpeed = 1f;
-    [SerializeField] private string speedFormat = "속도 {0:0.#}×";
+    [SerializeField] private string speedFormat = "속도 {0:0.#}배속";
 
     public float BattleSpeed => resumeScale;
     private int selectedSlot = -1;
@@ -120,7 +124,9 @@ public class CombatInfoUI : MonoBehaviour
         if (hovered >= 0) selectedSlot = hovered;
         else if (!IsInfoPaused) selectedSlot = -1;
 
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetKeyDown(pauseKey)) TogglePause();
+        else if (Input.GetKeyDown(speedKey)) ToggleSpeed();
+        else if (Input.GetMouseButtonDown(1))
         {
             if (IsInfoPaused) Resume();
             else if (hovered >= 0) InspectSlot(hovered);
@@ -234,21 +240,23 @@ public class CombatInfoUI : MonoBehaviour
             return string.Format(shieldFormat, player != null ? player.GetShieldAmount(card.ShieldAmount) : card.ShieldAmount);
         if (card.Category == SkillCategory.Interrupt)
             return card.Damage > 0
-                ? string.Format(damagingInterruptFormat, card.Damage, card.HitCount, deck.InterruptStagger)
+                ? string.Format(damagingInterruptFormat, card.Damage, card.HitCount, deck.InterruptStagger, (long)card.Damage * card.HitCount)
                 : string.Format(interruptFormat, deck.InterruptStagger);
-        return string.Format(damageFormat, card.Damage, card.HitCount);
+        return string.Format(damageFormat, card.Damage, card.HitCount, (long)card.Damage * card.HitCount);
     }
 
-    [SerializeField] private string phaseTransitionFormat = "<size=145%><b><color=#F5EBD6>{0}</color></b></size>\n<color=#F5EBD6><b>{1}</b>페이즈 전환</color>\n무적 <b>{2:0.0}초</b> · 새 스킬 사용 불가";
-    [SerializeField, TextArea] private string orbDescriptionFormat = "<size=145%><b><color=#F5EBD6>{0}</color></b></size>\n{1}\n파괴 시 보스 고정 피해 <b>{2}</b>\n전환 중 보스 무적에는 피해 없음";
+    [SerializeField] private string bossNameFormat = "{0} ({1}페이즈)";
+    [SerializeField] private string phaseTransitionFormat = "<size=125%><b><color=#F5EBD6>{0}</color></b></size>\n<size=80%> </size>\n<color=#F5EBD6>전환 중</color>\n무적 <b>{1:0.0}초</b> · 새 스킬 사용 불가";
+    [SerializeField, TextArea] private string orbDescriptionFormat = "<size=125%><b><color=#F5EBD6>{0}</color></b></size>\n<size=80%> </size>\n{1}\n파괴 시 보스 고정 피해 <b>{2}</b>\n전환 중 보스 무적에는 피해 없음";
     [SerializeField] private string costBlockingStunText = "\n기절 중 코스트 충전 불가";
     [SerializeField] private string orbEmpoweredText = "\n파멸 강화 적용";
     public string DescribeEnemy(Enemy target)
     {
         string name = target.Data.DisplayName;
+        if (target.HasPhases) name = string.Format(bossNameFormat, name, target.PhaseNumber);
         if (target.IsBossOrb) return string.Format(orbDescriptionFormat, name,
             target.Data.PassiveDescription, target.OrbDestructionDamage);
-        if (target.IsPhaseTransitioning) return string.Format(phaseTransitionFormat, name, target.PhaseNumber, target.PhaseTransitionRemaining);
+        if (target.IsPhaseTransitioning) return string.Format(phaseTransitionFormat, name, target.PhaseTransitionRemaining);
         if (!target.IsCasting || target.CurrentAttack == null) return string.Format(restingFormat, name);
         EnemyAttack attack = target.CurrentAttack;
         string effect = attack.StunSeconds > 0f ? string.Format(stunFormat, attack.StunSeconds) : noEffectLabel;

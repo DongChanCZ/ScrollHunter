@@ -307,7 +307,7 @@ public static class EnemyRigBuilder
                     offTarget.SetParent(weapon.transform, false);
                     offTarget.localPosition = new Vector3(0f, 0f, z);
                     float gripEnd = -0.16f + offGrip.halfWidth;
-                    AddHandIK(root, side == "Right", offTarget, offGrip, Mathf.Min(0f, gripEnd - z), 0f, new string[0], new[] { "Death" });
+                    AddHandIK(root, side == "Right", offTarget, offGrip, Mathf.Min(0f, gripEnd - z), 0f, new string[0], new[] { "Hit", "Death" });
                 }
             }
             ArcherAnimationBuilder.RestoreModelPose(root);

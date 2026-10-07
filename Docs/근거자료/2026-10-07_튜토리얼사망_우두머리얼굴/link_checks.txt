@@ -1,0 +1,1 @@
+Enemy animation link checks passed: 188. Encounters: tutorial + 4 Function calls and manual Animator steps; real frames and physical input separate.

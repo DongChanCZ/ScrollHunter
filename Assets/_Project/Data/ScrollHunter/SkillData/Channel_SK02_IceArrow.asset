@@ -16,9 +16,10 @@ MonoBehaviour:
   firstHitDelay: 0.5
   hitInterval: 0.5
   targetDeathRecovery: 0.3
-  timingFormat: "\uAE30\uBCF8 \uD53C\uD574 <b>{0} \xD7 {1}\uD68C</b>\n\uCCAB \uD0C0\uACA9
-    {2:0.##}\uCD08 / \uAC04\uACA9 {3:0.##}\uCD08\n\uD0C0\uACA9 \uD6C4 \uB0A8\uC740
-    \uC7A0\uAE08 {4:0.##}\uCD08\n{5}"
+  timingFormat: "\uD53C\uD574 <b>{0}\xD7{1}\uD68C</b> \xB7 \uCD1D\uD569 \uD53C\uD574
+    <b>{6}</b>\n<size=80%><alpha=#CC>\uC801 1\uCCB4\xB7\uC804 \uD0C0\uACA9\xB7\uD06C\uB9AC\uD2F0\uCEEC/\uBC29\uC5B4
+    \uC801\uC6A9 \uC804<alpha=#FF></size>\n\uCCAB \uD0C0\uACA9 {2:0.##}\uCD08 / \uAC04\uACA9
+    {3:0.##}\uCD08\n\uD0C0\uACA9 \uD6C4 \uB0A8\uC740 \uC7A0\uAE08 {4:0.##}\uCD08\n{5}"
   singleTargetFormat: "\uC785\uB825 \uB300\uC0C1 \uACE0\uC815. \uC0AC\uB9DD \uC2DC
     \uD6C4\uB51C {0:0.##}\uCD08"
   areaTargetText: "\uB9E4 \uD0C0\uACA9 \uC2DC \uC0DD\uC874 \uC801 \uC804\uCCB4"

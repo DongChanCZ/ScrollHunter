@@ -1,0 +1,1 @@
+Tutorial checks passed: 108. Function/pointer events; physical input and natural play not covered.

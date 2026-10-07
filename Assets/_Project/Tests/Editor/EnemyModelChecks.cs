@@ -22,7 +22,7 @@ public static class EnemyModelChecks
         ("Thug/ENM_Thug_ALL_v01", "2026-10-02_적모델링/07_깡패_보정_리깅", true, null),
         ("Raider/ENM_Raider_GRN_v01", "2026-10-01_적모델링/02_약탈자_손가락리깅", false, null),
         ("Archer/ENM_Archer_ORG_v01", "2026-10-02_적모델링/03_궁병_손보정_리깅", true, null),
-        ("Leader/ENM_Leader_RED_v01", "2026-10-02_적모델링/05_우두머리_손보정_리깅", true, null),
+        ("Leader/ENM_Leader_RED_v01", "2026-10-07_튜토리얼사망_우두머리얼굴/Leader_face_weights", true, "2026-10-02_적모델링/05_우두머리_손보정_리깅"),
         // 10/6 손가락 가중치 작업본(원본 09 blend 보존). 텍스처는 09와 같다.
         ("Mage/BOSS_Mage_ALL_v01", "2026-10-06_적모델보정_전투연결/10_마법사_손가락가중치", true, "2026-10-02_적모델링/09_마법사_보정_리깅"),
     };

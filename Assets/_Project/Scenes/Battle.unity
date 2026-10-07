@@ -937,7 +937,6 @@ MonoBehaviour:
   hpBarFill: {fileID: 1980336876}
   hpText: {fileID: 1068913895}
   hpFormat: '{0} / {1}'
-  phaseAttackFormat: "{0}\uD398\uC774\uC988 \xB7 {1}"
   phaseTransitionFormat: "\uC804\uD658 \xB7 \uBB34\uC801 {0:0.0}\uCD08"
 --- !u!23 &22426646
 MeshRenderer:
@@ -3827,7 +3826,7 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 0
+  m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
@@ -11868,10 +11867,10 @@ RectTransform:
   - {fileID: 1031915755}
   m_Father: {fileID: 1684798577}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 97.5, y: -97.5}
+  m_SizeDelta: {x: 195, y: 195}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &430042659
 CanvasRenderer:
@@ -15049,44 +15048,51 @@ MonoBehaviour:
   enemyPanel: {fileID: 535959677}
   enemyText: {fileID: 1155982094}
   hintText: {fileID: 781637792}
+  pauseKey: 97
+  speedKey: 115
   pauseText: "\uC77C\uC2DC\uC815\uC9C0"
   resumeText: "\uC7AC\uAC1C"
   endedText: "\uC804\uD22C \uC885\uB8CC"
-  hint: "\uCE74\uB4DC\uC5D0 \uB9C8\uC6B0\uC2A4: \uC815\uBCF4 / \uC6B0\uD074\uB9AD:
-    \uC815\uC9C0\xB7\uC7AC\uAC1C"
-  pausedHint: "\uC77C\uC2DC\uC815\uC9C0 \u2014 \uC815\uBCF4 \uD655\uC778\uB9CC \uAC00\uB2A5
-    / \uC6B0\uD074\uB9AD \uB610\uB294 \uC7AC\uAC1C"
-  cardFormat: '<size=145%><b><color=#F5EBD6>{0}</color></b></size>
+  hint: "A \uC815\uC9C0\xB7\uC7AC\uAC1C \xB7 S \uBC30\uC18D \xB7 \uCE74\uB4DC\uC5D0
+    \uB9C8\uC6B0\uC2A4: \uC815\uBCF4"
+  pausedHint: "\uC77C\uC2DC\uC815\uC9C0 \xB7 A/\uC6B0\uD074\uB9AD \uC7AC\uAC1C \xB7
+    S \uBC30\uC18D"
+  cardFormat: '<size=125%><b><color=#F5EBD6>{0}</color></b></size>
+
+    <size=80%>
+    </size>
 
     {1}{2}
 
-    {3}'
+    <size=85%>{3}</size>'
   cardInfoFormat: "{0}<alpha=#CC> \xB7 <alpha=#FF>{1}\n<alpha=#CC>\uCF54\uC2A4\uD2B8
     <alpha=#FF><b>{2:0.#}</b><alpha=#CC>   \xB7   \uC2DC\uC804 <alpha=#FF><b>{3:0.##}\uCD08</b>"
   channelInfoFormat: "{0}<alpha=#CC> \xB7 <alpha=#FF>{1}\n<alpha=#CC>\uCF54\uC2A4\uD2B8
     <alpha=#FF><b>{2:0.#}</b><alpha=#CC>   \xB7   \uCC44\uB110\uB9C1 <alpha=#FF><b>{3:0.##}\uCD08</b>"
   sectionBreak: '
 
-    <size=40%> </size>'
+    <size=80%> </size>'
   channelUnconfiguredLabel: "\uCC44\uB110\uB9C1 \uD6A8\uACFC \uC5F0\uACB0 \uD544\uC694"
-  damageFormat: "\uAE30\uBCF8 \uD53C\uD574 <b>{0} \xD7 {1}\uD68C</b>\n<alpha=#CC>\uBC29\uC5B4\uB825
-    \uC801\uC6A9 \uC804 \uD53C\uD574<alpha=#FF>"
+  damageFormat: "\uD53C\uD574 <b>{0}\xD7{1}\uD68C</b> \xB7 \uCD1D\uD569 \uD53C\uD574
+    <b>{2}</b>\n<size=80%><alpha=#CC>\uC801 1\uCCB4\xB7\uC804 \uD0C0\uACA9\xB7\uD06C\uB9AC\uD2F0\uCEEC/\uBC29\uC5B4
+    \uC801\uC6A9 \uC804<alpha=#FF></size>"
   shieldFormat: "\uBC29\uC5B4\uB3C4 <b>+{0}</b>"
   interruptFormat: "\uCE90\uC2A4\uD305 \uC911\uC778 \uB300\uC0C1\uC5D0\uAC8C \uC0AC\uC6A9\n\uD6A8\uACFC
     \uC801\uC6A9 \uB54C\uB3C4 \uCD08\uB85D\xB7\uC8FC\uD669\n\uC2DC\uC804 \uC911\uC774\uBA74
     \uC131\uACF5\n\uC131\uACF5 \uACBD\uC9C1 <b>{0:0.##}\uCD08</b>\n\uBE68\uAC15\xB7\uC801
     \uC120\uBC1C\uB3D9: \uC2E4\uD328, \uCF54\uC2A4\uD2B8\xB7\uCE74\uB4DC \uC18C\uBAA8"
-  damagingInterruptFormat: "\uAE30\uBCF8 \uD53C\uD574 <b>{0} \xD7 {1}\uD68C</b>\n\uD53C\uD574
-    \uD6C4 \uC0DD\uC874 \uB300\uC0C1\uC5D0\uAC8C \uCC28\uB2E8 \uD310\uC815\n\uCD08\uB85D\xB7\uC8FC\uD669:
-    \uC131\uACF5 \uACBD\uC9C1 <b>{2:0.##}\uCD08</b>\n\uBE68\uAC15\xB7\uC2DC\uC804
-    \uC885\uB8CC: \uD53C\uD574\uB9CC \uC801\uC6A9\n\uC785\uB825\uC740 \uCE90\uC2A4\uD305
-    \uC911\uC778 \uB300\uC0C1\uC5D0\uAC8C\uB9CC \uAC00\uB2A5"
-  enemyFormat: "<size=145%><b><color=#F5EBD6>{0}</color></b></size>\n<color=#F5EBD6>{1}</color>\n<alpha=#CC>\uAE30\uBCF8
+  damagingInterruptFormat: "\uD53C\uD574 <b>{0}\xD7{1}\uD68C</b> \xB7 \uCD1D\uD569
+    \uD53C\uD574 <b>{3}</b>\n<size=80%><alpha=#CC>\uC801 1\uCCB4\xB7\uC804 \uD0C0\uACA9\xB7\uD06C\uB9AC\uD2F0\uCEEC/\uBC29\uC5B4
+    \uC801\uC6A9 \uC804<alpha=#FF></size>\n\uCE90\uC2A4\uD305 \uC911\uC5D0\uB9CC
+    \uC0AC\uC6A9. \uD53C\uD574 \uD6C4 \uCC28\uB2E8\n\uCD08\uB85D\xB7\uC8FC\uD669:
+    \uC0DD\uC874 \uC2DC \uACBD\uC9C1 <b>{2:0.##}\uCD08</b>\n\uBE68\uAC15\xB7\uC2DC\uC804
+    \uC885\uB8CC: \uD53C\uD574\uB9CC \uC801\uC6A9"
+  enemyFormat: "<size=125%><b><color=#F5EBD6>{0}</color></b></size>\n<size=80%> </size>\n<b><color=#F5EBD6>{1}</color></b>\n<alpha=#CC>\uAE30\uBCF8
     \uD53C\uD574 <alpha=#FF><b>{2}</b><alpha=#CC> (\uBC29\uC5B4\uB825 \uC801\uC6A9
-    \uC804)\n\uC2DC\uC804 <alpha=#FF><b>{3:0.##}\uCD08</b><alpha=#CC> \xB7 <alpha=#FF><color=#F5EBD6>{4}</color>{6}\n{5}"
+    \uC804)\n\uC2DC\uC804 <alpha=#FF><b>{3:0.##}\uCD08</b><alpha=#CC> \xB7 <alpha=#FF><color=#F5EBD6>{4}</color>{6}\n<size=85%>{5}</size>"
   stunFormat: "\uAE30\uC808 <b>{0:0.##}\uCD08</b>"
-  restingFormat: "<size=145%><b><color=#F5EBD6>{0}</color></b></size>\n<alpha=#CC>\uD604\uC7AC
-    \uC2DC\uC804 \uC911\uC778 \uACF5\uACA9 \uC5C6\uC74C"
+  restingFormat: "<size=125%><b><color=#F5EBD6>{0}</color></b></size>\n<size=80%>
+    </size>\n<alpha=#CC>\uD604\uC7AC \uC2DC\uC804 \uC911\uC778 \uACF5\uACA9 \uC5C6\uC74C"
   dealLabel: "\uACF5\uACA9"
   shieldLabel: "\uBC29\uC5B4"
   interruptLabel: "\uCC28\uB2E8"
@@ -15107,13 +15113,14 @@ MonoBehaviour:
   speedLabel: {fileID: 1270239338}
   slowSpeed: 0.5
   normalSpeed: 1
-  speedFormat: "\uC18D\uB3C4 {0:0.#}\xD7"
-  phaseTransitionFormat: "<size=145%><b><color=#F5EBD6>{0}</color></b></size>\n<color=#F5EBD6><b>{1}</b>\uD398\uC774\uC988
-    \uC804\uD658</color>\n\uBB34\uC801 <b>{2:0.0}\uCD08</b> \xB7 \uC0C8 \uC2A4\uD0AC
-    \uC0AC\uC6A9 \uBD88\uAC00"
-  orbDescriptionFormat: "<size=145%><b><color=#F5EBD6>{0}</color></b></size>\n{1}\n\uD30C\uAD34
-    \uC2DC \uBCF4\uC2A4 \uACE0\uC815 \uD53C\uD574 <b>{2}</b>\n\uC804\uD658 \uC911
-    \uBCF4\uC2A4 \uBB34\uC801\uC5D0\uB294 \uD53C\uD574 \uC5C6\uC74C"
+  speedFormat: "\uC18D\uB3C4 {0:0.#}\uBC30\uC18D"
+  bossNameFormat: "{0} ({1}\uD398\uC774\uC988)"
+  phaseTransitionFormat: "<size=125%><b><color=#F5EBD6>{0}</color></b></size>\n<size=80%>
+    </size>\n<color=#F5EBD6>\uC804\uD658 \uC911</color>\n\uBB34\uC801 <b>{1:0.0}\uCD08</b>
+    \xB7 \uC0C8 \uC2A4\uD0AC \uC0AC\uC6A9 \uBD88\uAC00"
+  orbDescriptionFormat: "<size=125%><b><color=#F5EBD6>{0}</color></b></size>\n<size=80%>
+    </size>\n{1}\n\uD30C\uAD34 \uC2DC \uBCF4\uC2A4 \uACE0\uC815 \uD53C\uD574 <b>{2}</b>\n\uC804\uD658
+    \uC911 \uBCF4\uC2A4 \uBB34\uC801\uC5D0\uB294 \uD53C\uD574 \uC5C6\uC74C"
   costBlockingStunText: "\n\uAE30\uC808 \uC911 \uCF54\uC2A4\uD2B8 \uCDA9\uC804 \uBD88\uAC00"
   orbEmpoweredText: "\n\uD30C\uBA78 \uAC15\uD654 \uC801\uC6A9"
 --- !u!1 &598067945
@@ -18587,10 +18594,10 @@ RectTransform:
   - {fileID: 1013850688}
   m_Father: {fileID: 1684798577}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 742.5, y: -97.5}
+  m_SizeDelta: {x: 195, y: 195}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &734759149
 CanvasRenderer:
@@ -19189,7 +19196,6 @@ MonoBehaviour:
   hpBarFill: {fileID: 490105884}
   hpText: {fileID: 919174661}
   hpFormat: '{0} / {1}'
-  phaseAttackFormat: "{0}\uD398\uC774\uC988 \xB7 {1}"
   phaseTransitionFormat: "\uC804\uD658 \xB7 \uBB34\uC801 {0:0.0}\uCD08"
 --- !u!23 &751543126
 MeshRenderer:
@@ -19858,8 +19864,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uCE74\uB4DC\uC5D0 \uB9C8\uC6B0\uC2A4: \uC815\uBCF4 / \uC6B0\uD074\uB9AD:
-    \uC815\uC9C0\xB7\uC7AC\uAC1C"
+  m_text: "A \uC815\uC9C0\xB7\uC7AC\uAC1C \xB7 S \uBC30\uC18D \xB7 \uCE74\uB4DC\uC5D0
+    \uB9C8\uC6B0\uC2A4: \uC815\uBCF4"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7b1e16cbc5ea6b246a1276679ec44837, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: aeb8e3507fdcbbc4183b19431aea2f40, type: 2}
@@ -21972,7 +21978,6 @@ MonoBehaviour:
   hpBarFill: {fileID: 1375095623}
   hpText: {fileID: 351470398}
   hpFormat: '{0} / {1}'
-  phaseAttackFormat: "{0}\uD398\uC774\uC988 \xB7 {1}"
   phaseTransitionFormat: "\uC804\uD658 \xB7 \uBB34\uC801 {0:0.0}\uCD08"
 --- !u!23 &841771799
 MeshRenderer:
@@ -22961,10 +22966,10 @@ RectTransform:
   - {fileID: 70588053}
   m_Father: {fileID: 1684798577}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 312.5, y: -97.5}
+  m_SizeDelta: {x: 195, y: 195}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &902055543
 CanvasRenderer:
@@ -26444,13 +26449,13 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 0
+  m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 26
-  m_fontSizeBase: 26
+  m_fontSize: 22
+  m_fontSizeBase: 22
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -26462,7 +26467,7 @@ MonoBehaviour:
   m_characterSpacing: 0
   m_characterHorizontalScale: 1
   m_wordSpacing: 0
-  m_lineSpacing: 16
+  m_lineSpacing: 6
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
@@ -28592,7 +28597,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -48, y: -40}
+  m_SizeDelta: {x: -60, y: -40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1155982094
 MonoBehaviour:
@@ -28636,13 +28641,13 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 0
+  m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 26
-  m_fontSizeBase: 26
+  m_fontSize: 22
+  m_fontSizeBase: 22
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -28654,7 +28659,7 @@ MonoBehaviour:
   m_characterSpacing: 0
   m_characterHorizontalScale: 1
   m_wordSpacing: 0
-  m_lineSpacing: 16
+  m_lineSpacing: 6
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
@@ -29742,7 +29747,6 @@ MonoBehaviour:
   hpBarFill: {fileID: 819239282}
   hpText: {fileID: 782962555}
   hpFormat: '{0} / {1}'
-  phaseAttackFormat: "{0}\uD398\uC774\uC988 \xB7 {1}"
   phaseTransitionFormat: "\uC804\uD658 \xB7 \uBB34\uC801 {0:0.0}\uCD08"
 --- !u!23 &1212461456
 MeshRenderer:
@@ -31518,7 +31522,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC18D\uB3C4 1\xD7"
+  m_text: "\uC18D\uB3C4 1\uBC30\uC18D"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7b1e16cbc5ea6b246a1276679ec44837, type: 2}
   m_sharedMaterial: {fileID: -2246512067585221449, guid: 7b1e16cbc5ea6b246a1276679ec44837, type: 2}
@@ -32147,10 +32151,10 @@ RectTransform:
   - {fileID: 147334643}
   m_Father: {fileID: 1684798577}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 527.5, y: -97.5}
+  m_SizeDelta: {x: 195, y: 195}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1318527014
 CanvasRenderer:
@@ -37553,7 +37557,6 @@ MonoBehaviour:
   hpBarFill: {fileID: 1500485287}
   hpText: {fileID: 944876670}
   hpFormat: '{0} / {1}'
-  phaseAttackFormat: "{0}\uD398\uC774\uC988 \xB7 {1}"
   phaseTransitionFormat: "\uC804\uD658 \xB7 \uBB34\uC801 {0:0.0}\uCD08"
 --- !u!23 &1556248310
 MeshRenderer:
@@ -39895,7 +39898,7 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 0
+  m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
@@ -45336,6 +45339,9 @@ MonoBehaviour:
   - 10.5
   - 13
   circleGrowthSeconds: 2
+  circleDegreesPerSecond: 8
+  circleGlowPeriod: 3
+  circleGlow: {r: 1.25, g: 0.5, b: 2, a: 1}
 --- !u!4 &1884416105
 Transform:
   m_ObjectHideFlags: 0

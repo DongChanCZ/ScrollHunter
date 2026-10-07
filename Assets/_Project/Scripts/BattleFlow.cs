@@ -419,19 +419,30 @@ public class BattleFlow : MonoBehaviour
         player.EndBattle();
         metrics.FlushPendingSummary();
         metrics.WaitForBattle();
-        enemies.WaitForBattle();
         if (information != null) information.BeginBattle();
-        if (skillVfx != null) skillVfx.Clear();
-        if (damageNumbers != null) damageNumbers.Clear();
         panelHoldRemaining = 0f;
         State = skipped ? BattleFlowState.Preparing : BattleFlowState.TutorialComplete;
+        if (!skipped) HoldVictoryPresentation();
+        if (PanelHeld)
+        {
+            if (skillVfx != null) skillVfx.PlayOutUnscaled();
+        }
+        else FinishTutorialPresentation();
         Debug.Log(skipped ? "[튜토리얼] 스킵 — 보상 없이 편성" : "[튜토리얼] 학습·처치 완료 — 완료 안내 확인 대기", this);
         RefreshUI();
     }
 
+    private void FinishTutorialPresentation()
+    {
+        enemies.WaitForBattle();
+        if (skillVfx != null) skillVfx.Clear();
+        if (damageNumbers != null) damageNumbers.Clear();
+        if (State == BattleFlowState.TutorialComplete) tutorial.ShowCompletionGuide();
+    }
+
     internal void OpenTutorialPreparation()
     {
-        if (State != BattleFlowState.TutorialComplete) return;
+        if (State != BattleFlowState.TutorialComplete || PanelHeld) return;
         State = BattleFlowState.Preparing;
         Debug.Log("[튜토리얼] 완료 안내 확인 — 편성 학습", this);
         RefreshUI();
@@ -540,12 +551,7 @@ public class BattleFlow : MonoBehaviour
         if (State == BattleFlowState.BetweenBattles) PrepareRewards();
         // 승패·보상·요약은 즉시 처리하고, 사망 모션과 막타 연출이 끝난 뒤 화면만 연다.
         panelHoldRemaining = 0f;
-        if (won && finishingEffectHold > 0f)
-        {
-            if (skillVfx != null && skillVfx.HasFinishingEffect) panelHoldRemaining = finishingEffectHold;
-            foreach (var model in FindObjectsByType<EnemyAnimationDriver>(FindObjectsSortMode.None))
-                panelHoldRemaining = Mathf.Max(panelHoldRemaining, model.PlayDeathUnscaled());
-        }
+        if (won) HoldVictoryPresentation();
         if (!won && defeatEffectHold > 0f)
         {
             // 시간·입력·판정은 이미 종료. 발동한 적 연출만 실제 시간으로 마친다.
@@ -568,6 +574,14 @@ public class BattleFlow : MonoBehaviour
         metrics.FlushPendingSummary();
     }
 
+    private void HoldVictoryPresentation()
+    {
+        if (finishingEffectHold <= 0f) return;
+        if (skillVfx != null && skillVfx.HasFinishingEffect) panelHoldRemaining = finishingEffectHold;
+        foreach (var model in FindObjectsByType<EnemyAnimationDriver>(FindObjectsSortMode.None))
+            panelHoldRemaining = Mathf.Max(panelHoldRemaining, model.PlayDeathUnscaled());
+    }
+
     // 막타 연출을 보여주는 동안 결과·보상 화면을 숨겨 두는 남은 시간(실제 초).
     private float panelHoldRemaining;
     private bool PanelHeld => panelHoldRemaining > 0f;
@@ -583,6 +597,7 @@ public class BattleFlow : MonoBehaviour
         panelHoldRemaining = 0f;
         if (skillVfx != null) skillVfx.Clear();
         ClearDefeatEffects();
+        if (State == BattleFlowState.TutorialComplete) FinishTutorialPresentation();
         RefreshUI();
         return false;
     }

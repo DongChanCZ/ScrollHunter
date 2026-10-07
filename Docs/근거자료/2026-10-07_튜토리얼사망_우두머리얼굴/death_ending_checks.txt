@@ -1,0 +1,1 @@
+Enemy death ending checks passed: 44. Function/Animator checks; actual frames separate.

@@ -7,7 +7,7 @@ public class DamageChannelEffect : ChannelEffect
     [SerializeField, Min(0f)] private float firstHitDelay = 0.5f;
     [SerializeField, Min(0.01f)] private float hitInterval = 0.5f;
     [SerializeField, Min(0f)] private float targetDeathRecovery = 0.3f;
-    [SerializeField, TextArea] private string timingFormat = "기본 피해 {0} × {1}회\n첫 타격 {2:0.##}초 / 간격 {3:0.##}초\n타격 후 남은 잠금 {4:0.##}초\n{5}";
+    [SerializeField, TextArea] private string timingFormat = "피해 <b>{0}×{1}회</b> · 총합 피해 <b>{6}</b>\n<size=80%><alpha=#CC>적 1체·전 타격·크리티컬/방어 적용 전<alpha=#FF></size>\n첫 타격 {2:0.##}초 / 간격 {3:0.##}초\n타격 후 남은 잠금 {4:0.##}초\n{5}";
     [SerializeField] private string singleTargetFormat = "입력 대상 고정. 사망 시 후딜 {0:0.##}초";
     [SerializeField] private string areaTargetText = "매 타격 시 생존 적 전체";
 
@@ -32,7 +32,7 @@ public class DamageChannelEffect : ChannelEffect
     public override string Describe(SkillData skill)
         => string.Format(timingFormat, skill.Damage, skill.HitCount, firstHitDelay, hitInterval,
             Mathf.Max(0f, skill.CastTime - firstHitDelay - (skill.HitCount - 1) * hitInterval),
-            skill.IsAreaOfEffect ? areaTargetText : string.Format(singleTargetFormat, targetDeathRecovery));
+            skill.IsAreaOfEffect ? areaTargetText : string.Format(singleTargetFormat, targetDeathRecovery), (long)skill.Damage * skill.HitCount);
 
     public override void Begin(ChannelContext context)
     {

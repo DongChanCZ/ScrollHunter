@@ -350,7 +350,7 @@ public static class TutorialChecks
                 // 학습 6까지 실제 Update·시전·피격으로 진행, 이후 처치는 기능 호출로 마무리한다.
                 probe.Enemy.TakeDamage(10000);probe.TickCombat();
             }
-            else if(!probe.Active && !probe.ShowingGuide)
+            else if(!probe.Active && !probe.ShowingGuide && flow.State!=BattleFlowState.TutorialComplete)
             {
                 if(!sawCompletion)throw new Exception("Completion guide was skipped");
                 flow.NextBattle();

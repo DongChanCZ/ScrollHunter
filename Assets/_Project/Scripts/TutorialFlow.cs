@@ -229,9 +229,15 @@ public class TutorialFlow : MonoBehaviour
         tutorialEnemy.ReleaseTutorialDefeat();
         Active = false;
         skipRect.gameObject.SetActive(false);
-        ShowGuide(completionPrompt, null);
+        HideGuide();
         consumedFrame = Time.frameCount;
         flow.FinishTutorial(false);
+    }
+
+    internal void ShowCompletionGuide()
+    {
+        ShowGuide(completionPrompt, null);
+        consumedFrame = Time.frameCount;
     }
 
     public void Skip()

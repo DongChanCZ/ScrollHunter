@@ -1,0 +1,22 @@
+[
+  {
+    "path": "Assets/_Project/Scripts/TutorialFlow.cs",
+    "before": "1e197d1584f27ed811010cdb2366922b31d1fd4474a6dc53d28dd16290bbdfae",
+    "after": "213ac1666048cae2f59581e2982f31f1b0433c994a26a60a1515f50001062f95"
+  },
+  {
+    "path": "Assets/_Project/Scripts/BattleFlow.cs",
+    "before": "4fe11f1189ffa9520952105967aff1b63f0bd913583de5e707a50448a0ff1ae9",
+    "after": "9c09194672da3a4cbfe4ae003e5ae1c8f08362d50a8ad33d0592af3949ee3b9c"
+  },
+  {
+    "path": "Assets/_Project/Editor/EnemyRigBuilder.cs",
+    "before": "0363851436bc7d81ee2ca1effc3fc4ee995f17b1d97dc49ee7e0d9ca72a39eb3",
+    "after": "a210d44a73bda04faf859d06667240b04d3792baafebf9a2f22f2ac0cbb7ae41"
+  },
+  {
+    "path": "Assets/_Project/Scripts/HandIK.cs",
+    "before": "b17e7e8fd9577481bcefaa5b7c2da64232db303361c586488fe970a1fb681ab0",
+    "after": "1b5233c1a3d8896fb9008e2458decf41726f2e76ce9b05a3dfff78a9fcc12526"
+  }
+]

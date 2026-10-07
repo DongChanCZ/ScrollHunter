@@ -1,0 +1,6 @@
+[적 모델 검사] 통과 68 / 실패 0
+  Thug/ENM_Thug_ALL_v01: 뼈 매핑 52개, 머리 뼈 높이 0.823, 손 축척 100
+  Raider/ENM_Raider_GRN_v01: 뼈 매핑 52개, 머리 뼈 높이 0.812, 손 축척 1
+  Archer/ENM_Archer_ORG_v01: 뼈 매핑 52개, 머리 뼈 높이 0.855, 손 축척 100
+  Leader/ENM_Leader_RED_v01: 뼈 매핑 52개, 머리 뼈 높이 0.837, 손 축척 100
+  Mage/BOSS_Mage_ALL_v01: 뼈 매핑 52개, 머리 뼈 높이 0.837, 손 축척 100

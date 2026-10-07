@@ -78,6 +78,29 @@ public static class EnemyAnimationLinkChecks
             check(f.State == BattleFlowState.Victory && !result.activeSelf, "boss result waits for death");
             Set(f, "panelHoldRemaining", -0.01f); Call(f, "RefreshUI");
             check(result.activeSelf, "boss result opens after presentation");
+            // 튜토리얼도 사망 모션을 먼저 마치고 완료 안내를 연다.
+            t.enabled = true; f.RestartRun();
+            typeof(TutorialFlow).GetProperty("CompletedLessons").SetValue(t, 6);
+            t.Begin(t.Enemy.MaxHp, true);
+            var tutorialDriver = Driver(t.Enemy); var ta = tutorialDriver.GetComponent<Animator>();
+            t.Enemy.TakeDamage(t.Enemy.CurrentHp); t.TickCombat();
+            check(f.State == BattleFlowState.TutorialComplete && !t.Active && !t.ShowingGuide, "tutorial guide waits for death");
+            check(tutorialDriver.IsDead && tutorialDriver.IsDetached && tutorialDriver.gameObject.activeInHierarchy, "tutorial corpse remains visible");
+            check(Time.timeScale == 0f && ta.updateMode == AnimatorUpdateMode.UnscaledTime, "tutorial death uses real time only");
+            check(!t.AdvanceGuide() && !f.CanEditOrder && !deck.TryUseSlot(0), "tutorial hold cannot be skipped by combat/guide input");
+            float duration = (float)Get(f, "panelHoldRemaining");
+            check(duration > .1f, "tutorial hold includes death clip");
+            for (int i = 0; i < Mathf.CeilToInt(duration * 60) + 1; i++) ta.Update(1f / 60);
+            check(ta.GetCurrentAnimatorStateInfo(0).IsName("Death") && ta.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1, "tutorial fall completes");
+            Set(f, "panelHoldRemaining", float.Epsilon); Call(f, "TickPanelHold");
+            check(t.ShowingGuide && !tutorialDriver.IsDetached && !tutorialDriver.gameObject.activeInHierarchy, "guide opens and corpse is cleaned after death");
+            Set(t, "consumedFrame", -1); check(t.AdvanceGuide() && f.State == BattleFlowState.Preparing, "completion still opens formation lesson");
+            f.RestartRun();
+            check(t.Active && !tutorialDriver.IsDead && ta.updateMode == AnimatorUpdateMode.Normal, "tutorial restart restores living model");
+            t.Skip(); check(f.State == BattleFlowState.Preparing && !t.ShowingGuide && (float)Get(f, "panelHoldRemaining") == 0, "tutorial skip has no death hold");
+            f.RestartRun(); typeof(TutorialFlow).GetProperty("CompletedLessons").SetValue(t, 6); t.Begin(t.Enemy.MaxHp, true);
+            t.Enemy.TakeDamage(t.Enemy.CurrentHp); t.TickCombat(); f.RestartRun();
+            check(t.Active && !tutorialDriver.IsDead && !tutorialDriver.IsDetached && (float)Get(f, "panelHoldRemaining") == 0, "restart during tutorial death cancels old presentation");
         }
         finally
         {
@@ -212,7 +235,7 @@ public static class EnemyAnimationLinkChecks
                     check(!InState(a, "Cast"), "boss no cast pose during transition");
                     TickUntil(b, () => b.IsCasting, "boss phase 2 cast");
                     Step(a);
-                    check(InState(a, "Cast") && Mathf.Abs(b.CurrentCastTime - b.CurrentAttack.CastTime * b.Data.Phases[1].CastTimeMultiplier) < 1e-4f, "boss phase 2 cast pose and time");
+                    check(InState(a, "Cast") && Mathf.Abs(b.CurrentCastTime - b.CurrentAttack.CastTime * (b.Data.Phases[1].CastTimeMultiplier - ((bool)Get(b, "cycleAtCastStart") ? b.Data.OrbCastTimeReduction : 0f))) < 1e-4f, "boss phase 2 cast pose and time");
                     CheckEncounter("boss kill", new[] { b }, true);
                 }
             }
@@ -413,6 +436,15 @@ public static class EnemyAnimationLinkChecks
                         for (int i = 0; i < body.Length; i++)
                             Check(Vector3.Distance(positions[i], a.GetBoneTransform(body[i]).position) < 0.005f, prefab.name + " body moved " + body[i]);
                         log.AppendLine($"{prefab.name} x{x} {state}: angle {before:0.00} -> {after:0.00}");
+                    }
+                    if (prefab.name.Contains("Leader"))
+                    {
+                        var ik = go.GetComponent<HandIK>();
+                        foreach (string state in new[] { "Idle", "Cast", "Hit", "Death" })
+                        {
+                            a.Play(state, 0, .4f); a.Update(0f); ik.Snap();
+                            Check(Mathf.Abs(ik.Weight - (state == "Hit" || state == "Death" ? 0f : 1f)) < .001f, "leader grip releases only Hit/Death: " + state);
+                        }
                     }
                     foreach (string state in new[] { a.HasState(0, Animator.StringToHash("Fire0")) ? "Fire0" : "Release", "Hit", "Death" })
                     {
