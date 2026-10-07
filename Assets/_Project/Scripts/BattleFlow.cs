@@ -13,6 +13,7 @@ public class BattleFlow : MonoBehaviour
     [Serializable]
     public class Encounter
     {
+        [Tooltip("상단에 표시할 맵 이름")]
         public string label;
         public Enemy[] enemies;
         [Tooltip("3체 구성에서 가장 강한 적을 지정한다. 이 적을 중앙에 배치한다.")]
@@ -59,7 +60,7 @@ public class BattleFlow : MonoBehaviour
     [SerializeField] private TMP_Text resultText;
     [SerializeField] private Button nextButton;
     [SerializeField] private Button restartButton;
-    [SerializeField] private string progressFormat = "전투 {0} / {1}  ·  {2}";
+    [SerializeField] private string tutorialMapName = "오솔길 입구";
     [SerializeField] private string victoryFormat = "전투 {0} 승리\n남은 HP {1:0} / {2:0}\n이 HP로 다음 전투를 시작합니다.";
     [SerializeField] private string completeFormat = "모험 완료\n남은 HP {0:0} / {1:0}";
     [SerializeField] private string defeatFormat = "전투 {0} 패배\n처음부터 다시 도전할 수 있습니다.";
@@ -629,9 +630,9 @@ public class BattleFlow : MonoBehaviour
         if (progressText != null)
         {
             progressText.gameObject.SetActive(!title && !preparing);
-            if (HasTutorial && tutorial.Active) progressText.text = "튜토리얼 · 깡패";
+            if (HasTutorial && tutorial.Active) progressText.text = tutorialMapName;
             else if (BattleNumber > 0)
-                progressText.text = string.Format(progressFormat, BattleNumber, BattleCount, encounters[BattleNumber - 1].label);
+                progressText.text = encounters[BattleNumber - 1].label;
         }
         bool ended = State == BattleFlowState.Victory || State == BattleFlowState.Defeat;
         bool shown = !PanelHeld;
