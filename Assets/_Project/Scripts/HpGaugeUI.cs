@@ -26,6 +26,13 @@ public class HpGaugeUI : MonoBehaviour
     [Header("방어도 흡수 — 방패 표시만 반응")]
     [SerializeField] private Graphic shieldFlash;
     [SerializeField] private RectTransform shieldIcon;
+    [Tooltip("흡수 숫자는 방어도 표시와 같은 색. 비워두면 방패와 같은 부모의 숫자를 찾는다")]
+    [SerializeField] private TMP_Text shieldValueText;
+    [SerializeField] private string absorbedFormat = "-{0}";
+    [Tooltip("HP 피해 숫자 대비 흡수 숫자 크기")]
+    [SerializeField, Range(0.1f, 0.99f)] private float absorbedNumberRatio = 0.8f;
+    [Tooltip("방패 위쪽 끝에서 흡수 숫자 중심까지 거리(Canvas 기준)")]
+    [SerializeField] private float absorbedNumberOffset = 14f;
 
     [Header("잔상 — 첫 시험값: 0.2초 유지 후 0.3초 추격 (10 A37 후속)")]
     [SerializeField, Min(0f)] private float ghostHoldSeconds = 0.2f;
@@ -35,12 +42,17 @@ public class HpGaugeUI : MonoBehaviour
     [SerializeField, Min(0.01f)] private float frameFlashSeconds = 0.18f;
     [SerializeField, Min(0.01f)] private float healGlowSeconds = 0.45f;
     [SerializeField, Min(0.01f)] private float shieldFlashSeconds = 0.3f;
-    [SerializeField, Min(1f)] private float shieldPulseScale = 1.2f;
+    [Tooltip("전부 흡수했을 때만 커졌다가 반동 후 복귀. 가로축은 점등 시간 내 진행률")]
+    [SerializeField] private AnimationCurve shieldBounce = new AnimationCurve(
+        new Keyframe(0f, 1f), new Keyframe(0.22f, 2f),
+        new Keyframe(0.6f, 0.85f), new Keyframe(0.82f, 1.08f), new Keyframe(1f, 1f));
 
     [Header("실제 HP 감소량·회복량")]
     [Tooltip("복제해 쓰는 숫자. 놓인 위치에서 위로 떠오른다")]
     [SerializeField] private TMP_Text numberTemplate;
     [SerializeField] private string damageFormat = "-{0}";
+    [Tooltip("HP 바 위 피격 숫자만 확대. 회복 숫자·적 피해 숫자는 유지") ]
+    [SerializeField, Min(1f)] private float damageNumberScale = 1.25f;
     [SerializeField] private string healFormat = "+{0:0}";
     [SerializeField] private Color damageColor = new Color(1f, 0.62f, 0.36f, 1f);
     [SerializeField] private Color healColor = new Color(0.56f, 0.95f, 0.58f, 1f);
@@ -55,6 +67,7 @@ public class HpGaugeUI : MonoBehaviour
         public Vector2 origin;
         public float age;
         public Color color;
+        public bool shield;
     }
 
     private readonly List<Number> numbers = new List<Number>();
@@ -88,7 +101,12 @@ public class HpGaugeUI : MonoBehaviour
         if (frameFlash != null) frameFlashColor = frameFlash.color;
         if (healGlow != null) healGlowColor = healGlow.color;
         if (shieldFlash != null) shieldFlashColor = shieldFlash.color;
-        if (shieldIcon != null) shieldBaseScale = shieldIcon.localScale;
+        if (shieldIcon != null)
+        {
+            shieldBaseScale = shieldIcon.localScale;
+            if (shieldValueText == null && shieldIcon.parent != null)
+                shieldValueText = shieldIcon.parent.GetComponentInChildren<TMP_Text>(true);
+        }
     }
 
     private void OnEnable()
@@ -115,14 +133,22 @@ public class HpGaugeUI : MonoBehaviour
 
     private void OnDamaged(int hpLoss, int absorbed)
     {
-        if (absorbed > 0) shieldFlashRemaining = shieldFlashSeconds;
-        if (hpLoss <= 0 || player == null) return; // 전부 흡수: 방패 표시만 반응한다.
+        if (absorbed > 0)
+        {
+            // 관통 피해가 있으면 직전 바운스도 멈추고 흡수량만 표시한다.
+            shieldFlashRemaining = hpLoss <= 0 ? shieldFlashSeconds : 0f;
+            if (shieldIcon != null)
+                Spawn(string.Format(absorbedFormat, absorbed), shieldValueText != null ? shieldValueText.color : Color.white,
+                    damageNumberScale * Mathf.Clamp(absorbedNumberRatio, 0.1f, 0.99f), true);
+        }
+        else if (hpLoss > 0) shieldFlashRemaining = 0f;
+        if (hpLoss <= 0 || player == null) return;
         // 잔상은 이번 피격 직전 HP 이상을 유지한다. 연속 피격이면 남은 잔상에서 다시 유지·추격한다.
         ghostHp = Mathf.Max(ghostHp, player.CurrentHp + hpLoss);
         holdRemaining = ghostHoldSeconds;
         chaseFrom = -1f;
         frameFlashRemaining = frameFlashSeconds;
-        Spawn(string.Format(damageFormat, hpLoss), damageColor);
+        Spawn(string.Format(damageFormat, hpLoss), damageColor, damageNumberScale);
     }
 
     private void OnHealed(float amount)
@@ -187,7 +213,8 @@ public class HpGaugeUI : MonoBehaviour
         healGlowRemaining = Fade(healGlow, healGlowColor, healGlowRemaining, healGlowSeconds, dt);
         shieldFlashRemaining = Fade(shieldFlash, shieldFlashColor, shieldFlashRemaining, shieldFlashSeconds, dt);
         if (shieldIcon != null)
-            shieldIcon.localScale = shieldBaseScale * Mathf.Lerp(1f, shieldPulseScale, shieldFlashRemaining / shieldFlashSeconds);
+            shieldIcon.localScale = shieldBaseScale * (shieldFlashRemaining > 0f
+                ? shieldBounce.Evaluate(1f - shieldFlashRemaining / shieldFlashSeconds) : 1f);
         AdvanceNumbers(dt);
     }
 
@@ -204,16 +231,34 @@ public class HpGaugeUI : MonoBehaviour
         return remaining;
     }
 
-    private void Spawn(string label, Color color)
+    private void Spawn(string label, Color color, float sizeMultiplier = 1f, bool shield = false)
     {
         if (numberTemplate == null) return;
-        foreach (Number previous in numbers) previous.origin.y += numberStackSpacing;
+        foreach (Number previous in numbers)
+            if (previous.shield == shield) previous.origin.y += numberStackSpacing;
         TMP_Text text = Instantiate(numberTemplate, numberTemplate.transform.parent);
         text.text = label;
+        text.fontSize = numberTemplate.fontSize * sizeMultiplier;
+        text.rectTransform.sizeDelta *= sizeMultiplier;
         text.color = color;
         text.raycastTarget = false;
         text.gameObject.SetActive(true);
-        numbers.Add(new Number { text = text, origin = numberTemplate.rectTransform.anchoredPosition, color = color });
+        Vector2 origin = numberTemplate.rectTransform.anchoredPosition;
+        if (shield)
+        {
+            // 방패 바로 위에서 시작하되 HP 게이지·글자보다 앞에 그린다. 바운스와 분리한다.
+            text.rectTransform.anchorMin = text.rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
+            text.rectTransform.pivot = new Vector2(0.5f, 0.5f);
+            text.alignment = TextAlignmentOptions.Center;
+            var parent = (RectTransform)text.transform.parent;
+            Vector3 iconTop = shieldIcon.localPosition + Vector3.up * (shieldIcon.rect.yMax * shieldBaseScale.y);
+            origin = (Vector2)parent.InverseTransformPoint(shieldIcon.parent.TransformPoint(iconTop))
+                - parent.rect.center + Vector2.up * absorbedNumberOffset;
+        }
+        numbers.Add(new Number { text = text, origin = origin, color = color, shield = shield });
+        // 뒤늦게 HP 피해·회복 숫자가 생겨도 흡수량은 그 앞에 표시한다.
+        foreach (Number number in numbers)
+            if (number.shield && number.text != null) number.text.transform.SetAsLastSibling();
         AdvanceNumbers(0f);
     }
 

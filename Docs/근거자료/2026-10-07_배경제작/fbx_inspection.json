@@ -1,0 +1,170 @@
+[
+  {
+    "file": "P01_BroadleafTree.fbx",
+    "triangles": 9986,
+    "same_triangle_count": true,
+    "all_meshes_have_uv": true,
+    "textures": [
+      {
+        "name": "base_color",
+        "size": [
+          2048,
+          2048
+        ],
+        "packed": true
+      },
+      {
+        "name": "normal",
+        "size": [
+          2048,
+          2048
+        ],
+        "packed": true
+      }
+    ]
+  },
+  {
+    "file": "P02_TallForestTree.fbx",
+    "triangles": 8000,
+    "same_triangle_count": true,
+    "all_meshes_have_uv": true,
+    "textures": [
+      {
+        "name": "base_color",
+        "size": [
+          2048,
+          2048
+        ],
+        "packed": true
+      },
+      {
+        "name": "normal",
+        "size": [
+          2048,
+          2048
+        ],
+        "packed": true
+      }
+    ]
+  },
+  {
+    "file": "P03_Undergrowth.fbx",
+    "triangles": 5330,
+    "same_triangle_count": true,
+    "all_meshes_have_uv": true,
+    "textures": [
+      {
+        "name": "base_color",
+        "size": [
+          1024,
+          1024
+        ],
+        "packed": true
+      },
+      {
+        "name": "normal",
+        "size": [
+          2048,
+          2048
+        ],
+        "packed": true
+      }
+    ]
+  },
+  {
+    "file": "P04_MossRocks.fbx",
+    "triangles": 3000,
+    "same_triangle_count": true,
+    "all_meshes_have_uv": true,
+    "textures": [
+      {
+        "name": "base_color",
+        "size": [
+          1024,
+          1024
+        ],
+        "packed": true
+      },
+      {
+        "name": "normal",
+        "size": [
+          2048,
+          2048
+        ],
+        "packed": true
+      }
+    ]
+  },
+  {
+    "file": "P05_CaveEntrance.fbx",
+    "triangles": 12000,
+    "same_triangle_count": true,
+    "all_meshes_have_uv": true,
+    "textures": [
+      {
+        "name": "base_color",
+        "size": [
+          2048,
+          2048
+        ],
+        "packed": true
+      },
+      {
+        "name": "normal",
+        "size": [
+          2048,
+          2048
+        ],
+        "packed": true
+      }
+    ]
+  },
+  {
+    "file": "P06_CaveWall.fbx",
+    "triangles": 8000,
+    "same_triangle_count": true,
+    "all_meshes_have_uv": true,
+    "textures": [
+      {
+        "name": "base_color",
+        "size": [
+          2048,
+          2048
+        ],
+        "packed": true
+      },
+      {
+        "name": "normal",
+        "size": [
+          2048,
+          2048
+        ],
+        "packed": true
+      }
+    ]
+  },
+  {
+    "file": "P07_Stalagmites.fbx",
+    "triangles": 4000,
+    "same_triangle_count": true,
+    "all_meshes_have_uv": true,
+    "textures": [
+      {
+        "name": "base_color",
+        "size": [
+          1024,
+          1024
+        ],
+        "packed": true
+      },
+      {
+        "name": "normal",
+        "size": [
+          2048,
+          2048
+        ],
+        "packed": true
+      }
+    ]
+  }
+]

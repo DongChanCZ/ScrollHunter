@@ -1,0 +1,16 @@
+2026-10-07 보스 오브 외형·소환·파괴 연출 검사 (Claude / Unity MCP, 마법사 직행 끔)
+
+[실제 프레임 · 새 검사] Tools > Scroll Hunter > Check Boss Orb VFX (Play)
+Boss orb VFX checks passed: 42 / frames 1786
+initial: transition 101f, core 0.12→0.82, idle pulse 0.970~1.030
+single ruin: break gone after 51f (pause/0.5x included)
+
+[실제 프레임 · 기존] Check Boss Orbs Frames (Play)
+passed
+1x: 358 frames; transition/stagger, active orbs, silence, paused lock, orb destruction, recovery PASS
+0.5x: 687 frames; transition/stagger, active orbs, silence, paused lock, orb destruction, recovery PASS
+
+[함수 · 기존] Check Boss Orbs (Play): Boss orb checks passed: 79
+[함수 · 기존] Check Boss (Play): Boss checks passed: 315
+
+프레임 진행은 일시정지 상태에서 EditorApplication.Step(프레임 시간 0.02초 고정). 전환·피해·카드 사용·정지·배속은 함수로 지정하고 그 뒤 Update가 실제로 돈다. 직접 손 입력·밸런스 확인 아님.

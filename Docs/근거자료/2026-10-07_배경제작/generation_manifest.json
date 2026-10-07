@@ -1,0 +1,874 @@
+{
+  "date": "2026-10-07",
+  "workflowId": "b686afb0-e976-4bcc-b41f-b53e20b6de72",
+  "concepts": [
+    {
+      "key": "BG01_숲초입",
+      "title": "BG01 튜토리얼 · 오솔길 초입",
+      "prompt": "Create ONE widescreen environment concept image for Scroll Hunter, a fixed-camera real-time fantasy battle game. Empty environment only: absolutely no characters, monsters, UI, text, labels, borders, panels or logos. Visual family: grounded stylized low-poly-friendly fantasy, broad sculpted silhouettes, restrained hand-painted surface detail, matte materials, gentle cartoon shading, moderately detailed rather than simplistic mobile cartoon or photorealism. Landscape 16:9. Camera at a human eye-level slightly elevated, looking horizontally into the environment, mild downward tilt and natural perspective, not isometric or bird's-eye. The bottom 25 percent must remain low-detail level ground for the UI; the center and middle foreground form a wide unobstructed battle clearing for up to three standing human enemies in a row. Keep high contrast branches, rocks and scenery out of their silhouettes; layer scenery at sides and rear. Soft neutral fill lighting must illuminate the arena and future characters from the camera side, no crushed blacks, no heavy vignette, no strong colored wash or harsh cast shadows. No floating platform, diorama base, cutaway miniature or isolated terrain island. A believable continuous world filling the view.\nScene: the welcoming edge of a temperate medieval forest before entering a woodland trail. A broad sunlit packed-earth approach, a few scattered low rounded mossy rocks and muted green grass tufts along both sides, widely spaced mature deciduous trees opening toward a pale blue-green forest trail in the distance. Clear daylight, muted olive and sage foliage, warm earth, soft blue sky, substantial open sky and light between tree crowns. Rural uninhabited woodland, no buildings or props unrelated to a forest. Distinctly more open and inviting than a dense forest interior."
+    },
+    {
+      "key": "BG02_빽빽한숲",
+      "title": "BG02 나무가 빼곡한 오솔길",
+      "prompt": "Create ONE widescreen environment concept image for Scroll Hunter, a fixed-camera real-time fantasy battle game. Empty environment only: absolutely no characters, monsters, UI, text, labels, borders, panels or logos. Visual family: grounded stylized low-poly-friendly fantasy, broad sculpted silhouettes, restrained hand-painted surface detail, matte materials, gentle cartoon shading, moderately detailed rather than simplistic mobile cartoon or photorealism. Landscape 16:9. Camera at a human eye-level slightly elevated, looking horizontally into the environment, mild downward tilt and natural perspective, not isometric or bird's-eye. The bottom 25 percent must remain low-detail level ground for the UI; the center and middle foreground form a wide unobstructed battle clearing for up to three standing human enemies in a row. Keep high contrast branches, rocks and scenery out of their silhouettes; layer scenery at sides and rear. Soft neutral fill lighting must illuminate the arena and future characters from the camera side, no crushed blacks, no heavy vignette, no strong colored wash or harsh cast shadows. No floating platform, diorama base, cutaway miniature or isolated terrain island. A believable continuous world filling the view.\nScene: deeper inside the same temperate forest. Numerous tall mature tree trunks and overlapping broad leaf crowns form a dense forest around a gently curving trail, while an unusually wide clear level section of trail at the camera-facing center remains a readable combat area. Dense trunks frame both edges and form several depth layers in the far background; foliage does NOT cross the central enemy row or lower foreground. Sage and olive green, warm brown trunks, pale neutral daylight filtered from canopy openings. Ambient light still bright and clear, avoid shadowy night forest. Distant trunks fade softly into desaturated atmospheric depth. No architectural structures."
+    },
+    {
+      "key": "BG03_동굴입구",
+      "title": "BG03 숲속 동굴 입구",
+      "prompt": "Create ONE widescreen environment concept image for Scroll Hunter, a fixed-camera real-time fantasy battle game. Empty environment only: absolutely no characters, monsters, UI, text, labels, borders, panels or logos. Visual family: grounded stylized low-poly-friendly fantasy, broad sculpted silhouettes, restrained hand-painted surface detail, matte materials, gentle cartoon shading, moderately detailed rather than simplistic mobile cartoon or photorealism. Landscape 16:9. Camera at a human eye-level slightly elevated, looking horizontally into the environment, mild downward tilt and natural perspective, not isometric or bird's-eye. The bottom 25 percent must remain low-detail level ground for the UI; the center and middle foreground form a wide unobstructed battle clearing for up to three standing human enemies in a row. Keep high contrast branches, rocks and scenery out of their silhouettes; layer scenery at sides and rear. Soft neutral fill lighting must illuminate the arena and future characters from the camera side, no crushed blacks, no heavy vignette, no strong colored wash or harsh cast shadows. No floating platform, diorama base, cutaway miniature or isolated terrain island. A believable continuous world filling the view.\nScene: same woodland reaches a natural stone cave entrance visible in the rear center. A wide irregular rock arch in a low wooded rocky hillside, broad gray-beige stone masses with sparse moss and roots at the edges, readable pale rock lip with a blue-gray receding cavern opening, not a solid black doorway. Frame with forest trees at left and right and a few low shrubs. A large broad sunlit dirt-and-flat-stone clearing in front of the entrance reserved for three enemies. Cave opening is a distant environmental landmark BEHIND the enemy row. Bright neutral outdoor ambient light and readable stone surfaces. Natural forest cave, no built door, fortress, ruins or carved architecture."
+    },
+    {
+      "key": "BG04_동굴내부",
+      "title": "BG04 보스전 · 동굴 내부",
+      "prompt": "Create ONE widescreen environment concept image for Scroll Hunter, a fixed-camera real-time fantasy battle game. Empty environment only: absolutely no characters, monsters, UI, text, labels, borders, panels or logos. Visual family: grounded stylized low-poly-friendly fantasy, broad sculpted silhouettes, restrained hand-painted surface detail, matte materials, gentle cartoon shading, moderately detailed rather than simplistic mobile cartoon or photorealism. Landscape 16:9. Camera at a human eye-level slightly elevated, looking horizontally into the environment, mild downward tilt and natural perspective, not isometric or bird's-eye. The bottom 25 percent must remain low-detail level ground for the UI; the center and middle foreground form a wide unobstructed battle clearing for up to three standing human enemies in a row. Keep high contrast branches, rocks and scenery out of their silhouettes; layer scenery at sides and rear. Soft neutral fill lighting must illuminate the arena and future characters from the camera side, no crushed blacks, no heavy vignette, no strong colored wash or harsh cast shadows. No floating platform, diorama base, cutaway miniature or isolated terrain island. A believable continuous world filling the view.\nScene: a spacious natural cavern interior used as a reclusive dark mage's lair. Broad faceted gray-beige stone walls and sparse stalagmites only near the outer sides. Readable cool-neutral stone, soft pale ambient fill, a little violet accent but the floor and future enemy row remain bright and neutral. Large flat empty stone battle area in front. On the rear vertical rock wall BEHIND the boss position is one enormous luminous purple arcane magic circle, complete circular design facing the camera, abstract geometric concentric rings and invented nonlinguistic sigils, restrained lilac-violet glow that does not overexpose the wall or tint the whole scene. Plenty of wall space around the circle so it can grow in later boss phases. The circle is vertical, not on the floor. Darker but readable distant side recesses suggest cave depth, not black voids. No altar, furniture, candles, monsters, standing crystals, occult gore, stairs or clutter."
+    }
+  ],
+  "conceptNodes": [
+    {
+      "key": "BG01_숲초입",
+      "title": "BG01 튜토리얼 · 오솔길 초입",
+      "note": {
+        "kind": "nodeCreated",
+        "nodeId": "ab520845-6d32-4447-b184-e0984fb8b020"
+      },
+      "prompt": {
+        "kind": "nodeCreated",
+        "nodeId": "65e78ffd-ce37-40a1-a997-3dd4288f19a3"
+      },
+      "image": {
+        "kind": "nodeCreated",
+        "nodeId": "2f3ac368-e21a-4ce0-8af9-3dcdc053f533"
+      }
+    },
+    {
+      "key": "BG02_빽빽한숲",
+      "title": "BG02 나무가 빼곡한 오솔길",
+      "note": {
+        "kind": "nodeCreated",
+        "nodeId": "2db1a01f-4c16-459e-ba49-33fa94220850"
+      },
+      "prompt": {
+        "kind": "nodeCreated",
+        "nodeId": "4033be69-90e8-407b-93e0-19e83105a4e8"
+      },
+      "image": {
+        "kind": "nodeCreated",
+        "nodeId": "e98c9688-9407-4dbe-b484-daa3bf38bb3d"
+      }
+    },
+    {
+      "key": "BG03_동굴입구",
+      "title": "BG03 숲속 동굴 입구",
+      "note": {
+        "kind": "nodeCreated",
+        "nodeId": "397e229c-88d6-4402-941c-caacf1692999"
+      },
+      "prompt": {
+        "kind": "nodeCreated",
+        "nodeId": "8b279c61-186e-42b7-9a34-321c25125e6b"
+      },
+      "image": {
+        "kind": "nodeCreated",
+        "nodeId": "a1049155-cb0c-4574-b5cd-4706edf9e7f3"
+      }
+    },
+    {
+      "key": "BG04_동굴내부",
+      "title": "BG04 보스전 · 동굴 내부",
+      "note": {
+        "kind": "nodeCreated",
+        "nodeId": "545f2e9e-5a9e-4de2-b5a6-c15fae698d1a"
+      },
+      "prompt": {
+        "kind": "nodeCreated",
+        "nodeId": "6a0cf04a-67c4-403d-a897-ee46679deed1"
+      },
+      "image": {
+        "kind": "nodeCreated",
+        "nodeId": "4db6abb0-21d2-4555-9e27-3371df1baa3c"
+      }
+    }
+  ],
+  "conceptDownloads": [
+    {
+      "key": "BG01_숲초입",
+      "kind": "outputDownloads",
+      "downloads": [
+        {
+          "nodeId": "2f3ac368-e21a-4ce0-8af9-3dcdc053f533",
+          "outputIndex": 0,
+          "type": "image",
+          "url": "/api/objects/8837664fc1c17bfc8fed21b4e29c301d.png",
+          "taskId": null,
+          "exportType": null,
+          "error": null
+        }
+      ]
+    },
+    {
+      "key": "BG02_빽빽한숲",
+      "kind": "outputDownloads",
+      "downloads": [
+        {
+          "nodeId": "e98c9688-9407-4dbe-b484-daa3bf38bb3d",
+          "outputIndex": 0,
+          "type": "image",
+          "url": "/api/objects/8e927557df0a1bacaa9fdcbdd5ac98a5.png",
+          "taskId": null,
+          "exportType": null,
+          "error": null
+        }
+      ]
+    },
+    {
+      "key": "BG03_동굴입구",
+      "kind": "outputDownloads",
+      "downloads": [
+        {
+          "nodeId": "a1049155-cb0c-4574-b5cd-4706edf9e7f3",
+          "outputIndex": 0,
+          "type": "image",
+          "url": "/api/objects/76590f3988348b2e463df8ecdcda234a.png",
+          "taskId": null,
+          "exportType": null,
+          "error": null
+        }
+      ]
+    },
+    {
+      "key": "BG04_동굴내부",
+      "kind": "outputDownloads",
+      "downloads": [
+        {
+          "nodeId": "4db6abb0-21d2-4555-9e27-3371df1baa3c",
+          "outputIndex": 0,
+          "type": "image",
+          "url": "/api/objects/e2f2c742610cfecabb5f9f9fd0a63444.png",
+          "taskId": null,
+          "exportType": null,
+          "error": null
+        }
+      ]
+    }
+  ],
+  "props": [
+    {
+      "key": "P01_BroadleafTree",
+      "title": "P01 넓은 수관 나무",
+      "ref": 0,
+      "poly": 8000,
+      "prompt": "Create ONE isolated modular environment prop for a Unity fantasy game. Reference image gives the visual style and materials only, NOT the full scene or composition. Grounded stylized low-poly game art: broad faceted volumes, clean silhouette, restrained hand-painted texture, matte finish, moderately detailed, no photorealistic noise. A single prop, centered and fully visible with generous margin, three-quarter view, neutral bright diffuse studio light, seamless plain light grey background. No text, no labels, no border, no characters, no ground plane, no diorama platform, no extra scenery, no strong cast shadow. Designed as a solid readable low-poly 3D mesh. One mature oak-like broadleaf tree with a sturdy warm grey-brown branching trunk, thick exposed root tips reaching the same base plane, and several large overlapping solid polygonal canopy masses. Olive and sage green canopy, a handful of painted leaf patterns suggesting foliage, NOT hundreds of individually modeled leaves or thin alpha cards. Asymmetric but balanced spreading crown, usable at the forest edge. Entire tree crown and roots must fit.",
+      "noteId": "601106f2-bf85-4f56-9868-8b2d6cf44d58",
+      "promptId": "0f817fab-b149-4303-8a4b-02705feffd1a",
+      "imageId": "5f5763b8-e1f9-4a6a-b19c-6e51c1c7858f",
+      "meshId": "41249ca2-baa3-4b40-91d2-7465ebad3aff",
+      "textureSize": 2048
+    },
+    {
+      "key": "P02_TallForestTree",
+      "title": "P02 좁고 높은 숲 나무",
+      "ref": 1,
+      "poly": 8000,
+      "prompt": "Create ONE isolated modular environment prop for a Unity fantasy game. Reference image gives the visual style and materials only, NOT the full scene or composition. Grounded stylized low-poly game art: broad faceted volumes, clean silhouette, restrained hand-painted texture, matte finish, moderately detailed, no photorealistic noise. A single prop, centered and fully visible with generous margin, three-quarter view, neutral bright diffuse studio light, seamless plain light grey background. No text, no labels, no border, no characters, no ground plane, no diorama platform, no extra scenery, no strong cast shadow. Designed as a solid readable low-poly 3D mesh. One tall slender deciduous forest tree, straight sturdy trunk and high narrow irregular crown of large compact solid foliage clusters, subdued moss-green. Tall vertical silhouette clearly different from a broad spreading oak. Few thick connected branches only, no dangling vines, no tiny twigs, no individual leaf cards. Root ends on a level base plane, whole tree visible from roots to top. Useful repeated at the sides and back of a dense forest.",
+      "noteId": "a77d47fe-e847-4d58-95b1-fc43ad4bd3fd",
+      "promptId": "6f5f8f40-6d1f-4d32-afbc-cab4ec6e6bcb",
+      "imageId": "bae5cdec-0d0d-4cc4-b168-88eb4b11bd88",
+      "meshId": "92dcb8ac-f6e6-4860-a0de-d0efe81dc234",
+      "textureSize": 2048
+    },
+    {
+      "key": "P03_Undergrowth",
+      "title": "P03 관목·양치류 묶음",
+      "ref": 1,
+      "poly": 5000,
+      "prompt": "Create ONE isolated modular environment prop for a Unity fantasy game. Reference image gives the visual style and materials only, NOT the full scene or composition. Grounded stylized low-poly game art: broad faceted volumes, clean silhouette, restrained hand-painted texture, matte finish, moderately detailed, no photorealistic noise. A single prop, centered and fully visible with generous margin, three-quarter view, neutral bright diffuse studio light, seamless plain light grey background. No text, no labels, no border, no characters, no ground plane, no diorama platform, no extra scenery, no strong cast shadow. Designed as a solid readable low-poly 3D mesh. One compact undergrowth cluster of a low bush and a few broad fern fronds joined at a small shared root mass. Wide chunky leaf shapes in olive and sage green, moderate variation in height, solid overlapping forms, no hair-thin grass or detached leaves. Small broad roots only; no soil mound or terrain tile. Designed to place at the base of trees and rocks.",
+      "noteId": "84848ca6-eb63-4a1c-a162-c96488913f14",
+      "promptId": "acfe905e-d9f2-4756-b278-68a7c5311c82",
+      "imageId": "211651be-03e1-42c3-a467-12a27aeca900",
+      "meshId": "a3906bfd-e759-43fb-9837-e8b3414669e6",
+      "textureSize": 1024
+    },
+    {
+      "key": "P04_MossRocks",
+      "title": "P04 이끼 바위 묶음",
+      "ref": 2,
+      "poly": 3000,
+      "prompt": "Create ONE isolated modular environment prop for a Unity fantasy game. Reference image gives the visual style and materials only, NOT the full scene or composition. Grounded stylized low-poly game art: broad faceted volumes, clean silhouette, restrained hand-painted texture, matte finish, moderately detailed, no photorealistic noise. A single prop, centered and fully visible with generous margin, three-quarter view, neutral bright diffuse studio light, seamless plain light grey background. No text, no labels, no border, no characters, no ground plane, no diorama platform, no extra scenery, no strong cast shadow. Designed as a solid readable low-poly 3D mesh. One connected cluster of three overlapping broad angular boulders, one large and two smaller, warm grey limestone with muted green moss painted on upper crevices. Simple strong faceted silhouette, smooth medium-sized planes, subtle hand-painted cracks. Stable flat underside for placing on terrain, no grass, no trees, no dirt platform.",
+      "noteId": "d903e03c-cb98-43de-868a-7494e1655bf2",
+      "promptId": "2b6634fc-f80e-4cf5-b90b-5dfff00649d0",
+      "imageId": "c80b66e7-3364-4780-8b5f-7b081f14addd",
+      "meshId": "cc4404de-b8b1-48f0-aa61-13365e659bcb",
+      "textureSize": 1024
+    },
+    {
+      "key": "P05_CaveEntrance",
+      "title": "P05 동굴 입구 아치",
+      "ref": 2,
+      "poly": 12000,
+      "prompt": "Create ONE isolated modular environment prop for a Unity fantasy game. Reference image gives the visual style and materials only, NOT the full scene or composition. Grounded stylized low-poly game art: broad faceted volumes, clean silhouette, restrained hand-painted texture, matte finish, moderately detailed, no photorealistic noise. A single prop, centered and fully visible with generous margin, three-quarter view, neutral bright diffuse studio light, seamless plain light grey background. No text, no labels, no border, no characters, no ground plane, no diorama platform, no extra scenery, no strong cast shadow. Designed as a solid readable low-poly 3D mesh. One freestanding natural cave entrance arch made of thick rough grey-beige rock, asymmetric craggy mass, wider than tall, broad opening large enough for several human characters. Three-quarter angle reveals short tunnel thickness. CRITICAL: a true fully open central through-hole showing the same plain light-grey background behind; no stone wall or black cap closing the hole, no floor slab. Two sturdy side pillars connected by rocky upper arch. Sparse painted moss on outer top only. No surrounding cliff, no trees, no stalactites blocking the opening, no magic.",
+      "noteId": "cdcc6ba8-94e2-4b25-aad0-6466be63a2b0",
+      "promptId": "f163c88d-f764-43ba-9c30-29f5ffa78063",
+      "imageId": "33a8362c-6a00-42c3-aad3-5be99e785ff3",
+      "meshId": "e7da9581-c2c2-47d9-979a-77689c39fb97",
+      "textureSize": 2048
+    },
+    {
+      "key": "P06_CaveWall",
+      "title": "P06 동굴 벽·기둥 모듈",
+      "ref": 3,
+      "poly": 8000,
+      "prompt": "Create ONE isolated modular environment prop for a Unity fantasy game. Reference image gives the visual style and materials only, NOT the full scene or composition. Grounded stylized low-poly game art: broad faceted volumes, clean silhouette, restrained hand-painted texture, matte finish, moderately detailed, no photorealistic noise. A single prop, centered and fully visible with generous margin, three-quarter view, neutral bright diffuse studio light, seamless plain light grey background. No text, no labels, no border, no characters, no ground plane, no diorama platform, no extra scenery, no strong cast shadow. Designed as a solid readable low-poly 3D mesh. One large thick vertical cavern wall buttress module, irregular natural gray-beige stone with broad planar facets and gentle hand-painted fissures. Broad relatively flat main front face, stepped craggy side edges, solid volumetric thickness visible at side; tall rectangular overall mass without appearing like cut masonry. Flat stable base. No arch or hole, no stalagmites, no decorations, no purple color, no magic circle, no glowing light, no other objects. This repeatable wall segment must stay neutral so a separate magic-circle effect can later be placed in front.",
+      "noteId": "881730c8-bec8-4fa3-9484-1c5c66217f25",
+      "promptId": "e527ec61-cb68-4ea5-bc42-21a5efe6e952",
+      "imageId": "85457882-0980-45aa-b276-41e7e748a9c2",
+      "meshId": "a222fa16-bdcf-43a7-92f6-61000343f1a9",
+      "textureSize": 2048
+    },
+    {
+      "key": "P07_Stalagmites",
+      "title": "P07 석순 묶음",
+      "ref": 3,
+      "poly": 4000,
+      "prompt": "Create ONE isolated modular environment prop for a Unity fantasy game. Reference image gives the visual style and materials only, NOT the full scene or composition. Grounded stylized low-poly game art: broad faceted volumes, clean silhouette, restrained hand-painted texture, matte finish, moderately detailed, no photorealistic noise. A single prop, centered and fully visible with generous margin, three-quarter view, neutral bright diffuse studio light, seamless plain light grey background. No text, no labels, no border, no characters, no ground plane, no diorama platform, no extra scenery, no strong cast shadow. Designed as a solid readable low-poly 3D mesh. One small connected cluster of three chunky limestone stalagmites of unequal height, tallest in rear, broad bases joined naturally, grey-beige with subtle warm mineral bands. Low-poly faceted tapering forms with slightly rounded worn tips, not razor-sharp crystal shards. Flat underside. No terrain platform, no hanging stalactites, no magic glow, no purple tint.",
+      "noteId": "74ebdcc7-757b-45e6-998c-bf1a47d320b4",
+      "promptId": "1530ba29-6a82-4bae-b778-9dabdbf748ab",
+      "imageId": "72047591-7e7f-495d-8625-1d61f4ed09fc",
+      "meshId": "6c7728e5-982b-4472-8be9-a27abaac7269",
+      "textureSize": 1024
+    }
+  ],
+  "propImages": [
+    {
+      "key": "P01_BroadleafTree",
+      "result": {
+        "kind": "outputDownloads",
+        "downloads": [
+          {
+            "nodeId": "5f5763b8-e1f9-4a6a-b19c-6e51c1c7858f",
+            "outputIndex": 0,
+            "type": "image",
+            "url": "/api/objects/368e25e9fb99360a4429f1b36db94d2f.png",
+            "taskId": null,
+            "exportType": null,
+            "error": null
+          }
+        ]
+      }
+    },
+    {
+      "key": "P02_TallForestTree",
+      "result": {
+        "kind": "outputDownloads",
+        "downloads": [
+          {
+            "nodeId": "bae5cdec-0d0d-4cc4-b168-88eb4b11bd88",
+            "outputIndex": 0,
+            "type": "image",
+            "url": "/api/objects/326c8a452dbb02234fcabeef2598364f.png",
+            "taskId": null,
+            "exportType": null,
+            "error": null
+          }
+        ]
+      }
+    },
+    {
+      "key": "P03_Undergrowth",
+      "result": {
+        "kind": "outputDownloads",
+        "downloads": [
+          {
+            "nodeId": "211651be-03e1-42c3-a467-12a27aeca900",
+            "outputIndex": 0,
+            "type": "image",
+            "url": "/api/objects/785d05589dfa0a880d601a2594cd663b.png",
+            "taskId": null,
+            "exportType": null,
+            "error": null
+          }
+        ]
+      }
+    },
+    {
+      "key": "P04_MossRocks",
+      "result": {
+        "kind": "outputDownloads",
+        "downloads": [
+          {
+            "nodeId": "c80b66e7-3364-4780-8b5f-7b081f14addd",
+            "outputIndex": 0,
+            "type": "image",
+            "url": "/api/objects/b1ff9fb5b809304c372234c3e436bf19.png",
+            "taskId": null,
+            "exportType": null,
+            "error": null
+          }
+        ]
+      }
+    },
+    {
+      "key": "P05_CaveEntrance",
+      "result": {
+        "kind": "outputDownloads",
+        "downloads": [
+          {
+            "nodeId": "33a8362c-6a00-42c3-aad3-5be99e785ff3",
+            "outputIndex": 0,
+            "type": "image",
+            "url": "/api/objects/e724b8a21a534fdd6d83d22683d102fd.png",
+            "taskId": null,
+            "exportType": null,
+            "error": null
+          }
+        ]
+      }
+    },
+    {
+      "key": "P06_CaveWall",
+      "result": {
+        "kind": "outputDownloads",
+        "downloads": [
+          {
+            "nodeId": "85457882-0980-45aa-b276-41e7e748a9c2",
+            "outputIndex": 0,
+            "type": "image",
+            "url": "/api/objects/7c05d9cc81e81bb2a0fe3edc20a77bff.png",
+            "taskId": null,
+            "exportType": null,
+            "error": null
+          }
+        ]
+      }
+    },
+    {
+      "key": "P07_Stalagmites",
+      "result": {
+        "kind": "outputDownloads",
+        "downloads": [
+          {
+            "nodeId": "72047591-7e7f-495d-8625-1d61f4ed09fc",
+            "outputIndex": 0,
+            "type": "image",
+            "url": "/api/objects/a1fb6a711c8162c92714ca170d74723d.png",
+            "taskId": null,
+            "exportType": null,
+            "error": null
+          }
+        ]
+      }
+    }
+  ],
+  "extras": [
+    {
+      "key": "BG04_Cave_Backplate_Clean",
+      "title": "보스 동굴 2D 배경 · 마법진 분리",
+      "kind": "EditImage",
+      "x": 5500,
+      "y": 2700,
+      "aspect": "16:9",
+      "prompt": "Remove the entire purple magic circle, all magical glyphs and its purple glow from the rear central cave wall. Reconstruct uninterrupted plain gray-beige faceted rock and subtle cracks in that area. Keep the camera, composition, side cave passages, bright neutral battle floor, lighting, rock silhouettes, empty arena and painterly low-poly fantasy style exactly unchanged. No new objects, no text, no characters. This is the clean environment backdrop beneath a separately animated magic circle.",
+      "noteId": "c75baf4d-8b14-40d4-9ca1-5a12a8748d75",
+      "promptId": "feeecb56-f38c-4c7e-9507-c48fa2cf7d33",
+      "imageId": "962258aa-890f-44cd-9da6-f3f5bd129f0f"
+    },
+    {
+      "key": "FX_BossWallCircle",
+      "title": "벽면 보라 마법진 · 별도 합성용",
+      "kind": "GenerateImage",
+      "x": 2200,
+      "y": 4150,
+      "aspect": "1:1",
+      "prompt": "Create ONE front-facing orthographic purple arcane magic circle texture for a fantasy game, taking only the style of the rear wall magic circle in the reference. Perfect circular concentric rings centered, four subtle diamond ornaments, sparse invented glyphs and geometric arcs, elegant clear luminous lavender-violet thin lines with restrained soft purple glow. All artwork completely within the frame with 12 percent empty margin. Full square background is solid pure black RGB 0,0,0, with no wall, no stone, no floor, no scene, no objects, no text labels, no perspective, no drop shadow, no dense particles, no vignette. This black-background texture will be used with an additive transparent material on a vertical plane and scaled between boss phases. The background must stay black and the center mostly empty and transparent-looking; no opaque purple disk.",
+      "noteId": "3d83193f-3b1f-4053-bbb5-fa2dd3f583bf",
+      "promptId": "f6cdcd48-2d26-4538-a7be-048d5e1e4ac0",
+      "imageId": "21d45cb4-1f3a-47f0-bdff-a955baa08f22"
+    }
+  ],
+  "state": "Generation, local visual inspection, mesh inspection and FBX reimport complete. Unity import, placement, phase scaling and gameplay verification deferred.",
+  "meshDownloads": [
+    {
+      "nodeId": "92dcb8ac-f6e6-4860-a0de-d0efe81dc234",
+      "outputIndex": 0,
+      "type": "3d",
+      "url": "https://3d.varco.ai/api/objects/2401166a56a49305896e37494cf8249b.glb",
+      "taskId": "18e16a2f-765a-4320-80fe-2ef1fe87e412",
+      "exportType": "glb",
+      "error": null
+    },
+    {
+      "nodeId": "92dcb8ac-f6e6-4860-a0de-d0efe81dc234",
+      "outputIndex": 0,
+      "type": "3d",
+      "url": "https://3d.varco.ai/api/objects/a090e1643e2d60b7542d6c420f9b9831.fbx",
+      "taskId": "18e16a2f-765a-4320-80fe-2ef1fe87e412",
+      "exportType": "fbx",
+      "error": null
+    },
+    {
+      "nodeId": "41249ca2-baa3-4b40-91d2-7465ebad3aff",
+      "outputIndex": 0,
+      "type": "3d",
+      "url": "https://3d.varco.ai/api/objects/8ab45b10605502755a914c99dc24a62e.glb",
+      "taskId": "e918aaf8-7b66-4e07-99d7-feaa34540d9f",
+      "exportType": "glb",
+      "error": null
+    },
+    {
+      "nodeId": "41249ca2-baa3-4b40-91d2-7465ebad3aff",
+      "outputIndex": 0,
+      "type": "3d",
+      "url": "https://3d.varco.ai/api/objects/fd68460a0d307fd53f8e2c984ef2a4ba.fbx",
+      "taskId": "e918aaf8-7b66-4e07-99d7-feaa34540d9f",
+      "exportType": "fbx",
+      "error": null
+    },
+    {
+      "nodeId": "a3906bfd-e759-43fb-9837-e8b3414669e6",
+      "outputIndex": 0,
+      "type": "3d",
+      "url": "https://3d.varco.ai/api/objects/6e181403635279d228330e5bb3e1b449.glb",
+      "taskId": "96bb61e0-da01-4a94-bee7-19a48f622117",
+      "exportType": "glb",
+      "error": null
+    },
+    {
+      "nodeId": "a3906bfd-e759-43fb-9837-e8b3414669e6",
+      "outputIndex": 0,
+      "type": "3d",
+      "url": "https://3d.varco.ai/api/objects/b5db602485cc7894d87f6b24895a930f.fbx",
+      "taskId": "96bb61e0-da01-4a94-bee7-19a48f622117",
+      "exportType": "fbx",
+      "error": null
+    },
+    {
+      "nodeId": "cc4404de-b8b1-48f0-aa61-13365e659bcb",
+      "outputIndex": 0,
+      "type": "3d",
+      "url": "https://3d.varco.ai/api/objects/542d3744af3c7115f6c8d5db2a9a8d2d.glb",
+      "taskId": "9b4a439f-3d21-466f-8bab-a67040af91c7",
+      "exportType": "glb",
+      "error": null
+    },
+    {
+      "nodeId": "cc4404de-b8b1-48f0-aa61-13365e659bcb",
+      "outputIndex": 0,
+      "type": "3d",
+      "url": "https://3d.varco.ai/api/objects/6382f0cc912de9be207fbfbd8c4b4434.fbx",
+      "taskId": "9b4a439f-3d21-466f-8bab-a67040af91c7",
+      "exportType": "fbx",
+      "error": null
+    },
+    {
+      "nodeId": "e7da9581-c2c2-47d9-979a-77689c39fb97",
+      "outputIndex": 0,
+      "type": "3d",
+      "url": "https://3d.varco.ai/api/objects/d5ec4ec34c7a813475b16c2b83439bd3.glb",
+      "taskId": "8f8a109b-5f84-4d75-80b0-dc3c014c9e65",
+      "exportType": "glb",
+      "error": null
+    },
+    {
+      "nodeId": "e7da9581-c2c2-47d9-979a-77689c39fb97",
+      "outputIndex": 0,
+      "type": "3d",
+      "url": "https://3d.varco.ai/api/objects/a3eeab902deb639cb2644fffb2b37195.fbx",
+      "taskId": "8f8a109b-5f84-4d75-80b0-dc3c014c9e65",
+      "exportType": "fbx",
+      "error": null
+    },
+    {
+      "nodeId": "a222fa16-bdcf-43a7-92f6-61000343f1a9",
+      "outputIndex": 0,
+      "type": "3d",
+      "url": "https://3d.varco.ai/api/objects/1a578012c120dbef24942930d061c768.glb",
+      "taskId": "4cbb2e1b-46ab-401f-a2c3-16604d06d2b7",
+      "exportType": "glb",
+      "error": null
+    },
+    {
+      "nodeId": "a222fa16-bdcf-43a7-92f6-61000343f1a9",
+      "outputIndex": 0,
+      "type": "3d",
+      "url": "https://3d.varco.ai/api/objects/41250770e0ed53bd15bc4400c2136e3e.fbx",
+      "taskId": "4cbb2e1b-46ab-401f-a2c3-16604d06d2b7",
+      "exportType": "fbx",
+      "error": null
+    },
+    {
+      "nodeId": "6c7728e5-982b-4472-8be9-a27abaac7269",
+      "outputIndex": 0,
+      "type": "3d",
+      "url": "https://3d.varco.ai/api/objects/30092632d9ce15e053036f445c25e027.glb",
+      "taskId": "da7d444b-ca70-4e17-bf4f-c99c306e3646",
+      "exportType": "glb",
+      "error": null
+    },
+    {
+      "nodeId": "6c7728e5-982b-4472-8be9-a27abaac7269",
+      "outputIndex": 0,
+      "type": "3d",
+      "url": "https://3d.varco.ai/api/objects/ad5f2ba33c697ca77e69af6e9a855040.fbx",
+      "taskId": "da7d444b-ca70-4e17-bf4f-c99c306e3646",
+      "exportType": "fbx",
+      "error": null
+    }
+  ],
+  "extraDownloads": [
+    {
+      "key": "BG04_Cave_Backplate_Clean",
+      "kind": "outputDownloads",
+      "downloads": [
+        {
+          "nodeId": "962258aa-890f-44cd-9da6-f3f5bd129f0f",
+          "outputIndex": 0,
+          "type": "image",
+          "url": "/api/objects/3a095b65baaf24f230fcc8e84b393f2b.png",
+          "taskId": null,
+          "exportType": null,
+          "error": null
+        }
+      ]
+    },
+    {
+      "key": "FX_BossWallCircle",
+      "kind": "outputDownloads",
+      "downloads": [
+        {
+          "nodeId": "21d45cb4-1f3a-47f0-bdff-a955baa08f22",
+          "outputIndex": 0,
+          "type": "image",
+          "url": "/api/objects/a2cb89bcbc368e3c69c0a47e912ac0ae.png",
+          "taskId": null,
+          "exportType": null,
+          "error": null
+        }
+      ]
+    }
+  ],
+  "localInspection": {
+    "meshReport": "mesh_inspection.json",
+    "fbxReport": "fbx_inspection.json",
+    "script": "inspect_props.py",
+    "log": "inspection.log",
+    "frontRearImages": 14,
+    "totalTriangles": 50316,
+    "note": "Workbench preview lighting is not Unity lighting. Native generated geometry preserved."
+  },
+  "handoff": {
+    "workflow": "https://3d.varco.ai/customWorkflow/b686afb0-e976-4bcc-b41f-b53e20b6de72",
+    "unityImports": true,
+    "threeDImportFormat": "FBX; matching BaseColor and Normal PNGs extracted without pixel edits",
+    "twoDBackplateCandidates": [
+      "BG01_숲초입.png",
+      "BG02_빽빽한숲.png",
+      "BG03_동굴입구.png",
+      "BG04_Cave_Backplate_Clean.png"
+    ],
+    "circle": "FX_BossWallCircle.png: RGB black backdrop for additive blending; not alpha-transparent; place vertically in front of rear wall behind boss",
+    "phaseScale": "Unity trial diameters 8 / 10.5 / 13; growth 2 scaled seconds; phase transition start; reset immediately on restart",
+    "placement": "Battle scene: tutorial forest edge, A+B forest trail, C and A+B+C cave entrance, boss cave interior. Fixed camera 2D scenery and floor plus side/rear 3D props. Existing lighting unchanged. Prop shadows off; enemy contact shadows use existing Kenney circle_05."
+  },
+  "deliverables": [
+    {
+      "file": "BG01_숲초입.png",
+      "bytes": 2220408,
+      "sha256": "dd20cfb70bbcae91ad31a5bfebc18e75e86d0befa636a9112987eccb262f46f0"
+    },
+    {
+      "file": "BG02_빽빽한숲.png",
+      "bytes": 2199773,
+      "sha256": "be06956f8fe82004fdb3aea13b730cca5895d78f8974e97816d294c227d3f625"
+    },
+    {
+      "file": "BG03_동굴입구.png",
+      "bytes": 2404321,
+      "sha256": "87d91016b7384d972916b52ab583f92f4ef58f1688adb048e02e1837de069d32"
+    },
+    {
+      "file": "BG04_Cave_Backplate_Clean.png",
+      "bytes": 1899036,
+      "sha256": "533cf01b15ff58a35865c11bf6d64225c80a38974e38cc9cfd89a1f5532f37be"
+    },
+    {
+      "file": "BG04_동굴내부.png",
+      "bytes": 1828841,
+      "sha256": "d3951e4398a90676af49b6f2650c15592a85776f25b7b24c5fd5efa82c6977d3"
+    },
+    {
+      "file": "FX_BossWallCircle.png",
+      "bytes": 1169538,
+      "sha256": "bef770f452eb856dffb4218a3c151f12610c6275abf4db1ac805b084dfc13331"
+    },
+    {
+      "file": "P01_BroadleafTree.fbx",
+      "bytes": 14560956,
+      "sha256": "6f1005b6a59671adc3949f8c9b697341d9ce09c4b3b0334c630b5eb236126c71"
+    },
+    {
+      "file": "P01_BroadleafTree.glb",
+      "bytes": 13796740,
+      "sha256": "e603bea16f8b24d9fdbaf108c1dc3dc3b100832bea6057d47186494a35bf4dbb"
+    },
+    {
+      "file": "P01_BroadleafTree.png",
+      "bytes": 1139857,
+      "sha256": "c1defa81065390531966377db0efd31b2bed41d8536b6fbe592c651b2f869b35"
+    },
+    {
+      "file": "P01_BroadleafTree_BaseColor.png",
+      "bytes": 6879836,
+      "sha256": "eb1ad00138d1574c3c87ff7047e759334fe7170138c096c47ef527be230560ff"
+    },
+    {
+      "file": "P01_BroadleafTree_front.png",
+      "bytes": 653854,
+      "sha256": "4697012153f411d177cff41a12566d57e53875cc884ec7b3e2ce1c7e6b34a067"
+    },
+    {
+      "file": "P01_BroadleafTree_Normal.png",
+      "bytes": 6395372,
+      "sha256": "045fd147b8c18e307b0ad8d9bd2c692be7da743ba2455fea5c8b7808a6196c13"
+    },
+    {
+      "file": "P01_BroadleafTree_rear.png",
+      "bytes": 642128,
+      "sha256": "b96482b891438166c14ff1f1ae765cba8305b5c47fd9dd473b209755bdf64e29"
+    },
+    {
+      "file": "P02_TallForestTree.fbx",
+      "bytes": 10628940,
+      "sha256": "b22be30289dfad100925804286cfd64014c91066d9d0c9c51aff024d14d2b02a"
+    },
+    {
+      "file": "P02_TallForestTree.glb",
+      "bytes": 10169124,
+      "sha256": "7a32734020577bc63beb3a4e262b96e3a7d7937baaa2619b9f8635dbbcef73a3"
+    },
+    {
+      "file": "P02_TallForestTree.png",
+      "bytes": 932140,
+      "sha256": "c129f1dd8bb919a834e5f94952ba9b68b765de6a3a53e64a74e7ed799bb805b2"
+    },
+    {
+      "file": "P02_TallForestTree_BaseColor.png",
+      "bytes": 5110831,
+      "sha256": "1230813fc0e96e3bfbdf52dd1c58315b2cb461615bc25683383f76ba33b88a70"
+    },
+    {
+      "file": "P02_TallForestTree_front.png",
+      "bytes": 491830,
+      "sha256": "a6ef895bee4d55fa92659e5567371f151a503956c87a0edf258e6434f24a63aa"
+    },
+    {
+      "file": "P02_TallForestTree_Normal.png",
+      "bytes": 4793515,
+      "sha256": "1f1f35596143d3235b94f39a1a986d705cf3eeb1fd2da4b5adcc9da3f1ab1d75"
+    },
+    {
+      "file": "P02_TallForestTree_rear.png",
+      "bytes": 492283,
+      "sha256": "419320be5a5f6d1c10c6b1cc407179d756db4db412e9bdbb724100e1a8e5ec34"
+    },
+    {
+      "file": "P03_Undergrowth.fbx",
+      "bytes": 7388556,
+      "sha256": "bebea34b4d7c94a9cef8110180ecf991f050391ae248b46dbc9ddde5836d17c1"
+    },
+    {
+      "file": "P03_Undergrowth.glb",
+      "bytes": 7036480,
+      "sha256": "b924d1276494e4cd951d628da3e4e3605a0183546b920cba090d34b9ad7f34f9"
+    },
+    {
+      "file": "P03_Undergrowth.png",
+      "bytes": 1031548,
+      "sha256": "1e8cc50dffdf42d2110c781c6e4ce9bf060ec67e0372411a0dacb8ff429d2a06"
+    },
+    {
+      "file": "P03_Undergrowth_BaseColor.png",
+      "bytes": 1650900,
+      "sha256": "2fc332190e2aed32d5c8e935457a246b35c17a1272d755f2bf60cce2b95ae7f5"
+    },
+    {
+      "file": "P03_Undergrowth_front.png",
+      "bytes": 642639,
+      "sha256": "fa7345150845f0d19726fee845ca71101b2021923ada3b41ccac9fcd8fef1f0f"
+    },
+    {
+      "file": "P03_Undergrowth_Normal.png",
+      "bytes": 5164470,
+      "sha256": "1c2a9b2be58481d5344eb8674ef679ef56d161942f24a4bf66b92587c25e7b1f"
+    },
+    {
+      "file": "P03_Undergrowth_rear.png",
+      "bytes": 614830,
+      "sha256": "0337f247faf483992510c3cf4ccbf7ddcab2e3f4299e6e3b99f9ef346a73e42a"
+    },
+    {
+      "file": "P04_MossRocks.fbx",
+      "bytes": 4440588,
+      "sha256": "dce35a7fa8c12c79adee9fe1e443f21bf9e2cde48ecf08af8e83f2ea07ad9506"
+    },
+    {
+      "file": "P04_MossRocks.glb",
+      "bytes": 4282636,
+      "sha256": "3acffcc1f6e9bfb169d62f871be73f716982fb6ec6da2da87549ad128542470a"
+    },
+    {
+      "file": "P04_MossRocks.png",
+      "bytes": 1141733,
+      "sha256": "3b8cf9fd498a7caeb50756004c4110c2a9e276c01f8e1993a95ba42b64e466c6"
+    },
+    {
+      "file": "P04_MossRocks_BaseColor.png",
+      "bytes": 1506979,
+      "sha256": "a9c2b84d362a70189a01468c9cec2de4b18fc4c032ea69db1a3770619590fe1f"
+    },
+    {
+      "file": "P04_MossRocks_front.png",
+      "bytes": 579316,
+      "sha256": "0dbcbd3b83be5f8b03d520aa61e5cc5192f9a0403654b498d60e7f075611780a"
+    },
+    {
+      "file": "P04_MossRocks_Normal.png",
+      "bytes": 2692758,
+      "sha256": "924700351752224783ebf562e11b3e4271f86033936a7d6c23ce95cdeac31ed6"
+    },
+    {
+      "file": "P04_MossRocks_rear.png",
+      "bytes": 612375,
+      "sha256": "ad99e4fd32209ef619ec8e753fb6de766ea3443d33d562b211f2892b9a4d0d5c"
+    },
+    {
+      "file": "P05_CaveEntrance.fbx",
+      "bytes": 10369100,
+      "sha256": "af67e16a29c47fe82508bfa9baf46e8083efe02b49797a8aa7757473b7ea3be3"
+    },
+    {
+      "file": "P05_CaveEntrance.glb",
+      "bytes": 9731328,
+      "sha256": "642fbe06088798d94a269d447072ec1cb07d7ccc8e4b7dd72efde43e44b06506"
+    },
+    {
+      "file": "P05_CaveEntrance.png",
+      "bytes": 1141663,
+      "sha256": "ef7216008f010c22351f42613168ab7008f2248d619933798be7f7984f54e8c1"
+    },
+    {
+      "file": "P05_CaveEntrance_BaseColor.png",
+      "bytes": 5560679,
+      "sha256": "71200d71574e4e63cb617f84a538b92d47f54599956ce2aad36ad97e6c6bfe4a"
+    },
+    {
+      "file": "P05_CaveEntrance_front.png",
+      "bytes": 563656,
+      "sha256": "28064144e072fc96ece7072a14a923120a54ac0f18baabd39b718272e272f949"
+    },
+    {
+      "file": "P05_CaveEntrance_Normal.png",
+      "bytes": 3823922,
+      "sha256": "022716bcf00d0183beb01ef58676cf237d7aa87432afb40918fa74bd8b6146d1"
+    },
+    {
+      "file": "P05_CaveEntrance_rear.png",
+      "bytes": 563489,
+      "sha256": "7b6a3dba29ec7d4ad56f37259b524527fc0dc52a4f43834404e1848679a3b10d"
+    },
+    {
+      "file": "P06_CaveWall.fbx",
+      "bytes": 11262124,
+      "sha256": "e0e3c6b7882d840bcd6a9a9574ab950d8e1beb216daf8dc871a51b74f867c5ec"
+    },
+    {
+      "file": "P06_CaveWall.glb",
+      "bytes": 10815016,
+      "sha256": "7e507a04bdb5afef30e71f6b230a81d11501c05c4279b736aafaea3754d93626"
+    },
+    {
+      "file": "P06_CaveWall.png",
+      "bytes": 1448004,
+      "sha256": "1c0a6495ca672b89c1147fd204588252ea9ee628d032f38879dad88d22f11ab3"
+    },
+    {
+      "file": "P06_CaveWall_BaseColor.png",
+      "bytes": 6258973,
+      "sha256": "8e2f564b77db0ba1a288d649db538221e17267d4beae90e79edd39c62c323b1c"
+    },
+    {
+      "file": "P06_CaveWall_front.png",
+      "bytes": 743243,
+      "sha256": "20ba86f9b34f3534d22dd0ea3d997bfe0011ced920eeed1a7a2f54bf116d41d3"
+    },
+    {
+      "file": "P06_CaveWall_Normal.png",
+      "bytes": 4303964,
+      "sha256": "c1b1f14ed249adb67553d95e17b7cf39aedf7d0c4c1316f5e2ba351b56fa8cc2"
+    },
+    {
+      "file": "P06_CaveWall_rear.png",
+      "bytes": 743109,
+      "sha256": "b79b957452280a0aa1d4f0e5af2bb79885906375d493213f7b3c17d270b268d7"
+    },
+    {
+      "file": "P07_Stalagmites.fbx",
+      "bytes": 4883772,
+      "sha256": "6e5784bf7bbd360807f3f8d9e2f26ad84cfc63b19d2bddfc3feab98c58bbc7f8"
+    },
+    {
+      "file": "P07_Stalagmites.glb",
+      "bytes": 4660592,
+      "sha256": "6945451da88e0e822257cc67a72b6ecac3910b6c2a1930864f1935492f06fd7a"
+    },
+    {
+      "file": "P07_Stalagmites.png",
+      "bytes": 1047514,
+      "sha256": "f569be6c2bccd90b8d78f237dd1707fd4886516eb796a91ee9ad7ac4bc5b74d5"
+    },
+    {
+      "file": "P07_Stalagmites_BaseColor.png",
+      "bytes": 1434619,
+      "sha256": "144aacaf06edefd4191faa1939e9ec1eaeca7fee901b3d8f0275743dcad809eb"
+    },
+    {
+      "file": "P07_Stalagmites_front.png",
+      "bytes": 555561,
+      "sha256": "243227893cfe9172d0ed7781c8a32d6f6fb647065ce07da4efaa5a70f90b98b1"
+    },
+    {
+      "file": "P07_Stalagmites_Normal.png",
+      "bytes": 3101834,
+      "sha256": "1f5b178f859c868b756ff0aa63e4a448582e162cfa13b2cdca205c83f91db2c8"
+    },
+    {
+      "file": "P07_Stalagmites_rear.png",
+      "bytes": 553590,
+      "sha256": "3fdc7a644dfcc3100f6d7dc335e7c299c56ef261682b58499b117675f560e0a6"
+    }
+  ],
+  "unityPlacement": {
+    "date": "2026-10-07",
+    "scene": "Assets/_Project/Scenes/Battle.unity",
+    "assetRoot": "Assets/_Project/Environment",
+    "checks": {
+      "background": 31,
+      "hud": 75,
+      "bossOrbs": 79
+    },
+    "realFrames": {
+      "paused": 126,
+      "halfSpeed": 651,
+      "phase3OneSpeed": 373
+    },
+    "backgroundTriangles": [
+      52634,
+      88606,
+      46648,
+      38004
+    ],
+    "playMode": false,
+    "magePreview": true,
+    "newBuild": false,
+    "manualFullRun": false,
+    "log": "Docs/07_개발일지.md#d15-background-placement"
+  }
+}

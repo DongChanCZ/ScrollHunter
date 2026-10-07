@@ -1,0 +1,12 @@
+import fs from 'node:fs/promises';
+import {FileBlob,SpreadsheetFile} from '@oai/artifact-tool';
+const path='../../밸런스시트.xlsx';
+const wb=await SpreadsheetFile.importXlsx(await FileBlob.load(path));
+const r=wb.worksheets.getItem('스킬').getRange('A38:S41');
+r.format.wrapText=false;r.format.rowHeight=22;
+wb.recalculate();
+await (await SpreadsheetFile.exportXlsx(wb)).save(path);
+const final=await SpreadsheetFile.importXlsx(await FileBlob.load(path));
+const b=await final.render({sheetName:'스킬',range:'A37:S41',scale:1});
+await fs.writeFile('saved-skill-notes.png',new Uint8Array(await b.arrayBuffer()));
+console.log('Compared notes now use four compact rows; other formatting unchanged.');

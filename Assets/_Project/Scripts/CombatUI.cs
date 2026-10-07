@@ -57,6 +57,7 @@ public class CombatUI : MonoBehaviour
     [SerializeField] private TMP_Text shieldText;
     [Tooltip("방어도 방패 문양. 0이면 흐리게 두어 자리를 유지한다")]
     [SerializeField] private Image shieldIcon;
+    [SerializeField, Min(1f)] private float shieldDisplayScale = 1.5f;
     [SerializeField] private Color shieldEmptyIconColor = new Color(1f, 1f, 1f, 0.3f);
 
     [Header("기절 표시 (화면 중앙)")]
@@ -65,6 +66,7 @@ public class CombatUI : MonoBehaviour
 
     [Tooltip("{0}=남은 시간")]
     [SerializeField] private string stunFormat = "기절 {0:0.0}";
+    [SerializeField] private string costBlockingStunSuffix = "\n<size=55%>코스트 충전 불가</size>";
 
     [Header("손패")]
     [SerializeField] private HandSlotView[] handSlots = new HandSlotView[DeckSystem.HandSize];
@@ -211,6 +213,20 @@ public class CombatUI : MonoBehaviour
 
         if (targetMarker != null) markerBaseScale = targetMarker.localScale;
 
+        // 왼쪽 정렬을 유지하며 방어도 아이콘·숫자·여백을 함께 확대한다.
+        if (shieldIcon != null && shieldText != null)
+        {
+            var block = shieldIcon.rectTransform.parent as RectTransform;
+            if (block != null && shieldText.transform.parent == block)
+            {
+                block.anchoredPosition += Vector2.right * block.sizeDelta.x * (shieldDisplayScale - 1f) * block.pivot.x;
+                block.sizeDelta *= shieldDisplayScale;
+                shieldIcon.rectTransform.sizeDelta *= shieldDisplayScale;
+                shieldIcon.rectTransform.anchoredPosition *= shieldDisplayScale;
+                shieldText.rectTransform.offsetMin *= shieldDisplayScale;
+                shieldText.fontSize *= shieldDisplayScale;
+            }
+        }
         CacheDefaultTextColors();
     }
 
@@ -275,7 +291,8 @@ public class CombatUI : MonoBehaviour
         {
             bool stunned = player.IsStunned;
             stunText.enabled = stunned;
-            if (stunned) stunText.text = string.Format(stunFormat, player.StunRemaining);
+            if (stunned) stunText.text = string.Format(stunFormat, player.StunRemaining)
+                + (player.IsCostRecoveryBlocked ? costBlockingStunSuffix : "");
         }
     }
 

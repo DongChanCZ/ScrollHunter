@@ -25,6 +25,7 @@ public class EnemyManager : MonoBehaviour
 
     /// <summary>적 1~3번 자리의 가운데(2번 자리). 구역 전체를 덮는 연출의 기준점.</summary>
     public Vector3 FormationCenter => formationCenter;
+    public float FormationSideOffset => sideOffset;
 
     [Header("캐스팅 3색")]
     [SerializeField] private Color greenColor = new Color(0.25f, 0.80f, 0.35f);
@@ -59,7 +60,9 @@ public class EnemyManager : MonoBehaviour
     }
 
     /// <summary>등록된 적 수. 계측 요약이 처치 수와 함께 쓴다.</summary>
-    public int EnemyCount => enemies.Count;
+    public int EnemyCount => enemies.FindAll(e => e == null || !e.IsBossOrb).Count;
+    public int OrbsDestroyed { get; private set; }
+    public void RecordOrbDestroyed() => OrbsDestroyed++;
 
     /// <summary>죽은 적 수.</summary>
     public int DeadCount
@@ -68,7 +71,7 @@ public class EnemyManager : MonoBehaviour
         {
             int dead = 0;
             for (int i = 0; i < enemies.Count; i++)
-                if (enemies[i] == null || !enemies[i].IsAlive) dead++;
+                if (enemies[i] == null || (!enemies[i].IsBossOrb && !enemies[i].IsAlive)) dead++;
             return dead;
         }
     }
@@ -119,6 +122,7 @@ public class EnemyManager : MonoBehaviour
         foreach (Enemy enemy in enemies)
             if (enemy != null) enemy.SetEncounterActive(false);
         enemies = new List<Enemy>(combatants);
+        OrbsDestroyed = 0;
         // 3체는 지정한 강적을 중앙에, 나머지는 등록 순서대로 좌우에 둔다.
         if (enemies.Count == 3 && centerEnemy != null && enemies.Remove(centerEnemy))
             enemies.Insert(1, centerEnemy);
@@ -137,6 +141,22 @@ public class EnemyManager : MonoBehaviour
             enemy.BeginBattle();
         }
         CurrentTarget = FirstAlive();
+    }
+
+    internal void RegisterOrb(Enemy orb)
+    {
+        if (!enemies.Contains(orb)) enemies.Add(orb);
+        enemies.Sort((a, b) => a.transform.position.x.CompareTo(b.transform.position.x));
+    }
+
+    public void ClearBossOrbs()
+    {
+        foreach (Enemy enemy in enemies)
+        {
+            if (enemy == null || enemy.IsBossOrb) continue;
+            var orbs = enemy.GetComponent<BossOrbs>();
+            if (orbs != null) orbs.Clear();
+        }
     }
 
     private void Update()

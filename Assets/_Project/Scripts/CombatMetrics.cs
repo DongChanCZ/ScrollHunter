@@ -290,6 +290,7 @@ public class CombatMetrics : MonoBehaviour
         if (runModifiers != null) sb.AppendLine(runModifiers);
         sb.AppendLine("남은 HP: " + (player != null ? player.CurrentHp.ToString("F0") + " / " + player.MaxHp.ToString("F0") : "-"));
         sb.AppendLine("처치 수: " + (enemyManager != null ? enemyManager.DeadCount + " / " + enemyManager.EnemyCount : "-"));
+        if (enemyManager != null && enemyManager.OrbsDestroyed > 0) sb.AppendLine("오브 파괴: " + enemyManager.OrbsDestroyed);
         sb.AppendLine();
 
         sb.AppendLine("카드 사용 " + totalUses + "회 (기절 취소 " + cancelledUses + "회 포함)");

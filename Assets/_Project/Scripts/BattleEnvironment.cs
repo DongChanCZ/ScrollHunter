@@ -1,0 +1,107 @@
+using UnityEngine;
+
+/// <summary>전투 진행을 읽어 배경만 표시한다. 전투 판정·조명·카메라 설정은 바꾸지 않는다.</summary>
+public sealed class BattleEnvironment : MonoBehaviour
+{
+    [SerializeField] BattleFlow flow;
+    [SerializeField] Enemy boss;
+    [SerializeField] Camera view;
+    [SerializeField] GameObject[] stages;
+    [SerializeField] Transform[] backplates;
+    [SerializeField] Transform magicCircle;
+    [SerializeField] float[] circleDiameters = { 8f, 10.5f, 13f };
+    [SerializeField, Min(.01f)] float circleGrowthSeconds = 2f;
+    [SerializeField, Min(0f)] float circleDegreesPerSecond = 8f;
+    [SerializeField, Min(.1f)] float circleGlowPeriod = 3f;
+    [SerializeField, ColorUsage(true, true)] Color circleGlow = new Color(1.25f, .5f, 2f, 1f);
+    Renderer circleRenderer;
+    MaterialPropertyBlock circleProperties;
+    Quaternion circleRotation;
+    Player player;
+    float circleAngle, glowTime;
+    int shownStage = -1;
+    int shownPhase;
+    float circleFrom, circleTo, circleElapsed;
+    float lastAspect, lastFov;
+    const float BackplateDistance = 30f;
+    const float ImageAspect = 16f / 9f;
+
+    public int ShownStage => shownStage;
+    public int ShownPhase => shownPhase;
+
+    void Awake()
+    {
+        if (!flow) flow = FindFirstObjectByType<BattleFlow>();
+        if (!view) view = Camera.main;
+        if (!boss)
+            foreach (var enemy in FindObjectsByType<Enemy>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+                if (enemy.HasPhases) { boss = enemy; break; }
+        circleRotation = magicCircle.localRotation;
+        circleRenderer = magicCircle.GetComponent<Renderer>();
+        circleProperties = new MaterialPropertyBlock();
+        player = FindFirstObjectByType<Player>();
+        Refresh(0f);
+    }
+
+    void OnEnable() { if (player) player.BattleReset += ResetCircleMotion; }
+    void OnDisable()
+    {
+        if (player) player.BattleReset -= ResetCircleMotion;
+        if (magicCircle) magicCircle.localRotation = circleRotation;
+        if (circleRenderer) circleRenderer.SetPropertyBlock(null);
+    }
+    void ResetCircleMotion()
+    {
+        circleAngle = glowTime = 0f;
+        if (magicCircle) magicCircle.localRotation = circleRotation;
+    }
+
+    void LateUpdate() => Refresh(Time.deltaTime);
+
+    // ponytail: 고정 카메라 전용 2.5D 배경. 이동 카메라를 도입하면 실제 지형으로 교체한다.
+    public void Refresh(float deltaTime)
+    {
+        int battle = flow ? flow.BattleNumber : 0;
+        int stage = battle <= 0 ? 0 : battle == 1 ? 1 : battle <= 3 ? 2 : 3;
+        bool changed = stage != shownStage;
+        if (changed)
+        {
+            for (int i = 0; i < stages.Length; i++) stages[i].SetActive(i == stage);
+            shownStage = stage;
+            ResetCircleMotion();
+        }
+        if (view && (lastAspect != view.aspect || lastFov != view.fieldOfView))
+        {
+            float height = 2f * BackplateDistance * Mathf.Tan(view.fieldOfView * .5f * Mathf.Deg2Rad);
+            float cover = Mathf.Max(1f, view.aspect / ImageAspect);
+            foreach (var plate in backplates)
+                plate.localScale = new Vector3(height * ImageAspect * cover * 1.04f, height * cover * 1.04f, 1f);
+            lastAspect = view.aspect; lastFov = view.fieldOfView;
+        }
+        int phase = stage == 3 && boss ? Mathf.Clamp(boss.PhaseNumber, 1, 3) : 1;
+        if (changed || phase != shownPhase)
+        {
+            circleFrom = magicCircle.localScale.x;
+            circleTo = circleDiameters[phase - 1];
+            circleElapsed = 0f;
+            // 새 런·재시작은 즉시 초기 크기로 복원한다.
+            if (changed || phase < shownPhase) circleFrom = circleTo;
+            shownPhase = phase;
+        }
+        circleElapsed += Mathf.Max(0f, deltaTime);
+        float diameter = Mathf.Lerp(circleFrom, circleTo, Mathf.SmoothStep(0f, 1f, circleElapsed / circleGrowthSeconds));
+        magicCircle.localScale = new Vector3(diameter, diameter, 1f);
+        if (stage == 3)
+        {
+            float dt = Mathf.Max(0f, deltaTime);
+            circleAngle = Mathf.Repeat(circleAngle + dt * circleDegreesPerSecond, 360f);
+            glowTime = Mathf.Repeat(glowTime + dt, circleGlowPeriod);
+            // 카메라를 향한 평면의 로컬 -Z 회전은 화면에서 시계방향.
+            magicCircle.localRotation = circleRotation * Quaternion.Euler(0, 0, -circleAngle);
+            Color glow = circleGlow * (1f + .15f * Mathf.Sin(glowTime / circleGlowPeriod * Mathf.PI * 2f));
+            glow.a = circleGlow.a;
+            circleProperties.SetColor("_BaseColor", glow);
+            circleRenderer.SetPropertyBlock(circleProperties);
+        }
+    }
+}

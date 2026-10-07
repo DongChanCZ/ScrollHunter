@@ -369,6 +369,7 @@ MonoBehaviour:
     releaseAnchor: 0
     releaseOffset: {x: 0, y: 0, z: 0}
     groundRelease: {fileID: 0}
+    screenRelease: {fileID: 0}
     chargeCollapse: 0.08
     projectile: {fileID: 7367369208963312548, guid: 6c4b14da48db47343aa97399ba36d10e, type: 3}
     projectileImpact: {fileID: 1199888824420490422, guid: 2077d9ac17dfe3d45a4e07c3b3ac1efd, type: 3}
@@ -413,6 +414,7 @@ MonoBehaviour:
     releaseAnchor: 0
     releaseOffset: {x: 0, y: 0, z: -0.05}
     groundRelease: {fileID: 0}
+    screenRelease: {fileID: 0}
     chargeCollapse: 0.08
     projectile: {fileID: 0}
     projectileImpact: {fileID: 0}
@@ -453,10 +455,11 @@ MonoBehaviour:
     startEmission: 0.25
     follow: 0.08
     release: {fileID: 1748964315407770079, guid: 3da301eb59bea2741934a69fa0b35444, type: 3}
-    releaseSize: 1.8
+    releaseSize: 3.6
     releaseAnchor: 5
     releaseOffset: {x: 0, y: 0, z: 0}
     groundRelease: {fileID: 0}
+    screenRelease: {fileID: 0}
     chargeCollapse: 0.12
     projectile: {fileID: 0}
     projectileImpact: {fileID: 0}
@@ -501,6 +504,7 @@ MonoBehaviour:
     releaseAnchor: 3
     releaseOffset: {x: 0, y: 0, z: -0.15}
     groundRelease: {fileID: 0}
+    screenRelease: {fileID: 0}
     chargeCollapse: 0.15
     projectile: {fileID: 0}
     projectileImpact: {fileID: 0}
@@ -545,6 +549,7 @@ MonoBehaviour:
     releaseAnchor: 5
     releaseOffset: {x: 0, y: 0, z: 0}
     groundRelease: {fileID: 6220022385577353571, guid: 25a4938b978b7d14cbd57c7c33ee444e, type: 3}
+    screenRelease: {fileID: 1981431031382966871, guid: 27583c77fb9064d448b57f37fe3e77af, type: 3}
     chargeCollapse: 0.12
     projectile: {fileID: 0}
     projectileImpact: {fileID: 0}

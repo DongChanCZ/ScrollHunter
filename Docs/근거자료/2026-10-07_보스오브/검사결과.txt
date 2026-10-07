@@ -1,0 +1,15 @@
+2026-10-07 검사 결과 요약 (Codex / Unity MCP)
+BossOrbChecks.Run: 79 통과
+BossChecks.Run: 315 통과
+TutorialChecks.RunCombatRegression: 755 통과
+EnemyAnimationLinkChecks.RunTiming: 359 통과
+ChannelingChecks.Run: Edit mode 42 통과
+오브 위치로 카메라 Raycast: True
+
+실제 프레임 원문:
+passed
+1x: 358 frames; transition/stagger, active orbs, silence, paused lock, orb destruction, recovery PASS
+0.5x: 687 frames; transition/stagger, active orbs, silence, paused lock, orb destruction, recovery PASS
+
+한계: 입력은 함수 호출. 직접 손 조작·전체 런·밸런스·새 빌드 미실시.
+수정 과정: 첫 충전 검사 실패 후 해제 상태를 음의 무한대로 구분. 프레임 검사 뒤 0.5배속이 남아 기존 회귀 초기 자원 검사 1회 실패; 1배속 복구 후 755 통과. 프레임 검사 배속 복원 보완 후 재검사: 1x 358 / 0.5x 687프레임 통과, restored speed=1 확인.

@@ -1,0 +1,50 @@
+using UnityEngine;
+
+/// <summary>방어도 없는 빨강 피격만 카메라를 흔든다. HUD·전투 난수·판정에는 관여하지 않는다.</summary>
+[DisallowMultipleComponent]
+public class RedHitShake : MonoBehaviour
+{
+    [SerializeField, Min(0.01f)] private float duration = 0.2f;
+    [SerializeField, Min(0f)] private float amplitude = 0.06f;
+    [SerializeField, Min(0f)] private float frequency = 24f;
+    private Player player;
+    private CombatMetrics metrics;
+    private Vector3 offset;
+    private float remaining;
+    public bool IsShaking => remaining > 0f;
+
+    private void Awake()
+    {
+        player = FindFirstObjectByType<Player>();
+        metrics = FindFirstObjectByType<CombatMetrics>();
+    }
+    private void OnEnable()
+    {
+        if (player == null) return;
+        player.UnshieldedRedHit += Shake;
+        player.BattleReset += Clear;
+    }
+    private void OnDisable()
+    {
+        if (player != null) { player.UnshieldedRedHit -= Shake; player.BattleReset -= Clear; }
+        Clear();
+    }
+    private void Shake() => remaining = duration;
+    private void LateUpdate() => Advance(metrics != null && metrics.Ended ? Time.unscaledDeltaTime : Time.deltaTime);
+    private void Advance(float dt)
+    {
+        if (dt <= 0f) return;
+        transform.localPosition -= offset;
+        remaining = Mathf.Max(0f, remaining - dt);
+        float phase = (duration - remaining) * frequency * Mathf.PI * 2f;
+        offset = new Vector3(Mathf.Sin(phase), Mathf.Sin(phase * 1.3f), 0f)
+            * (amplitude * remaining / duration);
+        transform.localPosition += offset;
+    }
+    public void Clear()
+    {
+        transform.localPosition -= offset;
+        offset = Vector3.zero;
+        remaining = 0f;
+    }
+}

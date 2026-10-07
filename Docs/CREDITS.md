@@ -140,3 +140,17 @@
 - (10/6 후속) 파이어볼을 보라 불꽃으로 바꾸며 착탄에 쓰던 OpenGameArt Explosion03(Soluna Software, CC0) 재질은 마법사 연출에서 빠짐. 플레이어 스킬 쪽 기존 사용은 그대로.
 - 파이어볼 꼬리는 기존 자체 생성 `TrailSoft.png`(외부 에셋 아님).
 - 가공: 재질 `Assets/_Project/VFX/Mage/MG_*.mat`은 기존 URP Particles/Unlit 재질(`VFX_spark_01`·`_alpha`)을 복사해 텍스처만 바꿈. 효과 프리팹 11종은 Unity 내장 ParticleSystem·TrailRenderer로 직접 구성(색·크기·수명·움직임). 데모 씬·전역 렌더링 설정 반입 없음. 적용·검사는 [07](07_개발일지.md#d14-mage-attack-vfx).
+- (10/7 후속) 다크홀 폭발 2배·디엔드 화면 폭발(`VFX_Mage_TheEndScreen`)도 위 기존 Kenney 텍스처(`circle_05`·`circle_02`·`smoke_04`·`twirl_02`·`trace_02`)만 재사용. 새 외부 에셋·다운로드 없음. [07](07_개발일지.md#d15-mage-vfx-fix).
+
+## 보스 오브 외형·소환·파괴 연출 (2026-10-07)
+
+- 새 외부 다운로드·로그인·라이선스 동의 없음. 루미너스(메이플스토리)의 빛·어둠 오브는 시각 참고로만 삼았고 게임 원본 이미지·리소스는 추출·사용하지 않음.
+- Kenney Particle Pack — Kenney, https://kenney.nl/assets/particle-pack — CC0: https://creativecommons.org/publicdomain/zero/1.0/ . 기존 반입본 `circle_05`(후광·섬광·알갱이), `circle_02`(충격 고리·궤도 고리), `smoke_04`(파멸 어둠 연기), `twirl_02`(소용돌이·순환 빛줄기), `trace_06`(모이는 궤적·방사 궤적), `flare_01`(순환 빛 알갱이) 재사용. 원본 PNG 무가공, `Assets/_Project/VFX/Textures/`.
+- 가공: 재질 `Assets/_Project/VFX/BossOrb/ORB_*.mat`은 기존 URP Particles/Unlit 재질(`VFX_spark_01`·`_alpha`)을 복사해 텍스처만 바꿈(일부 부드러운 입자·양면). 공유 재질은 수정하지 않음.
+- 직접 제작(외부 에셋 아님): 구체 표면 셰이더 `BossOrbSurface.shader`, 이어지는 흐름 무늬 텍스처 `OrbFlowNoise.png`(메뉴 `Apply Boss Orb VFX`가 값 잡음으로 생성), 구체 재질 `ORB_Ruin/Cycle_Core·Shell`. 구체는 Unity 내장 Sphere 메시, 효과는 Unity ParticleSystem으로 구성. 적용·검사는 [07](07_개발일지.md#d15-boss-orb-vfx).
+
+## 배경 원화·3D 소품 (2026-10-07)
+
+- VARCO 3D의 `ScrollHunter` 워크플로에서 생성. 원화는 `gpt-image-2-medium`, 소품은 VARCO 이미지→텍스처 3D 생성 사용. 외부 게임 리소스 추출 없음.
+- 출력 13 PNG·소품 7종 GLB/FBX와 텍스처를 `근거자료/2026-10-07_배경제작/`에 보존. 프롬프트·노드·다운로드 출처는 `generation_manifest.json`.
+- Blender 5.2로 앞뒤 화면·메시·FBX 재반입 검사, 내장 텍스처를 PNG로 추출. 형상 수정 없음. Unity `Assets/_Project/Environment/`에 FBX 7종·텍스처·배경 4종·마법진 반입, Battle 씬에 사용. 색·축척·배치·재질만 조정. 접지 그림자는 기존 Kenney Particle Pack `circle_05.png`(CC0)를 재사용. [06](06_에셋_파이프라인.md#background-assets-20261007).

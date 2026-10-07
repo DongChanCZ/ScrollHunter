@@ -240,9 +240,14 @@ public class CombatInfoUI : MonoBehaviour
     }
 
     [SerializeField] private string phaseTransitionFormat = "<size=145%><b><color=#F5EBD6>{0}</color></b></size>\n<color=#F5EBD6><b>{1}</b>페이즈 전환</color>\n무적 <b>{2:0.0}초</b> · 새 스킬 사용 불가";
+    [SerializeField, TextArea] private string orbDescriptionFormat = "<size=145%><b><color=#F5EBD6>{0}</color></b></size>\n{1}\n파괴 시 보스 고정 피해 <b>{2}</b>\n전환 중 보스 무적에는 피해 없음";
+    [SerializeField] private string costBlockingStunText = "\n기절 중 코스트 충전 불가";
+    [SerializeField] private string orbEmpoweredText = "\n파멸 강화 적용";
     public string DescribeEnemy(Enemy target)
     {
         string name = target.Data.DisplayName;
+        if (target.IsBossOrb) return string.Format(orbDescriptionFormat, name,
+            target.Data.PassiveDescription, target.OrbDestructionDamage);
         if (target.IsPhaseTransitioning) return string.Format(phaseTransitionFormat, name, target.PhaseNumber, target.PhaseTransitionRemaining);
         if (!target.IsCasting || target.CurrentAttack == null) return string.Format(restingFormat, name);
         EnemyAttack attack = target.CurrentAttack;
@@ -252,7 +257,9 @@ public class CombatInfoUI : MonoBehaviour
             string reduction = string.Format(redShieldEffectFormat, (1f - player.RedShieldDamageMultiplier) * 100f);
             effect = attack.StunSeconds > 0f ? effect + "\n" + reduction : reduction;
         }
-        return string.Format(enemyFormat, name, attack.SkillName, attack.Damage, target.CurrentCastTime,
+        if (target.CurrentDamageMultiplier > 1f) effect += orbEmpoweredText;
+        if (target.CastBlocksCostRecovery) effect += costBlockingStunText;
+        return string.Format(enemyFormat, name, attack.SkillName, (attack.Damage * target.CurrentDamageMultiplier).ToString("0.#"), target.CurrentCastTime,
             attack.CastColor == CastColor.Red ? cannotInterruptLabel : canInterruptLabel,
             effect, sectionBreak);
     }

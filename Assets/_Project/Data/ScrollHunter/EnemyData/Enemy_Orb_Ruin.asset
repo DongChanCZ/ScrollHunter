@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 593c5b4bd9f007948b51815f6b3c6456, type: 3}
+  m_Name: Enemy_Orb_Ruin
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyData
+  displayName: "\uD30C\uBA78\uC758 \uC624\uBE0C"
+  maxHp: 400
+  defense: 0
+  attacks: []
+  phases: []
+  phaseTransitionSeconds: 2
+  ruinOrb: {fileID: 0}
+  cycleOrb: {fileID: 0}
+  passiveDescription: "\uBCF4\uC2A4 \uD53C\uD574 +10%\n\uAC15\uD654 \uC0AC\uC77C\uB7F0\uC2A4\xB7\uB098\uC774\uD2B8\uBA54\uC5B4\uC758\n\uAE30\uC808
+    \uC911 \uCF54\uC2A4\uD2B8 \uCDA9\uC804 \uBD88\uAC00"
+  orbDamageMultiplier: 1.1
+  orbCastTimeReduction: 0.2
+  orbDestructionDamage: 150
+  orbVisual: {fileID: 5682857288883393236, guid: ae6d670eeec615c4d985ae59d9dbb123, type: 3}
+  orbBreak: {fileID: 5276250973655601812, guid: 9cc3d3e45d58ca5429b2fb25eafe6706, type: 3}

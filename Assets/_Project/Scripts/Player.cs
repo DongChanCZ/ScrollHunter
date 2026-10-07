@@ -43,6 +43,8 @@ public class Player : MonoBehaviour
 
     /// <summary>HUD 피격 표시용 알림(실제 HP 감소량, 방어도 흡수량). 무적으로 막은 피해는 알리지 않는다.</summary>
     public event System.Action<int, int> Damaged;
+    /// <summary>피격 직전 방어도 없이 빨강 공격에 실제 HP를 잃었다. 표시 전용.</summary>
+    public event System.Action UnshieldedRedHit;
     /// <summary>실제 회복량. 최대 HP를 넘어 버려진 양은 포함하지 않는다.</summary>
     public event System.Action<float> Healed;
     /// <summary>전투 시작·재시작으로 HP·방어도를 새로 맞췄다. HUD 잔상·피해 표시 정리용.</summary>
@@ -59,7 +61,7 @@ public class Player : MonoBehaviour
     private float shieldGainBonus;
     private float interruptStaggerBonus;
     private int potionCapacityBonus;
-    [SerializeField, Min(0)] private int basePotionCapacity = 2;
+    [SerializeField, Min(0)] private int basePotionCapacity = 3;
     [SerializeField, Range(0f, 1f)] private float potionHealFraction = 0.3f;
     [SerializeField] private KeyCode potionKey = KeyCode.LeftShift;
     [SerializeField] private KeyCode alternatePotionKey = KeyCode.RightShift;
@@ -124,12 +126,24 @@ public class Player : MonoBehaviour
     public float StunRemaining { get; private set; }
 
     public bool IsStunned => StunRemaining > 0f;
+    private float costRecoveryBlockedUntil = float.NegativeInfinity;
+    public bool IsCostRecoveryBlocked => IsStunned && Time.time < costRecoveryBlockedUntil;
+    // 절대 게임 시간으로 계산해 Player/CostSystem의 Update 순서에 영향받지 않는다.
+    public float CostRecoveryTime(float deltaTime) => Mathf.Clamp(Time.time - costRecoveryBlockedUntil, 0f, deltaTime);
+
+    public void ApplyCostBlockingStun(float seconds)
+    {
+        if (seconds <= 0f || !IsAlive || IsStunImmune || (metrics != null && metrics.Ended)) return;
+        ApplyStun(seconds);
+        costRecoveryBlockedUntil = Mathf.Max(costRecoveryBlockedUntil, Time.time + seconds);
+        Debug.Log($"[Player] 파멸 강화 기절 — 코스트 충전 금지 {seconds:0.#}초", this);
+    }
 
     // 생츄어리 채널링 1회가 소유하는 상태. 전투·오브젝트 종료 시에도 해제한다.
     public bool IsInvulnerable { get; private set; }
     public bool IsStunImmune => IsInvulnerable;
     public void SetSanctuary(bool active) => IsInvulnerable = active;
-    private void OnDisable() => SetSanctuary(false);
+    private void OnDisable() { SetSanctuary(false); costRecoveryBlockedUntil = float.NegativeInfinity; }
 
     private bool defeatHandled;
     private TutorialFlow tutorial;
@@ -177,6 +191,7 @@ public class Player : MonoBehaviour
         SetSanctuary(false);
         ClearShield();
         StunRemaining = 0f;
+        costRecoveryBlockedUntil = float.NegativeInfinity;
     }
 
     public int AddShield(int baseAmount)
@@ -192,7 +207,7 @@ public class Player : MonoBehaviour
     /// <summary>
     /// 기절을 건다. 이미 기절 중이면 남은 시간을 갱신한다 (02 문서 E15).
     /// 더 짧은 기절이 긴 기절을 덮어쓰지 않도록 둘 중 큰 값을 쓴다.
-    /// 코스트는 기절 중에도 계속 충전된다 (E09) — CostSystem이 독립적으로 돌기 때문.
+    /// 일반 기절은 충전 유지. A43의 파멸 강화 기절만 별도 충전 금지.
     /// </summary>
     public void ApplyStun(float seconds)
     {
@@ -204,10 +219,13 @@ public class Player : MonoBehaviour
 
     /// <param name="incomingDamage">방어력 적용 전 피해량(절대값).</param>
     public void TakeDamage(int incomingDamage, CastColor attackColor = CastColor.Green)
+        => TakeModifiedDamage(incomingDamage, attackColor, 1f);
+
+    public void TakeModifiedDamage(int incomingDamage, CastColor attackColor, float multiplier)
     {
         if (!IsAlive || (metrics != null && metrics.Ended)) return;
 
-        int taken = DamageFormula.Compute(incomingDamage, 1, defense);
+        int taken = DamageFormula.Compute(incomingDamage, 1, defense, 1f, multiplier);
         if (IsInvulnerable)
         {
             if (metrics != null) metrics.RecordInvulnerabilityPrevented(taken);
@@ -219,7 +237,7 @@ public class Player : MonoBehaviour
         if (redShield)
         {
             // 이미 반올림한 taken을 나누지 않는다. 원본에서 배율까지 계산한 뒤 한 번만 정수화.
-            int reduced = DamageFormula.Compute(incomingDamage, 1, defense, 1f, RedShieldDamageMultiplier);
+            int reduced = DamageFormula.Compute(incomingDamage, 1, defense, 1f, multiplier * RedShieldDamageMultiplier);
             prevented = taken - reduced;
             taken = reduced;
             if (metrics != null) metrics.RecordRedShieldPrevented(prevented);
@@ -242,6 +260,7 @@ public class Player : MonoBehaviour
         int hpLost = Mathf.RoundToInt(hpBefore - currentHp);
         if (hpLost > 0 || absorbed > 0) Damaged?.Invoke(hpLost, absorbed);
 
+        if (attackColor == CastColor.Red && !redShield && hpLost > 0) UnshieldedRedHit?.Invoke();
         if (!IsAlive) Defeat();
     }
 

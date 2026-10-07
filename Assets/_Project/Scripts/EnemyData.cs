@@ -71,6 +71,28 @@ public class EnemyData : ScriptableObject
     public IReadOnlyList<EnemyPhase> Phases => phases;
     public float PhaseTransitionSeconds => phaseTransitionSeconds;
 
+    [Header("보스 오브 (A43)")]
+    [SerializeField] private EnemyData ruinOrb;
+    [SerializeField] private EnemyData cycleOrb;
+    [SerializeField, TextArea] private string passiveDescription;
+    [SerializeField, Min(1f)] private float orbDamageMultiplier = 1.1f;
+    [SerializeField, Range(0f, .99f)] private float orbCastTimeReduction = .2f;
+    [SerializeField, Min(0)] private int orbDestructionDamage = 150;
+    public float OrbDamageMultiplier => orbDamageMultiplier;
+    public float OrbCastTimeReduction => orbCastTimeReduction;
+    public int OrbDestructionDamage => orbDestructionDamage;
+    public EnemyData RuinOrb => ruinOrb;
+    public EnemyData CycleOrb => cycleOrb;
+    public string PassiveDescription => passiveDescription;
+
+    [Header("오브 자신의 표시 (A43 연출, 오브 데이터에만 연결)")]
+    [Tooltip("BossOrbVisual 프리팹. 비우면 임시 구체로 표시")]
+    [SerializeField] private GameObject orbVisual;
+    [Tooltip("OrbBreakVfx 프리팹. 실제 공격으로 파괴됐을 때만 재생")]
+    [SerializeField] private GameObject orbBreak;
+    public GameObject OrbVisual => orbVisual;
+    public GameObject OrbBreak => orbBreak;
+
     public string DisplayName => displayName;
     public int MaxHp => maxHp;
     public float Defense => defense;

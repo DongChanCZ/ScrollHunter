@@ -1,0 +1,10 @@
+2026-10-07
+HudChecks.Run:75
+BossChecks.Run:315
+TutorialChecks.RunCombatRegression:756
+TutorialChecks.Run:108 (ending-hold fixture corrected and rerun)
+BossOrbChecks.Run:79
+Auto input runs:3, all defeated in boss battle, 254 accepted actions, errors/warnings:0
+Restart HP500, potions3/3
+Saved scene potion capacity3, fraction0.3; Play off, scene dirty false, preview off
+Excel: formula scan0, intended cell edits60, unrelated cell values0; skill note wrapping/height corrected. Native Excel not run.

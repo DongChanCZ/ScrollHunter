@@ -78,8 +78,15 @@ public class Enemy : MonoBehaviour
     public bool IsPhaseTransitioning => phaseTransitionRemaining > 0f;
     public bool IsInvulnerable => IsAlive && IsPhaseTransitioning;
     public float PhaseTransitionRemaining => phaseTransitionRemaining;
-    public float CurrentCastTime => current == null ? 0f : current.CastTime *
-        (HasPhases ? data.Phases[phaseIndex].CastTimeMultiplier : 1f);
+    private BossOrbs orbs;
+    private bool ruinAtCastStart, cycleAtCastStart;
+    public bool IsBossOrb { get; private set; }
+    private Enemy summoner;
+    public int OrbDestructionDamage => summoner != null ? summoner.Data.OrbDestructionDamage : 0;
+    public bool CastBlocksCostRecovery => ruinAtCastStart && current != null && current.StunSeconds > 0f;
+    public float CurrentDamageMultiplier => ruinAtCastStart ? data.OrbDamageMultiplier : 1f;
+    public float CurrentCastTime => current == null ? 0f : current.CastTime * Mathf.Max(.01f,
+        (HasPhases ? data.Phases[phaseIndex].CastTimeMultiplier : 1f) - (cycleAtCastStart ? data.OrbCastTimeReduction : 0f));
 
     private EnemyManager manager;
     private Player player;
@@ -171,13 +178,19 @@ public class Enemy : MonoBehaviour
     public void SetEncounterActive(bool active)
     {
         EncounterActiveChanging?.Invoke(active);
-        if (!active) { phaseTransitionRemaining = 0f; current = null; }
+        if (!active) { phaseTransitionRemaining = 0f; current = null; if (orbs != null) { orbs.Clear(); orbs.RemoveEffects(); } }
         gameObject.SetActive(active);
         if (castBarRoot != null) castBarRoot.gameObject.SetActive(active);
     }
 
     public void BeginBattle()
     {
+        if (orbs != null) orbs.Clear();
+        if (HasPhases && data.RuinOrb != null && data.CycleOrb != null)
+        {
+            if (orbs == null) orbs = gameObject.AddComponent<BossOrbs>();
+            orbs.Initialize(this, manager, player);
+        }
         SetEncounterActive(true);
         tutorialPattern = HoldTutorialDefeat = false;
         CurrentHp = MaxHp;
@@ -200,7 +213,9 @@ public class Enemy : MonoBehaviour
         // 전환과 발동/차단 경직은 같은 시간에 진행한다.
         if (IsPhaseTransitioning || IsStaggered || resting)
         {
+            bool wasTransitioning = IsPhaseTransitioning;
             phaseTransitionRemaining = Mathf.Max(0f, phaseTransitionRemaining - deltaTime);
+            if (wasTransitioning && !IsPhaseTransitioning && orbs != null) orbs.ActivateInitial();
             staggerTimer = Mathf.Max(0f, staggerTimer - deltaTime);
             restTimer = Mathf.Max(0f, restTimer - deltaTime);
             if (restTimer <= 0f) resting = false;
@@ -234,6 +249,7 @@ public class Enemy : MonoBehaviour
         phasePatternIndex = 0;
         current = null;
         phaseTransitionRemaining = data.PhaseTransitionSeconds;
+        if (orbs != null) { orbs.BeginTransition(); if (!IsPhaseTransitioning) orbs.ActivateInitial(); }
         Debug.Log($"[{name}] {PhaseNumber}페이즈 전환 {phaseTransitionRemaining:0.0}초", this);
         RefreshBar();
     }
@@ -242,6 +258,8 @@ public class Enemy : MonoBehaviour
     private void BeginNextCast()
     {
         current = SelectNextAttack();
+        ruinAtCastStart = orbs != null && orbs.RuinActive;
+        cycleAtCastStart = orbs != null && orbs.CycleActive;
         castTimer = 0f;
         resting = false;
         staggerTimer = 0f;
@@ -278,13 +296,18 @@ public class Enemy : MonoBehaviour
 
     private void Fire()
     {
+        bool restoreOrb = orbs != null && PhaseNumber == 3 && current == data.Attacks[2];
         if (player != null)
         {
-            player.TakeDamage(current.Damage, current.CastColor);
-            // 주황의 미대응 페널티. 피해보다 이쪽이 본체다.
-            if (current.StunSeconds > 0f) player.ApplyStun(current.StunSeconds);
+            player.TakeModifiedDamage(current.Damage, current.CastColor, CurrentDamageMultiplier);
+            if (current.StunSeconds > 0f)
+            {
+                if (CastBlocksCostRecovery) player.ApplyCostBlockingStun(current.StunSeconds);
+                else player.ApplyStun(current.StunSeconds);
+            }
         }
-        Debug.Log($"[{name}] 발동: {current.SkillName} ({current.CastColor}) 피해 {current.Damage}", this);
+        Debug.Log($"[{name}] 발동: {current.SkillName} ({current.CastColor}) 피해 {current.Damage}" +
+            (ruinAtCastStart ? $" ×{CurrentDamageMultiplier:0.##} (파멸 강화)" : ""), this);
 
         // 쿨다운 상태 갱신
         if (current.CastColor == CastColor.Green)
@@ -308,6 +331,7 @@ public class Enemy : MonoBehaviour
         AdvancePattern();
         TryBeginPhaseTransition();
         AttackFired?.Invoke(firedColor);
+        if (restoreOrb) orbs.RestoreOne();
     }
 
     public static event System.Action<Vector3> InterruptSucceeded;
@@ -384,6 +408,7 @@ public class Enemy : MonoBehaviour
         resting = false;
         phaseTransitionRemaining = 0f;
         Debug.Log($"[{name}] 사망", this);
+        if (orbs != null) orbs.Clear();
         Died?.Invoke();   // 모델은 이때 적에서 떼어 사망 동작을 보인다(EnemyAnimationDriver). 판정은 아래 그대로
 
         // 바는 이제 Canvas 아래에 있어 적을 꺼도 같이 사라지지 않는다. 직접 끈다.
@@ -434,13 +459,70 @@ public class Enemy : MonoBehaviour
     {
         if (castSkillText != null)
             castSkillText.text = IsPhaseTransitioning ? string.Format(phaseTransitionFormat, phaseTransitionRemaining)
-                : current == null ? string.Empty : HasPhases ? string.Format(phaseAttackFormat, PhaseNumber, current.SkillName) : current.SkillName;
+                : IsBossOrb ? data.DisplayName : current == null ? string.Empty : HasPhases ? string.Format(phaseAttackFormat, PhaseNumber, current.SkillName) : current.SkillName;
 
         if (castBarFill == null) return;
 
         if (IsStaggered || IsPhaseTransitioning) { castBarFill.color = staggerColor; return; }
         if (manager == null || current == null) return;
         castBarFill.color = manager.GetCastColor(current.CastColor);
+    }
+
+    // 오브도 같은 HP·타겟·피해 경로를 쓴다. 준비 구체는 HP 0이고 목록에 등록하지 않는다.
+    internal Enemy CreateOrb(EnemyData orbData, Vector3 position, Color color, float barHeight)
+    {
+        var obj = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+        obj.name = orbData.DisplayName;
+        obj.transform.position = position;
+        var orb = obj.AddComponent<Enemy>();
+        orb.data = orbData;
+        orb.IsBossOrb = true;
+        orb.summoner = this;
+        orb.barWorldHeight = barHeight;
+        orb.Initialize(manager, player);
+        if (castBarRoot != null)
+        {
+            orb.castBarRoot = Instantiate(castBarRoot, castBarRoot.parent);
+            orb.castBarRoot.name = orbData.name + "Bars";
+            orb.hpBarFill = CopyBarReference(hpBarFill, orb.castBarRoot);
+            orb.hpText = CopyBarReference(hpText, orb.castBarRoot);
+            orb.castSkillText = CopyBarReference(castSkillText, orb.castBarRoot);
+            var castFill = CopyBarReference(castBarFill, orb.castBarRoot);
+            if (castFill != null)
+            {
+                Transform bar = castFill.transform;
+                while (bar.parent != orb.castBarRoot) bar = bar.parent;
+                bar.gameObject.SetActive(false);
+            }
+            orb.castBarRoot.gameObject.SetActive(false);
+        }
+        var material = new Material(Shader.Find("Universal Render Pipeline/Lit"));
+        material.color = color;
+        obj.GetComponent<Renderer>().sharedMaterial = material;
+        obj.GetComponent<Collider>().enabled = false;
+        return orb;
+    }
+
+    private T CopyBarReference<T>(T source, RectTransform destination) where T : Component
+    {
+        if (source == null) return null;
+        int index = System.Array.IndexOf(castBarRoot.GetComponentsInChildren<T>(true), source);
+        return index < 0 ? null : destination.GetComponentsInChildren<T>(true)[index];
+    }
+
+    internal void HideOrb()
+    {
+        CurrentHp = 0;
+        SetEncounterActive(false); // 종료 정리는 Died를 호출하지 않는다.
+        GetComponent<Collider>().enabled = false;
+    }
+
+    private void OnDestroy()
+    {
+        if (!IsBossOrb) return;
+        if (castBarRoot != null) Destroy(castBarRoot.gameObject);
+        var renderer = GetComponent<Renderer>();
+        if (renderer != null) Destroy(renderer.sharedMaterial);
     }
 
     /// <summary>EnemyManager가 Initialize 직후 색을 확정할 때 호출한다.</summary>

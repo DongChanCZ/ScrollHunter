@@ -11,6 +11,13 @@ public class ArrowFlight : MonoBehaviour
 
     private Vector3 start, end;
     private float duration, elapsed;
+    private bool finishing;
+    public bool IsFlying => elapsed < duration;
+    public void PlayOutUnscaled()
+    {
+        finishing = true;
+        FinishingVfx.PlayUnscaled(gameObject);
+    }
 
     public void Launch(Vector3 target, float seconds)
     {
@@ -18,12 +25,13 @@ public class ArrowFlight : MonoBehaviour
         end = target;
         duration = Mathf.Max(0.01f, seconds);
         elapsed = 0f;
+        finishing = false;
         enabled = true;
     }
 
     private void Update()
     {
-        elapsed += Time.deltaTime;
+        elapsed += finishing ? Time.unscaledDeltaTime : Time.deltaTime;
         float k = Mathf.Clamp01(elapsed / duration);
         Vector3 next = Vector3.Lerp(start, end, k) + Vector3.up * (arcHeight * 4f * k * (1f - k));
         Vector3 step = next - transform.position;

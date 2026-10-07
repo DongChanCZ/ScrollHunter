@@ -49,12 +49,12 @@ public static class MageAttackVfxSetup
                 SilenceWave(), BossAttackVfx.Anchor.RightHand, new Vector3(0f, 0f, -0.05f), 0.08f) { chargeSize = 2.2f, releaseSize = 2.4f },
             // 손을 든 자리는 보스 게이지 뒤라 보이지 않는다. 든 손에서 기운이 내려와 가슴 앞(양손 방출 자리)에 응축된다.
             new Skill("다크홀", DarkHoleCharge(), BossAttackVfx.Anchor.Chest, new Vector3(-0.15f, -0.1f, -0.45f), 0.15f, 0.5f, 0.25f, 0.08f,
-                DarkHoleBurst(), BossAttackVfx.Anchor.Charge, Vector3.zero, 0.12f) { chargeSize = 1.4f, releaseSize = 1.8f },
+                DarkHoleBurst(), BossAttackVfx.Anchor.Charge, Vector3.zero, 0.12f) { chargeSize = 1.4f, releaseSize = 3.6f },   // 10/7 발동 폭발만 2배(1.8→3.6), 준비 크기 유지
             new Skill("나이트메어", NightmareCharge(), BossAttackVfx.Anchor.Chest, new Vector3(0f, -0.1f, -0.1f), 0.5f, 1f, 0.2f, 0.05f,
                 NightmareBurst(), BossAttackVfx.Anchor.Chest, new Vector3(0f, 0f, -0.15f), 0.15f) { chargeSize = 1.5f, releaseSize = 1.8f },
             // 머리 위 높이는 BossAttackVfx.aboveHeadHeight(게이지·마커 위 빈 공간). 든 손에서 구체까지 기운이 이어진다.
             new Skill("디엔드", TheEndCharge(), BossAttackVfx.Anchor.AboveHead, Vector3.zero, 0.25f, 1f, 0.5f, 0.18f,
-                TheEndBlast(), BossAttackVfx.Anchor.Charge, Vector3.zero, 0.12f) { chargeSize = 1.6f, releaseSize = 1f, ground = TheEndGround() },
+                TheEndBlast(), BossAttackVfx.Anchor.Charge, Vector3.zero, 0.12f) { chargeSize = 1.6f, releaseSize = 1f, ground = TheEndGround(), screen = TheEndScreen() },
         };
 
         var root = PrefabUtility.LoadPrefabContents(Prefab);
@@ -79,6 +79,7 @@ public static class MageAttackVfxSetup
                 e.FindPropertyRelative("chargeSize").floatValue = s.chargeSize;
                 e.FindPropertyRelative("releaseSize").floatValue = s.releaseSize;
                 e.FindPropertyRelative("groundRelease").objectReferenceValue = s.ground;
+                e.FindPropertyRelative("screenRelease").objectReferenceValue = s.screen;
                 e.FindPropertyRelative("chargeAnchor").enumValueIndex = (int)s.chargeAnchor;
                 e.FindPropertyRelative("chargeOffset").vector3Value = s.chargeOffset;
                 e.FindPropertyRelative("chargeStartScale").floatValue = s.startScale;
@@ -109,7 +110,7 @@ public static class MageAttackVfxSetup
 
     class Skill
     {
-        public string label; public GameObject charge, release, projectile, impact, ground;
+        public string label; public GameObject charge, release, projectile, impact, ground, screen;
         public BossAttackVfx.Anchor chargeAnchor, releaseAnchor; public Vector3 chargeOffset, releaseOffset;
         public float startScale, endScale, startEmission, follow, collapse, travel = 0.5f, seconds = 0.2f, chargeSize = 1f, releaseSize = 1f;
         public Skill(string l, GameObject c, BossAttackVfx.Anchor ca, Vector3 co, float s0, float s1, float e0, float f,
@@ -238,19 +239,20 @@ public static class MageAttackVfxSetup
     static GameObject DarkHoleBurst()
     {
         var root = BurstRoot("VFX_Mage_DarkHoleBurst", 1f);
-        var implode = Make(root.transform, "Implode", glowAlpha, 1, false, false); Life(implode, 0.18f, 0.18f); Size(implode, 0.6f, 0.6f); SizeEnd(implode, 0.15f); Burst(implode, 1);
+        var implode = Make(root.transform, "Implode", glowAlpha, 1, false, true); Life(implode, 0.18f, 0.18f); Size(implode, 0.6f, 0.6f); SizeEnd(implode, 0.15f); Burst(implode, 1);
         Fade(implode, new[] { Black, Black }, 1f, 1f, 0.6f, 1f, 1f, 0f);
-        var blast = Make(root.transform, "DarkBlast", smokeAlpha, 1, false, false); Life(blast, 0.5f, 0.7f); Size(blast, 0.3f, 0.35f); Speed(blast, 1.2f, 2f); Burst(blast, 8);
+        var blast = Make(root.transform, "DarkBlast", smokeAlpha, 1, false, true); Life(blast, 0.5f, 0.7f); Size(blast, 0.3f, 0.35f); Speed(blast, 1.2f, 2f); Burst(blast, 8);
         Sphere(blast, 0.05f, 0f); SizeEnd(blast, 2.3f); Spin(blast, -90f, 90f); Damp(blast, 0.2f);
         Fade(blast, new[] { new Color(0.06f, 0.02f, 0.08f), new Color(0.12f, 0.02f, 0.08f) }, 0.85f, 0.85f, 0.4f, 0.6f, 1f, 0f);
-        var shock = Make(root.transform, "Shock", ringAdd, 3, false, false); Life(shock, 0.35f, 0.35f); Size(shock, 0.2f, 0.2f); SizeEnd(shock, 8f); Burst(shock, 1);
+        var shock = Make(root.transform, "Shock", ringAdd, 3, false, true); Life(shock, 0.35f, 0.35f); Size(shock, 0.2f, 0.2f); SizeEnd(shock, 8f); Burst(shock, 1);
         Fade(shock, new[] { Crimson, Purple }, 1f, 1f, 0.5f, 0.7f, 1f, 0f);
-        var shock2 = Make(root.transform, "ShockDark", ringAlpha, 2, false, false); Life(shock2, 0.4f, 0.4f); Size(shock2, 0.2f, 0.2f); SizeEnd(shock2, 7f); Burst(shock2, 1, 0.02f);
+        var shock2 = Make(root.transform, "ShockDark", ringAlpha, 2, false, true); Life(shock2, 0.4f, 0.4f); Size(shock2, 0.2f, 0.2f); SizeEnd(shock2, 7f); Burst(shock2, 1, 0.02f);
         Fade(shock2, new[] { PurpleDeep, PurpleDeep }, 0.8f, 0.8f, 0.5f, 0.5f, 1f, 0f);
-        var flash = Make(root.transform, "Flash", glowAdd, 4, false, false); Life(flash, 0.12f, 0.12f); Size(flash, 0.7f, 0.7f); Burst(flash, 1);
+        var flash = Make(root.transform, "Flash", glowAdd, 4, false, true); Life(flash, 0.12f, 0.12f); Size(flash, 0.7f, 0.7f); Burst(flash, 1);
         Fade(flash, new[] { new Color(0.95f, 0.25f, 0.4f), Crimson }, 0.9f, 0.9f, 0.5f, 0.6f, 1f, 0f);
-        var shards = Make(root.transform, "Shards", traceAdd, 4, false, false); Life(shards, 0.25f, 0.35f); Size(shards, 0.04f, 0.06f); Speed(shards, 2.5f, 4f); Burst(shards, 16);
+        var shards = Make(root.transform, "Shards", traceAdd, 4, false, true); Life(shards, 0.25f, 0.35f); Size(shards, 0.04f, 0.06f); Speed(shards, 2.5f, 4f); Burst(shards, 16);
         Sphere(shards, 0.05f, 0f); Stretch(shards, 0.1f); Fade(shards, new[] { Crimson, Purple }, 1f, 1f, 0.5f, 1f, 1f, 0f);
+        MaxScreenSize(root, 2f);   // 2배 확대 뒤 큰 고리가 화면 절반 제한(기본 0.5)에 잘리지 않게
         return Save(root, "VFX_Mage_DarkHoleBurst");
     }
 
@@ -342,6 +344,50 @@ public static class MageAttackVfxSetup
         Circle(dust, 0.3f); SizeEnd(dust, 2f); Spin(dust, -60f, 60f); Damp(dust, 0.25f);
         Fade(dust, new[] { new Color(0.1f, 0.03f, 0.12f), new Color(0.06f, 0.02f, 0.08f) }, 0.7f, 0.7f, 0.4f, 0.5f, 1f, 0f);
         return Save(root, "VFX_Mage_TheEndGround");
+    }
+
+    /// <summary>
+    /// 디엔드 화면 폭발(10/7). 지름 1 단위로 만들고 ScreenBlastVfx가 카메라 앞에서 화면 높이 × 배율로 키운다.
+    /// 검은 중심·짙은 보라 가장자리·연기·충격 고리·보라 줄기를 겹친다. 흰 섬광 층은 두지 않는다.
+    /// 전체 불투명도(퍼짐·유지·사라짐)는 ScreenBlastVfx가 맡으므로 층별 색은 거의 일정하게 둔다.
+    /// </summary>
+    static GameObject TheEndScreen()
+    {
+        var root = new GameObject("VFX_Mage_TheEndScreen");
+        var t = root.transform;
+        // 정렬 순서 100번대: 전투 쪽 파티클(보스 폭발·바닥 충격파 등 1~7번)보다 위에 그려 화면을 덮는다. HUD(Overlay)는 그래도 위.
+        // 검은 중심은 유지 끝 무렵 먼저 걷히고, 보라 연기·잔상이 조금 더 남아 흩어진다.
+        var core = Make(t, "DarkCore", glowAlpha, 100, false, true); Life(core, 0.8f, 0.8f); Size(core, 1f, 1f); Burst(core, 1);
+        FadeKeys(core, new[] { Black, Black }, new[] { (0f, 1f), (0.65f, 1f), (1f, 0f) });
+        var fill = Make(t, "DarkFill", glowAlpha, 101, false, true); Life(fill, 0.95f, 0.95f); Size(fill, 0.7f, 0.8f); Burst(fill, 6);
+        ScreenCircle(fill, 0.2f); FadeKeys(fill, new[] { new Color(0.08f, 0.01f, 0.13f), new Color(0.05f, 0.01f, 0.08f) }, new[] { (0f, 0.9f), (0.6f, 0.9f), (1f, 0f) });
+        var smoke = Make(t, "Smoke", smokeAlpha, 102, false, true); Life(smoke, 1.6f, 2f); Size(smoke, 0.3f, 0.45f); Speed(smoke, 0.06f, 0.14f); Burst(smoke, 40);
+        ScreenCircle(smoke, 0.34f); Spin(smoke, -60f, 60f); SizeEnd(smoke, 1.3f);
+        FadeKeys(smoke, new[] { new Color(0.32f, 0.08f, 0.48f), new Color(0.12f, 0.03f, 0.2f) }, new[] { (0f, 0.95f), (1f, 0.95f) });
+        var swirl = Make(t, "Swirl", twirlAlpha, 103, false, true); Life(swirl, 1.4f, 1.4f); Size(swirl, 0.6f, 0.75f); Burst(swirl, 2); Spin(swirl, 140f, 200f);
+        FadeKeys(swirl, new[] { PurpleDeep, new Color(0.15f, 0.03f, 0.25f) }, new[] { (0f, 0.6f), (0.7f, 0.6f), (1f, 0f) });
+        var rimDark = Make(t, "RimDark", ringAlpha, 104, false, true); Life(rimDark, 0.6f, 0.6f); Size(rimDark, 1.04f, 1.04f); Burst(rimDark, 1);
+        FadeKeys(rimDark, new[] { PurpleDeep, Black }, new[] { (0f, 0.9f), (0.6f, 0.6f), (1f, 0f) });
+        var rim = Make(t, "Rim", ringAdd, 105, false, true); Life(rim, 0.5f, 0.5f); Size(rim, 1f, 1f); Burst(rim, 1);
+        FadeKeys(rim, new[] { new Color(0.62f, 0.2f, 1f), PurpleDeep }, new[] { (0f, 1f), (0.6f, 0.7f), (1f, 0f) });   // 퍼지는 폭발 앞자리의 짙은 보라 테두리
+        var streaks = Make(t, "Streaks", traceAdd, 106, false, true); Life(streaks, 0.3f, 0.4f); Size(streaks, 0.02f, 0.03f); Speed(streaks, 0.6f, 1f); Burst(streaks, 22);
+        ScreenCircle(streaks, 0.1f); Stretch(streaks, 0.25f); FadeKeys(streaks, new[] { Purple, PurpleDeep }, new[] { (0f, 1f), (1f, 0f) });
+        var embers = Make(t, "Afterimage", glowAdd, 107, false, true); Life(embers, 1.2f, 1.6f); Size(embers, 0.008f, 0.014f); Speed(embers, 0.02f, 0.06f); Burst(embers, 30);
+        ScreenCircle(embers, 0.42f); FadeKeys(embers, new[] { Purple, PurpleDeep }, new[] { (0f, 0f), (0.2f, 0.9f), (1f, 0f) });
+        MaxScreenSize(root, 10f);   // 화면보다 큰 입자가 화면 절반 제한(기본 0.5)에 잘리지 않게
+        root.AddComponent<ScreenBlastVfx>();   // 퍼짐 0.3·최대 불투명도 0.95·유지 0.25·사라짐 0.8초·최종 지름 화면 높이 6배(컴포넌트 기본값, Inspector 조정)
+        return Save(root, "VFX_Mage_TheEndScreen");
+    }
+
+    /// <summary>카메라를 향한 평면(로컬 XY)의 원에서 바깥으로 내보낸다.</summary>
+    static void ScreenCircle(ParticleSystem ps, float radius)
+    {
+        var s = ps.shape; s.enabled = true; s.shapeType = ParticleSystemShapeType.Circle; s.radius = radius; s.radiusThickness = 1f; s.rotation = Vector3.zero;
+    }
+
+    static void MaxScreenSize(GameObject root, float fraction)
+    {
+        foreach (var r in root.GetComponentsInChildren<ParticleSystemRenderer>(true)) r.maxParticleSize = fraction;
     }
 
     static GameObject TheEndBlast()

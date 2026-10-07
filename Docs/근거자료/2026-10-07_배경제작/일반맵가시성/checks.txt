@@ -1,0 +1,1 @@
+Battle background checks passed: 31. Function checks; screenshots and real-frame timing separate.

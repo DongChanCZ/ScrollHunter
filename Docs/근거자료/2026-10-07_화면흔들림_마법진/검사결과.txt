@@ -1,0 +1,7 @@
+2026-10-07 화면 전체 흔들림·보스 마법진
+Function checks: EndingFeedback 23 / BattleEnvironment 36 / HUD75 / Tutorial108 PASS
+Actual frames: rotation 60@1x=9.6deg (1.2 game seconds), 60@pause=0deg, 60@0.5x=4.8deg (0.6 game seconds).
+Red hit 30 frames: 12 shaken, peak HUD13.74 reference units, projection/HUD screen displacement matched (<0.08px), restored.
+Ending frames: TheEnd1x88 hold1.68s / TheEnd0.5x89 hold1.68s / Fireball98 hold1.90s / Leader35 hold0.64s / Archer35 hold0.64s: PASS.
+Earlier HUD/Tutorial failures: mage preview on caused single target; disabled TutorialFlow remained after preview. Preview off + TutorialFlow enabled passed. Failed runs excluded from totals.
+Play stopped, scene clean, mage preview restored to true, final console errors/warnings0. Screenshots use forced phase state. No natural full run or build.

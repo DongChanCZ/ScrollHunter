@@ -34,6 +34,12 @@ public class BattleFlow : MonoBehaviour
     [Header("전투 종료 연출")]
     [Tooltip("막타 스킬 연출의 기본 대기 시간(실제 초). 사망 모션이 길면 끝까지 기다린다. 게임은 멈춘 채 연출만 재생. 0이면 즉시 전환")]
     [SerializeField] private float finishingEffectHold = 0.6f;
+    [Tooltip("패배 화면 최소 대기(실제 초). 남은 적 발동 연출이 있으면 끝까지 기다린다. 0이면 검사 시 즉시 전환")]
+    [SerializeField, Min(0f)] private float defeatEffectHold = 0.6f;
+    [SerializeField, Min(0f)] private float defeatEffectTail = 0.15f;
+    private BossAttackVfx[] endingBossEffects;
+    private EnemyAttackVfx[] endingEnemyEffects;
+    private ArrowFlight[] endingArrows;
 
     [Header("전투 준비")]
     [SerializeField, Min(0)] private float countdownSeconds = 3f;
@@ -146,6 +152,8 @@ public class BattleFlow : MonoBehaviour
         if (nextButton != null) nextButton.onClick.AddListener(NextBattle);
         if (restartButton != null) restartButton.onClick.AddListener(RestartRun);
         BuildCountdownUI();
+        if (Camera.main != null && Camera.main.GetComponent<RedHitShake>() == null)
+            Camera.main.gameObject.AddComponent<RedHitShake>();
     }
 
     private void Start()
@@ -494,6 +502,7 @@ public class BattleFlow : MonoBehaviour
         if (damageNumbers != null) damageNumbers.Clear();
         // 이전 전투 종료 때 멈춰 있던 스킬 연출이 새 전투에서 재생되지 않게 지운다.
         panelHoldRemaining = 0f;
+        ClearDefeatEffects();
         if (skillVfx != null) skillVfx.Clear();
         orderDraft = null;
         deck.SetDeck(runDeck);
@@ -521,6 +530,7 @@ public class BattleFlow : MonoBehaviour
         if (BattleNumber == 0 || State != BattleFlowState.Fighting) return;
         if (!metrics.Ended && !enemies.CombatEnded && player.IsAlive) return;
         bool won = player.IsAlive && enemies.CombatEnded;
+        enemies.ClearBossOrbs();
         State = !won ? BattleFlowState.Defeat
             : BattleNumber == BattleCount ? BattleFlowState.Victory : BattleFlowState.BetweenBattles;
         Time.timeScale = 0f;
@@ -535,6 +545,18 @@ public class BattleFlow : MonoBehaviour
             if (skillVfx != null && skillVfx.HasFinishingEffect) panelHoldRemaining = finishingEffectHold;
             foreach (var model in FindObjectsByType<EnemyAnimationDriver>(FindObjectsSortMode.None))
                 panelHoldRemaining = Mathf.Max(panelHoldRemaining, model.PlayDeathUnscaled());
+        }
+        if (!won && defeatEffectHold > 0f)
+        {
+            // 시간·입력·판정은 이미 종료. 발동한 적 연출만 실제 시간으로 마친다.
+            if (skillVfx != null) skillVfx.Clear();
+            endingBossEffects = FindObjectsByType<BossAttackVfx>(FindObjectsSortMode.None);
+            endingEnemyEffects = FindObjectsByType<EnemyAttackVfx>(FindObjectsSortMode.None);
+            endingArrows = FindObjectsByType<ArrowFlight>(FindObjectsSortMode.None);
+            foreach (var fx in endingBossEffects) fx.PlayOutUnscaled();
+            foreach (var fx in endingEnemyEffects) fx.PlayOutUnscaled();
+            foreach (var arrow in endingArrows) arrow.PlayOutUnscaled();
+            panelHoldRemaining = Mathf.Max(defeatEffectHold, defeatEffectTail);
         }
         if (PanelHeld)
         {
@@ -555,11 +577,33 @@ public class BattleFlow : MonoBehaviour
     {
         if (!PanelHeld) return false;
         panelHoldRemaining -= Time.unscaledDeltaTime;
+        if (State == BattleFlowState.Defeat && HasDefeatEffects())
+            panelHoldRemaining = Mathf.Max(panelHoldRemaining, defeatEffectTail);
         if (PanelHeld) return true;
         panelHoldRemaining = 0f;
         if (skillVfx != null) skillVfx.Clear();
+        ClearDefeatEffects();
         RefreshUI();
         return false;
+    }
+
+    private bool HasDefeatEffects()
+    {
+        if (endingBossEffects != null)
+            foreach (var fx in endingBossEffects) if (fx != null && fx.HasFinishingEffect) return true;
+        if (endingEnemyEffects != null)
+            foreach (var fx in endingEnemyEffects) if (fx != null && fx.HasFinishingEffect) return true;
+        if (endingArrows != null)
+            foreach (var arrow in endingArrows) if (arrow != null && arrow.IsFlying) return true;
+        return false;
+    }
+
+    private void ClearDefeatEffects()
+    {
+        if (endingBossEffects != null) foreach (var fx in endingBossEffects) if (fx != null) fx.Clear();
+        if (endingEnemyEffects != null) foreach (var fx in endingEnemyEffects) if (fx != null) fx.Clear();
+        if (endingArrows != null) foreach (var arrow in endingArrows) if (arrow != null) Destroy(arrow.gameObject);
+        endingBossEffects = null; endingEnemyEffects = null; endingArrows = null;
     }
 
     private void RefreshUI()

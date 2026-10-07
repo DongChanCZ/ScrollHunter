@@ -1,0 +1,362 @@
+[
+  {
+    "sheet": "범례",
+    "cell": "C29",
+    "before": 1,
+    "after": 3
+  },
+  {
+    "sheet": "범례",
+    "cell": "D29",
+    "before": "10 A8·A28. 시작 1개, PS01 최대치·현재 +1",
+    "after": "10 A46. 시작 3/3, PS01 최대치·현재 +1"
+  },
+  {
+    "sheet": "범례",
+    "cell": "B30",
+    "before": "정식 런 계획의 광역 피해 참고값",
+    "after": "튜토리얼 제외 A+B / C / A+B+C"
+  },
+  {
+    "sheet": "범례",
+    "cell": "C30",
+    "before": 2.25,
+    "after": 2
+  },
+  {
+    "sheet": "범례",
+    "cell": "D30",
+    "before": "5전투 계획의 잡몹전 평균. 현재 시연은 B→C→B+C",
+    "after": "(2+1+3)/3=2. 10 A32·A34"
+  },
+  {
+    "sheet": "범례",
+    "cell": "A32",
+    "before": "2026-09-28: 신규 3종·적 HP 반영. 원본 10 A29·A30.",
+    "after": "2026-10-07: 포션 3/3·전투 구성·적 피해 갱신. 10 A32·A33·A38·A43·A46."
+  },
+  {
+    "sheet": "스킬",
+    "cell": "L4",
+    "before": "코스트당 (보스)",
+    "after": "코스트당 (1체)"
+  },
+  {
+    "sheet": "스킬",
+    "cell": "A39",
+    "before": "L열(보스 기준)과 M열(잡몹 기준)의 격차가 크면 그 카드는 '상황용'입니다. 격차가 없으면 범용입니다.",
+    "after": "L열은 1체, M열은 일반 전투 평균 적 수 기준. 실제 대상 수·시전 시간을 함께 비교."
+  },
+  {
+    "sheet": "스킬",
+    "cell": "A40",
+    "before": "보스전은 적 1체이므로 광역기는 L열 값만 나옵니다. 덱 8장에 상황용을 몇 장 넣을지가 결정이 됩니다.",
+    "after": "보스전은 본체 1체+오브 최대 2체. 광역 가치는 활성 오브 수에 따라 달라짐(10 A43)."
+  },
+  {
+    "sheet": "적",
+    "cell": "A5",
+    "before": "잡몹 A",
+    "after": "약탈자 A"
+  },
+  {
+    "sheet": "적",
+    "cell": "A6",
+    "before": "잡몹 B",
+    "after": "궁병 B"
+  },
+  {
+    "sheet": "적",
+    "cell": "A7",
+    "before": "잡몹 C",
+    "after": "우두머리 C"
+  },
+  {
+    "sheet": "적",
+    "cell": "D5",
+    "before": 30,
+    "after": 20
+  },
+  {
+    "sheet": "적",
+    "cell": "D7",
+    "before": 150,
+    "after": 240
+  },
+  {
+    "sheet": "적",
+    "cell": "J7",
+    "before": "방어도 카드의 존재",
+    "after": "빨강: 방어력 20 기준 200. 방어도 보유 시 100 후 흡수"
+  },
+  {
+    "sheet": "적",
+    "cell": "A13",
+    "before": "현재 HP 원본: 10 A30. 이전 임시 시험은 종료.",
+    "after": "현재 HP·피해·명칭: 10 A30·A33·A38. 튜토리얼·보스·오브는 04 참조."
+  },
+  {
+    "sheet": "HP예산",
+    "cell": "A2",
+    "before": "정식 5전투 계획용. 현재 시연 3전투와 구분. 피해 입력 전 합계·여유는 미확인.",
+    "after": "튜토리얼 뒤 HP·포션 초기화. 런 예산은 일반 4전투만 합산. 피해 입력 전 결과 미확인."
+  },
+  {
+    "sheet": "HP예산",
+    "cell": "A5",
+    "before": 1,
+    "after": 0
+  },
+  {
+    "sheet": "HP예산",
+    "cell": "B5",
+    "before": null,
+    "after": "튜토리얼"
+  },
+  {
+    "sheet": "HP예산",
+    "cell": "A6",
+    "before": 2,
+    "after": 1
+  },
+  {
+    "sheet": "HP예산",
+    "cell": "B6",
+    "before": null,
+    "after": "A+B"
+  },
+  {
+    "sheet": "HP예산",
+    "cell": "A7",
+    "before": 3,
+    "after": 2
+  },
+  {
+    "sheet": "HP예산",
+    "cell": "B7",
+    "before": null,
+    "after": "C"
+  },
+  {
+    "sheet": "HP예산",
+    "cell": "A8",
+    "before": 4,
+    "after": 3
+  },
+  {
+    "sheet": "HP예산",
+    "cell": "B8",
+    "before": null,
+    "after": "A+B+C"
+  },
+  {
+    "sheet": "HP예산",
+    "cell": "A9",
+    "before": 5,
+    "after": 4
+  },
+  {
+    "sheet": "HP예산",
+    "cell": "B9",
+    "before": null,
+    "after": "마법사+오브"
+  },
+  {
+    "sheet": "HP예산",
+    "cell": "H5",
+    "before": null,
+    "after": "종료 후 초기화. 아래 런 예산에서 제외"
+  },
+  {
+    "sheet": "HP예산",
+    "cell": "B13",
+    "before": "=IF(COUNT(C5:C9)<5,\"\",SUM(C5:C9))",
+    "after": "=IF(COUNT(C6:C9)<4,\"\",SUM(C6:C9))"
+  },
+  {
+    "sheet": "HP예산",
+    "cell": "B14",
+    "before": "=IF(COUNT(D5:D9)<5,\"\",SUM(D5:D9))",
+    "after": "=IF(COUNT(D6:D9)<4,\"\",SUM(D6:D9))"
+  },
+  {
+    "sheet": "HP예산",
+    "cell": "D15",
+    "before": "기본 포션 1개 × 최대 HP 30%. PS01 제외",
+    "after": "기본 포션 3개 × 최대 HP 30%. PS01 제외"
+  },
+  {
+    "sheet": "인카운터",
+    "cell": "A2",
+    "before": "D열(실측)은 18일차에 스톱워치로 측정해 기입. E·F열은 자동 계산.",
+    "after": "현재 구성: 튜토리얼→A+B→C→A+B+C→보스. 5행은 예시, 실측은 07에 조건과 함께 기록."
+  },
+  {
+    "sheet": "인카운터",
+    "cell": "E14",
+    "before": "목표: 전투 합계 6~7분 (360~420초)",
+    "after": "목표 미입력. 초기 시간 목표는 재검토 전"
+  },
+  {
+    "sheet": "인카운터",
+    "cell": "C14",
+    "before": "=IFERROR(SUM(C6:C11),\"\")",
+    "after": "=IF(COUNT(C6:C10)<5,\"\",SUM(C6:C10))"
+  },
+  {
+    "sheet": "인카운터",
+    "cell": "C15",
+    "before": "=IFERROR(SUM(D6:D11),\"\")",
+    "after": "=IF(COUNT(D6:D10)<5,\"\",SUM(D6:D10))"
+  },
+  {
+    "sheet": "HP예산",
+    "cell": "E5",
+    "before": "=IF(NOT(ISNUMBER(C5)),\"\",IF(A5=1,'직업'!$B$5-C5,E4-C5))",
+    "after": "=IF(NOT(ISNUMBER(C5)),\"\",'직업'!$B$5-C5)"
+  },
+  {
+    "sheet": "HP예산",
+    "cell": "F5",
+    "before": "=IF(NOT(ISNUMBER(D5)),\"\",IF(A5=1,'직업'!$B$5-D5,F4-D5))",
+    "after": "=IF(NOT(ISNUMBER(D5)),\"\",'직업'!$B$5-D5)"
+  },
+  {
+    "sheet": "HP예산",
+    "cell": "G5",
+    "before": "=IF(NOT(ISNUMBER(F5)),\"\",IF(F5<=0,\"사망\",IF(F5<100,\"위험\",\"안전\")))",
+    "after": "=IF(NOT(ISNUMBER(F5)),\"\",IF(F5<=0,\"사망\",IF(F5<100,\"위험\",\"안전\")))"
+  },
+  {
+    "sheet": "HP예산",
+    "cell": "E6",
+    "before": "=IF(NOT(ISNUMBER(C6)),\"\",IF(A6=1,'직업'!$B$5-C6,E5-C6))",
+    "after": "=IF(NOT(ISNUMBER(C6)),\"\",'직업'!$B$5-C6)"
+  },
+  {
+    "sheet": "HP예산",
+    "cell": "F6",
+    "before": "=IF(NOT(ISNUMBER(D6)),\"\",IF(A6=1,'직업'!$B$5-D6,F5-D6))",
+    "after": "=IF(NOT(ISNUMBER(D6)),\"\",'직업'!$B$5-D6)"
+  },
+  {
+    "sheet": "HP예산",
+    "cell": "G6",
+    "before": "=IF(NOT(ISNUMBER(F6)),\"\",IF(F6<=0,\"사망\",IF(F6<100,\"위험\",\"안전\")))",
+    "after": "=IF(NOT(ISNUMBER(F6)),\"\",IF(F6<=0,\"사망\",IF(F6<100,\"위험\",\"안전\")))"
+  },
+  {
+    "sheet": "HP예산",
+    "cell": "E7",
+    "before": "=IF(NOT(ISNUMBER(C7)),\"\",IF(A7=1,'직업'!$B$5-C7,E6-C7))",
+    "after": "=IF(OR(NOT(ISNUMBER(C7)),NOT(ISNUMBER(E6))),\"\",E6-C7)"
+  },
+  {
+    "sheet": "HP예산",
+    "cell": "F7",
+    "before": "=IF(NOT(ISNUMBER(D7)),\"\",IF(A7=1,'직업'!$B$5-D7,F6-D7))",
+    "after": "=IF(OR(NOT(ISNUMBER(D7)),NOT(ISNUMBER(F6))),\"\",F6-D7)"
+  },
+  {
+    "sheet": "HP예산",
+    "cell": "G7",
+    "before": "=IF(NOT(ISNUMBER(F7)),\"\",IF(F7<=0,\"사망\",IF(F7<100,\"위험\",\"안전\")))",
+    "after": "=IF(NOT(ISNUMBER(F7)),\"\",IF(F7<=0,\"사망\",IF(F7<100,\"위험\",\"안전\")))"
+  },
+  {
+    "sheet": "HP예산",
+    "cell": "E8",
+    "before": "=IF(NOT(ISNUMBER(C8)),\"\",IF(A8=1,'직업'!$B$5-C8,E7-C8))",
+    "after": "=IF(OR(NOT(ISNUMBER(C8)),NOT(ISNUMBER(E7))),\"\",E7-C8)"
+  },
+  {
+    "sheet": "HP예산",
+    "cell": "F8",
+    "before": "=IF(NOT(ISNUMBER(D8)),\"\",IF(A8=1,'직업'!$B$5-D8,F7-D8))",
+    "after": "=IF(OR(NOT(ISNUMBER(D8)),NOT(ISNUMBER(F7))),\"\",F7-D8)"
+  },
+  {
+    "sheet": "HP예산",
+    "cell": "G8",
+    "before": "=IF(NOT(ISNUMBER(F8)),\"\",IF(F8<=0,\"사망\",IF(F8<100,\"위험\",\"안전\")))",
+    "after": "=IF(NOT(ISNUMBER(F8)),\"\",IF(F8<=0,\"사망\",IF(F8<100,\"위험\",\"안전\")))"
+  },
+  {
+    "sheet": "HP예산",
+    "cell": "E9",
+    "before": "=IF(NOT(ISNUMBER(C9)),\"\",IF(A9=1,'직업'!$B$5-C9,E8-C9))",
+    "after": "=IF(OR(NOT(ISNUMBER(C9)),NOT(ISNUMBER(E8))),\"\",E8-C9)"
+  },
+  {
+    "sheet": "HP예산",
+    "cell": "F9",
+    "before": "=IF(NOT(ISNUMBER(D9)),\"\",IF(A9=1,'직업'!$B$5-D9,F8-D9))",
+    "after": "=IF(OR(NOT(ISNUMBER(D9)),NOT(ISNUMBER(F8))),\"\",F8-D9)"
+  },
+  {
+    "sheet": "HP예산",
+    "cell": "G9",
+    "before": "=IF(NOT(ISNUMBER(F9)),\"\",IF(F9<=0,\"사망\",IF(F9<100,\"위험\",\"안전\")))",
+    "after": "=IF(NOT(ISNUMBER(F9)),\"\",IF(F9<=0,\"사망\",IF(F9<100,\"위험\",\"안전\")))"
+  },
+  {
+    "sheet": "인카운터",
+    "cell": "A6",
+    "before": null,
+    "after": 0
+  },
+  {
+    "sheet": "인카운터",
+    "cell": "B6",
+    "before": null,
+    "after": "튜토리얼"
+  },
+  {
+    "sheet": "인카운터",
+    "cell": "A7",
+    "before": null,
+    "after": 1
+  },
+  {
+    "sheet": "인카운터",
+    "cell": "B7",
+    "before": null,
+    "after": "A+B"
+  },
+  {
+    "sheet": "인카운터",
+    "cell": "A8",
+    "before": null,
+    "after": 2
+  },
+  {
+    "sheet": "인카운터",
+    "cell": "B8",
+    "before": null,
+    "after": "C"
+  },
+  {
+    "sheet": "인카운터",
+    "cell": "A9",
+    "before": null,
+    "after": 3
+  },
+  {
+    "sheet": "인카운터",
+    "cell": "B9",
+    "before": null,
+    "after": "A+B+C"
+  },
+  {
+    "sheet": "인카운터",
+    "cell": "A10",
+    "before": null,
+    "after": 4
+  },
+  {
+    "sheet": "인카운터",
+    "cell": "B10",
+    "before": null,
+    "after": "마법사+오브"
+  }
+]

@@ -1,0 +1,275 @@
+[
+  {
+    "file": "P01_BroadleafTree.glb",
+    "bytes": 13796740,
+    "meshes": 1,
+    "vertices": 14381,
+    "triangles": 9986,
+    "bounds_min": [
+      -0.47735100984573364,
+      -0.4777801036834717,
+      0.0
+    ],
+    "bounds_max": [
+      0.47735100984573364,
+      0.4777801036834717,
+      0.9936099052429199
+    ],
+    "all_meshes_have_uv": true,
+    "textures": [
+      {
+        "name": "Image_0",
+        "size": [
+          2048,
+          2048
+        ],
+        "packed": true
+      },
+      {
+        "name": "Image_1",
+        "size": [
+          2048,
+          2048
+        ],
+        "packed": true
+      }
+    ],
+    "boundary_edges": 0,
+    "nonmanifold_edges": 0,
+    "zero_area_faces": 0
+  },
+  {
+    "file": "P02_TallForestTree.glb",
+    "bytes": 10169124,
+    "meshes": 1,
+    "vertices": 6730,
+    "triangles": 8000,
+    "bounds_min": [
+      -0.17616792023181915,
+      -0.181862011551857,
+      0.0
+    ],
+    "bounds_max": [
+      0.17616792023181915,
+      0.181862011551857,
+      0.9983530044555664
+    ],
+    "all_meshes_have_uv": true,
+    "textures": [
+      {
+        "name": "Image_0",
+        "size": [
+          2048,
+          2048
+        ],
+        "packed": true
+      },
+      {
+        "name": "Image_1",
+        "size": [
+          2048,
+          2048
+        ],
+        "packed": true
+      }
+    ],
+    "boundary_edges": 0,
+    "nonmanifold_edges": 0,
+    "zero_area_faces": 0
+  },
+  {
+    "file": "P03_Undergrowth.glb",
+    "bytes": 7036480,
+    "meshes": 1,
+    "vertices": 5866,
+    "triangles": 5330,
+    "bounds_min": [
+      -0.4284222722053528,
+      -0.48005834221839905,
+      0.0
+    ],
+    "bounds_max": [
+      0.4284222722053528,
+      0.48005834221839905,
+      0.8666387796401978
+    ],
+    "all_meshes_have_uv": true,
+    "textures": [
+      {
+        "name": "Image_0",
+        "size": [
+          1024,
+          1024
+        ],
+        "packed": true
+      },
+      {
+        "name": "Image_1",
+        "size": [
+          2048,
+          2048
+        ],
+        "packed": true
+      }
+    ],
+    "boundary_edges": 0,
+    "nonmanifold_edges": 0,
+    "zero_area_faces": 0
+  },
+  {
+    "file": "P04_MossRocks.glb",
+    "bytes": 4282636,
+    "meshes": 1,
+    "vertices": 1984,
+    "triangles": 3000,
+    "bounds_min": [
+      -0.499653697013855,
+      -0.5000141263008118,
+      0.0
+    ],
+    "bounds_max": [
+      0.499653697013855,
+      0.5000141263008118,
+      0.6813148260116577
+    ],
+    "all_meshes_have_uv": true,
+    "textures": [
+      {
+        "name": "Image_0",
+        "size": [
+          1024,
+          1024
+        ],
+        "packed": true
+      },
+      {
+        "name": "Image_1",
+        "size": [
+          2048,
+          2048
+        ],
+        "packed": true
+      }
+    ],
+    "boundary_edges": 0,
+    "nonmanifold_edges": 0,
+    "zero_area_faces": 0
+  },
+  {
+    "file": "P05_CaveEntrance.glb",
+    "bytes": 9731328,
+    "meshes": 1,
+    "vertices": 8541,
+    "triangles": 12000,
+    "bounds_min": [
+      -0.499772846698761,
+      -0.2117331326007843,
+      0.0
+    ],
+    "bounds_max": [
+      0.499772846698761,
+      0.2117331326007843,
+      0.6076846122741699
+    ],
+    "all_meshes_have_uv": true,
+    "textures": [
+      {
+        "name": "Image_0",
+        "size": [
+          2048,
+          2048
+        ],
+        "packed": true
+      },
+      {
+        "name": "Image_1",
+        "size": [
+          2048,
+          2048
+        ],
+        "packed": true
+      }
+    ],
+    "boundary_edges": 0,
+    "nonmanifold_edges": 0,
+    "zero_area_faces": 0
+  },
+  {
+    "file": "P06_CaveWall.glb",
+    "bytes": 10815016,
+    "meshes": 1,
+    "vertices": 6333,
+    "triangles": 8000,
+    "bounds_min": [
+      -0.49887949228286743,
+      -0.17007148265838623,
+      0.0
+    ],
+    "bounds_max": [
+      0.49887949228286743,
+      0.17007148265838623,
+      0.9813674688339233
+    ],
+    "all_meshes_have_uv": true,
+    "textures": [
+      {
+        "name": "Image_0",
+        "size": [
+          2048,
+          2048
+        ],
+        "packed": true
+      },
+      {
+        "name": "Image_1",
+        "size": [
+          2048,
+          2048
+        ],
+        "packed": true
+      }
+    ],
+    "boundary_edges": 0,
+    "nonmanifold_edges": 0,
+    "zero_area_faces": 0
+  },
+  {
+    "file": "P07_Stalagmites.glb",
+    "bytes": 4660592,
+    "meshes": 1,
+    "vertices": 3085,
+    "triangles": 4000,
+    "bounds_min": [
+      -0.36291787028312683,
+      -0.3223833739757538,
+      0.0
+    ],
+    "bounds_max": [
+      0.36291787028312683,
+      0.3223833739757538,
+      1.0042282342910767
+    ],
+    "all_meshes_have_uv": true,
+    "textures": [
+      {
+        "name": "Image_0",
+        "size": [
+          1024,
+          1024
+        ],
+        "packed": true
+      },
+      {
+        "name": "Image_1",
+        "size": [
+          2048,
+          2048
+        ],
+        "packed": true
+      }
+    ],
+    "boundary_edges": 0,
+    "nonmanifold_edges": 0,
+    "zero_area_faces": 0
+  }
+]

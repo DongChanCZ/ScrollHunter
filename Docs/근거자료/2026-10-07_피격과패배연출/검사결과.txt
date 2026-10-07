@@ -1,0 +1,16 @@
+2026-10-07 Codex / Unity MCP — A44
+최종 사용자 정정: 적 피해·차단 숫자 원복. 내 HP바 위 피해 숫자만 확대.
+최종 함수 검사: EndingFeedbackChecks 21 / HudChecks 61 PASS
+정정 전 기능 회귀: TutorialChecks.RunCombatRegression 755 / BossChecks 315 / BossOrbChecks 79 / EnemyAnimationLinkChecks.RunTiming 359 / ChannelingChecks 42 PASS
+피해 숫자 크기: 적 64 유지, 차단80 유지, HP바 피격27→33.75, 회복27 유지. 방어도 아이콘50→75·숫자30→45.
+실제 프레임 결과 (HP·시전 조건 함수 지정):
+TheEnd 1x: 88 frames, hold1.68s PASS
+TheEnd 0.5x: 89 frames, hold1.68s PASS
+Fireball: 98 frames, hold1.90s PASS
+Leader red: 35 frames, hold0.64s PASS
+Archer: 35 frames, hold0.64s PASS
+HP0 뒤 게임 시간0·카드/포션 거절·충전 정지, 디엔드 확산·걷힘 후 결과 표시 확인.
+폭발 도중 재시작 후 다음 프레임 화면 폭발0·발동효과0·흔들림없음 확인.
+초기 전투 회귀는 즉시 결과 버튼 가정으로 실패. 기존 기능 회귀는 연출 시간을 끄고 새 검사에서 대기 시간을 확인하도록 정정 후 통과.
+스크린샷01·02: 사용자 정정 전 중간 캡처. 03: 최종 HP피격숫자·방어도·적 피해 숫자 원복 확인.
+검사 직후 콘솔 오류/경고0. 최종 Play 종료 뒤 Unity 내부 JobTempAlloc 수명 경고 발생, 원인·빌드 재현 미확인. 직접 손 입력·자연 전체 런·새 빌드 미실시.

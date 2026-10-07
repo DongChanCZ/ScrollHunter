@@ -57,3 +57,9 @@ MonoBehaviour:
     pattern: 050000000100000004000000010000000300000001000000
     castTimeMultiplier: 1
   phaseTransitionSeconds: 2
+  ruinOrb: {fileID: 11400000, guid: fe9ef653d6a149945bfa9e4fed5d25e3, type: 2}
+  cycleOrb: {fileID: 11400000, guid: bac7b832cf77ed14b96ff2f8d5f5085a, type: 2}
+  passiveDescription:
+  orbDamageMultiplier: 1.1
+  orbCastTimeReduction: 0.2
+  orbDestructionDamage: 150

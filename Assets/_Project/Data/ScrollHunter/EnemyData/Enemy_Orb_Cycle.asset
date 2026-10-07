@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 593c5b4bd9f007948b51815f6b3c6456, type: 3}
+  m_Name: Enemy_Orb_Cycle
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyData
+  displayName: "\uC21C\uD658\uC758 \uC624\uBE0C"
+  maxHp: 400
+  defense: 0
+  attacks: []
+  phases: []
+  phaseTransitionSeconds: 2
+  ruinOrb: {fileID: 0}
+  cycleOrb: {fileID: 0}
+  passiveDescription: "\uBCF4\uC2A4 \uC2DC\uC804 \uC2DC\uAC04 \uCD94\uAC00 20%p \uAC10\uC18C\n2\uD398\uC774\uC988
+    \uCD1D 40% / 3\uD398\uC774\uC988 20%"
+  orbDamageMultiplier: 1.1
+  orbCastTimeReduction: 0.2
+  orbDestructionDamage: 150
+  orbVisual: {fileID: 6082803473862479110, guid: 4b5d021aa1a1fc94e89909fb8c4da796, type: 3}
+  orbBreak: {fileID: 4071046027223118604, guid: 5cd404849d9cfef419d78892e2901a9e, type: 3}

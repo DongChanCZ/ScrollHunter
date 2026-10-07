@@ -93,14 +93,47 @@ public static class HudChecks
             player.TakeDamage(60);
             tickGauge(0f);
             Check(player.CurrentHp == 450 && player.Shield == 70, "full absorb keeps HP");
-            Check(gauge.ShieldFlashing && !gauge.FrameFlashing && numbers().Count == count && Near(gauge.GhostRatio, 0.9f), "full absorb reacts on shield only");
+            Check(gauge.ShieldFlashing && !gauge.FrameFlashing && numbers().Count == count + 1 && lastNumber() == "-50" && Near(gauge.GhostRatio, 0.9f), "full absorb displays shield loss only");
 
-            // --- 일부 흡수: 실제 HP 손실만 피해로 표시
+            var emblem = (RectTransform)Get(gauge, "shieldIcon");
+            var shieldValue = (TMP_Text)Get(ui, "shieldText");
+            var absorbedEntry = numbers()[numbers().Count - 1];
+            var absorbedText = (TMP_Text)absorbedEntry.GetType().GetField("text").GetValue(absorbedEntry);
+            var hpTemplate = (TMP_Text)Get(gauge, "numberTemplate");
+            Check(absorbedText.color == shieldValue.color && Near(absorbedText.fontSize, hpTemplate.fontSize), "shield color matches value and is smaller than HP hit");
+            Check(absorbedText.font == hpTemplate.font && absorbedText.outlineWidth == hpTemplate.outlineWidth && !absorbedText.raycastTarget, "shared font/outline, no click blocking");
+            Check(absorbedText.transform.parent == hpTemplate.transform.parent && absorbedText.transform.parent != emblem, "popup above HP artwork and independent of bouncing icon");
+            var popupParent = (RectTransform)hpTemplate.transform.parent;
+            float iconX = popupParent.InverseTransformPoint(emblem.position).x - popupParent.rect.center.x;
+            float iconY = popupParent.InverseTransformPoint(emblem.position).y - popupParent.rect.center.y;
+            Check(Near(absorbedText.rectTransform.anchoredPosition.x, iconX)
+                && absorbedText.rectTransform.anchoredPosition.y > iconY
+                && absorbedText.rectTransform.anchoredPosition.y < popupParent.rect.height * 0.5f,
+                "popup starts just above shield, not above HP bar");
+            Vector2 absorbedOrigin = absorbedText.rectTransform.anchoredPosition;
+            tickGauge(.066f);
+            Check(emblem.localScale.x > 1.9f, "full absorption produces strong bounce");
+            Check(absorbedText.rectTransform.anchoredPosition.y > absorbedOrigin.y, "absorb number floats upward");
+            Vector3 heldScale = emblem.localScale; Vector2 heldPosition = absorbedText.rectTransform.anchoredPosition;
+            tickGauge(0f);
+            Check(emblem.localScale == heldScale && absorbedText.rectTransform.anchoredPosition == heldPosition, "pause freezes bounce and popup");
+
+            // --- 일부 흡수: 방패 바운스 없이 방어도와 HP 손실을 각각 표시
             player.TakeDamage(120); // 100, 방어도 70 흡수, HP 30
             tickGauge(0f);
             Check(player.CurrentHp == 420 && player.Shield == 0, "partial absorb splits damage");
-            Check(numbers().Count == count + 1 && lastNumber() == "-30" && gauge.ShieldFlashing && gauge.FrameFlashing, "partial absorb shows only HP loss");
+            Check(numbers().Count == count + 3 && lastNumber() == "-30" && !gauge.ShieldFlashing && gauge.FrameFlashing, "partial absorb shows shield and HP loss without shield flash");
             Check(Near(gauge.GhostRatio, 0.9f) && Near(gauge.FillRatio, 0.84f), "ghost from HP before partial hit");
+            Check(emblem.localScale == Vector3.one, "partial hit cancels existing bounce immediately");
+            var partialShield = numbers()[numbers().Count - 2];
+            var partialText = (TMP_Text)partialShield.GetType().GetField("text").GetValue(partialShield);
+            Check(partialText.text == "-70" && (bool)partialShield.GetType().GetField("shield").GetValue(partialShield), "partial shows actual absorbed70");
+            Vector2 shieldOrigin = (Vector2)partialShield.GetType().GetField("origin").GetValue(partialShield);
+            var hpPopup = (TMP_Text)numbers()[numbers().Count - 1].GetType().GetField("text").GetValue(numbers()[numbers().Count - 1]);
+            var hpValue = (TMP_Text)Get(ui, "hpText");
+            Check(partialText.transform.parent == hpValue.transform.parent
+                && partialText.transform.GetSiblingIndex() > hpValue.transform.GetSiblingIndex()
+                && partialText.transform.GetSiblingIndex() > hpPopup.transform.GetSiblingIndex(), "absorption renders in front of HP text and later HP popup");
 
             // --- 연속 피격: 잔상은 첫 피격 전 HP를 유지, 숫자는 위로 쌓임
             IList list = numbers();
@@ -112,6 +145,7 @@ public static class HudChecks
             Vector2 pushed = (Vector2)list[list.Count - 2].GetType().GetField("origin").GetValue(list[list.Count - 2]);
             Check(player.CurrentHp == 370 && Near(gauge.GhostRatio, 0.9f), "consecutive hit keeps earlier ghost");
             Check(pushed.y > previousOrigin.y && lastNumber() == "-50", "consecutive numbers stack upward");
+            Check(shieldOrigin == (Vector2)partialShield.GetType().GetField("origin").GetValue(partialShield), "HP number does not move shield number lane");
             tickGauge(1.2f);
             Check(numbers().Count == 0 && Near(gauge.GhostRatio, gauge.FillRatio), "numbers and ghost settle");
 
@@ -151,14 +185,14 @@ public static class HudChecks
             var potionText = (TMP_Text)Get(ui, "potionText");
             var potionKey = (TMP_Text)Get(ui, "potionKeyText");
             var potionIcon = (Image)Get(ui, "potionIcon");
-            Check(potionText.text == "1/2" && potionKey.text == "Shift" && potionIcon.color == Color.white, "potion count after one use");
+            Check(potionText.text == "2/3" && potionKey.text == "Shift" && potionIcon.color == Color.white, "potion count after one use");
             player.TakeDamage(300);
-            Check(player.TryUsePotion() && !player.TryUsePotion(), "last potion then rejected");
+            Check(player.TryUsePotion() && player.TryUsePotion() && !player.TryUsePotion(), "remaining two potions then rejected");
             Call(ui, "UpdateStatus");
-            Check(potionText.text == "0/2" && potionIcon.color == (Color)Get(ui, "potionEmptyIconColor") && potionKey.color == (Color)Get(ui, "potionUnavailableColor"), "empty potion dims");
+            Check(potionText.text == "0/3" && potionIcon.color == (Color)Get(ui, "potionEmptyIconColor") && potionKey.color == (Color)Get(ui, "potionUnavailableColor"), "empty potion dims");
             player.AddPotionCapacityBonus(1); potionCapacityAdded += 1;
             Call(ui, "UpdateStatus");
-            Check(potionText.text == "0/3", "potion max follows passive bonus");
+            Check(potionText.text == "0/4", "potion max follows passive bonus");
             player.AddPotionCapacityBonus(-1); potionCapacityAdded -= 1;
 
             // --- 방어도 표시: 방패 문양·숫자, 최대치 게이지 없음
@@ -270,6 +304,19 @@ public static class HudChecks
             flow.RestartRun();
             tickGauge(0f);
             Check(numbers().Count == 0 && !gauge.FrameFlashing && Near(gauge.GhostRatio, gauge.FillRatio) && feedback.ActiveSlotCount == 0, "restart clears feedback");
+            // --- 방어도가 정확히 소진되어도 HP가 유지되면 바운스. 종료·재시작 때 원래 크기로 복귀.
+            freshBattle();
+            player.AddShield(50);
+            player.TakeDamage(60);
+            tickGauge(.066f);
+            Check(player.Shield == 0 && player.CurrentHp == 500 && emblem.localScale.x > 1.9f && lastNumber() == "-50", "exact depletion is full absorption");
+            tickGauge(.24f);
+            Check(emblem.localScale == Vector3.one && !gauge.ShieldFlashing, "bounce settles after duration");
+            player.AddShield(50);
+            player.TakeDamage(60);
+            tickGauge(.066f);
+            flow.RestartRun();
+            Check(emblem.localScale == Vector3.one && numbers().Count == 0 && !gauge.ShieldFlashing, "restart clears active shield bounce and popups");
             // --- 남은 HP를 넘는 피해는 실제 감소량만 표시
             freshBattle();
             player.TakeDamage(99999);

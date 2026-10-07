@@ -33,6 +33,7 @@ public static class TutorialChecks
         var ui = UnityEngine.Object.FindFirstObjectByType<CombatUI>();
         var reward = UnityEngine.Object.FindFirstObjectByType<BattleRewardUI>();
         var e = t.Enemy;
+        float finishingHold = (float)Get(f, "finishingEffectHold");
         int passed = 0;
         Action<bool, string> check = (ok, text) => { if (!ok) throw new Exception("Tutorial: " + text); passed++; };
         Action fresh = () => { f.BeginTutorial(false); NextFrame(t); };
@@ -47,6 +48,8 @@ public static class TutorialChecks
         };
         try
         {
+            // Function checks advance combat synchronously; real-frame tests keep the ending hold.
+            Set(f, "finishingEffectHold", 0f);
             fresh();
             check(t.Active && t.Lesson == 1 && t.CompletedLessons == 0 && f.BattleNumber == 0, "direct tutorial, separate battle zero");
             var body = (TMPro.TMP_Text)Get(t,"guideText");
@@ -54,7 +57,7 @@ public static class TutorialChecks
             check(!body.text.Contains("학습") && !body.text.Contains("/ 7") && !body.text.Contains("Enter") && hint.text=="Space", "no lesson count; only Space hint");
             check(hint.alignment==TMPro.TextAlignmentOptions.BottomRight && hint.rectTransform.anchorMax.y==0, "hint anchored at guide bottom right");
             check(!f.CanEditOrder && !f.BeginOrderEdit() && !f.SkipReward() && f.RewardChoiceCount == 0, "no initial editor or reward");
-            check(p.CurrentHp == 500 && p.PotionsRemaining == 2 && c.Current == 3 && e.CurrentHp == 300 && e.Data.Defense == 0, "saved starting values");
+            check(p.CurrentHp == 500 && p.PotionsRemaining == 3 && c.Current == 3 && e.CurrentHp == 300 && e.Data.Defense == 0, "saved starting values");
             check(m.EnemyCount == 1 && m.CurrentTarget == e && e.transform.position.x == m.FormationCenter.x, "single centered target");
             check(e.Data.Find(CastColor.Red).Damage == 350 && e.Data.Find(CastColor.Orange).StunSeconds == 2, "tutorial attacks, common stun");
             check(Enumerable.Range(0,4).All(i => !d.TryUseSlot(i)) && c.Current == 3, "explanation rejects all slots without spend");
@@ -93,7 +96,7 @@ public static class TutorialChecks
             CastTime(d,0.4f);
             float hp=p.CurrentHp; Call(e,"Fire");
             check(p.CurrentHp==hp-26 && p.Shield==0 && t.Lesson==6 && Time.timeScale==0, "red350 half then shield, potion guide after impact");
-            check(!p.TryUsePotion() && p.PotionsRemaining==2 && t.CompletedLessons==5, "Shift cannot use or finish frozen potion lesson");
+            check(!p.TryUsePotion() && p.PotionsRemaining == 3 && t.CompletedLessons==5, "Shift cannot use or finish frozen potion lesson");
             Advance(t);
             check(!t.Active && f.State==BattleFlowState.TutorialComplete && t.CompletedLessons==6 && t.ShowingGuide && !f.CanEditOrder, "HP zero plus six lessons waits at completion guide");
             var rewardPanel = (GameObject)Get(reward,"panel");
@@ -114,13 +117,13 @@ public static class TutorialChecks
             f.CancelOrderEdit(); check(Enumerable.Range(0,8).Select(f.GetDeckCard).SequenceEqual(original), "cancel restores original");
             f.BeginOrderEdit(); f.MoveOrderCard(0,5); f.SaveOrder(); f.NextBattle(); Call(f,"AdvanceCountdown",3f);
             check(m.EnemyCount==2 && m.Enemies[0].Data.name=="Enemy_A_Green" && m.Enemies[1].Data.name=="Enemy_B_Orange", "next battle A+B");
-            check(p.CurrentHp==500 && p.PotionsRemaining==2 && p.Shield==0 && c.Current==3 && d.GetHandCard(0)==original[1], "fresh HP/potion, saved order used");
+            check(p.CurrentHp==500 && p.PotionsRemaining == 3 && p.Shield==0 && c.Current==3 && d.GetHandCard(0)==original[1], "fresh HP/potion, saved order used");
             p.TakeDamage(30); p.TryUsePotion(); p.TakeDamage(30); float carry=p.CurrentHp;
             foreach(var enemy in m.GetAliveEnemies())enemy.TakeDamage(10000);
             m.NotifyEnemyDied(); Call(f,"Update");
             check(f.State==BattleFlowState.BetweenBattles && f.RewardChoiceCount>0, "normal victory offers rewards");
             f.SkipReward(); f.NextBattle(); Call(f,"AdvanceCountdown",3f);
-            check(m.EnemyCount==1 && m.CurrentTarget.Data.name=="Enemy_C_Red" && p.CurrentHp==carry && p.PotionsRemaining==1, "normal C carries HP/potion");
+            check(m.EnemyCount==1 && m.CurrentTarget.Data.name=="Enemy_C_Red" && p.CurrentHp==carry && p.PotionsRemaining == 2, "normal C carries HP/potion");
             foreach(var enemy in m.GetAliveEnemies())enemy.TakeDamage(10000);m.NotifyEnemyDied();Call(f,"Update"); f.SkipReward();f.NextBattle(); Call(f,"AdvanceCountdown",3f);
             check(m.EnemyCount==3 && m.Enemies[1].Data.name=="Enemy_C_Red", "ABC center C");
 
@@ -128,7 +131,7 @@ public static class TutorialChecks
             qPrompt(); check(d.TryUseSlot(0), "retry setup Q"); CastTime(d,.4f); e.TakeDamage(20);int kept=e.CurrentHp;
             p.AddShield(20);p.TakeDamage(10000);t.TickCombat();NextFrame(t);
             check(t.CompletedLessons==3 && t.Lesson==4 && t.ShowingGuide && e.CurrentHp==kept && e.CastColor==CastColor.Orange, "retry preserves progress and enemy HP, chooses orange");
-            check(p.CurrentHp==500 && p.Shield==0 && !p.IsStunned && !d.IsCasting && !d.IsLocked && c.Current==3 && p.PotionsRemaining==2, "retry clears player states and restores resources");
+            check(p.CurrentHp==500 && p.Shield==0 && !p.IsStunned && !d.IsCasting && !d.IsLocked && c.Current==3 && p.PotionsRemaining == 3, "retry clears player states and restores resources");
             check(Enumerable.Range(0,4).All(i=>d.GetHandCard(i)==original[i]), "retry restores base hand");
             Advance(t);NextFrame(t);check(d.TryUseSlot(2), "retry prompt accepts E");
             p.TakeDamage(10000);t.TickCombat();NextFrame(t);
@@ -146,7 +149,7 @@ public static class TutorialChecks
                 check(!t.Active && !t.ShowingGuide && f.State==BattleFlowState.Preparing && !f.CanEditOrder, "skip button opens optional order editor without lesson seven");
                 check(!d.IsCasting && !d.IsLocked && !p.IsInvulnerable && !p.IsStunned && m.CombatEnded && metrics.Ended, "skip clears combat and maintained states");
                 check(!logs.Any(s=>s.Contains("승패: 승리")) && f.RewardChoiceCount==0, "skip not victory or reward");
-                NextFrame(t); f.NextBattle(); Call(f,"AdvanceCountdown",3f);check(p.CurrentHp==500 && p.PotionsRemaining==2 && m.EnemyCount==2, "skip starts fresh AB");
+                NextFrame(t); f.NextBattle(); Call(f,"AdvanceCountdown",3f);check(p.CurrentHp==500 && p.PotionsRemaining == 3 && m.EnemyCount==2, "skip starts fresh AB");
             }
             finally{Application.logMessageReceived-=capture;}
 
@@ -166,9 +169,9 @@ public static class TutorialChecks
             check(hint.gameObject.activeSelf && !p.TryUsePotion() && !d.TryUseSlot(0) && !t.AdvanceGuide(), "combat goal blocks Shift, cards and same-frame advance");
             Advance(t);
             check(!t.ShowingGuide && Time.timeScale>0 && !p.TryUsePotion(), "goal closes to free combat, same-frame Shift blocked");
-            NextFrame(t);check(p.TryUsePotion() && p.PotionsRemaining==1,"potion allowed once time runs");
+            NextFrame(t);check(p.TryUsePotion() && p.PotionsRemaining == 2,"potion allowed once time runs");
             p.TakeDamage(10000);t.TickCombat();NextFrame(t);
-            check(t.CompletedLessons==6 && !t.ShowingGuide && e.CastColor==CastColor.Green && p.PotionsRemaining==2,"completed tutorial retries as free combat from green");
+            check(t.CompletedLessons==6 && !t.ShowingGuide && e.CastColor==CastColor.Green && p.PotionsRemaining == 3,"completed tutorial retries as free combat from green");
             info.InspectSlot(0);check(info.IsInfoPaused && !d.TryUseSlot(0) && !p.TryUsePotion(),"normal manual pause remains restrictive");info.Resume();
             var sanctuary=AssetDatabase.LoadAssetAtPath<SkillData>(AssetDatabase.GUIDToAssetPath("a7b69bbb68255024fbcc381457f3346b"));
             var channelDeck=d.CopyStartingDeck();channelDeck[0]=sanctuary;d.SetDeck(channelDeck);c.EnsureTutorialCost(sanctuary.Cost);
@@ -186,7 +189,7 @@ public static class TutorialChecks
                 check(t.CompletedLessons==completed && e.CurrentHp==remaining && p.CurrentHp==500,"repeat retry preserves lesson "+completed);
                 check(completed<6 ? t.ShowingGuide && t.Lesson==completed+1 : !t.ShowingGuide,"repeat retry resumes correct guide "+completed);
                 t.Skip();check(!f.CanEditOrder,"skip click isolated at stage "+completed);
-                NextFrame(t);f.NextBattle(); Call(f,"AdvanceCountdown",3f);check(m.EnemyCount==2 && !t.Active && p.PotionsRemaining==2,"skip from stage "+completed+" reaches AB");
+                NextFrame(t);f.NextBattle(); Call(f,"AdvanceCountdown",3f);check(m.EnemyCount==2 && !t.Active && p.PotionsRemaining == 3,"skip from stage "+completed+" reaches AB");
             }
             // 자유 전투 처치도 완료 안내에서 기다리고, 안내 중 재시작은 처음 학습으로 돌아간다.
             fresh(); Set(t,"<CompletedLessons>k__BackingField",6); Call(t,"HideGuide");
@@ -198,7 +201,7 @@ public static class TutorialChecks
             // 플레이어가 죽은직후 스킵해도 패배 요약과 새 전투가 섞이지 않는다.
             p.TakeDamage(10000);t.Skip();NextFrame(t);f.NextBattle(); Call(f,"AdvanceCountdown",3f);check(p.IsAlive && !metrics.Ended && m.EnemyCount==2,"skip after death safe");
         }
-        finally { f.BeginTutorial(false); }
+        finally { Set(f, "finishingEffectHold", finishingHold); f.BeginTutorial(false); }
         return "Tutorial checks passed: " + passed + ". Function/pointer events; physical input and natural play not covered.";
     }
 
@@ -276,11 +279,11 @@ public static class TutorialChecks
         var saved=(BattleFlow.Encounter[])Get(f,"encounters");
         var all=UnityEngine.Object.FindObjectsByType<Enemy>(FindObjectsInactive.Include,FindObjectsSortMode.None);
         var b=all.Single(e=>e.Data.name=="Enemy_B_Orange");var c=all.Single(e=>e.Data.name=="Enemy_C_Red");
-        bool enabled=t.enabled; float hold=(float)Get(f,"finishingEffectHold"); float countdown=(float)Get(f,"countdownSeconds");
+        bool enabled=t.enabled; float hold=(float)Get(f,"finishingEffectHold"); float defeatHold=(float)Get(f,"defeatEffectHold"); float countdown=(float)Get(f,"countdownSeconds");
         try
         {
             // 과거 검사의 B/C/BC 전제는 이 런에만 격리한다. 새 저장 편성은 Run()에서 따로 검사한다.
-            t.enabled=false; Set(f,"finishingEffectHold",0f); Set(f,"countdownSeconds",0f);
+            t.enabled=false; Set(f,"finishingEffectHold",0f); Set(f,"defeatEffectHold",0f); Set(f,"countdownSeconds",0f); // 연출 시간은 EndingFeedbackChecks에서 별도 검사
             Set(f,"encounters",new[]{new BattleFlow.Encounter{label="Legacy B",enemies=new[]{b}},new BattleFlow.Encounter{label="Legacy C",enemies=new[]{c}},new BattleFlow.Encounter{label="Legacy BC",enemies=new[]{b,c}}});
             var results=new System.Collections.Generic.List<string>();
             foreach(Func<string> run in new Func<string>[]{RedShieldChecks.Run,StartingDeckChecks.Run,CriticalChecks.Run,
@@ -298,7 +301,7 @@ public static class TutorialChecks
             }
             return string.Join("\n",results);
         }
-        finally{Set(f,"encounters",saved);Set(f,"finishingEffectHold",hold);Set(f,"countdownSeconds",countdown);t.enabled=enabled;f.RestartRun();}
+        finally{Set(f,"encounters",saved);Set(f,"finishingEffectHold",hold);Set(f,"defeatEffectHold",defeatHold);Set(f,"countdownSeconds",countdown);t.enabled=enabled;f.RestartRun();}
     }
 
     private static int frame;

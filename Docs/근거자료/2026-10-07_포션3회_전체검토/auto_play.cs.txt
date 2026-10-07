@@ -1,0 +1,126 @@
+
+if(!UnityEngine.Application.isPlaying) return "Play required";
+var f=UnityEngine.Object.FindFirstObjectByType<BattleFlow>();
+var t=UnityEngine.Object.FindFirstObjectByType<TutorialFlow>();
+var d=UnityEngine.Object.FindFirstObjectByType<DeckSystem>();
+var p=UnityEngine.Object.FindFirstObjectByType<Player>();
+var m=UnityEngine.Object.FindFirstObjectByType<EnemyManager>();
+var c=UnityEngine.Object.FindFirstObjectByType<CostSystem>();
+var met=UnityEngine.Object.FindFirstObjectByType<CombatMetrics>();
+var info=UnityEngine.Object.FindFirstObjectByType<CombatInfoUI>();
+var flags=System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic;
+var targetMethod=typeof(EnemyManager).GetMethod("SelectTarget",flags);
+var outDir=System.IO.Path.Combine(UnityEngine.Application.dataPath,"../Docs/근거자료/2026-10-07_포션3회_전체검토");
+System.IO.Directory.CreateDirectory(outDir);
+string logfile=System.IO.Path.Combine(outDir,"auto_play.log");
+string resultfile=System.IO.Path.Combine(outDir,"runs.tsv");
+System.IO.File.WriteAllText(logfile,"Real Unity frames; 1x; no manual pause; normal skill/potion/reward APIs; no resource/HP/damage or random seed override. Run1 tutorial played, runs2-3 skipped. Bot observations are not human balance feedback.\n");
+System.IO.File.WriteAllText(resultfile,"run\tbattle\tresult\tseconds\thp\tpotions\tpotionUses\thealing\tdamage\torbs\trewards\n");
+bool oldBackground=Application.runInBackground;Application.runInBackground=true;
+UnityEditor.EditorApplication.isPaused=false;Time.captureDeltaTime=0;
+UnityEditor.SessionState.SetBool("Tools/Scroll Hunter/Mage Model Preview on Play",false);
+typeof(CombatInfoUI).GetField("resumeScale",flags).SetValue(info,1f);
+t.enabled=true;
+int run=1,lastBattle=-1,actions=0,errors=0;string rewards=""; bool skipNext=false;
+double next=0,runStart=UnityEditor.EditorApplication.timeSinceStartup; int frame=-1;
+Application.LogCallback logs=(message,trace,type)=>{System.IO.File.AppendAllText(logfile,"[run "+run+"]["+type+"] "+message+"\n");if(type==LogType.Error||type==LogType.Exception)errors++;};
+Application.logMessageReceived+=logs;
+UnityEditor.EditorApplication.CallbackFunction tick=null;
+System.Action<string> finish=reason=>{
+ UnityEditor.EditorApplication.update-=tick;Application.logMessageReceived-=logs;
+ Application.runInBackground=oldBackground;
+ UnityEditor.SessionState.SetString("ScrollHunter.AutoPlay.Status",reason+"; actions="+actions+"; errors="+errors);
+ System.IO.File.AppendAllText(logfile,"FINISH "+reason+" actions="+actions+" errors="+errors+"\n");
+};
+f.RestartRun();
+tick=()=>{
+ try{
+  if(!Application.isPlaying){finish("stopped by Play exit");return;}
+  double now=UnityEditor.EditorApplication.timeSinceStartup;
+  if(Time.frameCount==frame||now<next)return;frame=Time.frameCount;next=now+.12;
+  UnityEditor.SessionState.SetString("ScrollHunter.AutoPlay.Status","run "+run+" battle "+f.BattleNumber+" "+f.State+" HP "+p.CurrentHp+" potion "+p.PotionsRemaining+"/"+p.PotionCapacity+" time "+met.Elapsed.ToString("F1")+" actions "+actions+" errors "+errors);
+  if(now-runStart>600){finish("timeout run "+run);return;}
+  if(skipNext&&t.Active){t.Skip();skipNext=false;return;}
+  if(t.ShowingGuide){
+    if(t.WaitingForSkill){for(int i=0;i<4;i++)if(t.AllowsSlot(i,d.GetHandCard(i))&&d.GetSlotState(i)==SlotState.Ready){if(d.TryUseSlot(i))actions++;break;}}
+    else t.AdvanceGuide();
+    return;
+  }
+  if(f.State==BattleFlowState.Preparing){f.NextBattle();return;}
+  if(f.State==BattleFlowState.CountingDown)return;
+  if(f.State==BattleFlowState.BetweenBattles||f.State==BattleFlowState.Victory||f.State==BattleFlowState.Defeat){
+   if(lastBattle!=f.BattleNumber){
+    lastBattle=f.BattleNumber;
+    System.IO.File.AppendAllText(resultfile,run+"\t"+f.BattleNumber+"\t"+f.State+"\t"+met.Elapsed.ToString("F2")+"\t"+p.CurrentHp+"\t"+p.PotionsRemaining+"/"+p.PotionCapacity+"\t"+met.PotionUses+"\t"+met.PotionHealing+"\t"+met.DamageApplied+"\t"+m.OrbsDestroyed+"\t"+rewards+"\n");
+    next=now+3;return;
+   }
+   if(f.State!=BattleFlowState.BetweenBattles){
+    if(run==3){finish("completed 3 runs");return;}
+    run++;lastBattle=-1;rewards="";runStart=now;skipNext=true;f.RestartRun();return;
+   }
+   if(!f.RewardResolved){
+    if(run==1){f.SkipReward();rewards+="skip;";return;}
+    int best=-1;float score=-1;
+    for(int i=0;i<f.RewardChoiceCount;i++){
+     var o=f.GetRewardChoice(i);float s=0;
+     if(o.Effect!=null)s=o.Effect.name.StartsWith("PS01")?100:o.Effect.name.StartsWith("PS02")?90:o.Effect.name.StartsWith("PS04")?85:60;
+     if(o.Card!=null)s=o.Card.name.Contains("SK14")?110:o.Card.name.Contains("SK07")?80:o.Card.name.Contains("SK12")?75:0;
+     if(s>score){score=s;best=i;}
+    }
+    if(best<0||score<=0){f.SkipReward();rewards+="skip;";return;}
+    var chosen=f.GetRewardChoice(best);
+    if(f.SelectReward(best)){
+      rewards+=chosen.DisplayName+";";
+      if(chosen.Card!=null){
+       int replace=Enumerable.Range(0,f.DeckCount).FirstOrDefault(i=>f.GetDeckCard(i).name.Contains("SK04"));
+       if(f.GetDeckCard(replace).Category!=SkillCategory.Deal) replace=Enumerable.Range(0,f.DeckCount).First(i=>f.GetDeckCard(i).Category==SkillCategory.Deal);
+       f.ReplaceDeckCard(replace);
+      }
+    }
+    return;
+   }
+   f.NextBattle();return;
+  }
+  if(f.State!=BattleFlowState.Fighting||Time.timeScale<=0||met.Ended)return;
+  if(p.MaxHp-p.CurrentHp>=p.PotionHealAmount&&p.TryUsePotion())actions++;
+  if(d.IsLocked||p.IsStunned||m.SkillInputBlocked)return;
+  var alive=m.GetAliveEnemies().Where(e=>!e.IsInvulnerable).ToList();
+  if(alive.Count==0)return;
+  var orange=alive.Where(e=>e.IsCasting&&e.CastColor==CastColor.Orange).OrderBy(e=>e.CurrentCastTime*(1-e.CastProgress01)).FirstOrDefault();
+  var red=alive.Where(e=>e.IsCasting&&e.CastColor==CastColor.Red).OrderBy(e=>e.CurrentCastTime*(1-e.CastProgress01)).FirstOrDefault();
+  var target=alive.Where(e=>e.IsBossOrb).OrderBy(e=>e.CurrentHp).FirstOrDefault()
+     ??alive.OrderBy(e=>e.Data.name.Contains("Enemy_C")?0:e.Data.name.Contains("Enemy_B_")?1:2).ThenBy(e=>e.CurrentHp).First();
+  for(int i=0;i<4;i++){
+   var card=d.GetHandCard(i);if(card==null||card.Category!=SkillCategory.Interrupt||orange==null)continue;
+   float remain=orange.CurrentCastTime*(1-orange.CastProgress01);
+   if(remain<.3f||remain>2.4f||c.Current<card.Cost)continue;
+   targetMethod.Invoke(m,new object[]{orange});
+   if(d.GetSlotState(i)==SlotState.Ready&&d.TryUseSlot(i)){actions++;return;}
+  }
+  targetMethod.Invoke(m,new object[]{target});
+  if(p.Shield<50){
+   for(int i=0;i<4;i++){
+    var card=d.GetHandCard(i);if(card==null||card.Category!=SkillCategory.Shield||card.IsChanneling)continue;
+    if((red!=null||p.Shield==0)&&d.GetSlotState(i)==SlotState.Ready&&d.TryUseSlot(i)){actions++;return;}
+   }
+  }
+  int slot=-1;float bestDamage=-1;
+  for(int i=0;i<4;i++){
+   var card=d.GetHandCard(i);if(card==null||d.GetSlotState(i)!=SlotState.Ready)continue;
+   float value=-1;
+   if(card.name.Contains("SK14")&&(p.CurrentHp<p.MaxHp-60||red!=null))value=500;
+   else if(card.Category==SkillCategory.Deal){
+    float orangeTime=orange==null?100:orange.CurrentCastTime*(1-orange.CastProgress01);
+    if(card.CastTime>orangeTime-.25f&&orangeTime<3f)continue;
+    value=card.Damage*card.HitCount*(card.IsAreaOfEffect?alive.Count:1)/Mathf.Max(1,card.Cost)/(1+card.CastTime*.12f);
+   }
+   if(value>bestDamage){bestDamage=value;slot=i;}
+  }
+  if(slot>=0&&bestDamage>=0&&d.TryUseSlot(slot)){actions++;return;}
+  if(c.Current>=6&&target.IsCasting&&target.CastColor==CastColor.Green)
+   for(int i=0;i<4;i++)if(d.GetHandCard(i).Category==SkillCategory.Interrupt&&d.GetSlotState(i)==SlotState.Ready){if(d.TryUseSlot(i))actions++;break;}
+ }catch(System.Exception ex){finish("FAILED "+ex);}
+};
+UnityEditor.EditorApplication.update+=tick;
+return "Started 3 real-frame auto-input runs; files "+outDir;
+

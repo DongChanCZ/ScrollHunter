@@ -18,6 +18,7 @@ public class CostSystem : MonoBehaviour
     [Tooltip("4단계 계측. 비워두면 씬에서 자동으로 찾는다.")]
     [SerializeField] private CombatMetrics metrics;
 
+    private Player player;
     private float regenerationBonus;
     public float RegenerationPerSecond => Mathf.Max(0f, regenPerSecond + regenerationBonus);
     public void AddRegenerationBonus(float amount) => regenerationBonus += amount;
@@ -44,17 +45,20 @@ public class CostSystem : MonoBehaviour
     private void Awake()
     {
         BeginBattle();
+        player = FindFirstObjectByType<Player>();
         if (metrics == null) metrics = FindFirstObjectByType<CombatMetrics>();
     }
 
     public void BeginBattle() => Current = StartingCost;
 
-    private void Update()
+    private void Update() => AdvanceCost(Time.deltaTime);
+
+    private void AdvanceCost(float deltaTime)
     {
         if (metrics != null && metrics.Ended) return;
         // 상한을 넘긴 충전분은 소멸한다. 계측은 그 버려진 양만 누적한다
         // (상한에 머문 시간과는 다른 값이다 — 09 문서 4단계 ②).
-        float charged = Current + RegenerationPerSecond * Time.deltaTime;
+        float charged = Current + RegenerationPerSecond * (player != null ? player.CostRecoveryTime(deltaTime) : deltaTime);
         if (charged > Max)
         {
             if (metrics != null) metrics.RecordCostWasted(charged - Max);

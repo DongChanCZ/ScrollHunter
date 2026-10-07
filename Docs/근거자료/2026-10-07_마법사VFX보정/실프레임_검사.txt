@@ -1,0 +1,84 @@
+== 요약 (done) ==
+clean after restart: 1
+cleared death during screen blast: 1
+cleared silence-interrupt: 1
+fx screen blast: 2
+fx VFX_Mage_DarkHoleBurst: 2
+fx VFX_Mage_Fireball: 1
+fx VFX_Mage_FireImpact: 1
+fx VFX_Mage_FireMuzzle: 1
+fx VFX_Mage_NightmareBurst: 1
+fx VFX_Mage_SilenceWave: 1
+fx VFX_Mage_TheEndBlast: 2
+fx VFX_Mage_TheEndGround: 2
+gap-hold-frames: 154
+gap-set: 1
+impact: 7
+pause-frozen: 1
+prepare 0: 2
+prepare 1: 2
+prepare 2: 2
+prepare 3: 1
+prepare 4: 2
+raise skill 2: 2
+raise skill 4: 2
+red-kept: 1
+screen blast frames: 508
+screen pause frozen: 1
+the end hold frames: 3254
+failures: 0
+
+== 기록 ==
+f10 t0.190 PREPARE 0 매직미사일 cast 2.00s phase 1
+f10 t0.190 START forced 매직미사일 phase 1 cast 2.00s
+f296 t2.191 IMPACT color 0 prepared 0 progress 0.00 current 매직미사일
+f334 t2.409 PREPARE 1 사일런스 cast 3.00s phase 1
+f334 t2.409 FORCE forced 사일런스 phase 1 cast 3.00s
+f334 t2.409 STAGE 1 silence
+f610 t3.909 ACTION pause
+f631 t3.909 ACTION resume
+f905 t5.412 IMPACT color 1 prepared 1 progress 0.00 current 사일런스
+f905 t5.412 PREPARE 1 사일런스 cast 3.00s phase 1
+f905 t5.412 FORCE forced 사일런스 phase 1 cast 3.00s
+f905 t5.412 STAGE 2 silence interrupt
+f1209 t7.213 CANCEL
+f1209 t7.213 ACTION interrupt silence Success
+f1443 t8.415 PREPARE 2 다크홀 cast 6.00s phase 1
+f1443 t8.415 FORCE forced 다크홀 phase 1 cast 6.00s
+f1443 t8.415 STAGE 3 darkhole red-fail + half speed
+f1694 t10.216 ACTION red interrupt FailedRed
+f1694 t10.216 ACTION half speed
+f3260 t14.416 IMPACT color 2 prepared 2 progress 0.00 current 다크홀
+f3260 t14.416 PREPARE 3 나이트메어 cast 4.00s phase 2
+f3260 t14.416 FORCE forced 나이트메어 phase 2 cast 4.00s
+f3260 t14.416 STAGE 4 nightmare phase2
+f3261 t14.425 phase 2 cast 4.00
+f4023 t18.420 IMPACT color 1 prepared 3 progress 0.00 current 나이트메어
+f4023 t18.420 PREPARE 2 다크홀 cast 4.80s phase 2
+f4023 t18.420 FORCE forced 다크홀 phase 2 cast 4.80s
+f4023 t18.420 STAGE 5 darkhole phase2 + fire gap
+f4832 t23.126 ACTION fire gap via lastFireTime
+f5003 t24.031 IMPACT color 2 prepared 2 progress 0.00 current 다크홀
+f5003 t24.031 PREPARE 4 디엔드 cast 20.00s phase 3
+f5003 t24.031 FORCE forced 디엔드 phase 3 cast 20.00s
+f5003 t24.031 STAGE 6 the end
+f5911 t29.035 end 25% scale 0.37
+f7756 t39.035 end 75% scale 0.88
+f8698 t44.033 IMPACT color 2 prepared 4 progress 0.00 current 디엔드
+f8720 t44.159 ACTION pause during screen blast
+f8741 t44.159 ACTION half speed during screen blast
+f9186 t45.384 screen blast gone after 1.35s game time (duration 1.35)
+f9186 t45.384 PREPARE 4 디엔드 cast 20.00s phase 3
+f9186 t45.384 FORCE forced 디엔드 phase 3 cast 20.00s
+f9186 t45.384 STAGE 7 the end skip + kill during screen blast
+f9372 t46.386 ACTION skip to end of the end cast
+f9419 t46.636 IMPACT color 2 prepared 4 progress 0.00 current 디엔드
+f9438 t46.741 ACTION kill during screen blast
+f9438 t46.741 CANCEL
+f9469 t46.756 ACTION restart
+f9469 t46.756 CANCEL
+f9469 t46.756 CANCEL
+f9469 t46.756 CANCEL
+f9469 t46.756 PREPARE 0 매직미사일 cast 2.00s phase 1
+f9469 t46.756 STAGE 8 after restart
+f9472 t46.805 REMAIN after restart: releases 0 charges 1 new cast 0

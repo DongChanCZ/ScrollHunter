@@ -1,0 +1,2 @@
+Background real frames: pause=126, half-speed=651, size=8.000021..10.5, final=10.5, failures=0
+Phase3 real frames at 1x=373, final diameter=13, phase=3, transition=False

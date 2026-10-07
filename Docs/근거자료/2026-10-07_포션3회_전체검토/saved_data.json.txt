@@ -1,0 +1,933 @@
+Assets/_Project/Data/Enemy_Tutorial.asset
+{
+    "displayName": "깡패",
+    "maxHp": 300,
+    "defense": 0.0,
+    "attacks": [
+        {
+            "skillName": "펀치",
+            "castColor": 0,
+            "castTime": 3.0,
+            "damage": 20,
+            "staggerAfterCast": 1.0,
+            "stunSeconds": 0.0
+        },
+        {
+            "skillName": "전력펀치",
+            "castColor": 1,
+            "castTime": 4.0,
+            "damage": 30,
+            "staggerAfterCast": 1.5,
+            "stunSeconds": 2.0
+        },
+        {
+            "skillName": "발차기",
+            "castColor": 2,
+            "castTime": 4.0,
+            "damage": 350,
+            "staggerAfterCast": 2.0,
+            "stunSeconds": 0.0
+        }
+    ],
+    "phases": [],
+    "phaseTransitionSeconds": 2.0,
+    "ruinOrb": {
+        "instanceID": 0
+    },
+    "cycleOrb": {
+        "instanceID": 0
+    },
+    "passiveDescription": "",
+    "orbDamageMultiplier": 1.100000023841858,
+    "orbCastTimeReduction": 0.20000000298023225,
+    "orbDestructionDamage": 150,
+    "orbVisual": {
+        "instanceID": 0
+    },
+    "orbBreak": {
+        "instanceID": 0
+    }
+}
+Assets/_Project/Data/ScrollHunter/EnemyData/Enemy_A_Green.asset
+{
+    "displayName": "약탈자",
+    "maxHp": 350,
+    "defense": 0.0,
+    "attacks": [
+        {
+            "skillName": "휘두르기",
+            "castColor": 0,
+            "castTime": 2.5,
+            "damage": 20,
+            "staggerAfterCast": 1.0,
+            "stunSeconds": 0.0
+        }
+    ],
+    "phases": [],
+    "phaseTransitionSeconds": 2.0,
+    "ruinOrb": {
+        "instanceID": 0
+    },
+    "cycleOrb": {
+        "instanceID": 0
+    },
+    "passiveDescription": "",
+    "orbDamageMultiplier": 1.100000023841858,
+    "orbCastTimeReduction": 0.20000000298023225,
+    "orbDestructionDamage": 150,
+    "orbVisual": {
+        "instanceID": 0
+    },
+    "orbBreak": {
+        "instanceID": 0
+    }
+}
+Assets/_Project/Data/ScrollHunter/EnemyData/Enemy_B_Orange.asset
+{
+    "displayName": "궁병",
+    "maxHp": 300,
+    "defense": 0.0,
+    "attacks": [
+        {
+            "skillName": "속공술",
+            "castColor": 0,
+            "castTime": 2.5,
+            "damage": 25,
+            "staggerAfterCast": 1.0,
+            "stunSeconds": 0.0
+        },
+        {
+            "skillName": "조준술",
+            "castColor": 1,
+            "castTime": 3.0,
+            "damage": 40,
+            "staggerAfterCast": 1.5,
+            "stunSeconds": 2.0
+        }
+    ],
+    "phases": [],
+    "phaseTransitionSeconds": 2.0,
+    "ruinOrb": {
+        "instanceID": 0
+    },
+    "cycleOrb": {
+        "instanceID": 0
+    },
+    "passiveDescription": "",
+    "orbDamageMultiplier": 1.100000023841858,
+    "orbCastTimeReduction": 0.20000000298023225,
+    "orbDestructionDamage": 150,
+    "orbVisual": {
+        "instanceID": 0
+    },
+    "orbBreak": {
+        "instanceID": 0
+    }
+}
+Assets/_Project/Data/ScrollHunter/EnemyData/Enemy_Boss.asset
+{
+    "displayName": "마법사",
+    "maxHp": 4000,
+    "defense": 0.0,
+    "attacks": [
+        {
+            "skillName": "매직미사일",
+            "castColor": 0,
+            "castTime": 2.0,
+            "damage": 35,
+            "staggerAfterCast": 1.0,
+            "stunSeconds": 0.0
+        },
+        {
+            "skillName": "사일런스",
+            "castColor": 1,
+            "castTime": 3.0,
+            "damage": 40,
+            "staggerAfterCast": 1.5,
+            "stunSeconds": 2.0
+        },
+        {
+            "skillName": "다크홀",
+            "castColor": 2,
+            "castTime": 6.0,
+            "damage": 300,
+            "staggerAfterCast": 2.0,
+            "stunSeconds": 0.0
+        },
+        {
+            "skillName": "나이트메어",
+            "castColor": 1,
+            "castTime": 5.0,
+            "damage": 60,
+            "staggerAfterCast": 1.5,
+            "stunSeconds": 5.0
+        },
+        {
+            "skillName": "디엔드",
+            "castColor": 2,
+            "castTime": 20.0,
+            "damage": 600,
+            "staggerAfterCast": 2.0,
+            "stunSeconds": 0.0
+        }
+    ],
+    "phases": [
+        {
+            "hpThreshold": 1.0,
+            "pattern": [
+                1,
+                2,
+                1,
+                3
+            ],
+            "castTimeMultiplier": 1.0
+        },
+        {
+            "hpThreshold": 0.6000000238418579,
+            "pattern": [
+                1,
+                1,
+                4,
+                1,
+                3,
+                1,
+                2
+            ],
+            "castTimeMultiplier": 0.800000011920929
+        },
+        {
+            "hpThreshold": 0.25,
+            "pattern": [
+                5,
+                1,
+                4,
+                1,
+                3,
+                1
+            ],
+            "castTimeMultiplier": 1.0
+        }
+    ],
+    "phaseTransitionSeconds": 2.0,
+    "ruinOrb": {
+        "instanceID": -83576
+    },
+    "cycleOrb": {
+        "instanceID": -84114
+    },
+    "passiveDescription": "",
+    "orbDamageMultiplier": 1.100000023841858,
+    "orbCastTimeReduction": 0.20000000298023225,
+    "orbDestructionDamage": 150,
+    "orbVisual": {
+        "instanceID": 0
+    },
+    "orbBreak": {
+        "instanceID": 0
+    }
+}
+Assets/_Project/Data/ScrollHunter/EnemyData/Enemy_C_Red.asset
+{
+    "displayName": "우두머리",
+    "maxHp": 500,
+    "defense": 0.0,
+    "attacks": [
+        {
+            "skillName": "참격",
+            "castColor": 0,
+            "castTime": 2.5,
+            "damage": 30,
+            "staggerAfterCast": 1.0,
+            "stunSeconds": 0.0
+        },
+        {
+            "skillName": "회심참",
+            "castColor": 2,
+            "castTime": 4.0,
+            "damage": 240,
+            "staggerAfterCast": 2.0,
+            "stunSeconds": 0.0
+        }
+    ],
+    "phases": [],
+    "phaseTransitionSeconds": 2.0,
+    "ruinOrb": {
+        "instanceID": 0
+    },
+    "cycleOrb": {
+        "instanceID": 0
+    },
+    "passiveDescription": "",
+    "orbDamageMultiplier": 1.100000023841858,
+    "orbCastTimeReduction": 0.20000000298023225,
+    "orbDestructionDamage": 150,
+    "orbVisual": {
+        "instanceID": 0
+    },
+    "orbBreak": {
+        "instanceID": 0
+    }
+}
+Assets/_Project/Data/ScrollHunter/EnemyData/Enemy_D_Mixed.asset
+{
+    "displayName": "잡몹 D",
+    "maxHp": 800,
+    "defense": 0.0,
+    "attacks": [
+        {
+            "skillName": "일반 공격",
+            "castColor": 0,
+            "castTime": 2.5,
+            "damage": 30,
+            "staggerAfterCast": 1.0,
+            "stunSeconds": 0.0
+        },
+        {
+            "skillName": "기절 공격",
+            "castColor": 1,
+            "castTime": 2.5,
+            "damage": 40,
+            "staggerAfterCast": 1.5,
+            "stunSeconds": 2.0
+        },
+        {
+            "skillName": "대형 피해",
+            "castColor": 2,
+            "castTime": 3.5,
+            "damage": 150,
+            "staggerAfterCast": 2.0,
+            "stunSeconds": 0.0
+        }
+    ],
+    "phases": [],
+    "phaseTransitionSeconds": 2.0,
+    "ruinOrb": {
+        "instanceID": 0
+    },
+    "cycleOrb": {
+        "instanceID": 0
+    },
+    "passiveDescription": "",
+    "orbDamageMultiplier": 1.100000023841858,
+    "orbCastTimeReduction": 0.20000000298023225,
+    "orbDestructionDamage": 150,
+    "orbVisual": {
+        "instanceID": 0
+    },
+    "orbBreak": {
+        "instanceID": 0
+    }
+}
+Assets/_Project/Data/ScrollHunter/EnemyData/Enemy_Orb_Cycle.asset
+{
+    "displayName": "순환의 오브",
+    "maxHp": 400,
+    "defense": 0.0,
+    "attacks": [],
+    "phases": [],
+    "phaseTransitionSeconds": 2.0,
+    "ruinOrb": {
+        "instanceID": 0
+    },
+    "cycleOrb": {
+        "instanceID": 0
+    },
+    "passiveDescription": "보스 시전 시간 추가 20%p 감소\n2페이즈 총 40% / 3페이즈 20%",
+    "orbDamageMultiplier": 1.100000023841858,
+    "orbCastTimeReduction": 0.20000000298023225,
+    "orbDestructionDamage": 150,
+    "orbVisual": {
+        "instanceID": 201486
+    },
+    "orbBreak": {
+        "instanceID": 201718
+    }
+}
+Assets/_Project/Data/ScrollHunter/EnemyData/Enemy_Orb_Ruin.asset
+{
+    "displayName": "파멸의 오브",
+    "maxHp": 400,
+    "defense": 0.0,
+    "attacks": [],
+    "phases": [],
+    "phaseTransitionSeconds": 2.0,
+    "ruinOrb": {
+        "instanceID": 0
+    },
+    "cycleOrb": {
+        "instanceID": 0
+    },
+    "passiveDescription": "보스 피해 +10%\n강화 사일런스·나이트메어의\n기절 중 코스트 충전 불가",
+    "orbDamageMultiplier": 1.100000023841858,
+    "orbCastTimeReduction": 0.20000000298023225,
+    "orbDestructionDamage": 150,
+    "orbVisual": {
+        "instanceID": 201034
+    },
+    "orbBreak": {
+        "instanceID": 201250
+    }
+}
+Assets/_Project/Data/ScrollHunter/PS01_EmergencyPotion.asset
+{
+    "displayName": "응급 물약",
+    "description": "",
+    "maxStacks": 3,
+    "rareReward": false,
+    "offerChance": 0.009999999776482582,
+    "stat": 7,
+    "amount": 1.0,
+    "additionalBonuses": [
+        {
+            "stat": 9,
+            "amount": 1.0
+        }
+    ]
+}
+Assets/_Project/Data/ScrollHunter/PS02_Healing.asset
+{
+    "displayName": "치유의 스크롤",
+    "description": "최대 HP를 넘는 회복은 버림",
+    "maxStacks": 0,
+    "rareReward": false,
+    "offerChance": 0.009999999776482582,
+    "stat": 8,
+    "amount": 150.0,
+    "additionalBonuses": []
+}
+Assets/_Project/Data/ScrollHunter/PS03_Endurance.asset
+{
+    "displayName": "인내의 스크롤",
+    "description": "현재 HP는 회복하지 않음",
+    "maxStacks": 0,
+    "rareReward": false,
+    "offerChance": 0.009999999776482582,
+    "stat": 2,
+    "amount": 50.0,
+    "additionalBonuses": []
+}
+Assets/_Project/Data/ScrollHunter/PS04_Circulation.asset
+{
+    "displayName": "순환의 스크롤",
+    "description": "",
+    "maxStacks": 4,
+    "rareReward": false,
+    "offerChance": 0.009999999776482582,
+    "stat": 0,
+    "amount": 0.10000000149011612,
+    "additionalBonuses": []
+}
+Assets/_Project/Data/ScrollHunter/PS05_Origin.asset
+{
+    "displayName": "태초의 스크롤",
+    "description": "현재 코스트는 보충하지 않음",
+    "maxStacks": 3,
+    "rareReward": false,
+    "offerChance": 0.009999999776482582,
+    "stat": 3,
+    "amount": 1.0,
+    "additionalBonuses": []
+}
+Assets/_Project/Data/ScrollHunter/PS06_Abyss.asset
+{
+    "displayName": "심연의 스크롤",
+    "description": "현재 코스트는 보충하지 않음",
+    "maxStacks": 2,
+    "rareReward": false,
+    "offerChance": 0.009999999776482582,
+    "stat": 4,
+    "amount": 2.0,
+    "additionalBonuses": []
+}
+Assets/_Project/Data/ScrollHunter/PS07_Bulwark.asset
+{
+    "displayName": "철벽의 스크롤",
+    "description": "기본 부여량 기준으로 합산",
+    "maxStacks": 5,
+    "rareReward": false,
+    "offerChance": 0.009999999776482582,
+    "stat": 5,
+    "amount": 0.20000000298023225,
+    "additionalBonuses": []
+}
+Assets/_Project/Data/ScrollHunter/PS08_Binding.asset
+{
+    "displayName": "속박의 스크롤",
+    "description": "플레이어 기절 시간은 유지",
+    "maxStacks": 2,
+    "rareReward": false,
+    "offerChance": 0.009999999776482582,
+    "stat": 6,
+    "amount": 0.5,
+    "additionalBonuses": []
+}
+Assets/_Project/Data/ScrollHunter/PS09_Precision.asset
+{
+    "displayName": "정밀의 스크롤",
+    "description": "",
+    "maxStacks": 3,
+    "rareReward": false,
+    "offerChance": 0.009999999776482582,
+    "stat": 1,
+    "amount": 5.0,
+    "additionalBonuses": []
+}
+Assets/_Project/Data/ScrollHunter/PS10_Devil.asset
+{
+    "displayName": "악마의 스크롤",
+    "description": "",
+    "maxStacks": 1,
+    "rareReward": true,
+    "offerChance": 0.009999999776482582,
+    "stat": 2,
+    "amount": 50.0,
+    "additionalBonuses": [
+        {
+            "stat": 0,
+            "amount": 0.10000000149011612
+        },
+        {
+            "stat": 3,
+            "amount": 1.0
+        },
+        {
+            "stat": 4,
+            "amount": 1.0
+        },
+        {
+            "stat": 5,
+            "amount": 0.20000000298023225
+        },
+        {
+            "stat": 6,
+            "amount": 0.5
+        },
+        {
+            "stat": 1,
+            "amount": 10.0
+        }
+    ]
+}
+Assets/_Project/Data/ScrollHunter/SkillData/Channel_SK02_IceArrow.asset
+{
+    "description": "",
+    "firstHitDelay": 0.5,
+    "hitInterval": 0.5,
+    "targetDeathRecovery": 0.30000001192092898,
+    "timingFormat": "기본 피해 <b>{0} × {1}회</b>\n첫 타격 {2:0.##}초 / 간격 {3:0.##}초\n타격 후 남은 잠금 {4:0.##}초\n{5}",
+    "singleTargetFormat": "입력 대상 고정. 사망 시 후딜 {0:0.##}초",
+    "areaTargetText": "매 타격 시 생존 적 전체"
+}
+Assets/_Project/Data/ScrollHunter/SkillData/Channel_SK06_MagicSpark.asset
+{
+    "description": "",
+    "firstHitDelay": 0.25,
+    "hitInterval": 0.25,
+    "targetDeathRecovery": 0.0,
+    "timingFormat": "기본 피해 <b>{0} × {1}회</b>\n첫 타격 {2:0.##}초 / 간격 {3:0.##}초\n타격 후 남은 잠금 {4:0.##}초\n{5}",
+    "singleTargetFormat": "입력 대상 고정. 사망 시 후딜 {0:0.##}초",
+    "areaTargetText": "매 타격 시 생존 적 전체"
+}
+Assets/_Project/Data/ScrollHunter/SkillData/Channel_SK14_Sanctuary.asset
+{
+    "description": "즉시 무적·기절 면역\n채널링 동안 HP·방어도 피해 무효화\n다른 카드 사용 불가\n종료 시 모두 해제\n이미 기절 중이면 사용 불가"
+}
+Assets/_Project/Data/ScrollHunter/SkillData/Skill_ChainLightning.asset
+{
+    "displayName": "연쇄번개",
+    "icon": {
+        "instanceID": 0
+    },
+    "cost": 3.0,
+    "category": 0,
+    "damage": 25,
+    "hitCount": 3,
+    "resolveHitsSeparately": false,
+    "activation": 0,
+    "castTime": 1.0,
+    "shieldAmount": 0,
+    "isAreaOfEffect": false,
+    "channelEffect": {
+        "instanceID": 0
+    }
+}
+Assets/_Project/Data/ScrollHunter/SkillData/Skill_CrystalShield.asset
+{
+    "displayName": "매직아머",
+    "icon": {
+        "instanceID": 52392
+    },
+    "cost": 3.0,
+    "category": 2,
+    "damage": 0,
+    "hitCount": 1,
+    "resolveHitsSeparately": false,
+    "activation": 0,
+    "castTime": 0.20000000298023225,
+    "shieldAmount": 120,
+    "isAreaOfEffect": false,
+    "channelEffect": {
+        "instanceID": 0
+    }
+}
+Assets/_Project/Data/ScrollHunter/SkillData/Skill_Explosion.asset
+{
+    "displayName": "폭발",
+    "icon": {
+        "instanceID": 0
+    },
+    "cost": 2.0,
+    "category": 0,
+    "damage": 44,
+    "hitCount": 1,
+    "resolveHitsSeparately": false,
+    "activation": 0,
+    "castTime": 0.800000011920929,
+    "shieldAmount": 0,
+    "isAreaOfEffect": false,
+    "channelEffect": {
+        "instanceID": 0
+    }
+}
+Assets/_Project/Data/ScrollHunter/SkillData/Skill_Fireball.asset
+{
+    "displayName": "화염탄",
+    "icon": {
+        "instanceID": 0
+    },
+    "cost": 2.0,
+    "category": 0,
+    "damage": 67,
+    "hitCount": 1,
+    "resolveHitsSeparately": false,
+    "activation": 0,
+    "castTime": 0.30000001192092898,
+    "shieldAmount": 0,
+    "isAreaOfEffect": false,
+    "channelEffect": {
+        "instanceID": 0
+    }
+}
+Assets/_Project/Data/ScrollHunter/SkillData/Skill_FlamePillar.asset
+{
+    "displayName": "불기둥",
+    "icon": {
+        "instanceID": 0
+    },
+    "cost": 3.0,
+    "category": 0,
+    "damage": 39,
+    "hitCount": 2,
+    "resolveHitsSeparately": false,
+    "activation": 0,
+    "castTime": 1.2000000476837159,
+    "shieldAmount": 0,
+    "isAreaOfEffect": false,
+    "channelEffect": {
+        "instanceID": 0
+    }
+}
+Assets/_Project/Data/ScrollHunter/SkillData/Skill_FlamePillar_AoeTest.asset
+{
+    "displayName": "불기둥(광역)",
+    "icon": {
+        "instanceID": 0
+    },
+    "cost": 3.0,
+    "category": 0,
+    "damage": 30,
+    "hitCount": 2,
+    "resolveHitsSeparately": false,
+    "activation": 0,
+    "castTime": 2.0,
+    "shieldAmount": 0,
+    "isAreaOfEffect": true,
+    "channelEffect": {
+        "instanceID": 0
+    }
+}
+Assets/_Project/Data/ScrollHunter/SkillData/Skill_Frostbolt.asset
+{
+    "displayName": "서리화살",
+    "icon": {
+        "instanceID": 0
+    },
+    "cost": 2.0,
+    "category": 0,
+    "damage": 60,
+    "hitCount": 1,
+    "resolveHitsSeparately": false,
+    "activation": 0,
+    "castTime": 0.30000001192092898,
+    "shieldAmount": 0,
+    "isAreaOfEffect": false,
+    "channelEffect": {
+        "instanceID": 0
+    }
+}
+Assets/_Project/Data/ScrollHunter/SkillData/Skill_Pierce.asset
+{
+    "displayName": "관통",
+    "icon": {
+        "instanceID": 0
+    },
+    "cost": 2.0,
+    "category": 0,
+    "damage": 60,
+    "hitCount": 1,
+    "resolveHitsSeparately": false,
+    "activation": 0,
+    "castTime": 0.6000000238418579,
+    "shieldAmount": 0,
+    "isAreaOfEffect": false,
+    "channelEffect": {
+        "instanceID": 0
+    }
+}
+Assets/_Project/Data/ScrollHunter/SkillData/Skill_Silence.asset
+{
+    "displayName": "침묵",
+    "icon": {
+        "instanceID": 52382
+    },
+    "cost": 2.0,
+    "category": 1,
+    "damage": 0,
+    "hitCount": 1,
+    "resolveHitsSeparately": false,
+    "activation": 0,
+    "castTime": 0.20000000298023225,
+    "shieldAmount": 0,
+    "isAreaOfEffect": false,
+    "channelEffect": {
+        "instanceID": 0
+    }
+}
+Assets/_Project/Data/ScrollHunter/SkillData/Skill_SK01_Fireball.asset
+{
+    "displayName": "파이어볼",
+    "icon": {
+        "instanceID": 52380
+    },
+    "cost": 1.0,
+    "category": 0,
+    "damage": 30,
+    "hitCount": 1,
+    "resolveHitsSeparately": true,
+    "activation": 0,
+    "castTime": 0.0,
+    "shieldAmount": 0,
+    "isAreaOfEffect": false,
+    "channelEffect": {
+        "instanceID": 0
+    }
+}
+Assets/_Project/Data/ScrollHunter/SkillData/Skill_SK02_IceArrow.asset
+{
+    "displayName": "아이스애로우",
+    "icon": {
+        "instanceID": 52400
+    },
+    "cost": 5.0,
+    "category": 0,
+    "damage": 35,
+    "hitCount": 5,
+    "resolveHitsSeparately": true,
+    "activation": 1,
+    "castTime": 2.799999952316284,
+    "shieldAmount": 0,
+    "isAreaOfEffect": false,
+    "channelEffect": {
+        "instanceID": 47936
+    }
+}
+Assets/_Project/Data/ScrollHunter/SkillData/Skill_SK03_MagicCutter.asset
+{
+    "displayName": "매직 커터",
+    "icon": {
+        "instanceID": 52402
+    },
+    "cost": 2.0,
+    "category": 0,
+    "damage": 30,
+    "hitCount": 2,
+    "resolveHitsSeparately": true,
+    "activation": 0,
+    "castTime": 0.0,
+    "shieldAmount": 0,
+    "isAreaOfEffect": false,
+    "channelEffect": {
+        "instanceID": 0
+    }
+}
+Assets/_Project/Data/ScrollHunter/SkillData/Skill_SK04_FirePillar.asset
+{
+    "displayName": "파이어 필라",
+    "icon": {
+        "instanceID": 52398
+    },
+    "cost": 4.0,
+    "category": 0,
+    "damage": 50,
+    "hitCount": 1,
+    "resolveHitsSeparately": true,
+    "activation": 0,
+    "castTime": 1.0,
+    "shieldAmount": 0,
+    "isAreaOfEffect": true,
+    "channelEffect": {
+        "instanceID": 0
+    }
+}
+Assets/_Project/Data/ScrollHunter/SkillData/Skill_SK05_LightningSpear.asset
+{
+    "displayName": "라이트닝 스피어",
+    "icon": {
+        "instanceID": 52376
+    },
+    "cost": 4.0,
+    "category": 0,
+    "damage": 135,
+    "hitCount": 1,
+    "resolveHitsSeparately": true,
+    "activation": 0,
+    "castTime": 0.800000011920929,
+    "shieldAmount": 0,
+    "isAreaOfEffect": false,
+    "channelEffect": {
+        "instanceID": 0
+    }
+}
+Assets/_Project/Data/ScrollHunter/SkillData/Skill_SK06_MagicSpark.asset
+{
+    "displayName": "매직 스파크",
+    "icon": {
+        "instanceID": 52394
+    },
+    "cost": 3.0,
+    "category": 0,
+    "damage": 5,
+    "hitCount": 8,
+    "resolveHitsSeparately": true,
+    "activation": 1,
+    "castTime": 2.200000047683716,
+    "shieldAmount": 0,
+    "isAreaOfEffect": true,
+    "channelEffect": {
+        "instanceID": 47904
+    }
+}
+Assets/_Project/Data/ScrollHunter/SkillData/Skill_SK07_MagicImpact.asset
+{
+    "displayName": "매직 임팩트",
+    "icon": {
+        "instanceID": 52406
+    },
+    "cost": 3.0,
+    "category": 0,
+    "damage": 40,
+    "hitCount": 3,
+    "resolveHitsSeparately": true,
+    "activation": 0,
+    "castTime": 0.0,
+    "shieldAmount": 0,
+    "isAreaOfEffect": false,
+    "channelEffect": {
+        "instanceID": 0
+    }
+}
+Assets/_Project/Data/ScrollHunter/SkillData/Skill_SK08_Judgment.asset
+{
+    "displayName": "저지먼트",
+    "icon": {
+        "instanceID": 52396
+    },
+    "cost": 6.0,
+    "category": 0,
+    "damage": 365,
+    "hitCount": 1,
+    "resolveHitsSeparately": true,
+    "activation": 0,
+    "castTime": 2.75,
+    "shieldAmount": 0,
+    "isAreaOfEffect": false,
+    "channelEffect": {
+        "instanceID": 0
+    }
+}
+Assets/_Project/Data/ScrollHunter/SkillData/Skill_SK09_Blizzard.asset
+{
+    "displayName": "블리자드",
+    "icon": {
+        "instanceID": 52390
+    },
+    "cost": 5.0,
+    "category": 0,
+    "damage": 20,
+    "hitCount": 4,
+    "resolveHitsSeparately": true,
+    "activation": 0,
+    "castTime": 1.0,
+    "shieldAmount": 0,
+    "isAreaOfEffect": true,
+    "channelEffect": {
+        "instanceID": 0
+    }
+}
+Assets/_Project/Data/ScrollHunter/SkillData/Skill_SK10_DarkEruption.asset
+{
+    "displayName": "다크 이럽션",
+    "icon": {
+        "instanceID": 52386
+    },
+    "cost": 2.0,
+    "category": 0,
+    "damage": 40,
+    "hitCount": 1,
+    "resolveHitsSeparately": true,
+    "activation": 0,
+    "castTime": 0.5,
+    "shieldAmount": 0,
+    "isAreaOfEffect": true,
+    "channelEffect": {
+        "instanceID": 0
+    }
+}
+Assets/_Project/Data/ScrollHunter/SkillData/Skill_SK12_Suppression.asset
+{
+    "displayName": "제압",
+    "icon": {
+        "instanceID": 52388
+    },
+    "cost": 2.0,
+    "category": 1,
+    "damage": 30,
+    "hitCount": 1,
+    "resolveHitsSeparately": true,
+    "activation": 0,
+    "castTime": 0.20000000298023225,
+    "shieldAmount": 0,
+    "isAreaOfEffect": false,
+    "channelEffect": {
+        "instanceID": 0
+    }
+}
+Assets/_Project/Data/ScrollHunter/SkillData/Skill_SK14_Sanctuary.asset
+{
+    "displayName": "생츄어리",
+    "icon": {
+        "instanceID": 52384
+    },
+    "cost": 4.0,
+    "category": 2,
+    "damage": 0,
+    "hitCount": 1,
+    "resolveHitsSeparately": true,
+    "activation": 1,
+    "castTime": 2.5,
+    "shieldAmount": 0,
+    "isAreaOfEffect": false,
+    "channelEffect": {
+        "instanceID": 48354
+    }
+}

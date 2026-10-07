@@ -42,6 +42,8 @@ public class EnemyAttackVfx : MonoBehaviour
 
     private readonly List<GameObject> spawned = new List<GameObject>();
     private int pendingImpact = -1;
+    private bool finishing;
+    public bool HasFinishingEffect => spawned.Exists(FinishingVfx.IsAlive);
 
     public int SpawnedCount { get { spawned.RemoveAll(s => s == null); return spawned.Count; } }
     public bool TrailEmitting => weaponTrail != null && weaponTrail.emitting;
@@ -92,7 +94,7 @@ public class EnemyAttackVfx : MonoBehaviour
 
     private void LateUpdate()
     {
-        Attack attack = driver.IsAttackMotionActive ? Current(driver.AttackIndex) : null;
+        Attack attack = !finishing && driver.IsAttackMotionActive ? Current(driver.AttackIndex) : null;
         if (weaponTrail != null)
         {
             float t = driver.AttackNormalizedTime;
@@ -117,9 +119,18 @@ public class EnemyAttackVfx : MonoBehaviour
         spawned.Add(fx);
     }
 
+    public void PlayOutUnscaled()
+    {
+        finishing = true;
+        LateUpdate(); // 이미 실제 발동된 예약 타격만 생성. 새 공격 판정은 없다.
+        if (weaponTrail != null) { weaponTrail.emitting = false; weaponTrail.Clear(); }
+        foreach (var fx in spawned) FinishingVfx.PlayUnscaled(fx);
+    }
+
     /// <summary>궤적·예약 효과·남은 효과를 모두 지운다.</summary>
     public void Clear()
     {
+        finishing = false;
         pendingImpact = -1;
         if (weaponTrail != null) { weaponTrail.emitting = false; weaponTrail.Clear(); }
         foreach (GameObject fx in spawned) if (fx != null) Destroy(fx);

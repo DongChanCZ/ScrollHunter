@@ -1,0 +1,41 @@
+Scene: 7 background transform overrides + 6 outdoor rock material overrides; no other serialized scene change.
+Enemy materials/data + boss environment unchanged.
+45911060 propertyPath: m_LocalPosition.x
+      value: -5.5999994
+      value: -12.5
+189793838 propertyPath: m_LocalPosition.x
+      value: 6.8
+      value: 10.5
+269997434 propertyPath: 'm_Materials.Array.data[0]'
+      objectReference: {fileID: 2100000, guid: 0b50cd18151193044bc6f04bfb2d44cd, type: 2}
+      objectReference: {fileID: 2100000, guid: b6ecf9f63b782484b9be1055e704021f, type: 2}
+352605932 propertyPath: 'm_Materials.Array.data[0]'
+      objectReference: {fileID: 2100000, guid: 0b50cd18151193044bc6f04bfb2d44cd, type: 2}
+      objectReference: {fileID: 2100000, guid: b6ecf9f63b782484b9be1055e704021f, type: 2}
+376360113 propertyPath: m_LocalPosition.x
+      value: -11
+      value: -13.5
+625708515 propertyPath: m_LocalScale.x
+      value: 15.962224
+      value: 19.473913
+956069635 propertyPath: m_LocalPosition.x
+      value: 5.4
+      value: 12.5
+1060749180 propertyPath: 'm_Materials.Array.data[0]'
+      objectReference: {fileID: 2100000, guid: 0b50cd18151193044bc6f04bfb2d44cd, type: 2}
+      objectReference: {fileID: 2100000, guid: b6ecf9f63b782484b9be1055e704021f, type: 2}
+1560362752 propertyPath: 'm_Materials.Array.data[0]'
+      objectReference: {fileID: 2100000, guid: 0b50cd18151193044bc6f04bfb2d44cd, type: 2}
+      objectReference: {fileID: 2100000, guid: b6ecf9f63b782484b9be1055e704021f, type: 2}
+1721626386 propertyPath: m_LocalPosition.x
+      value: 11
+      value: 13.5
+1766487566 propertyPath: 'm_Materials.Array.data[0]'
+      objectReference: {fileID: 2100000, guid: 0b50cd18151193044bc6f04bfb2d44cd, type: 2}
+      objectReference: {fileID: 2100000, guid: b6ecf9f63b782484b9be1055e704021f, type: 2}
+1799051441 propertyPath: m_LocalPosition.x
+      value: -6.799999
+      value: -10.5
+2138686033 propertyPath: 'm_Materials.Array.data[0]'
+      objectReference: {fileID: 2100000, guid: 0b50cd18151193044bc6f04bfb2d44cd, type: 2}
+      objectReference: {fileID: 2100000, guid: b6ecf9f63b782484b9be1055e704021f, type: 2}

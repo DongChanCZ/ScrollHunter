@@ -16,7 +16,7 @@ using UnityEngine;
 public static class MageAttackVfxCheck
 {
     const BindingFlags Hidden = BindingFlags.Instance | BindingFlags.NonPublic;
-    public static string Dir => Path.GetFullPath("Docs/근거자료/2026-10-06_마법사VFX");
+    public static string Dir => Path.GetFullPath("Docs/근거자료/2026-10-07_마법사VFX보정");   // 10/6 결과는 2026-10-06_마법사VFX에 보존
 
     static Enemy Boss => Object.FindObjectsByType<Enemy>(FindObjectsSortMode.None).FirstOrDefault(e => e.HasPhases);
     static EnemyAnimationDriver Driver(Enemy e) => Object.FindObjectsByType<EnemyAnimationDriver>(FindObjectsInactive.Include, FindObjectsSortMode.None)
@@ -76,6 +76,28 @@ public static class MageAttackVfxCheck
         return "armed " + skill;
     }
 
+    /// <summary>그 공격의 실제 발동 뒤 게임 시간 seconds초에 멈춘다(프레임이 짧은 백그라운드 편집기용). 디엔드는 발동 직전 방어도를 넣어 패배를 막는다.</summary>
+    public static string ArmAfter(int skill, float seconds)
+    {
+        var boss = Boss; var driver = Driver(boss); var vfx = Vfx(boss);
+        if (boss == null || driver == null || vfx == null) return "missing";
+        Application.runInBackground = true;
+        float fired = -1f;
+        System.Action<int> onImpact = i => { if (fired < 0f && vfx.PreparedSkill == skill) fired = Time.time; };
+        driver.AttackImpact += onImpact;
+        EditorApplication.CallbackFunction cb = null;
+        cb = () =>
+        {
+            if (!EditorApplication.isPlaying) { EditorApplication.update -= cb; return; }
+            KeepPlayer();
+            if (fired < 0f || Time.time < fired + seconds) return;
+            EditorApplication.isPaused = true; EditorApplication.update -= cb; driver.AttackImpact -= onImpact;
+        };
+        EditorApplication.update += cb;
+        EditorApplication.isPaused = false;
+        return "armed after " + skill;
+    }
+
     /// <summary>멈춘 화면을 1920×1080(UI 포함)과 근접(UI 없음)으로 찍는다. height는 보는 높이(m).</summary>
     public static string Shoot(string name, float distance = 4.5f, float height = 1.6f)
     {
@@ -99,7 +121,9 @@ public static class MageAttackVfxCheck
     {
         var boss = Boss; var d = Driver(boss); var v = Vfx(boss);
         if (boss == null) return "no boss";
-        return $"t{Time.time:0.00} phase {boss.PhaseNumber} cast {(boss.CurrentAttack != null ? boss.CurrentAttack.SkillName : "-")} {boss.CastProgress01:0.00} casting {boss.IsCasting} " +
+        var screen = Object.FindFirstObjectByType<ScreenBlastVfx>();
+        return (screen != null ? $"[screen scale {screen.ScreenScale:0.00} opacity {screen.Opacity:0.00}] " : "") +
+               $"t{Time.time:0.00} phase {boss.PhaseNumber} cast {(boss.CurrentAttack != null ? boss.CurrentAttack.SkillName : "-")} {boss.CastProgress01:0.00} casting {boss.IsCasting} " +
                $"motion {d?.MotionIndex} prepared {v?.PreparedSkill} charge {(v?.ChargeObject != null ? v.ChargeObject.name : "-")} scale {v?.ChargeScale:0.00} spawned {v?.SpawnedCount} flights {v?.FlightCount} paused {EditorApplication.isPaused}";
     }
 
@@ -130,7 +154,11 @@ public static class MageAttackVfxCheck
         if (Running) return "already running";
         boss = Boss; driver = Driver(boss); vfx = Vfx(boss);
         if (boss == null || vfx == null) return "boss/vfx missing (마법사 직행 옵션으로 Play)";
-        log.Clear(); fails.Clear(); counts.Clear(); seenRelease.Clear(); killFrame = -1; cancelCheck = -1; lastEndScale = 0f; lastProgress = 0f;
+        log.Clear(); fails.Clear(); counts.Clear(); seenRelease.Clear(); killFrame = -1; cancelCheck = -1; lastEndScale = 0f; lastProgress = 0f; screenSeenTime = -1f; screenPauseScale = -1f;
+        // 검사 시작 전에 이미 발동한 공격의 남은 효과는 판정에서 뺀다(Play 직후 자연 시전이 먼저 발동한 경우).
+        foreach (var ps in Object.FindObjectsByType<ParticleSystem>(FindObjectsSortMode.None)) seenRelease.Add(ps.GetInstanceID());
+        foreach (var t in Object.FindObjectsByType<TrailRenderer>(FindObjectsSortMode.None)) seenRelease.Add(t.GetInstanceID());
+        foreach (var sb in Object.FindObjectsByType<ScreenBlastVfx>(FindObjectsSortMode.None)) seenRelease.Add(sb.GetInstanceID());
         backgroundBefore = Application.runInBackground; Application.runInBackground = true;
         EditorApplication.isPaused = false; Time.timeScale = 1f;
         driver.AttackPrepared += OnPrepared; driver.AttackImpact += OnImpact; driver.AttackCanceled += OnCanceled;
@@ -182,13 +210,30 @@ public static class MageAttackVfxCheck
             if (!flightImpact) { releasesThisCast++; if (releasesThisCast > 1 && n != "VFX_Mage_Fireball") { } }
             if (!flightImpact && !n.Contains("Fireball") && !Expected(lastImpactSkill, n)) Fail($"wrong release {n} for skill {lastImpactSkill}");
         }
+        // 디엔드 화면 폭발: 실제 발동 프레임에 디엔드일 때만 1개, 정지 중 크기·불투명도 변화 없음, 지정 시간 뒤 스스로 사라짐
+        foreach (var sb in Object.FindObjectsByType<ScreenBlastVfx>(FindObjectsSortMode.None))
+        {
+            if (!seenRelease.Add(sb.GetInstanceID())) continue;
+            Count("fx screen blast"); screenSeenTime = Time.time; screenDuration = sb.Duration;
+            if (!(Time.frameCount - impactFrame <= 1 && Time.frameCount >= impactFrame)) Fail("screen blast without impact");
+            if (lastImpactSkill != 4) Fail("screen blast for skill " + lastImpactSkill);
+        }
+        var live = Object.FindFirstObjectByType<ScreenBlastVfx>();
+        if (live != null)
+        {
+            Count("screen blast frames");
+            if (Time.timeScale == 0f && screenPauseScale >= 0f && (Mathf.Abs(live.ScreenScale - screenPauseScale) > 1e-5f || Mathf.Abs(live.Opacity - screenPauseOpacity) > 1e-5f)) Fail("screen blast changed during pause");
+            screenPauseScale = Time.timeScale == 0f ? live.ScreenScale : -1f; screenPauseOpacity = live.Opacity;
+            if (Time.timeScale > 0f && screenSeenTime > 0f && Time.time > screenSeenTime + screenDuration + 0.2f) Fail("screen blast outlived its duration");
+        }
         foreach (var t in Object.FindObjectsByType<TrailRenderer>(FindObjectsSortMode.None))
             if (t.transform.parent == null && t.name.StartsWith("VFX_Mage_Fireball") && seenRelease.Add(t.GetInstanceID()))
             { Count("fx VFX_Mage_Fireball"); if (!(Time.frameCount - impactFrame <= 1)) Fail("fireball without impact"); if (lastImpactSkill != 0) Fail("fireball for skill " + lastImpactSkill); }
 
         if (cancelCheck >= 0 && Time.frameCount >= cancelCheck)
         {
-            if (vfx.ChargeObject != null || vfx.SpawnedCount != 0 || vfx.FlightCount != 0) Fail($"not cleared after {cancelWhat}: charge {vfx.ChargeObject != null} spawned {vfx.SpawnedCount} flights {vfx.FlightCount}");
+            bool screenLeft = Object.FindFirstObjectByType<ScreenBlastVfx>() != null;
+            if (vfx.ChargeObject != null || vfx.SpawnedCount != 0 || vfx.FlightCount != 0 || screenLeft) Fail($"not cleared after {cancelWhat}: charge {vfx.ChargeObject != null} spawned {vfx.SpawnedCount} flights {vfx.FlightCount} screen {screenLeft}");
             else Count("cleared " + cancelWhat);
             cancelCheck = -1;
         }
@@ -267,13 +312,21 @@ public static class MageAttackVfxCheck
                     if (boss.CastProgress01 > 0.25f && Once("end25")) Note($"end 25% scale {s:0.00}");
                     if (boss.CastProgress01 > 0.75f && Once("end75")) Note($"end 75% scale {s:0.00}");
                 }
-                if (counts.ContainsKey("fx VFX_Mage_TheEndBlast")) { Note("FORCE " + Force(4, 2)); Next("the end kill"); }
+                // 화면 폭발: 퍼지는 중 정지(크기·불투명도 고정) → 0.5배속으로 끝까지 → 스스로 사라짐
+                if (counts.ContainsKey("fx screen blast") && Time.time > screenSeenTime + 0.12f && Once("spause"))
+                { Time.timeScale = 0f; pauseFrame = Time.frameCount; Note("ACTION pause during screen blast"); }
+                if (counts.ContainsKey("once spause") && Time.timeScale == 0f && Time.frameCount > pauseFrame + 20 && Once("shalf"))
+                { Count("screen pause frozen"); Time.timeScale = 0.5f; Note("ACTION half speed during screen blast"); }
+                if (counts.ContainsKey("once shalf") && Object.FindFirstObjectByType<ScreenBlastVfx>() == null && Once("sgone"))
+                { Time.timeScale = 1f; Note($"screen blast gone after {Time.time - screenSeenTime:0.00}s game time (duration {screenDuration:0.00})"); Note("FORCE " + Force(4, 2)); Next("the end skip + kill during screen blast"); }
                 break;
-            case 7: // 디엔드 준비 중 처치 → 정리
-                if (vfx.PreparedSkill == 4 && boss.CastProgress01 > 0.1f && Once("kill"))
+            case 7: // 두 번째 디엔드: 시전 끝 부분으로 건너뛰어 발동 → 화면 폭발 중 처치 → 정리
+                if (vfx.PreparedSkill == 4 && boss.IsCasting && boss.CastProgress01 > 0.05f && Once("skip"))
+                { typeof(Enemy).GetField("castTimer", Hidden).SetValue(boss, boss.CurrentCastTime - 0.25f); Note("ACTION skip to end of the end cast"); }
+                if (counts.TryGetValue("fx screen blast", out int sc) && sc >= 2 && Time.time > screenSeenTime + 0.1f && Once("kill"))
                 {
                     typeof(Enemy).GetProperty("CurrentHp").GetSetMethod(true).Invoke(boss, new object[] { 1 });
-                    Note("ACTION kill during the end"); boss.TakeDamage(1); Cancelled("death"); killFrame = Time.frameCount;
+                    Note("ACTION kill during screen blast"); boss.TakeDamage(1); Cancelled("death during screen blast"); killFrame = Time.frameCount;
                 }
                 // 승리 뒤 게임 시간이 멈추므로 프레임으로 기다린 뒤(사망 정리 확인 후) 재시작
                 if (counts.ContainsKey("once kill") && killFrame >= 0 && Time.frameCount > killFrame + 30 && cancelCheck < 0 && Once("restart"))
@@ -284,6 +337,7 @@ public static class MageAttackVfxCheck
                 {
                     int left = Object.FindObjectsByType<ParticleSystem>(FindObjectsSortMode.None).Count(p => p.transform.parent == null && p.name.StartsWith("VFX_Mage_") && !p.name.Contains("Charge"));
                     int charges = Object.FindObjectsByType<Transform>(FindObjectsSortMode.None).Count(t => t.parent == null && t.name.StartsWith("VFX_Mage_") && t.name.Contains("Charge"));
+                    left += Object.FindObjectsByType<ScreenBlastVfx>(FindObjectsSortMode.None).Length;
                     var b = Boss; var bv = b != null ? Vfx(b) : null;
                     Note($"REMAIN after restart: releases {left} charges {charges} new cast {(bv != null ? bv.PreparedSkill : -1)}");
                     if (left > 0 || charges > 1) Fail($"leftover after restart: releases {left} charges {charges}"); else Count("clean after restart");
@@ -295,6 +349,7 @@ public static class MageAttackVfxCheck
     }
     static float lastEndScale;
     static int restartFrame;
+    static float screenSeenTime = -1f, screenDuration, screenPauseScale = -1f, screenPauseOpacity;
 
     static void Finish(string why)
     {

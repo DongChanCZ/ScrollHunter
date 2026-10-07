@@ -42,6 +42,8 @@ public class BossAttackVfx : MonoBehaviour
         public Vector3 releaseOffset;
         [Tooltip("모델 발밑에 함께 만드는 효과(바닥 충격파 등, 선택)")]
         public GameObject groundRelease;
+        [Tooltip("화면 전체로 퍼지는 효과(ScreenBlastVfx, 선택). 준비 효과 위치의 화면 좌표에서 시작한다. 퍼짐·불투명도·유지·사라짐은 그 프리팹에서 조정")]
+        public GameObject screenRelease;
         [Tooltip("방출 때 준비 효과가 줄어들며 사라지는 시간")] public float chargeCollapse = 0.12f;
 
         [Header("투사체 (선택)")]
@@ -92,6 +94,8 @@ public class BossAttackVfx : MonoBehaviour
     private float[] baseRates;
     private Vector3 chargeVelocity;
     private bool chargePlaced;
+    private bool finishing;
+    public bool HasFinishingEffect => flights.Count > 0 || collapses.Count > 0 || spawned.Exists(FinishingVfx.IsAlive);
     private readonly List<GameObject> spawned = new List<GameObject>();
     private readonly List<Flight> flights = new List<Flight>();
     private readonly List<Collapse> collapses = new List<Collapse>();
@@ -217,6 +221,13 @@ public class BossAttackVfx : MonoBehaviour
             Spawn(skill.release, at, skill.releaseSize);
         }
         if (skill.groundRelease != null) Spawn(skill.groundRelease, transform.position, skill.releaseSize);
+        if (skill.screenRelease != null)
+        {
+            GameObject screen = Instantiate(skill.screenRelease);   // 카메라 기준 크기라 모델 배율을 쓰지 않는다
+            spawned.Add(screen);
+            var blast = screen.GetComponent<ScreenBlastVfx>();
+            if (blast != null) blast.Begin(Camera.main, chargePosition);
+        }
         if (skill.projectile != null)
         {
             Vector3 from = skill.releaseAnchor == Anchor.Charge ? chargePosition : AnchorPosition(skill.releaseAnchor, skill.releaseOffset);
@@ -238,7 +249,7 @@ public class BossAttackVfx : MonoBehaviour
 
     private void UpdateFlights()
     {
-        float dt = Time.deltaTime;
+        float dt = finishing ? Time.unscaledDeltaTime : Time.deltaTime;
         if (dt <= 0f) return;
         for (int i = flights.Count - 1; i >= 0; i--)
         {
@@ -265,7 +276,7 @@ public class BossAttackVfx : MonoBehaviour
 
     private void UpdateCollapses()
     {
-        float dt = Time.deltaTime;
+        float dt = finishing ? Time.unscaledDeltaTime : Time.deltaTime;
         if (dt <= 0f) return;
         for (int i = collapses.Count - 1; i >= 0; i--)
         {
@@ -324,6 +335,7 @@ public class BossAttackVfx : MonoBehaviour
         GameObject fx = Instantiate(prefab, position, transform.rotation);
         fx.transform.localScale = prefab.transform.localScale * ModelScale * size;
         spawned.Add(fx);
+        if (finishing) FinishingVfx.PlayUnscaled(fx);
         return fx;
     }
 
@@ -338,9 +350,20 @@ public class BossAttackVfx : MonoBehaviour
         chargeObject = null; grow = handLink = null; chargeSystems = null;
     }
 
+    /// <summary>실제 발동이 예약된 효과는 먼저 만들고, 미발동 준비 효과만 지운다.</summary>
+    public void PlayOutUnscaled()
+    {
+        if (pendingRelease >= 0) Release(pendingRelease);
+        DestroyCharge();
+        skillIndex = -1;
+        finishing = true;
+        foreach (var fx in spawned) FinishingVfx.PlayUnscaled(fx);
+    }
+
     /// <summary>준비 효과·예약 방출·투사체·남은 효과를 모두 지운다.</summary>
     public void Clear()
     {
+        finishing = false;
         pendingRelease = -1;
         skillIndex = -1;
         DestroyCharge();

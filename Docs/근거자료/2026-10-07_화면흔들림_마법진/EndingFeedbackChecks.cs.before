@@ -1,0 +1,137 @@
+using System;
+using System.Linq;
+using System.Reflection;
+using UnityEditor;
+using UnityEngine;
+using TMPro;
+
+/// <summary>A44 피격 조건·표시 크기·실제 패배 연출 검사. 전투 상태는 강제로 만든다.</summary>
+public static class EndingFeedbackChecks
+{
+    const BindingFlags Hidden = BindingFlags.Instance | BindingFlags.NonPublic;
+    static T Find<T>() where T:UnityEngine.Object => UnityEngine.Object.FindFirstObjectByType<T>();
+    static object Get(object o,string n)=>o.GetType().GetField(n,Hidden).GetValue(o);
+    static void Set(object o,string n,object v)=>o.GetType().GetField(n,Hidden).SetValue(o,v);
+    static object Call(object o,string n,params object[] a)=>o.GetType().GetMethod(n,Hidden).Invoke(o,a);
+    static Enemy Boss()=>UnityEngine.Object.FindObjectsByType<Enemy>(FindObjectsInactive.Include,FindObjectsSortMode.None).Single(e=>e.HasPhases);
+    static void Fresh(int index=3)=>Call(Find<BattleFlow>(),"BeginBattle",index,true,null);
+    static bool Near(float a,float b)=>Mathf.Abs(a-b)<.001f;
+
+    [MenuItem("Tools/Scroll Hunter/Check Ending Feedback (Play)")]
+    public static void Menu()=>Debug.Log(Run());
+    public static string Run()
+    {
+        if(!Application.isPlaying)throw new Exception("Play required");
+        var f=Find<BattleFlow>();var t=Find<TutorialFlow>();var p=Find<Player>();var shake=Find<RedHitShake>();
+        bool tutorial=t.enabled;int passed=0;Vector3 home=shake.transform.localPosition;
+        Action<bool,string> check=(ok,label)=>{if(!ok)throw new Exception(label);passed++;};
+        try
+        {
+            t.enabled=false;Fresh();home=shake.transform.localPosition;
+            foreach(var color in new[]{CastColor.Green,CastColor.Orange})
+            { p.TakeDamage(20,color);check(!shake.IsShaking,"other colors never shake"); }
+            p.SetSanctuary(true);p.TakeDamage(100,CastColor.Red);check(!shake.IsShaking,"immune red no shake");p.SetSanctuary(false);
+            p.TakeDamage(0,CastColor.Red);check(!shake.IsShaking,"zero damage no shake");
+            p.AddShield(1);p.TakeDamage(100,CastColor.Red);check(p.Shield==0&&!shake.IsShaking,"shield consumed still no shake");
+            var random=UnityEngine.Random.state;p.TakeDamage(100,CastColor.Red);
+            check(shake.IsShaking,"unshielded red shakes");Call(shake,"Advance",.017f);
+            check(shake.transform.localPosition!=home,"camera displaced");
+            Vector3 stopped=shake.transform.localPosition;Call(shake,"Advance",0f);check(stopped==shake.transform.localPosition,"pause holds offset");
+            check(UnityEngine.Random.state.Equals(random),"combat random preserved");
+            Call(shake,"Advance",1f);check(!shake.IsShaking && (shake.transform.localPosition-home).sqrMagnitude<1e-10f,"shake restores camera without drift");
+            p.TakeDamage(100,CastColor.Red);Call(shake,"Advance",.017f);Fresh();check(!shake.IsShaking&&(shake.transform.localPosition-home).sqrMagnitude<1e-10f,"restart restores camera");
+            var ui=Find<CombatUI>();var icon=(UnityEngine.UI.Image)Get(ui,"shieldIcon");var label=(TMP_Text)Get(ui,"shieldText");
+            check(Near(icon.rectTransform.sizeDelta.x,75)&&Near(label.fontSize,45),"shield icon 75 / font45");
+            var nums=Find<DamageNumberUI>();nums.Clear();Boss().TakeDamage(30);
+            TMP_Text number=nums.GetComponentsInChildren<TMP_Text>().Single();
+            check(Near(number.fontSize,64)&&number.font.name.Contains("Maplestory")&&number.outlineWidth>0,"enemy damage64 font/outline preserved");
+            nums.Clear();Boss().TryInterrupt(2.5f);TMP_Text interrupt=nums.GetComponentsInChildren<TMP_Text>().Single();
+            check(Near(interrupt.fontSize,80)&&interrupt.text=="차단!","interrupt original80");
+            Fresh();var hpUi=Find<HpGaugeUI>();p.TakeDamage(30);
+            var hpTemplate=(TMP_Text)Get(hpUi,"numberTemplate");
+            var hpNumbers=(System.Collections.IList)Get(hpUi,"numbers");
+            var hpNumber=(TMP_Text)hpNumbers[0].GetType().GetField("text").GetValue(hpNumbers[0]);
+            check(Near(hpNumber.fontSize,hpTemplate.fontSize*1.25f),"player HP damage enlarged only");
+            p.Heal(10);var healNumber=(TMP_Text)hpNumbers[1].GetType().GetField("text").GetValue(hpNumbers[1]);
+            check(Near(healNumber.fontSize,hpTemplate.fontSize),"heal number size preserved");
+            Fresh();Set(p,"currentHp",1f);p.TakeDamage(100,CastColor.Red);Call(f,"Update");
+            check(shake.IsShaking&&!p.IsAlive&&f.State==BattleFlowState.Defeat&&Time.timeScale==0,"lethal red ends combat immediately");
+            check(!((GameObject)Get(f,"resultPanel")).activeSelf,"result hidden during hold");
+            var cost=Find<CostSystem>();float before=cost.Current;var d=Find<DeckSystem>();
+            check(!d.TryUseSlot(0)&&!p.TryUsePotion(),"ending rejects skill and potion");
+            Call(cost,"AdvanceCost",1f);p.TakeDamage(100);check(cost.Current==before&&p.CurrentHp==0,"no resource or damage changes");
+            Fresh();check(f.State==BattleFlowState.Fighting&&!shake.IsShaking,"restart mid hold clears ending");
+            return "Ending feedback checks passed: "+passed;
+        }
+        finally{t.enabled=tutorial;f.RestartRun();}
+    }
+
+    public static string FrameResult {get;private set;}="not run";
+    static bool oldPaused,oldTutorial;
+    static float oldCapture,oldSpeed;
+    static int mode,frames,lastFrame;
+    static float age,deadAge,costAtDeath;
+    static bool sawDeath,sawBlast,sawGrowth,sawFade;
+    static float priorOpacity;
+    static string lines;
+    static readonly string[] Modes={"TheEnd 1x","TheEnd 0.5x","Fireball","Leader red","Archer"};
+    [MenuItem("Tools/Scroll Hunter/Check Ending Feedback Frames (Play)")]
+    public static void StartFrames()
+    {
+        if(!Application.isPlaying)throw new Exception("Play required");
+        if(FrameResult=="running")throw new Exception("Already running");
+        oldPaused=EditorApplication.isPaused;oldTutorial=Find<TutorialFlow>().enabled;
+        oldCapture=Time.captureDeltaTime;oldSpeed=Find<CombatInfoUI>().BattleSpeed;
+        Find<TutorialFlow>().enabled=false;EditorApplication.isPaused=true;Time.captureDeltaTime=1f/60f;
+        mode=0;lines="";FrameResult="running";Configure();EditorApplication.update+=Step;
+    }
+    static void Configure()
+    {
+        Set(Find<CombatInfoUI>(),"resumeScale",mode==1?.5f:1f);Fresh(mode==3?1:mode==4?0:3);
+        var p=Find<Player>();var e=mode<3?Boss():Find<EnemyManager>().GetAliveEnemies().First();
+        if(mode<2){e.TakeDamage(3000);e.TryInterrupt(2.5f);Call(e,"AdvanceCombat",2.5f);}
+        if(mode==4)e=Find<EnemyManager>().GetAliveEnemies().First(x=>x.GetComponentInChildren<BowRig>()!=null);
+        Call(e,"AdvanceCombat",Mathf.Max(0,e.CurrentCastTime-.05f));Set(p,"currentHp",1f);
+        frames=0;age=deadAge=0;sawDeath=sawBlast=sawGrowth=sawFade=false;priorOpacity=0;lastFrame=-1;
+    }
+    static void Step()
+    {
+        try
+        {
+            if(!Application.isPlaying){Finish("FAILED Play stopped");return;}
+            if(lastFrame==Time.frameCount)return;lastFrame=Time.frameCount;frames++;age+=Time.unscaledDeltaTime;
+            var f=Find<BattleFlow>();var p=Find<Player>();var c=Find<CostSystem>();
+            if(!p.IsAlive)
+            {
+                if(!sawDeath){sawDeath=true;deadAge=age;costAtDeath=c.Current;}
+                if(Time.timeScale!=0||p.CurrentHp!=0||!Near(c.Current,costAtDeath)||Find<DeckSystem>().TryUseSlot(0)||p.TryUsePotion())throw new Exception("combat changed after defeat");
+                var blast=Find<ScreenBlastVfx>();
+                if(blast!=null)
+                {
+                    sawBlast=true;sawGrowth|=blast.ScreenScale>1;sawFade|=blast.Opacity<priorOpacity;
+                    priorOpacity=blast.Opacity;
+                    if(((GameObject)Get(f,"resultPanel")).activeSelf)throw new Exception("result covers active blast");
+                }
+                if(f.State==BattleFlowState.Defeat && ((GameObject)Get(f,"resultPanel")).activeSelf)
+                {
+                    float held=age-deadAge;
+                    if(held<.55f)throw new Exception("missing minimum hold");
+                    if(mode<2&&(!sawBlast||!sawGrowth||!sawFade||held<1.3f))throw new Exception("TheEnd incomplete");
+                    if(Find<RedHitShake>().IsShaking)throw new Exception("shake remains after result");
+                    lines+=Modes[mode]+": "+frames+" frames, hold "+held.ToString("F2")+"s PASS\n";
+                    if(++mode==Modes.Length){Finish("passed\n"+lines);return;}
+                    Configure();
+                }
+            }
+            if(age>10f)throw new Exception("ending timeout "+Modes[mode]);
+            EditorApplication.Step();
+        }
+        catch(Exception ex){Finish("FAILED "+ex);}
+    }
+    static void Finish(string result)
+    {
+        EditorApplication.update-=Step;FrameResult=result;Time.captureDeltaTime=oldCapture;
+        if(Application.isPlaying){Set(Find<CombatInfoUI>(),"resumeScale",oldSpeed);Find<TutorialFlow>().enabled=oldTutorial;Find<BattleFlow>().RestartRun();}
+        EditorApplication.isPaused=oldPaused;Debug.Log("Ending feedback frames: "+result);
+    }
+}

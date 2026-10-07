@@ -1,0 +1,14 @@
+01_ForestEdge: RGBA(0.790, 0.900, 0.940, 1.000) -> RGBA(0.640, 0.790, 0.850, 1.000)
+02_ForestTrail: RGBA(0.700, 0.840, 0.910, 1.000) -> RGBA(0.570, 0.740, 0.830, 1.000)
+03_CaveEntrance: RGBA(0.750, 0.860, 0.950, 1.000) -> RGBA(0.620, 0.770, 0.860, 1.000)
+P01_BroadleafTree: RGBA(0.730, 0.880, 0.870, 1.000) -> RGBA(0.450, 0.630, 0.690, 1.000)
+P02_TallForestTree: RGBA(0.730, 0.880, 0.870, 1.000) -> RGBA(0.450, 0.630, 0.690, 1.000)
+P03_Undergrowth: RGBA(0.750, 0.900, 0.870, 1.000) -> RGBA(0.450, 0.630, 0.690, 1.000)
+P05_CaveEntrance: RGBA(0.720, 0.830, 0.940, 1.000) -> RGBA(0.520, 0.670, 0.780, 1.000)
+P02_TallForestTree -6.799999 -> -10.5
+P02_TallForestTree 6.8 -> 10.5
+P02_TallForestTree -5.599999 -> -12.5
+P02_TallForestTree 5.4 -> 12.5
+P01_BroadleafTree -11 -> -13.5
+P01_BroadleafTree 11 -> 13.5
+Cave width: 15.96222 -> 19.47391

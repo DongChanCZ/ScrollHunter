@@ -33,7 +33,7 @@ public static class BossChecks
             t.enabled=false;Set(f,"finishingEffectHold",0f);f.RestartRun();FreshBoss();
             check(f.BattleCount==4 && f.BattleNumber==4 && m.EnemyCount==1 && m.CurrentTarget==e,"final encounter and target");
             check(e.transform.position.x==m.FormationCenter.x && e.MaxHp==4000 && e.Data.Defense==0,"HP defense centered");
-            check(p.PotionCapacity==2 && p.PotionsRemaining==2 && p.PotionHealAmount==150,"base potion 2/2 and 30%");
+            check(p.PotionCapacity == 3 && p.PotionsRemaining == 3 && p.PotionHealAmount==150,"base potion 3/3 and 30%");
             check(e.Data.Attacks.Select(a=>a.Damage).SequenceEqual(new[]{35,40,300,60,600}),"raw attack damage");
             check(e.Data.Attacks.Select(a=>a.CastTime).SequenceEqual(new float[]{2,3,6,5,20}),"base casts");
             check(e.Data.Attacks.Select(a=>a.StunSeconds).SequenceEqual(new float[]{0,2,0,5,0}),"nightmare exception");
@@ -48,7 +48,7 @@ public static class BossChecks
                 {
                     var a=e.Data.Attacks[patterns[phase][i%patterns[phase].Length]-1];
                     check(e.CurrentAttack==a && e.IsCasting,"sequence "+phase+"/"+i);
-                    check(Near(e.CurrentCastTime,a.CastTime*(phase==1?.8f:1)),"effective cast "+phase+"/"+i);
+                    check(Near(e.CurrentCastTime,a.CastTime*(phase==0?1f:phase==1?.6f:.8f)),"effective cast "+phase+"/"+i);
                     check(info.DescribeEnemy(e).Contains(e.CurrentCastTime.ToString("0.0")) || info.DescribeEnemy(e).Contains(e.CurrentCastTime.ToString()),"tooltip effective cast");
                     p.BeginBattle(true);p.AddShield(10000);Call(e,"Fire");
                     check(Near(p.StunRemaining,a.StunSeconds),"stun duration");
@@ -84,9 +84,9 @@ public static class BossChecks
             Tick(e,1.999f);check(e.IsInvulnerable && !e.IsCasting,"transition not early");Tick(e,.002f);check(e.IsCasting && !e.IsInvulnerable,"transition ends after rest");
             FreshBoss();e.TakeDamage(1600);e.TryInterrupt(2.5f);Call(e,"Start");check(e.IsStaggered && e.IsInvulnerable,"first Start preserves transition and stagger");Tick(e,2);
             check(!e.IsInvulnerable && !m.SkillInputBlocked && e.IsStaggered && !e.IsCasting,"2s unlock leaves .5s stagger");
-            Tick(e,.499f);check(!e.IsCasting,"stagger not early");Tick(e,.002f);check(e.IsCasting && Near(e.CurrentCastTime,1.6f),"concurrent total 2.5 not 4.5");
+            Tick(e,.499f);check(!e.IsCasting,"stagger not early");Tick(e,.002f);check(e.IsCasting && Near(e.CurrentCastTime,1.2f),"concurrent total 2.5 not 4.5");
             e.TakeDamage(1399);e.TryInterrupt(2.5f);check(e.PhaseNumber==2,"above twenty five stays two");Tick(e,2.5f);
-            e.TakeDamage(1);e.TryInterrupt(2.5f);Tick(e,2.5f);check(e.PhaseNumber==3 && e.CurrentAttack==e.Data.Attacks[4] && e.CurrentCastTime==20,"phase3 starts five, restored cast");
+            e.TakeDamage(1);e.TryInterrupt(2.5f);Tick(e,2.5f);check(e.PhaseNumber==3 && e.CurrentAttack==e.Data.Attacks[4] && e.CurrentCastTime==16,"phase3 starts five, cycle orb -20%");
             check(e.TryInterrupt(2.5f)==InterruptResult.FailedRed && e.IsCasting,"red cannot interrupt");
             FreshBoss();e.TakeDamage(3100);e.TryInterrupt(2.5f);check(e.PhaseNumber==3,"skip phase2");
             FreshBoss();Call(e,"Fire");e.TakeDamage(1600);check(e.IsInvulnerable,"threshold while resting starts now");Tick(e,2);check(e.IsCasting,"rest and transition parallel");
@@ -102,7 +102,7 @@ public static class BossChecks
             finally {Enemy.DamageTaken-=onDamage;}
             check(!d.IsCasting && e.CurrentHp==hp && numbers==0,"ordinary cast finishes, immunity no numbers");
             check(metrics.RecordedHits==hits && metrics.CriticalEligibleHits==crit && metrics.DamageApplied==damage && metrics.OverkillDamage==overkill,"blocked hit no metrics or crit");
-            p.TakeDamage(100);check(p.CurrentHp<500 && p.TryUsePotion() && p.PotionsRemaining==1,"only boss immune, potion usable");
+            p.TakeDamage(100);check(p.CurrentHp<500 && p.TryUsePotion() && p.PotionsRemaining == 2,"only boss immune, potion usable");
             float transition=e.PhaseTransitionRemaining;info.TogglePause();Tick(e,1);
             check(Time.timeScale==0 && e.PhaseTransitionRemaining==transition && !p.TryUsePotion(),"manual pause freezes transition and potion");info.Resume();
             check(Time.timeScale>0,"manual resume");Tick(e,2.5f);c.EnsureTutorialCost(10);check(d.TryUseSlot(0),"new input accepted after transition");
@@ -121,11 +121,11 @@ public static class BossChecks
                 foreach(var enemy in m.GetAliveEnemies())enemy.TakeDamage(10000);m.NotifyEnemyDied();Call(f,"Update");
                 check(f.State==BattleFlowState.BetweenBattles && f.RewardChoiceCount>0,"reward after ordinary battle "+stage);
                 check(f.SkipReward(),"skip "+stage);f.NextBattle();Call(f,"AdvanceCountdown",3f);
-                check(p.CurrentHp==carry && p.PotionsRemaining==1,"HP/potion carry "+stage);
+                check(p.CurrentHp==carry && p.PotionsRemaining == 2,"HP/potion carry "+stage);
             }
             check(m.CurrentTarget==e && e.CurrentHp==4000 && e.PhaseNumber==1,"ABC to fresh boss");
             e.TakeDamage(3100);e.TryInterrupt(2.5f);p.TakeDamage(100000);Call(f,"Update");check(f.State==BattleFlowState.Defeat,"player defeat during transition");
-            f.RestartRun();check(p.PotionsRemaining==2 && p.PotionCapacity==2 && !m.SkillInputBlocked,"restart clears transition, potion 2/2");FreshBoss();
+            f.RestartRun();check(p.PotionsRemaining == 3 && p.PotionCapacity == 3 && !m.SkillInputBlocked,"restart clears transition, potion 3/3");FreshBoss();
             check(e.CurrentHp==4000 && e.PhaseNumber==1 && e.CurrentAttack==e.Data.Attacks[0],"boss restart resets phase cursor");
             return "Boss checks passed: "+passed;
         }
@@ -177,7 +177,7 @@ public static class BossChecks
             if(e.IsCasting)
             {
                 if(Mathf.Abs(transitionEnded-2)>.055f || Mathf.Abs(elapsed-2.5f)>.055f
-                    || Mathf.Abs(c.Current-(3+.8f*elapsed))>.08f || !Near(e.CurrentCastTime,1.6f))
+                    || Mathf.Abs(c.Current-(3+.8f*elapsed))>.08f || !Near(e.CurrentCastTime,1.2f))
                     throw new Exception("timing mismatch: transition="+transitionEnded+" next="+elapsed+" cost="+c.Current);
                 frameLines+=(mode==0?"1x":"0.5x")+": transition="+transitionEnded.ToString("0.000")+"s next="+elapsed.ToString("0.000")+"s cost="+c.Current.ToString("0.00")+", pause 12 frames frozen; "+ticks+" frames\n";
                 if(mode++==0)ConfigureFrames();else{FinishFrames("passed\n"+frameLines);return;}
