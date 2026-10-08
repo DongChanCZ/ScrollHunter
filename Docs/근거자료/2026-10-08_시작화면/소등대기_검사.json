@@ -1,0 +1,59 @@
+{
+  "success": true,
+  "message": "Code executed successfully.",
+  "data": {
+    "result": {
+      "glowPeriod": 5,
+      "offDelay": 4,
+      "darkIntervalPassed": true,
+      "repeatPassed": true,
+      "samples": [
+        {
+          "seconds": 0,
+          "glow": 0
+        },
+        {
+          "seconds": 2.5,
+          "glow": 1
+        },
+        {
+          "seconds": 5,
+          "glow": 0
+        },
+        {
+          "seconds": 6,
+          "glow": 0
+        },
+        {
+          "seconds": 8.999,
+          "glow": 0
+        },
+        {
+          "seconds": 9,
+          "glow": 0
+        },
+        {
+          "seconds": 10.25,
+          "glow": 0.5
+        },
+        {
+          "seconds": 11.5,
+          "glow": 1
+        },
+        {
+          "seconds": 14,
+          "glow": 0
+        },
+        {
+          "seconds": 17.999,
+          "glow": 0
+        },
+        {
+          "seconds": 18,
+          "glow": 0
+        }
+      ]
+    },
+    "compiler": "codedom"
+  }
+}

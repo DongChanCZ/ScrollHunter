@@ -1,0 +1,18 @@
+{
+  "finalInheritance": {
+    "success": true,
+    "message": "Code executed successfully.",
+    "data": {
+      "result": "Inheritance: 62 checks passed. Isolated store: C:/Users/MBC-50~1/AppData/Local/Temp/DefaultCompany/ScrollHunter\\InheritanceCheck-2742e591626a422594aef07bac6a3a6f",
+      "compiler": "codedom"
+    }
+  },
+  "combatAndTutorial": {
+    "success": true,
+    "message": "Code executed successfully.",
+    "data": {
+      "result": "Inheritance: 60 checks passed. Isolated store: C:/Users/MBC-50~1/AppData/Local/Temp/DefaultCompany/ScrollHunter\\InheritanceCheck-61c8229773e646f0ac362ad4f3fe7ddd\nRed shield checks passed: 33\nStarting deck checks passed: 117\nCritical checks passed: 100. Function integration checks; not natural play or balance validation.\nRemaining skill checks passed: 77\nAll passive checks passed: 75. Synthetic function/UI state checks; physical input and natural balance are separate.\nBattleFlow checks passed: 108. Function/event verification; not a manual-input or balance test.\nCombat readability checks: 33 passed (current HP preserved)\nReward checks passed: 54. Function/UI event checks; not physical input or balance validation.\nPassive reward checks passed: 74. Function/UI event checks; extra reward opportunities are synthetic, not natural play.\nDamage / interrupt display checks passed: 30\nStart screen checks passed: 20. Function/button event checks; not physical input.\nDeck order checks passed: 38. Function and pointer-event checks; not physical input.\nTutorial checks passed: 108. Function/pointer events; physical input and natural play not covered.",
+      "compiler": "codedom"
+    }
+  }
+}

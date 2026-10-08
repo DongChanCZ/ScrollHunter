@@ -1,0 +1,16 @@
+{
+  "success": true,
+  "message": "Code executed successfully.",
+  "data": {
+    "result": {
+      "frames": 260,
+      "min": 0,
+      "max": 1,
+      "glowTime": 5.19999552,
+      "timeScale": 0,
+      "state": "Title",
+      "mask": true
+    },
+    "compiler": "codedom"
+  }
+}

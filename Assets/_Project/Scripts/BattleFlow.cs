@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum BattleFlowState { Fighting, BetweenBattles, Victory, Defeat, Title, Preparing, TutorialComplete, CountingDown }
+public enum BattleFlowState { Fighting, BetweenBattles, Victory, Defeat, Title, Preparing, TutorialComplete, CountingDown, Inheriting }
 
 /// <summary>한 씬의 적을 재사용하는 시연 전투 진행. 승리 후 보상·덱 교체를 거쳐 다음 전투에 편성을 이월한다.</summary>
 [DefaultExecutionOrder(-50)]
@@ -65,6 +65,16 @@ public class BattleFlow : MonoBehaviour
     [SerializeField] private string completeFormat = "모험 완료\n남은 HP {0:0} / {1:0}";
     [SerializeField] private string defeatFormat = "전투 {0} 패배\n처음부터 다시 도전할 수 있습니다.";
 
+    [Header("계승")]
+    [SerializeField] private string inheritanceFileName = "save.json";
+    [SerializeField] private string inheritanceButtonText = "계승 선택";
+    [SerializeField] private string restartButtonText = "처음부터 다시 시작";
+    [SerializeField] private string inheritanceLogFormat = "[계승] {0} 저장 / 시작 덱 슬롯 {1}";
+    private InheritanceSave inheritance;
+    private readonly List<BattleRewardOption> earnedRewards = new List<BattleRewardOption>();
+    public InheritanceSave Inheritance => inheritance;
+    public bool InheritanceSaveFailed { get; private set; }
+
     [Header("시연 보상")]
     [SerializeField] private BattleRewardOption[] rewardPool;
     [SerializeField] private BattleRewardUI rewardUI;
@@ -99,6 +109,7 @@ public class BattleFlow : MonoBehaviour
     private readonly List<RunRewardEffect> acquiredEffects = new List<RunRewardEffect>();
     [SerializeField] private string effectLogFormat = "[보상 전투 {0}] {1} 획득 / {2}스택 / 충전 {3:0.0}/초 / 크리티컬 {4:0.#}%";
     public SkillData SelectedReward { get; private set; }
+    public int SelectedReplacementIndex { get; private set; } = -1;
     public bool RewardResolved { get; private set; }
     public int RewardChoiceCount => rewardChoices.Count;
     public int DeckCount => runDeck.Count;
@@ -151,7 +162,9 @@ public class BattleFlow : MonoBehaviour
         if (skillVfx == null) skillVfx = FindFirstObjectByType<SkillVfx>();
         if (startButton != null) startButton.onClick.AddListener(StartRun);
         if (nextButton != null) nextButton.onClick.AddListener(NextBattle);
-        if (restartButton != null) restartButton.onClick.AddListener(RestartRun);
+        if (restartButton != null) restartButton.onClick.AddListener(ContinueAfterResult);
+        inheritance = new InheritanceSave(System.IO.Path.Combine(Application.persistentDataPath, inheritanceFileName),
+            rewardPool, deck.CopyStartingDeck());
         BuildCountdownUI();
         if (Camera.main != null && Camera.main.GetComponent<RedHitShake>() == null)
             Camera.main.gameObject.AddComponent<RedHitShake>();
@@ -207,6 +220,7 @@ public class BattleFlow : MonoBehaviour
         ClearRunRewards();
         runDeck = deck.CopyStartingDeck();
         if (HasTutorial) { BeginTutorial(false); return; }
+        ApplyInheritance();
         State = BattleFlowState.Preparing;
         Time.timeScale = 0f;
         RefreshUI();
@@ -222,7 +236,87 @@ public class BattleFlow : MonoBehaviour
         ClearRunRewards();
         runDeck = deck.CopyStartingDeck();
         if (HasTutorial) BeginTutorial(false);
-        else BeginBattle(0, true);
+        else { ApplyInheritance(); BeginBattle(0, true); }
+    }
+
+    public void ContinueAfterResult()
+    {
+        if (PanelHeld) return;
+        if (State == BattleFlowState.Victory) { RestartRun(); return; }
+        if (State != BattleFlowState.Defeat) return;
+        rewardChoices.Clear();
+        foreach (var option in earnedRewards)
+            if (inheritance.CanInherit(option) && !rewardChoices.Contains(option)) rewardChoices.Add(option);
+        if (rewardChoices.Count == 0) { ReturnToTitle(); return; }
+        // 후보를 보존한 뒤 이번 런 효과를 정리한다. 카드 설명도 다음 런의 계승 수치로 표시한다.
+        ClearRunRewards();
+        ApplyInheritance();
+        SelectedReplacementIndex = -1;
+        SelectedReward = null;
+        RewardResolved = false;
+        InheritanceSaveFailed = false;
+        State = BattleFlowState.Inheriting;
+        RefreshUI();
+    }
+
+    private void ApplyInheritance()
+    {
+        runDeck = inheritance.BuildDeck();
+        // 튜토리얼은 기본 덱·기본 능력치. 종료 뒤 본편 준비에서 한 번만 적용한다.
+        player.BeginBattle(true);
+        foreach (var entry in inheritance.Passives)
+        {
+            RunRewardEffect source = inheritance.Find(entry.id).Effect;
+            for (int i = 0; i < entry.stacks; i++) ApplyPassive(source);
+        }
+    }
+
+    private bool ApplyPassive(RunRewardEffect source)
+    {
+        RunRewardEffect instance = Instantiate(source);
+        try { instance.Apply(player, cost); }
+        catch (Exception error) { ReleaseEffect(instance); Debug.LogException(error, this); return false; }
+        acquiredEffects.Add(instance);
+        effectStacks[source] = GetPassiveStacks(source) + 1;
+        return true;
+    }
+
+    private bool CommitInheritance(BattleRewardOption option, int slot)
+    {
+        if (!inheritance.TryInherit(option, slot))
+        {
+            InheritanceSaveFailed = true;
+            RefreshUI();
+            return false;
+        }
+        Debug.Log(string.Format(inheritanceLogFormat, option.DisplayName, slot + 1), this);
+        ReturnToTitle();
+        return true;
+    }
+
+    public bool ResetInheritance()
+    {
+        if (State != BattleFlowState.Title) return false;
+        InheritanceSaveFailed = !inheritance.TryReset();
+        RefreshUI();
+        return !InheritanceSaveFailed;
+    }
+
+    private void ReturnToTitle()
+    {
+        ClearRunRewards();
+        SelectedReplacementIndex = -1;
+        SelectedReward = null;
+        rewardChoices.Clear();
+        orderDraft = null;
+        InheritanceSaveFailed = false;
+        enemies.WaitForBattle();
+        metrics.WaitForBattle();
+        if (information != null) information.BeginBattle();
+        BattleNumber = 0;
+        State = BattleFlowState.Title;
+        Time.timeScale = 0f;
+        RefreshUI();
     }
 
     public void NextBattle()
@@ -272,15 +366,23 @@ public class BattleFlow : MonoBehaviour
     public bool SelectReward(int index)
     {
         BattleRewardOption option = GetRewardChoice(index);
+        if (State == BattleFlowState.Inheriting)
+        {
+            if (!inheritance.CanInherit(option)) return false;
+            if (option.Card == null) return CommitInheritance(option, -1);
+            SelectedReplacementIndex = -1;
+            SelectedReward = option.Card;
+            InheritanceSaveFailed = false;
+            RefreshUI();
+            return true;
+        }
         if (State != BattleFlowState.BetweenBattles || RewardResolved || option == null
             || !CanOffer(option)) return false;
+        SelectedReplacementIndex = -1;
         if (option.Card == null)
         {
-            RunRewardEffect instance = Instantiate(option.Effect);
-            try { instance.Apply(player, cost); }
-            catch (Exception error) { ReleaseEffect(instance); Debug.LogException(error, this); return false; }
-            acquiredEffects.Add(instance);
-            effectStacks[option.Effect] = GetPassiveStacks(option.Effect) + 1;
+            if (!ApplyPassive(option.Effect)) return false;
+            earnedRewards.Add(option);
             SelectedReward = null;
             RewardResolved = true;
             Debug.Log(string.Format(effectLogFormat, BattleNumber, option.DisplayName, GetPassiveStacks(option.Effect), cost.RegenerationPerSecond, player.CriticalChance) + " / " + ResourceStatus, this);
@@ -292,18 +394,41 @@ public class BattleFlow : MonoBehaviour
 
     public void CancelRewardSelection()
     {
-        if (State != BattleFlowState.BetweenBattles || RewardResolved) return;
+        if ((State != BattleFlowState.BetweenBattles && State != BattleFlowState.Inheriting) || RewardResolved) return;
+        InheritanceSaveFailed = false;
+        SelectedReplacementIndex = -1;
         SelectedReward = null;
         RefreshUI();
     }
 
-    public bool ReplaceDeckCard(int index)
+    public bool SelectReplacementSlot(int index)
     {
-        if (State != BattleFlowState.BetweenBattles || RewardResolved || SelectedReward == null
-            || index < 0 || index >= runDeck.Count || runDeck.Contains(SelectedReward)) return false;
+        if ((State != BattleFlowState.BetweenBattles && State != BattleFlowState.Inheriting)
+            || RewardResolved || SelectedReward == null || index < 0 || index >= runDeck.Count
+            || runDeck.Contains(SelectedReward)) return false;
+        SelectedReplacementIndex = index;
+        InheritanceSaveFailed = false;
+        RefreshUI();
+        return true;
+    }
+
+    public bool ConfirmReplacement()
+    {
+        int index = SelectedReplacementIndex;
+        if ((State != BattleFlowState.BetweenBattles && State != BattleFlowState.Inheriting)
+            || RewardResolved || SelectedReward == null || index < 0 || index >= runDeck.Count
+            || runDeck.Contains(SelectedReward)) return false;
+        if (State == BattleFlowState.Inheriting)
+        {
+            var option = rewardChoices.Find(choice => choice.Card == SelectedReward);
+            return CommitInheritance(option, index);
+        }
+        var earned = rewardChoices.Find(choice => choice.Card == SelectedReward);
+        if (earned != null) earnedRewards.Add(earned);
         SkillData removed = runDeck[index];
         runDeck[index] = SelectedReward;
         Debug.Log(string.Format(replaceLogFormat, BattleNumber, index + 1, removed.DisplayName, SelectedReward.DisplayName), this);
+        SelectedReplacementIndex = -1;
         SelectedReward = null;
         RewardResolved = true;
         RefreshUI();
@@ -312,7 +437,9 @@ public class BattleFlow : MonoBehaviour
 
     public bool SkipReward()
     {
+        if (State == BattleFlowState.Inheriting) { ReturnToTitle(); return true; }
         if (State != BattleFlowState.BetweenBattles || RewardResolved) return false;
+        SelectedReplacementIndex = -1;
         SelectedReward = null;
         RewardResolved = true;
         Debug.Log(string.Format(skipLogFormat, BattleNumber), this);
@@ -362,6 +489,7 @@ public class BattleFlow : MonoBehaviour
         for (int i = acquiredEffects.Count - 1; i >= 0; i--) ReleaseEffect(acquiredEffects[i]);
         acquiredEffects.Clear();
         effectStacks.Clear();
+        earnedRewards.Clear();
     }
 
     private void ReleaseEffect(RunRewardEffect effect)
@@ -422,6 +550,7 @@ public class BattleFlow : MonoBehaviour
         metrics.WaitForBattle();
         if (information != null) information.BeginBattle();
         panelHoldRemaining = 0f;
+        ApplyInheritance();
         State = skipped ? BattleFlowState.Preparing : BattleFlowState.TutorialComplete;
         if (!skipped) HoldVictoryPresentation();
         if (PanelHeld)
@@ -518,6 +647,7 @@ public class BattleFlow : MonoBehaviour
         if (skillVfx != null) skillVfx.Clear();
         orderDraft = null;
         deck.SetDeck(runDeck);
+        SelectedReplacementIndex = -1;
         SelectedReward = null;
         RewardResolved = false;
         rewardChoices.Clear();
@@ -639,7 +769,12 @@ public class BattleFlow : MonoBehaviour
         if (resultPanel != null) resultPanel.SetActive(ended && shown);
         if (nextButton != null) nextButton.gameObject.SetActive(shown && CanEditOrder && !IsEditingOrder);
         if (nextButtonLabel != null) nextButtonLabel.text = preparing ? firstBattleText : nextBattleText;
-        if (restartButton != null) restartButton.gameObject.SetActive(shown && ended);
+        if (restartButton != null)
+        {
+            restartButton.gameObject.SetActive(shown && ended);
+            var label = restartButton.GetComponentInChildren<TMP_Text>();
+            if (label != null) label.text = State == BattleFlowState.Defeat ? inheritanceButtonText : restartButtonText;
+        }
         if (rewardUI != null && shown) rewardUI.Refresh();
         if (resultText == null || !ended) return;
         resultText.text = State == BattleFlowState.Defeat ? string.Format(defeatFormat, BattleNumber)
@@ -660,6 +795,6 @@ public class BattleFlow : MonoBehaviour
         ClearRunRewards();
         if (startButton != null) startButton.onClick.RemoveListener(StartRun);
         if (nextButton != null) nextButton.onClick.RemoveListener(NextBattle);
-        if (restartButton != null) restartButton.onClick.RemoveListener(RestartRun);
+        if (restartButton != null) restartButton.onClick.RemoveListener(ContinueAfterResult);
     }
 }

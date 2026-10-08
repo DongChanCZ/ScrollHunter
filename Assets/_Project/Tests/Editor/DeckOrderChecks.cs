@@ -82,6 +82,7 @@ public static class DeckOrderChecks
             check(flow.SelectReward(0) && !flow.BeginOrderEdit(), "replacement selection cannot reorder");
             var replacement = flow.SelectedReward;
             Click(slots[3]);
+            Click((Button)Get(ui, "confirmReplacementButton"));
             var replaced = committed();
             check(flow.RewardResolved && replaced[3] == replacement && reorder.gameObject.activeInHierarchy, "replace resolves before reorder");
             var choices = Enumerable.Range(0, flow.RewardChoiceCount).Select(flow.GetRewardChoice).ToArray();

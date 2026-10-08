@@ -34,6 +34,11 @@ public class BattleRewardOption
 {
     [SerializeField] private SkillData card;
     [SerializeField] private RunRewardEffect effect;
+    [Tooltip("계승 저장 ID. 최초 연결 후 이름을 바꿔도 이 값은 유지한다.")]
+    [SerializeField] private string inheritanceId;
+    [SerializeField] private bool inheritable = true;
+    public string InheritanceId => inheritanceId;
+    public bool Inheritable => inheritable;
     public SkillData Card => card;
     public RunRewardEffect Effect => effect;
     public string DisplayName => card != null ? card.DisplayName : effect != null ? effect.DisplayName : string.Empty;

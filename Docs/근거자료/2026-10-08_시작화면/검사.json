@@ -1,0 +1,35 @@
+{
+  "checks": {
+    "success": true,
+    "message": "Code executed successfully.",
+    "data": {
+      "result": "Main menu: 27 passed. Temporary preference keys; editor display switching and actual sound playback are not covered.",
+      "compiler": "codedom"
+    }
+  },
+  "regression": {
+    "success": true,
+    "message": "Code executed successfully.",
+    "data": {
+      "result": "Red shield checks passed: 33\nStarting deck checks passed: 117\nCritical checks passed: 100. Function integration checks; not natural play or balance validation.\nRemaining skill checks passed: 77\nAll passive checks passed: 75. Synthetic function/UI state checks; physical input and natural balance are separate.\nBattleFlow checks passed: 108. Function/event verification; not a manual-input or balance test.\nCombat readability checks: 33 passed (current HP preserved)\nReward checks passed: 59. Function/UI event checks; not physical input or balance validation.\nPassive reward checks passed: 74. Function/UI event checks; extra reward opportunities are synthetic, not natural play.\nDamage / interrupt display checks passed: 30\nStart screen checks passed: 20. Function/button event checks; not physical input.\nDeck order checks passed: 38. Function and pointer-event checks; not physical input.",
+      "compiler": "codedom"
+    }
+  },
+  "unscaledFrames": {
+    "success": true,
+    "message": "Code executed successfully.",
+    "data": {
+      "result": {
+        "before": 0,
+        "after": 0.0599999577,
+        "timeScale": 0,
+        "path": "C:\\Users\\MBC-501-19\\Documents\\ScrollHunter\\Docs\\근거자료\\2026-10-08_시작화면\\04_문자소등_1920.png"
+      },
+      "compiler": "codedom"
+    }
+  },
+  "buttonRaycasts": "5/5 passed",
+  "quit": "Quit button event exited Play",
+  "state": "Play off, Battle clean, mage preview off, console errors/warnings 0",
+  "limits": "Temporary preference keys. No new build, actual OS screen switching/relaunch/audio playback, physical input or natural run test."
+}

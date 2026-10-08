@@ -280,6 +280,9 @@ public static class TutorialChecks
         var all=UnityEngine.Object.FindObjectsByType<Enemy>(FindObjectsInactive.Include,FindObjectsSortMode.None);
         var b=all.Single(e=>e.Data.name=="Enemy_B_Orange");var c=all.Single(e=>e.Data.name=="Enemy_C_Red");
         bool enabled=t.enabled; float hold=(float)Get(f,"finishingEffectHold"); float defeatHold=(float)Get(f,"defeatEffectHold"); float countdown=(float)Get(f,"countdownSeconds");
+        var inherited=Get(f,"inheritance");
+        var path=System.IO.Path.Combine(Application.temporaryCachePath,"InheritanceRegression-"+Guid.NewGuid().ToString("N"),"save.json");
+        Set(f,"inheritance",new InheritanceSave(path,(BattleRewardOption[])Get(f,"rewardPool"),UnityEngine.Object.FindFirstObjectByType<DeckSystem>().CopyStartingDeck()));
         try
         {
             // 과거 검사의 B/C/BC 전제는 이 런에만 격리한다. 새 저장 편성은 Run()에서 따로 검사한다.
@@ -301,7 +304,7 @@ public static class TutorialChecks
             }
             return string.Join("\n",results);
         }
-        finally{Set(f,"encounters",saved);Set(f,"finishingEffectHold",hold);Set(f,"defeatEffectHold",defeatHold);Set(f,"countdownSeconds",countdown);t.enabled=enabled;f.RestartRun();}
+        finally{Set(f,"inheritance",inherited);Set(f,"encounters",saved);Set(f,"finishingEffectHold",hold);Set(f,"defeatEffectHold",defeatHold);Set(f,"countdownSeconds",countdown);t.enabled=enabled;f.RestartRun();}
     }
 
     private static int frame;

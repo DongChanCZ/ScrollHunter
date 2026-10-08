@@ -1,0 +1,11 @@
+{
+  "success": true,
+  "message": "Code executed successfully.",
+  "data": {
+    "result": {
+      "menu": "Main menu: 27 passed. Temporary preference keys; editor display switching and actual sound playback are not covered.",
+      "inheritance": "Inheritance: 68 checks passed. Isolated store: C:/Users/MBC-50~1/AppData/Local/Temp/DefaultCompany/ScrollHunter\\InheritanceCheck-97c12feb819b4cde88d6ea7d72bfda5a"
+    },
+    "compiler": "codedom"
+  }
+}

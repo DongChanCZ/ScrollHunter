@@ -71,7 +71,7 @@ public static class PassiveRewardChecks
             check(Enumerable.Range(0, 8).All(i => flow.GetDeckCard(i) == starting[i]), "passive preserves all eight deck positions");
             check(cost.Current == current && player.CurrentHp == hp && player.MaxHp == 500, "acquisition does not refill resources or change HP");
             check(stats != null && stats.DescribePassives().Contains(selected.DisplayName) && stats.DescribePassives().Contains("1/"), "acquired stack HUD");
-            check(!flow.SelectReward(2) && !flow.SkipReward() && !flow.ReplaceDeckCard(0), "resolved reward cannot be acquired twice");
+            check(!flow.SelectReward(2) && !flow.SkipReward() && !flow.SelectReplacementSlot(0), "resolved reward cannot be acquired twice");
             float regen = cost.RegenerationPerSecond, crit = player.CriticalChance;
             Click((Button)Get(flow, "nextButton"));
             check(flow.BattleNumber == 2 && player.CurrentHp == hp && cost.Current == 3, "next battle normal HP carry and start cost");
@@ -141,6 +141,8 @@ public static class PassiveRewardChecks
             player.TakeDamage(100000); Call(flow, "Update");
             check(flow.State == BattleFlowState.Defeat && near(cost.RegenerationPerSecond, .9f) && !flow.SelectReward(0), "defeat retains run effects without granting reward");
             Click((Button)Get(flow, "restartButton"));
+            check(flow.State == BattleFlowState.Inheriting && flow.RewardChoiceCount == 1, "earned passive inheritance choice");
+            flow.SkipReward(); flow.StartRun(); flow.NextBattle();
             check(near(cost.RegenerationPerSecond, .8f) && player.CriticalChance == 15 && player.CurrentHp == 500 && stats.DescribePassives().Contains("패시브 없음"), "defeat restart button resets HUD and stats");
             return "Passive reward checks passed: " + passed + ". Function/UI event checks; extra reward opportunities are synthetic, not natural play.";
         }

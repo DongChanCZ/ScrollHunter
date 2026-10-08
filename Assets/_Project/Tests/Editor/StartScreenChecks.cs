@@ -55,6 +55,8 @@ public static class StartScreenChecks
         typeof(BattleFlow).GetMethod("Update", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(flow, null);
         check(flow.State == BattleFlowState.Defeat && !panel.activeSelf, "defeat remains on result screen");
         click((Button)field("restartButton"));
+        check(flow.State == BattleFlowState.Title && panel.activeSelf, "no earned reward returns to title");
+        click(start); click((Button)field("nextButton"));
         check(flow.State == BattleFlowState.Fighting && flow.BattleNumber == 1 && player.CurrentHp == player.MaxHp
             && deck.GetHandCard(0) == original[0] && !panel.activeSelf, "restart goes directly to clean B battle");
         return "Start screen checks passed: " + passed + ". Function/button event checks; not physical input.";

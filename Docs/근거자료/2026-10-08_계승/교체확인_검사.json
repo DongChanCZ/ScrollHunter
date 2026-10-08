@@ -1,0 +1,36 @@
+{
+  "date": "2026-10-08",
+  "scope": "보상·계승 스킬 교체 확인 버튼",
+  "inheritance": {
+    "success": true,
+    "message": "Code executed successfully.",
+    "data": {
+      "result": "Inheritance: 68 checks passed. Isolated store: C:/Users/MBC-50~1/AppData/Local/Temp/DefaultCompany/ScrollHunter\\InheritanceCheck-28fc62aae1274e02b9a7fdb531a6576f",
+      "compiler": "codedom"
+    }
+  },
+  "regressionInitial": {
+    "success": false,
+    "message": "Runtime error: UI replaces same deck slot: Skill_SK08_Judgment",
+    "data": {
+      "exceptionType": "Exception",
+      "stackTrace": "  at RemainingSkillChecks.Check (System.Boolean condition, System.String label) [0x00016] in C:\\Users\\MBC-501-19\\Documents\\ScrollHunter\\Assets\\_Project\\Tests\\Editor\\RemainingSkillChecks.cs:186 \r\n  at RemainingSkillChecks.Run () [0x01212] in C:\\Users\\MBC-501-19\\Documents\\ScrollHunter\\Assets\\_Project\\Tests\\Editor\\RemainingSkillChecks.cs:150 \r\n  at TutorialChecks.RunCombatRegression () [0x00281] in C:\\Users\\MBC-501-19\\Documents\\ScrollHunter\\Assets\\_Project\\Tests\\Editor\\TutorialChecks.cs:293 \r\n  at MCPDynamicCode.Execute () [0x00000] in <1469b04816b443de8130d2283b90e78e>:0 \r\n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\r\n  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <41d29b352f6a475ab1bf7c6628b82790>:0 ",
+      "compiler": "codedom"
+    }
+  },
+  "regressionFinal": {
+    "success": true,
+    "message": "Code executed successfully.",
+    "data": {
+      "result": "Red shield checks passed: 33\nStarting deck checks passed: 117\nCritical checks passed: 100. Function integration checks; not natural play or balance validation.\nRemaining skill checks passed: 77\nAll passive checks passed: 75. Synthetic function/UI state checks; physical input and natural balance are separate.\nBattleFlow checks passed: 108. Function/event verification; not a manual-input or balance test.\nCombat readability checks: 33 passed (current HP preserved)\nReward checks passed: 59. Function/UI event checks; not physical input or balance validation.\nPassive reward checks passed: 74. Function/UI event checks; extra reward opportunities are synthetic, not natural play.\nDamage / interrupt display checks passed: 30\nStart screen checks passed: 20. Function/button event checks; not physical input.\nDeck order checks passed: 38. Function and pointer-event checks; not physical input.",
+      "compiler": "codedom"
+    }
+  },
+  "screens": [
+    "05_교체확인_선택전_1920.png",
+    "06_교체확인_선택후_1366.png",
+    "07_보상교체확인_1366.png"
+  ],
+  "limits": "임시 저장·함수/버튼 이벤트·상태 구성 캡처. 직접 손 조작·자연 플레이·새 빌드 미실시.",
+  "ending": "Play off, Battle clean, mage preview off, runInBackground false, console error/warning 0"
+}

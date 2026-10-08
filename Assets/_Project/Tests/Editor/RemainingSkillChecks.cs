@@ -147,6 +147,7 @@ public static class RemainingSkillChecks
                 var buttons=(Button[])Get(rewardUI,"choiceButtons"); buttons[0].onClick.Invoke();
                 Check(flow.SelectedReward==card, "UI selects reward: "+card.name);
                 ((Button[])Get(rewardUI,"deckButtons"))[0].onClick.Invoke();
+                ((Button)Get(rewardUI,"confirmReplacementButton")).onClick.Invoke();
                 Check(flow.RewardResolved && flow.DeckCount==8 && flow.GetDeckCard(0)==card, "UI replaces same deck slot: "+card.name);
                 ((Button)Get(flow,"nextButton")).onClick.Invoke();
                 Check(flow.BattleNumber==2 && deck.GetHandCard(0)==card, "acquired card enters next battle: "+card.name);

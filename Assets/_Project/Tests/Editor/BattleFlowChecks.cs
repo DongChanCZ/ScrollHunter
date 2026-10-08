@@ -104,6 +104,8 @@ public static class BattleFlowChecks
             flow.NextBattle();
             Check(flow.BattleNumber == 1 && flow.State == BattleFlowState.Defeat, "defeat cannot advance");
             Click(restart);
+            Check(flow.State == BattleFlowState.Title, "empty inheritance returns title");
+            flow.StartRun(); flow.NextBattle();
             Check(flow.State == BattleFlowState.Fighting && flow.BattleNumber == 1 && player.CurrentHp == player.MaxHp
                 && player.Shield == 0 && !player.IsStunned && !deck.IsLocked && deck.GetHandCard(0) == first
                 && cost.Current == 3f && !info.IsInfoPaused && !metrics.Ended, "defeat restart fully resets");

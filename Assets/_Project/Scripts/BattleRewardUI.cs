@@ -29,10 +29,13 @@ public class BattleRewardUI : MonoBehaviour
     [SerializeField] private Image[] deckIcons;
     [SerializeField] private Button skipButton;
     [SerializeField] private Button backButton;
+    [SerializeField] private Button confirmReplacementButton;
+    [SerializeField] private CanvasGroup confirmReplacementVisual;
+    [SerializeField, Range(0f, 1f)] private float disabledConfirmAlpha = 0.45f;
     [SerializeField] private string titleFormat = "전투 {0} 승리 · HP {1:0} / {2:0}";
     [SerializeField] private string chooseText = "보상 1개를 선택하세요. 필요 없으면 스킵할 수 있습니다.";
     [SerializeField] private string noChoicesText = "받을 수 있는 보상이 없습니다. 스킵 후 진행하세요.";
-    [SerializeField] private string replaceFormat = "{0} 선택 · 교체할 카드 1장을 누르세요.";
+    [SerializeField] private string replaceFormat = "{0} 선택 · 교체할 카드를 고른 뒤 확인을 누르세요.";
     [SerializeField] private string readyText = "편성을 확인하고 다음 전투로 진행하세요.";
     [Tooltip("{0} 순번, {1} 시작 손패·대기열")]
     [SerializeField] private string deckSlotFormat = "{0}번 · {1}";
@@ -50,11 +53,43 @@ public class BattleRewardUI : MonoBehaviour
     [SerializeField] private string orderText = "카드를 원하는 자리에 드래그하세요. 1~4번은 시작 손패, 5~8번은 대기열입니다.";
     private int dragFrom = -1;
 
+    [Header("계승")]
+    [SerializeField] private GameObject inheritancePanel;
+    [SerializeField] private GameObject resetConfirmation;
+    [SerializeField] private Button inheritanceOpen, inheritanceClose, inheritanceReset, resetConfirm, resetCancel;
+    [SerializeField] private TMP_Text inheritedCards, inheritedPassives, inheritanceStatus;
+    [SerializeField] private string inheritanceTitle = "계승 선택";
+    [SerializeField] private string inheritanceChoiceText = "이번 런에서 얻은 스킬·패시브 중 1개를 계승하세요.";
+    [SerializeField] private string inheritanceReplaceFormat = "{0} 계승 · 영구 시작 덱에서 교체할 자리를 고른 뒤 확인을 누르세요.";
+    [SerializeField] private string inheritanceSkipText = "계승 스킵";
+    [SerializeField] private string inheritanceBackText = "계승 다시 선택";
+    [SerializeField] private string inheritanceGuideText = "다음 런부터 적용 · 초기화 전까지 유지";
+    [SerializeField] private string inheritanceStackFormat = "계승 <b>{0}</b> / 최대 {1}";
+    [SerializeField] private string inheritanceUnlimitedFormat = "계승 <b>{0}</b>";
+    [SerializeField] private string inheritedPassiveFormat = "<line-height=48><size=28>{0}</size>  <size=20><color=#B9AF9E>{1}</color></size>";
+    [SerializeField] private string inheritedCardFormat = "{0}번 · {1}{2}";
+    [SerializeField] private string inheritedCardMarker = " <color=#E7CB87>· 계승</color>";
+    [SerializeField] private string noInheritedPassives = "계승한 패시브가 없습니다.";
+    [SerializeField] private string saveFailedText = "계승을 저장하지 못했습니다. 다시 선택하거나 스킵하세요.";
+    [SerializeField] private string resetFailedText = "초기화하지 못했습니다. 다시 시도하세요.";
+    [SerializeField] private string loadFailedText = "계승 파일을 읽지 못해 기본 상태로 시작합니다. 기존 파일은 보존했습니다.";
+    [SerializeField] private string backupLoadedText = "계승 파일을 읽지 못해 이전 저장본을 불러왔습니다.";
+    private string rewardSkipText, rewardBackText;
+
     private void Awake()
     {
         if (flow == null) flow = FindFirstObjectByType<BattleFlow>();
         if (information == null) information = FindFirstObjectByType<CombatInfoUI>();
         if (player == null) player = FindFirstObjectByType<Player>();
+        rewardSkipText = skipButton.GetComponentInChildren<TMP_Text>().text;
+        rewardBackText = backButton.GetComponentInChildren<TMP_Text>().text;
+        if (inheritanceOpen != null) inheritanceOpen.onClick.AddListener(() =>
+        { if (flow.State == BattleFlowState.Title) { inheritancePanel.SetActive(true); RefreshInheritance(); } });
+        if (inheritanceClose != null) inheritanceClose.onClick.AddListener(() => inheritancePanel.SetActive(false));
+        if (inheritanceReset != null) inheritanceReset.onClick.AddListener(() => resetConfirmation.SetActive(true));
+        if (resetCancel != null) resetCancel.onClick.AddListener(() => resetConfirmation.SetActive(false));
+        if (resetConfirm != null) resetConfirm.onClick.AddListener(() =>
+        { flow.ResetInheritance(); resetConfirmation.SetActive(false); RefreshInheritance(); });
         for (int i = 0; i < choiceButtons.Length; i++)
         {
             int index = i;
@@ -63,10 +98,11 @@ public class BattleRewardUI : MonoBehaviour
         for (int i = 0; i < deckButtons.Length; i++)
         {
             int index = i;
-            deckButtons[i].onClick.AddListener(() => flow.ReplaceDeckCard(index));
+            deckButtons[i].onClick.AddListener(() => flow.SelectReplacementSlot(index));
         }
         skipButton.onClick.AddListener(() => flow.SkipReward());
         backButton.onClick.AddListener(flow.CancelRewardSelection);
+        if (confirmReplacementButton != null) confirmReplacementButton.onClick.AddListener(() => flow.ConfirmReplacement());
         if (reorderButton != null) reorderButton.onClick.AddListener(() => flow.BeginOrderEdit());
         if (saveOrderButton != null) saveOrderButton.onClick.AddListener(() => flow.SaveOrder());
         if (cancelOrderButton != null) cancelOrderButton.onClick.AddListener(flow.CancelOrderEdit);
@@ -135,23 +171,45 @@ public class BattleRewardUI : MonoBehaviour
     {
         bool preparing = flow != null && flow.State == BattleFlowState.Preparing;
         bool between = flow != null && flow.State == BattleFlowState.BetweenBattles;
-        panel.SetActive(between || preparing);
+        bool inheriting = flow != null && flow.State == BattleFlowState.Inheriting;
+        RefreshInheritance();
+        panel.SetActive(between || preparing || inheriting);
         if ((!between && !preparing) || !flow.IsEditingOrder) EndOrderDrag();
-        if (!between && !preparing) return;
+        if (!between && !preparing && !inheriting) return;
         bool editing = flow.IsEditingOrder;
-        bool replacing = between && flow.SelectedReward != null && !flow.RewardResolved;
-        bool choosing = between && !replacing && !flow.RewardResolved;
-        title.text = preparing ? preparationTitle : string.Format(titleFormat, flow.BattleNumber, player.CurrentHp, player.MaxHp);
+        bool replacing = (between || inheriting) && flow.SelectedReward != null && !flow.RewardResolved;
+        bool choosing = (between || inheriting) && !replacing && !flow.RewardResolved;
+        title.text = inheriting ? inheritanceTitle : preparing ? preparationTitle : string.Format(titleFormat, flow.BattleNumber, player.CurrentHp, player.MaxHp);
         instruction.text = editing ? orderText : preparing ? preparationText : flow.RewardResolved ? readyText
             : replacing ? string.Format(replaceFormat, flow.SelectedReward.DisplayName)
             : flow.RewardChoiceCount == 0 ? noChoicesText : chooseText;
+        if (inheriting)
+            instruction.text = (flow.InheritanceSaveFailed ? saveFailedText + "\n" : string.Empty)
+                + (replacing ? string.Format(inheritanceReplaceFormat, flow.SelectedReward.DisplayName) : inheritanceChoiceText);
+        skipButton.GetComponentInChildren<TMP_Text>().text = inheriting ? inheritanceSkipText : rewardSkipText;
+        backButton.GetComponentInChildren<TMP_Text>().text = inheriting ? inheritanceBackText : rewardBackText;
         choicesRoot.SetActive(choosing);
         deckRoot.SetActive(!choosing);
-        skipButton.gameObject.SetActive(between && !flow.RewardResolved);
+        skipButton.gameObject.SetActive((between || inheriting) && !flow.RewardResolved);
         if (reorderButton != null) reorderButton.gameObject.SetActive(flow.CanEditOrder && !editing);
         if (saveOrderButton != null) saveOrderButton.gameObject.SetActive(editing);
         if (cancelOrderButton != null) cancelOrderButton.gameObject.SetActive(editing);
         backButton.gameObject.SetActive(replacing);
+        bool selected = replacing && flow.SelectedReplacementIndex >= 0;
+        if (confirmReplacementButton != null)
+        {
+            confirmReplacementButton.gameObject.SetActive(replacing);
+            confirmReplacementButton.interactable = selected;
+            if (confirmReplacementVisual != null) confirmReplacementVisual.alpha = selected ? 1f : disabledConfirmAlpha;
+        }
+        // 순서 편집의 선택 음영을 교체 자리 표시에도 사용한다.
+        if (selected && dropIndicator != null)
+        {
+            var target = (RectTransform)deckButtons[flow.SelectedReplacementIndex].transform;
+            dropIndicator.rectTransform.position = target.position;
+            dropIndicator.rectTransform.sizeDelta = target.rect.size;
+            dropIndicator.gameObject.SetActive(true);
+        }
         for (int i = 0; i < choiceButtons.Length; i++)
         {
             BattleRewardOption option = flow.GetRewardChoice(i);
@@ -207,7 +265,7 @@ public class BattleRewardUI : MonoBehaviour
         SetLabel(slot.title, show ? effect.DisplayName : string.Empty);
         SetLabel(slot.effect, show ? DescribePassiveEffect(effect) : string.Empty);
         SetLabel(slot.stacks, show ? DescribePassiveStacks(effect) : string.Empty);
-        SetLabel(slot.guide, show ? passiveGuideText : string.Empty);
+        SetLabel(slot.guide, show ? (flow.State == BattleFlowState.Inheriting ? inheritanceGuideText : passiveGuideText) : string.Empty);
     }
 
     /// <summary>스킬 영역 표시. card가 null이면 영역을 끄고 글자를 비운다.</summary>
@@ -232,9 +290,40 @@ public class BattleRewardUI : MonoBehaviour
         return (text.Length > 0 ? text + "\n" : string.Empty) + string.Format(passiveNoteFormat, effect.Description);
     }
 
-    private string DescribePassiveStacks(RunRewardEffect effect) => effect.MaxStacks > 0
-        ? string.Format(passiveStackFormat, flow.GetPassiveStacks(effect), effect.MaxStacks)
-        : string.Format(unlimitedPassiveStackFormat, flow.GetPassiveStacks(effect));
+    private string DescribePassiveStacks(RunRewardEffect effect)
+    {
+        bool inheriting = flow.State == BattleFlowState.Inheriting;
+        int count = inheriting ? flow.Inheritance.Stacks(effect) : flow.GetPassiveStacks(effect);
+        return effect.MaxStacks > 0
+            ? string.Format(inheriting ? inheritanceStackFormat : passiveStackFormat, count, effect.MaxStacks)
+            : string.Format(inheriting ? inheritanceUnlimitedFormat : unlimitedPassiveStackFormat, count);
+    }
+
+    private void RefreshInheritance()
+    {
+        if (inheritancePanel == null || flow == null || flow.Inheritance == null) return;
+        if (flow.State != BattleFlowState.Title)
+        { inheritancePanel.SetActive(false); resetConfirmation.SetActive(false); return; }
+        var saved = flow.Inheritance;
+        var cards = saved.BuildDeck();
+        var cardLines = new System.Collections.Generic.List<string>();
+        for (int i = 0; i < cards.Count; i++)
+            cardLines.Add(string.Format(inheritedCardFormat, i + 1, cards[i].DisplayName, saved.IsInheritedSlot(i) ? inheritedCardMarker : string.Empty));
+        inheritedCards.text = string.Join("\n", cardLines);
+        var passives = new System.Collections.Generic.List<string>();
+        foreach (var entry in saved.Passives)
+        {
+            var effect = saved.Find(entry.id).Effect;
+            passives.Add(string.Format(inheritedPassiveFormat, effect.DisplayName, effect.MaxStacks > 0
+                ? string.Format(inheritanceStackFormat, entry.stacks, effect.MaxStacks)
+                : string.Format(inheritanceUnlimitedFormat, entry.stacks)));
+        }
+        inheritedPassives.text = passives.Count == 0 ? noInheritedPassives : string.Join("\n", passives);
+        inheritanceReset.interactable = saved.HasAny || saved.LoadFailed || saved.UsedBackup;
+        inheritanceStatus.text = flow.InheritanceSaveFailed ? resetFailedText
+            : saved.LoadFailed ? loadFailedText : saved.UsedBackup ? backupLoadedText : string.Empty;
+        if (saved.LoadFailed || saved.UsedBackup) inheritancePanel.SetActive(true);
+    }
 
     private string FormatStat(RewardStat stat, float amount)
     {
