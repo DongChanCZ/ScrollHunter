@@ -44,7 +44,7 @@ public class CombatInfoUI : MonoBehaviour
     [SerializeField] private string damageFormat = "피해 <b>{0}×{1}회</b> · 총합 피해 <b>{2}</b>\n<size=80%><alpha=#CC>적 1체·전 타격·크리티컬/방어 적용 전<alpha=#FF></size>";
     [SerializeField] private string shieldFormat = "방어도 <b>+{0}</b>";
     [SerializeField] private string interruptFormat = "캐스팅 중인 대상에게 사용\n효과 적용 때도 초록·주황\n시전 중이면 성공\n성공 경직 <b>{0:0.##}초</b>\n빨강·적 선발동: 실패, 코스트·카드 소모";
-    [SerializeField] private string damagingInterruptFormat = "피해 <b>{0}×{1}회</b> · 총합 피해 <b>{3}</b>\n<size=80%><alpha=#CC>적 1체·전 타격·크리티컬/방어 적용 전<alpha=#FF></size>\n캐스팅 중에만 사용. 피해 후 차단\n초록·주황: 생존 시 경직 <b>{2:0.##}초</b>\n빨강·시전 종료: 피해만 적용";
+    [SerializeField] private string damagingInterruptFormat = "피해 <b>{0}×{1}회</b> · 총합 피해 <b>{3}</b>\n<size=80%><alpha=#CC>적 1체·전 타격·크리티컬/방어 적용 전<alpha=#FF></size>\n적 캐스팅 중에만 사용. 피해 후 차단\n초록·주황: 경직 <b>{2:0.##}초</b>\n빨강·시전 종료: 피해만 적용";
     [SerializeField] private string enemyFormat = "<size=125%><b><color=#F5EBD6>{0}</color></b></size>\n<size=80%> </size>\n<b><color=#F5EBD6>{1}</color></b>\n<alpha=#CC>기본 피해 <alpha=#FF><b>{2}</b><alpha=#CC> (방어력 적용 전)\n시전 <alpha=#FF><b>{3:0.##}초</b><alpha=#CC> · <alpha=#FF><color=#F5EBD6>{4}</color>{6}\n<size=85%>{5}</size>";
     [SerializeField] private string stunFormat = "기절 <b>{0:0.##}초</b>";
     [SerializeField] private string restingFormat = "<size=125%><b><color=#F5EBD6>{0}</color></b></size>\n<size=80%> </size>\n<alpha=#CC>현재 시전 중인 공격 없음";
@@ -109,7 +109,7 @@ public class CombatInfoUI : MonoBehaviour
 
     private void Update()
     {
-        if (flow != null && flow.IsCountingDown) return;
+        if (flow != null && (flow.MenuBlocksInput || flow.IsCountingDown)) return;
         if (tutorial != null && tutorial.BlocksOtherControls)
         {
             selectedSlot = -1;
@@ -145,14 +145,14 @@ public class CombatInfoUI : MonoBehaviour
 
     public void InspectSlot(int slot)
     {
-        if (BattleEnded || (flow != null && flow.IsCountingDown) || deck == null || deck.GetHandCard(slot) == null) return;
+        if (BattleEnded || (flow != null && (flow.MenuBlocksInput || flow.IsCountingDown)) || deck == null || deck.GetHandCard(slot) == null) return;
         selectedSlot = slot;
         Pause();
     }
 
     public void ToggleSpeed()
     {
-        if (BattleEnded || (flow != null && flow.IsCountingDown) || (tutorial != null && tutorial.BlocksOtherControls)) return;
+        if (BattleEnded || (flow != null && (flow.MenuBlocksInput || flow.IsCountingDown)) || (tutorial != null && tutorial.BlocksOtherControls)) return;
         resumeScale = Mathf.Approximately(resumeScale, normalSpeed) ? slowSpeed : normalSpeed;
         // 정보 확인 정지를 해제하지 않고 재개할 배속만 바꾼다.
         if (!IsInfoPaused && Time.timeScale > 0f) Time.timeScale = resumeScale;
@@ -163,7 +163,7 @@ public class CombatInfoUI : MonoBehaviour
     private void Pause()
     {
         // Do not claim a pause owned by defeat or another system.
-        if (BattleEnded || IsInfoPaused || Time.timeScale <= 0f || (tutorial != null && tutorial.BlocksOtherControls)) return;
+        if ((flow != null && flow.MenuBlocksInput) || BattleEnded || IsInfoPaused || Time.timeScale <= 0f || (tutorial != null && tutorial.BlocksOtherControls)) return;
         resumeScale = Time.timeScale;
         IsInfoPaused = true;
         Time.timeScale = 0f;
@@ -171,7 +171,7 @@ public class CombatInfoUI : MonoBehaviour
 
     public void Resume()
     {
-        if (!IsInfoPaused || BattleEnded || (flow != null && flow.IsCountingDown) || (tutorial != null && tutorial.BlocksOtherControls)) return;
+        if (!IsInfoPaused || BattleEnded || (flow != null && (flow.MenuBlocksInput || flow.IsCountingDown)) || (tutorial != null && tutorial.BlocksOtherControls)) return;
         IsInfoPaused = false;
         selectedSlot = -1;
         Time.timeScale = resumeScale;

@@ -34,6 +34,9 @@ public static class TutorialChecks
         var reward = UnityEngine.Object.FindFirstObjectByType<BattleRewardUI>();
         var e = t.Enemy;
         float finishingHold = (float)Get(f, "finishingEffectHold");
+        var realSave = Get(f,"inheritance");
+        var checkPath = System.IO.Path.Combine(Application.temporaryCachePath,"TutorialProgressCheck-"+Guid.NewGuid().ToString("N"),"save.json");
+        Set(f,"inheritance",new InheritanceSave(checkPath,(BattleRewardOption[])Get(f,"rewardPool"),d.CopyStartingDeck()));
         int passed = 0;
         Action<bool, string> check = (ok, text) => { if (!ok) throw new Exception("Tutorial: " + text); passed++; };
         Action fresh = () => { f.BeginTutorial(false); NextFrame(t); };
@@ -196,12 +199,12 @@ public static class TutorialChecks
             e.TakeDamage(10000); t.TickCombat(); NextFrame(t);
             check(f.State==BattleFlowState.TutorialComplete && !rewardPanel.activeSelf && t.ShowingGuide, "free combat kill also waits before preparation");
             f.RestartRun(); NextFrame(t);
-            check(t.Active && t.CompletedLessons==0 && t.Lesson==1 && e.CurrentHp==300 && !rewardPanel.activeSelf, "restart at completion clears guide and restores tutorial");
+            check(!t.Active && !t.ShowingGuide && f.BattleNumber==1 && f.State==BattleFlowState.Fighting, "restart after recorded completion skips tutorial");
             fresh();
             // 플레이어가 죽은직후 스킵해도 패배 요약과 새 전투가 섞이지 않는다.
             p.TakeDamage(10000);t.Skip();NextFrame(t);f.NextBattle(); Call(f,"AdvanceCountdown",3f);check(p.IsAlive && !metrics.Ended && m.EnemyCount==2,"skip after death safe");
         }
-        finally { Set(f, "finishingEffectHold", finishingHold); f.BeginTutorial(false); }
+        finally { Set(f, "finishingEffectHold", finishingHold); Set(f,"inheritance",realSave); f.ReturnToTitle(); }
         return "Tutorial checks passed: " + passed + ". Function/pointer events; physical input and natural play not covered.";
     }
 
@@ -223,6 +226,9 @@ public static class TutorialChecks
         var panel=(GameObject)Get(f,"countdownPanel");var label=(TMPro.TMP_Text)Get(f,"countdownText");
         float speed=info.BattleSpeed,hold=(float)Get(f,"finishingEffectHold");
         int passed=0;Action<bool,string> check=(ok,msg)=>{if(!ok)throw new Exception("Ready: "+msg);passed++;};
+        var originalSave=Get(f,"inheritance");
+        var savePath=System.IO.Path.Combine(Application.temporaryCachePath,"BattleReady-"+Guid.NewGuid().ToString("N"),"save.json");
+        Set(f,"inheritance",new InheritanceSave(savePath,(BattleRewardOption[])Get(f,"rewardPool"),d.CopyStartingDeck()));
         try
         {
             check((float)Get(f,"countdownSeconds")==3f,"saved duration three seconds");
@@ -259,13 +265,13 @@ public static class TutorialChecks
                     f.NextBattle();check(f.IsCountingDown && f.BattleNumber==battle && p.CurrentHp==hp && p.PotionsRemaining==potions && c.Current==3,"next encounter countdown preserves HP and potions "+battle);
                     Call(f,"AdvanceCountdown",3f);check(f.State==BattleFlowState.Fighting && Time.timeScale==battleSpeed,"next encounter starts "+battle);
                 }
-                f.RestartRun();t.Skip();NextFrame(t);f.NextBattle();Call(f,"AdvanceCountdown",1f);f.RestartRun();
-                check(t.Active && t.Lesson==1 && !f.IsCountingDown && !panel.activeSelf && (float)Get(f,"countdownRemaining")==0,"restart cancels countdown");
-                Call(f,"AdvanceCountdown",10f);check(t.ShowingGuide && Time.timeScale==0 && f.BattleNumber==0,"old countdown cannot start over tutorial");
+                f.ReturnToTitle();f.StartRun();NextFrame(t);f.NextBattle();Call(f,"AdvanceCountdown",1f);f.RestartRun();
+                check(!t.Active && f.BattleNumber==1 && f.State==BattleFlowState.Fighting && !f.IsCountingDown && !panel.activeSelf && (float)Get(f,"countdownRemaining")==0,"restart cancels countdown");
+                Call(f,"AdvanceCountdown",10f);check(!t.ShowingGuide && Time.timeScale==battleSpeed && f.BattleNumber==1,"old countdown cannot restart combat");
             }
             return "Battle ready checks passed: "+passed+". Synthetic time and inputs; physical inputs separate.";
         }
-        finally{Set(f,"finishingEffectHold",hold);Set(info,"resumeScale",speed);f.RestartRun();}
+        finally{Set(f,"finishingEffectHold",hold);Set(info,"resumeScale",speed);Set(f,"inheritance",originalSave);f.ReturnToTitle();}
     }
 
     [MenuItem("Tools/Scroll Hunter/Check Tutorial Combat Regression (Play)")]
@@ -315,15 +321,21 @@ public static class TutorialChecks
     private static float originalCapture;
     private static bool originalPaused;
     private static TutorialFlow probe;
+    private static InheritanceSave frameSave;
     public static string FrameResult { get; private set; }
 
     [MenuItem("Tools/Scroll Hunter/Check Tutorial Frames (Play)")]
     public static void StartFrameProbe()
     {
         if(!Application.isPlaying)throw new InvalidOperationException("Play required");
+        if(FrameResult=="running")FinishFrames("restarted");
         EditorApplication.update-=FrameStep;
         probe=UnityEngine.Object.FindFirstObjectByType<TutorialFlow>();
-        UnityEngine.Object.FindFirstObjectByType<BattleFlow>().BeginTutorial(false);
+        var flow=UnityEngine.Object.FindFirstObjectByType<BattleFlow>();
+        frameSave=(InheritanceSave)Get(flow,"inheritance");
+        var savePath=System.IO.Path.Combine(Application.temporaryCachePath,"TutorialFrames-"+Guid.NewGuid().ToString("N"),"save.json");
+        Set(flow,"inheritance",new InheritanceSave(savePath,(BattleRewardOption[])Get(flow,"rewardPool"),UnityEngine.Object.FindFirstObjectByType<DeckSystem>().CopyStartingDeck()));
+        flow.BeginTutorial(false);
         originalCapture=Time.captureDeltaTime;originalPaused=EditorApplication.isPaused;
         Time.captureDeltaTime=.05f; EditorApplication.isPaused=true;
         frame=-1;ticks=0;sawCompletion=sawCountdown=false;countdownRealElapsed=0;FrameResult="running";
@@ -381,6 +393,8 @@ public static class TutorialChecks
     private static void FinishFrames(string result)
     {
         EditorApplication.update-=FrameStep;Time.captureDeltaTime=originalCapture;
+        if(Application.isPlaying){var flow=UnityEngine.Object.FindFirstObjectByType<BattleFlow>();if(flow!=null){Set(flow,"inheritance",frameSave);flow.ReturnToTitle();}}
+        frameSave=null;
         EditorApplication.isPaused=originalPaused;FrameResult=result;Debug.Log("[Tutorial frames] "+result);
     }
 }

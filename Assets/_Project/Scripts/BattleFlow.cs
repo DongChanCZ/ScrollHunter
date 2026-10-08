@@ -73,6 +73,24 @@ public class BattleFlow : MonoBehaviour
     private InheritanceSave inheritance;
     private readonly List<BattleRewardOption> earnedRewards = new List<BattleRewardOption>();
     public InheritanceSave Inheritance => inheritance;
+    private bool NeedsTutorial => HasTutorial && !inheritance.TutorialDismissed;
+    public bool IsMenuPaused { get; private set; }
+    private int menuInputFrame = -1;
+    public bool MenuBlocksInput => IsMenuPaused || menuInputFrame == Time.frameCount;
+    internal void SetMenuPaused(bool paused) { IsMenuPaused = paused; menuInputFrame = Time.frameCount; }
+    [SerializeField] private string progressSaveError = "진행 기록 저장 실패. 저장 경로를 확인하세요.";
+    // 에디터 전용 미리보기는 정식 클리어 기록에 포함하지 않는다.
+    private bool CanSaveProgress
+    {
+        get
+        {
+#if UNITY_EDITOR
+            if (UnityEditor.SessionState.GetBool(MagePreviewMenu, false)
+                || UnityEditor.SessionState.GetBool(SkillSoundPreviewMenu, false)) return false;
+#endif
+            return true;
+        }
+    }
     public bool InheritanceSaveFailed { get; private set; }
 
     [Header("시연 보상")]
@@ -99,7 +117,7 @@ public class BattleFlow : MonoBehaviour
     [SerializeField] private string orderLogFormat = "[편성 전투 {0} 준비] 순서 저장: {1}";
     private List<SkillData> orderDraft;
     public bool IsEditingOrder => orderDraft != null;
-    public bool CanEditOrder => !PanelHeld && (!HasTutorial || (!tutorial.ShowingGuide && !tutorial.BlocksInputThisFrame)) && (State == BattleFlowState.Preparing
+    public bool CanEditOrder => !IsMenuPaused && !PanelHeld && (!HasTutorial || (!tutorial.ShowingGuide && !tutorial.BlocksInputThisFrame)) && (State == BattleFlowState.Preparing
         || (State == BattleFlowState.BetweenBattles && RewardResolved));
     public SkillData GetOrderCard(int index) => IsEditingOrder && index >= 0 && index < orderDraft.Count
         ? orderDraft[index] : GetDeckCard(index);
@@ -174,7 +192,7 @@ public class BattleFlow : MonoBehaviour
     {
         if (!IsConfigured()) return;
 #if UNITY_EDITOR
-        if (TryBeginMagePreview()) return;
+        if (TryBeginSkillSoundPreview() || TryBeginMagePreview()) return;
 #endif
         // 모든 Awake 이후 대기 상태로 전환한다. 전투 계측은 시작 버튼에서 연다.
         metrics.WaitForBattle();
@@ -192,6 +210,7 @@ public class BattleFlow : MonoBehaviour
     {
         bool enabled = !UnityEditor.SessionState.GetBool(MagePreviewMenu, false);
         UnityEditor.SessionState.SetBool(MagePreviewMenu, enabled);
+        if (enabled) UnityEditor.SessionState.SetBool(SkillSoundPreviewMenu, false);
         Debug.Log("[마법사 모델 테스트] Play 직행 " + (enabled ? "켜짐" : "꺼짐"));
     }
 
@@ -200,6 +219,53 @@ public class BattleFlow : MonoBehaviour
     {
         UnityEditor.Menu.SetChecked(MagePreviewMenu, UnityEditor.SessionState.GetBool(MagePreviewMenu, false));
         return !UnityEditor.EditorApplication.isPlayingOrWillChangePlaymode;
+    }
+
+    private const string SkillSoundPreviewMenu = "Tools/Scroll Hunter/Skill Sound Preview on Play";
+
+    [UnityEditor.MenuItem(SkillSoundPreviewMenu)]
+    private static void ToggleSkillSoundPreview()
+    {
+        bool enabled = !UnityEditor.SessionState.GetBool(SkillSoundPreviewMenu, false);
+        UnityEditor.SessionState.SetBool(SkillSoundPreviewMenu, enabled);
+        if (enabled) UnityEditor.SessionState.SetBool(MagePreviewMenu, false);
+        Debug.Log("[스킬 소리 테스트] Play 직행 " + (enabled ? "켜짐" : "꺼짐"));
+    }
+
+    [UnityEditor.MenuItem(SkillSoundPreviewMenu, true)]
+    private static bool ValidateSkillSoundPreview()
+    {
+        UnityEditor.Menu.SetChecked(SkillSoundPreviewMenu, UnityEditor.SessionState.GetBool(SkillSoundPreviewMenu, false));
+        return !UnityEditor.EditorApplication.isPlayingOrWillChangePlaymode;
+    }
+
+    private bool TryBeginSkillSoundPreview()
+    {
+        if (!UnityEditor.SessionState.GetBool(SkillSoundPreviewMenu, false)) return false;
+        const string folder = "Assets/_Project/Data/ScrollHunter/SkillData/";
+        var previewHand = new[]
+        {
+            UnityEditor.AssetDatabase.LoadAssetAtPath<SkillData>(folder + "Skill_SK08_Judgment.asset"),
+            UnityEditor.AssetDatabase.LoadAssetAtPath<SkillData>(folder + "Skill_SK14_Sanctuary.asset"),
+            UnityEditor.AssetDatabase.LoadAssetAtPath<SkillData>(folder + "Skill_SK07_MagicImpact.asset"),
+            UnityEditor.AssetDatabase.LoadAssetAtPath<SkillData>(folder + "Skill_SK03_MagicCutter.asset")
+        };
+        if (Array.Exists(previewHand, card => card == null) || BattleCount <= 2)
+        {
+            Debug.LogError("[스킬 소리 테스트] 스킬 4종 또는 A+B+C 전투 연결을 확인하세요.", this);
+            return false;
+        }
+        if (tutorial != null) tutorial.enabled = false;
+        ClearRunRewards();
+        runDeck = deck.CopyStartingDeck();
+        runDeck.RemoveAll(card => Array.IndexOf(previewHand, card) >= 0);
+        runDeck.InsertRange(0, previewHand);
+        if (runDeck.Count > DeckSystem.DeckSize)
+            runDeck.RemoveRange(DeckSystem.DeckSize, runDeck.Count - DeckSystem.DeckSize);
+        StartBattleCountdown(2, true);
+        cost.EnsureTutorialCost(cost.Max);
+        Debug.Log("[스킬 소리 테스트] Q 저지먼트 / W 생츄어리 / E 매직 임팩트 / R 매직 커터 · A+B+C · 시작 코스트 최대 · 계승 미적용", this);
+        return true;
     }
 
     private bool TryBeginMagePreview()
@@ -219,7 +285,7 @@ public class BattleFlow : MonoBehaviour
         if (State != BattleFlowState.Title || !IsConfigured()) return;
         ClearRunRewards();
         runDeck = deck.CopyStartingDeck();
-        if (HasTutorial) { BeginTutorial(false); return; }
+        if (NeedsTutorial) { BeginTutorial(false); return; }
         ApplyInheritance();
         State = BattleFlowState.Preparing;
         Time.timeScale = 0f;
@@ -228,26 +294,29 @@ public class BattleFlow : MonoBehaviour
 
     public void RestartRun()
     {
+        if (IsMenuPaused) return;
         if (!IsConfigured()) return;
 #if UNITY_EDITOR
-        if (TryBeginMagePreview()) return;
+        if (TryBeginSkillSoundPreview() || TryBeginMagePreview()) return;
 #endif
         if (HasTutorial && tutorial.Active) { BeginTutorial(true); return; }
+        if (tutorial != null) tutorial.Cancel();
         ClearRunRewards();
         runDeck = deck.CopyStartingDeck();
-        if (HasTutorial) BeginTutorial(false);
+        if (NeedsTutorial) BeginTutorial(false);
         else { ApplyInheritance(); BeginBattle(0, true); }
     }
 
     public void ContinueAfterResult()
     {
+        if (IsMenuPaused) return;
         if (PanelHeld) return;
         if (State == BattleFlowState.Victory) { RestartRun(); return; }
         if (State != BattleFlowState.Defeat) return;
         rewardChoices.Clear();
         foreach (var option in earnedRewards)
             if (inheritance.CanInherit(option) && !rewardChoices.Contains(option)) rewardChoices.Add(option);
-        if (rewardChoices.Count == 0) { ReturnToTitle(); return; }
+        if (rewardChoices.Count == 0) { PrepareNextRun(); return; }
         // 후보를 보존한 뒤 이번 런 효과를 정리한다. 카드 설명도 다음 런의 계승 수치로 표시한다.
         ClearRunRewards();
         ApplyInheritance();
@@ -290,7 +359,7 @@ public class BattleFlow : MonoBehaviour
             return false;
         }
         Debug.Log(string.Format(inheritanceLogFormat, option.DisplayName, slot + 1), this);
-        ReturnToTitle();
+        PrepareNextRun();
         return true;
     }
 
@@ -302,8 +371,38 @@ public class BattleFlow : MonoBehaviour
         return !InheritanceSaveFailed;
     }
 
-    private void ReturnToTitle()
+    private void PrepareNextRun()
     {
+        ReturnToTitle();
+        ApplyInheritance();
+        State = BattleFlowState.Preparing;
+        RefreshUI();
+    }
+
+    public bool ResetGameProgress()
+    {
+        if (State != BattleFlowState.Title && !IsMenuPaused) return false;
+        if (!inheritance.TryResetGame()) return false;
+        ReturnToTitle();
+        return true;
+    }
+
+    public void ReturnToTitle()
+    {
+        Time.timeScale = 0f;
+        IsMenuPaused = false;
+        if (tutorial != null) tutorial.Cancel();
+        deck.EndBattle();
+        player.EndBattle();
+        metrics.FlushPendingSummary();
+        countdownRemaining = panelHoldRemaining = 0f;
+        if (countdownPanel != null) countdownPanel.SetActive(false);
+        ClearDefeatEffects();
+        enemies.ClearBossOrbs();
+        if (skillVfx != null) skillVfx.Clear();
+        if (damageNumbers != null) damageNumbers.Clear();
+        var audio = GetComponent<GameAudio>();
+        if (audio != null) audio.StopCombat();
         ClearRunRewards();
         SelectedReplacementIndex = -1;
         SelectedReward = null;
@@ -321,7 +420,7 @@ public class BattleFlow : MonoBehaviour
 
     public void NextBattle()
     {
-        if (IsEditingOrder || PanelHeld || (HasTutorial && (tutorial.ShowingGuide || tutorial.BlocksInputThisFrame))) return;
+        if (MenuBlocksInput || IsEditingOrder || PanelHeld || (HasTutorial && (tutorial.ShowingGuide || tutorial.BlocksInputThisFrame))) return;
         if (State == BattleFlowState.Preparing) StartBattleCountdown(0, true);
         else if (State == BattleFlowState.BetweenBattles && BattleNumber < BattleCount && RewardResolved)
             StartBattleCountdown(BattleNumber, false);
@@ -337,6 +436,7 @@ public class BattleFlow : MonoBehaviour
 
     public bool MoveOrderCard(int from, int to)
     {
+        if (IsMenuPaused) return false;
         if (!CanEditOrder || !IsEditingOrder || from < 0 || to < 0
             || from >= orderDraft.Count || to >= orderDraft.Count) return false;
         SkillData card = orderDraft[from];
@@ -348,6 +448,7 @@ public class BattleFlow : MonoBehaviour
 
     public bool SaveOrder()
     {
+        if (IsMenuPaused) return false;
         if (!CanEditOrder || !IsEditingOrder) return false;
         runDeck = orderDraft;
         orderDraft = null;
@@ -359,12 +460,14 @@ public class BattleFlow : MonoBehaviour
 
     public void CancelOrderEdit()
     {
+        if (IsMenuPaused) return;
         orderDraft = null;
         RefreshUI();
     }
 
     public bool SelectReward(int index)
     {
+        if (IsMenuPaused) return false;
         BattleRewardOption option = GetRewardChoice(index);
         if (State == BattleFlowState.Inheriting)
         {
@@ -394,6 +497,7 @@ public class BattleFlow : MonoBehaviour
 
     public void CancelRewardSelection()
     {
+        if (IsMenuPaused) return;
         if ((State != BattleFlowState.BetweenBattles && State != BattleFlowState.Inheriting) || RewardResolved) return;
         InheritanceSaveFailed = false;
         SelectedReplacementIndex = -1;
@@ -403,6 +507,7 @@ public class BattleFlow : MonoBehaviour
 
     public bool SelectReplacementSlot(int index)
     {
+        if (IsMenuPaused) return false;
         if ((State != BattleFlowState.BetweenBattles && State != BattleFlowState.Inheriting)
             || RewardResolved || SelectedReward == null || index < 0 || index >= runDeck.Count
             || runDeck.Contains(SelectedReward)) return false;
@@ -414,6 +519,7 @@ public class BattleFlow : MonoBehaviour
 
     public bool ConfirmReplacement()
     {
+        if (IsMenuPaused) return false;
         int index = SelectedReplacementIndex;
         if ((State != BattleFlowState.BetweenBattles && State != BattleFlowState.Inheriting)
             || RewardResolved || SelectedReward == null || index < 0 || index >= runDeck.Count
@@ -437,7 +543,8 @@ public class BattleFlow : MonoBehaviour
 
     public bool SkipReward()
     {
-        if (State == BattleFlowState.Inheriting) { ReturnToTitle(); return true; }
+        if (IsMenuPaused) return false;
+        if (State == BattleFlowState.Inheriting) { PrepareNextRun(); return true; }
         if (State != BattleFlowState.BetweenBattles || RewardResolved) return false;
         SelectedReplacementIndex = -1;
         SelectedReward = null;
@@ -543,6 +650,7 @@ public class BattleFlow : MonoBehaviour
 
     public void FinishTutorial(bool skipped)
     {
+        if (CanSaveProgress && !inheritance.TryRecordTutorial()) Debug.LogWarning(progressSaveError, this);
         Time.timeScale = 0f;
         deck.EndBattle();
         player.EndBattle();
@@ -666,12 +774,14 @@ public class BattleFlow : MonoBehaviour
 
     private void Update()
     {
+        if (IsMenuPaused) return;
         if (IsCountingDown) { AdvanceCountdown(Time.unscaledDeltaTime); return; }
         if (HasTutorial && tutorial.Active) { tutorial.TickCombat(); return; }
         if (TickPanelHold()) return;
         if (BattleNumber == 0 || State != BattleFlowState.Fighting) return;
         if (!metrics.Ended && !enemies.CombatEnded && player.IsAlive) return;
         bool won = player.IsAlive && enemies.CombatEnded;
+        if (won && CanSaveProgress && !inheritance.TryRecordBattle(BattleNumber)) Debug.LogWarning(progressSaveError, this);
         enemies.ClearBossOrbs();
         State = !won ? BattleFlowState.Defeat
             : BattleNumber == BattleCount ? BattleFlowState.Victory : BattleFlowState.BetweenBattles;
@@ -716,6 +826,8 @@ public class BattleFlow : MonoBehaviour
     // 막타 연출을 보여주는 동안 결과·보상 화면을 숨겨 두는 남은 시간(실제 초).
     private float panelHoldRemaining;
     private bool PanelHeld => panelHoldRemaining > 0f;
+    /// <summary>승패 결과·보상 화면을 연출 때문에 아직 보류 중인지(승리·패배 짧은 UI음 시점용, 읽기 전용).</summary>
+    public bool ResultPanelHeld => PanelHeld;
 
     /// <summary>화면 보류 시간을 줄이고, 끝나면 연출을 지우고 결과·보상 화면을 띄운다. 보류 중이면 true.</summary>
     private bool TickPanelHold()

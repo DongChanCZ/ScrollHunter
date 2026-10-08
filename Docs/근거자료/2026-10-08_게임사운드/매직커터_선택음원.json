@@ -1,0 +1,17 @@
+{
+  "title": "剣で斬る3",
+  "author": "効果音ラボ",
+  "page": "https://soundeffect-lab.info/sound/battle/",
+  "terms": "https://soundeffect-lab.info/agreement/",
+  "asset": "Assets/_Project/Audio/Magic/sel_sword_slash3.mp3",
+  "sha256": "48eb226c227b6e0fc1d646a146cf011fc0de9cb050f80a912aa7aa2126cf2c20",
+  "duration_seconds": 1.2733333333333334,
+  "sample_rate": 48000,
+  "channels": 2,
+  "peak": 0.6465001702308655,
+  "volume": 0.9,
+  "pitch": 1,
+  "edit": "Original MP3 unchanged; Unity mono import",
+  "selection": "User selected candidate 2",
+  "usage": "Free commercial game use; standalone redistribution and hotlinking prohibited; not CC0"
+}

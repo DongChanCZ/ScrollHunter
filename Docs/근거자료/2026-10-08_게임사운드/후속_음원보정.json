@@ -1,0 +1,38 @@
+[
+  {
+    "source": "bgm_edge_peaceful_forest.wav",
+    "output": "bgm_edge_peaceful_forest.ogg",
+    "seconds": 62.85936507936508,
+    "trim_start": 0.0,
+    "trim_end": 0.0,
+    "overlap": 0.25,
+    "gain": 3.346871815322465,
+    "rms": 0.09000000101074987,
+    "peak": 0.4332943260669708,
+    "bytes": 1112392
+  },
+  {
+    "source": "bgm_path_iremos.ogg",
+    "output": "bgm_path_iremos.ogg",
+    "seconds": 25.611609977324264,
+    "trim_start": 0.0,
+    "trim_end": 0.0,
+    "overlap": 0,
+    "gain": 0.5162642694817957,
+    "rms": 0.08999999831422117,
+    "peak": 0.4624790549278259,
+    "bytes": 389788
+  },
+  {
+    "source": "bgm_hideout_dark_sneaky.mp3",
+    "output": "bgm_hideout_dark_sneaky.ogg",
+    "seconds": 57.21666666666667,
+    "trim_start": 0.03335600907029478,
+    "trim_end": 0.0,
+    "overlap": 0.35,
+    "gain": 2.479245753155755,
+    "rms": 0.08999999671736952,
+    "peak": 0.7955747842788696,
+    "bytes": 575128
+  }
+]

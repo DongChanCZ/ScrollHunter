@@ -99,15 +99,15 @@ public static class InheritanceChecks
             slots[1].onClick.Invoke();slots[2].onClick.Invoke();
             check(f.SelectedReplacementIndex==2&&f.GetDeckCard(2)==baseline[2]&&!load().HasAny,"reselect changes only pending slot");
             confirm.onClick.Invoke();
-            check(f.State==BattleFlowState.Title&&load().BuildDeck()[2]==card.Card,"card commit returns title");
+            check(f.State==BattleFlowState.Preparing&&load().BuildDeck()[2]==card.Card,"card commit opens preparation");
             check(!f.SelectReward(0)&&!f.SelectReplacementSlot(0),"cannot inherit twice");
             check(!f.ConfirmReplacement(),"double confirm rejected");
             f.StartRun();check(f.GetDeckCard(2)==card.Card&&Mathf.Approximately(c.RegenerationPerSecond,.8f),"new run card no transient passive");
             f.NextBattle();Call(f,"AdvanceCountdown",3f);check(f.State==BattleFlowState.Fighting,"new run countdown");
             earn(ps04);Prop(f,"State",BattleFlowState.Fighting);lose();f.ContinueAfterResult();buttons[0].onClick.Invoke();
-            check(f.State==BattleFlowState.Title&&load().Stacks(ps04.Effect)==1,"passive saved from earned choice");
+            check(f.State==BattleFlowState.Preparing&&load().Stacks(ps04.Effect)==1,"passive saved from earned choice");
             check(save.TryInherit(ps01,-1)&&save.TryInherit(ps03,-1),"setup potion and HP inheritance");
-            t.enabled=true;f.StartRun();
+            t.enabled=true;f.ReturnToTitle();f.StartRun();
             check(t.Active&&f.GetDeckCard(2)==baseline[2]&&p.MaxHp==500&&p.PotionCapacity==3&&Mathf.Approximately(c.RegenerationPerSecond,.8f),"tutorial stays base");
             t.Skip();check(f.State==BattleFlowState.Preparing&&f.GetDeckCard(2)==card.Card,"tutorial skip enters inherited preparation");
             check(p.MaxHp==550&&p.PotionCapacity==4&&Mathf.Approximately(c.RegenerationPerSecond,.9f),"passives applied once");
@@ -122,17 +122,18 @@ public static class InheritanceChecks
             f.SelectReward(0);f.SelectReplacementSlot(1);
             ((Button)Get(ui,"skipButton")).onClick.Invoke();
             check(f.SelectedReplacementIndex==-1&&!f.ConfirmReplacement(),"skip clears pending slot");
-            check(f.State==BattleFlowState.Title&&File.ReadAllText(path)==before,"skip preserves persistent data");
+            check(f.State==BattleFlowState.Preparing&&File.ReadAllText(path)==before,"skip preserves persistent data");
+            f.ReturnToTitle();
             ((Button)Get(ui,"inheritanceOpen")).onClick.Invoke();((Button)Get(ui,"inheritanceReset")).onClick.Invoke();
             check(((GameObject)Get(ui,"resetConfirmation")).activeSelf,"reset confirmation visible");
             ((Button)Get(ui,"resetCancel")).onClick.Invoke();check(save.HasAny,"reset cancel preserves");
             ((Button)Get(ui,"inheritanceReset")).onClick.Invoke();((Button)Get(ui,"resetConfirm")).onClick.Invoke();
             check(!load().HasAny,"confirmed reset persisted");
             t.enabled=false;f.RestartRun();lose();f.ContinueAfterResult();
-            check(f.State==BattleFlowState.Title,"no rewards skips inheritance");
+            check(f.State==BattleFlowState.Preparing,"no rewards opens preparation");
             f.StartRun();f.NextBattle();Call(f,"AdvanceCountdown",3f);earn(ps02);
             Prop(f,"State",BattleFlowState.Fighting);lose();f.ContinueAfterResult();
-            check(f.State==BattleFlowState.Title,"only healing skips inheritance");
+            check(f.State==BattleFlowState.Preparing,"only healing opens preparation");
             check(p.PotionCapacity==3&&p.MaxHp==500&&Mathf.Approximately(c.RegenerationPerSecond,.8f),"reset base stats");
             return "Inheritance: "+count+" checks passed. Isolated store: "+dir;
         }
@@ -140,7 +141,7 @@ public static class InheritanceChecks
         {
             Call(f,"ClearRunRewards");Set(f,"inheritance",realSave);t.enabled=tutorialEnabled;
             Set(f,"finishingEffectHold",finish);Set(f,"defeatEffectHold",defeat);
-            Call(f,"ReturnToTitle");
+            f.ReturnToTitle();
             // 파일은 재현 근거로 임시 캐시에 남긴다. 실제 사용자 저장 파일은 건드리지 않는다.
         }
     }

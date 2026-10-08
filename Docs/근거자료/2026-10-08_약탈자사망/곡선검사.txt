@@ -1,0 +1,1 @@
+Raider death: 5 passed; 235 samples per clip at 60Hz. Early delta 0.000000m/0.000deg; last 0.4s max bone rotation 178.842 -> 0.577deg/frame; settled 0.0000000m/0.0000deg. Preview-scene Humanoid samples, not player input.

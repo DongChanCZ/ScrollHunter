@@ -1,0 +1,19 @@
+Game audio checks passed: 197 / frames 7128
+music: title/tutorial/path/hideout/boss, same-map continuity PASS
+common: absorb/break/hit/potion/reject/silence/suppression PASS
+tuning: cutter≠raider, sanctuary 0.6, dark split, mix peaks eruption 0.83 / dark hole 0.73
+skills: 12 + silence/suppression, cancel cleanup PASS
+enemies: 5 types / prepare-release-delayed-warning, interrupt/death cleanup PASS
+boss: phase/orb summon/break/cleanup/victory PASS
+pause/0.5x/restart/no duplicate PASS
+results: battle victory, reward select/confirm, defeat with The End PASS
+volumes: Music/Skill/Enemy independent, 0% mute PASS (PlayerPrefs untouched)
+Imported clip measurement (after cue volume, no option mixer):
+sel_explosion2.mp3 peak=0.3146 rms100=0.1607
+sh_impact_explosion.wav peak=0.6538 rms100=0.2162
+sel_sword_slash3.mp3 peak=0.8040 rms100=0.2360
+sh_judgment_slam.wav peak=0.7954 rms100=0.1956
+jc_fire_impact_01.wav peak=0.6306 rms100=0.1888
+Final: Play=False dirty=False mage=False defaults=True Normalize=False; console error/warning=0
+Battle, GmarketSansMedium SDF, GameAudio runtime and test script SHA256 unchanged.
+No direct listening or new build. Waveform measurements do not establish perceived loudness.

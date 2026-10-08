@@ -82,6 +82,8 @@ public class Player : MonoBehaviour
     }
     /// <summary>포션 사용이 수락됐다(HUD 사용 연출용). 거절된 입력은 알리지 않는다.</summary>
     public event System.Action PotionUsed;
+    /// <summary>전투 중 포션 키 입력이 거절됐다(0개·만피·기절). 거절음 전용, 판정과 무관.</summary>
+    public event System.Action PotionRejected;
     public int PotionCapacity => Mathf.Max(0, basePotionCapacity + potionCapacityBonus);
     public float MaxHp => Mathf.Max(1f, maxHp + maxHpBonus);
     public float ShieldGainMultiplier => Mathf.Max(0f, 1f + shieldGainBonus);
@@ -172,7 +174,9 @@ public class Player : MonoBehaviour
             StunRemaining = Mathf.Max(0f, StunRemaining - Time.deltaTime);
         }
 
-        if (Input.GetKeyDown(potionKey) || Input.GetKeyDown(alternatePotionKey)) TryUsePotion();
+        if ((Input.GetKeyDown(potionKey) || Input.GetKeyDown(alternatePotionKey)) && !TryUsePotion()
+            && Time.timeScale > 0f && IsAlive && (metrics == null || !metrics.Ended) && (tutorial == null || !tutorial.BlocksOtherControls))
+            PotionRejected?.Invoke();   // 전투 진행 중 키 입력만(정지·결과·시작 화면 제외). 거절음 전용
 
         // 인스펙터에서 HP를 0으로 내린 경우에도 패배가 걸리게 한다.
         if (!IsAlive && !defeatHandled) Defeat();

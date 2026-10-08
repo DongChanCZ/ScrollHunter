@@ -1,0 +1,46 @@
+{
+  "processing": "linear gain/fades/crop/overlap only; no saturation, compressor or synthesis",
+  "files": [
+    {
+      "file": "sh_impact_explosion.wav",
+      "source": "EZduzziteh / Explosions / explosion2.ogg",
+      "edit": "Mono decode only; complete original explosion",
+      "seconds": 0.6479591836734694,
+      "peak": 0.680501401424408,
+      "rms": 0.12078134576858293,
+      "volume": 0.95,
+      "effective_rms": 0.11474227848015378
+    },
+    {
+      "file": "sh_cutter_magic_claw.wav",
+      "source": "JaggedStone / Magic Spell SFX / magical_3.ogg",
+      "edit": "First 0.25s, fades, two strikes 0 and 0.23s, linear peak 0.68",
+      "seconds": 0.5699773242630386,
+      "peak": 0.68,
+      "rms": 0.19151026013234765,
+      "volume": 0.85,
+      "effective_rms": 0.1627837211124955
+    },
+    {
+      "file": "sh_judgment_thunder.wav",
+      "source": "BlueDelta / Heavy Thunder Strike - no Rain - QUADRO / HQ MP3 preview",
+      "edit": "1.10-4.90s, 1.2s fade tail, 0.08s beam lead, linear peak 0.78",
+      "seconds": 3.88,
+      "peak": 0.78,
+      "rms": 0.09619061492785083,
+      "volume": 0.9,
+      "effective_rms": 0.08657155343506576
+    },
+    {
+      "file": "sh_sanctuary_soft_loop.wav",
+      "source": "ViRiX Dreamcore (David Mckee) / Magic SFX Sample / Healing Full.wav",
+      "edit": "0.55-1.85s tail, 0.20s loop overlap, linear RMS target 0.115 / peak max 0.6",
+      "seconds": 1.1,
+      "peak": 0.45161931657546783,
+      "rms": 0.1149999996238266,
+      "volume": 0.6,
+      "effective_rms": 0.06899999977429595
+    }
+  ],
+  "prior_sanctuary_effective_rms": 0.11399999999999999
+}

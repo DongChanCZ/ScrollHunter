@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-/// <summary>계승만 저장한다. 저장 성공 전에는 현재 계승을 바꾸지 않는다.</summary>
+/// <summary>계승과 튜토리얼·전투 완료 기록을 저장한다. 저장 성공 전에는 현재 계승을 바꾸지 않는다.</summary>
 public sealed class InheritanceSave
 {
     [Serializable] public class Passive { public string id; public int stacks; }
@@ -12,12 +12,16 @@ public sealed class InheritanceSave
         public int version;
         public string[] cards;
         public List<Passive> passives;
+        public bool tutorialDismissed;
+        public int clearedBattles;
     }
     private readonly string path;
     private readonly BattleRewardOption[] catalog;
     private readonly List<SkillData> baseDeck;
     private Data data = Empty();
     private static Data Empty() => new Data { version = 1, cards = new string[DeckSystem.DeckSize], passives = new List<Passive>() };
+    public bool TutorialDismissed => data.tutorialDismissed || data.clearedBattles != 0;
+    public int ClearedBattles => data.clearedBattles;
     public bool LoadFailed { get; private set; }
     public bool UsedBackup { get; private set; }
     public bool HasAny => data.passives.Count > 0 || Array.Exists(data.cards, id => !string.IsNullOrEmpty(id));
@@ -80,7 +84,30 @@ public sealed class InheritanceSave
         }
         return TryWrite(next);
     }
-    public bool TryReset() => TryWrite(Empty(), false);
+    public bool TryReset()
+    {
+        var next = Empty();
+        next.tutorialDismissed = data.tutorialDismissed;
+        next.clearedBattles = data.clearedBattles;
+        return TryWrite(next, false);
+    }
+    public bool TryResetGame() => TryWrite(Empty(), false);
+    public bool TryRecordTutorial()
+    {
+        if (TutorialDismissed) return true;
+        var next = JsonUtility.FromJson<Data>(JsonUtility.ToJson(data));
+        next.tutorialDismissed = true;
+        return TryWrite(next);
+    }
+    public bool TryRecordBattle(int number)
+    {
+        if (number < 1 || number > 30) return false;
+        int bit = 1 << (number - 1);
+        if ((data.clearedBattles & bit) != 0) return true;
+        var next = JsonUtility.FromJson<Data>(JsonUtility.ToJson(data));
+        next.clearedBattles |= bit;
+        return TryWrite(next);
+    }
 
     private bool TryRead(string filename, out Data value)
     {
@@ -97,7 +124,7 @@ public sealed class InheritanceSave
     private bool Valid(Data value)
     {
         if (value == null || value.version != 1 || value.cards == null || value.cards.Length != DeckSystem.DeckSize
-            || value.passives == null || baseDeck.Count != DeckSystem.DeckSize) return false;
+            || value.passives == null || value.clearedBattles < 0 || baseDeck.Count != DeckSystem.DeckSize) return false;
         foreach (string id in value.cards)
             if (!string.IsNullOrEmpty(id) && (Find(id) == null || Find(id).Card == null || !Find(id).Inheritable)) return false;
         var deck = BuildDeck(value);

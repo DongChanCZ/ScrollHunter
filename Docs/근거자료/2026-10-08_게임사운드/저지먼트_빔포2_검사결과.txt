@@ -1,0 +1,16 @@
+Game audio checks passed: 197 / frames 7129
+music: title/tutorial/path/hideout/boss, same-map continuity PASS
+common: absorb/break/hit/potion/reject/silence/suppression PASS
+tuning: cutter≠raider, sanctuary 0.6, dark split, mix peaks eruption 0.83 / dark hole 0.73
+skills: 12 + silence/suppression, cancel cleanup PASS
+enemies: 5 types / prepare-release-delayed-warning, interrupt/death cleanup PASS
+boss: phase/orb summon/break/cleanup/victory PASS
+pause/0.5x/restart/no duplicate PASS
+results: battle victory, reward select/confirm, defeat with The End PASS
+volumes: Music/Skill/Enemy independent, 0% mute PASS (PlayerPrefs untouched)
+
+Judgment: sel_beam_cannon2 / gain 0.95 / pitch 1 / Normalize false
+Cast: jc_mana_drain_loop / gain 0.35 unchanged
+Saved library == GameAudioSetup.Fill (JsonUtility): true
+Final: Play false, Skill Sound Preview true, Mage Preview false, scene dirty false, console error/warning 0
+Direct listening and new build: not verified

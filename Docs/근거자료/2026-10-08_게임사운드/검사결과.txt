@@ -1,0 +1,16 @@
+2026-10-08 게임 사운드 검사 (Claude / Unity MCP, 마법사 직행 끔)
+
+[실제 프레임 · 새 검사] Tools > Scroll Hunter > Check Game Audio (Play)
+Game audio checks passed: 173 / frames 6360
+common: absorb/break/hit/potion/reject/interrupt PASS
+skills: 12 + silence/suppression, cancel cleanup PASS
+enemies: 5 types / prepare-release-delayed-warning, interrupt/death cleanup PASS
+boss: phase/orb summon/break/cleanup/victory PASS
+pause/0.5x/restart/no duplicate PASS
+results: battle victory, reward select/confirm, defeat with The End PASS
+volumes: Music/Skill/Enemy independent, 0% mute PASS (PlayerPrefs untouched)
+
+[기존 회귀 · 최종 코드] 전투 회귀 764(RunCombatRegression) · 튜토리얼 108 · 계승 68 · HUD 75 · 보스 315 · 오브 79 · 종료 연출 23 통과
+
+진행: Play를 멈추지 않고 게임 프레임마다 한 단계(프레임 시간 0.02초 고정). 전투 시작·카드·적 시전 지정·피해·정지·배속·버튼 클릭은 함수 호출이며 그 뒤 Update가 실제로 돈다.
+확인 대상: AudioSource 재생 여부·시점(프레임)·횟수·출력 그룹. 음질·타격감·음량 균형은 직접 청취 미실시(미확인).

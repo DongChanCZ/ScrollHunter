@@ -1,0 +1,19 @@
+{
+  "page": "https://soundeffect-lab.info/sound/battle/battle2.html",
+  "source": "https://soundeffect-lab.info/sound/battle/mp3/beamgun2.mp3",
+  "seconds": 2.9920861678004536,
+  "sr": 44100,
+  "peak": 0.5611728727817535,
+  "rms": 0.09401148380289748,
+  "rms100": 0.1821455212469948,
+  "sha256": "a3ebde1fefc866b21b24070072816dc74d8a42854a9443d79c0282eb5a7b3eea",
+  "unity": {
+    "seconds": 3.05632663,
+    "gain": 0.95,
+    "peakAfterGain": 0.5017593321,
+    "rms100AfterGain": 0.1694359125,
+    "normalize": false,
+    "oldRms100AfterGain": 0.1955586772,
+    "subjectiveListeningVerified": false
+  }
+}

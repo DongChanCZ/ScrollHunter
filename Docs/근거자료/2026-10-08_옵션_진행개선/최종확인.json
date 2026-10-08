@@ -1,0 +1,46 @@
+{
+  "tutorialFrames": "passed: real Update reached all six combat lessons, normal .2s effects/red impact, hidden deck during completion, confirmation, lesson7, countdown 3.020 real seconds and AB; 939 stepped frames (.05s capture delta)",
+  "description": "<size=125%><b><color=#F5EBD6>제압</color></b></size>\n<size=80%> </size>\n차단<alpha=#CC> · <alpha=#FF>적 1체\n<alpha=#CC>코스트 <alpha=#FF><b>2</b><alpha=#CC>   ·   시전 <alpha=#FF><b>0.2초</b>\n<size=80%> </size>\n<size=85%>피해 <b>30×1회</b> · 총합 피해 <b>30</b>\n<size=80%><alpha=#CC>적 1체·전 타격·크리티컬/방어 적용 전<alpha=#FF></size>\n적 캐스팅 중에만 사용. 피해 후 차단\n초록·주황: 경직 <b>2.5초</b>\n빨강·시전 종료: 피해만 적용</size>",
+  "limits": "Functions/button events and Unity frames only; physical keys/drag, native display switching, fresh build unverified. Isolated save paths and option keys.",
+  "functionChecks": {
+    "optionsProgress": 58,
+    "inheritance": 68,
+    "tutorial": 108,
+    "battleReady": 53,
+    "mainMenu": 28
+  },
+  "audioChecks": {
+    "passed": 204,
+    "frames": 7110,
+    "note": "Before final menu focus/input guards; audio code unchanged afterward."
+  },
+  "menuPauseFrames": {
+    "assertions": 490,
+    "pausedFrames": 120,
+    "speeds": [
+      1,
+      0.5
+    ],
+    "note": "Before final focus guards; pause mechanism unchanged afterward."
+  },
+  "menuInputGuards": {
+    "blocked": true,
+    "state": "Preparing",
+    "paused": true,
+    "noSelectedUnderlyingUI": true
+  },
+  "editorFinal": {
+    "play": false,
+    "sceneDirty": false,
+    "magePreview": false,
+    "soundPreview": false,
+    "consoleErrors": 0,
+    "consoleWarnings": 0
+  },
+  "playerSaveUnchanged": true,
+  "playerSaveHashes": {
+    "save.json": "006c28c9edc838bedb3c516344ed46fa694ac83856d21285d3a0c13c882be1ad",
+    "save.json.bak": "b9cc0f991d2dd29dca60b12ddf02d94006fcc2c99e588954668386c6aa25cce2"
+  },
+  "fontUnchanged": true
+}

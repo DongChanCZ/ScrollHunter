@@ -1,0 +1,30 @@
+{
+  "files": [
+    {
+      "file": "sh_cutter_sharp_slash.wav",
+      "source": "StarNinjas / 20 Sword Sound Effects / sword.6.ogg",
+      "edit": "Mono, 1ms/20ms edge fades, linear peak 0.80; one complete sharp slash",
+      "seconds": 0.5439002267573696,
+      "peak": 0.8,
+      "rms": 0.058851817014517784,
+      "strongest_10ms_at": 0.02,
+      "volume": 0.9
+    },
+    {
+      "file": "sh_judgment_slam.wav",
+      "source": "EZduzziteh / Explosions / explosion3.ogg",
+      "edit": "Mono, 1ms/100ms edge fades, linear peak 0.80; 60ms lead aligns strongest pulse near 80ms beam",
+      "seconds": 1.7536507936507937,
+      "peak": 0.8,
+      "rms": 0.05140374580640401,
+      "strongest_10ms_at": 0.08,
+      "volume": 0.95
+    }
+  ],
+  "processing": "linear only; no layers, saturation, compressor or pitch shift",
+  "sources": [
+    "https://opengameart.org/content/20-sword-sound-effects-attacks-and-clashes",
+    "https://opengameart.org/content/explosions-4"
+  ],
+  "listening": "Not directly auditioned; source description and waveform verified"
+}

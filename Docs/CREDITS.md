@@ -89,6 +89,8 @@
 
 ## Mixamo 적 4종 동작 (2026-10-02)
 
+- 2026-10-08 후속 가공: 기존 Sword And Shield Death에서 `Raider_DeathStable.anim` 생성. 쓰러진 뒤 감속·정지로 발 떨림 보정, 원본 FBX 보존. 추가 다운로드 없음. [07](07_개발일지.md#d16-raider-death).
+
 - 2026-10-06 후속 가공: Fighting Idle에서 깡패 시전 준비용 `Thug_CastUpper.anim` 생성. 다리 곡선 고정·골반 위치 보정, 상체 곡선 유지. 원본 FBX 보존. 기록 [07](07_개발일지.md#d14-thug-upper-cast).
 
 - 출처: Adobe Mixamo, 23종 — Breathing Idle, Fighting Idle, Punching, Cross Punch, Zombie Kicking, Hit Reaction, Falling Back Death, Knife Idle, Stabbing, Sword And Shield Death, Great Sword Idle, Great Sword Blocking, Great Sword Slash (Downward), Great Sword Slash, Great Sword Impact, Two Handed Sword Death, Standing Idle 03, Standing 1H Cast Spell 01, Standing 1H Magic Attack 01, Standing 2H Magic Attack 01, Standing 2H Magic Area Attack 02, Standing React Large From Front, Standing React Death Backward. 기본 캐릭터 Y Bot으로 FBX for Unity·Without Skin·30fps 내려받음(사용자 Adobe 계정).
@@ -164,3 +166,90 @@
 - VARCO 3D의 `ScrollHunter` 워크플로에서 생성. 원화는 `gpt-image-2-medium`, 소품은 VARCO 이미지→텍스처 3D 생성 사용. 외부 게임 리소스 추출 없음.
 - 출력 13 PNG·소품 7종 GLB/FBX와 텍스처를 `근거자료/2026-10-07_배경제작/`에 보존. 프롬프트·노드·다운로드 출처는 `generation_manifest.json`.
 - Blender 5.2로 앞뒤 화면·메시·FBX 재반입 검사, 내장 텍스처를 PNG로 추출. 형상 수정 없음. Unity `Assets/_Project/Environment/`에 FBX 7종·텍스처·배경 4종·마법진 반입, Battle 씬에 사용. 색·축척·배치·재질만 조정. 접지 그림자는 기존 Kenney Particle Pack `circle_05.png`(CC0)를 재사용. [06](06_에셋_파이프라인.md#background-assets-20261007).
+
+<a id="game-audio"></a>
+## 게임 사운드 (2026-10-08)
+
+배포 페이지·라이선스는 2026-10-08 각 페이지에서 확인. 파일은 `Assets/_Project/Audio/` 아래 용도별로 이름만 바꿔 반입(효과음은 Unity에서 모노·Vorbis로 가져옴). 음량·음높이는 Unity에서 설정. 작업자는 음원을 직접 청취하지 못했다(파일 길이·세기 측정으로만 선정). 적용 [07](07_개발일지.md#d16-game-audio), 사양 [10 A48](10_결정사항_로그.md#game-audio-20261008).
+
+**CC0 (표기 의무 없음, 감사 표기)**
+- Kenney "Impact Sounds" — https://kenney.nl/assets/impact-sounds — CC0. `impactGlass_heavy_000·002·004`, `impactGlass_medium_000·001`, `impactSoft_medium_000`, `impactSoft_heavy_000~002`, `impactPlate_medium_000~002`, `impactPunch_medium_000~002`, `impactPunch_heavy_000~002`, `impactMetal_heavy_000`, `impactBell_heavy_001·004` → `Audio/Impacts/` (glass_heavy·glass_medium·soft_medium·soft_heavy·plate_medium·punch_medium·punch_heavy·metal_heavy·bell_heavy_long/short).
+- Kenney "RPG Audio" — https://kenney.nl/assets/rpg-audio — CC0. `knifeSlice2` → `Audio/Weapons/knife_slice.ogg`. 후속 버튼음: `bookPlace1`·`bookClose`·`bookFlip2`·`handleSmallLeather` → `Audio/UI/rpg_book_place·rpg_book_close·rpg_book_flip·rpg_leather_select.ogg`(이름 변경·Unity 음량/음높이 조절).
+- Kenney "Interface Sounds" — https://kenney.nl/assets/interface-sounds — CC0. `click_001`·`confirmation_001`·`confirmation_004`·`back_002`·`select_003`·`error_004`·`question_002`·`glass_001` → `Audio/UI/` (click·confirm·confirm_reward·cancel·select·reject·warn_orange·potion_glass).
+- rubberduck "80 CC0 RPG SFX" — https://opengameart.org/content/80-cc0-rpg-sfx — CC0. `spell_01`·`spell_02` → `Audio/Magic/rpg_spell_01·02.ogg`.
+- rubberduck "100 CC0 SFX #2" — https://opengameart.org/content/100-cc0-sfx-2 — CC0. `sfx100v2_glass_05` → `Audio/Impacts/glass_shatter.ogg`, `sfx100v2_thunder_01` → `Audio/Magic/thunder_rumble.ogg`.
+- artisticdude "Freeze Spell" — https://opengameart.org/content/freeze-spell-0 — CC0. `freeze.wav` → `Audio/Magic/freeze_wind.wav`.
+- 배경음: qubodup "Dark Shrine Loop"(yd "Shrine"(CC0) 리믹스) — https://opengameart.org/content/dark-shrine-loop — CC0 → `Audio/Music/bgm_title_dark_shrine.wav`. cynicmusic "Battle Theme A" — https://opengameart.org/content/battle-theme-a — CC0(페이지 요청 표기: cynicmusic.com, pixelsphere.org) → `bgm_battle_theme_a.wav`. bosslevelaudio "Evil Awaits" — https://opengameart.org/content/evil-awaits — 여러 라이선스 중 CC0 선택 → `bgm_boss_evil_awaits.wav`. 편집: 반복 이음매 빈틈을 없애려고 앞뒤 무음(0.005~1.33초)만 잘라 WAV로 저장.
+
+- 후속 입구 배경음: **Samza — Peaceful Forest** — https://opengameart.org/content/peaceful-forest — CC0 → `Audio/Music/bgm_edge_peaceful_forest.ogg`. 편집: 음량 보정, 반복 경계 0.25초 겹침, OGG 변환.
+- 후속 오솔길 배경음: **beardalaxy — Iremos Forest Theme Loop** — https://opengameart.org/content/iremos-forest-theme-loop — CC0 → `Audio/Music/bgm_path_iremos.ogg`. 편집: 음량 보정, 원본 반복 구간 유지.
+- 후속으로 `Battle Theme A`, 주황 경고와 기존 전자 버튼음, 차단용 `glass_shatter` 연결 해제. 타이틀·보스 곡과 방어도/오브 유리 소리는 유지.
+
+**CC-BY (표기 필수)**
+- **Dark Sneaky Ambient — MrAlex99** — https://opengameart.org/content/dark-sneaky-ambient — **CC BY 4.0** (https://creativecommons.org/licenses/by/4.0/) → `Audio/Music/bgm_hideout_dark_sneaky.ogg`. 편집: 앞 무음 0.033초 제거, 반복 경계 0.35초 겹침, 음량 보정, OGG 변환. 산적 아지트 입구에서 사용.
+- "Fantasy SFX Pack Vol 1" by **JC Sounds** — https://opengameart.org/content/jc-sounds-fantasy-sfx-pack-vol-1 — **CC BY 4.0** (https://creativecommons.org/licenses/by/4.0/). 표기 문구: "CC BY 4.0 - Credit: JC Sounds". 사용(이름만 변경): Magic Shield Activation 01, Healing Chime 01·02, Fireball Buildup·Launch 01·Impact 01~03, Ice Shard Projectile Impact 01~03, Ice Spell Hold(반복), Electric Spell Buildup·Hit 01~03·Hold(반복), Mana Drain Start·Mid LOOP, Dark Necromancy Chant 01(반복), Teleport In·Out, Dagger Swing 01~03, Heavy Sword Swing 01~03·Hit Metal 01~03, Bow Arrow Draw 01·Shoot 01·02·Hit 01·02 → `Audio/Magic/jc_*`, `Audio/Weapons/jc_*`.
+- "Fantasy Sound Effects Library" by **Little Robot Sound Factory** — https://opengameart.org/content/fantasy-sound-effects-library — **CC BY 3.0** (http://creativecommons.org/licenses/by/3.0/). 표기: Little Robot Sound Factory, www.littlerobotsoundfactory.com. 사용: Spell_01·02·04 → `Audio/Magic/lrsf_spell_bright·deep·deep_02.mp3`, Jingle_Win_00·Jingle_Achievement_00·Jingle_Lose_00 → `Audio/UI/lrsf_jingle_win·battle_win·lose.mp3`.
+
+**스킬·보스 후속 편집본(2026-10-08)**
+
+기존 허용 음원에 잘라내기·혼합·음량 압축·직접 합성한 화음/충격을 적용했다. 원본 파일은 유지. 새 외부 음원 반입 없음. 파생 파일도 아래 원본 저작자·라이선스를 함께 표기한다.
+
+| 파일 (`Audio/Magic/`) | 원본 | 편집 |
+|---|---|---|
+| `sh_magic_cutter.wav` | JC Sounds Dagger Swing 01(CC BY 4.0) + Kenney knifeSlice2(CC0) | 선명한 베기로 혼합·세기 보정 |
+| `sh_magic_impact_triple.wav` | JC Sounds Fireball Impact 01(CC BY 4.0) | 짧은 폭발 3회 배열·저음 합성 |
+| `sh_judgment_strike.wav` | JC Sounds Healing Chime 02(CC BY 4.0) + Kenney impactSoft_heavy_001(CC0) | 하강음·충격·밝은 울림 합성 |
+| `sh_sanctuary_holy_loop.wav` | JC Sounds Healing Chime 02(CC BY 4.0) | 지속 화음 합성·회복음 겹침·반복 연결 |
+| `sh_dark_blast.wav` | Little Robot Sound Factory의 기존 반입본 `lrsf_spell_deep.mp3`(위 Fantasy Sound Effects Library, CC BY 3.0) | 작은 구간 확대·시작 지연 축소·세기 보정 |
+| `sh_darkhole_blast.wav` | Little Robot Sound Factory의 기존 반입본 `lrsf_spell_deep_02.mp3`(위 Fantasy Sound Effects Library, CC BY 3.0) | 작은 구간 확대·시작 지연 축소·세기 보정 |
+
+**스킬 소리 보완 2차(2026-10-08, Claude)** — 새 원본 반입. 배포 페이지·라이선스 2026-10-08 확인. 편집은 자르기·페이드·음높이 재표본(선형 보간)·겹치기·최대치 정규화만(포화·파형 가공 없음). 작업자 직접 청취 미실시. 제작 기록 [근거자료](근거자료/2026-10-08_게임사운드/스킬보완2_음원제작.txt).
+- "8 Magic Attacks"(RPG Battle Magic SFX free samples) by **leohpaz** — https://opengameart.org/content/8-magic-attacks — **CC BY 4.0** (https://creativecommons.org/licenses/by/4.0/). 원본 `13_Ice_explosion_01.wav` → `Audio/Magic/leo_ice_explosion_01.wav`, `30_Earth_02.wav` → `leo_earth_02.wav`, `25_Wind_01.wav` → `leo_wind_01.wav`.
+- "8 Heals and Buffs SFX" by **leohpaz** — https://opengameart.org/content/8-heals-and-buffs-sfx — **CC BY 4.0**. 원본 `39_Absorb_04.wav` → `Audio/Magic/leo_absorb_04.wav`.
+- "RPG Sound Pack" by **artisticdude** — https://opengameart.org/content/rpg-sound-pack — **CC0**. 원본 `battle/swing.wav`·`battle/swing2.wav` → `Audio/Weapons/ad_swing.wav`·`ad_swing2.wav`.
+- 표기 문구 제안: "Sound effects by leohpaz (CC BY 4.0)".
+
+| 파일 (`Audio/Magic/`) | 원본 | 편집 |
+|---|---|---|
+| `sh_magic_impact_burst.wav` | leohpaz Ice explosion 01 + Earth 02 (CC BY 4.0) | 폭발 앞부분 0.09초를 0·0.12초(두 번째 음높이 1.07), 0.24초에 0.42초 구간 음높이 0.88 + Earth 0.20~0.50초 겹침, 페이드·최대 0.85 |
+| `sh_magic_cutter_arc.wav` | artisticdude swing2·swing (CC0) + leohpaz Wind 01 (CC BY 4.0) | 휘두름 0·0.06초 두 번 + 바람 0~0.38초, 페이드·최대 0.8 |
+| `sh_interrupt_seal.wav` | leohpaz Absorb 04 (CC BY 4.0) | 0~0.42초, 페이드·최대 0.75 |
+| `sh_suppress_hit.wav` | leohpaz Earth 02 (CC BY 4.0) | 0.18~0.46초, 페이드·최대 0.7 |
+| `sh_dark_eruption.wav` | Little Robot Sound Factory `lrsf_spell_deep.mp3` (CC BY 3.0) | 시작 지연 제거·3.2초·페이드·최대 0.7. 포화 없음(기존 `sh_dark_blast`와 별개) |
+| `sh_darkhole_blast_clean.wav` | Little Robot Sound Factory `lrsf_spell_deep_02.mp3` (CC BY 3.0) | 시작 지연 제거·3.3초·페이드·최대 0.7. 포화 없음 |
+
+기존 `sh_magic_cutter`·`sh_magic_impact_triple`·`sh_darkhole_blast`는 연결을 끊었지만 파일은 보존. `sh_dark_blast`는 디엔드가 계속 사용.
+
+**스킬 소리 보완 3차(2026-10-08, Codex)**
+
+- **EZduzziteh — Explosions** — https://opengameart.org/content/explosions-4 — CC0 (https://creativecommons.org/publicdomain/zero/1.0/). `explosion2.ogg` → `ez_explosion2.ogg` 원본 보존, `sh_impact_explosion.wav` 모노 WAV 변환. 원본 폭발 1회 그대로 사용.
+- **JaggedStone — Magic Spell SFX** — https://opengameart.org/content/magic-spell-sfx — CC0. `magical_3.ogg` → `js_magical3.ogg` 원본 보존, `sh_cutter_magic_claw.wav` 앞 0.25초를 0·0.23초에 2회·페이드·선형 음량 보정. 매직클로는 느낌 참고이며 메이플 음원 미사용.
+- **BlueDelta — Heavy Thunder Strike - no Rain - QUADRO.wav** — https://freesound.org/people/BlueDelta/sounds/446753/ — CC0. 공개 HQ MP3 `446753_1790434-hq.mp3` 사용(원본 4채널 WAV는 다운로드 로그인 필요). 1.10~4.90초 발췌·모노·끝 1.2초 페이드·시작 0.08초 대기·선형 음량 보정 → `sh_judgment_thunder.wav`. HQ 원본은 `근거자료/2026-10-08_게임사운드/보완3_천둥원본_HQ.mp3` 보존.
+- **ViRiX Dreamcore (David Mckee) — Magic SFX Sample** — https://opengameart.org/content/magic-sfx-sample — CC BY 3.0 (https://creativecommons.org/licenses/by/3.0/). 저작자 링크 https://soundcloud.com/virix . 무료 Preview Pack의 `Healing Full.wav` → `virix_healing_full.wav` 원본 보존. 0.55~1.85초 잔향·0.20초 반복 겹침·선형 음량 조절 → `sh_sanctuary_soft_loop.wav`.
+- 기존 작업본은 보존하고 4종 연결만 교체. 포화·압축기·새 합성음 없음. 작업자 직접 청취 미실시, 사용자 비교 파일은 [07](07_개발일지.md#d16-skill-audio-tuning3).
+
+검토했지만 쓰지 않음: lentikula "FreeCC0 Basic Spell Impacts"(itch.io, CC0 — 자동 내려받기 실패로 미반입), Augmentality "Spell Sounds"(OGA-BY/CC0, 길이·성격이 맞지 않음). 유료 에셋·외부 오디오 미들웨어 없음. 빌드 배포 시 위 CC-BY 음원의 저작자·출처·라이선스·편집 내용을 게임 내 크레딧 또는 동봉 문서에 표기해야 한다.
+
+**커터·저지먼트 소리 보완 4차(2026-10-08, Codex)**
+
+- **StarNinjas — 20 Sword Sound Effects (Attacks and Clashes)** — https://opengameart.org/content/20-sword-sound-effects-attacks-and-clashes — CC0 (https://creativecommons.org/publicdomain/zero/1.0/). `sword.6.ogg` → `Audio/Magic/sn_sword_06.ogg` 원본 보존. 모노·앞 1ms/끝 20ms 페이드·선형 최대 0.8 → `sh_cutter_sharp_slash.wav`. 약탈자 음원과 별개.
+- **EZduzziteh — Explosions** — https://opengameart.org/content/explosions-4 — CC0. `explosion3.ogg` → `Audio/Magic/ez_explosion3.ogg` 원본 보존. 모노·앞 1ms/끝 100ms 페이드·선형 최대 0.8·앞 60ms 대기 → `sh_judgment_slam.wav`. 가장 강한 구간은 빛기둥의 약 80ms에 맞춤.
+- 두 파일 모두 원음 1회, 포화·압축·겹침 없음. 이전 작업본 보존·연결 해제, 저지먼트 준비음 유지. 직접 청취는 미실시. 제작값·미리듣기는 [07](07_개발일지.md#d16-skill-audio-tuning4).
+
+**매직커터 사용자 선택 음원(2026-10-08, Codex)**
+
+- **効果音ラボ — 剣で斬る3** — https://soundeffect-lab.info/sound/battle/ . 사용자 선택 후보 2(몬스터 베기).
+- 공식 원본 `sword-slash3.mp3` → `Assets/_Project/Audio/Magic/sel_sword_slash3.mp3`. 파일 내용 유지, Unity 모노·Vorbis 0.75 반입, 음높이 1배. 별도 합성·자르기 없음. 이전 `sh_cutter_sharp_slash.wav` 연결만 해제.
+- **이용 조건:** https://soundeffect-lab.info/agreement/ (2026-10-08 확인). 상업용 게임 사용·수정 가능, 표기는 선택. CC0가 아니며 원본/수정 음원의 단독 재배포·파일 직접 링크 금지. 게임에 포함하는 용도로 사용하고 공개 음원 모음·단독 미리듣기 파일로 배포하지 않는다.
+
+**매직 임팩트 사용자 선택 음원(2026-10-08, Codex)**
+
+- **効果音ラボ — 爆発2** — https://soundeffect-lab.info/sound/battle/battle2.html . 사용자 선택 후보 1.
+- 공식 원본 `bomb2.mp3` → `Assets/_Project/Audio/Magic/sel_explosion2.mp3`. 원본 유지, Unity 모노·Vorbis 0.75·Normalize 끔. 별도 합성·자르기 없이 음량만 낮춤. 이전 `sh_impact_explosion.wav` 연결 해제·파일 보존.
+- 이용 조건은 위 매직커터와 동일: https://soundeffect-lab.info/agreement/ (2026-10-08 확인). 무료 상업용 게임 사용 가능, CC0 아님. 단독 음원 재배포·직접 파일 링크 금지.
+
+**저지먼트 사용자 선택 음원(2026-10-08, Codex)**
+
+- **効果音ラボ — ビーム砲2** — https://soundeffect-lab.info/sound/battle/battle2.html . 빛기둥 발동음으로 사용자 선택.
+- 공식 원본 `beamgun2.mp3` → `Assets/_Project/Audio/Magic/sel_beam_cannon2.mp3`. 원본 유지, Unity 모노·Vorbis 0.75·Normalize 끔. 합성·자르기 없이 1회 재생. 이전 `sh_judgment_slam.wav` 연결 해제·파일 보존, 준비음 유지.
+- 이용 조건은 위 선택 음원과 동일: https://soundeffect-lab.info/agreement/ (2026-10-08 확인). 무료 상업용 게임 사용 가능, CC0 아님. 단독 음원 재배포·직접 파일 링크 금지.

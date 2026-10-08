@@ -161,6 +161,7 @@ public class EnemyManager : MonoBehaviour
 
     private void Update()
     {
+        if (flow != null && flow.MenuBlocksInput) return;
         if (combatEnded || (metrics != null && metrics.Ended) || (player != null && !player.IsAlive)) return;
 
         // 타겟이 죽었으면 자동으로 다음 생존 적으로

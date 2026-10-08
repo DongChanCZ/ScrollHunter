@@ -99,6 +99,7 @@ public class TutorialFlow : MonoBehaviour
 
     private void Update()
     {
+        if (flow != null && flow.MenuBlocksInput) return;
         if (!Active && !ShowingGuide && consumedFrame == Time.frameCount - 1) flow.RefreshTutorialUI();
         if (!ShowingGuide || WaitingForSkill || BlocksInputThisFrame) return;
         bool click = Input.GetMouseButtonDown(0);
@@ -160,7 +161,7 @@ public class TutorialFlow : MonoBehaviour
 
     public bool AdvanceGuide()
     {
-        if (!ShowingGuide || WaitingForSkill || BlocksInputThisFrame) return false;
+        if (flow.MenuBlocksInput || !ShowingGuide || WaitingForSkill || BlocksInputThisFrame) return false;
         consumedFrame = Time.frameCount;
         if (flow.State == BattleFlowState.TutorialComplete)
         {
@@ -242,13 +243,22 @@ public class TutorialFlow : MonoBehaviour
 
     public void Skip()
     {
-        if (!Active) return;
+        if (flow.MenuBlocksInput || !Active) return;
         Active = false;
         tutorialEnemy.HoldTutorialDefeat = false;
         HideGuide();
         skipRect.gameObject.SetActive(false);
         consumedFrame = Time.frameCount;
         flow.FinishTutorial(true);
+    }
+
+    public void Cancel()
+    {
+        Active = false;
+        tutorialEnemy.HoldTutorialDefeat = false;
+        HideGuide();
+        skipRect.gameObject.SetActive(false);
+        consumedFrame = -1;
     }
 
     private RectTransform UiRect(string name, Transform parent, Color color)

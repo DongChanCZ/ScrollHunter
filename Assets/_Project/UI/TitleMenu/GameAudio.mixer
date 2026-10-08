@@ -121,6 +121,8 @@ AudioMixerController:
     name: SkillVolume
   - guid: f8d355c0d6a7dea4c86b8384328b9fd6
     name: EnemyVolume
+  - guid: 30bccdcde3ebc754db9cd98bc7edff8d
+    name: MasterVolume
   m_AudioMixerGroupViews: []
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}

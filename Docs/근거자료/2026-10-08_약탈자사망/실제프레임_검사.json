@@ -1,0 +1,33 @@
+{
+  "message": "PASS: three deaths, 1x/0.5x, pause/resume and last-enemy unscaled ending; no leg flip and settled feet held. Function inputs, actual Unity Update frames.",
+  "frames": 1492,
+  "runs": [
+    {
+      "trial": 0,
+      "speed": 1.0,
+      "lastKill": false,
+      "maxLateLegAngle": 0.193826586,
+      "maxSettledFootMove": 0.0,
+      "mode": "Normal",
+      "pauseChecked": true
+    },
+    {
+      "trial": 1,
+      "speed": 0.5,
+      "lastKill": false,
+      "maxLateLegAngle": 0.0,
+      "maxSettledFootMove": 0.0,
+      "mode": "Normal",
+      "pauseChecked": true
+    },
+    {
+      "trial": 2,
+      "speed": 1.0,
+      "lastKill": true,
+      "maxLateLegAngle": 0.0,
+      "maxSettledFootMove": 0.0,
+      "mode": "UnscaledTime",
+      "pauseChecked": false
+    }
+  ]
+}

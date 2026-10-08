@@ -58,6 +58,7 @@ public class DeckSystem : MonoBehaviour
     private readonly Queue<SkillData> queue = new Queue<SkillData>();
     private bool initialized;
     private TutorialFlow tutorial;
+    private BattleFlow flow;
     [SerializeField] private string phaseTransitionLabel = "사용 불가 — 페이즈 전환";
 
     // 일반 시전과 채널링이 공유하는 진행 상태.
@@ -115,10 +116,13 @@ public class DeckSystem : MonoBehaviour
     public event System.Action<SkillData, int> ShieldApplied;
     /// <summary>차단 카드의 판정이 끝났을 때. 세 번째 값은 차단 성공 여부.</summary>
     public event System.Action<SkillData, Enemy, bool> InterruptResolved;
+    /// <summary>전투 중 슬롯 입력이 거절됐을 때(슬롯 번호, 사유). 거절음 전용이며 판정·계측과 무관하다.</summary>
+    public event System.Action<int, SlotState> SlotRejected;
 
     private void Awake()
     {
         tutorial = FindFirstObjectByType<TutorialFlow>();
+        flow = FindFirstObjectByType<BattleFlow>();
         if (costSystem == null) costSystem = FindFirstObjectByType<CostSystem>();
         if (enemyManager == null) enemyManager = FindFirstObjectByType<EnemyManager>();
         if (player == null) player = FindFirstObjectByType<Player>();
@@ -270,6 +274,7 @@ public class DeckSystem : MonoBehaviour
     /// <summary>입력 수락 시 코스트·카드 소모. 발동 방식에 따라 효과를 시작한다.</summary>
     public bool TryUseSlot(int slot)
     {
+        if (flow != null && flow.MenuBlocksInput) return false;
         if (BattleEnded || (Time.timeScale <= 0f && (tutorial == null || !tutorial.WaitingForSkill))) return false;
         SkillData card = GetHandCard(slot);
         SlotState state = GetSlotState(slot);
@@ -281,6 +286,7 @@ public class DeckSystem : MonoBehaviour
 
             // 비활성 사유는 코스트를 쓰지 않는다.
             if (state != SlotState.Empty) LogUse(card, "-", StateToLabel(state));
+            if (state != SlotState.Empty) NotifyVfx(() => SlotRejected?.Invoke(slot, state));
             return false;
         }
 
@@ -290,6 +296,7 @@ public class DeckSystem : MonoBehaviour
         {
             if (metrics != null) metrics.RecordCostShortInput();
             LogUse(card, "-", "코스트 부족");
+            NotifyVfx(() => SlotRejected?.Invoke(slot, SlotState.NotEnoughCost));
             return false;
         }
 

@@ -1,0 +1,19 @@
+2026-10-08 스킬 소리 보완 2차 검사 (Claude / Unity MCP, 마법사 직행 끔)
+
+[실제 프레임] Tools > Scroll Hunter > Check Game Audio (Play)
+Game audio checks passed: 197 / frames 7145
+music: title/tutorial/path/hideout/boss, same-map continuity PASS
+common: absorb/break/hit/potion/reject/silence/suppression PASS
+tuning: cutter≠raider, sanctuary 0.6, dark split, mix peaks eruption 0.83 / dark hole 0.73
+skills: 12 + silence/suppression, cancel cleanup PASS
+enemies: 5 types / prepare-release-delayed-warning, interrupt/death cleanup PASS
+boss: phase/orb summon/break/cleanup/victory PASS
+pause/0.5x/restart/no duplicate PASS
+results: battle victory, reward select/confirm, defeat with The End PASS
+volumes: Music/Skill/Enemy independent, 0% mute PASS (PlayerPrefs untouched)
+
+
+[합산 최대치, 각 첫 파일·음량 적용·같은 순간 시작]
+봉인음+제압 피해 0.75 / 다크 이럽션 단독 0.60 / 매직 임팩트+플레이어 피격 0.95 / 매직 커터 단독 0.79
+
+Play를 멈추지 않고 게임 프레임마다 진행(0.02초 고정). 재생 여부·시점·횟수·그룹·합산 최대치만 확인. 직접 청취 미실시.

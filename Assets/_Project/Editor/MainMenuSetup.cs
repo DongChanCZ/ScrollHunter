@@ -15,7 +15,7 @@ public static class MainMenuSetup
     {
         if (Application.isPlaying) throw new System.InvalidOperationException("Stop Play first.");
         var f = Object.FindFirstObjectByType<BattleFlow>();
-        if (f.GetComponent<MainMenuUI>() != null) return;
+        if (f.GetComponent<MainMenuUI>() != null) { Upgrade(); return; }
         var flow = new SerializedObject(f);
         var start = (GameObject)flow.FindProperty("startPanel").objectReferenceValue;
         var button = (Button)flow.FindProperty("startButton").objectReferenceValue;
@@ -96,7 +96,117 @@ public static class MainMenuSetup
         Link(so,"mixer",CreateMixer());
         so.ApplyModifiedPropertiesWithoutUndo();controlsModal.SetActive(false);optionsModal.SetActive(false);
         overview.transform.SetAsLastSibling();
-        AssetDatabase.SaveAssets();UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(f.gameObject.scene);
+        AssetDatabase.SaveAssetIfDirty(material);
+        Upgrade();
+    }
+
+    [MenuItem("Tools/Scroll Hunter/Update Options and Pause Menu")]
+    public static void Upgrade()
+    {
+        if (Application.isPlaying) throw new System.InvalidOperationException("Stop Play first.");
+        var flow = Object.FindFirstObjectByType<BattleFlow>();
+        var menu = flow.GetComponent<MainMenuUI>();
+        var so = new SerializedObject(menu);
+        var title = (GameObject)so.FindProperty("titlePanel").objectReferenceValue;
+        var canvas = title.GetComponentInParent<Canvas>().transform;
+        var options = (GameObject)so.FindProperty("optionsPanel").objectReferenceValue;
+        options.transform.SetParent(canvas, false);
+        var rt = (RectTransform)options.transform;
+        rt.anchorMin=Vector2.zero;rt.anchorMax=Vector2.one;rt.offsetMin=rt.offsetMax=Vector2.zero;
+        var source = ((Button)so.FindProperty("optionsApply").objectReferenceValue);
+        var text = source.GetComponentInChildren<TMP_Text>(true);
+        var sliders=so.FindProperty("volumeSliders");var labels=so.FindProperty("volumeLabels");
+        var parameters=so.FindProperty("mixerParameters");
+        var names=new[]{"전체 사운드","배경음","스킬 사운드","적 사운드"};
+        var mixerNames=new[]{"MasterVolume","MusicVolume","SkillVolume","EnemyVolume"};
+        // 이미 연결된 3개 슬라이더를 재사용하고 마지막 1개만 추가한다.
+        sliders.arraySize=labels.arraySize=parameters.arraySize=names.Length;
+        for(int i=0;i<names.Length;i++)
+        {
+            float y=25-i*80;
+            var label=options.transform.Find("SoundLabel"+i);
+            if(label==null) label=Label("SoundLabel"+i,options.transform,text,"",Vector2.zero,new Vector2(300,60),30,TextAlignmentOptions.Left).transform;
+            label.GetComponent<TMP_Text>().text=names[i];Place((RectTransform)label,new Vector2(-440,y),new Vector2(290,60));
+            var slider=options.transform.Find("Volume"+i);
+            if(slider==null) slider=MakeSlider(options.transform,"Volume"+i,Vector2.zero).transform;
+            Place((RectTransform)slider,new Vector2(130,y),new Vector2(480,46));
+            var value=options.transform.Find("VolumeValue"+i);
+            if(value==null) value=Label("VolumeValue"+i,options.transform,text,"100%",Vector2.zero,new Vector2(160,60),28,TextAlignmentOptions.Center).transform;
+            Place((RectTransform)value,new Vector2(465,y),new Vector2(160,60));
+            sliders.GetArrayElementAtIndex(i).objectReferenceValue=slider.GetComponent<Slider>();
+            labels.GetArrayElementAtIndex(i).objectReferenceValue=value.GetComponent<TMP_Text>();
+            parameters.GetArrayElementAtIndex(i).stringValue=mixerNames[i];
+        }
+        foreach(string field in new[]{"resolutionPrevious","resolutionNext"})
+        {
+            var button=(Button)so.FindProperty(field).objectReferenceValue;
+            SetButtonLabel(button,field=="resolutionPrevious"?"◀":"▶");
+            var br=(RectTransform)button.transform; br.sizeDelta=new Vector2(78,70);
+        }
+        options.transform.Find("Hint").GetComponent<TMP_Text>().text="소리는 바로 반영됩니다. 적용하면 저장되고, 취소하면 돌아갑니다.";
+        Place((RectTransform)options.transform.Find("Hint"),new Vector2(0,-290),new Vector2(1400,50));
+        var cancel=(Button)so.FindProperty("optionsCancel").objectReferenceValue;
+        Place((RectTransform)cancel.transform,new Vector2(0,-365),new Vector2(300,76));
+        Place((RectTransform)source.transform,new Vector2(450,-365),new Vector2(300,76));
+        var reset=options.transform.Find("ResetGame");
+        var resetButton=reset!=null?reset.GetComponent<Button>():CopyButton("ResetGame",options.transform,source,"게임 초기화",new Vector2(-450,-365),new Vector2(300,76));
+        Link(so,"resetOpen",resetButton);
+        var pause=canvas.Find("PauseMenu");
+        if(pause==null)
+        {
+            pause=Modal("PauseMenu",canvas).transform;
+            Place((RectTransform)pause.Find("Frame"),Vector2.zero,new Vector2(820,600));
+            Place((RectTransform)pause.Find("Body"),Vector2.zero,new Vector2(812,592));
+            Label("Title",pause,text,"일시정지",new Vector2(0,210),new Vector2(700,80),44,TextAlignmentOptions.Center);
+            CopyButton("Resume",pause,source,"계속하기",new Vector2(0,80),new Vector2(460,80));
+            CopyButton("Options",pause,source,"옵션",new Vector2(0,-25),new Vector2(460,80));
+            CopyButton("ReturnToTitle",pause,source,"시작 화면으로",new Vector2(0,-130),new Vector2(460,80));
+            Label("Hint",pause,text,"시작 화면으로 돌아가면 진행 중인 전투는 종료됩니다.",new Vector2(0,-235),new Vector2(750,55),23,TextAlignmentOptions.Center);
+        }
+        Link(so,"pausePanel",pause.gameObject);Link(so,"pauseResume",pause.Find("Resume").GetComponent<Button>());
+        Link(so,"pauseOptions",pause.Find("Options").GetComponent<Button>());Link(so,"pauseTitle",pause.Find("ReturnToTitle").GetComponent<Button>());
+        var confirmation=canvas.Find("ResetGameConfirmation");
+        if(confirmation==null)
+        {
+            confirmation=Modal("ResetGameConfirmation",canvas).transform;
+            Place((RectTransform)confirmation.Find("Frame"),Vector2.zero,new Vector2(1150,490));
+            Place((RectTransform)confirmation.Find("Body"),Vector2.zero,new Vector2(1142,482));
+            Label("Title",confirmation,text,"게임 초기화",new Vector2(0,165),new Vector2(1000,70),40,TextAlignmentOptions.Center);
+            Label("Message",confirmation,text,"",new Vector2(0,20),new Vector2(1050,200),30,TextAlignmentOptions.Center);
+            CopyButton("Yes",confirmation,source,"예",new Vector2(-240,-150),new Vector2(300,76));
+            CopyButton("No",confirmation,source,"아니오",new Vector2(240,-150),new Vector2(300,76));
+        }
+        Link(so,"resetPanel",confirmation.gameObject);Link(so,"resetMessage",confirmation.Find("Message").GetComponent<TMP_Text>());
+        Link(so,"resetYes",confirmation.Find("Yes").GetComponent<Button>());Link(so,"resetNo",confirmation.Find("No").GetComponent<Button>());
+        var mixer=(AudioMixer)so.FindProperty("mixer").objectReferenceValue;
+        var flags=BindingFlags.Static|BindingFlags.Instance|BindingFlags.Public|BindingFlags.NonPublic;
+        var type=mixer.GetType();var master=type.GetProperty("masterGroup").GetValue(mixer);
+        var property=type.GetProperty("exposedParameters");var existing=(System.Array)property.GetValue(mixer);
+        var entryType=existing.GetType().GetElementType();
+        bool found=false;foreach(var item in existing)if((string)entryType.GetField("name").GetValue(item)=="MasterVolume")found=true;
+        if(!found)
+        {
+            var expanded=System.Array.CreateInstance(entryType,existing.Length+1);System.Array.Copy(existing,expanded,existing.Length);
+            var item=System.Activator.CreateInstance(entryType);
+            entryType.GetField("guid").SetValue(item,master.GetType().GetMethod("GetGUIDForVolume",flags).Invoke(master,null));
+            entryType.GetField("name").SetValue(item,"MasterVolume");expanded.SetValue(item,existing.Length);property.SetValue(mixer,expanded);
+            EditorUtility.SetDirty(mixer);AssetDatabase.SaveAssetIfDirty(mixer);
+        }
+        so.ApplyModifiedPropertiesWithoutUndo();
+        options.SetActive(false);pause.gameObject.SetActive(false);confirmation.gameObject.SetActive(false);
+        var info=Object.FindFirstObjectByType<CombatInfoUI>();var infoSo=new SerializedObject(info);
+        var format=infoSo.FindProperty("damagingInterruptFormat");
+        format.stringValue=format.stringValue.Replace("캐스팅 중에만 사용","적 캐스팅 중에만 사용").Replace("생존 시 ","");
+        if(format.stringValue.Contains("적 적 "))format.stringValue=format.stringValue.Replace("적 적 ","적 ");
+        infoSo.ApplyModifiedPropertiesWithoutUndo();
+        var controls=(GameObject)so.FindProperty("controlsPanel").objectReferenceValue;
+        var values=controls.transform.Find("ControlsPanel/Values");
+        if(values!=null)
+        {
+            var label=values.GetComponent<TMP_Text>();
+            if(!label.text.Contains("Esc")) label.text=label.text.Replace("A 또는 우클릭 / 상단 정지·재개 버튼","A 또는 우클릭 / 상단 버튼 · Esc 메뉴");
+        }
+        UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(flow.gameObject.scene);
     }
 
     private static AudioMixer CreateMixer()

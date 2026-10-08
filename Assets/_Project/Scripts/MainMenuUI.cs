@@ -7,6 +7,7 @@ using UnityEngine.Audio;
 using UnityEngine.UI;
 
 /// <summary>시작 메뉴 표시·설정. 전투 진행과 계승 데이터는 기존 컴포넌트가 처리한다.</summary>
+[DefaultExecutionOrder(-300)]
 public class MainMenuUI : MonoBehaviour
 {
     [SerializeField] private GameObject titlePanel, controlsPanel, optionsPanel, inheritancePanel;
@@ -16,7 +17,7 @@ public class MainMenuUI : MonoBehaviour
     [SerializeField] private Slider[] volumeSliders;
     [SerializeField] private TMP_Text[] volumeLabels;
     [SerializeField] private AudioMixer mixer;
-    [SerializeField] private string[] mixerParameters = { "MusicVolume", "SkillVolume", "EnemyVolume" };
+    [SerializeField] private string[] mixerParameters = { "MasterVolume", "MusicVolume", "SkillVolume", "EnemyVolume" };
     [SerializeField] private string preferencesPrefix = "ScrollHunter.Options.";
     [SerializeField] private string fullscreenText = "전체화면 (테두리 없음)", windowedText = "창모드";
     [SerializeField] private string resolutionFormat = "{0} × {1}", volumeFormat = "{0:0}%";
@@ -30,6 +31,15 @@ public class MainMenuUI : MonoBehaviour
     [SerializeField, Min(0f)] private float glowOffDelay = 4f;
     [SerializeField] private string pulseProperty = "_Pulse";
     [SerializeField] private Shader runeMaskShader;
+    [Header("전투 메뉴·초기화")]
+    [SerializeField] private GameObject pausePanel, resetPanel;
+    [SerializeField] private Button pauseResume, pauseOptions, pauseTitle, resetOpen, resetYes, resetNo;
+    [SerializeField] private TMP_Text resetMessage;
+    [SerializeField, TextArea] private string resetPrompt = "정말 게임을 초기화 하시겠습니까?\n스테이지 클리어 기록이 사라집니다.\n<size=75%>계승한 스킬·패시브와 튜토리얼 기록도 초기화됩니다.</size>";
+    [SerializeField] private string resetError = "초기화하지 못했습니다. 저장 경로를 확인한 뒤 다시 시도하세요.";
+    private BattleFlow flow;
+    private float menuResumeScale;
+    public bool PauseMenuVisible => pausePanel != null && pausePanel.activeSelf;
     private Material glowMaterial;
     private RenderTexture runeLight;
     private float glowTime;
@@ -40,6 +50,13 @@ public class MainMenuUI : MonoBehaviour
 
     private void Awake()
     {
+        flow = GetComponent<BattleFlow>();
+        pauseResume.onClick.AddListener(ResumeGame);
+        pauseOptions.onClick.AddListener(OpenOptions);
+        pauseTitle.onClick.AddListener(BackToTitle);
+        resetOpen.onClick.AddListener(AskReset);
+        resetYes.onClick.AddListener(ConfirmReset);
+        resetNo.onClick.AddListener(() => resetPanel.SetActive(false));
         controlsOpen.onClick.AddListener(OpenControls);
         controlsClose.onClick.AddListener(ClosePanels);
         optionsOpen.onClick.AddListener(OpenOptions);
@@ -53,7 +70,7 @@ public class MainMenuUI : MonoBehaviour
         for (int i = 0; i < volumeSliders.Length; i++)
         {
             int index = i;
-            volumeSliders[i].onValueChanged.AddListener(value => UpdateVolumeLabel(index));
+            volumeSliders[i].onValueChanged.AddListener(value => { UpdateVolumeLabel(index); if (OptionsVisible) ApplyAudio(); });
         }
         if (background != null && background.material != null)
         {
@@ -96,8 +113,8 @@ public class MainMenuUI : MonoBehaviour
 
     private void Update()
     {
-        if (!titlePanel.activeInHierarchy) { ClosePanels(); return; }
-        if (Input.GetKeyDown(closeKey)) ClosePanels();
+        if (Input.GetKeyDown(closeKey)) HandleEscape();
+        if (!titlePanel.activeInHierarchy) return;
         glowTime += Time.unscaledDeltaTime;
         if (glowMaterial != null) glowMaterial.SetFloat(pulseProperty, GlowAt(glowTime));
     }
@@ -153,14 +170,72 @@ public class MainMenuUI : MonoBehaviour
 
     public void OpenOptions()
     {
-        if (!titlePanel.activeInHierarchy) return;
+        if (!titlePanel.activeInHierarchy && !PauseMenuVisible) return;
         ClosePanels(); inheritancePanel.SetActive(false); ReadSavedOptions();
         optionsPanel.SetActive(true); optionsPanel.transform.SetAsLastSibling();
+        ClearSelection();
+    }
+
+    private static void ClearSelection()
+    {
+        var events = UnityEngine.EventSystems.EventSystem.current;
+        if (events != null) events.SetSelectedGameObject(null);
     }
 
     public void ClosePanels()
     {
+        ClearSelection();
+        if (OptionsVisible) { ReadSavedOptions(); ApplyAudio(); }
         controlsPanel.SetActive(false); optionsPanel.SetActive(false);
+        if (resetPanel != null) resetPanel.SetActive(false);
+    }
+
+    public void HandleEscape()
+    {
+        if (resetPanel.activeSelf) { resetPanel.SetActive(false); return; }
+        if (OptionsVisible || controlsPanel.activeSelf) { ClosePanels(); return; }
+        if (titlePanel.activeInHierarchy) { inheritancePanel.SetActive(false); return; }
+        if (PauseMenuVisible) ResumeGame(); else OpenPauseMenu();
+    }
+
+    public void OpenPauseMenu()
+    {
+        if (flow.State == BattleFlowState.Title || PauseMenuVisible) return;
+        menuResumeScale = Time.timeScale;
+        flow.SetMenuPaused(true);
+        Time.timeScale = 0f;
+        pausePanel.SetActive(true); pausePanel.transform.SetAsLastSibling();
+        ClearSelection();
+    }
+
+    public void ResumeGame()
+    {
+        if (!PauseMenuVisible) return;
+        ClosePanels(); pausePanel.SetActive(false);
+        flow.SetMenuPaused(false);
+        Time.timeScale = menuResumeScale;
+    }
+
+    public void BackToTitle()
+    {
+        ClosePanels(); pausePanel.SetActive(false);
+        flow.SetMenuPaused(false);
+        flow.ReturnToTitle();
+    }
+
+    public void AskReset()
+    {
+        if (!OptionsVisible) return;
+        resetMessage.text = resetPrompt;
+        resetPanel.SetActive(true); resetPanel.transform.SetAsLastSibling();
+        ClearSelection();
+    }
+
+    public void ConfirmReset()
+    {
+        if (!resetPanel.activeSelf) return;
+        if (!flow.ResetGameProgress()) { resetMessage.text = resetError; return; }
+        ClosePanels(); pausePanel.SetActive(false);
     }
 
     private void ChangeResolution(int direction)
@@ -180,7 +255,7 @@ public class MainMenuUI : MonoBehaviour
 
     public void ApplyOptions()
     {
-        if (!OptionsVisible || !titlePanel.activeInHierarchy) return;
+        if (!OptionsVisible || (!titlePanel.activeInHierarchy && !PauseMenuVisible)) return;
         var r = resolutions[resolutionIndex];
         PlayerPrefs.SetInt(preferencesPrefix + "Windowed", windowed ? 1 : 0);
         PlayerPrefs.SetInt(preferencesPrefix + "Width", r.x);

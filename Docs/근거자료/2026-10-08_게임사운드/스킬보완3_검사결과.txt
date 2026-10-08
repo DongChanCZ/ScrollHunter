@@ -1,0 +1,17 @@
+2026-10-08 Codex / Unity MCP
+
+Game audio checks passed: 197 / frames 7165
+music: title/tutorial/path/hideout/boss, same-map continuity PASS
+common: absorb/break/hit/potion/reject/silence/suppression PASS
+tuning: cutter≠raider, sanctuary 0.6, dark split, mix peaks eruption 0.83 / dark hole 0.73
+skills: 12 + silence/suppression, cancel cleanup PASS
+enemies: 5 types / prepare-release-delayed-warning, interrupt/death cleanup PASS
+boss: phase/orb summon/break/cleanup/victory PASS
+pause/0.5x/restart/no duplicate PASS
+results: battle victory, reward select/confirm, defeat with The End PASS
+volumes: Music/Skill/Enemy independent, 0% mute PASS (PlayerPrefs untouched)
+
+Final: Play stopped; scene dirty false; mage preview false; defaults match true; console errors/warnings 0.
+Battle.unity SHA256 unchanged from this task start: D3D9754A46AA0A2364AA8EF8D96E75F6EC55E6E22D8EEEF0410B5AF75D1D55C8
+GmarketSansMedium SDF.asset SHA256 unchanged: 76B88282705D1ADCCB97A2C468E7F0F7ECEE89BB0E32F001F2E275EBA3E94CD3
+Scope: automated inputs and actual playback frames, not human listening. No new build.

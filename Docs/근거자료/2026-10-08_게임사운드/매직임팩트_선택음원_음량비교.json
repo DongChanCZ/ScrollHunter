@@ -1,0 +1,78 @@
+{
+  "page": "https://soundeffect-lab.info/sound/battle/battle2.html",
+  "download": "https://soundeffect-lab.info/sound/battle/mp3/bomb2.mp3",
+  "comparison": [
+    {
+      "file": "explosion2.mp3",
+      "seconds": 2.55437641723356,
+      "sr": 44100,
+      "peak": 0.3861916959285736,
+      "rms": 0.10223083668913197,
+      "rms100": 0.23271337288403943,
+      "gain": 1
+    },
+    {
+      "file": "sh_impact_explosion.wav",
+      "seconds": 0.6479591836734694,
+      "sr": 44100,
+      "peak": 0.68048095703125,
+      "rms": 0.12078148843899768,
+      "rms100": 0.22935713726674345,
+      "gain": 0.95
+    },
+    {
+      "file": "sel_sword_slash3.mp3",
+      "seconds": 1.2733333333333334,
+      "sr": 48000,
+      "peak": 0.5623339414596558,
+      "rms": 0.06916622184080519,
+      "rms100": 0.15448151655184802,
+      "gain": 0.9
+    },
+    {
+      "file": "sh_judgment_slam.wav",
+      "seconds": 1.7536507936507937,
+      "sr": 44100,
+      "peak": 0.800018310546875,
+      "rms": 0.051403848770469246,
+      "rms100": 0.20804774239539153,
+      "gain": 0.95
+    },
+    {
+      "file": "jc_fire_impact_01.wav",
+      "seconds": 1.2333333333333334,
+      "sr": 44100,
+      "peak": 0.710357666015625,
+      "rms": 0.10533662519784207,
+      "rms100": 0.22506513039163448,
+      "gain": 0.85
+    }
+  ],
+  "proposed_gain": 0.7,
+  "method": "Cap gain 0.70, strongest 100ms RMS <=90% previous impact, peak <=85% previous impact; objective matching, not direct listening",
+  "title": "爆発2",
+  "author": "効果音ラボ",
+  "asset": "Assets/_Project/Audio/Magic/sel_explosion2.mp3",
+  "terms": "https://soundeffect-lab.info/agreement/",
+  "sha256": "c8e95d7108d7e87d02a5e1531bb6fca1c896479f211f97efd91ef09c51ff1516",
+  "edit": "Original bomb2.mp3 unchanged; Unity mono import; volume 0.70, pitch 1",
+  "rms100_change_db": -2.5263296764450582,
+  "effective_peak": 0.2703341871500015,
+  "selection": "User selected candidate 1; reduce prominence",
+  "usage": "Free commercial game use; no standalone redistribution or direct file links; not CC0",
+  "unity_import": {
+    "forceToMono": true,
+    "normalize": false,
+    "VorbisQuality": 0.75,
+    "effective_peak": 0.3146,
+    "strongest_100ms_rms": 0.1607,
+    "previous_impact_rms100": 0.2162,
+    "change_db_approx": -2.5767962570789402,
+    "other_rms100": {
+      "cutter": 0.236,
+      "judgment": 0.1956,
+      "fireball01": 0.1888
+    },
+    "observation": "Default mono normalization raised peak to 0.70; disabled for this clip and reimported before gameplay checks"
+  }
+}

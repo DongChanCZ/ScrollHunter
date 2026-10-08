@@ -18,6 +18,9 @@ public sealed class BossOrbs : MonoBehaviour
     private Player player;
     private bool initialShown, initialPending;
     private readonly List<OrbBreakVfx> breaks = new List<OrbBreakVfx>();
+    /// <summary>표시·소리용 알림. 소환 연출 시작(오브, 재소환 여부)·실제 파괴(Died). 정리 제거에는 오지 않는다.</summary>
+    public static event System.Action<Enemy, bool> OrbSummoning;
+    public static event System.Action<Enemy> OrbBroken;
     public Enemy Ruin { get; private set; }
     public Enemy Cycle { get; private set; }
     public bool RuinActive => Ruin != null && Ruin.IsAlive && Ruin.gameObject.activeSelf;
@@ -77,6 +80,7 @@ public sealed class BossOrbs : MonoBehaviour
         // 외형이 있으면 판정 크기(activeSize)로 두고 성장은 시각 자식만 맡는다. 준비 중 충돌체는 꺼져 있다.
         orb.transform.localScale = Vector3.one * (visual != null ? activeSize : previewSize);
         if (visual != null) visual.BeginInitialSummon(boss.Data.PhaseTransitionSeconds);
+        OrbSummoning?.Invoke(orb, false);
     }
 
     internal void ActivateInitial()
@@ -101,6 +105,7 @@ public sealed class BossOrbs : MonoBehaviour
         // 표시만: 최초는 전환 동안 자란 구체의 완성 맥동, 재소환은 활성 상태에서 시각 요소만 짧게 성장.
         var visual = Visual(orb);
         if (visual != null) { if (respawn) visual.BeginRespawn(); else visual.Complete(); }
+        if (respawn) OrbSummoning?.Invoke(orb, true);
         orb.GetComponent<Collider>().enabled = true;
         if (manager != null) manager.RegisterOrb(orb);
         Debug.Log("[보스 오브] " + orb.Data.DisplayName + " 활성화 / HP " + orb.CurrentHp, this);
@@ -123,6 +128,7 @@ public sealed class BossOrbs : MonoBehaviour
     /// <summary>오브는 꺼진 직후 비활성화되므로 파괴 연출은 오브 밖에 만든다. 시작 크기는 지금 보이는 구체 크기.</summary>
     private void SpawnBreak(Enemy orb)
     {
+        if (orb != null) OrbBroken?.Invoke(orb);
         if (orb == null || orb.Data.OrbBreak == null) return;
         var visual = Visual(orb);
         var fx = Instantiate(orb.Data.OrbBreak, orb.transform.position, Quaternion.identity);

@@ -333,6 +333,50 @@ public static class EnemyRigBuilder
     }
 
     // 원본 FBX는 보존한다. 준비 동작의 몸 이동·다리 곡선만 첫 프레임 값으로 고정한다.
+    // 원본 끝부분의 과신전·다리 반전을 피하고, 쓰러진 자세에서 감속 후 정지한다.
+    // 3.25초까지 원본 유지, 원본 3.45초 자세까지 0.4초 감속. 전체 길이 3.9초 유지.
+    private static AnimationClip BuildRaiderDeathClip()
+    {
+        const string path = "Assets/_Project/Animations/Raider/Raider_DeathStable.anim";
+        const float start = 3.25f, duration = 0.4f;
+        var source = Clip("MX_SwordShieldDeath");
+        var clip = AssetDatabase.LoadAssetAtPath<AnimationClip>(path);
+        if (clip == null) { clip = Object.Instantiate(source); AssetDatabase.CreateAsset(clip, path); }
+        else EditorUtility.CopySerialized(source, clip);
+        clip.name = "Raider_DeathStable";
+        float SourceTime(float time)
+        {
+            float u = Mathf.Clamp01((time - start) / duration);
+            return start + duration * (u - u * u * .5f);
+        }
+        foreach (var binding in AnimationUtility.GetCurveBindings(source))
+        {
+            var original = AnimationUtility.GetEditorCurve(source, binding);
+            var keys = original.keys.Where(k => k.time < start).ToList();
+            int frames = Mathf.CeilToInt((source.length - start) * 60f);
+            for (int i = 0; i <= frames; i++)
+            {
+                float time = Mathf.Lerp(start, source.length, (float)i / frames);
+                float at = SourceTime(time);
+                float speed = 1f - Mathf.Clamp01((time - start) / duration);
+                float slope = (original.Evaluate(at + .001f) - original.Evaluate(at - .001f)) / .002f * speed;
+                keys.Add(new Keyframe(time, original.Evaluate(at), slope, slope));
+            }
+            AnimationUtility.SetEditorCurve(clip, binding, new AnimationCurve(keys.ToArray()));
+        }
+        EditorUtility.SetDirty(clip); AssetDatabase.SaveAssetIfDirty(clip);
+        return clip;
+    }
+
+    [MenuItem("Tools/Scroll Hunter/Apply Raider Death Stabilization")]
+    public static void ApplyRaiderDeathStabilization()
+    {
+        var controller = AssetDatabase.LoadAssetAtPath<AnimatorController>("Assets/_Project/Animations/Raider/ENM_Raider_GRN_v01.controller");
+        controller.layers[0].stateMachine.states.Single(s => s.state.name == "Death").state.motion = BuildRaiderDeathClip();
+        EditorUtility.SetDirty(controller); AssetDatabase.SaveAssetIfDirty(controller);
+        Debug.Log("[약탈자] 사망 끝부분 다리 반전 보정. 넘어짐·3.9초 길이 유지.");
+    }
+
     private static AnimationClip BuildThugCastClip() => BuildFixedLowerCastClip(Specs.First(s => s.name == "Thug"), 15f);
     private static AnimationClip BuildMageCastClip() => BuildFixedLowerCastClip(Specs.First(s => s.name == "Mage"), 0f);
 
@@ -456,6 +500,7 @@ public static class EnemyRigBuilder
         if (spec.name == "Mage") cast.motion = BuildMageCastClip();
         var hit = State("Hit", spec.hit, new Vector2(250, 220));
         var death = State("Death", spec.death, new Vector2(500, 260));
+        if (spec.name == "Raider") death.motion = BuildRaiderDeathClip();
         sm.defaultState = idle;
         Link(idle, cast, 0.15f).AddCondition(AnimatorConditionMode.If, 0f, "Cast");
         string[] fires = spec.name == "Mage"

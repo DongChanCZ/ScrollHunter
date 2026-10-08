@@ -1,0 +1,1 @@
+PASS: 490 assertions; 120 paused Unity frames; 1x and 0.5x cast, cost, enemies, combat audio frozen; options closes into pause; resume restores speed and sound. Function input; physical Esc/slider drag and build not tested. Temporary save only.

@@ -1,0 +1,934 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2a3ed0001e97df4cbebcc0f7b5b9451, type: 3}
+  m_Name: GameSoundLibrary
+  m_EditorClassIdentifier: Assembly-CSharp::SoundLibrary
+  interruptSuccess:
+    clips:
+    - {fileID: 8300000, guid: ce33aaa79de7f6a4c9584f7b3d533099, type: 3}
+    volume: 0.85
+    pitch: {x: 0.98, y: 1.02}
+    cooldown: 0.05
+  interruptSuccessLayer:
+    clips: []
+    volume: 1
+    pitch: {x: 1, y: 1}
+    cooldown: 0
+  interruptFail:
+    clips:
+    - {fileID: 8300000, guid: 2976106142eef0f4aba00a140d26395a, type: 3}
+    volume: 0.7
+    pitch: {x: 0.8, y: 0.85}
+    cooldown: 0.1
+  shieldGain:
+    clips:
+    - {fileID: 8300000, guid: 9562781ef41bcd04480684daf9092af6, type: 3}
+    volume: 0.7
+    pitch: {x: 1, y: 1}
+    cooldown: 0.1
+  shieldAbsorb:
+    clips:
+    - {fileID: 8300000, guid: c140db3ffa74ce840a172b2f0ba33672, type: 3}
+    - {fileID: 8300000, guid: a30cf8bea81cd7d48bef29b1e57437bc, type: 3}
+    - {fileID: 8300000, guid: 8e467b6ea77e6f34e8b5d474c2991c86, type: 3}
+    volume: 0.65
+    pitch: {x: 0.95, y: 1.05}
+    cooldown: 0.06
+  shieldBreak:
+    clips:
+    - {fileID: 8300000, guid: c807384b597159a46b8241ca6878a9df, type: 3}
+    - {fileID: 8300000, guid: da7aec5c51044ee4fa0f3dfc94c49d4d, type: 3}
+    volume: 0.85
+    pitch: {x: 0.95, y: 1}
+    cooldown: 0.1
+  playerHit:
+    clips:
+    - {fileID: 8300000, guid: 4de282cf91378974893ee7312da424f8, type: 3}
+    - {fileID: 8300000, guid: 7b36b0efa39004846987846faa64eed7, type: 3}
+    - {fileID: 8300000, guid: 48417a95f2132a3419a798e0ba0bb4ad, type: 3}
+    volume: 0.8
+    pitch: {x: 0.92, y: 1.05}
+    cooldown: 0.06
+  overlapVolume: 0.6
+  potion:
+    clips:
+    - {fileID: 8300000, guid: 550dfc5a3004a504ba0e3182a7de68ad, type: 3}
+    volume: 0.8
+    pitch: {x: 1, y: 1.05}
+    cooldown: 0.1
+  potionLayer:
+    clips:
+    - {fileID: 8300000, guid: 789f994acc556d946ac3d936f06742b9, type: 3}
+    volume: 0.55
+    pitch: {x: 1, y: 1}
+    cooldown: 0.1
+  reject:
+    clips:
+    - {fileID: 8300000, guid: 2976106142eef0f4aba00a140d26395a, type: 3}
+    volume: 0.4
+    pitch: {x: 0.8, y: 0.8}
+    cooldown: 0.2
+  warnRed:
+    clips:
+    - {fileID: 8300000, guid: 558702b96d730f949861b6149227ff46, type: 3}
+    volume: 0.9
+    pitch: {x: 0.78, y: 0.78}
+    cooldown: 0
+  skills:
+  - skill: {fileID: 11400000, guid: 87ba2938cd1bc9b4eba616552c64b3ee, type: 2}
+    cast:
+      clips: []
+      volume: 1
+      pitch: {x: 1, y: 1}
+      cooldown: 0
+    castLoop:
+      clips: []
+      volume: 1
+      pitch: {x: 1, y: 1}
+      cooldown: 0
+    major:
+      clips:
+      - {fileID: 8300000, guid: 46b3f9452d322e643bde91443ea33dd4, type: 3}
+      - {fileID: 8300000, guid: c28aa4e69a150db4992534863489b68e, type: 3}
+      - {fileID: 8300000, guid: 608b0db57d60574409565dcd0473ed66, type: 3}
+      volume: 0.85
+      pitch: {x: 1, y: 1.08}
+      cooldown: 0
+    minor:
+      clips: []
+      volume: 1
+      pitch: {x: 1, y: 1}
+      cooldown: 0
+  - skill: {fileID: 11400000, guid: 2c5acd8920a34cc47bd08e8349db3a12, type: 2}
+    cast:
+      clips:
+      - {fileID: 8300000, guid: 6c2686cba8800ba428d0272d602a84f0, type: 3}
+      volume: 0.6
+      pitch: {x: 0.96, y: 1.04}
+      cooldown: 0
+    castLoop:
+      clips: []
+      volume: 1
+      pitch: {x: 1, y: 1}
+      cooldown: 0
+    major:
+      clips:
+      - {fileID: 8300000, guid: 46b3f9452d322e643bde91443ea33dd4, type: 3}
+      - {fileID: 8300000, guid: c28aa4e69a150db4992534863489b68e, type: 3}
+      - {fileID: 8300000, guid: 608b0db57d60574409565dcd0473ed66, type: 3}
+      volume: 1
+      pitch: {x: 0.85, y: 0.92}
+      cooldown: 0
+    minor:
+      clips: []
+      volume: 1
+      pitch: {x: 1, y: 1}
+      cooldown: 0
+  - skill: {fileID: 11400000, guid: 140153994b7b6ef4cac0b6d18a58c617, type: 2}
+    cast:
+      clips: []
+      volume: 1
+      pitch: {x: 1, y: 1}
+      cooldown: 0
+    castLoop:
+      clips:
+      - {fileID: 8300000, guid: 5d8163bc4d5b68d4eb70accc8dc88e52, type: 3}
+      volume: 0.25
+      pitch: {x: 1, y: 1}
+      cooldown: 0
+    major:
+      clips:
+      - {fileID: 8300000, guid: e6b17a21c8b35b1418f230fed4fc50a3, type: 3}
+      - {fileID: 8300000, guid: 10747e945ac2c034197b1769f0eafcc0, type: 3}
+      - {fileID: 8300000, guid: 57a6b9745808ecd4c95ffda0487931b7, type: 3}
+      volume: 0.7
+      pitch: {x: 1, y: 1.08}
+      cooldown: 0
+    minor:
+      clips:
+      - {fileID: 8300000, guid: e6b17a21c8b35b1418f230fed4fc50a3, type: 3}
+      - {fileID: 8300000, guid: 10747e945ac2c034197b1769f0eafcc0, type: 3}
+      - {fileID: 8300000, guid: 57a6b9745808ecd4c95ffda0487931b7, type: 3}
+      volume: 0.55
+      pitch: {x: 0.95, y: 1.12}
+      cooldown: 0.08
+  - skill: {fileID: 11400000, guid: b5ba61476ea4fcf44936a67f95d8a29f, type: 2}
+    cast:
+      clips:
+      - {fileID: 8300000, guid: dce6083f053abf24aad5885b415ab208, type: 3}
+      volume: 0.55
+      pitch: {x: 0.96, y: 1.04}
+      cooldown: 0
+    castLoop:
+      clips: []
+      volume: 1
+      pitch: {x: 1, y: 1}
+      cooldown: 0
+    major:
+      clips:
+      - {fileID: 8300000, guid: e6b17a21c8b35b1418f230fed4fc50a3, type: 3}
+      - {fileID: 8300000, guid: 10747e945ac2c034197b1769f0eafcc0, type: 3}
+      - {fileID: 8300000, guid: 57a6b9745808ecd4c95ffda0487931b7, type: 3}
+      volume: 0.85
+      pitch: {x: 0.9, y: 0.95}
+      cooldown: 0
+    minor:
+      clips:
+      - {fileID: 8300000, guid: e6b17a21c8b35b1418f230fed4fc50a3, type: 3}
+      - {fileID: 8300000, guid: 10747e945ac2c034197b1769f0eafcc0, type: 3}
+      - {fileID: 8300000, guid: 57a6b9745808ecd4c95ffda0487931b7, type: 3}
+      volume: 0.35
+      pitch: {x: 1, y: 1.15}
+      cooldown: 0.12
+  - skill: {fileID: 11400000, guid: ee04682919d7b064abd0a7dda999eb6e, type: 2}
+    cast:
+      clips:
+      - {fileID: 8300000, guid: d3cb7357b3752d34e9a1be005898870c, type: 3}
+      volume: 0.55
+      pitch: {x: 0.96, y: 1.04}
+      cooldown: 0
+    castLoop:
+      clips: []
+      volume: 1
+      pitch: {x: 1, y: 1}
+      cooldown: 0
+    major:
+      clips:
+      - {fileID: 8300000, guid: f5af53c777949744da9451de6a0a9b0a, type: 3}
+      - {fileID: 8300000, guid: afb12b20cc7266f428673ff901834ce8, type: 3}
+      - {fileID: 8300000, guid: 76030d55fa17b3741b27647f7972f8ca, type: 3}
+      volume: 1
+      pitch: {x: 0.92, y: 0.98}
+      cooldown: 0
+    minor:
+      clips: []
+      volume: 1
+      pitch: {x: 1, y: 1}
+      cooldown: 0
+  - skill: {fileID: 11400000, guid: 276bf33eed5f2c6469e09b6bedb70105, type: 2}
+    cast:
+      clips: []
+      volume: 1
+      pitch: {x: 1, y: 1}
+      cooldown: 0
+    castLoop:
+      clips:
+      - {fileID: 8300000, guid: 6947b7738958e87489868b11c2e7f640, type: 3}
+      volume: 0.45
+      pitch: {x: 1, y: 1}
+      cooldown: 0
+    major:
+      clips:
+      - {fileID: 8300000, guid: f5af53c777949744da9451de6a0a9b0a, type: 3}
+      - {fileID: 8300000, guid: afb12b20cc7266f428673ff901834ce8, type: 3}
+      - {fileID: 8300000, guid: 76030d55fa17b3741b27647f7972f8ca, type: 3}
+      volume: 0.8
+      pitch: {x: 1.05, y: 1.15}
+      cooldown: 0
+    minor:
+      clips:
+      - {fileID: 8300000, guid: f5af53c777949744da9451de6a0a9b0a, type: 3}
+      - {fileID: 8300000, guid: afb12b20cc7266f428673ff901834ce8, type: 3}
+      - {fileID: 8300000, guid: 76030d55fa17b3741b27647f7972f8ca, type: 3}
+      volume: 0.5
+      pitch: {x: 1.05, y: 1.2}
+      cooldown: 0.12
+  - skill: {fileID: 11400000, guid: 3f1d06e43551d7e48a3c0f96f9ffc268, type: 2}
+    cast:
+      clips: []
+      volume: 1
+      pitch: {x: 1, y: 1}
+      cooldown: 0
+    castLoop:
+      clips: []
+      volume: 1
+      pitch: {x: 1, y: 1}
+      cooldown: 0
+    major:
+      clips:
+      - {fileID: 8300000, guid: 55c5a13c68d9bff4c91cd62ca1aafb84, type: 3}
+      volume: 0.9
+      pitch: {x: 1, y: 1}
+      cooldown: 0
+    minor:
+      clips: []
+      volume: 1
+      pitch: {x: 1, y: 1}
+      cooldown: 0
+  - skill: {fileID: 11400000, guid: 293494665c6c8e14592be1dbe8b48c2f, type: 2}
+    cast:
+      clips: []
+      volume: 1
+      pitch: {x: 1, y: 1}
+      cooldown: 0
+    castLoop:
+      clips: []
+      volume: 1
+      pitch: {x: 1, y: 1}
+      cooldown: 0
+    major:
+      clips:
+      - {fileID: 8300000, guid: b9a1ada82dd24504ab43d379d7108437, type: 3}
+      volume: 0.7
+      pitch: {x: 1, y: 1}
+      cooldown: 0
+    minor:
+      clips: []
+      volume: 1
+      pitch: {x: 1, y: 1}
+      cooldown: 0
+  - skill: {fileID: 11400000, guid: 5e5fb9ff62199b74d8477d3d58f3b2a8, type: 2}
+    cast:
+      clips: []
+      volume: 1
+      pitch: {x: 1, y: 1}
+      cooldown: 0
+    castLoop:
+      clips:
+      - {fileID: 8300000, guid: f37790963cfa61d4cafd5df10355ded4, type: 3}
+      volume: 0.35
+      pitch: {x: 1.15, y: 1.15}
+      cooldown: 0
+    major:
+      clips:
+      - {fileID: 8300000, guid: 8ed063958c0a3754e986104ad23e3d56, type: 3}
+      volume: 0.95
+      pitch: {x: 1, y: 1}
+      cooldown: 0
+    minor:
+      clips: []
+      volume: 1
+      pitch: {x: 1, y: 1}
+      cooldown: 0
+  - skill: {fileID: 11400000, guid: d8a0eb84ffde1fe4dbae068cf6b01a4d, type: 2}
+    cast:
+      clips: []
+      volume: 1
+      pitch: {x: 1, y: 1}
+      cooldown: 0
+    castLoop:
+      clips: []
+      volume: 1
+      pitch: {x: 1, y: 1}
+      cooldown: 0
+    major:
+      clips:
+      - {fileID: 8300000, guid: 53455ec80e3fde54bb077bfbd539753a, type: 3}
+      volume: 0.85
+      pitch: {x: 1, y: 1.03}
+      cooldown: 0
+    minor:
+      clips: []
+      volume: 1
+      pitch: {x: 1, y: 1}
+      cooldown: 0
+  - skill: {fileID: 11400000, guid: a8a296d28a931294eab5b19285ed7cee, type: 2}
+    cast:
+      clips: []
+      volume: 1
+      pitch: {x: 1, y: 1}
+      cooldown: 0
+    castLoop:
+      clips: []
+      volume: 1
+      pitch: {x: 1, y: 1}
+      cooldown: 0
+    major:
+      clips: []
+      volume: 1
+      pitch: {x: 1, y: 1}
+      cooldown: 0
+    minor:
+      clips: []
+      volume: 1
+      pitch: {x: 1, y: 1}
+      cooldown: 0
+  - skill: {fileID: 11400000, guid: 531ee486a3e1b0742b8f2aa93ce11ee3, type: 2}
+    cast:
+      clips: []
+      volume: 1
+      pitch: {x: 1, y: 1}
+      cooldown: 0
+    castLoop:
+      clips: []
+      volume: 1
+      pitch: {x: 1, y: 1}
+      cooldown: 0
+    major:
+      clips:
+      - {fileID: 8300000, guid: f1156fdfa44b5d445ad3b896ca0c5a09, type: 3}
+      volume: 0.45
+      pitch: {x: 0.97, y: 1.03}
+      cooldown: 0
+    minor:
+      clips: []
+      volume: 1
+      pitch: {x: 1, y: 1}
+      cooldown: 0
+  - skill: {fileID: 11400000, guid: 403e472a10281b04a9bf7a28292665e6, type: 2}
+    cast:
+      clips: []
+      volume: 1
+      pitch: {x: 1, y: 1}
+      cooldown: 0
+    castLoop:
+      clips: []
+      volume: 1
+      pitch: {x: 1, y: 1}
+      cooldown: 0
+    major:
+      clips: []
+      volume: 1
+      pitch: {x: 1, y: 1}
+      cooldown: 0
+    minor:
+      clips: []
+      volume: 1
+      pitch: {x: 1, y: 1}
+      cooldown: 0
+  - skill: {fileID: 11400000, guid: a7b69bbb68255024fbcc381457f3346b, type: 2}
+    cast:
+      clips: []
+      volume: 1
+      pitch: {x: 1, y: 1}
+      cooldown: 0
+    castLoop:
+      clips:
+      - {fileID: 8300000, guid: 8b98cfd0731868b46acf9b274bbca48c, type: 3}
+      volume: 0.6
+      pitch: {x: 1, y: 1}
+      cooldown: 0
+    major:
+      clips: []
+      volume: 1
+      pitch: {x: 1, y: 1}
+      cooldown: 0
+    minor:
+      clips: []
+      volume: 1
+      pitch: {x: 1, y: 1}
+      cooldown: 0
+  enemies:
+  - enemy: {fileID: 11400000, guid: b8aafab413a6f8947bfae1674f21fd2a, type: 2}
+    attacks:
+    - label: "\uD380\uCE58"
+      prepare:
+        clips: []
+        volume: 1
+        pitch: {x: 1, y: 1}
+        cooldown: 0
+      prepareLoop:
+        clips: []
+        volume: 1
+        pitch: {x: 1, y: 1}
+        cooldown: 0
+      loopRises: 0
+      release:
+        clips:
+        - {fileID: 8300000, guid: 4ef83b9c99468e540aa39adf80d6418a, type: 3}
+        - {fileID: 8300000, guid: 1d7d83f6ddd8daa4aa5bccd77cdcf689, type: 3}
+        - {fileID: 8300000, guid: d85a2a032d7df3d44b84dfff3ada3f8e, type: 3}
+        volume: 0.5
+        pitch: {x: 1.25, y: 1.35}
+        cooldown: 0
+      releaseLayer:
+        clips:
+        - {fileID: 8300000, guid: 215babefa48437d4aac220dfc28629de, type: 3}
+        - {fileID: 8300000, guid: 158453f0716ffbb49a3af7673ce858a0, type: 3}
+        - {fileID: 8300000, guid: 0c67a62e80a55f54a899010b6b4abb9f, type: 3}
+        volume: 0.8
+        pitch: {x: 1, y: 1.08}
+        cooldown: 0
+      delayed:
+        clips: []
+        volume: 1
+        pitch: {x: 1, y: 1}
+        cooldown: 0
+      delaySeconds: 0
+    - label: "\uC804\uB825\uD380\uCE58"
+      prepare:
+        clips: []
+        volume: 1
+        pitch: {x: 1, y: 1}
+        cooldown: 0
+      prepareLoop:
+        clips: []
+        volume: 1
+        pitch: {x: 1, y: 1}
+        cooldown: 0
+      loopRises: 0
+      release:
+        clips:
+        - {fileID: 8300000, guid: 4ef83b9c99468e540aa39adf80d6418a, type: 3}
+        - {fileID: 8300000, guid: 1d7d83f6ddd8daa4aa5bccd77cdcf689, type: 3}
+        - {fileID: 8300000, guid: d85a2a032d7df3d44b84dfff3ada3f8e, type: 3}
+        volume: 0.6
+        pitch: {x: 1.15, y: 1.2}
+        cooldown: 0
+      releaseLayer:
+        clips:
+        - {fileID: 8300000, guid: ce4873b360f0dfa449f06c3407449e5a, type: 3}
+        - {fileID: 8300000, guid: 36a0e7c3daf9c4c478d2e76e9a5ce3ba, type: 3}
+        - {fileID: 8300000, guid: 8e07dd702eee9cd469554029acf59cee, type: 3}
+        volume: 0.9
+        pitch: {x: 0.95, y: 1}
+        cooldown: 0
+      delayed:
+        clips: []
+        volume: 1
+        pitch: {x: 1, y: 1}
+        cooldown: 0
+      delaySeconds: 0
+    - label: "\uBC1C\uCC28\uAE30"
+      prepare:
+        clips: []
+        volume: 1
+        pitch: {x: 1, y: 1}
+        cooldown: 0
+      prepareLoop:
+        clips: []
+        volume: 1
+        pitch: {x: 1, y: 1}
+        cooldown: 0
+      loopRises: 0
+      release:
+        clips:
+        - {fileID: 8300000, guid: 4ef83b9c99468e540aa39adf80d6418a, type: 3}
+        - {fileID: 8300000, guid: 1d7d83f6ddd8daa4aa5bccd77cdcf689, type: 3}
+        - {fileID: 8300000, guid: d85a2a032d7df3d44b84dfff3ada3f8e, type: 3}
+        volume: 0.6
+        pitch: {x: 1.05, y: 1.1}
+        cooldown: 0
+      releaseLayer:
+        clips:
+        - {fileID: 8300000, guid: ce4873b360f0dfa449f06c3407449e5a, type: 3}
+        - {fileID: 8300000, guid: 36a0e7c3daf9c4c478d2e76e9a5ce3ba, type: 3}
+        - {fileID: 8300000, guid: 8e07dd702eee9cd469554029acf59cee, type: 3}
+        volume: 0.95
+        pitch: {x: 0.85, y: 0.9}
+        cooldown: 0
+      delayed:
+        clips: []
+        volume: 1
+        pitch: {x: 1, y: 1}
+        cooldown: 0
+      delaySeconds: 0
+  - enemy: {fileID: 11400000, guid: 941cdc8afe2b7644cb6c0c7d8ddd443a, type: 2}
+    attacks:
+    - label: "\uD718\uB450\uB974\uAE30"
+      prepare:
+        clips: []
+        volume: 1
+        pitch: {x: 1, y: 1}
+        cooldown: 0
+      prepareLoop:
+        clips: []
+        volume: 1
+        pitch: {x: 1, y: 1}
+        cooldown: 0
+      loopRises: 0
+      release:
+        clips:
+        - {fileID: 8300000, guid: 312bfd034fc892a458f4340e55a3186c, type: 3}
+        - {fileID: 8300000, guid: fdfc328a583164640aebae1d6d73b1f6, type: 3}
+        - {fileID: 8300000, guid: 943bab634db02214ab22c770a0eca3a2, type: 3}
+        volume: 0.75
+        pitch: {x: 0.95, y: 1.05}
+        cooldown: 0
+      releaseLayer:
+        clips:
+        - {fileID: 8300000, guid: 88faf64a8386d7749bd26797a1e5ae8b, type: 3}
+        volume: 0.5
+        pitch: {x: 1, y: 1.08}
+        cooldown: 0
+      delayed:
+        clips: []
+        volume: 1
+        pitch: {x: 1, y: 1}
+        cooldown: 0
+      delaySeconds: 0
+  - enemy: {fileID: 11400000, guid: a369c0f30ccbdc44a92bc1424fbd6e94, type: 2}
+    attacks:
+    - label: 
+      prepare:
+        clips:
+        - {fileID: 8300000, guid: 9c9c205f4782d4742bb59b40e80f60ad, type: 3}
+        volume: 0.6
+        pitch: {x: 0.96, y: 1.04}
+        cooldown: 0
+      prepareLoop:
+        clips: []
+        volume: 1
+        pitch: {x: 1, y: 1}
+        cooldown: 0
+      loopRises: 0
+      release:
+        clips:
+        - {fileID: 8300000, guid: 5a97bde7c6608974a9687a07631f9161, type: 3}
+        - {fileID: 8300000, guid: bf63c86b1433fa84b81cfc6a122ba857, type: 3}
+        volume: 0.85
+        pitch: {x: 0.96, y: 1.04}
+        cooldown: 0
+      releaseLayer:
+        clips: []
+        volume: 1
+        pitch: {x: 1, y: 1}
+        cooldown: 0
+      delayed:
+        clips:
+        - {fileID: 8300000, guid: c9cbba14833c3884a9af40f1111ded14, type: 3}
+        - {fileID: 8300000, guid: 2a3ace357b61ca24c9282d104ffcb539, type: 3}
+        volume: 0.75
+        pitch: {x: 0.96, y: 1.04}
+        cooldown: 0
+      delaySeconds: 0.18
+    - label: 
+      prepare:
+        clips:
+        - {fileID: 8300000, guid: 9c9c205f4782d4742bb59b40e80f60ad, type: 3}
+        volume: 0.6
+        pitch: {x: 0.96, y: 1.04}
+        cooldown: 0
+      prepareLoop:
+        clips: []
+        volume: 1
+        pitch: {x: 1, y: 1}
+        cooldown: 0
+      loopRises: 0
+      release:
+        clips:
+        - {fileID: 8300000, guid: 5a97bde7c6608974a9687a07631f9161, type: 3}
+        - {fileID: 8300000, guid: bf63c86b1433fa84b81cfc6a122ba857, type: 3}
+        volume: 0.85
+        pitch: {x: 0.96, y: 1.04}
+        cooldown: 0
+      releaseLayer:
+        clips: []
+        volume: 1
+        pitch: {x: 1, y: 1}
+        cooldown: 0
+      delayed:
+        clips:
+        - {fileID: 8300000, guid: c9cbba14833c3884a9af40f1111ded14, type: 3}
+        - {fileID: 8300000, guid: 2a3ace357b61ca24c9282d104ffcb539, type: 3}
+        volume: 0.75
+        pitch: {x: 0.96, y: 1.04}
+        cooldown: 0
+      delaySeconds: 0.18
+  - enemy: {fileID: 11400000, guid: 96a49125f70b77447afbcdb50f840053, type: 2}
+    attacks:
+    - label: "\uCC38\uACA9"
+      prepare:
+        clips: []
+        volume: 1
+        pitch: {x: 1, y: 1}
+        cooldown: 0
+      prepareLoop:
+        clips: []
+        volume: 1
+        pitch: {x: 1, y: 1}
+        cooldown: 0
+      loopRises: 0
+      release:
+        clips:
+        - {fileID: 8300000, guid: 4ef83b9c99468e540aa39adf80d6418a, type: 3}
+        - {fileID: 8300000, guid: 1d7d83f6ddd8daa4aa5bccd77cdcf689, type: 3}
+        - {fileID: 8300000, guid: d85a2a032d7df3d44b84dfff3ada3f8e, type: 3}
+        volume: 0.8
+        pitch: {x: 0.95, y: 1}
+        cooldown: 0
+      releaseLayer:
+        clips:
+        - {fileID: 8300000, guid: 0356899682e275e4ba5dc06d2c4fe2a8, type: 3}
+        - {fileID: 8300000, guid: f9723c7eb74a30b468892b7b1dd40f8b, type: 3}
+        - {fileID: 8300000, guid: 43dafa7bc461dbd47bd5fc9cbc6a2897, type: 3}
+        volume: 0.65
+        pitch: {x: 0.95, y: 1}
+        cooldown: 0
+      delayed:
+        clips: []
+        volume: 1
+        pitch: {x: 1, y: 1}
+        cooldown: 0
+      delaySeconds: 0
+    - label: "\uD68C\uC2EC\uCC38"
+      prepare:
+        clips: []
+        volume: 1
+        pitch: {x: 1, y: 1}
+        cooldown: 0
+      prepareLoop:
+        clips: []
+        volume: 1
+        pitch: {x: 1, y: 1}
+        cooldown: 0
+      loopRises: 0
+      release:
+        clips:
+        - {fileID: 8300000, guid: 4ef83b9c99468e540aa39adf80d6418a, type: 3}
+        - {fileID: 8300000, guid: 1d7d83f6ddd8daa4aa5bccd77cdcf689, type: 3}
+        - {fileID: 8300000, guid: d85a2a032d7df3d44b84dfff3ada3f8e, type: 3}
+        volume: 0.9
+        pitch: {x: 0.82, y: 0.86}
+        cooldown: 0
+      releaseLayer:
+        clips:
+        - {fileID: 8300000, guid: ce4873b360f0dfa449f06c3407449e5a, type: 3}
+        - {fileID: 8300000, guid: 36a0e7c3daf9c4c478d2e76e9a5ce3ba, type: 3}
+        - {fileID: 8300000, guid: 8e07dd702eee9cd469554029acf59cee, type: 3}
+        volume: 1
+        pitch: {x: 0.72, y: 0.78}
+        cooldown: 0
+      delayed:
+        clips: []
+        volume: 1
+        pitch: {x: 1, y: 1}
+        cooldown: 0
+      delaySeconds: 0
+  - enemy: {fileID: 11400000, guid: cefc0e8e2779012478dd9c88a59be558, type: 2}
+    attacks:
+    - label: "\uB9E4\uC9C1\uBBF8\uC0AC\uC77C"
+      prepare:
+        clips:
+        - {fileID: 8300000, guid: 6c2686cba8800ba428d0272d602a84f0, type: 3}
+        volume: 0.45
+        pitch: {x: 0.85, y: 0.85}
+        cooldown: 0
+      prepareLoop:
+        clips: []
+        volume: 1
+        pitch: {x: 1, y: 1}
+        cooldown: 0
+      loopRises: 0
+      release:
+        clips:
+        - {fileID: 8300000, guid: 16b0d0692be6043409a9252c77c82cc2, type: 3}
+        volume: 0.7
+        pitch: {x: 0.85, y: 0.9}
+        cooldown: 0
+      releaseLayer:
+        clips: []
+        volume: 1
+        pitch: {x: 1, y: 1}
+        cooldown: 0
+      delayed:
+        clips:
+        - {fileID: 8300000, guid: 46b3f9452d322e643bde91443ea33dd4, type: 3}
+        - {fileID: 8300000, guid: c28aa4e69a150db4992534863489b68e, type: 3}
+        - {fileID: 8300000, guid: 608b0db57d60574409565dcd0473ed66, type: 3}
+        volume: 0.8
+        pitch: {x: 0.78, y: 0.82}
+        cooldown: 0
+      delaySeconds: 0.22
+    - label: "\uC0AC\uC77C\uB7F0\uC2A4"
+      prepare:
+        clips:
+        - {fileID: 8300000, guid: 00a6196123e365b4185394bfe692a54e, type: 3}
+        volume: 0.5
+        pitch: {x: 1.1, y: 1.1}
+        cooldown: 0
+      prepareLoop:
+        clips: []
+        volume: 1
+        pitch: {x: 1, y: 1}
+        cooldown: 0
+      loopRises: 0
+      release:
+        clips:
+        - {fileID: 8300000, guid: 4f50e55cfd584d14cbcd749f734cb63f, type: 3}
+        volume: 0.8
+        pitch: {x: 1.1, y: 1.15}
+        cooldown: 0
+      releaseLayer:
+        clips: []
+        volume: 1
+        pitch: {x: 1, y: 1}
+        cooldown: 0
+      delayed:
+        clips: []
+        volume: 1
+        pitch: {x: 1, y: 1}
+        cooldown: 0
+      delaySeconds: 0
+    - label: "\uB2E4\uD06C\uD640"
+      prepare:
+        clips: []
+        volume: 1
+        pitch: {x: 1, y: 1}
+        cooldown: 0
+      prepareLoop:
+        clips:
+        - {fileID: 8300000, guid: dd8a34cce37c99b49b8d7ae357bcf6cd, type: 3}
+        volume: 0.75
+        pitch: {x: 1, y: 1}
+        cooldown: 0
+      loopRises: 1
+      release:
+        clips:
+        - {fileID: 8300000, guid: 0b916f71adffabf40ae8f1278cc788c2, type: 3}
+        volume: 0.9
+        pitch: {x: 0.95, y: 1}
+        cooldown: 0
+      releaseLayer:
+        clips: []
+        volume: 1
+        pitch: {x: 1, y: 1}
+        cooldown: 0
+      delayed:
+        clips: []
+        volume: 1
+        pitch: {x: 1, y: 1}
+        cooldown: 0
+      delaySeconds: 0
+    - label: "\uB098\uC774\uD2B8\uBA54\uC5B4"
+      prepare:
+        clips: []
+        volume: 1
+        pitch: {x: 1, y: 1}
+        cooldown: 0
+      prepareLoop:
+        clips:
+        - {fileID: 8300000, guid: f37790963cfa61d4cafd5df10355ded4, type: 3}
+        volume: 0.4
+        pitch: {x: 0.8, y: 0.8}
+        cooldown: 0
+      loopRises: 0
+      release:
+        clips:
+        - {fileID: 8300000, guid: e839c537af398dd43af7dc425ec1e871, type: 3}
+        volume: 0.8
+        pitch: {x: 0.8, y: 0.85}
+        cooldown: 0
+      releaseLayer:
+        clips: []
+        volume: 1
+        pitch: {x: 1, y: 1}
+        cooldown: 0
+      delayed:
+        clips: []
+        volume: 1
+        pitch: {x: 1, y: 1}
+        cooldown: 0
+      delaySeconds: 0
+    - label: "\uB514\uC5D4\uB4DC"
+      prepare:
+        clips: []
+        volume: 1
+        pitch: {x: 1, y: 1}
+        cooldown: 0
+      prepareLoop:
+        clips:
+        - {fileID: 8300000, guid: dd8a34cce37c99b49b8d7ae357bcf6cd, type: 3}
+        volume: 0.95
+        pitch: {x: 0.8, y: 0.8}
+        cooldown: 0
+      loopRises: 1
+      release:
+        clips:
+        - {fileID: 8300000, guid: a9fd284d7d45e8b419602e08738a76c7, type: 3}
+        volume: 1
+        pitch: {x: 0.85, y: 0.85}
+        cooldown: 0
+      releaseLayer:
+        clips:
+        - {fileID: 8300000, guid: bc2820c13ce58214abedf0e7ddb90627, type: 3}
+        volume: 1
+        pitch: {x: 0.9, y: 0.9}
+        cooldown: 0
+      delayed:
+        clips: []
+        volume: 1
+        pitch: {x: 1, y: 1}
+        cooldown: 0
+      delaySeconds: 0
+  phaseTransition:
+    clips:
+    - {fileID: 8300000, guid: d527e87fc78a4be4b9e7ca2e750f0e0e, type: 3}
+    volume: 0.75
+    pitch: {x: 0.62, y: 0.62}
+    cooldown: 0.5
+  orbSummon:
+    clips:
+    - {fileID: 8300000, guid: 4f50e55cfd584d14cbcd749f734cb63f, type: 3}
+    volume: 0.6
+    pitch: {x: 0.9, y: 0.95}
+    cooldown: 0.25
+  orbBreak:
+    clips:
+    - {fileID: 8300000, guid: 6753fb5503a064348a626ed439e28298, type: 3}
+    - {fileID: 8300000, guid: 1795e1c6c4cd2e247b4bc065b1def5a3, type: 3}
+    volume: 0.85
+    pitch: {x: 0.95, y: 1.05}
+    cooldown: 0.05
+  click:
+    clips:
+    - {fileID: 8300000, guid: 9d56ded35ab34114faf62c862b895820, type: 3}
+    volume: 0.5
+    pitch: {x: 0.9, y: 0.9}
+    cooldown: 0.03
+  confirm:
+    clips:
+    - {fileID: 8300000, guid: 166efc57bdf987e48b5770a8caeb4007, type: 3}
+    volume: 0.65
+    pitch: {x: 0.9, y: 0.9}
+    cooldown: 0.05
+  cancel:
+    clips:
+    - {fileID: 8300000, guid: bc343c78cb6a23c47bd1e8a793d0d89c, type: 3}
+    volume: 0.4
+    pitch: {x: 0.85, y: 0.85}
+    cooldown: 0.05
+  select:
+    clips:
+    - {fileID: 8300000, guid: 5c5444bc29f7bc6479f05e77a37ce024, type: 3}
+    volume: 0.45
+    pitch: {x: 0.9, y: 0.9}
+    cooldown: 0.03
+  rewardConfirm:
+    clips:
+    - {fileID: 8300000, guid: 166efc57bdf987e48b5770a8caeb4007, type: 3}
+    volume: 0.8
+    pitch: {x: 0.82, y: 0.82}
+    cooldown: 0.1
+  victoryBattle:
+    clips:
+    - {fileID: 8300000, guid: deabd336b785aaa4e9ffe3f8f873a528, type: 3}
+    volume: 0.6
+    pitch: {x: 1, y: 1}
+    cooldown: 0.5
+  victoryFinal:
+    clips:
+    - {fileID: 8300000, guid: db14485a070e10e4d8b7197c5eab7db8, type: 3}
+    volume: 0.65
+    pitch: {x: 1, y: 1}
+    cooldown: 0.5
+  defeat:
+    clips:
+    - {fileID: 8300000, guid: 526cf73e2436d664a95c757ea6ea9df4, type: 3}
+    volume: 0.6
+    pitch: {x: 1, y: 1}
+    cooldown: 0.5
+  titleMusic:
+    clip: {fileID: 8300000, guid: 1a38fec12bcc9f24cad90330d44fdf31, type: 3}
+    volume: 0.45
+  tutorialMusic:
+    clip: {fileID: 8300000, guid: aff59f1373273c64d829764fa39387aa, type: 3}
+    volume: 0.25
+  battleMusic:
+    clip: {fileID: 8300000, guid: 59399635071e37c45a2b73497c12ecc7, type: 3}
+    volume: 0.28
+  hideoutMusic:
+    clip: {fileID: 8300000, guid: 3c135141504fd7144a7e03b8555b76c9, type: 3}
+    volume: 0.3
+  bossMusic:
+    clip: {fileID: 8300000, guid: 259736f5b97f9324fa576577c55fd2f1, type: 3}
+    volume: 0.32

@@ -1,0 +1,34 @@
+2026-10-08 Codex / Unity MCP
+
+Game audio checks passed: 190 / frames 7107
+music: title/tutorial/path/hideout/boss, same-map continuity PASS
+common: absorb/break/hit/potion/reject/silence/suppression PASS
+skills: 12 + silence/suppression, cancel cleanup PASS
+enemies: 5 types / prepare-release-delayed-warning, interrupt/death cleanup PASS
+boss: phase/orb summon/break/cleanup/victory PASS
+pause/0.5x/restart/no duplicate PASS
+results: battle victory, reward select/confirm, defeat with The End PASS
+volumes: Music/Skill/Enemy independent, 0% mute PASS (PlayerPrefs untouched)
+
+Final editor/library state:
+{
+  "playing": false,
+  "sceneDirty": false,
+  "magePreview": false,
+  "defaultsMatch": true,
+  "missing": [],
+  "clips": [
+    "sh_dark_blast=3.235",
+    "sh_darkhole_blast=3.392",
+    "sh_judgment_strike=1.500",
+    "sh_magic_cutter=0.390",
+    "sh_magic_impact_triple=0.550",
+    "sh_sanctuary_holy_loop=4.000"
+  ]
+}
+Console errors/warnings: 0
+Battle.unity SHA256 unchanged: A4D5859545FE9C6498BCA0B1293E2EE50315EE5BC151EA1F6E8CE20F0991E85C
+GmarketSansMedium SDF.asset SHA256 unchanged: 76B88282705D1ADCCB97A2C468E7F0F7ECEE89BB0E32F001F2E275EBA3E94CD3
+
+Scope: automated calls in Play, actual playback frames; no Editor Step.
+Not verified: human listening, perceived timbre/loudness balance, new build.
