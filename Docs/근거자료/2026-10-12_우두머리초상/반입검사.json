@@ -1,0 +1,14 @@
+{
+  "guid": "dac510f5b17dd2642baf53b9a5c0fc3a",
+  "linked": true,
+  "width": 1227,
+  "height": 1282,
+  "clear": 620974,
+  "soft": 951378,
+  "solid": 662,
+  "sceneDirty": false,
+  "playing": false,
+  "protectedFilesHashCheck": "판정 제외: 경로 구분자 차이로 교체 대상 Portrait_Leader.png를 제외하지 못함. 초기 결과 별도 보존.",
+  "consoleErrorsWarnings": 0,
+  "playTestRun": false
+}

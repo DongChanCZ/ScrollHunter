@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-12",
+  "tests": {
+    "forestDialogue": 135,
+    "openingStory": 91,
+    "legacyWithStoryDisabled": {
+      "menuProgress": 58,
+      "inheritance": 68,
+      "tutorial": 108
+    }
+  },
+  "visuals": "1920x1080 raider, archer and narrator checked",
+  "runtime": "Story held HP 500/cost 3 between frame 15122 and 19655; final line -> CountingDown(3s) -> Fighting(A+B, 1x). Programmatic controls.",
+  "limits": [
+    "Physical key/mouse input",
+    "Full run",
+    "New build"
+  ],
+  "final": {
+    "approvedLinesMatch": true,
+    "forestBackground": "Assets/_Project/Environment/Textures/BG02_빽빽한숲.png",
+    "aiDocsMatch": true,
+    "sceneDirty": false,
+    "play": false,
+    "magePreview": false,
+    "skillPreview": false,
+    "save.json": "E9-AD-E9-CC-D8-31-62-75-55-E5-E8-05-00-D1-DA-54-F1-75-0A-07-A1-B7-D6-95-C9-C5-09-49-41-3D-22-81",
+    "save.json.bak": "E9-EA-65-B2-32-5F-D3-BB-7B-9F-6C-DA-E3-94-E2-D7-A5-4A-40-D9-C7-43-81-3B-1D-92-98-6D-A7-EF-58-C9"
+  }
+}

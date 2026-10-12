@@ -1,0 +1,14 @@
+{
+  "frames": 587,
+  "checks": 588,
+  "failures": [],
+  "state": "Fighting",
+  "battle": 4,
+  "enemies": 1,
+  "enemyNames": [
+    "Enemy_Boss"
+  ],
+  "sawCountdown": true,
+  "secondsFromAdvance": 2.9988927000013064,
+  "mode": "Real frames; programmatic advance; isolated save"
+}

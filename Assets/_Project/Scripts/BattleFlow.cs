@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum BattleFlowState { Fighting, BetweenBattles, Victory, Defeat, Title, Preparing, TutorialComplete, CountingDown, Inheriting }
+public enum BattleFlowState { Fighting, BetweenBattles, Victory, Defeat, Title, Preparing, TutorialComplete, CountingDown, Inheriting, Story }
 
 /// <summary>한 씬의 적을 재사용하는 시연 전투 진행. 승리 후 보상·덱 교체를 거쳐 다음 전투에 편성을 이월한다.</summary>
 [DefaultExecutionOrder(-50)]
@@ -22,6 +22,7 @@ public class BattleFlow : MonoBehaviour
 
     [SerializeField] private Encounter[] encounters;
     [SerializeField] private TutorialFlow tutorial;
+    private StoryUI story;
     private bool HasTutorial => tutorial != null && tutorial.isActiveAndEnabled;
     [SerializeField] private Player player;
     [SerializeField] private DeckSystem deck;
@@ -76,7 +77,7 @@ public class BattleFlow : MonoBehaviour
     private bool NeedsTutorial => HasTutorial && !inheritance.TutorialDismissed;
     public bool IsMenuPaused { get; private set; }
     private int menuInputFrame = -1;
-    public bool MenuBlocksInput => IsMenuPaused || menuInputFrame == Time.frameCount;
+    public bool MenuBlocksInput => IsMenuPaused || menuInputFrame == Time.frameCount || (story != null && story.isActiveAndEnabled && story.BlocksInput);
     internal void SetMenuPaused(bool paused) { IsMenuPaused = paused; menuInputFrame = Time.frameCount; }
     [SerializeField] private string progressSaveError = "진행 기록 저장 실패. 저장 경로를 확인하세요.";
     // 에디터 전용 미리보기는 정식 클리어 기록에 포함하지 않는다.
@@ -169,6 +170,7 @@ public class BattleFlow : MonoBehaviour
 
     private void Awake()
     {
+        story = GetComponent<StoryUI>();
         if (tutorial == null) tutorial = FindFirstObjectByType<TutorialFlow>();
         if (player == null) player = FindFirstObjectByType<Player>();
         if (deck == null) deck = FindFirstObjectByType<DeckSystem>();
@@ -285,7 +287,38 @@ public class BattleFlow : MonoBehaviour
         if (State != BattleFlowState.Title || !IsConfigured()) return;
         ClearRunRewards();
         runDeck = deck.CopyStartingDeck();
-        if (NeedsTutorial) { BeginTutorial(false); return; }
+        if (story != null && story.isActiveAndEnabled && !inheritance.IntroDismissed)
+        {
+            State = BattleFlowState.Story;
+            Time.timeScale = 0f;
+            RefreshUI();
+            story.ShowIntro(() =>
+            {
+                if (CanSaveProgress && !inheritance.TryRecordIntro()) Debug.LogWarning(progressSaveError, this);
+                StartRunContent();
+            });
+            return;
+        }
+        StartRunContent();
+    }
+
+    private void StartRunContent()
+    {
+        if (NeedsTutorial)
+        {
+            if (story == null || !story.isActiveAndEnabled) { BeginTutorial(false); return; }
+            BeginBattle(0, true, new[] { tutorial.Enemy });
+            State = BattleFlowState.Story;
+            Time.timeScale = 0f;
+            RefreshUI();
+            story.ShowTutorialDialogue(() =>
+            {
+                State = BattleFlowState.Fighting;
+                tutorial.Begin(tutorial.Enemy.MaxHp, false);
+                RefreshUI();
+            });
+            return;
+        }
         ApplyInheritance();
         State = BattleFlowState.Preparing;
         Time.timeScale = 0f;
@@ -294,7 +327,7 @@ public class BattleFlow : MonoBehaviour
 
     public void RestartRun()
     {
-        if (IsMenuPaused) return;
+        if (IsMenuPaused || (story != null && story.isActiveAndEnabled && story.BlocksInput)) return;
         if (!IsConfigured()) return;
 #if UNITY_EDITOR
         if (TryBeginSkillSoundPreview() || TryBeginMagePreview()) return;
@@ -389,6 +422,7 @@ public class BattleFlow : MonoBehaviour
 
     public void ReturnToTitle()
     {
+        if (story != null) story.Cancel();
         Time.timeScale = 0f;
         IsMenuPaused = false;
         if (tutorial != null) tutorial.Cancel();
@@ -421,9 +455,9 @@ public class BattleFlow : MonoBehaviour
     public void NextBattle()
     {
         if (MenuBlocksInput || IsEditingOrder || PanelHeld || (HasTutorial && (tutorial.ShowingGuide || tutorial.BlocksInputThisFrame))) return;
-        if (State == BattleFlowState.Preparing) StartBattleCountdown(0, true);
+        if (State == BattleFlowState.Preparing) StartBattleStory(0, true);
         else if (State == BattleFlowState.BetweenBattles && BattleNumber < BattleCount && RewardResolved)
-            StartBattleCountdown(BattleNumber, false);
+            StartBattleStory(BattleNumber, false);
     }
 
     public bool BeginOrderEdit()
@@ -688,6 +722,20 @@ public class BattleFlow : MonoBehaviour
 
     public void RefreshTutorialUI() => RefreshUI();
 
+    private void StartBattleStory(int index, bool restoreHp)
+    {
+        if (story == null || !story.isActiveAndEnabled || !story.HasBattleDialogue(index))
+        {
+            StartBattleCountdown(index, restoreHp);
+            return;
+        }
+        BattleNumber = index + 1;
+        State = BattleFlowState.Story;
+        Time.timeScale = 0f;
+        RefreshUI();
+        story.ShowBattleDialogue(index, () => StartBattleCountdown(index, restoreHp));
+    }
+
     private void StartBattleCountdown(int index, bool restoreHp)
     {
         BeginBattle(index, restoreHp);
@@ -774,7 +822,7 @@ public class BattleFlow : MonoBehaviour
 
     private void Update()
     {
-        if (IsMenuPaused) return;
+        if (IsMenuPaused || (story != null && story.Active)) return;
         if (IsCountingDown) { AdvanceCountdown(Time.unscaledDeltaTime); return; }
         if (HasTutorial && tutorial.Active) { tutorial.TickCombat(); return; }
         if (TickPanelHold()) return;
@@ -871,7 +919,7 @@ public class BattleFlow : MonoBehaviour
         if (startPanel != null) startPanel.SetActive(title);
         if (progressText != null)
         {
-            progressText.gameObject.SetActive(!title && !preparing);
+            progressText.gameObject.SetActive(!title && !preparing && State != BattleFlowState.Story);
             if (HasTutorial && tutorial.Active) progressText.text = tutorialMapName;
             else if (BattleNumber > 0)
                 progressText.text = encounters[BattleNumber - 1].label;

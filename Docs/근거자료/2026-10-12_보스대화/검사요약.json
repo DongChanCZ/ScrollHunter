@@ -1,0 +1,39 @@
+{
+  "functions": {
+    "battleStories": 446,
+    "intro": 91,
+    "forest": 138
+  },
+  "frames": {
+    "frames": 587,
+    "checks": 588,
+    "failures": [],
+    "state": "Fighting",
+    "battle": 4,
+    "enemies": 1,
+    "enemyNames": [
+      "Enemy_Boss"
+    ],
+    "sawCountdown": true,
+    "secondsFromAdvance": 2.9988927000013064,
+    "mode": "Real frames; programmatic advance; isolated save"
+  },
+  "state": {
+    "protectedFiles": {
+      "C:/Users/MBC-501-19/AppData/LocalLow/DefaultCompany/ScrollHunter\\save.json": true,
+      "C:/Users/MBC-501-19/AppData/LocalLow/DefaultCompany/ScrollHunter\\save.json.bak": true,
+      "C:\\Users\\MBC-501-19\\Documents\\ScrollHunter\\Assets/_Project/Fonts/GmarketSansMedium SDF.asset": false,
+      "C:\\Users\\MBC-501-19\\Documents\\ScrollHunter\\Assets/_Project/Scripts/BattleFlow.cs": true,
+      "C:\\Users\\MBC-501-19\\Documents\\ScrollHunter\\Assets/_Project/UI/Story/Portrait_Mage.png": true
+    },
+    "sceneDocumentsBefore": 2482,
+    "sceneDocumentsAfter": 2482,
+    "changedSceneDocuments": [
+      "114 &414053929\nMonoBehaviour:\n  m_ObjectHideFlags: 0\n  m_CorrespondingSourceObject: {fileID: 0}\n  m_PrefabInstance: {fileID: 0}\n  m_PrefabAsset: {fileID: 0}\n  m_GameObject: {fileID: 414053918}\n  m_Enabled: 1\n  m_EditorHideFlags: 0\n  m_Script: {fileID: 11500000, guid: b3eac597bb0852f4ba25931a64f4322c, type: 3}\n  m_Name: \n  m_EditorClassIdentifier: Assembly-CSharp::StoryUI\n  content: {fileID: 11400000, guid: cd039f2ba0f8d764b886d0f69a1d63e1, type: 2}\n  dialogueBackground: {fileID: 2800000, guid: 23392c306048a6140b8363f7050c989c, type: 3}\n  forestBackground: {fileID: 2800000, guid: e184610c7a50f154ca7a468a4ece7ab5, type: 3}\n  caveEntranceBackground: {fileID: 2800000, guid: 69c8a48d1d6dc674e8b5d500f98441e3, type: 3}\n  bossBackground: {fileID: 2800000, guid: c7560bb7a1f94d74780bb52993411b34, type: 3}\n  canvasRoot: {fileID: 537724794}\n  combatHud:\n  - {fileID: 1375014128}\n  - {fileID: 1485794737}\n  - {fileID: 2080180379}\n  - {fileID: 1962554913}\n  - {fileID: 1684798576}\n  - {fileID: 370084548}\n  - {fileID: 805142852}\n  - {fileID: 2076175162}\n  - {fileID: 1593742257}\n  - {fileID: 661650952}\n  - {fileID: 598019850}\n  - {fileID: 932189279}\n  - {fileID: 1444648811}\n  - {fileID: 663203442}\n  font: {fileID: 11400000, guid: 7b1e16cbc5ea6b246a1276679ec44837, type: 2}\n  fontMaterial: {fileID: 2100000, guid: e2be47acb261c2244a39bb8b1e3fc884, type: 2}\n  panelSprite: {fileID: 21300000, guid: 1c6942197046fa349bb71010481f1813, type: 2}\n  frameSprite: {fileID: 21300000, guid: 8ff1c85d0ff0b884f832108540b243ff, type: 3}\n  buttonTemplate: {fileID: 1073469162}\n  panelColor: {r: 0.13, g: 0.18, b: 0.27, a: 1}\n  frameColor: {r: 0.7, g: 0.55, b: 0.33, a: 0.95}\n  textColor: {r: 0.96, g: 0.92, b: 0.84, a: 1}\n  nameColor: {r: 0.91, g: 0.8, b: 0.53, a: 1}\n  boxSize: {x: 1680, y: 290}\n  bottomMargin: 42\n  textInset: 44\n  bodyFontSize: 32\n  nameFontSize: 38\n  hintFontSize: 23\n  paragraphSpacing: 14\n  lineSpacing: 72\n  portraitSize: {x: 610, y: 700}\n  portraitRightMargin: 85\n  skipSize: {x: 280, y: 64}\n  skipMargin: {x: 42, y: 34}\n  dialogueShade: {r: 0.02, g: 0.025, b: 0.04, a: 0.27}\n  advanceKey: 32\n  alternateAdvanceKey: 13\n"
+    ],
+    "dirty": false,
+    "playing": false,
+    "lines": 20
+  },
+  "limits": "실제 키/마우스·전체 런·새 빌드 미확인"
+}

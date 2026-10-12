@@ -1,0 +1,11 @@
+{
+  "leaderLines": 14,
+  "banditLines": 18,
+  "scriptsMatchDocument": true,
+  "caveBackground": "Assets/_Project/Environment/Textures/BG03_동굴입구.png",
+  "functional": "Bandit Stories: 284 checks passed (isolated save; function/UI checks).",
+  "regression": "Opening Story: 91 checks passed (isolated save; function/UI checks).\nForest Story: 137 checks passed (isolated save).",
+  "playing": false,
+  "dirty": false,
+  "agentsMatch": true
+}

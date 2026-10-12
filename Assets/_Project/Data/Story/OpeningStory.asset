@@ -1,0 +1,579 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36e772b593a82b845862f3dc99b8879e, type: 3}
+  m_Name: OpeningStory
+  m_EditorClassIdentifier: Assembly-CSharp::StoryContent
+  playerName: "\uBAA8\uD5D8\uAC00"
+  continueText: Space
+  introSkipText: "\uC778\uD2B8\uB85C \uAC74\uB108\uB6F0\uAE30"
+  dialogueSkipText: "\uB300\uD654 \uAC74\uB108\uB6F0\uAE30"
+  intro:
+  - image: {fileID: 2800000, guid: 3a87b8ca474eb9943a4a8afa7f0dbc81, type: 3}
+    visibleRegion:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    text: "\uACE0\uB300\uC758 \uB300\uC804\uC7C1 \uB2F9\uC2DC, \uD55C \uC81C\uAD6D\uC740
+      \uBCD1\uC0AC\uB4E4\uC744 \uAC15\uD654\uD558\uAE30 \uC704\uD574 \uB300\uB9C8\uBC95\uC0AC\uC5D0\uAC8C
+      \uC0C8\uB85C\uC6B4 \uAE30\uC220\uC744 \uAC1C\uBC1C\uD558\uB3C4\uB85D \uBA85\uD588\uB2E4.
+      \uADF8\uB807\uAC8C \uD0C4\uC0DD\uD55C \uAC83\uC774 \uBC14\uB85C \u2018\uBE44\uC804
+      \uC2A4\uD06C\uB864\u2019\uC774\uC5C8\uB2E4."
+  - image: {fileID: 2800000, guid: af591cdab0151f24bb245fb6f6f6e364, type: 3}
+    visibleRegion:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    text: "\uBE44\uC804 \uC2A4\uD06C\uB864\uC5D0\uB294 \uB9C8\uBC95\uBFD0\uB9CC \uC544\uB2C8\uB77C
+      \uC2E0\uCCB4 \uB2A5\uB825\uACFC \uAE30\uC220, \uC9C0\uC2DD\uAE4C\uC9C0 \uB2F4\uC544
+      \uB2E4\uB978 \uC774\uC5D0\uAC8C \uC804\uD560 \uC218 \uC788\uC5C8\uB2E4. \uBCD1\uC0AC\uB4E4\uC740
+      \uC2A4\uD06C\uB864\uC5D0 \uB2F4\uAE34 \uD798\uACFC \uAE30\uC220\uC744 \uC775\uD600
+      \uC804\uC7A5\uC5D0\uC11C \uD65C\uC57D\uD588\uACE0, \uC81C\uAD6D\uC740 \uB9C8\uCE68\uB0B4
+      \uC804\uC7C1\uC5D0\uC11C \uC2B9\uB9AC\uD588\uB2E4."
+  - image: {fileID: 2800000, guid: 3ff3c48f683a98741b96feacbc1f27bc, type: 3}
+    visibleRegion:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    text: "\uD558\uC9C0\uB9CC \uB204\uAD6C\uB098 \uAC15\uB825\uD55C \uD798\uC744
+      \uC5BB\uC744 \uC218 \uC788\uB2E4\uB294 \uC0AC\uC2E4\uC740 \uC0AC\uB78C\uB4E4\uC758
+      \uD0D0\uC695\uC744 \uC790\uADF9\uD588\uB2E4. \uC2A4\uD06C\uB864\uC744 \uCC28\uC9C0\uD558\uB824\uB294
+      \uB2E4\uD23C\uC740 \uC81C\uAD6D \uB0B4\uBD80\uB85C \uBC88\uC84C\uACE0, \uB05D\uC5C6\uB294
+      \uBD84\uC5F4 \uC18D\uC5D0\uC11C \uC81C\uAD6D\uC740 \uACB0\uAD6D \uBAB0\uB77D\uD588\uB2E4."
+  - image: {fileID: 2800000, guid: c9f8c84b5cdf89048901bfe208960985, type: 3}
+    visibleRegion:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    text: "\uC624\uB79C \uC138\uC6D4\uC774 \uD750\uB978 \uC9C0\uAE08\uB3C4 \uBE44\uC804
+      \uC2A4\uD06C\uB864\uC740 \uB0A8\uC544 \uC788\uB2E4. \uADF8\uB7EC\uB098 \uC774\uC81C\uB294
+      \uC0C8\uB85C\uC6B4 \uAE30\uC220\uC774\uB098 \uB9C8\uBC95\uC758 \uAE30\uCD08\uB97C
+      \uC27D\uAC8C \uC775\uD788\uB294 \uC218\uB2E8\uC73C\uB85C \uC5EC\uACA8\uC9C8
+      \uBFD0\uC774\uB2E4. \uD55C\uB54C \uC81C\uAD6D\uC758 \uBCD1\uC0AC\uB4E4\uC5D0\uAC8C
+      \uB9C9\uAC15\uD55C \uD798\uC744 \uBD80\uC5EC\uD588\uB2E4\uB294 \uC774\uC57C\uAE30\uB294
+      \uACE0\uB300\uC758 \uC804\uC124\uB85C \uB0A8\uC558\uB2E4."
+  - image: {fileID: 2800000, guid: bc6b70da7616c02498bbfbd58824d6d2, type: 3}
+    visibleRegion:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    text: "\uADF8\uB7FC\uC5D0\uB3C4 \uC804\uC124 \uC18D \uD798\uC744 \uCC3E\uC544
+      \uC2A4\uD06C\uB864\uC744 \uBAA8\uC73C\uACE0, \uC2F8\uC6B0\uBA70 \uBAA8\uD5D8\uC744
+      \uC774\uC5B4\uAC00\uB294 \uC774\uB4E4\uC774 \uC788\uB2E4.\n\uC0AC\uB78C\uB4E4\uC740
+      \uADF8\uB4E4\uC744 \uC2A4\uD06C\uB864 \uD5CC\uD130\uB77C \uBD80\uB978\uB2E4."
+  portraits:
+  - displayName: "\uAE61\uD328"
+    image: {fileID: 2800000, guid: d4bbda605c246f6468e0fcc869a22020, type: 3}
+  - displayName: "\uC57D\uD0C8\uC790"
+    image: {fileID: 2800000, guid: 4524477f37c2f914da145c8040ae4209, type: 3}
+  - displayName: "\uAD81\uBCD1"
+    image: {fileID: 2800000, guid: ef9afaebab3b8bc41aecab464e30c753, type: 3}
+  - displayName: "\uC6B0\uB450\uBA38\uB9AC"
+    image: {fileID: 2800000, guid: dac510f5b17dd2642baf53b9a5c0fc3a, type: 3}
+  - displayName: "\uB9C8\uBC95\uC0AC"
+    image: {fileID: 2800000, guid: 85536769ce7e6654c832daad3fd80cb1, type: 3}
+  tutorialDialogue:
+  - speaker: 0
+    portraitIndex: 0
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uC232\uC73C\uB85C \uD5A5\uD558\uB294 \uAE38\uBAA9\uC5D0\uC11C \uAE61\uD328\uAC00
+      \uC55E\uC744 \uAC00\uB85C\uB9C9\uB294\uB2E4."
+  - speaker: 2
+    portraitIndex: 0
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uC5B4\uC774, \uAC70\uAE30 \uBA48\uCDB0. \uC774 \uC232\uC5D0 \uB4E4\uC5B4\uAC00\uB824\uBA74
+      \uD1B5\uD589\uC138\uBD80\uD130 \uB0B4\uC57C\uC9C0."
+  - speaker: 1
+    portraitIndex: 0
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uD1B5\uD589\uC138? \uC5EC\uAE30 \uC624\uB294 \uB3D9\uC548 \uADF8\uB7F0
+      \uC598\uAE30\uB294 \uBABB \uB4E4\uC5C8\uB294\uB370."
+  - speaker: 2
+    portraitIndex: 0
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uADF8\uB7FC \uC9C0\uAE08 \uC54C\uC558\uC73C\uBA74 \uB410\uC796\uC544.
+      \uB3C8 \uB0B4\uB194."
+  - speaker: 1
+    portraitIndex: 0
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uAE38\uC744 \uB9C9\uACE0 \uB3C8\uC744 \uB72F\uB294 \uAC78 \uD1B5\uD589\uC138\uB77C\uACE0
+      \uD558\uB098? \uB0BC \uC0DD\uAC01 \uC5C6\uC73C\uB2C8\uAE4C \uBE44\uCF1C."
+  - speaker: 2
+    portraitIndex: 0
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uC88B\uAC8C \uB9D0\uD558\uB2C8\uAE4C \uC6B0\uC2B5\uAC8C \uBCF4\uC774\uB098?
+      \uADF8\uB7FC \uC4F0\uB7EC\uB728\uB9AC\uACE0 \uC9C1\uC811 \uCC59\uACA8 \uC8FC\uC9C0.
+      \uAC00\uC9C4 \uAC74 \uC804\uBD80 \uB450\uACE0 \uAC00\uAC8C \uB420 \uAC70\uB2E4."
+  - speaker: 0
+    portraitIndex: 0
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uBAA8\uD5D8\uAC00\uAC00 \uAC00\uBCCD\uAC8C \uC6C3\uC73C\uBA70 \uC5B4\uAE68\uB97C
+      \uD47C\uB2E4."
+  - speaker: 1
+    portraitIndex: 0
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uB9C8\uCE68 \uC798\uB410\uB124. \uD55C\uB3D9\uC548 \uC2F8\uC6B8 \uC77C\uC774
+      \uC5C6\uC5B4\uC11C \uBAB8\uC774 \uAD73\uC5B4 \uC788\uC5C8\uAC70\uB4E0."
+  - speaker: 2
+    portraitIndex: 0
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uBB50? \uC9C0\uAE08 \uC6C3\uC74C\uC774 \uB098\uC640?"
+  - speaker: 1
+    portraitIndex: 0
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uB355\uBD84\uC5D0 \uBAB8 \uC880 \uD480\uACE0 \uAC00\uACA0\uC5B4. \uB364\uBCBC."
+  - speaker: 0
+    portraitIndex: 0
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uAE61\uD328\uAC00 \uC8FC\uBA39\uC744 \uC950\uACE0 \uB2EC\uB824\uB4E0\uB2E4."
+  forestDialogue:
+  - speaker: 0
+    portraitIndex: 0
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uC232\uC18D\uC744 \uD55C\uCC38 \uD5E4\uB9E4\uB358 \uBAA8\uD5D8\uAC00\uAC00
+      \uAC08\uB9BC\uAE38 \uC55E\uC5D0\uC11C \uAC78\uC74C\uC744 \uBA48\uCD98\uB2E4."
+  - speaker: 1
+    portraitIndex: 0
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uC774 \uBC14\uC704\u2026 \uC544\uAE4C\uB3C4 \uC9C0\uB098\uC628 \uAC83
+      \uAC19\uC740\uB370. \uAE38\uC744 \uC798\uBABB \uB4E4\uC5C8\uB098?"
+  - speaker: 0
+    portraitIndex: 0
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uADF8\uB54C, \uB098\uBB34 \uC0AC\uC774\uC5D0\uC11C \uC57D\uD0C8\uC790\uC640
+      \uAD81\uBCD1\uC774 \uB098\uD0C0\uB098 \uAE38\uC744 \uAC00\uB85C\uB9C9\uB294\uB2E4."
+  - speaker: 2
+    portraitIndex: 1
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uAC70\uAE30, \uBA48\uCDB0. \uC5EC\uAE30\uC11C \uBB58 \uD558\uACE0 \uC788\uC9C0?"
+  - speaker: 1
+    portraitIndex: 0
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uAE38\uC744 \uC880 \uCC3E\uACE0 \uC788\uC5C8\uC5B4. \uB9C8\uCE68 \uC798
+      \uB9CC\uB0AC\uB124."
+  - speaker: 2
+    portraitIndex: 2
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uAE38\uC744 \uC783\uC5C8\uC73C\uBA74 \uB3CC\uC544\uAC00. \uC774 \uC55E\uC740
+      \uC6B0\uB9AC \uAD6C\uC5ED\uC774\uC57C."
+  - speaker: 0
+    portraitIndex: 0
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uBAA8\uD5D8\uAC00\uB294 \uB450 \uC0AC\uB78C\uC758 \uCC28\uB9BC\uC0C8\uB97C
+      \uC0B4\uD540\uB2E4. \uB3C4\uC801\uB2E8\uC774\uB77C\uBA74 \uBE7C\uC557\uC544
+      \uBAA8\uC740 \uBB3C\uAC74\uB3C4 \uC801\uC9C0 \uC54A\uC744 \uD130\uC600\uB2E4.
+      \uADF8\uC911\uC5D0 \uBE44\uC804 \uC2A4\uD06C\uB864\uC774 \uC788\uC744\uC9C0\uB3C4
+      \uBAA8\uB978\uB2E4\uB294 \uC0DD\uAC01\uC774 \uB4E0\uB2E4."
+  - speaker: 1
+    portraitIndex: 0
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uB108\uD76C \uAD6C\uC5ED\uC774\uB77C\u2026 \uADF8\uB7FC \uC548\uCABD\uC5D0
+      \uB3D9\uB8CC\uB4E4\uB3C4 \uC788\uACA0\uB124?"
+  - speaker: 2
+    portraitIndex: 1
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uADF8\uAC78 \uB124\uAC00 \uC54C\uC544\uC11C \uBB58 \uD558\uAC8C? \uC88B\uAC8C
+      \uB9D0\uD560 \uB54C \uB3CC\uC544\uAC00."
+  - speaker: 1
+    portraitIndex: 0
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uD5DB\uAC78\uC74C\uD55C \uC904 \uC54C\uC558\uB294\uB370, \uC624\uD788\uB824
+      \uC798 \uCC3E\uC544\uC628 \uAC83 \uAC19\uC544\uC11C."
+  - speaker: 2
+    portraitIndex: 2
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uC774 \uC790\uC2DD, \uB3CC\uC544\uAC08 \uC0DD\uAC01\uC774 \uC5C6\uAD70."
+  - speaker: 0
+    portraitIndex: 0
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uAD81\uBCD1\uC774 \uD65C\uC5D0 \uD654\uC0B4\uC744 \uAC74\uB2E4. \uC57D\uD0C8\uC790\uB3C4
+      \uB2E8\uAC80\uC744 \uBF51\uC544 \uBAA8\uD5D8\uAC00\uB97C \uACA8\uB208\uB2E4."
+  - speaker: 2
+    portraitIndex: 1
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uACC4\uC18D \uC5BC\uCA61\uAC70\uB9AC\uBA74 \uBB34\uC0AC\uD788 \uB3CC\uC544\uAC00\uC9C4
+      \uBABB\uD560 \uAC70\uB2E4."
+  - speaker: 1
+    portraitIndex: 0
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uADF8\uB807\uAC8C \uB9C9\uC73C\uB2C8\uAE4C \uB354 \uAD81\uAE08\uD574\uC9C0\uB294\uB370."
+  - speaker: 2
+    portraitIndex: 2
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uB9D0\uB85C \uD574\uC120 \uC548 \uB418\uACA0\uC5B4. \uCC98\uB9AC\uD558\uC790!"
+  - speaker: 0
+    portraitIndex: 0
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uBAA8\uD5D8\uAC00\uB294 \uB0A0\uC544\uC62C \uD654\uC0B4\uC744 \uACBD\uACC4\uD558\uBA70
+      \uC790\uC138\uB97C \uC7A1\uB294\uB2E4."
+  - speaker: 1
+    portraitIndex: 0
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uC88B\uC544. \uADF8\uB7FC \uAE38\uC740 \uC9C1\uC811 \uC5F4\uC5B4\uC57C\uACA0\uB124."
+  leaderDialogue:
+  - speaker: 0
+    portraitIndex: 0
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uC232\uAE38\uC744 \uC9C0\uB098\uC790 \uCEE4\uB2E4\uB780 \uB3D9\uAD74
+      \uC785\uAD6C\uAC00 \uBAA8\uC2B5\uC744 \uB4DC\uB7EC\uB0B8\uB2E4. \uB300\uAC80\uC744
+      \uB4E0 \uB0A8\uC790\uAC00 \uADF8 \uC55E\uC744 \uC9C0\uD0A4\uACE0 \uC788\uB2E4."
+  - speaker: 1
+    portraitIndex: 0
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uB4DC\uB514\uC5B4 \uCC3E\uC558\uB124. \uAF64 \uAE4A\uC219\uC774\uB3C4
+      \uC228\uC5B4 \uC788\uC5C8\uAD70."
+  - speaker: 2
+    portraitIndex: 3
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uBABB \uBCF4\uB358 \uC5BC\uAD74\uC778\uB370. \uC5EC\uAE30\uC5D4 \uBB34\uC2A8
+      \uC6A9\uBB34\uB0D0?"
+  - speaker: 1
+    portraitIndex: 0
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uBB3C\uAC74 \uD558\uB098 \uCC3E\uC73C\uB7EC \uC654\uC5B4."
+  - speaker: 2
+    portraitIndex: 3
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uC7A5\uC0AC\uD558\uB294 \uACF3 \uC544\uB2C8\uB2E4. \uADC0\uCC2E\uAC8C
+      \uD558\uC9C0 \uB9D0\uACE0 \uB2F9\uC7A5 \uAEBC\uC838."
+  - speaker: 1
+    portraitIndex: 0
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uC5EC\uAE30\uC5D0 \uAF64 \uAC12\uB098\uAC00\uB294 \uC2A4\uD06C\uB864\uC774
+      \uC788\uB2E4\uB294 \uC598\uAE38 \uB4E4\uC5C8\uAC70\uB4E0. \uADF8\uAC83\uB9CC
+      \uB118\uACA8\uC8FC\uBA74 \uC870\uC6A9\uD788 \uB5A0\uB0A0\uAC8C."
+  - speaker: 0
+    portraitIndex: 0
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uC6B0\uB450\uBA38\uB9AC\uAC00 \uC7A0\uC2DC \uBAA8\uD5D8\uAC00\uB97C \uB178\uB824\uBCF4\uB2E4
+      \uCF54\uC6C3\uC74C\uC744 \uCE5C\uB2E4."
+  - speaker: 2
+    portraitIndex: 3
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uC5B4\uB514\uC11C \uD5DB\uC18C\uB9AC\uB97C \uC8FC\uC6CC\uB4E4\uC5C8\uB294\uC9C0
+      \uBAA8\uB974\uACA0\uAD70. \uC5EC\uAE30\uC5D4 \uADF8\uB7F0 \uAC70 \uC5C6\uB2E4."
+  - speaker: 1
+    portraitIndex: 0
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uADF8\uB7FC \uC7A0\uAE50 \uC548\uC744 \uB458\uB7EC\uBD10\uB3C4 \uAD1C\uCC2E\uACA0\uB124?"
+  - speaker: 2
+    portraitIndex: 3
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uD558! \uC124\uB839 \uC788\uB2E4\uACE0 \uD55C\uB4E4, \uB124\uB188\uD55C\uD14C
+      \uC21C\uC21C\uD788 \uB0B4\uC904 \uAC83 \uAC19\uC73C\uB0D0?"
+  - speaker: 0
+    portraitIndex: 0
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uC6B0\uB450\uBA38\uB9AC\uAC00 \uB300\uAC80\uC744 \uBF51\uC544 \uB4E4\uACE0
+      \uBAA8\uD5D8\uAC00\uC5D0\uAC8C \uB2E4\uAC00\uC628\uB2E4."
+  - speaker: 2
+    portraitIndex: 3
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uC88B\uAC8C \uBCF4\uB0B4\uC8FC\uB824\uACE0 \uD588\uB354\uB2C8, \uAE30\uC5B4\uC774
+      \uCE7C\uC744 \uBCF4\uACA0\uB2E4\uB294 \uAC70\uAD70."
+  - speaker: 1
+    portraitIndex: 0
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uC5ED\uC2DC \uB9D0\uB85C\uB294 \uC548 \uB418\uACA0\uB124."
+  - speaker: 0
+    portraitIndex: 0
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uBAA8\uD5D8\uAC00\uAC00 \uAC70\uB9AC\uB97C \uBC8C\uB9AC\uBA70 \uC804\uD22C
+      \uC790\uC138\uB97C \uC7A1\uB294\uB2E4. \uC6B0\uB450\uBA38\uB9AC\uAC00 \uB300\uAC80\uC744
+      \uCE58\uCF1C\uB4E0\uB2E4."
+  banditDialogue:
+  - speaker: 0
+    portraitIndex: 0
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uC6B0\uB450\uBA38\uB9AC\uAC00 \uAC70\uCE60\uAC8C \uC228\uC744 \uBAB0\uC544\uC26C\uBA70
+      \uB4A4\uB85C \uBB3C\uB7EC\uC120\uB2E4. \uC5EC\uC720\uB86D\uB358 \uC5BC\uAD74\uC5D0
+      \uB2F9\uD639\uAC10\uC774 \uBC88\uC9C4\uB2E4."
+  - speaker: 2
+    portraitIndex: 3
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uD06C\uC73D\u2026 \uC5B4\uB514\uC11C \uC774\uB7F0 \uB188\uC774 \uAD74\uB7EC\uB4E4\uC5B4
+      \uC640\uC11C\uB294\u2026!"
+  - speaker: 1
+    portraitIndex: 0
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uC774\uCBE4 \uD588\uC73C\uBA74 \uBE44\uCF1C\uC8FC\uB294 \uAC8C \uC5B4\uB54C?
+      \uB098\uB3C4 \uB354 \uC2F8\uC6B0\uACE0 \uC2F6\uC9C4 \uC54A\uC740\uB370."
+  - speaker: 2
+    portraitIndex: 3
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uC785 \uB2E4\uBB3C\uC5B4!"
+  - speaker: 0
+    portraitIndex: 0
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uC6B0\uB450\uBA38\uB9AC\uAC00 \uB3D9\uAD74 \uCABD\uC744 \uD5A5\uD574
+      \uACE0\uD568\uC744 \uC9C0\uB978\uB2E4."
+  - speaker: 2
+    portraitIndex: 3
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uC804\uBD80 \uB098\uC640\uB77C! \uB2F9\uC7A5!"
+  - speaker: 0
+    portraitIndex: 0
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uB3D9\uAD74\uC5D0\uC11C \uB3C4\uC801\uB2E8 \uB9D0\uB2E8\uB4E4\uC774 \uB2EC\uB824
+      \uB098\uC628\uB2E4."
+  - speaker: 2
+    portraitIndex: 1
+    secondaryPortraitIndex: 2
+    speakerNameOverride: "\uB3C4\uC801\uB2E8 \uB9D0\uB2E8\uB4E4"
+    text: "\uB450\uBAA9! \uBB34\uC2A8 \uC77C\uC785\uB2C8\uAE4C?"
+  - speaker: 2
+    portraitIndex: 3
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uC800\uB188\uC744 \uB9C9\uC544\uB77C. \uBB34\uC2A8 \uC77C\uC774 \uC788\uC5B4\uB3C4
+      \uB3D9\uAD74 \uC548\uC73C\uB85C \uB4E4\uC5EC\uBCF4\uB0B4\uC120 \uC548 \uB41C\uB2E4!"
+  - speaker: 2
+    portraitIndex: 1
+    secondaryPortraitIndex: 2
+    speakerNameOverride: "\uB3C4\uC801\uB2E8 \uB9D0\uB2E8\uB4E4"
+    text: "\uACE0\uC791 \uD63C\uC790 \uC628 \uB188 \uC544\uB2D9\uB2C8\uAE4C? \uC800\uD76C\uAC00
+      \uCC98\uB9AC\uD558\uACA0\uC2B5\uB2C8\uB2E4."
+  - speaker: 2
+    portraitIndex: 3
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uBC29\uC2EC\uD558\uC9C0 \uB9C8\uB77C! \uCC98\uC74C\uBD80\uD130 \uC804\uB825\uC744
+      \uB2E4\uD574!"
+  - speaker: 0
+    portraitIndex: 0
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uB9D0\uB2E8\uB4E4\uC774 \uBB34\uAE30\uB97C \uB4E4\uACE0 \uAE38\uC744
+      \uB9C9\uB294\uB2E4. \uBAA8\uD5D8\uAC00\uB294 \uC801\uB4E4\uC744 \uBC88\uAC08\uC544
+      \uC0B4\uD53C\uBA70 \uD55C \uAC78\uC74C \uBB3C\uB7EC\uC120\uB2E4."
+  - speaker: 1
+    portraitIndex: 0
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uC774\uAC74 \uC880 \uACE4\uB780\uD55C\uB370. \uD55C\uAEBC\uBC88\uC5D0
+      \uC0C1\uB300\uD558\uB294 \uAC74 \uC0DD\uAC01 \uC548 \uD588\uAC70\uB4E0."
+  - speaker: 2
+    portraitIndex: 3
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uC774\uC81C\uC57C \uC0C1\uD669\uC744 \uC54C\uACA0\uB098? \uB3C4\uB9DD\uCE60
+      \uAE38\uB3C4 \uC5C6\uB2E4!"
+  - speaker: 0
+    portraitIndex: 0
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uBAA8\uD5D8\uAC00\uAC00 \uC9E7\uAC8C \uC228\uC744 \uACE0\uB974\uACE0
+      \uB2E4\uC2DC \uC790\uC138\uB97C \uC7A1\uB294\uB2E4."
+  - speaker: 1
+    portraitIndex: 0
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uC5EC\uAE30\uAE4C\uC9C0 \uC640\uC11C \uBE48\uC190\uC73C\uB85C \uB3CC\uC544\uAC08
+      \uC21C \uC5C6\uC9C0."
+  - speaker: 2
+    portraitIndex: 3
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uCCD0\uB77C!"
+  - speaker: 1
+    portraitIndex: 0
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uC88B\uC544. \uB05D\uAE4C\uC9C0 \uD574\uBCF4\uC790!"
+  bossDialogue:
+  - speaker: 0
+    portraitIndex: 0
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uB3D9\uAD74 \uC548\uC73C\uB85C \uB4E4\uC5B4\uC11C\uC790 \uCC28\uAC11\uACE0
+      \uBB34\uAC70\uC6B4 \uAE30\uC6B4\uC774 \uC628\uBAB8\uC744 \uAC10\uC2FC\uB2E4.
+      \uBAA8\uD5D8\uAC00\uB294 \uAC78\uC74C\uC744 \uB2A6\uCD94\uACE0 \uC5B4\uB460
+      \uC18D\uC744 \uC0B4\uD540\uB2E4."
+  - speaker: 1
+    portraitIndex: 0
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\u2026\u2026\uB3C4\uC801\uB4E4\uC774 \uC774\uB7F0 \uACF3\uC5D0 \uC228\uC5B4
+      \uC9C0\uB0B8\uB2E4\uACE0?"
+  - speaker: 0
+    portraitIndex: 0
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uB3D9\uAD74 \uAE4A\uC219\uD55C \uACF3\uC5D0\uC11C \uC9C0\uD321\uC774\uB97C
+      \uB4E0 \uB9C8\uBC95\uC0AC\uAC00 \uD600\uB97C \uCC2C\uB2E4."
+  - speaker: 2
+    portraitIndex: 4
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uCBE7. \uD55C\uB54C\uB294 \uC774\uB984\uB09C \uAC00\uBB38\uC758 \uD638\uC704\uBCD1\uC774\uC5C8\uB2E4\uAE30\uC5D0
+      \uAE30\uB300\uD588\uAC74\uB9CC\u2026\u2026 \uCE68\uC785\uC790 \uD558\uB098
+      \uB9C9\uC9C0 \uBABB\uD558\uB2E4\uB2C8."
+  - speaker: 1
+    portraitIndex: 0
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uC785\uAD6C\uC5D0 \uC788\uB358 \uB369\uCE58\uB97C \uB9D0\uD558\uB294
+      \uAC74\uAC00? \uB098\uB984 \uC560\uB294 \uC4F0\uB358\uB370."
+  - speaker: 2
+    portraitIndex: 4
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uADF8\uB798\uC11C, \uB124\uB188\uC740 \uB204\uAD6C\uC9C0? \uC774\uB7F0
+      \uACF3\uAE4C\uC9C0 \uAE30\uC5B4\uB4E4\uC5B4 \uC628 \uC774\uC720\uAC00 \uBB50\uB0D0."
+  - speaker: 1
+    portraitIndex: 0
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uC5EC\uAE30\uC5D0 \uAC12\uB098\uAC00\uB294 \uBE44\uC804 \uC2A4\uD06C\uB864\uC774
+      \uC788\uB2E4\uB294 \uC18C\uBB38\uC744 \uB4E3\uACE0 \uC654\uC5B4. \uB2F9\uC2E0\uC774
+      \uAC00\uC9C0\uACE0 \uC788\uB098?"
+  - speaker: 0
+    portraitIndex: 0
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uB9C8\uBC95\uC0AC\uAC00 \uBAA8\uD5D8\uAC00\uB97C \uD6D1\uC5B4\uBCF4\uB354\uB2C8
+      \uBE44\uC6C3\uC74C\uC744 \uD758\uB9B0\uB2E4."
+  - speaker: 2
+    portraitIndex: 4
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uC2A4\uD06C\uB864\uC758 \uD798\uC744 \uC887\uC544 \uC5EC\uAE30\uAE4C\uC9C0
+      \uC654\uB2E4\uB294 \uAC74\uAC00. \uD5DB\uC218\uACE0\uD588\uAD70."
+  - speaker: 1
+    portraitIndex: 0
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uD5DB\uC218\uACE0\uB77C\uB2C8?"
+  - speaker: 2
+    portraitIndex: 4
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uADF8 \uC2A4\uD06C\uB864\uC774\uB77C\uBA74 \uC774\uBBF8 \uB0B4\uAC00
+      \uC0AC\uC6A9\uD588\uB2E4. \uADF8 \uC548\uC5D0 \uB2F4\uAE34 \uC9C0\uC2DD\uC740
+      \uB0B4 \uC5F0\uAD6C\uC5D0 \uC81C\uBC95 \uB3C4\uC6C0\uC774 \uB418\uC5C8\uC9C0."
+  - speaker: 1
+    portraitIndex: 0
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\u2026\u2026\uD55C\uBC1C \uB2A6\uC5C8\uB124. \uADF8\uB7FC \uBC16\uC5D0
+      \uC788\uB358 \uB140\uC11D\uB4E4\uC774 \uC9C0\uD0A4\uB358 \uAC74 \uC2A4\uD06C\uB864\uC774
+      \uC544\uB2C8\uB77C \uB2F9\uC2E0\uC774\uC5C8\uAD70."
+  - speaker: 2
+    portraitIndex: 4
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uC4F8\uB370\uC5C6\uB294 \uAC83\uB4E4\uC774 \uBAB0\uB824\uB4E4\uC9C0 \uC54A\uB3C4\uB85D
+      \uB9E1\uACA8 \uB450\uC5C8\uC744 \uBFD0\uC774\uB2E4. \uADF8\uC870\uCC28 \uC81C\uB300\uB85C
+      \uD574\uB0B4\uC9C0 \uBABB\uD588\uC9C0\uB9CC."
+  - speaker: 1
+    portraitIndex: 0
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uADF8 \uC4F8\uB370\uC5C6\uB294 \uAC83\uC5D0 \uB098\uB3C4 \uD3EC\uD568\uB418\uB294
+      \uBAA8\uC591\uC774\uB124."
+  - speaker: 0
+    portraitIndex: 0
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uB9C8\uBC95\uC0AC\uAC00 \uC9C0\uD321\uC774\uB97C \uB4E4\uC5B4 \uC62C\uB9AC\uC790
+      \uBCF4\uB77C\uC0C9 \uBCF4\uC11D\uC5D0\uC11C \uBD88\uAE38\uD55C \uBE5B\uC774
+      \uC0C8\uC5B4 \uB098\uC628\uB2E4."
+  - speaker: 2
+    portraitIndex: 4
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uB124\uB188 \uB54C\uBB38\uC5D0 \uC911\uC694\uD55C \uC5F0\uAD6C\uAC00
+      \uC911\uB2E8\uB410\uB2E4. \uC544\uBB34 \uB300\uAC00\uB3C4 \uCE58\uB974\uC9C0
+      \uC54A\uACE0 \uB3CC\uC544\uAC08 \uC218 \uC788\uC744 \uAC70\uB77C \uC0DD\uAC01\uD588\uB098?"
+  - speaker: 1
+    portraitIndex: 0
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uBE48\uC190\uC73C\uB85C \uB3CC\uC544\uAC00\uB294 \uAC83\uB3C4 \uC5B5\uC6B8\uD55C\uB370,
+      \uBAA9\uC228\uAE4C\uC9C0 \uB0B4\uB193\uC73C\uB77C\uACE0?"
+  - speaker: 2
+    portraitIndex: 4
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uB9C8\uCE68 \uC0C8\uB85C \uC775\uD78C \uB9C8\uBC95\uC744 \uC2DC\uD5D8\uD560
+      \uC0C1\uB300\uAC00 \uD544\uC694\uD588\uC9C0. \uB124\uB188\uC774\uB77C\uB3C4
+      \uC4F8\uBAA8\uB97C \uBCF4\uC5EC \uBD10\uB77C."
+  - speaker: 0
+    portraitIndex: 0
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uBAA8\uD5D8\uAC00\uAC00 \uB9C8\uBC95\uC0AC\uB97C \uACBD\uACC4\uD558\uBA70
+      \uC790\uC138\uB97C \uC7A1\uB294\uB2E4."
+  - speaker: 1
+    portraitIndex: 0
+    secondaryPortraitIndex: -1
+    speakerNameOverride: 
+    text: "\uC88B\uC544. \uADF8 \uC2A4\uD06C\uB864\uB85C \uC5BC\uB9C8\uB098 \uB300\uB2E8\uD574\uC84C\uB294\uC9C0
+      \uD55C\uBC88 \uBCF4\uC790\uACE0."

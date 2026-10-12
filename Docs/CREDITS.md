@@ -253,3 +253,15 @@
 - **効果音ラボ — ビーム砲2** — https://soundeffect-lab.info/sound/battle/battle2.html . 빛기둥 발동음으로 사용자 선택.
 - 공식 원본 `beamgun2.mp3` → `Assets/_Project/Audio/Magic/sel_beam_cannon2.mp3`. 원본 유지, Unity 모노·Vorbis 0.75·Normalize 끔. 합성·자르기 없이 1회 재생. 이전 `sh_judgment_slam.wav` 연결 해제·파일 보존, 준비음 유지.
 - 이용 조건은 위 선택 음원과 동일: https://soundeffect-lab.info/agreement/ (2026-10-08 확인). 무료 상업용 게임 사용 가능, CC0 아님. 단독 음원 재배포·직접 파일 링크 금지.
+
+
+## 인트로·적 대화 일러스트 (2026-10-12)
+
+- OpenAI imagegen으로 프로젝트용 제작·수정. 사용자 설정·시작 화면의 카툰풍과 최초 시안 구도 참고.
+- `Assets/_Project/UI/Story/`: 인트로 5장, 깡패·약탈자·궁병·우두머리·마법사 투명 초상 5장.
+- 쟁탈 장면은 스크롤·손·하단 보정 후 옷과 깃발을 초록·보라로 변경. 외부 게임 일러스트 반입 없음.
+- 대화 배경은 기존 숲 초입 생성 그림 재사용. UI 테두리·폰트는 기존 출처 적용.
+- 최종 파일·프롬프트는 [06](06_에셋_파이프라인.md#story-art-assets)과 `근거자료/2026-10-12_인트로대화/일러스트_프롬프트.json` 참조.
+
+- 우두머리 초상 후속: 프로젝트의 VARCO 모델·얼굴 보정 화면을 참고해 OpenAI imagegen으로 재제작. 최종 프롬프트는 `근거자료/2026-10-12_우두머리초상/프롬프트.json`.
+- 마법사 초상 후속: 프로젝트의 VARCO 마법사 모델·기존 지팡이를 참고해 OpenAI imagegen으로 재제작. 최종 프롬프트는 `근거자료/2026-10-12_마법사초상/프롬프트.json`.

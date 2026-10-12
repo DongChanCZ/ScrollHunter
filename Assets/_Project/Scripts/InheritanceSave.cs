@@ -13,6 +13,7 @@ public sealed class InheritanceSave
         public string[] cards;
         public List<Passive> passives;
         public bool tutorialDismissed;
+        public bool introDismissed;
         public int clearedBattles;
     }
     private readonly string path;
@@ -20,6 +21,7 @@ public sealed class InheritanceSave
     private readonly List<SkillData> baseDeck;
     private Data data = Empty();
     private static Data Empty() => new Data { version = 1, cards = new string[DeckSystem.DeckSize], passives = new List<Passive>() };
+    public bool IntroDismissed => data.introDismissed;
     public bool TutorialDismissed => data.tutorialDismissed || data.clearedBattles != 0;
     public int ClearedBattles => data.clearedBattles;
     public bool LoadFailed { get; private set; }
@@ -87,11 +89,19 @@ public sealed class InheritanceSave
     public bool TryReset()
     {
         var next = Empty();
+        next.introDismissed = data.introDismissed;
         next.tutorialDismissed = data.tutorialDismissed;
         next.clearedBattles = data.clearedBattles;
         return TryWrite(next, false);
     }
     public bool TryResetGame() => TryWrite(Empty(), false);
+    public bool TryRecordIntro()
+    {
+        if (data.introDismissed) return true;
+        var next = JsonUtility.FromJson<Data>(JsonUtility.ToJson(data));
+        next.introDismissed = true;
+        return TryWrite(next);
+    }
     public bool TryRecordTutorial()
     {
         if (TutorialDismissed) return true;

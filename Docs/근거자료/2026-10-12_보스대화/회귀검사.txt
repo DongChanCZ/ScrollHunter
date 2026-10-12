@@ -1,0 +1,2 @@
+Opening Story: 91 checks passed (isolated save; function/UI checks).
+Forest Story: 138 checks passed (isolated save).

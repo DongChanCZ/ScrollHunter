@@ -1,0 +1,57 @@
+{
+  "protectedFiles": 31,
+  "changed": [],
+  "alphaHistogramTop": [
+    {
+      "alpha": 0,
+      "pixels": 690093
+    },
+    {
+      "alpha": 253,
+      "pixels": 587008
+    },
+    {
+      "alpha": 252,
+      "pixels": 237892
+    },
+    {
+      "alpha": 251,
+      "pixels": 14234
+    },
+    {
+      "alpha": 1,
+      "pixels": 7753
+    },
+    {
+      "alpha": 250,
+      "pixels": 5295
+    },
+    {
+      "alpha": 249,
+      "pixels": 2958
+    },
+    {
+      "alpha": 2,
+      "pixels": 2639
+    }
+  ],
+  "width": 1189,
+  "height": 1323,
+  "playing": false,
+  "dirty": false,
+  "guid": "85536769ce7e6654c832daad3fd80cb1",
+  "portraitReference": "OpeningStory.portraits[4].image -> Assets/_Project/UI/Story/Portrait_Mage.png",
+  "importer": {
+    "npot": "None",
+    "maxSize": 2048,
+    "mipmaps": false,
+    "alphaIsTransparency": true
+  },
+  "console": {
+    "errors": 0,
+    "warnings": [
+      "GmarketSansMedium SDF.asset: NativeFormatImporter generated inconsistent result"
+    ]
+  },
+  "checksScope": "Asset import, alpha, GUID, serialized reference and protected file hashes. No Play or build."
+}

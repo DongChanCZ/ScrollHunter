@@ -13597,6 +13597,7 @@ GameObject:
   - component: {fileID: 414053926}
   - component: {fileID: 414053927}
   - component: {fileID: 414053928}
+  - component: {fileID: 414053929}
   m_Layer: 0
   m_Name: Systems
   m_TagString: Untagged
@@ -14277,6 +14278,63 @@ MonoBehaviour:
     \uCD08\uAE30\uD654\uB429\uB2C8\uB2E4.</size>"
   resetError: "\uCD08\uAE30\uD654\uD558\uC9C0 \uBABB\uD588\uC2B5\uB2C8\uB2E4. \uC800\uC7A5
     \uACBD\uB85C\uB97C \uD655\uC778\uD55C \uB4A4 \uB2E4\uC2DC \uC2DC\uB3C4\uD558\uC138\uC694."
+--- !u!114 &414053929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 414053918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3eac597bb0852f4ba25931a64f4322c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StoryUI
+  content: {fileID: 11400000, guid: cd039f2ba0f8d764b886d0f69a1d63e1, type: 2}
+  dialogueBackground: {fileID: 2800000, guid: 23392c306048a6140b8363f7050c989c, type: 3}
+  forestBackground: {fileID: 2800000, guid: e184610c7a50f154ca7a468a4ece7ab5, type: 3}
+  caveEntranceBackground: {fileID: 2800000, guid: 69c8a48d1d6dc674e8b5d500f98441e3, type: 3}
+  bossBackground: {fileID: 2800000, guid: c7560bb7a1f94d74780bb52993411b34, type: 3}
+  canvasRoot: {fileID: 537724794}
+  combatHud:
+  - {fileID: 1375014128}
+  - {fileID: 1485794737}
+  - {fileID: 2080180379}
+  - {fileID: 1962554913}
+  - {fileID: 1684798576}
+  - {fileID: 370084548}
+  - {fileID: 805142852}
+  - {fileID: 2076175162}
+  - {fileID: 1593742257}
+  - {fileID: 661650952}
+  - {fileID: 598019850}
+  - {fileID: 932189279}
+  - {fileID: 1444648811}
+  - {fileID: 663203442}
+  font: {fileID: 11400000, guid: 7b1e16cbc5ea6b246a1276679ec44837, type: 2}
+  fontMaterial: {fileID: 2100000, guid: e2be47acb261c2244a39bb8b1e3fc884, type: 2}
+  panelSprite: {fileID: 21300000, guid: 1c6942197046fa349bb71010481f1813, type: 2}
+  frameSprite: {fileID: 21300000, guid: 8ff1c85d0ff0b884f832108540b243ff, type: 3}
+  buttonTemplate: {fileID: 1073469162}
+  panelColor: {r: 0.13, g: 0.18, b: 0.27, a: 1}
+  frameColor: {r: 0.7, g: 0.55, b: 0.33, a: 0.95}
+  textColor: {r: 0.96, g: 0.92, b: 0.84, a: 1}
+  nameColor: {r: 0.91, g: 0.8, b: 0.53, a: 1}
+  boxSize: {x: 1680, y: 290}
+  bottomMargin: 42
+  textInset: 44
+  bodyFontSize: 32
+  nameFontSize: 38
+  hintFontSize: 23
+  paragraphSpacing: 14
+  lineSpacing: 72
+  portraitSize: {x: 610, y: 700}
+  portraitRightMargin: 85
+  skipSize: {x: 280, y: 64}
+  skipMargin: {x: 42, y: 34}
+  dialogueShade: {r: 0.02, g: 0.025, b: 0.04, a: 0.27}
+  advanceKey: 32
+  alternateAdvanceKey: 13
 --- !u!1 &415327051
 GameObject:
   m_ObjectHideFlags: 0
