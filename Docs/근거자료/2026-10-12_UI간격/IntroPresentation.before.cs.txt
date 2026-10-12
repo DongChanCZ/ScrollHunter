@@ -1,0 +1,193 @@
+using System;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+
+/// <summary>인트로 삽화의 표시만 담당. 시간은 StoryUI가 전달하며 전투·저장은 건드리지 않는다.</summary>
+public sealed class IntroPresentation : IDisposable
+{
+    public enum Style { Still, War, Scroll, Conflict, Peace, Traveler }
+    [Serializable] public sealed class Settings
+    {
+        public Shader artworkShader;
+        [Min(0f)] public float fadeIn = .4f, fadeOut = .2f, textDelay = .18f, textFade = .35f;
+        [Min(.1f)] public float motionSeconds = 12f, pulseSeconds = 3f;
+        [Min(0f)] public float endingDelay = 1.3f, endingFade = .45f;
+        [Range(0f, 1f)] public float glowStrength = .45f, conflictShade = .22f;
+        [Range(0, 40)] public int emberCount = 14, dustCount = 8;
+        public Vector2 particleSize = new Vector2(3f, 6f);
+        public Color emberColor = new Color(1f, .45f, .12f, .7f);
+        public Color dustColor = new Color(1f, .88f, .62f, .3f);
+    }
+    readonly RawImage art;
+    readonly TMP_Text body, hint;
+    readonly CanvasGroup textGroup, hintGroup, particlesGroup;
+    readonly Settings settings;
+    readonly Material artMaterial;
+    readonly RectTransform particleRoot;
+    readonly Image[] particles;
+    readonly Texture2D dotTexture;
+    readonly Sprite dotSprite;
+    StoryContent.IntroPage page;
+    Action switchPage;
+    float age, transitionAge;
+    bool leaving;
+    int endingStart = -1;
+    public bool Busy => page != null && (leaving || age < ReadyAt);
+    float ReadyAt => Mathf.Max(settings.fadeIn, page != null && page.emphasizeLastLine
+        ? settings.endingDelay + settings.endingFade : settings.textDelay + settings.textFade);
+
+    public IntroPresentation(RawImage artwork, TMP_Text text, TMP_Text continueHint, Settings config)
+    {
+        art = artwork; body = text; hint = continueHint; settings = config;
+        textGroup = body.gameObject.AddComponent<CanvasGroup>();
+        hintGroup = hint.gameObject.AddComponent<CanvasGroup>();
+        if (settings.artworkShader != null)
+        {
+            artMaterial = new Material(settings.artworkShader);
+        }
+        particleRoot = new GameObject("IntroParticles", typeof(RectTransform), typeof(CanvasGroup)).GetComponent<RectTransform>();
+        particleRoot.SetParent(art.transform, false);
+        particleRoot.anchorMin = Vector2.zero; particleRoot.anchorMax = Vector2.one;
+        particleRoot.offsetMin = particleRoot.offsetMax = Vector2.zero;
+        particlesGroup = particleRoot.GetComponent<CanvasGroup>();
+        // 작은 빛점만 직접 생성한다. 전투 난수는 쓰지 않는다.
+        dotTexture = new Texture2D(32, 32, TextureFormat.RGBA32, false);
+        dotTexture.name = "IntroSoftDot"; dotTexture.wrapMode = TextureWrapMode.Clamp;
+        var pixels = new Color[32 * 32];
+        for (int y = 0; y < 32; y++) for (int x = 0; x < 32; x++)
+        {
+            float radius = new Vector2((x - 15.5f) / 15.5f, (y - 15.5f) / 15.5f).magnitude;
+            pixels[y * 32 + x] = new Color(1, 1, 1, Mathf.Pow(Mathf.Clamp01(1f - radius), 2f));
+        }
+        dotTexture.SetPixels(pixels); dotTexture.Apply(false, true);
+        dotSprite = Sprite.Create(dotTexture, new Rect(0, 0, 32, 32), new Vector2(.5f, .5f));
+        particles = new Image[Mathf.Max(settings.emberCount, settings.dustCount)];
+        for (int i = 0; i < particles.Length; i++)
+        {
+            var dot = new GameObject("LightDot" + i, typeof(RectTransform), typeof(Image)).GetComponent<Image>();
+            dot.transform.SetParent(particleRoot, false); dot.sprite = dotSprite; dot.raycastTarget = false;
+            particles[i] = dot;
+        }
+        Reset();
+    }
+
+    static float Ease(float time, float duration) => duration <= 0f ? 1f : Mathf.SmoothStep(0f, 1f, Mathf.Clamp01(time / duration));
+
+    public void Show(StoryContent.IntroPage next)
+    {
+        page = next; age = 0f; transitionAge = 0f; leaving = false; switchPage = null;
+        art.material = artMaterial;
+        endingStart = next.emphasizeLastLine && body.text.LastIndexOf('\n') >= 0 ? body.text.LastIndexOf('\n') + 1 : -1;
+        particleRoot.gameObject.SetActive(true);
+        Render();
+    }
+
+    public bool Leave(Action onHidden)
+    {
+        if (page == null || Busy) return false;
+        leaving = true; transitionAge = 0f; switchPage = onHidden;
+        return true;
+    }
+
+    public void Tick(float delta)
+    {
+        if (page == null) return;
+        age += Mathf.Max(0f, delta);
+        if (leaving)
+        {
+            transitionAge += Mathf.Max(0f, delta);
+            if (transitionAge >= settings.fadeOut + page.blackHold)
+            {
+                var next = switchPage;
+                switchPage = null; leaving = false;
+                next?.Invoke();
+                return;
+            }
+        }
+        Render();
+    }
+
+    void Render()
+    {
+        float progress = Ease(age, settings.motionSeconds);
+        float zoom = Mathf.Max(1f, Mathf.Lerp(page.startZoom, page.endZoom, progress));
+        Rect region = page.visibleRegion;
+        Vector2 focus = Vector2.Lerp(page.focusFrom, page.focusTo, progress);
+        float width = region.width / zoom, height = region.height / zoom;
+        art.uvRect = new Rect(region.x + (region.width - width) * Mathf.Clamp01(focus.x),
+            region.y + (region.height - height) * Mathf.Clamp01(focus.y), width, height);
+        float opacity = leaving
+            ? 1f - Ease(transitionAge - settings.fadeOut * .35f, settings.fadeOut * .65f)
+            : Ease(age, settings.fadeIn);
+        art.color = new Color(1f, 1f, 1f, opacity);
+        textGroup.alpha = leaving ? 1f - Ease(transitionAge, settings.fadeOut * .6f) : Ease(age - settings.textDelay, settings.textFade);
+        hintGroup.alpha = Busy ? 0f : 1f;
+        particlesGroup.alpha = opacity;
+        if (artMaterial != null)
+        {
+            float pulse = .5f + .5f * Mathf.Sin(age * Mathf.PI * 2f / Mathf.Max(.1f, settings.pulseSeconds));
+            if (page.style == Style.War) pulse = .45f + .35f * Mathf.Sin(age * 3.1f) + .2f * Mathf.Sin(age * 7.3f);
+            artMaterial.SetFloat("_Style", (float)page.style);
+            artMaterial.SetFloat("_Pulse", pulse);
+            artMaterial.SetFloat("_GlowStrength", settings.glowStrength);
+            artMaterial.SetFloat("_Shade", page.style == Style.Conflict ? settings.conflictShade * progress : 0f);
+        }
+        DrawParticles();
+        if (endingStart >= 0)
+        {
+            body.ForceMeshUpdate();
+            float fade = Ease(age - settings.endingDelay, settings.endingFade);
+            var info = body.textInfo;
+            for (int i = 0; i < info.characterCount; i++)
+            {
+                var ch = info.characterInfo[i];
+                if (!ch.isVisible || ch.index < endingStart) continue;
+                var colors = info.meshInfo[ch.materialReferenceIndex].colors32;
+                for (int k = 0; k < 4; k++)
+                {
+                    var color = (Color32)body.color; color.a = (byte)(color.a * fade);
+                    colors[ch.vertexIndex + k] = color;
+                }
+            }
+            body.UpdateVertexData(TMP_VertexDataUpdateFlags.Colors32);
+        }
+    }
+
+    void DrawParticles()
+    {
+        bool fire = page.style == Style.War;
+        int count = fire ? settings.emberCount : page.style == Style.Peace ? settings.dustCount : 0;
+        for (int i = 0; i < particles.Length; i++)
+        {
+            var dot = particles[i]; dot.gameObject.SetActive(i < count);
+            if (i >= count) continue;
+            float seed = Mathf.Repeat(i * .618034f + .19f, 1f);
+            float life = Mathf.Repeat(seed + age * (fire ? .08f : .025f), 1f);
+            float x = Mathf.Repeat(i * .381966f + Mathf.Sin(age * .4f + i) * .025f, 1f);
+            var rt = dot.rectTransform;
+            rt.anchorMin = rt.anchorMax = new Vector2(.08f + .84f * x, fire ? .25f + .65f * life : .12f + .76f * life);
+            rt.anchoredPosition = Vector2.zero;
+            rt.sizeDelta = Vector2.one * Mathf.Lerp(settings.particleSize.x, settings.particleSize.y, seed);
+            Color color = fire ? settings.emberColor : settings.dustColor;
+            color.a *= Mathf.Sin(life * Mathf.PI);
+            dot.color = color;
+        }
+    }
+
+    public void Reset()
+    {
+        page = null; switchPage = null; leaving = false; age = transitionAge = 0;
+        endingStart = -1;
+        art.material = null; art.color = Color.white;
+        textGroup.alpha = hintGroup.alpha = 1f;
+        body.ForceMeshUpdate();
+        particleRoot.gameObject.SetActive(false);
+    }
+
+    public void Dispose()
+    {
+        UnityEngine.Object.Destroy(artMaterial);
+        UnityEngine.Object.Destroy(dotSprite); UnityEngine.Object.Destroy(dotTexture);
+    }
+}

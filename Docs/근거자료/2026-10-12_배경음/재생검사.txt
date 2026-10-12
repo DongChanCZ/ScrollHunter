@@ -1,0 +1,10 @@
+Game audio checks passed: 215 / frames 7598
+music: title/intro/tutorial/path/hideout/boss, replay/dialogue/countdown/loop/continuity PASS
+common: absorb/break/hit/potion/reject/silence/suppression PASS
+tuning: cutter≠raider, sanctuary 0.6, dark split, mix peaks eruption 0.83 / dark hole 0.73
+skills: 12 + silence/suppression, cancel cleanup PASS
+enemies: 5 types / prepare-release-delayed-warning, interrupt/death cleanup PASS
+boss: phase/orb summon/break/cleanup/victory PASS
+pause/0.5x/restart/no duplicate PASS
+results: battle victory, reward select/confirm, defeat with The End PASS
+volumes: Master/Music/Skill/Enemy independent, 0% mute PASS (PlayerPrefs untouched)

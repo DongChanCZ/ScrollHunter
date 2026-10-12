@@ -145,6 +145,7 @@ public static class StorySetup
                 new StoryContent.DialogueLine{speaker=(StoryContent.Speaker)1,portraitIndex=0,text="좋아. 그 스크롤로 얼마나 대단해졌는지 한번 보자고."}
             };
         for(int i=0;i<5;i++){data.intro[i].image=textures[i];data.portraits[i].image=textures[5+i];}
+        ConfigureIntroPresentation(data);
         EditorUtility.SetDirty(data);AssetDatabase.SaveAssetIfDirty(data);
         var flow=Object.FindFirstObjectByType<BattleFlow>();
         var fs=new SerializedObject(flow);
@@ -167,6 +168,24 @@ public static class StorySetup
         so.ApplyModifiedPropertiesWithoutUndo();
         UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(flow.gameObject.scene);
     }
+    public static void ConfigureIntroPresentation(StoryContent data)
+    {
+        if (data.introPresentation == null) data.introPresentation = new IntroPresentation.Settings();
+        if (data.introPresentation.artworkShader != null) return;
+        data.introPresentation.artworkShader = AssetDatabase.LoadAssetAtPath<Shader>(Folder + "IntroArtwork.shader");
+        var styles = new[] { IntroPresentation.Style.War, IntroPresentation.Style.Scroll, IntroPresentation.Style.Conflict,
+            IntroPresentation.Style.Peace, IntroPresentation.Style.Traveler };
+        for (int i = 0; i < data.intro.Length && i < styles.Length; i++)
+        {
+            var page = data.intro[i]; page.style = styles[i];
+            page.startZoom = i == 3 ? 1.04f : 1f; page.endZoom = 1.04f;
+            page.focusFrom = i == 3 ? new Vector2(.2f,.5f) : new Vector2(.5f,.5f);
+            page.focusTo = i == 3 ? new Vector2(.8f,.5f) : i == 4 ? new Vector2(.65f,.55f) : new Vector2(.5f,.55f);
+            page.blackHold = i == 2 ? .18f : 0f;
+            page.emphasizeLastLine = i == 4;
+        }
+    }
+
     private static void Link(SerializedObject so,string name,Object value)=>so.FindProperty(name).objectReferenceValue=value;
 
     // 한 번의 Play에서만 임시 저장을 사용한다. 종료 후 실제 저장으로 돌아간다.

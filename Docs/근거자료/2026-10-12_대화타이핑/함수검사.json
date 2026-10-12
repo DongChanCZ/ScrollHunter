@@ -1,0 +1,7 @@
+[
+  "Dialogue Typing: 45 checks passed (isolated save).",
+  "Opening Story: 107 checks passed (isolated save; function/UI checks).",
+  "Forest Story: 162 checks passed (isolated save).",
+  "Battle Stories: 522 checks passed (isolated save; function/UI checks).",
+  "Intro Presentation: 103 checks passed (isolated save; deterministic animation ticks)."
+]

@@ -43,8 +43,10 @@ public static class StoryChecks
             {
                 check(s.PageIndex==i&&body.text==s.Content.intro[i].text,"intro text "+i);
                 body.ForceMeshUpdate();check(!body.isTextOverflowing,"intro fits "+i);
+                ((IntroPresentation)Get(s,"introPresentation")).Tick(3f);
                 Unlock(s);check(s.Advance(),"next intro "+i);
                 check(!s.Advance(),"same frame rejected "+i);
+                ((IntroPresentation)Get(s,"introPresentation")).Tick(1f);
             }
             check(s.Active&&!s.ShowingIntro&&f.State==BattleFlowState.Story,"intro to dialogue");
             check(load().IntroDismissed&&!load().TutorialDismissed,"only intro recorded");
@@ -61,6 +63,10 @@ public static class StoryChecks
                 if(narrator)check(body.text.StartsWith("(")&&body.text.EndsWith(")")&&!name.gameObject.activeSelf,"narration parentheses");
                 else check(name.text==(enemy?"깡패":s.Content.playerName)&&name.alignment==(enemy?TextAlignmentOptions.TopRight:TextAlignmentOptions.TopLeft),"speaker position "+i);
                 body.ForceMeshUpdate();check(!body.isTextOverflowing,"dialogue fits "+i);
+                if(s.IsTyping){
+                    Unlock(s);check(s.Advance()&&!s.IsTyping&&s.PageIndex==i,"reveal dialogue "+i);
+                    check(!s.Advance(),"reveal does not advance twice "+i);
+                }
                 Unlock(s);s.Advance();
             }
             check(!s.Active&&t.Active&&t.ShowingGuide,"dialogue finishes into lesson one");
@@ -206,6 +212,10 @@ UnityEditor.EditorApplication.update+=tick;
                 else if(!narration)check(name.text==s.Content.playerName&&name.alignment==TextAlignmentOptions.TopLeft,"player name "+i);
                 else check(!name.gameObject.activeSelf&&(body.fontStyle&FontStyles.Italic)!=0,"narrator "+i);
                 body.ForceMeshUpdate();check(!body.isTextOverflowing,"text fits "+i);
+                if(s.IsTyping){
+                    unlock();check(s.Advance()&&!s.IsTyping&&s.PageIndex==i,"reveal line "+i);
+                    check(!s.Advance(),"reveal input consumed "+i);
+                }
                 unlock();check(s.Advance(),"advance "+i);
                 check(!s.Advance(),"one input one page "+i);
             }
@@ -336,6 +346,7 @@ UnityEditor.EditorApplication.update+=tick;
                     else if(narr)check(!name.gameObject.activeSelf&&(body.fontStyle&FontStyles.Italic)!=0,"narration format");
                     else check(name.text==s.Content.playerName&&name.alignment==TextAlignmentOptions.TopLeft,"player label");
                     body.ForceMeshUpdate();check(!body.isTextOverflowing,"body fits");
+                    if(s.IsTyping){unlock();check(s.Advance()&&!s.IsTyping&&s.PageIndex==i,"reveal line");check(!s.Advance(),"reveal input consumed");}
                     unlock();check(s.Advance(),"next page");check(!s.Advance(),"one input one page");
                 }
                 check(!s.Active&&f.IsCountingDown&&Time.timeScale==0f,"last line starts countdown");
@@ -360,5 +371,163 @@ UnityEditor.EditorApplication.update+=tick;
             s.Content.leaderDialogue=savedLeader;s.Content.banditDialogue=savedBandits;s.Content.bossDialogue=savedBoss;
             menu.BackToTitle();Set(f,"inheritance",real);unlock();
         }
+    }
+
+    [MenuItem("Tools/Scroll Hunter/Check Intro Presentation (Play)")]
+    public static void PresentationMenu()=>Debug.Log(RunPresentation());
+
+    public static string RunPresentation()
+    {
+        if(!Application.isPlaying)throw new InvalidOperationException("Enter Play first.");
+        var flow=UnityEngine.Object.FindFirstObjectByType<BattleFlow>();
+        var story=flow.GetComponent<StoryUI>();
+        var menu=flow.GetComponent<MainMenuUI>();
+        var player=UnityEngine.Object.FindFirstObjectByType<Player>();
+        var cost=UnityEngine.Object.FindFirstObjectByType<CostSystem>();
+        var real=Get(flow,"inheritance");
+        int checks=0;
+        Action<bool,string> check=(ok,label)=>{if(!ok)throw new Exception("Intro presentation: "+label);checks++;};
+        Action unlock=()=>{Unlock(story);Set(flow,"menuInputFrame",-1);};
+        try
+        {
+            StorySetup.Preview();
+            var fx=(IntroPresentation)Get(story,"introPresentation");
+            var art=(UnityEngine.UI.RawImage)Get(story,"backdrop");
+            var body=(TMP_Text)Get(story,"body");
+            var particles=(UnityEngine.UI.Image[])Get(fx,"particles");
+            var config=story.Content.introPresentation;
+            check(config.artworkShader!=null&&!ShaderUtil.ShaderHasError(config.artworkShader),"shader compiles");
+            check(flow.State==BattleFlowState.Story&&Time.timeScale==0,"story pauses combat");
+            float hp=player.CurrentHp,cp=cost.Current;
+            Func<byte> finalAlpha=()=>{
+                int last=body.text.LastIndexOf('\n')+1;
+                var info=body.textInfo;
+                for(int i=0;i<info.characterCount;i++){
+                    var ch=info.characterInfo[i];
+                    if(ch.isVisible&&ch.index>=last)return info.meshInfo[ch.materialReferenceIndex].colors32[ch.vertexIndex].a;
+                }
+                throw new Exception("Ending line missing");
+            };
+            for(int page=0;page<5;page++)
+            {
+                check(story.PageIndex==page,"page entered "+page);
+                unlock();check(fx.Busy&&!story.Advance(),"entrance locks advance "+page);
+                check(body.GetComponent<CanvasGroup>().alpha==0,"text starts hidden "+page);
+                var original=art.uvRect;
+                fx.Tick(.6f);
+                if(page==4){
+                    check(finalAlpha()==0&&fx.Busy,"last sentence hidden before delay");
+                    fx.Tick(.9f);
+                    byte partial=finalAlpha();check(partial>0&&partial<255,"last sentence fades separately");
+                    fx.Tick(.3f);check(finalAlpha()==255&&!fx.Busy,"last sentence fully shown");
+                }
+                check(body.GetComponent<CanvasGroup>().alpha==1,"text readable "+page);
+                check(!body.isTextOverflowing,"text fits "+page);
+                check(!fx.Busy,"entrance completes "+page);
+                fx.Tick(10f);check(art.uvRect!=original,"artwork moves "+page);
+                var region=story.Content.intro[page].visibleRegion;var uv=art.uvRect;
+                check(uv.xMin>=region.xMin&&uv.yMin>=region.yMin&&uv.xMax<=region.xMax+.0001f&&uv.yMax<=region.yMax+.0001f,"crop stays inside original "+page);
+                check(particles.Count(x=>x.gameObject.activeSelf)==(page==0?config.emberCount:page==3?config.dustCount:0),"scene particles "+page);
+                check(art.material.GetFloat("_Style")==page+1,"scene material "+page);
+                if(page==1){
+                    float before=art.material.GetFloat("_Pulse");fx.Tick(.4f);
+                    check(!Mathf.Approximately(before,art.material.GetFloat("_Pulse")),"scroll glyph pulse");
+                }
+                if(page==2)check(art.material.GetFloat("_Shade")>0,"conflict edge darkening");
+                if(page==0){
+                    menu.OpenPauseMenu();
+                    float before=(float)Get(fx,"age");var crop=art.uvRect;
+                    typeof(StoryUI).GetMethod("Update",Hidden).Invoke(story,null);
+                    unlock();check(!story.Advance(),"pause blocks advance");story.Skip();
+                    check(story.Active&&story.PageIndex==0,"pause blocks skip");
+                    check((float)Get(fx,"age")==before&&art.uvRect==crop,"pause freezes presentation");
+                    menu.ResumeGame();unlock();
+                }
+                check(player.CurrentHp==hp&&cost.Current==cp,"intro spends no combat resources "+page);
+                unlock();check(story.Advance(),"begin departure "+page);
+                check(!story.Advance(),"same frame input blocked "+page);
+                unlock();check(!story.Advance()&&story.PageIndex==page,"transition blocks repeated input "+page);
+                fx.Tick(.13f);
+                check(body.GetComponent<CanvasGroup>().alpha==0,"text hides first "+page);
+                check(art.color.a>0&&art.color.a<1,"art fades after text "+page);
+                if(page==2){
+                    fx.Tick(.1f);check(art.color.a==0&&story.PageIndex==2,"conflict black hold");
+                    fx.Tick(.16f);
+                }else fx.Tick(.08f);
+                if(page<4)check(story.PageIndex==page+1,"one next page "+page);
+                if(page==3)check(art.color.a==0,"village uses normal fade into traveler");
+            }
+            check(story.Active&&!story.ShowingIntro&&story.PageIndex==0,"ending continues to tutorial dialogue");
+            check(!((RectTransform)Get(fx,"particleRoot")).gameObject.activeSelf,"intro particles cleared");
+            var shade=(Color)Get(story,"dialogueShade");
+            check(Mathf.Approximately(art.color.r,1-shade.a),"dialogue background shading preserved");
+            check(body.GetComponent<CanvasGroup>().alpha==1,"dialogue opacity restored");
+            StorySetup.Preview();fx.Tick(1f);unlock();story.Advance();unlock();story.Skip();fx.Tick(3f);
+            check(story.Active&&!story.ShowingIntro&&story.PageIndex==0,"skip cancels pending page change");
+            StorySetup.Preview();fx.Tick(1f);unlock();story.Advance();menu.BackToTitle();fx.Tick(3f);
+            check(!story.Active&&flow.State==BattleFlowState.Title,"title cancels pending callback");
+            StorySetup.Preview();check(story.PageIndex==0&&fx.Busy&&art.color.a==0,"reopen resets presentation");
+            return "Intro Presentation: "+checks+" checks passed (isolated save; deterministic animation ticks).";
+        }
+        finally {menu.BackToTitle();Set(flow,"inheritance",real);unlock();}
+    }
+
+    [MenuItem("Tools/Scroll Hunter/Check Dialogue Typing (Play)")]
+    public static void TypingMenu()=>Debug.Log(RunTyping());
+
+    public static string RunTyping()
+    {
+        if(!Application.isPlaying)throw new InvalidOperationException("Enter Play first.");
+        var flow=UnityEngine.Object.FindFirstObjectByType<BattleFlow>();
+        var story=flow.GetComponent<StoryUI>();var menu=flow.GetComponent<MainMenuUI>();
+        var real=Get(flow,"inheritance");
+        int checks=0,completed=0;
+        Action<bool,string> check=(ok,label)=>{if(!ok)throw new Exception("Dialogue typing: "+label);checks++;};
+        Action<float> tick=dt=>typeof(StoryUI).GetMethod("TickDialogue",Hidden).Invoke(story,new object[]{dt});
+        Action unlock=()=>{Unlock(story);Set(flow,"menuInputFrame",-1);};
+        try
+        {
+            StorySetup.Preview();unlock();story.Skip();
+            var body=(TMP_Text)Get(story,"body");
+            check(!story.ShowingIntro&&!story.IsTyping&&body.maxVisibleCharacters==body.textInfo.characterCount,"narration shown immediately");
+            check(!story.Advance(),"entry input cannot advance");
+            check(body.text.StartsWith("(")&&body.text.EndsWith(")"),"narration keeps parentheses");
+            unlock();check(story.Advance()&&story.PageIndex==1&&story.IsTyping&&body.maxVisibleCharacters==0,"one input advances narration into typed speech");
+            check(!story.Advance(),"new speech cannot reveal in same frame");
+            string full=body.text;var font=body.fontSize;float spacing=body.lineSpacing;
+            tick(.1f);body.ForceMeshUpdate();
+            check(body.maxVisibleCharacters==Mathf.FloorToInt(.1f*story.Content.dialogueCharactersPerSecond),"natural reveal speed");
+            check(story.IsTyping&&body.text==full&&body.maxVisibleCharacters<body.textInfo.characterCount,"keeps full text and Korean character boundaries");
+            var chars=body.textInfo.characterInfo.Take(body.textInfo.characterCount).Select(x=>x.lineNumber).ToArray();
+            menu.OpenPauseMenu();int visible=body.maxVisibleCharacters;tick(10f);unlock();
+            check(!story.Advance()&&body.maxVisibleCharacters==visible&&story.IsTyping,"pause freezes reveal and input");
+            story.Skip();check(story.Active,"pause blocks skip");
+            menu.ResumeGame();unlock();check(story.Advance(),"reveal accepted");
+            check(!story.IsTyping&&story.PageIndex==1&&body.maxVisibleCharacters==body.textInfo.characterCount,"first input only reveals");
+            check(!story.Advance()&&story.PageIndex==1,"same input cannot skip");
+            body.ForceMeshUpdate();
+            check(chars.SequenceEqual(body.textInfo.characterInfo.Take(body.textInfo.characterCount).Select(x=>x.lineNumber)),"word wrapping stays fixed");
+            check(body.fontSize==font&&body.lineSpacing==spacing,"readability settings unchanged");
+            unlock();check(story.Advance()&&story.PageIndex==2&&story.IsTyping&&body.maxVisibleCharacters==0,"second input starts next line");
+            tick(10f);check(!story.IsTyping,"natural completion");
+            unlock();check(story.Advance()&&story.PageIndex==3,"completed line advances directly");
+            story.Cancel();tick(10f);
+            check(!story.Active&&!story.IsTyping&&body.maxVisibleCharacters==int.MaxValue,"cancel clears typing");
+            story.ShowTutorialDialogue(()=>completed++);
+            for(int i=0;i<story.Content.tutorialDialogue.Length;i++){
+                tick(20f);check(!story.IsTyping&&story.PageIndex==i,"natural line completion "+i);
+                unlock();check(story.Advance(),"next natural line "+i);
+            }
+            check(!story.Active&&completed==1,"last line completes once");
+            unlock();story.Advance();story.Skip();check(completed==1,"completion cannot repeat");
+            story.ShowTutorialDialogue(()=>completed++);unlock();story.Advance();tick(.1f);unlock();story.Skip();tick(10f);
+            check(!story.Active&&completed==2,"skip bypasses unfinished dialogue");
+            StorySetup.Preview();
+            check(story.ShowingIntro&&!story.IsTyping&&body.maxVisibleCharacters==int.MaxValue,"intro retains whole-text presentation");
+            unlock();story.Skip();unlock();story.Advance();tick(.1f);menu.BackToTitle();tick(10f);
+            check(flow.State==BattleFlowState.Title&&!story.Active&&!story.IsTyping,"return to title cancels reveal");
+            return "Dialogue Typing: "+checks+" checks passed (isolated save).";
+        }
+        finally {menu.BackToTitle();Set(flow,"inheritance",real);unlock();}
     }
 }

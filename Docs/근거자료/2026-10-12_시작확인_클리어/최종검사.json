@@ -1,0 +1,79 @@
+{
+  "functions": {
+    "startEnd": 56,
+    "mainMenu": 28,
+    "openingStory": 107,
+    "optionsProgress": 58
+  },
+  "live": {
+    "frames": 2129,
+    "checks": 1725,
+    "failures": 0,
+    "seconds": 11.468313999997918,
+    "phase": 14,
+    "notes": [],
+    "width": 1920,
+    "height": 1080,
+    "mode": "Actual frames; programmatic input and boss damage; isolated save"
+  },
+  "savedDataBefore": {
+    "save.json": "45-43-18-6A-9C-69-1F-59-07-8A-26-0C-5D-AC-4E-F1-C8-16-F7-D4-C2-49-89-69-28-67-3B-49-D1-E9-35-D3",
+    "save.json.bak": "98-65-47-62-4F-D2-0B-DD-88-47-20-A3-F2-4B-BA-70-11-16-0D-9A-B1-D4-DF-30-0C-81-3E-4D-AB-F3-97-FC"
+  },
+  "sceneDiff": {
+    "existingChanged": [
+      {
+        "key": "--- !u!114 &169815760",
+        "removed": [
+          "  titleFormat: \"\\uC804\\uD22C {0} \\uC2B9\\uB9AC \\xB7 HP {1:0} / {2:0}\""
+        ],
+        "added": [
+          "  titleFormat: \"\\uC804\\uD22C \\uC2B9\\uB9AC \\xB7 HP {1:0} / {2:0}\""
+        ]
+      },
+      {
+        "key": "--- !u!1 &414053918",
+        "removed": [],
+        "added": [
+          "  - component: {fileID: 414053930}"
+        ]
+      },
+      {
+        "key": "--- !u!114 &414053927",
+        "removed": [],
+        "added": [
+          "  guideLineSpacing: 72",
+          "  guideMinimumHeight: 260"
+        ]
+      },
+      {
+        "key": "--- !u!114 &414053928",
+        "removed": [],
+        "added": [
+          "  startDataPanel: {fileID: 1887699431}",
+          "  newGamePanel: {fileID: 1970588578}",
+          "  startExisting: {fileID: 328842746}",
+          "  startCancel: {fileID: 2011915907}",
+          "  startNewGame: {fileID: 1752293444}",
+          "  newGameYes: {fileID: 223547188}",
+          "  newGameNo: {fileID: 1219544095}",
+          "  newGameMessage: {fileID: 1794973078}",
+          "  newGamePrompt: \"\\uAE30\\uC874 \\uB370\\uC774\\uD130\\uAC00 \\uC0AC\\uB77C\\uC9D1\\uB2C8\\uB2E4.",
+          "    \\uADF8\\uB798\\uB3C4 \\uC9C4\\uD589\\uD558\\uC2DC\\uACA0\\uC2B5\\uB2C8\\uAE4C?\""
+        ]
+      },
+      {
+        "key": "--- !u!224 &537724794",
+        "removed": [],
+        "added": [
+          "  - {fileID: 1887699432}",
+          "  - {fileID: 1970588579}"
+        ]
+      }
+    ],
+    "newObjects": 86,
+    "removedObjects": 0,
+    "guidesEqual": true
+  },
+  "scope": "No build, commit or staging. Physical input and full manual run not performed."
+}

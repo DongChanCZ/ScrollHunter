@@ -23,6 +23,7 @@ public class BattleFlow : MonoBehaviour
     [SerializeField] private Encounter[] encounters;
     [SerializeField] private TutorialFlow tutorial;
     private StoryUI story;
+    private StageClearUI stageClear;
     private bool HasTutorial => tutorial != null && tutorial.isActiveAndEnabled;
     [SerializeField] private Player player;
     [SerializeField] private DeckSystem deck;
@@ -171,6 +172,7 @@ public class BattleFlow : MonoBehaviour
     private void Awake()
     {
         story = GetComponent<StoryUI>();
+        stageClear = GetComponent<StageClearUI>();
         if (tutorial == null) tutorial = FindFirstObjectByType<TutorialFlow>();
         if (player == null) player = FindFirstObjectByType<Player>();
         if (deck == null) deck = FindFirstObjectByType<DeckSystem>();
@@ -180,7 +182,7 @@ public class BattleFlow : MonoBehaviour
         if (information == null) information = FindFirstObjectByType<CombatInfoUI>();
         if (damageNumbers == null) damageNumbers = FindFirstObjectByType<DamageNumberUI>();
         if (skillVfx == null) skillVfx = FindFirstObjectByType<SkillVfx>();
-        if (startButton != null) startButton.onClick.AddListener(StartRun);
+        if (startButton != null) startButton.onClick.AddListener(RequestStartRun);
         if (nextButton != null) nextButton.onClick.AddListener(NextBattle);
         if (restartButton != null) restartButton.onClick.AddListener(ContinueAfterResult);
         inheritance = new InheritanceSave(System.IO.Path.Combine(Application.persistentDataPath, inheritanceFileName),
@@ -282,6 +284,13 @@ public class BattleFlow : MonoBehaviour
     }
 #endif
 
+    private void RequestStartRun()
+    {
+        var menu = GetComponent<MainMenuUI>();
+        if (menu != null) menu.RequestStart();
+        else StartRun();
+    }
+
     public void StartRun()
     {
         if (State != BattleFlowState.Title || !IsConfigured()) return;
@@ -344,7 +353,11 @@ public class BattleFlow : MonoBehaviour
     {
         if (IsMenuPaused) return;
         if (PanelHeld) return;
-        if (State == BattleFlowState.Victory) { RestartRun(); return; }
+        if (State == BattleFlowState.Victory)
+        {
+            if (stageClear != null && stageClear.isActiveAndEnabled) return;
+            RestartRun(); return;
+        }
         if (State != BattleFlowState.Defeat) return;
         rewardChoices.Clear();
         foreach (var option in earnedRewards)
@@ -422,6 +435,7 @@ public class BattleFlow : MonoBehaviour
 
     public void ReturnToTitle()
     {
+        if (stageClear != null) stageClear.Cancel();
         if (story != null) story.Cancel();
         Time.timeScale = 0f;
         IsMenuPaused = false;
@@ -926,12 +940,14 @@ public class BattleFlow : MonoBehaviour
         }
         bool ended = State == BattleFlowState.Victory || State == BattleFlowState.Defeat;
         bool shown = !PanelHeld;
-        if (resultPanel != null) resultPanel.SetActive(ended && shown);
+        bool ending = State == BattleFlowState.Victory && stageClear != null && stageClear.isActiveAndEnabled;
+        if (ending && shown) stageClear.Show();
+        if (resultPanel != null) resultPanel.SetActive(ended && shown && !ending);
         if (nextButton != null) nextButton.gameObject.SetActive(shown && CanEditOrder && !IsEditingOrder);
         if (nextButtonLabel != null) nextButtonLabel.text = preparing ? firstBattleText : nextBattleText;
         if (restartButton != null)
         {
-            restartButton.gameObject.SetActive(shown && ended);
+            restartButton.gameObject.SetActive(shown && ended && !ending);
             var label = restartButton.GetComponentInChildren<TMP_Text>();
             if (label != null) label.text = State == BattleFlowState.Defeat ? inheritanceButtonText : restartButtonText;
         }
@@ -953,7 +969,7 @@ public class BattleFlow : MonoBehaviour
     private void OnDestroy()
     {
         ClearRunRewards();
-        if (startButton != null) startButton.onClick.RemoveListener(StartRun);
+        if (startButton != null) startButton.onClick.RemoveListener(RequestStartRun);
         if (nextButton != null) nextButton.onClick.RemoveListener(NextBattle);
         if (restartButton != null) restartButton.onClick.RemoveListener(ContinueAfterResult);
     }

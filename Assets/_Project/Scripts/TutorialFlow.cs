@@ -31,6 +31,8 @@ public class TutorialFlow : MonoBehaviour
     [SerializeField] private Color frameColor = new Color(0.86f, 0.74f, 0.5f, 0.9f);
     [SerializeField] private Sprite buttonSprite;
     [SerializeField] private Color textColor = Color.white;
+    [SerializeField] private float guideLineSpacing = 72f;
+    [SerializeField] private float guideMinimumHeight = 260f;
     private bool showingDefeatPrompt;
     private RectTransform skipRect;
     private RectTransform[] shades = new RectTransform[4];
@@ -318,6 +320,7 @@ public class TutorialFlow : MonoBehaviour
         guide.anchoredPosition = new Vector2(0, 255);
         guide.sizeDelta = new Vector2(1050, 225);
         guideText = Label(guide, "", 29);
+        guideText.lineSpacing = guideLineSpacing;
         guideText.rectTransform.offsetMin = new Vector2(30, 60);
         guideText.rectTransform.offsetMax = new Vector2(-30, -20);
         continueHint = Label(guide, continueHintText, 25);
@@ -344,6 +347,9 @@ public class TutorialFlow : MonoBehaviour
     private void LateUpdate()
     {
         if (!ShowingGuide) return;
+        // 넓힌 행간에도 안내와 Space가 겹치지 않도록 위쪽으로 확장한다.
+        guide.sizeDelta = new Vector2(guide.sizeDelta.x, Mathf.Max(guideMinimumHeight,
+            guideText.GetPreferredValues(guideText.text, guide.sizeDelta.x - 60f, Mathf.Infinity).y + 80f));
         // 대상 UI를 복제하거나 확대하지 않고 네 사각형으로 주변만 어둡게 한다.
         Rect bounds = canvasRoot.rect;
         Rect hole = new Rect(bounds.center, Vector2.zero);

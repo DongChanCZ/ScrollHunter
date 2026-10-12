@@ -175,15 +175,33 @@ public static class GameAudioChecks
         done?.Invoke();
     }
 
-    // 지역별 3곡·보스·타이틀 전환. 같은 아지트 2/3전투는 곡을 되감지 않는다.
+    // 인트로·입구·오솔길 분리, 반복과 같은 아지트 2/3전투의 이어 재생.
     static IEnumerator AreaMusic()
     {
         flow.ReturnToTitle(); yield return Steps(60);
         Check(audio.CurrentMusic == lib.titleMusic.clip && audio.MusicPlaying, "title BGM playing");
         var tutorial = Find<TutorialFlow>(); bool enabled = tutorial.enabled;
-        try { tutorial.enabled = true; flow.StartRun(); yield return Steps(60);
-            Check(flow.BattleNumber == 0 && audio.CurrentMusic == lib.tutorialMusic.clip && audio.MusicPlaying, "tutorial BGM playing"); }
-        finally { tutorial.enabled = enabled; }
+        var story = Find<StoryUI>();
+        try
+        {
+            tutorial.enabled = true; flow.StartRun(); yield return Steps(60);
+            Check(story.Active && story.ShowingIntro && audio.CurrentMusic == lib.introMusic.clip && audio.MusicPlaying, "intro has separate BGM");
+            story.Skip(); yield return Steps(60);
+            Check(story.Active && !story.ShowingIntro && audio.CurrentMusic == lib.tutorialMusic.clip, "tutorial dialogue switches to Tribal");
+            var entrance = (AudioSource)Get(audio, "musicA"); int sampleBefore = entrance.timeSamples;
+            story.Skip(); yield return Steps(30);
+            Check(flow.BattleNumber == 0 && tutorial.Active && audio.CurrentMusic == lib.tutorialMusic.clip && entrance.timeSamples > sampleBefore, "tutorial keeps dialogue music");
+            tutorial.Skip(); yield return Steps(2);
+            flow.ReturnToTitle(); yield return Steps(2);
+            flow.StartRun(); yield return Steps(2);
+            Check(flow.State == BattleFlowState.Preparing && !story.Active, "recorded intro/tutorial skipped on replay");
+            flow.NextBattle(); yield return Steps(60);
+            Check(story.Active && !story.ShowingIntro && audio.CurrentMusic == lib.battleMusic.clip, "forest dialogue starts Krakatoa");
+            var forest = (AudioSource)Get(audio, "musicA"); sampleBefore = forest.timeSamples;
+            story.Skip(); yield return Steps(10);
+            Check(flow.IsCountingDown && audio.CurrentMusic == lib.battleMusic.clip && forest.timeSamples > sampleBefore, "countdown keeps forest music");
+        }
+        finally { story.Cancel(); tutorial.Cancel(); tutorial.enabled = enabled; }
         var expected = new[] { lib.battleMusic, lib.hideoutMusic, lib.hideoutMusic, lib.bossMusic };
         AudioSource previous = null; int sample = 0;
         for (int i = 0; i < expected.Length; i++)
@@ -191,12 +209,28 @@ public static class GameAudioChecks
             yield return Fresh(i); yield return Steps(60);
             var source = (AudioSource)Get(audio, "musicA");
             Check(audio.CurrentMusic == expected[i].clip && source.isPlaying, "battle " + (i + 1) + " area BGM playing");
+            Check(source.loop && source.pitch == 1f && source.volume <= expected[i].volume + .001f, "BGM loop/pitch/volume");
             if (i == 2) Check(source == previous && source.timeSamples > sample, "hideout 2 to 3 continues without restart");
             previous = source; sample = source.timeSamples;
         }
-        Check(new[] { lib.tutorialMusic.clip, lib.battleMusic.clip, lib.hideoutMusic.clip }.All(c => c != null)
-            && new[] { lib.tutorialMusic.clip, lib.battleMusic.clip, lib.hideoutMusic.clip }.Distinct().Count() == 3, "three distinct pre-boss tracks");
-        notes += "music: title/tutorial/path/hideout/boss, same-map continuity PASS\n";
+        var tracks = new[] { lib.titleMusic, lib.introMusic, lib.tutorialMusic, lib.battleMusic, lib.hideoutMusic, lib.bossMusic };
+        Check(tracks.All(m => m.clip != null) && tracks.Select(m => m.clip).Distinct().Count() == 6, "six distinct BGM tracks");
+        // 전투와 분리된 출력으로 실제 루프 경계를 재생한다.
+        var go = new GameObject("MusicLoopCheck");
+        try
+        {
+            var source = go.AddComponent<AudioSource>(); source.playOnAwake = false; source.loop = true;
+            source.outputAudioMixerGroup = (AudioMixerGroup)Get(audio, "musicGroup");
+            foreach (var track in new[] { lib.tutorialMusic, lib.battleMusic })
+            {
+                source.clip = track.clip; source.volume = track.volume; source.time = track.clip.length - .4f;
+                source.Play(); yield return RealWait(1f);
+                Check(source.isPlaying && source.time < 2f && source.loop, track.clip.name + " loops past end");
+                source.Stop();
+            }
+        }
+        finally { UnityEngine.Object.Destroy(go); }
+        notes += "music: title/intro/tutorial/path/hideout/boss, replay/dialogue/countdown/loop/continuity PASS\n";
     }
 
     // ① 차단·방어도·피격·포션·거절

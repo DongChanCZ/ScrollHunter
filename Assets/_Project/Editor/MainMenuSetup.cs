@@ -146,8 +146,8 @@ public static class MainMenuSetup
         options.transform.Find("Hint").GetComponent<TMP_Text>().text="소리는 바로 반영됩니다. 적용하면 저장되고, 취소하면 돌아갑니다.";
         Place((RectTransform)options.transform.Find("Hint"),new Vector2(0,-290),new Vector2(1400,50));
         var cancel=(Button)so.FindProperty("optionsCancel").objectReferenceValue;
-        Place((RectTransform)cancel.transform,new Vector2(0,-365),new Vector2(300,76));
-        Place((RectTransform)source.transform,new Vector2(450,-365),new Vector2(300,76));
+        Place((RectTransform)cancel.transform,new Vector2(450,-365),new Vector2(300,76));
+        Place((RectTransform)source.transform,new Vector2(0,-365),new Vector2(300,76));
         var reset=options.transform.Find("ResetGame");
         var resetButton=reset!=null?reset.GetComponent<Button>():CopyButton("ResetGame",options.transform,source,"게임 초기화",new Vector2(-450,-365),new Vector2(300,76));
         Link(so,"resetOpen",resetButton);
@@ -207,6 +207,69 @@ public static class MainMenuSetup
             if(!label.text.Contains("Esc")) label.text=label.text.Replace("A 또는 우클릭 / 상단 정지·재개 버튼","A 또는 우클릭 / 상단 버튼 · Esc 메뉴");
         }
         UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(flow.gameObject.scene);
+    }
+
+
+    [MenuItem("Tools/Scroll Hunter/Apply Start Confirmation and Stage Clear")]
+    public static void ApplyStartAndEnding()
+    {
+        if(Application.isPlaying) throw new System.InvalidOperationException("Stop Play first.");
+        var f=Object.FindFirstObjectByType<BattleFlow>();
+        var menu=f.GetComponent<MainMenuUI>();
+        var so=new SerializedObject(menu);
+        var title=(GameObject)so.FindProperty("titlePanel").objectReferenceValue;
+        var canvas=title.GetComponentInParent<Canvas>().transform;
+        var source=(Button)so.FindProperty("optionsApply").objectReferenceValue;
+        var text=source.GetComponentInChildren<TMP_Text>(true);
+        var prompt=canvas.Find("StartDataConfirmation");
+        if(prompt==null)
+        {
+            prompt=Modal("StartDataConfirmation",canvas).transform;
+            Place((RectTransform)prompt.Find("Frame"),Vector2.zero,new Vector2(1280,500));
+            Place((RectTransform)prompt.Find("Body"),Vector2.zero,new Vector2(1272,492));
+            Label("Title",prompt,text,"게임 시작",new Vector2(0,170),new Vector2(1100,70),42,TextAlignmentOptions.Center);
+            var message=Label("Message",prompt,text,"기존의 데이터가 존재합니다.\n기존 게임 사양으로 시작하겠습니까?",new Vector2(0,30),new Vector2(1120,180),32,TextAlignmentOptions.Center);
+            message.lineSpacing=30;
+            CopyButton("Yes",prompt,source,"예",new Vector2(-390,-150),new Vector2(300,76));
+            CopyButton("No",prompt,source,"아니요",new Vector2(0,-150),new Vector2(300,76));
+            CopyButton("NewGame",prompt,source,"새 게임 진행",new Vector2(390,-150),new Vector2(330,76));
+        }
+        var warning=canvas.Find("NewGameConfirmation");
+        if(warning==null)
+        {
+            warning=Modal("NewGameConfirmation",canvas).transform;
+            Place((RectTransform)warning.Find("Frame"),Vector2.zero,new Vector2(1280,500));
+            Place((RectTransform)warning.Find("Body"),Vector2.zero,new Vector2(1272,492));
+            Label("Title",warning,text,"새 게임 진행",new Vector2(0,170),new Vector2(1100,70),42,TextAlignmentOptions.Center);
+            Label("Message",warning,text,"",new Vector2(0,30),new Vector2(1140,180),32,TextAlignmentOptions.Center);
+            CopyButton("Yes",warning,source,"예",new Vector2(-230,-150),new Vector2(300,76));
+            CopyButton("No",warning,source,"아니요",new Vector2(230,-150),new Vector2(300,76));
+        }
+        Link(so,"startDataPanel",prompt.gameObject);Link(so,"newGamePanel",warning.gameObject);
+        Link(so,"startExisting",prompt.Find("Yes").GetComponent<Button>());
+        Link(so,"startCancel",prompt.Find("No").GetComponent<Button>());
+        Link(so,"startNewGame",prompt.Find("NewGame").GetComponent<Button>());
+        Link(so,"newGameYes",warning.Find("Yes").GetComponent<Button>());
+        Link(so,"newGameNo",warning.Find("No").GetComponent<Button>());
+        Link(so,"newGameMessage",warning.Find("Message").GetComponent<TMP_Text>());
+        so.ApplyModifiedPropertiesWithoutUndo();prompt.gameObject.SetActive(false);warning.gameObject.SetActive(false);
+        var ending=f.GetComponent<StageClearUI>();
+        if(ending==null)ending=f.gameObject.AddComponent<StageClearUI>();
+        var e=new SerializedObject(ending);
+        Link(e,"canvasRoot",canvas);
+        Link(e,"forest",AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/_Project/Environment/Textures/BG02_빽빽한숲.png"));
+        Link(e,"desert",AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/_Project/UI/Story/DesertStage.png"));
+        var titleText=title.transform.Find("Title").GetComponent<TMP_Text>();
+        Link(e,"titleFont",titleText.font);Link(e,"titleMaterial",titleText.fontSharedMaterial);
+        Link(e,"hintFont",text.font);Link(e,"hintMaterial",text.fontSharedMaterial);
+        e.ApplyModifiedPropertiesWithoutUndo();
+        var reward=new SerializedObject(Object.FindFirstObjectByType<BattleRewardUI>());
+        reward.FindProperty("titleFormat").stringValue="전투 승리 · HP {1:0} / {2:0}";
+        reward.ApplyModifiedPropertiesWithoutUndo();
+        var tutorial=new SerializedObject(Object.FindFirstObjectByType<TutorialFlow>());
+        tutorial.FindProperty("guideLineSpacing").floatValue=72f;
+        tutorial.ApplyModifiedPropertiesWithoutUndo();
+        UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(f.gameObject.scene);
     }
 
     private static AudioMixer CreateMixer()

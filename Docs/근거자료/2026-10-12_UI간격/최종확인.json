@@ -1,0 +1,30 @@
+{
+  "playing": false,
+  "dirty": false,
+  "savedMemoryMatchesFile": true,
+  "apply": 0.0,
+  "cancel": 450.0,
+  "info": [
+    22.0,
+    22.0,
+    22.0,
+    22.0,
+    22.0,
+    22.0,
+    22.0,
+    22.0
+  ],
+  "detail": [
+    20.0,
+    20.0,
+    20.0,
+    20.0,
+    20.0,
+    20.0,
+    20.0,
+    20.0
+  ],
+  "padding": "(42.00, 38.00)",
+  "guidesEqual": true,
+  "introCleanup": "Normal reset and reset after UI destruction passed; Play exit passed; final Console error/warning 0"
+}

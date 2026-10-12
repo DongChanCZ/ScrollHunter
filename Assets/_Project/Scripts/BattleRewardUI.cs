@@ -32,7 +32,7 @@ public class BattleRewardUI : MonoBehaviour
     [SerializeField] private Button confirmReplacementButton;
     [SerializeField] private CanvasGroup confirmReplacementVisual;
     [SerializeField, Range(0f, 1f)] private float disabledConfirmAlpha = 0.45f;
-    [SerializeField] private string titleFormat = "전투 {0} 승리 · HP {1:0} / {2:0}";
+    [SerializeField] private string titleFormat = "전투 승리 · HP {1:0} / {2:0}";
     [SerializeField] private string chooseText = "보상 1개를 선택하세요. 필요 없으면 스킵할 수 있습니다.";
     [SerializeField] private string noChoicesText = "받을 수 있는 보상이 없습니다. 스킵 후 진행하세요.";
     [SerializeField] private string replaceFormat = "{0} 선택 · 교체할 카드를 고른 뒤 확인을 누르세요.";

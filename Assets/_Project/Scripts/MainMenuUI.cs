@@ -37,6 +37,11 @@ public class MainMenuUI : MonoBehaviour
     [SerializeField] private TMP_Text resetMessage;
     [SerializeField, TextArea] private string resetPrompt = "정말 게임을 초기화 하시겠습니까?\n스테이지 클리어 기록이 사라집니다.\n<size=75%>계승한 스킬·패시브와 튜토리얼 기록도 초기화됩니다.</size>";
     [SerializeField] private string resetError = "초기화하지 못했습니다. 저장 경로를 확인한 뒤 다시 시도하세요.";
+    [Header("저장 데이터 시작 확인")]
+    [SerializeField] private GameObject startDataPanel, newGamePanel;
+    [SerializeField] private Button startExisting, startCancel, startNewGame, newGameYes, newGameNo;
+    [SerializeField] private TMP_Text newGameMessage;
+    [SerializeField, TextArea] private string newGamePrompt = "기존 데이터가 사라집니다. 그래도 진행하시겠습니까?";
     private BattleFlow flow;
     private float menuResumeScale;
     public bool PauseMenuVisible => pausePanel != null && pausePanel.activeSelf;
@@ -51,6 +56,11 @@ public class MainMenuUI : MonoBehaviour
     private void Awake()
     {
         flow = GetComponent<BattleFlow>();
+        if (startExisting != null) startExisting.onClick.AddListener(ConfirmExistingStart);
+        if (startCancel != null) startCancel.onClick.AddListener(CloseStartPanels);
+        if (startNewGame != null) startNewGame.onClick.AddListener(AskNewGame);
+        if (newGameYes != null) newGameYes.onClick.AddListener(ConfirmNewGame);
+        if (newGameNo != null) newGameNo.onClick.AddListener(CancelNewGame);
         pauseResume.onClick.AddListener(ResumeGame);
         pauseOptions.onClick.AddListener(OpenOptions);
         pauseTitle.onClick.AddListener(BackToTitle);
@@ -161,6 +171,56 @@ public class MainMenuUI : MonoBehaviour
         UpdateDisplayLabels();
     }
 
+    public void RequestStart()
+    {
+        if (flow.State != BattleFlowState.Title) return;
+        ClosePanels();
+        if (inheritancePanel != null) inheritancePanel.SetActive(false);
+        if (flow.Inheritance == null || (!flow.Inheritance.HasProgress && !flow.Inheritance.LoadFailed)
+            || startDataPanel == null) { flow.StartRun(); return; }
+        startDataPanel.SetActive(true);
+        startDataPanel.transform.SetAsLastSibling();
+        ClearSelection();
+    }
+
+    private void CloseStartPanels()
+    {
+        if (startDataPanel != null) startDataPanel.SetActive(false);
+        if (newGamePanel != null) newGamePanel.SetActive(false);
+        ClearSelection();
+    }
+
+    private void ConfirmExistingStart()
+    {
+        if (flow.State != BattleFlowState.Title || startDataPanel == null || !startDataPanel.activeSelf
+            || (newGamePanel != null && newGamePanel.activeSelf)) return;
+        CloseStartPanels();
+        flow.StartRun();
+    }
+
+    private void AskNewGame()
+    {
+        if (flow.State != BattleFlowState.Title || !startDataPanel.activeSelf) return;
+        newGameMessage.text = newGamePrompt;
+        newGamePanel.SetActive(true);
+        newGamePanel.transform.SetAsLastSibling();
+        ClearSelection();
+    }
+
+    private void CancelNewGame()
+    {
+        if (newGamePanel != null) newGamePanel.SetActive(false);
+        ClearSelection();
+    }
+
+    private void ConfirmNewGame()
+    {
+        if (flow.State != BattleFlowState.Title || newGamePanel == null || !newGamePanel.activeSelf) return;
+        if (!flow.ResetGameProgress()) { newGameMessage.text = resetError; return; }
+        CloseStartPanels();
+        flow.StartRun();
+    }
+
     public void OpenControls()
     {
         if (!titlePanel.activeInHierarchy) return;
@@ -184,6 +244,7 @@ public class MainMenuUI : MonoBehaviour
 
     public void ClosePanels()
     {
+        CloseStartPanels();
         ClearSelection();
         if (OptionsVisible) { ReadSavedOptions(); ApplyAudio(); }
         controlsPanel.SetActive(false); optionsPanel.SetActive(false);
@@ -192,6 +253,8 @@ public class MainMenuUI : MonoBehaviour
 
     public void HandleEscape()
     {
+        if (newGamePanel != null && newGamePanel.activeSelf) { CancelNewGame(); return; }
+        if (startDataPanel != null && startDataPanel.activeSelf) { CloseStartPanels(); return; }
         if (resetPanel.activeSelf) { resetPanel.SetActive(false); return; }
         if (OptionsVisible || controlsPanel.activeSelf) { ClosePanels(); return; }
         if (titlePanel.activeInHierarchy) { inheritancePanel.SetActive(false); return; }

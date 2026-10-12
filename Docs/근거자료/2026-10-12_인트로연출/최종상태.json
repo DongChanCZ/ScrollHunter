@@ -1,0 +1,36 @@
+{
+  "playing": false,
+  "dirty": false,
+  "scene": "Assets/_Project/Scenes/Battle.unity",
+  "files": [
+    {
+      "path": "Assets/_Project/Scenes/Battle.unity",
+      "same": true,
+      "hash": "0B-6F-7E-83-95-B0-AF-CB-88-87-83-72-B1-FE-05-E2-B2-50-D8-29-63-7A-AE-E5-ED-06-9C-43-5C-C9-08-C9"
+    },
+    {
+      "path": "Assets/_Project/Data/Story/OpeningStory.asset",
+      "same": false,
+      "hash": "D9-EE-D2-11-FA-0D-7E-B7-3C-CE-05-31-A1-BA-64-38-C9-CF-BE-76-1B-9E-4E-92-87-33-CB-2A-CC-B8-A1-3B"
+    },
+    {
+      "path": "Assets/_Project/Fonts/GmarketSansMedium SDF.asset",
+      "same": true,
+      "hash": "E4-AE-05-87-AB-1A-E4-F5-C4-3E-31-5E-65-2B-61-DE-84-6E-30-46-96-03-CB-8F-21-00-EA-0D-38-50-CC-D8"
+    },
+    {
+      "path": "C:/Users/MBC-501-19/AppData/LocalLow/DefaultCompany/ScrollHunter/save.json",
+      "same": true,
+      "hash": "9B-F7-7F-D9-C8-58-55-A7-D0-75-E5-BA-2D-3A-64-6C-49-BA-80-EA-F0-1F-2E-CA-39-10-6D-F4-75-B5-30-A5"
+    },
+    {
+      "path": "C:/Users/MBC-501-19/AppData/LocalLow/DefaultCompany/ScrollHunter/save.json.bak",
+      "same": true,
+      "hash": "5D-43-51-E9-91-16-AD-BB-D1-D0-82-6A-14-11-6F-02-ED-40-83-DC-AC-47-05-5B-BE-0B-BD-3D-AA-73-B1-C1"
+    }
+  ],
+  "shader": "ScrollHunter/UI/IntroArtwork",
+  "shaderErrors": false,
+  "meta": true,
+  "guidesEqual": true
+}

@@ -106,6 +106,7 @@ public class SoundLibrary : ScriptableObject
 
     [Header("배경음 (Music 그룹)")]
     public MusicTrack titleMusic = new MusicTrack();
+    public MusicTrack introMusic = new MusicTrack();
     public MusicTrack tutorialMusic = new MusicTrack();
     [Tooltip("인적 드문 오솔길")]
     public MusicTrack battleMusic = new MusicTrack();

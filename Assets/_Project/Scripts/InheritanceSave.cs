@@ -26,6 +26,7 @@ public sealed class InheritanceSave
     public int ClearedBattles => data.clearedBattles;
     public bool LoadFailed { get; private set; }
     public bool UsedBackup { get; private set; }
+    public bool HasProgress => HasAny || IntroDismissed || TutorialDismissed;
     public bool HasAny => data.passives.Count > 0 || Array.Exists(data.cards, id => !string.IsNullOrEmpty(id));
 
     public InheritanceSave(string path, BattleRewardOption[] catalog, List<SkillData> baseDeck)

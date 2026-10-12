@@ -1,0 +1,52 @@
+
+var flow=UnityEngine.Object.FindFirstObjectByType<BattleFlow>();
+var story=flow.GetComponent<StoryUI>();var menu=flow.GetComponent<MainMenuUI>();
+var player=UnityEngine.Object.FindFirstObjectByType<Player>();var cost=UnityEngine.Object.FindFirstObjectByType<CostSystem>();
+var flags=System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic;
+var inheritanceField=typeof(BattleFlow).GetField("inheritance",flags);var real=inheritanceField.GetValue(flow);
+var fx=(IntroPresentation)typeof(StoryUI).GetField("introPresentation",flags).GetValue(story);
+var ageField=typeof(IntroPresentation).GetField("age",flags);
+bool oldBackground=UnityEngine.Application.runInBackground;UnityEngine.Application.runInBackground=true;
+var gameView=System.Type.GetType("UnityEditor.GameView,UnityEditor");if(gameView!=null)UnityEditor.EditorWindow.GetWindow(gameView).Focus();
+StorySetup.Preview();
+string folder="Docs/근거자료/2026-10-12_인트로연출/";
+float hp=player.CurrentHp,cp=cost.Current,pausedAge=0;
+int frames=0,last=-1,checks=0,failures=0;bool paused=false,pauseDone=false,endingEarly=false;
+var shots=new bool[5];var messages=new System.Collections.Generic.List<string>();
+double began=UnityEditor.EditorApplication.timeSinceStartup,pauseStart=0;
+System.Action<bool,string> check=(ok,label)=>{checks++;if(!ok){failures++;if(messages.Count<10)messages.Add(label);}};
+UnityEditor.EditorApplication.CallbackFunction tick=null;
+tick=()=>{
+ if(!UnityEngine.Application.isPlaying){UnityEditor.EditorApplication.update-=tick;return;}
+ UnityEditor.EditorApplication.QueuePlayerLoopUpdate();
+ double now=UnityEditor.EditorApplication.timeSinceStartup;
+ if(Time.frameCount==last&&now-began<60)return;
+ last=Time.frameCount;frames++;
+ float age=(float)ageField.GetValue(fx);
+ if(story.ShowingIntro&&story.Active){
+  check(flow.State==BattleFlowState.Story&&Time.timeScale==0,"story freeze");
+  check(player.CurrentHp==hp&&cost.Current==cp,"resources unchanged");
+  int page=story.PageIndex;
+  if(page==0&&!pauseDone&&age>=.8f){
+   if(!paused){menu.OpenPauseMenu();paused=true;pauseStart=now;pausedAge=age;}
+   else {check(age==pausedAge,"Esc freezes presentation");if(now-pauseStart>=.6){menu.ResumeGame();paused=false;pauseDone=true;}}
+  }
+  if(!paused){
+   if(page==4&&!endingEarly&&age>=.8f){endingEarly=true;ScreenCapture.CaptureScreenshot(folder+"05_여행자_문장등장전.png");}
+   if(!shots[page]&&age>=(page==4?2f:1.2f)){
+    shots[page]=true;ScreenCapture.CaptureScreenshot(folder+new[]{"01_전쟁_실프레임.png","02_스크롤_실프레임.png","03_쟁탈_실프레임.png","04_마을_실프레임.png","05_여행자_실프레임.png"}[page]);
+   }
+   if(age>=2.7f&&!fx.Busy){check(story.Advance(),"advance");check(!story.Advance(),"repeat input ignored");}
+  }
+ }
+ if((story.Active&&!story.ShowingIntro)||now-began>=60){
+  check(story.Active&&!story.ShowingIntro&&story.PageIndex==0,"completed to tutorial dialogue");
+  check(shots.All(x=>x)&&endingEarly&&pauseDone,"all scenes and pause exercised");
+  var result=new {checks=checks,failures=failures,frames=frames,seconds=now-began,notes=messages,mode="Live Unity frames; programmatic advance and Esc menu; isolated save"};
+  System.IO.File.WriteAllText(folder+"실프레임검사.json",Newtonsoft.Json.JsonConvert.SerializeObject(result,Newtonsoft.Json.Formatting.Indented),new System.Text.UTF8Encoding(false));
+  UnityEditor.EditorApplication.update-=tick;menu.BackToTitle();inheritanceField.SetValue(flow,real);
+  UnityEngine.Application.runInBackground=oldBackground;
+ }
+};
+UnityEditor.EditorApplication.update+=tick;
+return "Live 5-scene transition check started, 60-second timeout.";

@@ -12,6 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36e772b593a82b845862f3dc99b8879e, type: 3}
   m_Name: OpeningStory
   m_EditorClassIdentifier: Assembly-CSharp::StoryContent
+  introPresentation:
+    artworkShader: {fileID: 4800000, guid: 8e598cec638dae54ba7cc12779240156, type: 3}
+    fadeIn: 0.4
+    fadeOut: 0.2
+    textDelay: 0.18
+    textFade: 0.35
+    motionSeconds: 12
+    pulseSeconds: 3
+    endingDelay: 1.3
+    endingFade: 0.45
+    glowStrength: 0.45
+    conflictShade: 0.22
+    emberCount: 14
+    dustCount: 8
+    particleSize: {x: 3, y: 6}
+    emberColor: {r: 1, g: 0.45, b: 0.12, a: 0.7}
+    dustColor: {r: 1, g: 0.88, b: 0.62, a: 0.3}
+  dialogueCharactersPerSecond: 50
   playerName: "\uBAA8\uD5D8\uAC00"
   continueText: Space
   introSkipText: "\uC778\uD2B8\uB85C \uAC74\uB108\uB6F0\uAE30"
@@ -29,6 +47,13 @@ MonoBehaviour:
       \uC0C8\uB85C\uC6B4 \uAE30\uC220\uC744 \uAC1C\uBC1C\uD558\uB3C4\uB85D \uBA85\uD588\uB2E4.
       \uADF8\uB807\uAC8C \uD0C4\uC0DD\uD55C \uAC83\uC774 \uBC14\uB85C \u2018\uBE44\uC804
       \uC2A4\uD06C\uB864\u2019\uC774\uC5C8\uB2E4."
+    style: 1
+    startZoom: 1
+    endZoom: 1.04
+    focusFrom: {x: 0.5, y: 0.5}
+    focusTo: {x: 0.5, y: 0.55}
+    emphasizeLastLine: 0
+    blackHold: 0
   - image: {fileID: 2800000, guid: af591cdab0151f24bb245fb6f6f6e364, type: 3}
     visibleRegion:
       serializedVersion: 2
@@ -42,6 +67,13 @@ MonoBehaviour:
       \uC2A4\uD06C\uB864\uC5D0 \uB2F4\uAE34 \uD798\uACFC \uAE30\uC220\uC744 \uC775\uD600
       \uC804\uC7A5\uC5D0\uC11C \uD65C\uC57D\uD588\uACE0, \uC81C\uAD6D\uC740 \uB9C8\uCE68\uB0B4
       \uC804\uC7C1\uC5D0\uC11C \uC2B9\uB9AC\uD588\uB2E4."
+    style: 2
+    startZoom: 1
+    endZoom: 1.04
+    focusFrom: {x: 0.5, y: 0.5}
+    focusTo: {x: 0.5, y: 0.55}
+    emphasizeLastLine: 0
+    blackHold: 0
   - image: {fileID: 2800000, guid: 3ff3c48f683a98741b96feacbc1f27bc, type: 3}
     visibleRegion:
       serializedVersion: 2
@@ -54,6 +86,13 @@ MonoBehaviour:
       \uD0D0\uC695\uC744 \uC790\uADF9\uD588\uB2E4. \uC2A4\uD06C\uB864\uC744 \uCC28\uC9C0\uD558\uB824\uB294
       \uB2E4\uD23C\uC740 \uC81C\uAD6D \uB0B4\uBD80\uB85C \uBC88\uC84C\uACE0, \uB05D\uC5C6\uB294
       \uBD84\uC5F4 \uC18D\uC5D0\uC11C \uC81C\uAD6D\uC740 \uACB0\uAD6D \uBAB0\uB77D\uD588\uB2E4."
+    style: 3
+    startZoom: 1
+    endZoom: 1.04
+    focusFrom: {x: 0.5, y: 0.5}
+    focusTo: {x: 0.5, y: 0.55}
+    emphasizeLastLine: 0
+    blackHold: 0.18
   - image: {fileID: 2800000, guid: c9f8c84b5cdf89048901bfe208960985, type: 3}
     visibleRegion:
       serializedVersion: 2
@@ -68,6 +107,13 @@ MonoBehaviour:
       \uBFD0\uC774\uB2E4. \uD55C\uB54C \uC81C\uAD6D\uC758 \uBCD1\uC0AC\uB4E4\uC5D0\uAC8C
       \uB9C9\uAC15\uD55C \uD798\uC744 \uBD80\uC5EC\uD588\uB2E4\uB294 \uC774\uC57C\uAE30\uB294
       \uACE0\uB300\uC758 \uC804\uC124\uB85C \uB0A8\uC558\uB2E4."
+    style: 4
+    startZoom: 1.04
+    endZoom: 1.04
+    focusFrom: {x: 0.2, y: 0.5}
+    focusTo: {x: 0.8, y: 0.5}
+    emphasizeLastLine: 0
+    blackHold: 0
   - image: {fileID: 2800000, guid: bc6b70da7616c02498bbfbd58824d6d2, type: 3}
     visibleRegion:
       serializedVersion: 2
@@ -79,6 +125,13 @@ MonoBehaviour:
       \uC2A4\uD06C\uB864\uC744 \uBAA8\uC73C\uACE0, \uC2F8\uC6B0\uBA70 \uBAA8\uD5D8\uC744
       \uC774\uC5B4\uAC00\uB294 \uC774\uB4E4\uC774 \uC788\uB2E4.\n\uC0AC\uB78C\uB4E4\uC740
       \uADF8\uB4E4\uC744 \uC2A4\uD06C\uB864 \uD5CC\uD130\uB77C \uBD80\uB978\uB2E4."
+    style: 5
+    startZoom: 1
+    endZoom: 1.04
+    focusFrom: {x: 0.5, y: 0.5}
+    focusTo: {x: 0.65, y: 0.55}
+    emphasizeLastLine: 1
+    blackHold: 0
   portraits:
   - displayName: "\uAE61\uD328"
     image: {fileID: 2800000, guid: d4bbda605c246f6468e0fcc869a22020, type: 3}

@@ -1,0 +1,48 @@
+{
+  "playing": false,
+  "dirty": false,
+  "hashes": {
+    "Assets/_Project/Scenes/Battle.unity": true,
+    "Assets/_Project/Fonts/GmarketSansMedium SDF.asset": true,
+    "C:/Users/MBC-501-19/AppData/LocalLow/DefaultCompany/ScrollHunter/save.json": true,
+    "C:/Users/MBC-501-19/AppData/LocalLow/DefaultCompany/ScrollHunter/save.json.bak": true
+  },
+  "tracks": [
+    {
+      "name": "titleMusic",
+      "clip": "Assets/_Project/Audio/Music/bgm_title_dark_shrine.wav",
+      "volume": 0.45,
+      "defaultMatches": true
+    },
+    {
+      "name": "introMusic",
+      "clip": "Assets/_Project/Audio/Music/bgm_edge_peaceful_forest.ogg",
+      "volume": 0.25,
+      "defaultMatches": true
+    },
+    {
+      "name": "tutorialMusic",
+      "clip": "Assets/_Project/Audio/Music/bgm_edge_tribal.wav",
+      "volume": 0.08,
+      "defaultMatches": true
+    },
+    {
+      "name": "battleMusic",
+      "clip": "Assets/_Project/Audio/Music/bgm_path_krakatoa.ogg",
+      "volume": 0.11,
+      "defaultMatches": true
+    },
+    {
+      "name": "hideoutMusic",
+      "clip": "Assets/_Project/Audio/Music/bgm_hideout_dark_sneaky.ogg",
+      "volume": 0.3,
+      "defaultMatches": true
+    },
+    {
+      "name": "bossMusic",
+      "clip": "Assets/_Project/Audio/Music/bgm_boss_evil_awaits.wav",
+      "volume": 0.32,
+      "defaultMatches": true
+    }
+  ]
+}

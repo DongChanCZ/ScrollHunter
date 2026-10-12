@@ -39,6 +39,7 @@ public sealed class StoryUI : MonoBehaviour
     [SerializeField] private Color dialogueShade = new Color(.02f,.025f,.04f,.27f);
     [SerializeField] private KeyCode advanceKey = KeyCode.Space, alternateAdvanceKey = KeyCode.Return;
 
+    private IntroPresentation introPresentation;
     private BattleFlow flow;
     private GameObject root;
     private RawImage backdrop, portrait, secondaryPortrait;
@@ -48,6 +49,9 @@ public sealed class StoryUI : MonoBehaviour
     private Button skip;
     private Action finished;
     private int consumedFrame = -1;
+    private float revealedCharacters;
+    private int dialogueCharacterCount;
+    public bool IsTyping => Active && !ShowingIntro && body.maxVisibleCharacters < dialogueCharacterCount;
     public bool Active { get; private set; }
     public bool ShowingIntro { get; private set; }
     public int PageIndex { get; private set; }
@@ -58,11 +62,26 @@ public sealed class StoryUI : MonoBehaviour
     private void Awake() { flow = GetComponent<BattleFlow>(); BuildUI(); }
     private void Update()
     {
-        if (!Active || flow.IsMenuPaused || consumedFrame == Time.frameCount) return;
-        bool click = Input.GetMouseButtonDown(0);
-        if (click && RectTransformUtility.RectangleContainsScreenPoint((RectTransform)skip.transform, Input.mousePosition)) return;
-        if (click || Input.GetKeyDown(advanceKey) || Input.GetKeyDown(alternateAdvanceKey)
-            || Input.GetKeyDown(KeyCode.KeypadEnter)) Advance();
+        if (!Active || flow.IsMenuPaused) return;
+        introPresentation.Tick(Time.unscaledDeltaTime);
+        if (!Active) return;
+        if (consumedFrame != Time.frameCount)
+        {
+            bool click = Input.GetMouseButtonDown(0);
+            bool skipClick = click && RectTransformUtility.RectangleContainsScreenPoint((RectTransform)skip.transform, Input.mousePosition);
+            if (!skipClick && (click || Input.GetKeyDown(advanceKey) || Input.GetKeyDown(alternateAdvanceKey)
+                || Input.GetKeyDown(KeyCode.KeypadEnter))) Advance();
+        }
+        // 입력 한 번으로 새 문장까지 넘어가지 않도록 표시보다 입력을 먼저 처리한다.
+        if (consumedFrame != Time.frameCount) TickDialogue(Time.unscaledDeltaTime);
+    }
+
+    private void TickDialogue(float delta)
+    {
+        if (!IsTyping || flow.IsMenuPaused) return;
+        revealedCharacters = Mathf.Min(dialogueCharacterCount,
+            revealedCharacters + Mathf.Max(0f, delta) * Mathf.Max(1f, content.dialogueCharactersPerSecond));
+        body.maxVisibleCharacters = Mathf.FloorToInt(revealedCharacters);
     }
 
     public void ShowIntro(Action onFinished) => Show(true, onFinished);
@@ -118,8 +137,18 @@ public sealed class StoryUI : MonoBehaviour
     {
         if (!Active || flow.IsMenuPaused || consumedFrame == Time.frameCount) return false;
         consumedFrame = Time.frameCount;
-        int length = ShowingIntro ? content.intro.Length : currentDialogue.Length;
-        if (++PageIndex >= length) Complete(); else DrawPage();
+        if (ShowingIntro)
+            return introPresentation.Leave(() =>
+            {
+                if (++PageIndex >= content.intro.Length) Complete(); else DrawPage();
+            });
+        if (IsTyping)
+        {
+            revealedCharacters = dialogueCharacterCount;
+            body.maxVisibleCharacters = dialogueCharacterCount;
+            return true;
+        }
+        if (++PageIndex >= currentDialogue.Length) Complete(); else DrawPage();
         return true;
     }
     public void Skip()
@@ -137,6 +166,9 @@ public sealed class StoryUI : MonoBehaviour
     public void Cancel()
     {
         finished = null;
+        introPresentation?.Reset();
+        revealedCharacters = 0f; dialogueCharacterCount = 0;
+        if (body != null) body.maxVisibleCharacters = int.MaxValue;
         Active = false;
         consumedFrame = Time.frameCount;
         if (root != null) root.SetActive(false);
@@ -164,6 +196,8 @@ public sealed class StoryUI : MonoBehaviour
 
     private void DrawPage()
     {
+        if (!ShowingIntro) introPresentation.Reset();
+        body.maxVisibleCharacters = int.MaxValue;
         backdrop.gameObject.SetActive(true);
         artArea.offsetMin=new Vector2(0,ShowingIntro?bottomMargin+boxSize.y:0);
         imageFit.aspectMode=ShowingIntro?AspectRatioFitter.AspectMode.FitInParent:AspectRatioFitter.AspectMode.EnvelopeParent;
@@ -184,6 +218,7 @@ public sealed class StoryUI : MonoBehaviour
             backdrop.uvRect=page.visibleRegion;
             if (page.image != null) imageFit.aspectRatio = (page.image.width * page.visibleRegion.width) / (page.image.height * page.visibleRegion.height);
             body.text = page.text;
+            introPresentation.Show(page);
             return;
         }
         backdrop.texture=currentDialogueBackground;
@@ -209,6 +244,10 @@ public sealed class StoryUI : MonoBehaviour
             if (group) right += DrawPortrait(secondaryPortrait, content.portraits[line.secondaryPortraitIndex].image, size, right) + 24f;
             DrawPortrait(portrait, actor.image, size, right);
         }
+        body.ForceMeshUpdate();
+        dialogueCharacterCount = body.textInfo.characterCount;
+        revealedCharacters = narration ? dialogueCharacterCount : 0f;
+        body.maxVisibleCharacters = narration ? dialogueCharacterCount : 0;
     }
 
     private float DrawPortrait(RawImage image, Texture2D texture, Vector2 size, float right)
@@ -277,6 +316,7 @@ public sealed class StoryUI : MonoBehaviour
         sr.anchorMin=sr.anchorMax=sr.pivot=new Vector2(1,1);
         sr.anchoredPosition=-skipMargin; sr.sizeDelta=skipSize; skip.gameObject.SetActive(true);
         var label=skip.GetComponentInChildren<TMP_Text>(); label.fontSize=hintFontSize;
+        introPresentation = new IntroPresentation(backdrop, body, hint, content != null ? content.introPresentation : new IntroPresentation.Settings());
         root.SetActive(false);
     }
     private TMP_Text Label(string objectName, Transform parent, float size, Color color)
@@ -290,5 +330,5 @@ public sealed class StoryUI : MonoBehaviour
     private static void Stretch(RectTransform rect)
     { rect.anchorMin=Vector2.zero; rect.anchorMax=Vector2.one; rect.offsetMin=rect.offsetMax=Vector2.zero; }
     private void OnDisable() => Cancel();
-    private void OnDestroy() { if(root != null) Destroy(root); }
+    private void OnDestroy() { introPresentation?.Dispose(); if(root != null) Destroy(root); }
 }

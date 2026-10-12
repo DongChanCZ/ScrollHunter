@@ -1,0 +1,81 @@
+
+var f=UnityEngine.Object.FindFirstObjectByType<BattleFlow>();var s=f.GetComponent<StoryUI>();var menu=f.GetComponent<MainMenuUI>();
+var flags=System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic;
+var saveField=typeof(BattleFlow).GetField("inheritance",flags);var real=saveField.GetValue(f);
+var inputField=typeof(StoryUI).GetField("consumedFrame",flags);
+var fx=(IntroPresentation)typeof(StoryUI).GetField("introPresentation",flags).GetValue(s);
+var art=(UnityEngine.UI.RawImage)typeof(StoryUI).GetField("backdrop",flags).GetValue(s);
+var body=(TMPro.TMP_Text)typeof(StoryUI).GetField("body",flags).GetValue(s);
+var ageField=typeof(IntroPresentation).GetField("age",flags);
+bool previousBackground=Application.runInBackground;Application.runInBackground=true;
+var gameView=System.Type.GetType("UnityEditor.GameView,UnityEditor");if(gameView!=null)UnityEditor.EditorWindow.GetWindow(gameView).Focus();
+StorySetup.Preview();
+for(int i=0;i<3;i++){fx.Tick(3f);inputField.SetValue(s,-1);s.Advance();fx.Tick(1f);}
+fx.Tick(1f);
+string folder="Docs/근거자료/2026-10-12_대화타이핑/";
+int phase=0,frames=0,last=-1,checks=0,failures=0,pausedCharacters=0;float playerStart=0;
+bool fadeShot=false;double begin=UnityEditor.EditorApplication.timeSinceStartup,phaseStart=begin;
+var messages=new System.Collections.Generic.List<string>();
+System.Action<bool,string> check=(ok,label)=>{checks++;if(!ok){failures++;if(messages.Count<12)messages.Add(label);}};
+UnityEditor.EditorApplication.CallbackFunction tick=null;
+tick=()=>{
+ if(!Application.isPlaying){UnityEditor.EditorApplication.update-=tick;return;}
+ UnityEditor.EditorApplication.QueuePlayerLoopUpdate();double now=UnityEditor.EditorApplication.timeSinceStartup;
+ if(Time.frameCount==last&&now-begin<45)return;last=Time.frameCount;frames++;
+ check(Time.timeScale==0&&f.State==BattleFlowState.Story,"story remains paused");
+ switch(phase){
+  case 0:
+   if(now-phaseStart<.3)break;
+   check(s.PageIndex==3&&s.ShowingIntro,"village ready");s.Advance();phase=1;break;
+  case 1:
+   if(s.PageIndex==3&&art.color.a<.8f&&!fadeShot){fadeShot=true;ScreenCapture.CaptureScreenshot(folder+"01_마을_페이드아웃.png");}
+   if(s.PageIndex==4&&(float)ageField.GetValue(fx)>.12f){
+    check(art.color.a<1,"traveler fades in");
+    check(!art.transform.parent.GetComponentsInChildren<UnityEngine.UI.RawImage>(true).Any(x=>x.name=="OutgoingIntroArtwork"),"no overlap layer");
+    ScreenCapture.CaptureScreenshot(folder+"02_여행자_페이드인.png");phase=2;
+   }break;
+  case 2:
+   if((float)ageField.GetValue(fx)<1.9f)break;
+   s.Skip();check(!s.ShowingIntro&&!s.IsTyping&&body.maxVisibleCharacters==body.textInfo.characterCount,"narration immediately complete");
+   ScreenCapture.CaptureScreenshot(folder+"03_괄호지문.png");phase=3;phaseStart=now;break;
+  case 3:
+   if(now-phaseStart<.3)break;
+   check(s.Advance()&&s.PageIndex==1&&s.IsTyping,"narration needs one input");
+   phase=4;break;
+  case 4:
+   if(body.maxVisibleCharacters<4)break;
+   check(s.IsTyping&&body.maxVisibleCharacters<body.textInfo.characterCount,"speech naturally reveals");
+   ScreenCapture.CaptureScreenshot(folder+"04_깡패_출력중.png");phase=5;break;
+  case 5:
+   menu.OpenPauseMenu();pausedCharacters=body.maxVisibleCharacters;phase=6;phaseStart=now;break;
+  case 6:
+   check(body.maxVisibleCharacters==pausedCharacters,"pause holds character count");
+   if(now-phaseStart<.4)break;
+   check(!s.Advance(),"pause rejects reveal");menu.ResumeGame();
+   inputField.SetValue(s,-1);
+   check(s.Advance()&&!s.IsTyping&&s.PageIndex==1,"first input completes only");
+   check(!s.Advance(),"same frame does not advance");
+   phase=7;phaseStart=now;break;
+  case 7:
+   if(now-phaseStart<.3)break;
+   ScreenCapture.CaptureScreenshot(folder+"05_깡패_전체출력.png");phase=8;break;
+  case 8:
+   check(s.Advance()&&s.PageIndex==2&&s.IsTyping,"second input starts player reply");
+   playerStart=Time.unscaledTime;phase=9;break;
+  case 9:
+   if(s.IsTyping)break;
+   check(s.PageIndex==2&&Time.unscaledTime>playerStart,"player naturally finishes");
+   ScreenCapture.CaptureScreenshot(folder+"06_모험가_자연완료.png");phase=10;phaseStart=now;break;
+  case 10:
+   if(now-phaseStart<.3)break;
+   s.Advance();check(s.PageIndex==3,"natural completion advances once");phase=11;break;
+ }
+ if(phase==11||now-begin>=45){
+  check(phase==11&&fadeShot,"all checks completed");
+  var result=new {frames=frames,checks=checks,failures=failures,seconds=now-begin,phase=phase,notes=messages,mode="Live frames; programmatic input; isolated save"};
+  System.IO.File.WriteAllText(folder+"실프레임검사.json",Newtonsoft.Json.JsonConvert.SerializeObject(result,Newtonsoft.Json.Formatting.Indented),new System.Text.UTF8Encoding(false));
+  UnityEditor.EditorApplication.update-=tick;menu.BackToTitle();saveField.SetValue(f,real);Application.runInBackground=previousBackground;
+ }
+};
+UnityEditor.EditorApplication.update+=tick;
+return "Live transition and typing check started.";

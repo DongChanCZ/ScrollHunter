@@ -49,6 +49,7 @@ public sealed class GameAudio : MonoBehaviour
     private readonly System.Random variation = new System.Random();
 
     private BattleFlow flow;
+    private StoryUI story;
     private DeckSystem deck;
     private Player player;
     private CombatInfoUI info;
@@ -112,6 +113,7 @@ public sealed class GameAudio : MonoBehaviour
     private void Start()
     {
         flow = FindFirstObjectByType<BattleFlow>(FindObjectsInactive.Include);
+        story = flow != null ? flow.GetComponent<StoryUI>() : null;
         deck = FindFirstObjectByType<DeckSystem>(FindObjectsInactive.Include);
         player = FindFirstObjectByType<Player>(FindObjectsInactive.Include);
         info = FindFirstObjectByType<CombatInfoUI>(FindObjectsInactive.Include);
@@ -516,9 +518,11 @@ public sealed class GameAudio : MonoBehaviour
         if (flow == null) return library.battleMusic;
         var state = flow.State;
         if (state == BattleFlowState.Title || state == BattleFlowState.Inheriting) return library.titleMusic;
+        if (state == BattleFlowState.Story && story != null && story.Active && story.ShowingIntro)
+            return library.introMusic;
         if (flow.BattleNumber <= 0) return library.tutorialMusic;
         if (flow.BattleNumber >= flow.BattleCount && flow.BattleCount > 0) return library.bossMusic;
-        // 같은 산적 아지트의 전투 2·3은 같은 곡을 이어서 재생한다.
+        // 같은 도적 아지트의 전투 2·3은 같은 곡을 이어서 재생한다.
         return flow.BattleNumber == 1 ? library.battleMusic : library.hideoutMusic;
     }
 

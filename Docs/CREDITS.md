@@ -181,12 +181,14 @@
 - artisticdude "Freeze Spell" — https://opengameart.org/content/freeze-spell-0 — CC0. `freeze.wav` → `Audio/Magic/freeze_wind.wav`.
 - 배경음: qubodup "Dark Shrine Loop"(yd "Shrine"(CC0) 리믹스) — https://opengameart.org/content/dark-shrine-loop — CC0 → `Audio/Music/bgm_title_dark_shrine.wav`. cynicmusic "Battle Theme A" — https://opengameart.org/content/battle-theme-a — CC0(페이지 요청 표기: cynicmusic.com, pixelsphere.org) → `bgm_battle_theme_a.wav`. bosslevelaudio "Evil Awaits" — https://opengameart.org/content/evil-awaits — 여러 라이선스 중 CC0 선택 → `bgm_boss_evil_awaits.wav`. 편집: 반복 이음매 빈틈을 없애려고 앞뒤 무음(0.005~1.33초)만 잘라 WAV로 저장.
 
-- 후속 입구 배경음: **Samza — Peaceful Forest** — https://opengameart.org/content/peaceful-forest — CC0 → `Audio/Music/bgm_edge_peaceful_forest.ogg`. 편집: 음량 보정, 반복 경계 0.25초 겹침, OGG 변환.
-- 후속 오솔길 배경음: **beardalaxy — Iremos Forest Theme Loop** — https://opengameart.org/content/iremos-forest-theme-loop — CC0 → `Audio/Music/bgm_path_iremos.ogg`. 편집: 음량 보정, 원본 반복 구간 유지.
+- 인트로 배경음(이전 입구 곡): **Samza — Peaceful Forest** — https://opengameart.org/content/peaceful-forest — CC0 → `Audio/Music/bgm_edge_peaceful_forest.ogg`. 편집: 음량 보정, 반복 경계 0.25초 겹침, OGG 변환.
+- 이전 오솔길 배경음(현재 미연결): **beardalaxy — Iremos Forest Theme Loop** — https://opengameart.org/content/iremos-forest-theme-loop — CC0 → `Audio/Music/bgm_path_iremos.ogg`. 편집: 음량 보정, 원본 반복 구간 유지.
 - 후속으로 `Battle Theme A`, 주황 경고와 기존 전자 버튼음, 차단용 `glass_shatter` 연결 해제. 타이틀·보스 곡과 방어도/오브 유리 소리는 유지.
+- 10/12 입구 배경음: **Of Far Different Nature — Tribal** — https://opengameart.org/content/tribal — CC0(https://creativecommons.org/publicdomain/zero/1.0/) → `Audio/Music/bgm_edge_tribal.wav`. 원본 WAV 유지, 재생 음량만 조정.
+- 10/12 오솔길 배경음: **Kistol — Krakatoa** — https://opengameart.org/content/krakatoa — CC0(https://creativecommons.org/publicdomain/zero/1.0/) → `Audio/Music/bgm_path_krakatoa.ogg`. 원본 OGG·반복 구간 유지, 재생 음량만 조정.
 
 **CC-BY (표기 필수)**
-- **Dark Sneaky Ambient — MrAlex99** — https://opengameart.org/content/dark-sneaky-ambient — **CC BY 4.0** (https://creativecommons.org/licenses/by/4.0/) → `Audio/Music/bgm_hideout_dark_sneaky.ogg`. 편집: 앞 무음 0.033초 제거, 반복 경계 0.35초 겹침, 음량 보정, OGG 변환. 산적 아지트 입구에서 사용.
+- **Dark Sneaky Ambient — MrAlex99** — https://opengameart.org/content/dark-sneaky-ambient — **CC BY 4.0** (https://creativecommons.org/licenses/by/4.0/) → `Audio/Music/bgm_hideout_dark_sneaky.ogg`. 편집: 앞 무음 0.033초 제거, 반복 경계 0.35초 겹침, 음량 보정, OGG 변환. 도적 아지트 입구에서 사용.
 - "Fantasy SFX Pack Vol 1" by **JC Sounds** — https://opengameart.org/content/jc-sounds-fantasy-sfx-pack-vol-1 — **CC BY 4.0** (https://creativecommons.org/licenses/by/4.0/). 표기 문구: "CC BY 4.0 - Credit: JC Sounds". 사용(이름만 변경): Magic Shield Activation 01, Healing Chime 01·02, Fireball Buildup·Launch 01·Impact 01~03, Ice Shard Projectile Impact 01~03, Ice Spell Hold(반복), Electric Spell Buildup·Hit 01~03·Hold(반복), Mana Drain Start·Mid LOOP, Dark Necromancy Chant 01(반복), Teleport In·Out, Dagger Swing 01~03, Heavy Sword Swing 01~03·Hit Metal 01~03, Bow Arrow Draw 01·Shoot 01·02·Hit 01·02 → `Audio/Magic/jc_*`, `Audio/Weapons/jc_*`.
 - "Fantasy Sound Effects Library" by **Little Robot Sound Factory** — https://opengameart.org/content/fantasy-sound-effects-library — **CC BY 3.0** (http://creativecommons.org/licenses/by/3.0/). 표기: Little Robot Sound Factory, www.littlerobotsoundfactory.com. 사용: Spell_01·02·04 → `Audio/Magic/lrsf_spell_bright·deep·deep_02.mp3`, Jingle_Win_00·Jingle_Achievement_00·Jingle_Lose_00 → `Audio/UI/lrsf_jingle_win·battle_win·lose.mp3`.
 
@@ -254,6 +256,12 @@
 - 공식 원본 `beamgun2.mp3` → `Assets/_Project/Audio/Magic/sel_beam_cannon2.mp3`. 원본 유지, Unity 모노·Vorbis 0.75·Normalize 끔. 합성·자르기 없이 1회 재생. 이전 `sh_judgment_slam.wav` 연결 해제·파일 보존, 준비음 유지.
 - 이용 조건은 위 선택 음원과 동일: https://soundeffect-lab.info/agreement/ (2026-10-08 확인). 무료 상업용 게임 사용 가능, CC0 아님. 단독 음원 재배포·직접 파일 링크 금지.
 
+
+## 클리어 예고 배경 (2026-10-12)
+
+- 사막 그림은 OpenAI imagegen으로 프로젝트 숲 배경의 그림체를 참고해 생성. `Assets/_Project/UI/Story/DesertStage.png`.
+- 숲 클리어는 기존 생성 그림 `BG02_빽빽한숲.png` 재사용. 문구·페이드는 Unity UI.
+- 생성 프롬프트 `근거자료/2026-10-12_시작확인_클리어/사막_생성프롬프트.txt`, 최종 연결 [06](06_에셋_파이프라인.md#start-ending-assets).
 
 ## 인트로·적 대화 일러스트 (2026-10-12)
 

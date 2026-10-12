@@ -1,0 +1,140 @@
+{
+  "checks": 47,
+  "failures": 0,
+  "notes": [],
+  "rows": [
+    {
+      "skill": "연쇄번개",
+      "infoOverflow": false,
+      "detailOverflow": false
+    },
+    {
+      "skill": "매직아머",
+      "infoOverflow": false,
+      "detailOverflow": false
+    },
+    {
+      "skill": "폭발",
+      "infoOverflow": false,
+      "detailOverflow": false
+    },
+    {
+      "skill": "화염탄",
+      "infoOverflow": false,
+      "detailOverflow": false
+    },
+    {
+      "skill": "불기둥",
+      "infoOverflow": false,
+      "detailOverflow": false
+    },
+    {
+      "skill": "불기둥(광역)",
+      "infoOverflow": false,
+      "detailOverflow": false
+    },
+    {
+      "skill": "서리화살",
+      "infoOverflow": false,
+      "detailOverflow": false
+    },
+    {
+      "skill": "관통",
+      "infoOverflow": false,
+      "detailOverflow": false
+    },
+    {
+      "skill": "침묵",
+      "infoOverflow": false,
+      "detailOverflow": false
+    },
+    {
+      "skill": "파이어볼",
+      "infoOverflow": false,
+      "detailOverflow": false
+    },
+    {
+      "skill": "아이스애로우",
+      "infoOverflow": false,
+      "detailOverflow": false
+    },
+    {
+      "skill": "매직 커터",
+      "infoOverflow": false,
+      "detailOverflow": false
+    },
+    {
+      "skill": "파이어 필라",
+      "infoOverflow": false,
+      "detailOverflow": false
+    },
+    {
+      "skill": "라이트닝 스피어",
+      "infoOverflow": false,
+      "detailOverflow": false
+    },
+    {
+      "skill": "매직 스파크",
+      "infoOverflow": false,
+      "detailOverflow": false
+    },
+    {
+      "skill": "매직 임팩트",
+      "infoOverflow": false,
+      "detailOverflow": false
+    },
+    {
+      "skill": "저지먼트",
+      "infoOverflow": false,
+      "detailOverflow": false
+    },
+    {
+      "skill": "블리자드",
+      "infoOverflow": false,
+      "detailOverflow": false
+    },
+    {
+      "skill": "다크 이럽션",
+      "infoOverflow": false,
+      "detailOverflow": false
+    },
+    {
+      "skill": "제압",
+      "infoOverflow": false,
+      "detailOverflow": false
+    },
+    {
+      "skill": "생츄어리",
+      "infoOverflow": false,
+      "detailOverflow": false
+    },
+    {
+      "enemy": "매직미사일",
+      "height": 251.35,
+      "overflow": false
+    },
+    {
+      "enemy": "사일런스",
+      "height": 271.37,
+      "overflow": false
+    },
+    {
+      "enemy": "다크홀",
+      "height": 271.37,
+      "overflow": false
+    },
+    {
+      "enemy": "나이트메어",
+      "height": 271.37,
+      "overflow": false
+    },
+    {
+      "enemy": "디엔드",
+      "height": 271.37,
+      "overflow": false
+    }
+  ],
+  "width": 1920,
+  "height": 1080,
+  "mode": "Play, programmatic UI preview, isolated save"
+}

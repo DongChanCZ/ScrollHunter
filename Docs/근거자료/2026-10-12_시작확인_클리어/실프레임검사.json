@@ -1,0 +1,11 @@
+{
+  "frames": 2129,
+  "checks": 1725,
+  "failures": 0,
+  "seconds": 11.468313999997918,
+  "phase": 14,
+  "notes": [],
+  "width": 1920,
+  "height": 1080,
+  "mode": "Actual frames; programmatic input and boss damage; isolated save"
+}

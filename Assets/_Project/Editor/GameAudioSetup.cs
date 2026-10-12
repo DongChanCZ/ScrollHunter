@@ -182,8 +182,9 @@ public static class GameAudioSetup
         lib.defeat = Cue(0.6f, 1f, 1f, 0.5f, "UI/lrsf_jingle_lose.mp3");
 
         lib.titleMusic = new MusicTrack { clip = C("Music/bgm_title_dark_shrine.wav"), volume = 0.45f };
-        lib.tutorialMusic = new MusicTrack { clip = C("Music/bgm_edge_peaceful_forest.ogg"), volume = 0.25f };
-        lib.battleMusic = new MusicTrack { clip = C("Music/bgm_path_iremos.ogg"), volume = 0.28f };
+        lib.introMusic = new MusicTrack { clip = C("Music/bgm_edge_peaceful_forest.ogg"), volume = 0.25f };
+        lib.tutorialMusic = new MusicTrack { clip = C("Music/bgm_edge_tribal.wav"), volume = 0.08f };
+        lib.battleMusic = new MusicTrack { clip = C("Music/bgm_path_krakatoa.ogg"), volume = 0.24f };
         lib.hideoutMusic = new MusicTrack { clip = C("Music/bgm_hideout_dark_sneaky.ogg"), volume = 0.3f };
         lib.bossMusic = new MusicTrack { clip = C("Music/bgm_boss_evil_awaits.wav"), volume = 0.32f };
     }
