@@ -12,6 +12,7 @@ public class CombatInfoUI : MonoBehaviour
     [SerializeField] private CombatMetrics metrics;
     [SerializeField] private RectTransform[] slots;
     [SerializeField] private RectTransform pauseButton;
+    [SerializeField] private RectTransform potionButton;
     [SerializeField] private TMP_Text pauseLabel;
     [SerializeField] private GameObject cardPanel;
     [SerializeField] private TMP_Text cardText;
@@ -95,6 +96,11 @@ public class CombatInfoUI : MonoBehaviour
         if (deck == null) deck = FindFirstObjectByType<DeckSystem>();
         if (enemies == null) enemies = FindFirstObjectByType<EnemyManager>();
         if (player == null) player = FindFirstObjectByType<Player>();
+        if (potionButton == null)
+        {
+            var hud = FindFirstObjectByType<CombatUI>();
+            if (hud != null) potionButton = hud.PotionClickArea;
+        }
         if (metrics == null) metrics = FindFirstObjectByType<CombatMetrics>();
         if (cardPanel != null) cardPanelBaseX = ((RectTransform)cardPanel.transform).anchoredPosition.x;
     }
@@ -131,9 +137,24 @@ public class CombatInfoUI : MonoBehaviour
             if (IsInfoPaused) Resume();
             else if (hovered >= 0) InspectSlot(hovered);
         }
-        else if (Input.GetMouseButtonDown(0) && Contains(pauseButton)) TogglePause();
-        else if (Input.GetMouseButtonDown(0) && Contains(speedButton)) ToggleSpeed();
-        else if (Input.GetMouseButtonDown(0) && hovered >= 0 && deck != null) deck.TryUseSlot(hovered);
+        else if (Input.GetMouseButtonDown(0))
+        {
+            if (Contains(pauseButton)) TogglePause();
+            else if (Contains(speedButton)) ToggleSpeed();
+            else if (TryPotionClick(Input.mousePosition)) return;
+            else if (hovered >= 0 && deck != null) deck.TryUseSlot(hovered);
+        }
+    }
+
+    // 안내를 넘긴 클릭은 TutorialFlow가 먼저 소비한다. 버튼을 누른 프레임에만 사용한다.
+    private bool TryPotionClick(Vector2 position)
+    {
+        if (potionButton == null || !potionButton.gameObject.activeInHierarchy || player == null) return false;
+        Canvas canvas = potionButton.GetComponentInParent<Canvas>();
+        Camera camera = canvas != null && canvas.renderMode != RenderMode.ScreenSpaceOverlay ? canvas.worldCamera : null;
+        if (!RectTransformUtility.RectangleContainsScreenPoint(potionButton, position, camera)) return false;
+        player.RequestPotionUse();
+        return true;
     }
 
     public void BeginBattle()

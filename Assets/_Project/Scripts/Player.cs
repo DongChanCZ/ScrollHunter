@@ -67,7 +67,10 @@ public class Player : MonoBehaviour
     [SerializeField] private KeyCode alternatePotionKey = KeyCode.RightShift;
     public int PotionsRemaining { get; private set; }
     public float PotionHealAmount => Mathf.Max(0, Mathf.FloorToInt(MaxHp * potionHealFraction + 0.5f));
-    public bool CanUsePotion => Time.timeScale > 0f && IsAlive && !IsStunned
+    private BattleFlow flow;
+    private int potionInputFrame = -1;
+    private bool PotionInputAllowed => flow == null || (flow.State == BattleFlowState.Fighting && !flow.MenuBlocksInput);
+    public bool CanUsePotion => PotionInputAllowed && Time.timeScale > 0f && IsAlive && !IsStunned
         && (tutorial == null || !tutorial.BlocksOtherControls)
         && PotionsRemaining > 0 && currentHp < MaxHp && PotionHealAmount > 0f
         && (metrics == null || !metrics.Ended);
@@ -80,9 +83,18 @@ public class Player : MonoBehaviour
         PotionUsed?.Invoke();
         return true;
     }
+    /// <summary>Shift와 아이콘 좌클릭의 공통 입력. 같은 프레임에는 한 번만 처리한다.</summary>
+    public void RequestPotionUse()
+    {
+        if (potionInputFrame == Time.frameCount) return;
+        potionInputFrame = Time.frameCount;
+        if (!TryUsePotion() && PotionInputAllowed && Time.timeScale > 0f && IsAlive
+            && (metrics == null || !metrics.Ended) && (tutorial == null || !tutorial.BlocksOtherControls))
+            PotionRejected?.Invoke();
+    }
     /// <summary>포션 사용이 수락됐다(HUD 사용 연출용). 거절된 입력은 알리지 않는다.</summary>
     public event System.Action PotionUsed;
-    /// <summary>전투 중 포션 키 입력이 거절됐다(0개·만피·기절). 거절음 전용, 판정과 무관.</summary>
+    /// <summary>전투 중 포션 사용 입력이 거절됐다(0개·만피·기절). 거절음 전용, 판정과 무관.</summary>
     public event System.Action PotionRejected;
     public int PotionCapacity => Mathf.Max(0, basePotionCapacity + potionCapacityBonus);
     public float MaxHp => Mathf.Max(1f, maxHp + maxHpBonus);
@@ -153,6 +165,7 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         tutorial = FindFirstObjectByType<TutorialFlow>();
+        flow = FindFirstObjectByType<BattleFlow>();
         // 직전 실행이 패배로 끝나 timeScale이 0인 채 남는 것을 막는다.
         Time.timeScale = 1f;
 
@@ -174,9 +187,7 @@ public class Player : MonoBehaviour
             StunRemaining = Mathf.Max(0f, StunRemaining - Time.deltaTime);
         }
 
-        if ((Input.GetKeyDown(potionKey) || Input.GetKeyDown(alternatePotionKey)) && !TryUsePotion()
-            && Time.timeScale > 0f && IsAlive && (metrics == null || !metrics.Ended) && (tutorial == null || !tutorial.BlocksOtherControls))
-            PotionRejected?.Invoke();   // 전투 진행 중 키 입력만(정지·결과·시작 화면 제외). 거절음 전용
+        if (Input.GetKeyDown(potionKey) || Input.GetKeyDown(alternatePotionKey)) RequestPotionUse();
 
         // 인스펙터에서 HP를 0으로 내린 경우에도 패배가 걸리게 한다.
         if (!IsAlive && !defeatHandled) Defeat();
@@ -184,6 +195,7 @@ public class Player : MonoBehaviour
 
     public void BeginBattle(bool restoreHp)
     {
+        potionInputFrame = -1;
         if (restoreHp) { currentHp = MaxHp; PotionsRemaining = PotionCapacity; }
         EndBattle();
         defeatHandled = false;

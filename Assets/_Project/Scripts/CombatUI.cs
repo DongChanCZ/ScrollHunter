@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// HP / 방어도 / 코스트 / 손패 4칸 / 대기열 다음 1장 / 타겟 마커 / 기절 표시 / 플레이어 시전 표시. 읽기 전용.
+/// HP / 방어도 / 코스트 / 손패 4칸 / 대기열 다음 1장 / 타겟 마커 / 기절 표시 / 플레이어 시전 표시.
 /// </summary>
 public class CombatUI : MonoBehaviour
 {
@@ -49,6 +49,7 @@ public class CombatUI : MonoBehaviour
     [Tooltip("포션 사용 키 표시(Shift). 지금 사용할 수 없으면 흐리게")]
     [SerializeField] private TMP_Text potionKeyText;
     [SerializeField] private Image potionIcon;
+    public RectTransform PotionClickArea => potionIcon != null ? potionIcon.rectTransform : null;
     [SerializeField] private Color potionUnavailableColor = new Color(0.65f, 0.65f, 0.65f, 1f);
     [SerializeField] private Color potionReadyColor = new Color(0.94f, 0.90f, 0.82f, 1f);
     [SerializeField] private Color potionEmptyIconColor = new Color(0.55f, 0.55f, 0.55f, 0.45f);
@@ -211,6 +212,7 @@ public class CombatUI : MonoBehaviour
         if (player == null) player = FindFirstObjectByType<Player>();
         if (metrics == null) metrics = FindFirstObjectByType<CombatMetrics>();
 
+        if (potionIcon != null) potionIcon.raycastTarget = true;
         if (targetMarker != null) markerBaseScale = targetMarker.localScale;
 
         // 왼쪽 정렬을 유지하며 방어도 아이콘·숫자·여백을 함께 확대한다.

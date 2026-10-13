@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-13",
+  "test": "TutorialChecks.Run",
+  "passed": 114,
+  "scope": "Function/pointer events, not physical input",
+  "prompt": "해당 구역은 타겟팅 된 적의 공격에 대한 정보를 보여줍니다",
+  "sequence": [
+    "타겟 마커",
+    "적 정보창",
+    "Q 파이어볼"
+  ],
+  "checks": [
+    "same Lesson 3; CompletedLessons 2 until skill accepted",
+    "time paused and all skills blocked during info",
+    "same-frame advance blocked",
+    "Esc restore maintains guide",
+    "next advance waits for Q and highlights Slot0",
+    "existing tutorial retry/skip/progression"
+  ],
+  "screenshot": "01_적정보_강조.png",
+  "state": {
+    "playing": false,
+    "sceneDirty": false,
+    "savedHighlight": "TargetInfo"
+  },
+  "preservedHashes": {
+    "Assets/_Project/Fonts/GmarketSansMedium SDF.asset": "62-7E-A6-F6-C0-5D-EB-14-76-AC-A5-33-42-0B-F9-BA-A4-23-31-98-8A-14-90-7B-21-1E-08-6D-E8-D0-24-08",
+    "C:/Users/MBC-501-19/AppData/LocalLow/DefaultCompany/ScrollHunter/save.json": "E9-EA-65-B2-32-5F-D3-BB-7B-9F-6C-DA-E3-94-E2-D7-A5-4A-40-D9-C7-43-81-3B-1D-92-98-6D-A7-EF-58-C9",
+    "C:/Users/MBC-501-19/AppData/LocalLow/DefaultCompany/ScrollHunter/save.json.bak": "2B-9A-E8-AF-F3-12-E5-53-47-D0-2C-4A-4F-51-5F-0E-E2-DF-4E-67-C4-DE-A7-5B-61-F1-2F-7E-22-8B-D8-E0"
+  },
+  "console": {
+    "errors": 0,
+    "warnings": 1,
+    "warning": "NativeFormatImporter inconsistent result during exact font snapshot restoration; font file hash unchanged from start"
+  },
+  "limits": [
+    "physical keyboard/mouse input",
+    "full run",
+    "new build"
+  ]
+}

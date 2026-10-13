@@ -65,7 +65,7 @@ public static class MainMenuSetup
         labels.alignment=TextAlignmentOptions.MidlineRight;values.alignment=TextAlignmentOptions.MidlineLeft;
         labels.fontSize=values.fontSize=28; labels.lineSpacing=values.lineSpacing=0;
         labels.text="<line-height=56>카드 사용\n대상 선택\n카드 정보\n일시정지·재개\n배속 변경\n포션 사용\n능력치";
-        values.text="<line-height=56>Q / W / E / R 또는 카드 좌클릭\n적 좌클릭 또는 좌우 방향키\n카드에 마우스 올리기\nA 또는 우클릭 / 상단 정지·재개 버튼\nS 또는 상단 속도 버튼 (1배속 / 0.5배속)\nShift\n전투 중 우측 상단 버튼 (게임은 멈추지 않음)";
+        values.text="<line-height=56>Q / W / E / R 또는 카드 좌클릭\n적 좌클릭 또는 좌우 방향키\n카드에 마우스 올리기\nA 또는 우클릭 / 상단 정지·재개 버튼\nS 또는 상단 속도 버튼 (1배속 / 0.5배속)\nShift 또는 물약 아이콘 좌클릭\n전투 중 우측 상단 버튼 (게임은 멈추지 않음)";
         var hint=parent.Find("FlowHint");
         if(hint!=null)Object.DestroyImmediate(hint.gameObject);
         Link(so,"controlsClose",CopyButton("Close",controlsModal.transform,button,"돌아가기",new Vector2(0,-365),new Vector2(360,76)));

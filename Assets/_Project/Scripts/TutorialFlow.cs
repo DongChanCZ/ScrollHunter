@@ -11,6 +11,7 @@ public class TutorialFlow : MonoBehaviour
     [SerializeField] private TMP_FontAsset font;
     [SerializeField] private RectTransform costHighlight;
     [SerializeField] private RectTransform targetHighlight;
+    [SerializeField] private RectTransform enemyInfoHighlight;
     [SerializeField] private RectTransform[] slotHighlights;
     private BattleFlow flow;
     private DeckSystem deck;
@@ -22,6 +23,8 @@ public class TutorialFlow : MonoBehaviour
     private TMP_Text guideText;
     private TMP_Text continueHint;
     [SerializeField] private string continueHintText = "Space";
+    [SerializeField, TextArea] private string enemyInfoPrompt = "해당 구역은 타겟팅 된 적의 공격에 대한 정보를 보여줍니다";
+    private bool showingEnemyInfo;
     [SerializeField, TextArea] private string defeatPrompt = "이제 공격스킬을 써서 적을 처치하세요";
     [SerializeField, TextArea] private string completionPrompt = "<size=36><b>튜토리얼 완료</b></size>\nHP와 포션이 회복된 상태로 다음 전투를 시작합니다.\n스킬 순서를 확인하고 전투를 준비하세요.";
     [Header("외형 (10 A37) — 비우면 단색 사각형")]
@@ -73,7 +76,7 @@ public class TutorialFlow : MonoBehaviour
             tutorialEnemy.AttackFired -= OnAttackFired;
             tutorialEnemy.HoldTutorialDefeat = false;
         }
-        Active = ShowingGuide = WaitingForSkill = false;
+        Active = ShowingGuide = WaitingForSkill = showingEnemyInfo = false;
         if (overlay != null) overlay.SetActive(false);
         if (skipRect != null) skipRect.gameObject.SetActive(false);
     }
@@ -138,7 +141,7 @@ public class TutorialFlow : MonoBehaviour
             case 3: return "이 표시는 어떤 적을 타겟팅하고 있는지 보여줍니다.";
             case 4: return "적의 주황색 게이지의 공격은 상태이상을 일으키는 공격입니다.";
             case 5: return "적의 빨간색 게이지 공격은 차단이 불가능하고 방어도가 없을 시 치명적인 피해를 입힙니다.";
-            case 6: return "체력이 떨어졌을 때, 게임 시간이 흐르는 중 Shift를 눌러 물약을 사용할 수 있습니다.";
+            case 6: return "체력이 떨어졌을 때, 게임 시간이 흐르는 중 Shift 또는 물약 아이콘 좌클릭으로 물약을 사용할 수 있습니다.";
             default: return "순서 변경 버튼을 누르고 스킬을 드래그하면 해당 위치의 순번으로 배치할 수 있습니다. 저장하면 적용되고 취소하면 편집 전 순서로 돌아갑니다.";
         }
     }
@@ -152,7 +155,7 @@ public class TutorialFlow : MonoBehaviour
     private void ShowGuide(string text, RectTransform focus)
     {
         ShowingGuide = true;
-        WaitingForSkill = showingDefeatPrompt = false;
+        WaitingForSkill = showingDefeatPrompt = showingEnemyInfo = false;
         Time.timeScale = 0f;
         if (information != null) information.BeginBattle();
         highlight = focus;
@@ -169,6 +172,13 @@ public class TutorialFlow : MonoBehaviour
         {
             ShowLesson(7);
             flow.OpenTutorialPreparation();
+            return true;
+        }
+        // 3단계 안에서 마커 → 적 정보 → 파이어볼 순서로 안내한다.
+        if (Lesson == 3 && !showingEnemyInfo)
+        {
+            ShowGuide(enemyInfoPrompt, enemyInfoHighlight);
+            showingEnemyInfo = true;
             return true;
         }
         if (Lesson >= 3 && Lesson <= 5)
@@ -223,7 +233,7 @@ public class TutorialFlow : MonoBehaviour
     private void ResumeTime() => Time.timeScale = information != null ? information.BattleSpeed : 1f;
     private void HideGuide()
     {
-        ShowingGuide = WaitingForSkill = showingDefeatPrompt = false;
+        ShowingGuide = WaitingForSkill = showingDefeatPrompt = showingEnemyInfo = false;
         overlay.SetActive(false);
     }
 
@@ -305,7 +315,7 @@ public class TutorialFlow : MonoBehaviour
         var root = (RectTransform)overlay.transform;
         root.anchorMin = Vector2.zero; root.anchorMax = Vector2.one;
         root.offsetMin = root.offsetMax = Vector2.zero;
-        for (int i = 0; i < shades.Length; i++) shades[i] = UiRect("Shade" + i, root, new Color(0, 0, 0, 0.65f));
+        for (int i = 0; i < shades.Length; i++) shades[i] = UiRect("Shade" + i, root, new Color(0, 0, 0, 0.85f));
         guide = UiRect("TutorialGuide", root, panelColor);
         Dress(guide, panelSprite);
         if (frameSprite != null)

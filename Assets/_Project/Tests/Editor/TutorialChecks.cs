@@ -40,7 +40,7 @@ public static class TutorialChecks
         int passed = 0;
         Action<bool, string> check = (ok, text) => { if (!ok) throw new Exception("Tutorial: " + text); passed++; };
         Action fresh = () => { f.BeginTutorial(false); NextFrame(t); };
-        Action qPrompt = () => { fresh(); Advance(t); Advance(t); Advance(t); NextFrame(t); };
+        Action qPrompt = () => { fresh(); Advance(t); Advance(t); Advance(t); Advance(t); NextFrame(t); };
         Action<int, CastColor> halfway = (lesson, color) =>
         {
             e.BeginTutorial(e.CurrentHp, color == CastColor.Orange ? 1 : 2);
@@ -69,6 +69,24 @@ public static class TutorialChecks
             Advance(t); check(t.Lesson == 2 && !t.AdvanceGuide(), "one advance per frame");
             Advance(t); check(t.Lesson == 3 && !t.WaitingForSkill, "target marker explanation precedes input");
             Advance(t);
+            check(t.Lesson == 3 && t.CompletedLessons == 2 && !t.WaitingForSkill && Time.timeScale == 0,
+                "enemy information is a paused substep before fireball");
+            check(body.text == "해당 구역은 타겟팅 된 적의 공격에 대한 정보를 보여줍니다"
+                && hint.gameObject.activeSelf && !t.AdvanceGuide(), "enemy info text and one advance per frame");
+            Call(info, "LateUpdate");
+            var enemyPanel = (GameObject)Get(info, "enemyPanel");
+            check(enemyPanel.activeInHierarchy && (Transform)Get(t, "highlight") == enemyPanel.transform,
+                "live targeted enemy information is highlighted");
+            NextFrame(t);
+            check(Enumerable.Range(0,4).All(i => !d.TryUseSlot(i)) && c.Current == 3,
+                "enemy info explanation blocks all cards without spending");
+            var menu = f.GetComponent<MainMenuUI>();
+            menu.OpenPauseMenu();
+            check(!t.AdvanceGuide() && (bool)Get(t, "showingEnemyInfo"), "Esc preserves enemy info step");
+            menu.ResumeGame(); Set(f, "menuInputFrame", -1);
+            Advance(t);
+            check((RectTransform)Get(t, "highlight") == ((RectTransform[])Get(t, "slotHighlights"))[0],
+                "next advance highlights Q slot");
             check(!hint.gameObject.activeSelf, "Space hint hidden when designated skill required");
             check(!d.TryUseSlot(0), "advance click cannot also use Q");
             NextFrame(t);
