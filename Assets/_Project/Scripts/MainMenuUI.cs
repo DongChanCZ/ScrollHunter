@@ -66,11 +66,20 @@ public class MainMenuUI : MonoBehaviour
     [SerializeField] private string frameLimitHint = "프레임 제한을 낮추면 그래픽 부하를 줄일 수 있습니다.";
     [SerializeField] private int[] frameLimits = { 30, 60, 90, 120, 144, 240, -1 };
     [SerializeField, Min(1)] private int defaultFrameLimit = 60;
+    [SerializeField] private TMP_Dropdown languageDropdown;
     public bool OptionsVisible => optionsPanel != null && optionsPanel.activeSelf;
 
     private void Awake()
     {
         flow = GetComponent<BattleFlow>();
+        ConfigureWebOptions();
+        if (languageDropdown != null)
+        {
+            languageDropdown.ClearOptions();
+            languageDropdown.AddOptions(new List<string> { "한국어", "English" });
+            languageDropdown.onValueChanged.AddListener(index => GameText.SetEnglish(index == 1));
+        }
+        GameText.Changed += RefreshLanguage;
         if (startExisting != null) startExisting.onClick.AddListener(ConfirmExistingStart);
         if (startCancel != null) startCancel.onClick.AddListener(CloseStartPanels);
         if (startNewGame != null) startNewGame.onClick.AddListener(AskNewGame);
@@ -99,7 +108,7 @@ public class MainMenuUI : MonoBehaviour
         if (frameLimitDropdown != null)
         {
             frameLimitDropdown.ClearOptions();
-            frameLimitDropdown.AddOptions(frameLimits.Select(n => n < 0 ? unlimitedText : string.Format(frameLimitFormat, n)).ToList());
+            frameLimitDropdown.AddOptions(frameLimits.Select(n => n < 0 ? GameText.T(unlimitedText) : GameText.Format(GameText.T(frameLimitFormat), n)).ToList());
             frameLimitDropdown.onValueChanged.AddListener(index =>
             {
                 if (index >= 0 && index < frameLimits.Length) frameLimit = frameLimits[index];
@@ -121,6 +130,39 @@ public class MainMenuUI : MonoBehaviour
         }
         BuildResolutions();
         ClosePanels();
+    }
+
+    private void RefreshLanguage()
+    {
+        if (languageDropdown != null) languageDropdown.SetValueWithoutNotify(GameText.English ? 1 : 0);
+        if (resolutions.Count > 0) UpdateDisplayLabels();
+        if (flow != null) flow.RefreshTutorialUI();
+        var rewards = GetComponent<BattleRewardUI>();
+        if (rewards != null) rewards.Refresh();
+    }
+
+    private void ConfigureWebOptions()
+    {
+        if (!GameText.IsWeb) return;
+        quitButton.gameObject.SetActive(false);
+        foreach (string name in new[] { "Mode", "ScreenMode", "Resolution", "ResolutionDropdown", "ResolutionValue",
+            "PreviousResolution", "NextResolution", "DisplayHint", "VSyncTitle", "VSyncToggle", "FrameLimitTitle",
+            "FrameLimitDropdown", "PerformanceHint" })
+        {
+            var child = optionsPanel.transform.Find(name);
+            if (child != null) child.gameObject.SetActive(false);
+        }
+        foreach (var component in new Behaviour[] { modeButton, resolutionDropdown, vSyncToggle, frameLimitDropdown, currentDisplayLabel, performanceHint })
+            if (component != null) component.gameObject.SetActive(false);
+        var line = (RectTransform)optionsPanel.transform.Find("DisplaySoundDivider");
+        if (line != null) line.anchoredPosition = new Vector2(0, 180);
+        for (int i = 0; i < 4; i++) foreach (string prefix in new[] { "SoundLabel", "Volume", "VolumeValue" })
+        {
+            var row = optionsPanel.transform.Find(prefix + i) as RectTransform;
+            if (row != null) row.anchoredPosition = new Vector2(row.anchoredPosition.x, 100 - i * 85);
+        }
+        var title = optionsPanel.transform.Find("Title") as RectTransform;
+        if (title != null) title.anchoredPosition = new Vector2(0, 380);
     }
 
     private void BuildRuneLight()
@@ -188,12 +230,14 @@ public class MainMenuUI : MonoBehaviour
         if (resolutionDropdown != null)
         {
             resolutionDropdown.ClearOptions();
-            resolutionDropdown.AddOptions(resolutions.Select(r => string.Format(resolutionFormat, r.x, r.y)).ToList());
+            resolutionDropdown.AddOptions(resolutions.Select(r => GameText.Format(resolutionFormat, r.x, r.y)).ToList());
         }
     }
 
     private void ReadSavedOptions()
     {
+        GameText.LoadSaved();
+        if (languageDropdown != null) languageDropdown.SetValueWithoutNotify(GameText.English ? 1 : 0);
         // 이전 빌드의 창모드 선택을 새 저장 형식으로 이어받는다.
         var legacyMode = PlayerPrefs.GetInt(preferencesPrefix + "Windowed", 0) == 1 ? FullScreenMode.Windowed : FullScreenMode.FullScreenWindow;
         displayMode = (FullScreenMode)PlayerPrefs.GetInt(preferencesPrefix + "DisplayMode", (int)legacyMode);
@@ -214,7 +258,7 @@ public class MainMenuUI : MonoBehaviour
         }
         UpdateDisplayLabels();
         if (currentDisplayLabel != null)
-            currentDisplayLabel.text = string.Format(currentDisplayFormat, modeLabel.text, resolutionLabel.text);
+            currentDisplayLabel.text = GameText.T(GameText.Format(GameText.T(currentDisplayFormat), modeLabel.text, resolutionLabel.text));
     }
 
     public void RequestStart()
@@ -247,7 +291,7 @@ public class MainMenuUI : MonoBehaviour
     private void AskNewGame()
     {
         if (flow.State != BattleFlowState.Title || !startDataPanel.activeSelf) return;
-        newGameMessage.text = newGamePrompt;
+        newGameMessage.text = GameText.T(newGamePrompt);
         newGamePanel.SetActive(true);
         newGamePanel.transform.SetAsLastSibling();
         ClearSelection();
@@ -262,7 +306,7 @@ public class MainMenuUI : MonoBehaviour
     private void ConfirmNewGame()
     {
         if (flow.State != BattleFlowState.Title || newGamePanel == null || !newGamePanel.activeSelf) return;
-        if (!flow.ResetGameProgress()) { newGameMessage.text = resetError; return; }
+        if (!flow.ResetGameProgress()) { newGameMessage.text = GameText.T(resetError); return; }
         CloseStartPanels();
         flow.StartRun();
     }
@@ -292,6 +336,7 @@ public class MainMenuUI : MonoBehaviour
     {
         CloseStartPanels();
         ClearSelection();
+        if (languageDropdown != null && languageDropdown.IsExpanded) languageDropdown.Hide();
         if (OptionsVisible) { ReadSavedOptions(); ApplyAudio(); }
         if (resolutionDropdown != null && resolutionDropdown.IsExpanded) resolutionDropdown.Hide();
         if (frameLimitDropdown != null && frameLimitDropdown.IsExpanded) frameLimitDropdown.Hide();
@@ -301,6 +346,8 @@ public class MainMenuUI : MonoBehaviour
 
     public void HandleEscape()
     {
+        if (OptionsVisible && languageDropdown != null && languageDropdown.IsExpanded)
+        { languageDropdown.Hide(); return; }
         if (OptionsVisible && resolutionDropdown != null && resolutionDropdown.IsExpanded)
         { resolutionDropdown.Hide(); return; }
         if (OptionsVisible && frameLimitDropdown != null && frameLimitDropdown.IsExpanded)
@@ -341,7 +388,7 @@ public class MainMenuUI : MonoBehaviour
     public void AskReset()
     {
         if (!OptionsVisible) return;
-        resetMessage.text = resetPrompt;
+        resetMessage.text = GameText.T(resetPrompt);
         resetPanel.SetActive(true); resetPanel.transform.SetAsLastSibling();
         ClearSelection();
     }
@@ -349,7 +396,7 @@ public class MainMenuUI : MonoBehaviour
     public void ConfirmReset()
     {
         if (!resetPanel.activeSelf) return;
-        if (!flow.ResetGameProgress()) { resetMessage.text = resetError; return; }
+        if (!flow.ResetGameProgress()) { resetMessage.text = GameText.T(resetError); return; }
         ClosePanels(); pausePanel.SetActive(false);
     }
 
@@ -368,21 +415,21 @@ public class MainMenuUI : MonoBehaviour
 
     private void UpdateDisplayLabels()
     {
-        modeLabel.text = displayMode == FullScreenMode.Windowed ? windowedText
-            : displayMode == FullScreenMode.ExclusiveFullScreen ? exclusiveFullscreenText : fullscreenText;
+        modeLabel.text = GameText.T(displayMode == FullScreenMode.Windowed ? GameText.T(windowedText)
+            : displayMode == FullScreenMode.ExclusiveFullScreen ? GameText.T(exclusiveFullscreenText) : GameText.T(fullscreenText));
         if (vSyncToggle != null) vSyncToggle.SetIsOnWithoutNotify(vSync);
-        if (performanceHint != null) performanceHint.text = vSync ? vSyncHint : frameLimitHint;
+        if (performanceHint != null) performanceHint.text = GameText.T(vSync ? GameText.T(vSyncHint) : GameText.T(frameLimitHint));
         if (frameLimitDropdown != null)
         {
             frameLimitDropdown.SetValueWithoutNotify(Array.IndexOf(frameLimits, frameLimit));
             frameLimitDropdown.interactable = !vSync;
         }
         var r = resolutions[resolutionIndex];
-        resolutionLabel.text = string.Format(resolutionFormat, r.x, r.y);
+        resolutionLabel.text = GameText.T(GameText.Format(resolutionFormat, r.x, r.y));
         if (resolutionDropdown != null) resolutionDropdown.SetValueWithoutNotify(resolutionIndex);
     }
 
-    private void UpdateVolumeLabel(int index) => volumeLabels[index].text = string.Format(volumeFormat, volumeSliders[index].value * 100f);
+    private void UpdateVolumeLabel(int index) => volumeLabels[index].text = GameText.T(GameText.Format(volumeFormat, volumeSliders[index].value * 100f));
 
     public void ApplyOptions()
     {
@@ -395,7 +442,7 @@ public class MainMenuUI : MonoBehaviour
         PlayerPrefs.SetInt(preferencesPrefix + "Width", r.x);
         PlayerPrefs.SetInt(preferencesPrefix + "Height", r.y);
         for (int i = 0; i < volumeSliders.Length; i++) PlayerPrefs.SetFloat(preferencesPrefix + mixerParameters[i], volumeSliders[i].value);
-        PlayerPrefs.Save();
+        GameText.Save();
         ApplyAudio(); ApplyDisplay(); ApplyPerformance(); ClosePanels();
     }
 
@@ -412,7 +459,7 @@ public class MainMenuUI : MonoBehaviour
     private void ApplyDisplay()
     {
         // Game View는 창모드 전환을 재현하지 않는다. 에디터 창/검사 해상도는 바꾸지 않는다.
-#if !UNITY_EDITOR
+#if !UNITY_EDITOR && !UNITY_WEBGL
         var r = resolutions[resolutionIndex];
         Screen.SetResolution(r.x, r.y, displayMode);
 #endif
@@ -420,8 +467,8 @@ public class MainMenuUI : MonoBehaviour
 
     private void ApplyPerformance()
     {
-        QualitySettings.vSyncCount = vSync ? 1 : 0;
-        Application.targetFrameRate = vSync ? -1 : frameLimit;
+        QualitySettings.vSyncCount = GameText.IsWeb ? 0 : vSync ? 1 : 0;
+        Application.targetFrameRate = GameText.IsWeb ? 60 : vSync ? -1 : frameLimit;
     }
 
     public void Quit()
@@ -436,6 +483,7 @@ public class MainMenuUI : MonoBehaviour
 
     private void OnDestroy()
     {
+        GameText.Changed -= RefreshLanguage;
         if (glowMaterial != null) Destroy(glowMaterial);
         if (runeLight != null) { runeLight.Release(); Destroy(runeLight); }
     }

@@ -61,7 +61,7 @@ public class SkillData : ScriptableObject
         && channelEffect.IsValidFor(this));
 
     public Sprite Icon => icon;
-    public string DisplayName => displayName;
+    public string DisplayName => GameText.T(displayName);
     public float Cost => cost;
     public SkillCategory Category => category;
     public int Damage => damage;

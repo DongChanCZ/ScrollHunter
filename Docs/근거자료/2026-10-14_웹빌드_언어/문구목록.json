@@ -1,0 +1,1782 @@
+[
+  {
+    "source": "StatsWindow",
+    "path": "maxHp.detailFormat",
+    "ko": "기본 {0:0} · 패시브 +{1:0}"
+  },
+  {
+    "source": "StatsWindow",
+    "path": "criticalChance.detailFormat",
+    "ko": "기본 {0:0.#}% · 패시브 +{1:0.#}%p"
+  },
+  {
+    "source": "StatsWindow",
+    "path": "costRegeneration.detailFormat",
+    "ko": "기본 {0:0.0#} · 패시브 +{1:0.0#}"
+  },
+  {
+    "source": "StatsWindow",
+    "path": "startingCost.detailFormat",
+    "ko": "기본 {0:0.#} · 패시브 +{1:0.#}"
+  },
+  {
+    "source": "StatsWindow",
+    "path": "shieldGain.detailFormat",
+    "ko": "기본 {0:0%} · 패시브 +{1:0%}"
+  },
+  {
+    "source": "StatsWindow",
+    "path": "interruptStagger.valueFormat",
+    "ko": "{0:0.0#}초"
+  },
+  {
+    "source": "StatsWindow",
+    "path": "interruptStagger.detailFormat",
+    "ko": "기본 {0:0.0#}초 · 패시브 +{1:0.0#}초"
+  },
+  {
+    "source": "StatsWindow",
+    "path": "defenseDetailFormat",
+    "ko": "받는 피해 {0:0.#}% 감소 · 방어도와 별개"
+  },
+  {
+    "source": "StatsWindow",
+    "path": "noPassivesText",
+    "ko": "패시브 없음"
+  },
+  {
+    "source": "Systems",
+    "path": "stunFormat",
+    "ko": "기절 {0:0.0}"
+  },
+  {
+    "source": "Systems",
+    "path": "costBlockingStunSuffix",
+    "ko": "\n<size=55%>코스트 충전 불가</size>"
+  },
+  {
+    "source": "Systems",
+    "path": "castFormat",
+    "ko": "시전 {0}"
+  },
+  {
+    "source": "Systems",
+    "path": "channelFormat",
+    "ko": "채널링 {0}"
+  },
+  {
+    "source": "Systems",
+    "path": "castCancelledFormat",
+    "ko": "{0} 시전 취소"
+  },
+  {
+    "source": "Systems",
+    "path": "singleTypeLabel",
+    "ko": "단일"
+  },
+  {
+    "source": "Systems",
+    "path": "areaTypeLabel",
+    "ko": "광역"
+  },
+  {
+    "source": "Systems",
+    "path": "shieldTypeLabel",
+    "ko": "방어"
+  },
+  {
+    "source": "Systems",
+    "path": "interruptTypeLabel",
+    "ko": "차단"
+  },
+  {
+    "source": "Systems",
+    "path": "noTargetLabel",
+    "ko": "잠김"
+  },
+  {
+    "source": "Systems",
+    "path": "invalidSkillLabel",
+    "ko": "설정 필요"
+  },
+  {
+    "source": "Systems",
+    "path": "phaseTransitionLabel",
+    "ko": "전환 중"
+  },
+  {
+    "source": "DamageNumbers",
+    "path": "interruptText",
+    "ko": "차단!"
+  },
+  {
+    "source": "CombatInformation",
+    "path": "pauseText",
+    "ko": "일시정지"
+  },
+  {
+    "source": "CombatInformation",
+    "path": "resumeText",
+    "ko": "재개"
+  },
+  {
+    "source": "CombatInformation",
+    "path": "endedText",
+    "ko": "전투 종료"
+  },
+  {
+    "source": "CombatInformation",
+    "path": "hint",
+    "ko": "A 정지·재개 · S 배속 · 카드에 마우스: 정보"
+  },
+  {
+    "source": "CombatInformation",
+    "path": "pausedHint",
+    "ko": "일시정지 · A/우클릭 재개 · S 배속"
+  },
+  {
+    "source": "CombatInformation",
+    "path": "cardInfoFormat",
+    "ko": "{0}<alpha=#CC> · <alpha=#FF>{1}\n<alpha=#CC>코스트 <alpha=#FF><b>{2:0.#}</b><alpha=#CC>   ·   시전 <alpha=#FF><b>{3:0.##}초</b>"
+  },
+  {
+    "source": "CombatInformation",
+    "path": "channelInfoFormat",
+    "ko": "{0}<alpha=#CC> · <alpha=#FF>{1}\n<alpha=#CC>코스트 <alpha=#FF><b>{2:0.#}</b><alpha=#CC>   ·   채널링 <alpha=#FF><b>{3:0.##}초</b>"
+  },
+  {
+    "source": "CombatInformation",
+    "path": "channelUnconfiguredLabel",
+    "ko": "채널링 효과 연결 필요"
+  },
+  {
+    "source": "CombatInformation",
+    "path": "damageFormat",
+    "ko": "피해 <b>{0}×{1}회</b> · 총합 피해 <b>{2}</b>\n<size=80%><alpha=#CC>적 1체·전 타격·크리티컬/방어 적용 전<alpha=#FF></size>"
+  },
+  {
+    "source": "CombatInformation",
+    "path": "variedDamageFormat",
+    "ko": "피해 <b>{0}</b> · 총합 피해 <b>{1}</b>\n<size=80%><alpha=#CC>적 1체·전 타격·크리티컬/방어 적용 전<alpha=#FF></size>"
+  },
+  {
+    "source": "CombatInformation",
+    "path": "shieldFormat",
+    "ko": "방어도 <b>+{0}</b>"
+  },
+  {
+    "source": "CombatInformation",
+    "path": "interruptFormat",
+    "ko": "캐스팅 중인 대상에게 사용\n효과 적용 때도 초록·주황\n시전 중이면 성공\n성공 경직 <b>{0:0.##}초</b>\n빨강·적 선발동: 실패, 코스트·카드 소모"
+  },
+  {
+    "source": "CombatInformation",
+    "path": "damagingInterruptFormat",
+    "ko": "피해 <b>{0}×{1}회</b> · 총합 피해 <b>{3}</b>\n<size=80%><alpha=#CC>적 1체·전 타격·크리티컬/방어 적용 전<alpha=#FF></size>\n적 캐스팅 중에만 사용. 피해 후 차단\n초록·주황: 경직 <b>{2:0.##}초</b>\n빨강·시전 종료: 피해만 적용"
+  },
+  {
+    "source": "CombatInformation",
+    "path": "enemyFormat",
+    "ko": "<size=125%><b><color=#F5EBD6>{0}</color></b></size>\n<size=80%> </size>\n<b><color=#F5EBD6>{1}</color></b>\n<alpha=#CC>기본 피해 <alpha=#FF><b>{2}</b><alpha=#CC> (방어력 적용 전)\n시전 <alpha=#FF><b>{3:0.##}초</b><alpha=#CC> · <alpha=#FF><color=#F5EBD6>{4}</color>{6}\n<size=85%>{5}</size>"
+  },
+  {
+    "source": "CombatInformation",
+    "path": "stunFormat",
+    "ko": "기절 <b>{0:0.##}초</b>"
+  },
+  {
+    "source": "CombatInformation",
+    "path": "restingFormat",
+    "ko": "<size=125%><b><color=#F5EBD6>{0}</color></b></size>\n<size=80%> </size>\n<alpha=#CC>현재 시전 중인 공격 없음"
+  },
+  {
+    "source": "CombatInformation",
+    "path": "dealLabel",
+    "ko": "공격"
+  },
+  {
+    "source": "CombatInformation",
+    "path": "singleLabel",
+    "ko": "적 1체"
+  },
+  {
+    "source": "CombatInformation",
+    "path": "allLabel",
+    "ko": "적 전체"
+  },
+  {
+    "source": "CombatInformation",
+    "path": "selfLabel",
+    "ko": "자신"
+  },
+  {
+    "source": "CombatInformation",
+    "path": "canInterruptLabel",
+    "ko": "차단 가능"
+  },
+  {
+    "source": "CombatInformation",
+    "path": "cannotInterruptLabel",
+    "ko": "차단 불가"
+  },
+  {
+    "source": "CombatInformation",
+    "path": "noEffectLabel",
+    "ko": "추가 효과 없음"
+  },
+  {
+    "source": "CombatInformation",
+    "path": "redShieldEffectFormat",
+    "ko": "피격 직전 방어도가 있으면 피해 <b>{0:0.#}%</b> 감소 후 흡수"
+  },
+  {
+    "source": "CombatInformation",
+    "path": "speedFormat",
+    "ko": "속도 {0:0.#}배속"
+  },
+  {
+    "source": "CombatInformation",
+    "path": "bossNameFormat",
+    "ko": "{0} ({1}페이즈)"
+  },
+  {
+    "source": "CombatInformation",
+    "path": "phaseTransitionFormat",
+    "ko": "<size=125%><b><color=#F5EBD6>{0}</color></b></size>\n<size=80%> </size>\n<color=#F5EBD6>전환 중</color>\n무적 <b>{1:0.0}초</b> · 새 스킬 사용 불가"
+  },
+  {
+    "source": "CombatInformation",
+    "path": "orbDescriptionFormat",
+    "ko": "<size=125%><b><color=#F5EBD6>{0}</color></b></size>\n<size=80%> </size>\n{1}\n파괴 시 보스 고정 피해 <b>{2}</b>\n전환 중 보스 무적에는 피해 없음"
+  },
+  {
+    "source": "CombatInformation",
+    "path": "costBlockingStunText",
+    "ko": "\n기절 중 코스트 충전 불가"
+  },
+  {
+    "source": "CombatInformation",
+    "path": "orbEmpoweredText",
+    "ko": "\n파멸 강화 적용"
+  },
+  {
+    "source": "BattleRewards",
+    "path": "rewardReplacementFormat",
+    "ko": "\"{0}\"을 \"{1}\"으로 교체하겠습니까?"
+  },
+  {
+    "source": "BattleRewards",
+    "path": "titleFormat",
+    "ko": "전투 승리 · HP {1:0} / {2:0}"
+  },
+  {
+    "source": "BattleRewards",
+    "path": "chooseText",
+    "ko": "보상 1개를 선택하세요. 필요 없으면 스킵할 수 있습니다."
+  },
+  {
+    "source": "BattleRewards",
+    "path": "noChoicesText",
+    "ko": "받을 수 있는 보상이 없습니다. 스킵 후 진행하세요."
+  },
+  {
+    "source": "BattleRewards",
+    "path": "replaceFormat",
+    "ko": "{0} 선택 · 교체할 카드를 고르세요."
+  },
+  {
+    "source": "BattleRewards",
+    "path": "readyText",
+    "ko": "편성을 확인하고 다음 전투로 진행하세요."
+  },
+  {
+    "source": "BattleRewards",
+    "path": "deckSlotFormat",
+    "ko": "{0}번 · {1}"
+  },
+  {
+    "source": "BattleRewards",
+    "path": "handLabel",
+    "ko": "시작 손패"
+  },
+  {
+    "source": "BattleRewards",
+    "path": "queueLabel",
+    "ko": "대기 순서"
+  },
+  {
+    "source": "BattleRewards",
+    "path": "preparationTitle",
+    "ko": "시작 편성"
+  },
+  {
+    "source": "BattleRewards",
+    "path": "preparationText",
+    "ko": "편성을 확인하고 전투를 시작하세요."
+  },
+  {
+    "source": "BattleRewards",
+    "path": "orderText",
+    "ko": "카드를 원하는 자리에 드래그하세요. 1~4번은 시작 손패, 5~8번은 대기열입니다."
+  },
+  {
+    "source": "BattleRewards",
+    "path": "inheritanceTitle",
+    "ko": "계승 선택"
+  },
+  {
+    "source": "BattleRewards",
+    "path": "inheritanceChoiceText",
+    "ko": "이번 런에서 얻은 스킬·패시브 중 1개를 계승하세요."
+  },
+  {
+    "source": "BattleRewards",
+    "path": "inheritanceReplaceFormat",
+    "ko": "{0} 계승 · 영구 시작 덱에서 교체할 자리를 고른 뒤 확인을 누르세요."
+  },
+  {
+    "source": "BattleRewards",
+    "path": "inheritanceSkipText",
+    "ko": "계승 스킵"
+  },
+  {
+    "source": "BattleRewards",
+    "path": "inheritanceBackText",
+    "ko": "계승 다시 선택"
+  },
+  {
+    "source": "BattleRewards",
+    "path": "inheritanceGuideText",
+    "ko": "다음 런부터 적용 · 초기화 전까지 유지"
+  },
+  {
+    "source": "BattleRewards",
+    "path": "inheritanceStackFormat",
+    "ko": "계승 <b>{0}</b> / 최대 {1}"
+  },
+  {
+    "source": "BattleRewards",
+    "path": "inheritanceUnlimitedFormat",
+    "ko": "계승 <b>{0}</b>"
+  },
+  {
+    "source": "BattleRewards",
+    "path": "inheritedCardMarker",
+    "ko": "  <size=18><color=#E7CB87>계승</color></size>"
+  },
+  {
+    "source": "BattleRewards",
+    "path": "noInheritedPassives",
+    "ko": "<size=24><color=#ABAAB0>계승한 패시브가 없습니다.</color></size>"
+  },
+  {
+    "source": "BattleRewards",
+    "path": "saveFailedText",
+    "ko": "계승을 저장하지 못했습니다. 다시 선택하거나 스킵하세요."
+  },
+  {
+    "source": "BattleRewards",
+    "path": "resetFailedText",
+    "ko": "초기화하지 못했습니다. 다시 시도하세요."
+  },
+  {
+    "source": "BattleRewards",
+    "path": "loadFailedText",
+    "ko": "계승 파일을 읽지 못해 기본 상태로 시작합니다. 기존 파일은 보존했습니다."
+  },
+  {
+    "source": "BattleRewards",
+    "path": "backupLoadedText",
+    "ko": "계승 파일을 읽지 못해 이전 저장본을 불러왔습니다."
+  },
+  {
+    "source": "BattleRewards",
+    "path": "passiveCategoryText",
+    "ko": "패시브"
+  },
+  {
+    "source": "BattleRewards",
+    "path": "passiveStackFormat",
+    "ko": "보유 <b>{0}</b> / 최대 {1}"
+  },
+  {
+    "source": "BattleRewards",
+    "path": "unlimitedPassiveStackFormat",
+    "ko": "보유 <b>{0}</b>"
+  },
+  {
+    "source": "BattleRewards",
+    "path": "passiveGuideText",
+    "ko": "선택 즉시 적용 · 덱 유지"
+  },
+  {
+    "source": "BattleRewards",
+    "path": "passiveStatFormats.Array.data[0].format",
+    "ko": "포션 최대 보유량 <b>+{0:0}</b>"
+  },
+  {
+    "source": "BattleRewards",
+    "path": "passiveStatFormats.Array.data[1].format",
+    "ko": "현재 포션 <b>{0:0}개</b> 보충"
+  },
+  {
+    "source": "BattleRewards",
+    "path": "passiveStatFormats.Array.data[2].format",
+    "ko": "즉시 HP <b>{0:0}</b> 회복"
+  },
+  {
+    "source": "BattleRewards",
+    "path": "passiveStatFormats.Array.data[3].format",
+    "ko": "최대 HP <b>+{0:0}</b>"
+  },
+  {
+    "source": "BattleRewards",
+    "path": "passiveStatFormats.Array.data[4].format",
+    "ko": "초당 코스트 충전 <b>+{0:0.##}</b>"
+  },
+  {
+    "source": "BattleRewards",
+    "path": "passiveStatFormats.Array.data[5].format",
+    "ko": "매 전투 시작 코스트 <b>+{0:0.#}</b>"
+  },
+  {
+    "source": "BattleRewards",
+    "path": "passiveStatFormats.Array.data[6].format",
+    "ko": "코스트 상한 <b>+{0:0.#}</b>"
+  },
+  {
+    "source": "BattleRewards",
+    "path": "passiveStatFormats.Array.data[7].format",
+    "ko": "방어도 부여량 <b>+{0:0%}</b>"
+  },
+  {
+    "source": "BattleRewards",
+    "path": "passiveStatFormats.Array.data[8].format",
+    "ko": "차단 성공 경직 <b>+{0:0.##}초</b>"
+  },
+  {
+    "source": "BattleRewards",
+    "path": "passiveStatFormats.Array.data[9].format",
+    "ko": "크리티컬 확률 <b>+{0:0.#}%p</b>"
+  },
+  {
+    "source": "Systems",
+    "path": "speedEntryFormat",
+    "ko": "{0:0.00}s: {1:0.#}배"
+  },
+  {
+    "source": "Systems",
+    "path": "speedSummaryFormat",
+    "ko": "배속 이력(게임 초): {0}"
+  },
+  {
+    "source": "Systems",
+    "path": "criticalHitLabel",
+    "ko": " / 크리티컬"
+  },
+  {
+    "source": "Systems",
+    "path": "criticalSummaryFormat",
+    "ko": "크리티컬 {0}회 / 유효 피해 타격 {1}회 (사망 후 잔여 연출 제외)"
+  },
+  {
+    "source": "Systems",
+    "path": "runModifiersFormat",
+    "ko": "시작 조건: 충전 {0:0.0}/초 / 크리티컬 {1:0.#}% / {2}"
+  },
+  {
+    "source": "Systems",
+    "path": "potionLogFormat",
+    "ko": "[포션 {0:0.00}s] 실회복 {1:0} / 남은 {2}/{3}"
+  },
+  {
+    "source": "Systems",
+    "path": "potionSummaryFormat",
+    "ko": "포션 사용 {0}회 / 실제 회복 {1:0}"
+  },
+  {
+    "source": "Systems",
+    "path": "invulnerabilityLogFormat",
+    "ko": "[무적 {0:0.00}s] 피해 무효화 {1} (방어력 적용 후 / HP·방어도 감소 0)"
+  },
+  {
+    "source": "Systems",
+    "path": "invulnerabilitySummaryFormat",
+    "ko": "무적 무효화 피해 {0} (방어도 흡수와 별도)"
+  },
+  {
+    "source": "Systems",
+    "path": "redShieldSummaryFormat",
+    "ko": "빨강 반감 감소 피해 {0} (방어도 흡수·무적과 별도)"
+  },
+  {
+    "source": "Systems",
+    "path": "currentDisplayFormat",
+    "ko": "현재 설정: {0} · {1}"
+  },
+  {
+    "source": "Systems",
+    "path": "fullscreenText",
+    "ko": "전체화면 (테두리 없음)"
+  },
+  {
+    "source": "Systems",
+    "path": "windowedText",
+    "ko": "창모드"
+  },
+  {
+    "source": "Systems",
+    "path": "resetPrompt",
+    "ko": "정말 게임을 초기화 하시겠습니까?\n스테이지 클리어 기록이 사라집니다.\n<size=75%>계승한 스킬·패시브와 튜토리얼 기록도 초기화됩니다.</size>"
+  },
+  {
+    "source": "Systems",
+    "path": "resetError",
+    "ko": "초기화하지 못했습니다. 저장 경로를 확인한 뒤 다시 시도하세요."
+  },
+  {
+    "source": "Systems",
+    "path": "newGamePrompt",
+    "ko": "기존 데이터가 사라집니다. 그래도 진행하시겠습니까?"
+  },
+  {
+    "source": "Systems",
+    "path": "exclusiveFullscreenText",
+    "ko": "전체화면"
+  },
+  {
+    "source": "Systems",
+    "path": "unlimitedText",
+    "ko": "무제한"
+  },
+  {
+    "source": "Systems",
+    "path": "vSyncHint",
+    "ko": "수직동기화 사용 시 프레임 제한 대신 모니터 주사율을 따릅니다."
+  },
+  {
+    "source": "Systems",
+    "path": "frameLimitHint",
+    "ko": "프레임 제한을 낮추면 그래픽 부하를 줄일 수 있습니다."
+  },
+  {
+    "source": "Systems",
+    "path": "enemyInfoPrompt",
+    "ko": "해당 구역은 타겟팅 된 적의 공격에 대한 정보를 보여줍니다"
+  },
+  {
+    "source": "Systems",
+    "path": "defeatPrompt",
+    "ko": "이제 공격스킬을 써서 적을 처치하세요"
+  },
+  {
+    "source": "Systems",
+    "path": "completionPrompt",
+    "ko": "<size=36><b>튜토리얼 완료</b></size>\nHP와 포션이 회복된 상태로 다음 전투를 시작합니다.\n스킬 순서를 확인하고 전투를 준비하세요."
+  },
+  {
+    "source": "Enemy_B_Orange",
+    "path": "phaseTransitionFormat",
+    "ko": "전환 · 무적 {0:0.0}초"
+  },
+  {
+    "source": "Systems",
+    "path": "phaseTransitionLabel",
+    "ko": "사용 불가 — 페이즈 전환"
+  },
+  {
+    "source": "Player",
+    "path": "damageLogFormat",
+    "ko": "[Player] 피격 {0} (원본 {1}) 방어도 흡수 {2} → HP -{3} = {4:F0}/{5:F0} (방어도 {6}){7}"
+  },
+  {
+    "source": "Player",
+    "path": "redShieldLogFormat",
+    "ko": " / 빨강 반감 감소 {0}"
+  },
+  {
+    "source": "Player",
+    "path": "healLogFormat",
+    "ko": "[Player] 회복 {0:0} / 요청 {1:0} → HP {2:0}/{3:0}"
+  },
+  {
+    "source": "Model",
+    "path": "skills.Array.data[0].label",
+    "ko": "매직미사일(파이어볼 연출)"
+  },
+  {
+    "source": "Model",
+    "path": "skills.Array.data[1].label",
+    "ko": "사일런스"
+  },
+  {
+    "source": "Model",
+    "path": "skills.Array.data[2].label",
+    "ko": "다크홀"
+  },
+  {
+    "source": "Model",
+    "path": "skills.Array.data[3].label",
+    "ko": "나이트메어"
+  },
+  {
+    "source": "Model",
+    "path": "skills.Array.data[4].label",
+    "ko": "디엔드"
+  },
+  {
+    "source": "Systems",
+    "path": "encounters.Array.data[0].label",
+    "ko": "인적 드문 오솔길"
+  },
+  {
+    "source": "Systems",
+    "path": "encounters.Array.data[1].label",
+    "ko": "도적 아지트 입구"
+  },
+  {
+    "source": "Systems",
+    "path": "encounters.Array.data[3].label",
+    "ko": "불길한 동굴"
+  },
+  {
+    "source": "Systems",
+    "path": "countdownFormat",
+    "ko": "전투 준비\n<size=140%>{0}</size>"
+  },
+  {
+    "source": "Systems",
+    "path": "tutorialMapName",
+    "ko": "오솔길 입구"
+  },
+  {
+    "source": "Systems",
+    "path": "victoryFormat",
+    "ko": "<size=135%><b><color=#E6CA90>전투 {0} 승리</color></b></size>\n<size=45%> </size>\n<alpha=#CC>남은 HP <alpha=#FF><b>{1:0} / {2:0}</b>\n<alpha=#CC>이 HP로 다음 전투를 시작합니다."
+  },
+  {
+    "source": "Systems",
+    "path": "completeFormat",
+    "ko": "<size=135%><b><color=#E6CA90>모험 완료</color></b></size>\n<size=45%> </size>\n<alpha=#CC>남은 HP <alpha=#FF><b>{0:0} / {1:0}</b>"
+  },
+  {
+    "source": "Systems",
+    "path": "defeatFormat",
+    "ko": "<size=200%><b><color=#E87878>패배</color></b></size>\n<size=40%> </size>\n이번 런에서 얻은 스킬·패시브 중 1개를 계승할 수 있습니다."
+  },
+  {
+    "source": "Systems",
+    "path": "restartButtonText",
+    "ko": "처음부터 다시 시작"
+  },
+  {
+    "source": "Systems",
+    "path": "inheritanceLogFormat",
+    "ko": "[계승] {0} 저장 / 시작 덱 슬롯 {1}"
+  },
+  {
+    "source": "Systems",
+    "path": "progressSaveError",
+    "ko": "진행 기록 저장 실패. 저장 경로를 확인하세요."
+  },
+  {
+    "source": "Systems",
+    "path": "replaceLogFormat",
+    "ko": "[보상 전투 {0}] 덱 {1}번: {2} → {3}"
+  },
+  {
+    "source": "Systems",
+    "path": "skipLogFormat",
+    "ko": "[보상 전투 {0}] 스킵 — 편성 유지"
+  },
+  {
+    "source": "Systems",
+    "path": "resourceStatusFormat",
+    "ko": "HP {0:0}/{1:0} · 포션 {2}/{3} · 시작 코스트 {4:0.#} / 상한 {5:0.#} · 방어도 배율 {6:0.##} · 차단 경직 {7:0.##}초"
+  },
+  {
+    "source": "Systems",
+    "path": "firstBattleText",
+    "ko": "전투 시작"
+  },
+  {
+    "source": "Systems",
+    "path": "nextBattleText",
+    "ko": "다음 전투"
+  },
+  {
+    "source": "Systems",
+    "path": "orderLogFormat",
+    "ko": "[편성 전투 {0} 준비] 순서 저장: {1}"
+  },
+  {
+    "source": "Systems",
+    "path": "effectLogFormat",
+    "ko": "[보상 전투 {0}] {1} 획득 / {2}스택 / 충전 {3:0.0}/초 / 크리티컬 {4:0.#}%"
+  },
+  {
+    "source": "Label",
+    "path": "m_text",
+    "ko": "취소"
+  },
+  {
+    "source": "VSyncTitle",
+    "path": "m_text",
+    "ko": "수직동기화"
+  },
+  {
+    "source": "Title",
+    "path": "m_text",
+    "ko": "계승 정보"
+  },
+  {
+    "source": "Label",
+    "path": "m_text",
+    "ko": "보상 스킵"
+  },
+  {
+    "source": "SoundLabel1",
+    "path": "m_text",
+    "ko": "배경음"
+  },
+  {
+    "source": "Title",
+    "path": "m_text",
+    "ko": "새 게임 진행"
+  },
+  {
+    "source": "ShieldText",
+    "path": "m_text",
+    "ko": "방어도 0"
+  },
+  {
+    "source": "Label",
+    "path": "m_text",
+    "ko": "확인"
+  },
+  {
+    "source": "Hint",
+    "path": "m_text",
+    "ko": "시작 화면으로 돌아가면 진행 중인 전투는 종료됩니다."
+  },
+  {
+    "source": "PotionStatus",
+    "path": "m_text",
+    "ko": "포션 3/3 · Shift"
+  },
+  {
+    "source": "SoundLabel2",
+    "path": "m_text",
+    "ko": "스킬 사운드"
+  },
+  {
+    "source": "Title",
+    "path": "m_text",
+    "ko": "조작 정보"
+  },
+  {
+    "source": "Label",
+    "path": "m_text",
+    "ko": "치명타 배율"
+  },
+  {
+    "source": "Prompt",
+    "path": "m_text",
+    "ko": "<size=36>계승한 스킬·패시브를 모두 지울까요?</size>\n<size=24><color=#B9AF9E>시작 덱과 능력치가 기본 상태로 돌아갑니다.</color></size>"
+  },
+  {
+    "source": "Label",
+    "path": "m_text",
+    "ko": "시작 화면으로"
+  },
+  {
+    "source": "Label",
+    "path": "m_text",
+    "ko": "예"
+  },
+  {
+    "source": "Label",
+    "path": "m_text",
+    "ko": "게임 시작"
+  },
+  {
+    "source": "Label",
+    "path": "m_text",
+    "ko": "계속하기"
+  },
+  {
+    "source": "Label",
+    "path": "m_text",
+    "ko": "초기화"
+  },
+  {
+    "source": "Label",
+    "path": "m_text",
+    "ko": "아니오"
+  },
+  {
+    "source": "Resolution",
+    "path": "m_text",
+    "ko": "해상도"
+  },
+  {
+    "source": "Label",
+    "path": "m_text",
+    "ko": "옵션"
+  },
+  {
+    "source": "Guide",
+    "path": "m_text",
+    "ko": "튜토리얼은 기본 편성으로 진행합니다. 계승은 본편부터 적용됩니다.\n시작 편성에서 바꾼 순서는 이번 런에만 적용됩니다."
+  },
+  {
+    "source": "SoundLabel3",
+    "path": "m_text",
+    "ko": "적 사운드"
+  },
+  {
+    "source": "Section_생존",
+    "path": "m_text",
+    "ko": "생존"
+  },
+  {
+    "source": "Label",
+    "path": "m_text",
+    "ko": "능력치"
+  },
+  {
+    "source": "Label",
+    "path": "m_text",
+    "ko": "초당 회복"
+  },
+  {
+    "source": "Subtitle",
+    "path": "m_text",
+    "ko": "적의 캐스팅을 읽고, 공격과 대응을 선택하세요."
+  },
+  {
+    "source": "Values",
+    "path": "m_text",
+    "ko": "<line-height=56>Q / W / E / R 또는 카드 좌클릭\n적 좌클릭 또는 좌우 방향키\n카드에 마우스 올리기\nA 또는 우클릭 / 상단 버튼 · Esc 메뉴\nS 또는 상단 속도 버튼 (1배속 / 0.5배속)\nShift 또는 물약 아이콘 좌클릭\n전투 중 우측 상단 버튼 (게임은 멈추지 않음)"
+  },
+  {
+    "source": "SoundLabel0",
+    "path": "m_text",
+    "ko": "전체 사운드"
+  },
+  {
+    "source": "Label",
+    "path": "m_text",
+    "ko": "아니요"
+  },
+  {
+    "source": "Label",
+    "path": "m_text",
+    "ko": "차단 성공 경직"
+  },
+  {
+    "source": "Hint",
+    "path": "m_text",
+    "ko": "소리는 바로 반영됩니다. 적용하면 저장되고, 취소하면 돌아갑니다."
+  },
+  {
+    "source": "Labels",
+    "path": "m_text",
+    "ko": "<line-height=56>카드 사용\n대상 선택\n카드 정보\n일시정지·재개\n배속 변경\n포션 사용\n능력치"
+  },
+  {
+    "source": "Label",
+    "path": "m_text",
+    "ko": "돌아가기"
+  },
+  {
+    "source": "CardsTitle",
+    "path": "m_text",
+    "ko": "시작 덱"
+  },
+  {
+    "source": "Mode",
+    "path": "m_text",
+    "ko": "화면 모드"
+  },
+  {
+    "source": "Label",
+    "path": "m_text",
+    "ko": "게임 종료"
+  },
+  {
+    "source": "Label",
+    "path": "m_text",
+    "ko": "전투 시작 코스트"
+  },
+  {
+    "source": "Controls",
+    "path": "m_text",
+    "ko": "카드 사용   Q / W / E / R 또는 카드 좌클릭\n대상 선택   적 좌클릭 또는 좌우 방향키\n카드 정보   카드에 마우스 올리기\n일시정지   카드 우클릭 또는 상단 정지 버튼\n배속 변경   상단 속도 버튼 (1배 / 0.5배)"
+  },
+  {
+    "source": "Label",
+    "path": "m_text",
+    "ko": "게임 초기화"
+  },
+  {
+    "source": "Label",
+    "path": "m_text",
+    "ko": "저장"
+  },
+  {
+    "source": "PassivesTitle",
+    "path": "m_text",
+    "ko": "계승 패시브"
+  },
+  {
+    "source": "FrameLimitTitle",
+    "path": "m_text",
+    "ko": "프레임 제한"
+  },
+  {
+    "source": "Label",
+    "path": "m_text",
+    "ko": "보상 다시 선택"
+  },
+  {
+    "source": "Label",
+    "path": "m_text",
+    "ko": "사용"
+  },
+  {
+    "source": "Label",
+    "path": "m_text",
+    "ko": "방어도 부여량"
+  },
+  {
+    "source": "Label",
+    "path": "m_text",
+    "ko": "순서 변경"
+  },
+  {
+    "source": "Label",
+    "path": "m_text",
+    "ko": "속도 1배속"
+  },
+  {
+    "source": "Title",
+    "path": "m_text",
+    "ko": "카드 교체"
+  },
+  {
+    "source": "DisplayHint",
+    "path": "m_text",
+    "ko": "현재 설정"
+  },
+  {
+    "source": "Label",
+    "path": "m_text",
+    "ko": "방어력"
+  },
+  {
+    "source": "Section_대응",
+    "path": "m_text",
+    "ko": "대응"
+  },
+  {
+    "source": "Label",
+    "path": "m_text",
+    "ko": "코스트 상한"
+  },
+  {
+    "source": "StunText",
+    "path": "m_text",
+    "ko": "기절 2.0"
+  },
+  {
+    "source": "Label",
+    "path": "m_text",
+    "ko": "치명타 확률"
+  },
+  {
+    "source": "Message",
+    "path": "m_text",
+    "ko": "기존의 데이터가 존재합니다.\n기존 게임 사양으로 시작하겠습니까?"
+  },
+  {
+    "source": "Label",
+    "path": "m_text",
+    "ko": "옵     션"
+  },
+  {
+    "source": "Label",
+    "path": "m_text",
+    "ko": "계승 초기화"
+  },
+  {
+    "source": "Label",
+    "path": "m_text",
+    "ko": "적용"
+  },
+  {
+    "source": "Label",
+    "path": "m_text",
+    "ko": "최대 HP"
+  },
+  {
+    "source": "Section_코스트",
+    "path": "m_text",
+    "ko": "코스트"
+  },
+  {
+    "source": "Enemy_Tutorial",
+    "path": "displayName",
+    "ko": "깡패"
+  },
+  {
+    "source": "Enemy_Tutorial",
+    "path": "attacks.Array.data[0].skillName",
+    "ko": "펀치"
+  },
+  {
+    "source": "Enemy_Tutorial",
+    "path": "attacks.Array.data[1].skillName",
+    "ko": "전력펀치"
+  },
+  {
+    "source": "Enemy_Tutorial",
+    "path": "attacks.Array.data[2].skillName",
+    "ko": "발차기"
+  },
+  {
+    "source": "Enemy_A_Green",
+    "path": "displayName",
+    "ko": "약탈자"
+  },
+  {
+    "source": "Enemy_A_Green",
+    "path": "attacks.Array.data[0].skillName",
+    "ko": "휘두르기"
+  },
+  {
+    "source": "Enemy_B_Orange",
+    "path": "displayName",
+    "ko": "궁병"
+  },
+  {
+    "source": "Enemy_B_Orange",
+    "path": "attacks.Array.data[0].skillName",
+    "ko": "속공술"
+  },
+  {
+    "source": "Enemy_B_Orange",
+    "path": "attacks.Array.data[1].skillName",
+    "ko": "조준술"
+  },
+  {
+    "source": "Enemy_Boss",
+    "path": "displayName",
+    "ko": "마법사"
+  },
+  {
+    "source": "Enemy_Boss",
+    "path": "attacks.Array.data[0].skillName",
+    "ko": "매직미사일"
+  },
+  {
+    "source": "Enemy_C_Red",
+    "path": "displayName",
+    "ko": "우두머리"
+  },
+  {
+    "source": "Enemy_C_Red",
+    "path": "attacks.Array.data[0].skillName",
+    "ko": "참격"
+  },
+  {
+    "source": "Enemy_C_Red",
+    "path": "attacks.Array.data[1].skillName",
+    "ko": "회심참"
+  },
+  {
+    "source": "Enemy_D_Mixed",
+    "path": "displayName",
+    "ko": "잡몹 D"
+  },
+  {
+    "source": "Enemy_D_Mixed",
+    "path": "attacks.Array.data[0].skillName",
+    "ko": "일반 공격"
+  },
+  {
+    "source": "Enemy_D_Mixed",
+    "path": "attacks.Array.data[1].skillName",
+    "ko": "기절 공격"
+  },
+  {
+    "source": "Enemy_D_Mixed",
+    "path": "attacks.Array.data[2].skillName",
+    "ko": "대형 피해"
+  },
+  {
+    "source": "Enemy_Orb_Cycle",
+    "path": "displayName",
+    "ko": "순환의 오브"
+  },
+  {
+    "source": "Enemy_Orb_Cycle",
+    "path": "passiveDescription",
+    "ko": "보스 시전 시간 추가 20%p 감소\n2페이즈 총 40% / 3페이즈 20%"
+  },
+  {
+    "source": "Enemy_Orb_Ruin",
+    "path": "displayName",
+    "ko": "파멸의 오브"
+  },
+  {
+    "source": "Enemy_Orb_Ruin",
+    "path": "passiveDescription",
+    "ko": "보스 피해 +10%\n강화 사일런스·나이트메어의\n기절 중 코스트 충전 불가"
+  },
+  {
+    "source": "PS01_EmergencyPotion",
+    "path": "displayName",
+    "ko": "응급 물약"
+  },
+  {
+    "source": "PS02_Healing",
+    "path": "displayName",
+    "ko": "치유의 스크롤"
+  },
+  {
+    "source": "PS02_Healing",
+    "path": "description",
+    "ko": "최대 HP를 넘는 회복은 버림"
+  },
+  {
+    "source": "PS03_Endurance",
+    "path": "displayName",
+    "ko": "인내의 스크롤"
+  },
+  {
+    "source": "PS03_Endurance",
+    "path": "description",
+    "ko": "현재 HP는 회복하지 않음"
+  },
+  {
+    "source": "PS04_Circulation",
+    "path": "displayName",
+    "ko": "순환의 스크롤"
+  },
+  {
+    "source": "PS05_Origin",
+    "path": "displayName",
+    "ko": "태초의 스크롤"
+  },
+  {
+    "source": "PS05_Origin",
+    "path": "description",
+    "ko": "현재 코스트는 보충하지 않음"
+  },
+  {
+    "source": "PS06_Abyss",
+    "path": "displayName",
+    "ko": "심연의 스크롤"
+  },
+  {
+    "source": "PS07_Bulwark",
+    "path": "displayName",
+    "ko": "철벽의 스크롤"
+  },
+  {
+    "source": "PS07_Bulwark",
+    "path": "description",
+    "ko": "기본 부여량 기준으로 합산"
+  },
+  {
+    "source": "PS08_Binding",
+    "path": "displayName",
+    "ko": "속박의 스크롤"
+  },
+  {
+    "source": "PS08_Binding",
+    "path": "description",
+    "ko": "플레이어 기절 시간은 유지"
+  },
+  {
+    "source": "PS09_Precision",
+    "path": "displayName",
+    "ko": "정밀의 스크롤"
+  },
+  {
+    "source": "PS10_Devil",
+    "path": "displayName",
+    "ko": "악마의 스크롤"
+  },
+  {
+    "source": "Channel_SK02_IceArrow",
+    "path": "timingFormat",
+    "ko": "피해 <b>{0}×{1}회</b> · 총합 피해 <b>{6}</b>\n<size=80%><alpha=#CC>적 1체·전 타격·크리티컬/방어 적용 전<alpha=#FF></size>\n첫 타격 {2:0.##}초 / 간격 {3:0.##}초\n타격 후 남은 잠금 {4:0.##}초\n{5}"
+  },
+  {
+    "source": "Channel_SK02_IceArrow",
+    "path": "singleTargetFormat",
+    "ko": "입력 대상 고정. 사망 시 후딜 {0:0.##}초"
+  },
+  {
+    "source": "Channel_SK02_IceArrow",
+    "path": "areaTargetText",
+    "ko": "매 타격 시 생존 적 전체"
+  },
+  {
+    "source": "Channel_SK14_Sanctuary",
+    "path": "description",
+    "ko": "즉시 무적·기절 면역\n채널링 동안 HP·방어도 피해 무효화\n다른 카드 사용 불가\n종료 시 모두 해제\n이미 기절 중이면 사용 불가"
+  },
+  {
+    "source": "Skill_ChainLightning",
+    "path": "displayName",
+    "ko": "연쇄번개"
+  },
+  {
+    "source": "Skill_CrystalShield",
+    "path": "displayName",
+    "ko": "매직아머"
+  },
+  {
+    "source": "Skill_Explosion",
+    "path": "displayName",
+    "ko": "폭발"
+  },
+  {
+    "source": "Skill_Fireball",
+    "path": "displayName",
+    "ko": "화염탄"
+  },
+  {
+    "source": "Skill_FlamePillar",
+    "path": "displayName",
+    "ko": "불기둥"
+  },
+  {
+    "source": "Skill_FlamePillar_AoeTest",
+    "path": "displayName",
+    "ko": "불기둥(광역)"
+  },
+  {
+    "source": "Skill_Frostbolt",
+    "path": "displayName",
+    "ko": "서리화살"
+  },
+  {
+    "source": "Skill_Pierce",
+    "path": "displayName",
+    "ko": "관통"
+  },
+  {
+    "source": "Skill_Silence",
+    "path": "displayName",
+    "ko": "침묵"
+  },
+  {
+    "source": "Skill_SK01_Fireball",
+    "path": "displayName",
+    "ko": "파이어볼"
+  },
+  {
+    "source": "Skill_SK02_IceArrow",
+    "path": "displayName",
+    "ko": "아이스애로우"
+  },
+  {
+    "source": "Skill_SK03_MagicCutter",
+    "path": "displayName",
+    "ko": "매직 커터"
+  },
+  {
+    "source": "Skill_SK04_FirePillar",
+    "path": "displayName",
+    "ko": "파이어 필라"
+  },
+  {
+    "source": "Skill_SK05_LightningSpear",
+    "path": "displayName",
+    "ko": "라이트닝 스피어"
+  },
+  {
+    "source": "Skill_SK06_MagicSpark",
+    "path": "displayName",
+    "ko": "매직 스파크"
+  },
+  {
+    "source": "Skill_SK07_MagicImpact",
+    "path": "displayName",
+    "ko": "매직 임팩트"
+  },
+  {
+    "source": "Skill_SK08_Judgment",
+    "path": "displayName",
+    "ko": "저지먼트"
+  },
+  {
+    "source": "Skill_SK09_Blizzard",
+    "path": "displayName",
+    "ko": "블리자드"
+  },
+  {
+    "source": "Skill_SK10_DarkEruption",
+    "path": "displayName",
+    "ko": "다크 이럽션"
+  },
+  {
+    "source": "Skill_SK12_Suppression",
+    "path": "displayName",
+    "ko": "제압"
+  },
+  {
+    "source": "Skill_SK14_Sanctuary",
+    "path": "displayName",
+    "ko": "생츄어리"
+  },
+  {
+    "source": "OpeningStory",
+    "path": "playerName",
+    "ko": "모험가"
+  },
+  {
+    "source": "OpeningStory",
+    "path": "introSkipText",
+    "ko": "인트로 건너뛰기"
+  },
+  {
+    "source": "OpeningStory",
+    "path": "dialogueSkipText",
+    "ko": "대화 건너뛰기"
+  },
+  {
+    "source": "OpeningStory",
+    "path": "intro.Array.data[0].text",
+    "ko": "고대의 대전쟁 당시, 한 제국은 병사들을 강화하기 위해 대마법사에게 새로운 기술을 개발하도록 명했다. 그렇게 탄생한 것이 바로 ‘비전 스크롤’이었다."
+  },
+  {
+    "source": "OpeningStory",
+    "path": "intro.Array.data[1].text",
+    "ko": "비전 스크롤에는 마법뿐만 아니라 신체 능력과 기술, 지식까지 담아 다른 이에게 전할 수 있었다. 병사들은 스크롤에 담긴 힘과 기술을 익혀 전장에서 활약했고, 제국은 마침내 전쟁에서 승리했다."
+  },
+  {
+    "source": "OpeningStory",
+    "path": "intro.Array.data[2].text",
+    "ko": "하지만 누구나 강력한 힘을 얻을 수 있다는 사실은 사람들의 탐욕을 자극했다. 스크롤을 차지하려는 다툼은 제국 내부로 번졌고, 끝없는 분열 속에서 제국은 결국 몰락했다."
+  },
+  {
+    "source": "OpeningStory",
+    "path": "intro.Array.data[3].text",
+    "ko": "오랜 세월이 흐른 지금도 비전 스크롤은 남아 있다. 그러나 이제는 새로운 기술이나 마법의 기초를 쉽게 익히는 수단으로 여겨질 뿐이다. 한때 제국의 병사들에게 막강한 힘을 부여했다는 이야기는 고대의 전설로 남았다."
+  },
+  {
+    "source": "OpeningStory",
+    "path": "intro.Array.data[4].text",
+    "ko": "그럼에도 전설 속 힘을 찾아 스크롤을 모으고, 싸우며 모험을 이어가는 이들이 있다.\n사람들은 그들을 스크롤 헌터라 부른다."
+  },
+  {
+    "source": "OpeningStory",
+    "path": "tutorialDialogue.Array.data[0].text",
+    "ko": "숲으로 향하는 길목에서 깡패가 앞을 가로막는다."
+  },
+  {
+    "source": "OpeningStory",
+    "path": "tutorialDialogue.Array.data[1].text",
+    "ko": "어이, 거기 멈춰. 이 숲에 들어가려면 통행세부터 내야지."
+  },
+  {
+    "source": "OpeningStory",
+    "path": "tutorialDialogue.Array.data[2].text",
+    "ko": "통행세? 여기 오는 동안 그런 얘기는 못 들었는데."
+  },
+  {
+    "source": "OpeningStory",
+    "path": "tutorialDialogue.Array.data[3].text",
+    "ko": "그럼 지금 알았으면 됐잖아. 돈 내놔."
+  },
+  {
+    "source": "OpeningStory",
+    "path": "tutorialDialogue.Array.data[4].text",
+    "ko": "길을 막고 돈을 뜯는 걸 통행세라고 하나? 낼 생각 없으니까 비켜."
+  },
+  {
+    "source": "OpeningStory",
+    "path": "tutorialDialogue.Array.data[5].text",
+    "ko": "좋게 말하니까 우습게 보이나? 그럼 쓰러뜨리고 직접 챙겨 주지. 가진 건 전부 두고 가게 될 거다."
+  },
+  {
+    "source": "OpeningStory",
+    "path": "tutorialDialogue.Array.data[6].text",
+    "ko": "모험가가 가볍게 웃으며 어깨를 푼다."
+  },
+  {
+    "source": "OpeningStory",
+    "path": "tutorialDialogue.Array.data[7].text",
+    "ko": "마침 잘됐네. 한동안 싸울 일이 없어서 몸이 굳어 있었거든."
+  },
+  {
+    "source": "OpeningStory",
+    "path": "tutorialDialogue.Array.data[8].text",
+    "ko": "뭐? 지금 웃음이 나와?"
+  },
+  {
+    "source": "OpeningStory",
+    "path": "tutorialDialogue.Array.data[9].text",
+    "ko": "덕분에 몸 좀 풀고 가겠어. 덤벼."
+  },
+  {
+    "source": "OpeningStory",
+    "path": "tutorialDialogue.Array.data[10].text",
+    "ko": "깡패가 주먹을 쥐고 달려든다."
+  },
+  {
+    "source": "OpeningStory",
+    "path": "forestDialogue.Array.data[0].text",
+    "ko": "숲속을 한참 헤매던 모험가가 갈림길 앞에서 걸음을 멈춘다."
+  },
+  {
+    "source": "OpeningStory",
+    "path": "forestDialogue.Array.data[1].text",
+    "ko": "이 바위… 아까도 지나온 것 같은데. 길을 잘못 들었나?"
+  },
+  {
+    "source": "OpeningStory",
+    "path": "forestDialogue.Array.data[2].text",
+    "ko": "그때, 나무 사이에서 약탈자와 궁병이 나타나 길을 가로막는다."
+  },
+  {
+    "source": "OpeningStory",
+    "path": "forestDialogue.Array.data[3].text",
+    "ko": "거기, 멈춰. 여기서 뭘 하고 있지?"
+  },
+  {
+    "source": "OpeningStory",
+    "path": "forestDialogue.Array.data[4].text",
+    "ko": "길을 좀 찾고 있었어. 마침 잘 만났네."
+  },
+  {
+    "source": "OpeningStory",
+    "path": "forestDialogue.Array.data[5].text",
+    "ko": "길을 잃었으면 돌아가. 이 앞은 우리 구역이야."
+  },
+  {
+    "source": "OpeningStory",
+    "path": "forestDialogue.Array.data[6].text",
+    "ko": "모험가는 두 사람의 차림새를 살핀다. 도적단이라면 빼앗아 모은 물건도 적지 않을 터였다. 그중에 비전 스크롤이 있을지도 모른다는 생각이 든다."
+  },
+  {
+    "source": "OpeningStory",
+    "path": "forestDialogue.Array.data[7].text",
+    "ko": "너희 구역이라… 그럼 안쪽에 동료들도 있겠네?"
+  },
+  {
+    "source": "OpeningStory",
+    "path": "forestDialogue.Array.data[8].text",
+    "ko": "그걸 네가 알아서 뭘 하게? 좋게 말할 때 돌아가."
+  },
+  {
+    "source": "OpeningStory",
+    "path": "forestDialogue.Array.data[9].text",
+    "ko": "헛걸음한 줄 알았는데, 오히려 잘 찾아온 것 같아서."
+  },
+  {
+    "source": "OpeningStory",
+    "path": "forestDialogue.Array.data[10].text",
+    "ko": "이 자식, 돌아갈 생각이 없군."
+  },
+  {
+    "source": "OpeningStory",
+    "path": "forestDialogue.Array.data[11].text",
+    "ko": "궁병이 활에 화살을 건다. 약탈자도 단검을 뽑아 모험가를 겨눈다."
+  },
+  {
+    "source": "OpeningStory",
+    "path": "forestDialogue.Array.data[12].text",
+    "ko": "계속 얼쩡거리면 무사히 돌아가진 못할 거다."
+  },
+  {
+    "source": "OpeningStory",
+    "path": "forestDialogue.Array.data[13].text",
+    "ko": "그렇게 막으니까 더 궁금해지는데."
+  },
+  {
+    "source": "OpeningStory",
+    "path": "forestDialogue.Array.data[14].text",
+    "ko": "말로 해선 안 되겠어. 처리하자!"
+  },
+  {
+    "source": "OpeningStory",
+    "path": "forestDialogue.Array.data[15].text",
+    "ko": "모험가는 날아올 화살을 경계하며 자세를 잡는다."
+  },
+  {
+    "source": "OpeningStory",
+    "path": "forestDialogue.Array.data[16].text",
+    "ko": "좋아. 그럼 길은 직접 열어야겠네."
+  },
+  {
+    "source": "OpeningStory",
+    "path": "leaderDialogue.Array.data[0].text",
+    "ko": "숲길을 지나자 커다란 동굴 입구가 모습을 드러낸다. 대검을 든 남자가 그 앞을 지키고 있다."
+  },
+  {
+    "source": "OpeningStory",
+    "path": "leaderDialogue.Array.data[1].text",
+    "ko": "드디어 찾았네. 꽤 깊숙이도 숨어 있었군."
+  },
+  {
+    "source": "OpeningStory",
+    "path": "leaderDialogue.Array.data[2].text",
+    "ko": "못 보던 얼굴인데. 여기엔 무슨 용무냐?"
+  },
+  {
+    "source": "OpeningStory",
+    "path": "leaderDialogue.Array.data[3].text",
+    "ko": "물건 하나 찾으러 왔어."
+  },
+  {
+    "source": "OpeningStory",
+    "path": "leaderDialogue.Array.data[4].text",
+    "ko": "장사하는 곳 아니다. 귀찮게 하지 말고 당장 꺼져."
+  },
+  {
+    "source": "OpeningStory",
+    "path": "leaderDialogue.Array.data[5].text",
+    "ko": "여기에 꽤 값나가는 스크롤이 있다는 얘길 들었거든. 그것만 넘겨주면 조용히 떠날게."
+  },
+  {
+    "source": "OpeningStory",
+    "path": "leaderDialogue.Array.data[6].text",
+    "ko": "우두머리가 잠시 모험가를 노려보다 코웃음을 친다."
+  },
+  {
+    "source": "OpeningStory",
+    "path": "leaderDialogue.Array.data[7].text",
+    "ko": "어디서 헛소리를 주워들었는지 모르겠군. 여기엔 그런 거 없다."
+  },
+  {
+    "source": "OpeningStory",
+    "path": "leaderDialogue.Array.data[8].text",
+    "ko": "그럼 잠깐 안을 둘러봐도 괜찮겠네?"
+  },
+  {
+    "source": "OpeningStory",
+    "path": "leaderDialogue.Array.data[9].text",
+    "ko": "하! 설령 있다고 한들, 네놈한테 순순히 내줄 것 같으냐?"
+  },
+  {
+    "source": "OpeningStory",
+    "path": "leaderDialogue.Array.data[10].text",
+    "ko": "우두머리가 대검을 뽑아 들고 모험가에게 다가온다."
+  },
+  {
+    "source": "OpeningStory",
+    "path": "leaderDialogue.Array.data[11].text",
+    "ko": "좋게 보내주려고 했더니, 기어이 칼을 보겠다는 거군."
+  },
+  {
+    "source": "OpeningStory",
+    "path": "leaderDialogue.Array.data[12].text",
+    "ko": "역시 말로는 안 되겠네."
+  },
+  {
+    "source": "OpeningStory",
+    "path": "leaderDialogue.Array.data[13].text",
+    "ko": "모험가가 거리를 벌리며 전투 자세를 잡는다. 우두머리가 대검을 치켜든다."
+  },
+  {
+    "source": "OpeningStory",
+    "path": "banditDialogue.Array.data[0].text",
+    "ko": "우두머리가 거칠게 숨을 몰아쉬며 뒤로 물러선다. 여유롭던 얼굴에 당혹감이 번진다."
+  },
+  {
+    "source": "OpeningStory",
+    "path": "banditDialogue.Array.data[1].text",
+    "ko": "크윽… 어디서 이런 놈이 굴러들어 와서는…!"
+  },
+  {
+    "source": "OpeningStory",
+    "path": "banditDialogue.Array.data[2].text",
+    "ko": "이쯤 했으면 비켜주는 게 어때? 나도 더 싸우고 싶진 않은데."
+  },
+  {
+    "source": "OpeningStory",
+    "path": "banditDialogue.Array.data[3].text",
+    "ko": "입 다물어!"
+  },
+  {
+    "source": "OpeningStory",
+    "path": "banditDialogue.Array.data[4].text",
+    "ko": "우두머리가 동굴 쪽을 향해 고함을 지른다."
+  },
+  {
+    "source": "OpeningStory",
+    "path": "banditDialogue.Array.data[5].text",
+    "ko": "전부 나와라! 당장!"
+  },
+  {
+    "source": "OpeningStory",
+    "path": "banditDialogue.Array.data[6].text",
+    "ko": "동굴에서 도적단 말단들이 달려 나온다."
+  },
+  {
+    "source": "OpeningStory",
+    "path": "banditDialogue.Array.data[7].speakerNameOverride",
+    "ko": "도적단 말단들"
+  },
+  {
+    "source": "OpeningStory",
+    "path": "banditDialogue.Array.data[7].text",
+    "ko": "두목! 무슨 일입니까?"
+  },
+  {
+    "source": "OpeningStory",
+    "path": "banditDialogue.Array.data[8].text",
+    "ko": "저놈을 막아라. 무슨 일이 있어도 동굴 안으로 들여보내선 안 된다!"
+  },
+  {
+    "source": "OpeningStory",
+    "path": "banditDialogue.Array.data[9].text",
+    "ko": "고작 혼자 온 놈 아닙니까? 저희가 처리하겠습니다."
+  },
+  {
+    "source": "OpeningStory",
+    "path": "banditDialogue.Array.data[10].text",
+    "ko": "방심하지 마라! 처음부터 전력을 다해!"
+  },
+  {
+    "source": "OpeningStory",
+    "path": "banditDialogue.Array.data[11].text",
+    "ko": "말단들이 무기를 들고 길을 막는다. 모험가는 적들을 번갈아 살피며 한 걸음 물러선다."
+  },
+  {
+    "source": "OpeningStory",
+    "path": "banditDialogue.Array.data[12].text",
+    "ko": "이건 좀 곤란한데. 한꺼번에 상대하는 건 생각 안 했거든."
+  },
+  {
+    "source": "OpeningStory",
+    "path": "banditDialogue.Array.data[13].text",
+    "ko": "이제야 상황을 알겠나? 도망칠 길도 없다!"
+  },
+  {
+    "source": "OpeningStory",
+    "path": "banditDialogue.Array.data[14].text",
+    "ko": "모험가가 짧게 숨을 고르고 다시 자세를 잡는다."
+  },
+  {
+    "source": "OpeningStory",
+    "path": "banditDialogue.Array.data[15].text",
+    "ko": "여기까지 와서 빈손으로 돌아갈 순 없지."
+  },
+  {
+    "source": "OpeningStory",
+    "path": "banditDialogue.Array.data[16].text",
+    "ko": "쳐라!"
+  },
+  {
+    "source": "OpeningStory",
+    "path": "banditDialogue.Array.data[17].text",
+    "ko": "좋아. 끝까지 해보자!"
+  },
+  {
+    "source": "OpeningStory",
+    "path": "bossDialogue.Array.data[0].text",
+    "ko": "동굴 안으로 들어서자 차갑고 무거운 기운이 온몸을 감싼다. 모험가는 걸음을 늦추고 어둠 속을 살핀다."
+  },
+  {
+    "source": "OpeningStory",
+    "path": "bossDialogue.Array.data[1].text",
+    "ko": "……도적들이 이런 곳에 숨어 지낸다고?"
+  },
+  {
+    "source": "OpeningStory",
+    "path": "bossDialogue.Array.data[2].text",
+    "ko": "동굴 깊숙한 곳에서 지팡이를 든 마법사가 혀를 찬다."
+  },
+  {
+    "source": "OpeningStory",
+    "path": "bossDialogue.Array.data[3].text",
+    "ko": "쯧. 한때는 이름난 가문의 호위병이었다기에 기대했건만…… 침입자 하나 막지 못하다니."
+  },
+  {
+    "source": "OpeningStory",
+    "path": "bossDialogue.Array.data[4].text",
+    "ko": "입구에 있던 덩치를 말하는 건가? 나름 애는 쓰던데."
+  },
+  {
+    "source": "OpeningStory",
+    "path": "bossDialogue.Array.data[5].text",
+    "ko": "그래서, 네놈은 누구지? 이런 곳까지 기어들어 온 이유가 뭐냐."
+  },
+  {
+    "source": "OpeningStory",
+    "path": "bossDialogue.Array.data[6].text",
+    "ko": "여기에 값나가는 비전 스크롤이 있다는 소문을 듣고 왔어. 당신이 가지고 있나?"
+  },
+  {
+    "source": "OpeningStory",
+    "path": "bossDialogue.Array.data[7].text",
+    "ko": "마법사가 모험가를 훑어보더니 비웃음을 흘린다."
+  },
+  {
+    "source": "OpeningStory",
+    "path": "bossDialogue.Array.data[8].text",
+    "ko": "스크롤의 힘을 좇아 여기까지 왔다는 건가. 헛수고했군."
+  },
+  {
+    "source": "OpeningStory",
+    "path": "bossDialogue.Array.data[9].text",
+    "ko": "헛수고라니?"
+  },
+  {
+    "source": "OpeningStory",
+    "path": "bossDialogue.Array.data[10].text",
+    "ko": "그 스크롤이라면 이미 내가 사용했다. 그 안에 담긴 지식은 내 연구에 제법 도움이 되었지."
+  },
+  {
+    "source": "OpeningStory",
+    "path": "bossDialogue.Array.data[11].text",
+    "ko": "……한발 늦었네. 그럼 밖에 있던 녀석들이 지키던 건 스크롤이 아니라 당신이었군."
+  },
+  {
+    "source": "OpeningStory",
+    "path": "bossDialogue.Array.data[12].text",
+    "ko": "쓸데없는 것들이 몰려들지 않도록 맡겨 두었을 뿐이다. 그조차 제대로 해내지 못했지만."
+  },
+  {
+    "source": "OpeningStory",
+    "path": "bossDialogue.Array.data[13].text",
+    "ko": "그 쓸데없는 것에 나도 포함되는 모양이네."
+  },
+  {
+    "source": "OpeningStory",
+    "path": "bossDialogue.Array.data[14].text",
+    "ko": "마법사가 지팡이를 들어 올리자 보라색 보석에서 불길한 빛이 새어 나온다."
+  },
+  {
+    "source": "OpeningStory",
+    "path": "bossDialogue.Array.data[15].text",
+    "ko": "네놈 때문에 중요한 연구가 중단됐다. 아무 대가도 치르지 않고 돌아갈 수 있을 거라 생각했나?"
+  },
+  {
+    "source": "OpeningStory",
+    "path": "bossDialogue.Array.data[16].text",
+    "ko": "빈손으로 돌아가는 것도 억울한데, 목숨까지 내놓으라고?"
+  },
+  {
+    "source": "OpeningStory",
+    "path": "bossDialogue.Array.data[17].text",
+    "ko": "마침 새로 익힌 마법을 시험할 상대가 필요했지. 네놈이라도 쓸모를 보여 봐라."
+  },
+  {
+    "source": "OpeningStory",
+    "path": "bossDialogue.Array.data[18].text",
+    "ko": "모험가가 마법사를 경계하며 자세를 잡는다."
+  },
+  {
+    "source": "OpeningStory",
+    "path": "bossDialogue.Array.data[19].text",
+    "ko": "좋아. 그 스크롤로 얼마나 대단해졌는지 한번 보자고."
+  }
+]

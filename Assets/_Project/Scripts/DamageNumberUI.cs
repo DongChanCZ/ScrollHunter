@@ -72,7 +72,7 @@ public class DamageNumberUI : MonoBehaviour
     }
 
     private void ShowInterrupt(Vector3 position)
-        => ShowText(position, interruptText, interruptColor, Mathf.Max(1f, interruptSizeMultiplier));
+        => ShowText(position, GameText.T(interruptText), interruptColor, Mathf.Max(1f, interruptSizeMultiplier));
 
     private void ShowText(Vector3 position, string label, Color color, float sizeMultiplier)
     {
@@ -89,7 +89,7 @@ public class DamageNumberUI : MonoBehaviour
             if (previous.source == position) previous.origin.y += stackSpacing;
 
         TMP_Text text = Instantiate(numberTemplate, root);
-        text.text = label;
+        text.text = GameText.T(label);
         text.fontSize = numberTemplate.fontSize * sizeMultiplier;
         text.raycastTarget = false;
         text.color = color;

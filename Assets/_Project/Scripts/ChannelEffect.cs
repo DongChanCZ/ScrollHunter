@@ -41,7 +41,7 @@ public sealed class ChannelContext
 public abstract class ChannelEffect : ScriptableObject
 {
     [SerializeField, TextArea] private string description = "";
-    public virtual string Describe(SkillData skill) => description;
+    public virtual string Describe(SkillData skill) => GameText.T(description);
     public virtual bool IsValidFor(SkillData skill) => true;
     public virtual bool TargetLost => false;
     public virtual float TargetLossRecoveryRemaining => 0f;

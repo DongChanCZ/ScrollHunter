@@ -14,7 +14,7 @@
 | 프로젝트명 | Scroll Hunter (가칭) |
 | 장르 | 실시간 로그라이크 카드 전투 |
 | 엔진 | Unity 6.3 LTS (6000.3.18f1), URP |
-| 플랫폼 | PC |
+| 플랫폼 | Windows PC / PC 브라우저(WebGL, itch.io) |
 | 작업 폴더 | `Assets/_Project/` (Scripts, Data, Prefabs, Scenes, Materials) |
 | 기획 문서 | `Docs/` |
 
@@ -23,6 +23,8 @@
 ---
 
 ## 현재 단계
+
+> **2026-10-14 Web 빌드·한국어/영어(Codex / Unity MCP):** Web_Build에서 전체 문구378개 한영 전환, 원본 영문 제목·클리어 문구 유지. 웹 옵션은 언어·음량·게임 초기화, PC 화면/프레임 옵션·종료 숨김. 16:9·내부60FPS·브라우저 저장, 언어 즉시 표시/적용 저장/취소 복귀. WebGL 일반 빌드 성공·최종 오류/경고0, Desktop/ScrollHunter_Web_1.1 및 ZIP 약126MiB·CREDITS 동봉. 언어1,163개·보상 영역113개 통과, 실제 브라우저에서 메뉴/스토리/튜토리얼/편성/A+B 진입·입력·한영 왕복·새로고침 저장 복원 확인. 원본 사양 Docs/10#web-language-20261014·결과07·파일06·업로드09. Battle·TMP 영문 글리프·웹 설정 저장. PC 사용자 save/백업과 기존 Windows1.1 유지. Play 종료·씬 미저장 표시 없음·검사 서버 종료. itch.io 업로드·전체 런·브라우저 전체화면·다른 PC·직접 청취는 미확인. 스테이징·커밋 없음. 아래 기록은 당시 상태.
 
 > **2026-10-14 1.1 수정 빌드(Codex / Unity MCP):** Desktop/ScrollHunter_1.1 최신본 교체. 전용 전체화면·수직동기화 체크박스·FPS 제한·설명창 최적화·필라 B 아이콘 포함. 버전1.1·기존 앱 아이콘·Unity 로고 숨김 유지. Windows64 일반·LZ4·Battle 성공244MB·20.86초·오류/경고0. D3D12 시작 초기화 확인·검사 프로세스 종료. 이전1.1은 %LOCALAPPDATA%/Temp/ScrollHunter_Rebuild11_20261014/PreviousBuild 보관, 기존1.0 유지. 사양 Docs/10#build-1-1-20261014·기록07#rebuild-1-1-20261014·실행09. CREDITS 최신·DoNotShip 분리·Battle/폰트/설정/사용자 save/백업 유지. Play 종료·씬 미저장 표시 없음. 직접 전체 런·Windows 실제 옵션 전환·팬 소음·다른 PC·스테이징·커밋 없음. 아래 미빌드 표기는 당시 상태.
 

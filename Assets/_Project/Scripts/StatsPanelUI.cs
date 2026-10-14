@@ -100,7 +100,7 @@ public class StatsPanelUI : MonoBehaviour
 
         Show(maxHp, player.MaxHp, player.BaseMaxHp, player.MaxHpBonus);
         float reduction = player.Defense / (player.Defense + 100f) * 100f;
-        Show(defense, player.Defense, 0f, 0f, string.Format(defenseDetailFormat, reduction));
+        Show(defense, player.Defense, 0f, 0f, GameText.Format(GameText.T(defenseDetailFormat), reduction));
         Show(criticalChance, player.CriticalChance, player.BaseCriticalChance, player.CriticalChanceBonus);
         Show(criticalMultiplier, player.CriticalMultiplier, 0f, 0f);
         Show(costRegeneration, cost.RegenerationPerSecond, cost.BaseRegeneration, cost.RegenerationBonus);
@@ -109,8 +109,8 @@ public class StatsPanelUI : MonoBehaviour
         Show(shieldGain, player.ShieldGainMultiplier, 1f, player.ShieldGainBonus);
         Show(interruptStagger, deck.InterruptStagger, deck.BaseInterruptStagger, player.InterruptStaggerBonus);
         FillPassives();
-        if (passiveNames != null) passiveNames.text = string.Join("\n", nameLines);
-        if (passiveStacks != null) passiveStacks.text = string.Join("\n", stackLines);
+        if (passiveNames != null) passiveNames.text = GameText.T(string.Join("\n", nameLines));
+        if (passiveStacks != null) passiveStacks.text = GameText.T(string.Join("\n", stackLines));
     }
 
     /// <summary>획득 패시브와 중첩 목록(이름 중첩 한 줄씩). 창이 닫혀 있어도 현재 상태로 만든다.</summary>
@@ -131,20 +131,20 @@ public class StatsPanelUI : MonoBehaviour
             foreach (KeyValuePair<RunRewardEffect, int> entry in flow.PassiveStacks)
             {
                 nameLines.Add(entry.Key.DisplayName);
-                stackLines.Add(entry.Key.MaxStacks > 0 ? string.Format(passiveStackFormat, entry.Value, entry.Key.MaxStacks)
-                    : string.Format(unlimitedStackFormat, entry.Value));
+                stackLines.Add(entry.Key.MaxStacks > 0 ? GameText.Format(passiveStackFormat, entry.Value, entry.Key.MaxStacks)
+                    : GameText.Format(unlimitedStackFormat, entry.Value));
             }
-        if (nameLines.Count == 0) { nameLines.Add(noPassivesText); stackLines.Add(string.Empty); }
+        if (nameLines.Count == 0) { nameLines.Add(GameText.T(noPassivesText)); stackLines.Add(string.Empty); }
     }
 
     private static void Show(StatRow row, float value, float baseValue, float bonus, string fixedDetail = null)
     {
         if (row == null) return;
-        if (row.value != null) row.value.text = string.Format(row.valueFormat, value);
+        if (row.value != null) row.value.text = GameText.T(GameText.Format(row.valueFormat, value));
         if (row.detail == null) return;
-        string detail = fixedDetail ?? (Mathf.Abs(bonus) > 0.0001f ? string.Format(row.detailFormat, baseValue, bonus) : string.Empty);
+        string detail = fixedDetail ?? (Mathf.Abs(bonus) > 0.0001f ? GameText.Format(row.detailFormat, baseValue, bonus) : string.Empty);
         bool visible = detail.Length > 0;
         if (row.detail.gameObject.activeSelf != visible) row.detail.gameObject.SetActive(visible);
-        row.detail.text = detail;
+        row.detail.text = GameText.T(detail);
     }
 }

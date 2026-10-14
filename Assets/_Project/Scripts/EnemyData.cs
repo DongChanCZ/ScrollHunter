@@ -31,7 +31,7 @@ public class EnemyAttack
     [Tooltip("플레이어 기절 시간. 일반 주황 2초, 보스 나이트메어 5초.")]
     [SerializeField] private float stunSeconds = 0f;
 
-    public string SkillName => skillName;
+    public string SkillName => GameText.T(skillName);
     public CastColor CastColor => castColor;
     public float CastTime => castTime;
     public int Damage => damage;
@@ -83,7 +83,7 @@ public class EnemyData : ScriptableObject
     public int OrbDestructionDamage => orbDestructionDamage;
     public EnemyData RuinOrb => ruinOrb;
     public EnemyData CycleOrb => cycleOrb;
-    public string PassiveDescription => passiveDescription;
+    public string PassiveDescription => GameText.T(passiveDescription);
 
     [Header("오브 자신의 표시 (A43 연출, 오브 데이터에만 연결)")]
     [Tooltip("BossOrbVisual 프리팹. 비우면 임시 구체로 표시")]
@@ -93,7 +93,7 @@ public class EnemyData : ScriptableObject
     public GameObject OrbVisual => orbVisual;
     public GameObject OrbBreak => orbBreak;
 
-    public string DisplayName => displayName;
+    public string DisplayName => GameText.T(displayName);
     public int MaxHp => maxHp;
     public float Defense => defense;
     public IReadOnlyList<EnemyAttack> Attacks => attacks;

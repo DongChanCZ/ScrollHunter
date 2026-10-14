@@ -59,7 +59,7 @@ public sealed class StoryUI : MonoBehaviour
     public StoryContent Content => content;
     public bool HasForestDialogue => content != null && content.forestDialogue != null && content.forestDialogue.Length > 0;
 
-    private void Awake() { flow = GetComponent<BattleFlow>(); BuildUI(); }
+    private void Awake() { flow = GetComponent<BattleFlow>(); BuildUI(); GameText.Changed += RefreshLanguage; }
     private void Update()
     {
         if (!Active || flow.IsMenuPaused) return;
@@ -194,6 +194,13 @@ public sealed class StoryUI : MonoBehaviour
             UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(null);
     }
 
+    private void RefreshLanguage()
+    {
+        if (!Active) return;
+        DrawPage();
+        if (!ShowingIntro) { revealedCharacters = dialogueCharacterCount; body.maxVisibleCharacters = dialogueCharacterCount; }
+    }
+
     private void DrawPage()
     {
         if (!ShowingIntro) introPresentation.Reset();
@@ -209,15 +216,15 @@ public sealed class StoryUI : MonoBehaviour
         body.fontStyle = FontStyles.Normal;
         body.alignment = TextAlignmentOptions.TopLeft;
         body.rectTransform.offsetMax = new Vector2(-textInset, ShowingIntro ? -textInset : -84f);
-        hint.text = content.continueText;
-        skip.GetComponentInChildren<TMP_Text>().text = ShowingIntro ? content.introSkipText : content.dialogueSkipText;
+        hint.text = GameText.T(content.continueText);
+        skip.GetComponentInChildren<TMP_Text>().text = GameText.T(ShowingIntro ? content.introSkipText : content.dialogueSkipText);
         if (ShowingIntro)
         {
             var page = content.intro[PageIndex];
             backdrop.texture = page.image;
             backdrop.uvRect=page.visibleRegion;
             if (page.image != null) imageFit.aspectRatio = (page.image.width * page.visibleRegion.width) / (page.image.height * page.visibleRegion.height);
-            body.text = page.text;
+            body.text = GameText.T(page.text);
             introPresentation.Show(page);
             return;
         }
@@ -229,14 +236,14 @@ public sealed class StoryUI : MonoBehaviour
         bool enemy = line.speaker == StoryContent.Speaker.Enemy;
         speakerName.gameObject.SetActive(!narration);
         speakerName.alignment = enemy ? TextAlignmentOptions.TopRight : TextAlignmentOptions.TopLeft;
-        speakerName.text = content.playerName;
-        body.text = narration ? "(" + line.text.Trim().Trim('(', ')') + ")" : line.text;
+        speakerName.text = GameText.T(content.playerName);
+        body.text = GameText.T(narration ? "(" + GameText.T(line.text).Trim().Trim('(', ')') + ")" : line.text);
         body.fontStyle = narration ? FontStyles.Italic : FontStyles.Normal;
         if (narration) body.rectTransform.offsetMax = new Vector2(-textInset, -textInset);
         if (enemy && content.portraits != null && line.portraitIndex >= 0 && line.portraitIndex < content.portraits.Length)
         {
             var actor = content.portraits[line.portraitIndex];
-            speakerName.text = string.IsNullOrEmpty(line.speakerNameOverride) ? actor.displayName : line.speakerNameOverride;
+            speakerName.text = GameText.T(string.IsNullOrEmpty(line.speakerNameOverride) ? actor.displayName : line.speakerNameOverride);
             bool group = line.secondaryPortraitIndex >= 0 && line.secondaryPortraitIndex < content.portraits.Length
                 && content.portraits[line.secondaryPortraitIndex].image != null;
             Vector2 size = group ? portraitSize * .82f : portraitSize;
@@ -330,5 +337,5 @@ public sealed class StoryUI : MonoBehaviour
     private static void Stretch(RectTransform rect)
     { rect.anchorMin=Vector2.zero; rect.anchorMax=Vector2.one; rect.offsetMin=rect.offsetMax=Vector2.zero; }
     private void OnDisable() => Cancel();
-    private void OnDestroy() { introPresentation?.Dispose(); if(root != null) Destroy(root); }
+    private void OnDestroy() { GameText.Changed -= RefreshLanguage; introPresentation?.Dispose(); if(root != null) Destroy(root); }
 }

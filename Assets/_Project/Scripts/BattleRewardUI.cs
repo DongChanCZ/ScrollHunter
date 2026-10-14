@@ -1,4 +1,4 @@
-﻿using TMPro;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -88,8 +88,8 @@ public class BattleRewardUI : MonoBehaviour
         if (flow == null) flow = FindFirstObjectByType<BattleFlow>();
         if (information == null) information = FindFirstObjectByType<CombatInfoUI>();
         if (player == null) player = FindFirstObjectByType<Player>();
-        rewardSkipText = skipButton.GetComponentInChildren<TMP_Text>().text;
-        rewardBackText = backButton.GetComponentInChildren<TMP_Text>().text;
+        rewardSkipText = "보상 스킵";
+        rewardBackText = "보상 다시 선택";
         inheritanceBackPosition = ((RectTransform)backButton.transform).anchoredPosition;
         var skipRect = (RectTransform)skipButton.transform;
         inheritanceSkipAnchorMin = skipRect.anchorMin;
@@ -197,17 +197,17 @@ public class BattleRewardUI : MonoBehaviour
         bool editing = flow.IsEditingOrder;
         bool replacing = (between || inheriting) && flow.SelectedReward != null && !flow.RewardResolved;
         bool choosing = (between || inheriting) && !replacing && !flow.RewardResolved;
-        title.text = inheriting ? inheritanceTitle : preparing ? preparationTitle : string.Format(titleFormat, flow.BattleNumber, player.CurrentHp, player.MaxHp);
-        instruction.text = editing ? orderText : preparing ? preparationText : flow.RewardResolved ? readyText
-            : replacing ? string.Format(replaceFormat, flow.SelectedReward.DisplayName)
-            : flow.RewardChoiceCount == 0 ? noChoicesText : chooseText;
+        title.text = GameText.T(inheriting ? GameText.T(inheritanceTitle) : preparing ? GameText.T(preparationTitle) : GameText.Format(GameText.T(titleFormat), flow.BattleNumber, player.CurrentHp, player.MaxHp));
+        instruction.text = GameText.T(editing ? GameText.T(orderText) : preparing ? GameText.T(preparationText) : flow.RewardResolved ? GameText.T(readyText)
+            : replacing ? GameText.Format(GameText.T(replaceFormat), flow.SelectedReward.DisplayName)
+            : flow.RewardChoiceCount == 0 ? GameText.T(noChoicesText) : GameText.T(chooseText));
         if (!inheriting && (preparing || flow.RewardResolved))
-            instruction.text += "\n<size=23><color=#C5B99D>" + CycleHint + "</color></size>";
+            instruction.text += "\n<size=23><color=#C5B99D>" + GameText.T(CycleHint) + "</color></size>";
         if (inheriting)
-            instruction.text = (flow.InheritanceSaveFailed ? saveFailedText + "\n" : string.Empty)
-                + (replacing ? string.Format(inheritanceReplaceFormat, flow.SelectedReward.DisplayName) : inheritanceChoiceText);
-        skipButton.GetComponentInChildren<TMP_Text>().text = inheriting ? inheritanceSkipText : rewardSkipText;
-        backButton.GetComponentInChildren<TMP_Text>().text = inheriting ? inheritanceBackText : rewardBackText;
+            instruction.text = GameText.T((flow.InheritanceSaveFailed ? GameText.T(saveFailedText) + "\n" : string.Empty)
+                + (replacing ? GameText.Format(GameText.T(inheritanceReplaceFormat), flow.SelectedReward.DisplayName) : GameText.T(inheritanceChoiceText)));
+        skipButton.GetComponentInChildren<TMP_Text>().text = GameText.T(inheriting ? GameText.T(inheritanceSkipText) : rewardSkipText);
+        backButton.GetComponentInChildren<TMP_Text>().text = GameText.T(inheriting ? GameText.T(inheritanceBackText) : rewardBackText);
         choicesRoot.SetActive(choosing);
         deckRoot.SetActive(!choosing);
         RefreshSkipButton(inheriting);
@@ -224,8 +224,8 @@ public class BattleRewardUI : MonoBehaviour
         {
             bool wasOpen = rewardReplacementConfirmation.activeSelf;
             if (confirmingReward)
-                rewardReplacementPrompt.text = string.Format(rewardReplacementFormat,
-                    flow.GetDeckCard(flow.SelectedReplacementIndex).DisplayName, flow.SelectedReward.DisplayName);
+                rewardReplacementPrompt.text = GameText.T(GameText.Format(GameText.T(rewardReplacementFormat),
+                    flow.GetDeckCard(flow.SelectedReplacementIndex).DisplayName, flow.SelectedReward.DisplayName));
             rewardReplacementConfirmation.SetActive(confirmingReward);
             rewardReplacementYes.interactable = rewardReplacementNo.interactable = confirmingReward;
             if (EventSystem.current != null && wasOpen != confirmingReward)
@@ -259,8 +259,8 @@ public class BattleRewardUI : MonoBehaviour
             bool splitSkill = skill != null && skillSlot != null && skillSlot.root != null;
             bool split = splitPassive || splitSkill;
             // 스킬과 패시브가 같은 슬롯을 번갈아 쓰므로 쓰지 않는 쪽의 글자·아이콘을 비우고 끈다.
-            choiceLabels[i].text = option == null || split ? string.Empty
-                : passive == null ? option.Describe(information) : DescribePassive(passive);
+            choiceLabels[i].text = GameText.T(option == null || split ? string.Empty
+                : passive == null ? option.Describe(information) : DescribePassive(passive));
             if (choiceLabels[i].gameObject.activeSelf == split) choiceLabels[i].gameObject.SetActive(!split);
             ShowPassive(slot, splitPassive ? passive : null);
             ShowSkill(skillSlot, splitSkill ? skill : null);
@@ -273,9 +273,9 @@ public class BattleRewardUI : MonoBehaviour
             deckButtons[i].gameObject.SetActive(card != null);
             deckButtons[i].interactable = (replacing && !confirmingReward) || editing;
             SetText(deckSlotLabels, i, card == null ? string.Empty
-                : string.Format(deckSlotFormat, i + 1, i < DeckSystem.HandSize
-                    ? "<color=#E7CB87>" + handLabel + " " + "QWER"[i] + "</color>"
-                    : "<color=#ADC8D8>" + queueLabel + " " + (i - DeckSystem.HandSize + 1) + "</color>"));
+                : GameText.Format(GameText.T(deckSlotFormat), i + 1, i < DeckSystem.HandSize
+                    ? "<color=#E7CB87>" + GameText.T(handLabel) + " " + "QWER"[i] + "</color>"
+                    : "<color=#ADC8D8>" + GameText.T(queueLabel) + " " + (i - DeckSystem.HandSize + 1) + "</color>"));
             SetText(deckNameLabels, i, card == null ? string.Empty : card.DisplayName);
             SetText(deckInfoLabels, i, card == null ? string.Empty : information.DescribeCardInfo(card));
             SetText(deckLabels, i, card == null ? string.Empty : information.DescribeCardEffect(card));
@@ -296,12 +296,12 @@ public class BattleRewardUI : MonoBehaviour
 
     private static void SetText(TMP_Text[] labels, int index, string text)
     {
-        if (labels != null && index < labels.Length && labels[index] != null) labels[index].text = text;
+        if (labels != null && index < labels.Length && labels[index] != null) labels[index].text = GameText.T(text);
     }
 
     private static void SetLabel(TMP_Text label, string text)
     {
-        if (label != null) label.text = text;
+        if (label != null) label.text = GameText.T(text);
     }
 
     /// <summary>패시브 영역 표시. effect가 null이면 영역을 끄고 글자를 비운다.</summary>
@@ -310,11 +310,11 @@ public class BattleRewardUI : MonoBehaviour
         if (slot == null || slot.root == null) return;
         bool show = effect != null;
         if (slot.root.activeSelf != show) slot.root.SetActive(show);
-        SetLabel(slot.category, show ? passiveCategoryText : string.Empty);
+        SetLabel(slot.category, show ? GameText.T(passiveCategoryText) : string.Empty);
         SetLabel(slot.title, show ? effect.DisplayName : string.Empty);
         SetLabel(slot.effect, show ? DescribePassiveEffect(effect) : string.Empty);
         SetLabel(slot.stacks, show ? DescribePassiveStacks(effect) : string.Empty);
-        SetLabel(slot.guide, show ? (flow.State == BattleFlowState.Inheriting ? inheritanceGuideText : passiveGuideText) : string.Empty);
+        SetLabel(slot.guide, show ? (flow.State == BattleFlowState.Inheriting ? GameText.T(inheritanceGuideText) : GameText.T(passiveGuideText)) : string.Empty);
     }
 
     /// <summary>스킬 영역 표시. card가 null이면 영역을 끄고 글자를 비운다.</summary>
@@ -329,14 +329,14 @@ public class BattleRewardUI : MonoBehaviour
     }
 
     /// <summary>패시브 영역이 연결되지 않은 슬롯용 한 덩어리 설명.</summary>
-    private string DescribePassive(RunRewardEffect effect) => string.Join("\n", passiveCategoryText, effect.DisplayName,
-        DescribePassiveEffect(effect), DescribePassiveStacks(effect), passiveGuideText);
+    private string DescribePassive(RunRewardEffect effect) => string.Join("\n", GameText.T(passiveCategoryText), effect.DisplayName,
+        DescribePassiveEffect(effect), DescribePassiveStacks(effect), GameText.T(passiveGuideText));
 
     private string DescribePassiveEffect(RunRewardEffect effect)
     {
         string text = effect.DescribeEffect(FormatStat, "\n");
         if (string.IsNullOrEmpty(effect.Description)) return text;
-        return (text.Length > 0 ? text + "\n" : string.Empty) + string.Format(passiveNoteFormat, effect.Description);
+        return (text.Length > 0 ? text + "\n" : string.Empty) + GameText.Format(passiveNoteFormat, effect.Description);
     }
 
     private string DescribePassiveStacks(RunRewardEffect effect)
@@ -344,8 +344,8 @@ public class BattleRewardUI : MonoBehaviour
         bool inheriting = flow.State == BattleFlowState.Inheriting;
         int count = inheriting ? flow.Inheritance.Stacks(effect) : flow.GetPassiveStacks(effect);
         return effect.MaxStacks > 0
-            ? string.Format(inheriting ? inheritanceStackFormat : passiveStackFormat, count, effect.MaxStacks)
-            : string.Format(inheriting ? inheritanceUnlimitedFormat : unlimitedPassiveStackFormat, count);
+            ? GameText.Format(inheriting ? GameText.T(inheritanceStackFormat) : GameText.T(passiveStackFormat), count, effect.MaxStacks)
+            : GameText.Format(inheriting ? GameText.T(inheritanceUnlimitedFormat) : GameText.T(unlimitedPassiveStackFormat), count);
     }
 
     private void RefreshInheritance()
@@ -357,20 +357,20 @@ public class BattleRewardUI : MonoBehaviour
         var cards = saved.BuildDeck();
         var cardLines = new System.Collections.Generic.List<string>();
         for (int i = 0; i < cards.Count; i++)
-            cardLines.Add(string.Format(inheritedCardFormat, i + 1, cards[i].DisplayName, saved.IsInheritedSlot(i) ? inheritedCardMarker : string.Empty));
-        inheritedCards.text = string.Join("\n", cardLines);
+            cardLines.Add(GameText.Format(GameText.T(inheritedCardFormat), i + 1, cards[i].DisplayName, saved.IsInheritedSlot(i) ? GameText.T(inheritedCardMarker) : string.Empty));
+        inheritedCards.text = GameText.T(string.Join("\n", cardLines));
         var passives = new System.Collections.Generic.List<string>();
         foreach (var entry in saved.Passives)
         {
             var effect = saved.Find(entry.id).Effect;
-            passives.Add(string.Format(inheritedPassiveFormat, effect.DisplayName, effect.MaxStacks > 0
-                ? string.Format(inheritanceStackFormat, entry.stacks, effect.MaxStacks)
-                : string.Format(inheritanceUnlimitedFormat, entry.stacks)));
+            passives.Add(GameText.Format(inheritedPassiveFormat, effect.DisplayName, effect.MaxStacks > 0
+                ? GameText.Format(GameText.T(inheritanceStackFormat), entry.stacks, effect.MaxStacks)
+                : GameText.Format(GameText.T(inheritanceUnlimitedFormat), entry.stacks)));
         }
-        inheritedPassives.text = passives.Count == 0 ? noInheritedPassives : string.Join("\n", passives);
+        inheritedPassives.text = GameText.T(passives.Count == 0 ? GameText.T(noInheritedPassives) : string.Join("\n", passives));
         inheritanceReset.interactable = saved.HasAny || saved.LoadFailed || saved.UsedBackup;
-        inheritanceStatus.text = flow.InheritanceSaveFailed ? resetFailedText
-            : saved.LoadFailed ? loadFailedText : saved.UsedBackup ? backupLoadedText : string.Empty;
+        inheritanceStatus.text = GameText.T(flow.InheritanceSaveFailed ? GameText.T(resetFailedText)
+            : saved.LoadFailed ? GameText.T(loadFailedText) : saved.UsedBackup ? GameText.T(backupLoadedText) : string.Empty);
         if (saved.LoadFailed || saved.UsedBackup) inheritancePanel.SetActive(true);
     }
 
@@ -378,9 +378,9 @@ public class BattleRewardUI : MonoBehaviour
     {
         if (passiveStatFormats != null)
             foreach (StatText entry in passiveStatFormats)
-                if (entry.stat == stat && !string.IsNullOrEmpty(entry.format)) return string.Format(entry.format, amount);
+                if (entry.stat == stat && !string.IsNullOrEmpty(entry.format)) return GameText.Format(entry.format, amount);
         Debug.LogWarning($"[{nameof(BattleRewardUI)}] 패시브 문구 없음: {stat}", this);
-        return string.Format("{0} {1:0.##}", stat, amount);
+        return GameText.Format("{0} {1:0.##}", stat, amount);
     }
 
     public void BeginOrderDrag(int index, PointerEventData data)

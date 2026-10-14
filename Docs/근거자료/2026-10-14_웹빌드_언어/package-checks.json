@@ -1,0 +1,15 @@
+{
+  "zip": "C:\\Users\\MBC-501-19\\Desktop\\ScrollHunter_Web_1.1.zip",
+  "bytes": 132125992,
+  "files": [
+    "Build/ScrollHunter_Web_1.1.data.gz",
+    "Build/ScrollHunter_Web_1.1.framework.js.gz",
+    "Build/ScrollHunter_Web_1.1.loader.js",
+    "Build/ScrollHunter_Web_1.1.wasm.gz",
+    "CREDITS.md",
+    "index.html"
+  ],
+  "sameAsBuild": true,
+  "itchLimitsPassed": true,
+  "sha256": "76772cbd06ba2191ec6dac98502e154e2fbb20b915d6885bdb8bc1505c19f949"
+}

@@ -30,9 +30,9 @@ public class DamageChannelEffect : ChannelEffect
         && firstHitDelay + (skill.HitCount - 1) * hitInterval <= skill.CastTime;
 
     public override string Describe(SkillData skill)
-        => string.Format(timingFormat, skill.Damage, skill.HitCount, firstHitDelay, hitInterval,
+        => GameText.Format(GameText.T(timingFormat), skill.Damage, skill.HitCount, firstHitDelay, hitInterval,
             Mathf.Max(0f, skill.CastTime - firstHitDelay - (skill.HitCount - 1) * hitInterval),
-            skill.IsAreaOfEffect ? areaTargetText : string.Format(singleTargetFormat, targetDeathRecovery), skill.TotalDamage);
+            skill.IsAreaOfEffect ? GameText.T(areaTargetText) : GameText.Format(GameText.T(singleTargetFormat), targetDeathRecovery), skill.TotalDamage);
 
     public override void Begin(ChannelContext context)
     {

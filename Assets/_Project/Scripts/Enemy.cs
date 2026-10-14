@@ -107,7 +107,7 @@ public class Enemy : MonoBehaviour
 
     public EnemyData Data => data;
     public bool IsUnderling { get; private set; }
-    public string DisplayName => (data != null ? data.DisplayName : name) + (IsUnderling ? " (말단)" : "");
+    public string DisplayName => (data != null ? data.DisplayName : name) + (IsUnderling ? GameText.T(" (말단)") : "");
     public int CurrentAttackDamage => current == null ? 0 : IsUnderling ? Mathf.CeilToInt(current.Damage * .5f) : current.Damage;
     public int MaxHp => data != null ? data.MaxHp : 0;
     public int CurrentHp { get; private set; }
@@ -436,7 +436,7 @@ public class Enemy : MonoBehaviour
 
         if (hpText != null)
         {
-            hpText.text = string.Format(hpFormat, CurrentHp, MaxHp);
+            hpText.text = GameText.T(GameText.Format(hpFormat, CurrentHp, MaxHp));
         }
 
     }
@@ -461,8 +461,8 @@ public class Enemy : MonoBehaviour
     private void RefreshBar()
     {
         if (castSkillText != null)
-            castSkillText.text = IsPhaseTransitioning ? string.Format(phaseTransitionFormat, phaseTransitionRemaining)
-                : IsBossOrb ? data.DisplayName : current == null ? string.Empty : current.SkillName;
+            castSkillText.text = GameText.T(IsPhaseTransitioning ? GameText.Format(GameText.T(phaseTransitionFormat), phaseTransitionRemaining)
+                : IsBossOrb ? data.DisplayName : current == null ? string.Empty : current.SkillName);
 
         if (castBarFill == null) return;
 

@@ -113,7 +113,7 @@ public class BattleFlow : MonoBehaviour
     [SerializeField] private string replaceLogFormat = "[보상 전투 {0}] 덱 {1}번: {2} → {3}";
     [SerializeField] private string skipLogFormat = "[보상 전투 {0}] 스킵 — 편성 유지";
     [SerializeField] private string resourceStatusFormat = "HP {0:0}/{1:0} · 포션 {2}/{3} · 시작 코스트 {4:0.#} / 상한 {5:0.#} · 방어도 배율 {6:0.##} · 차단 경직 {7:0.##}초";
-    private string ResourceStatus => string.Format(resourceStatusFormat, player.CurrentHp, player.MaxHp,
+    private string ResourceStatus => GameText.Format(GameText.T(resourceStatusFormat), player.CurrentHp, player.MaxHp,
         player.PotionsRemaining, player.PotionCapacity, cost.StartingCost, cost.Max, player.ShieldGainMultiplier, deck.InterruptStagger);
     [Header("편성 순서")]
     [SerializeField] private TMP_Text nextButtonLabel;
@@ -158,10 +158,10 @@ public class BattleFlow : MonoBehaviour
         {
             var entries = new List<string>();
             foreach (var entry in effectStacks)
-                entries.Add(string.Format(entry.Key.MaxStacks == 0 ? unlimitedStackFormat
+                entries.Add(GameText.Format(entry.Key.MaxStacks == 0 ? unlimitedStackFormat
                     : entry.Value >= entry.Key.MaxStacks ? passiveMaxStackFormat : passiveStackFormat,
                     entry.Key.DisplayName, entry.Value, entry.Key.MaxStacks));
-            return entries.Count == 0 ? noPassivesText : string.Join(" · ", entries);
+            return entries.Count == 0 ? GameText.T(noPassivesText) : string.Join(" · ", entries);
         }
     }
 
@@ -306,7 +306,7 @@ public class BattleFlow : MonoBehaviour
             RefreshUI();
             story.ShowIntro(() =>
             {
-                if (CanSaveProgress && !inheritance.TryRecordIntro()) Debug.LogWarning(progressSaveError, this);
+                if (CanSaveProgress && !inheritance.TryRecordIntro()) Debug.LogWarning(GameText.T(progressSaveError), this);
                 StartRunContent();
             });
             return;
@@ -407,7 +407,7 @@ public class BattleFlow : MonoBehaviour
             RefreshUI();
             return false;
         }
-        Debug.Log(string.Format(inheritanceLogFormat, option.DisplayName, slot + 1), this);
+        Debug.Log(GameText.Format(GameText.T(inheritanceLogFormat), option.DisplayName, slot + 1), this);
         PrepareNextRun();
         return true;
     }
@@ -503,7 +503,7 @@ public class BattleFlow : MonoBehaviour
         if (!CanEditOrder || !IsEditingOrder) return false;
         runDeck = orderDraft;
         orderDraft = null;
-        Debug.Log(string.Format(orderLogFormat, State == BattleFlowState.Preparing ? 1 : BattleNumber + 1,
+        Debug.Log(GameText.Format(GameText.T(orderLogFormat), State == BattleFlowState.Preparing ? 1 : BattleNumber + 1,
             string.Join(" → ", runDeck.ConvertAll(card => card.DisplayName))), this);
         RefreshUI();
         return true;
@@ -539,7 +539,7 @@ public class BattleFlow : MonoBehaviour
             earnedRewards.Add(option);
             SelectedReward = null;
             RewardResolved = true;
-            Debug.Log(string.Format(effectLogFormat, BattleNumber, option.DisplayName, GetPassiveStacks(option.Effect), cost.RegenerationPerSecond, player.CriticalChance) + " / " + ResourceStatus, this);
+            Debug.Log(GameText.Format(GameText.T(effectLogFormat), BattleNumber, option.DisplayName, GetPassiveStacks(option.Effect), cost.RegenerationPerSecond, player.CriticalChance) + " / " + ResourceStatus, this);
         }
         else SelectedReward = option.Card;
         RefreshUI();
@@ -591,7 +591,7 @@ public class BattleFlow : MonoBehaviour
         if (earned != null) earnedRewards.Add(earned);
         SkillData removed = runDeck[index];
         runDeck[index] = SelectedReward;
-        Debug.Log(string.Format(replaceLogFormat, BattleNumber, index + 1, removed.DisplayName, SelectedReward.DisplayName), this);
+        Debug.Log(GameText.Format(GameText.T(replaceLogFormat), BattleNumber, index + 1, removed.DisplayName, SelectedReward.DisplayName), this);
         SelectedReplacementIndex = -1;
         SelectedReward = null;
         RewardResolved = true;
@@ -607,7 +607,7 @@ public class BattleFlow : MonoBehaviour
         SelectedReplacementIndex = -1;
         SelectedReward = null;
         RewardResolved = true;
-        Debug.Log(string.Format(skipLogFormat, BattleNumber), this);
+        Debug.Log(GameText.Format(GameText.T(skipLogFormat), BattleNumber), this);
         RefreshUI();
         return true;
     }
@@ -708,7 +708,7 @@ public class BattleFlow : MonoBehaviour
 
     public void FinishTutorial(bool skipped)
     {
-        if (CanSaveProgress && !inheritance.TryRecordTutorial()) Debug.LogWarning(progressSaveError, this);
+        if (CanSaveProgress && !inheritance.TryRecordTutorial()) Debug.LogWarning(GameText.T(progressSaveError), this);
         Time.timeScale = 0f;
         deck.EndBattle();
         player.EndBattle();
@@ -769,7 +769,7 @@ public class BattleFlow : MonoBehaviour
         Time.timeScale = 0f;
         countdownPanel.SetActive(true);
         countdownPanel.transform.SetAsLastSibling();
-        countdownText.text = string.Format(countdownFormat, Mathf.CeilToInt(countdownRemaining));
+        countdownText.text = GameText.T(GameText.Format(GameText.T(countdownFormat), Mathf.CeilToInt(countdownRemaining)));
         RefreshUI();
     }
 
@@ -779,7 +779,7 @@ public class BattleFlow : MonoBehaviour
         countdownRemaining = Mathf.Max(0f, countdownRemaining - unscaledDelta);
         if (countdownRemaining > 0f)
         {
-            countdownText.text = string.Format(countdownFormat, Mathf.CeilToInt(countdownRemaining));
+            countdownText.text = GameText.T(GameText.Format(GameText.T(countdownFormat), Mathf.CeilToInt(countdownRemaining)));
             return;
         }
         countdownPanel.SetActive(false);
@@ -853,7 +853,7 @@ public class BattleFlow : MonoBehaviour
         if (BattleNumber == 0 || State != BattleFlowState.Fighting) return;
         if (!metrics.Ended && !enemies.CombatEnded && player.IsAlive) return;
         bool won = player.IsAlive && enemies.CombatEnded;
-        if (won && CanSaveProgress && !inheritance.TryRecordBattle(BattleNumber)) Debug.LogWarning(progressSaveError, this);
+        if (won && CanSaveProgress && !inheritance.TryRecordBattle(BattleNumber)) Debug.LogWarning(GameText.T(progressSaveError), this);
         enemies.ClearBossOrbs();
         State = !won ? BattleFlowState.Defeat
             : BattleNumber == BattleCount ? BattleFlowState.Victory : BattleFlowState.BetweenBattles;
@@ -944,9 +944,9 @@ public class BattleFlow : MonoBehaviour
         if (progressText != null)
         {
             progressText.gameObject.SetActive(!title && !preparing && State != BattleFlowState.Story);
-            if (HasTutorial && tutorial.Active) progressText.text = tutorialMapName;
+            if (HasTutorial && tutorial.Active) progressText.text = GameText.T(tutorialMapName);
             else if (BattleNumber > 0)
-                progressText.text = encounters[BattleNumber - 1].label;
+                progressText.text = GameText.T(encounters[BattleNumber - 1].label);
         }
         bool ended = State == BattleFlowState.Victory || State == BattleFlowState.Defeat;
         bool shown = !PanelHeld;
@@ -954,18 +954,18 @@ public class BattleFlow : MonoBehaviour
         if (ending && shown) stageClear.Show();
         if (resultPanel != null) resultPanel.SetActive(ended && shown && !ending);
         if (nextButton != null) nextButton.gameObject.SetActive(shown && CanEditOrder && !IsEditingOrder);
-        if (nextButtonLabel != null) nextButtonLabel.text = preparing ? firstBattleText : nextBattleText;
+        if (nextButtonLabel != null) nextButtonLabel.text = GameText.T(preparing ? GameText.T(firstBattleText) : GameText.T(nextBattleText));
         if (restartButton != null)
         {
             restartButton.gameObject.SetActive(shown && ended && !ending);
             var label = restartButton.GetComponentInChildren<TMP_Text>();
-            if (label != null) label.text = State == BattleFlowState.Defeat ? inheritanceButtonText : restartButtonText;
+            if (label != null) label.text = GameText.T(State == BattleFlowState.Defeat ? GameText.T(inheritanceButtonText) : GameText.T(restartButtonText));
         }
         if (rewardUI != null && shown) rewardUI.Refresh();
         if (resultText == null || !ended) return;
-        resultText.text = State == BattleFlowState.Defeat ? string.Format(defeatFormat, BattleNumber)
-            : State == BattleFlowState.Victory ? string.Format(completeFormat, player.CurrentHp, player.MaxHp)
-            : string.Format(victoryFormat, BattleNumber, player.CurrentHp, player.MaxHp);
+        resultText.text = GameText.T(State == BattleFlowState.Defeat ? GameText.Format(defeatFormat, BattleNumber)
+            : State == BattleFlowState.Victory ? GameText.Format(GameText.T(completeFormat), player.CurrentHp, player.MaxHp)
+            : GameText.Format(GameText.T(victoryFormat), BattleNumber, player.CurrentHp, player.MaxHp));
     }
 
     private void OnDisable()

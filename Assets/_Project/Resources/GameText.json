@@ -1,0 +1,1516 @@
+{
+  "entries": [
+    {
+      "ko": "기본 {0:0} · 패시브 +{1:0}",
+      "en": "Base {0:0} · Passive +{1:0}"
+    },
+    {
+      "ko": "기본 {0:0.#}% · 패시브 +{1:0.#}%p",
+      "en": "Base {0:0.#}% · Passive +{1:0.#} pp"
+    },
+    {
+      "ko": "기본 {0:0.0#} · 패시브 +{1:0.0#}",
+      "en": "Base {0:0.0#} · Passive +{1:0.0#}"
+    },
+    {
+      "ko": "기본 {0:0.#} · 패시브 +{1:0.#}",
+      "en": "Base {0:0.#} · Passive +{1:0.#}"
+    },
+    {
+      "ko": "기본 {0:0%} · 패시브 +{1:0%}",
+      "en": "Base {0:0%} · Passive +{1:0%}"
+    },
+    {
+      "ko": "{0:0.0#}초",
+      "en": "{0:0.0#}s"
+    },
+    {
+      "ko": "기본 {0:0.0#}초 · 패시브 +{1:0.0#}초",
+      "en": "Base {0:0.0#}s · Passive +{1:0.0#}s"
+    },
+    {
+      "ko": "받는 피해 {0:0.#}% 감소 · 방어도와 별개",
+      "en": "Damage taken reduced by {0:0.#}% · Separate from Shield"
+    },
+    {
+      "ko": "패시브 없음",
+      "en": "No passives"
+    },
+    {
+      "ko": "기절 {0:0.0}",
+      "en": "Stunned {0:0.0}"
+    },
+    {
+      "ko": "\n<size=55%>코스트 충전 불가</size>",
+      "en": "\n<size=55%>Cost regeneration blocked</size>"
+    },
+    {
+      "ko": "시전 {0}",
+      "en": "Casting {0}"
+    },
+    {
+      "ko": "채널링 {0}",
+      "en": "Channeling {0}"
+    },
+    {
+      "ko": "{0} 시전 취소",
+      "en": "{0} canceled"
+    },
+    {
+      "ko": "단일",
+      "en": "Single"
+    },
+    {
+      "ko": "광역",
+      "en": "Area"
+    },
+    {
+      "ko": "방어",
+      "en": "Shield"
+    },
+    {
+      "ko": "차단",
+      "en": "Interrupt"
+    },
+    {
+      "ko": "잠김",
+      "en": "Locked"
+    },
+    {
+      "ko": "설정 필요",
+      "en": "Not configured"
+    },
+    {
+      "ko": "전환 중",
+      "en": "Transition"
+    },
+    {
+      "ko": "차단!",
+      "en": "Interrupted!"
+    },
+    {
+      "ko": "일시정지",
+      "en": "Pause"
+    },
+    {
+      "ko": "재개",
+      "en": "Resume"
+    },
+    {
+      "ko": "전투 종료",
+      "en": "Battle ended"
+    },
+    {
+      "ko": "A 정지·재개 · S 배속 · 카드에 마우스: 정보",
+      "en": "A: Pause/Resume · S: Speed · Hover a card for info"
+    },
+    {
+      "ko": "일시정지 · A/우클릭 재개 · S 배속",
+      "en": "Paused · A/Right-click: Resume · S: Speed"
+    },
+    {
+      "ko": "{0}<alpha=#CC> · <alpha=#FF>{1}\n<alpha=#CC>코스트 <alpha=#FF><b>{2:0.#}</b><alpha=#CC>   ·   시전 <alpha=#FF><b>{3:0.##}초</b>",
+      "en": "{0}<alpha=#CC> · <alpha=#FF>{1}\n<alpha=#CC>Cost <alpha=#FF><b>{2:0.#}</b><alpha=#CC>   ·   Cast <alpha=#FF><b>{3:0.##}s</b>"
+    },
+    {
+      "ko": "{0}<alpha=#CC> · <alpha=#FF>{1}\n<alpha=#CC>코스트 <alpha=#FF><b>{2:0.#}</b><alpha=#CC>   ·   채널링 <alpha=#FF><b>{3:0.##}초</b>",
+      "en": "{0}<alpha=#CC> · <alpha=#FF>{1}\n<alpha=#CC>Cost <alpha=#FF><b>{2:0.#}</b><alpha=#CC>   ·   Channel <alpha=#FF><b>{3:0.##}s</b>"
+    },
+    {
+      "ko": "채널링 효과 연결 필요",
+      "en": "Channeling effect not assigned"
+    },
+    {
+      "ko": "피해 <b>{0}×{1}회</b> · 총합 피해 <b>{2}</b>\n<size=80%><alpha=#CC>적 1체·전 타격·크리티컬/방어 적용 전<alpha=#FF></size>",
+      "en": "Damage <b>{0} × {1} hits</b> · Total <b>{2}</b>\n<size=80%><alpha=#CC>Per enemy · All hits · Before crit/defense<alpha=#FF></size>"
+    },
+    {
+      "ko": "피해 <b>{0}</b> · 총합 피해 <b>{1}</b>\n<size=80%><alpha=#CC>적 1체·전 타격·크리티컬/방어 적용 전<alpha=#FF></size>",
+      "en": "Damage <b>{0}</b> · Total <b>{1}</b>\n<size=80%><alpha=#CC>Per enemy · All hits · Before crit/defense<alpha=#FF></size>"
+    },
+    {
+      "ko": "방어도 <b>+{0}</b>",
+      "en": "Shield <b>+{0}</b>"
+    },
+    {
+      "ko": "캐스팅 중인 대상에게 사용\n효과 적용 때도 초록·주황\n시전 중이면 성공\n성공 경직 <b>{0:0.##}초</b>\n빨강·적 선발동: 실패, 코스트·카드 소모",
+      "en": "Use on a casting enemy\nInterrupts a green/orange cast\nif it is still casting on impact\nStagger: <b>{0:0.##}s</b>\nRed/cast finished: fails; cost and card consumed"
+    },
+    {
+      "ko": "피해 <b>{0}×{1}회</b> · 총합 피해 <b>{3}</b>\n<size=80%><alpha=#CC>적 1체·전 타격·크리티컬/방어 적용 전<alpha=#FF></size>\n적 캐스팅 중에만 사용. 피해 후 차단\n초록·주황: 경직 <b>{2:0.##}초</b>\n빨강·시전 종료: 피해만 적용",
+      "en": "Damage <b>{0} × {1} hits</b> · Total <b>{3}</b>\n<size=80%><alpha=#CC>Per enemy · All hits · Before crit/defense<alpha=#FF></size>\nOnly usable on a casting enemy. Damage, then interrupt\nGreen/orange: stagger <b>{2:0.##}s</b>\nRed/cast finished: damage only"
+    },
+    {
+      "ko": "<size=125%><b><color=#F5EBD6>{0}</color></b></size>\n<size=80%> </size>\n<b><color=#F5EBD6>{1}</color></b>\n<alpha=#CC>기본 피해 <alpha=#FF><b>{2}</b><alpha=#CC> (방어력 적용 전)\n시전 <alpha=#FF><b>{3:0.##}초</b><alpha=#CC> · <alpha=#FF><color=#F5EBD6>{4}</color>{6}\n<size=85%>{5}</size>",
+      "en": "<size=125%><b><color=#F5EBD6>{0}</color></b></size>\n<size=80%> </size>\n<b><color=#F5EBD6>{1}</color></b>\n<alpha=#CC>Base damage <alpha=#FF><b>{2}</b><alpha=#CC> (before Defense)\nCast <alpha=#FF><b>{3:0.##}s</b><alpha=#CC> · <alpha=#FF><color=#F5EBD6>{4}</color>{6}\n<size=85%>{5}</size>"
+    },
+    {
+      "ko": "기절 <b>{0:0.##}초</b>",
+      "en": "Stun <b>{0:0.##}s</b>"
+    },
+    {
+      "ko": "<size=125%><b><color=#F5EBD6>{0}</color></b></size>\n<size=80%> </size>\n<alpha=#CC>현재 시전 중인 공격 없음",
+      "en": "<size=125%><b><color=#F5EBD6>{0}</color></b></size>\n<size=80%> </size>\n<alpha=#CC>Not currently casting"
+    },
+    {
+      "ko": "공격",
+      "en": "Attack"
+    },
+    {
+      "ko": "적 1체",
+      "en": "One enemy"
+    },
+    {
+      "ko": "적 전체",
+      "en": "All enemies"
+    },
+    {
+      "ko": "자신",
+      "en": "Self"
+    },
+    {
+      "ko": "차단 가능",
+      "en": "Interruptible"
+    },
+    {
+      "ko": "차단 불가",
+      "en": "Uninterruptible"
+    },
+    {
+      "ko": "추가 효과 없음",
+      "en": "No additional effect"
+    },
+    {
+      "ko": "피격 직전 방어도가 있으면 피해 <b>{0:0.#}%</b> 감소 후 흡수",
+      "en": "Having Shield before impact reduces damage by <b>{0:0.#}%</b>, then Shield absorbs it"
+    },
+    {
+      "ko": "속도 {0:0.#}배속",
+      "en": "Speed {0:0.#}×"
+    },
+    {
+      "ko": "{0} ({1}페이즈)",
+      "en": "{0} (Phase {1})"
+    },
+    {
+      "ko": "<size=125%><b><color=#F5EBD6>{0}</color></b></size>\n<size=80%> </size>\n<color=#F5EBD6>전환 중</color>\n무적 <b>{1:0.0}초</b> · 새 스킬 사용 불가",
+      "en": "<size=125%><b><color=#F5EBD6>{0}</color></b></size>\n<size=80%> </size>\n<color=#F5EBD6>Phase transition</color>\nInvulnerable for <b>{1:0.0}s</b> · New skills unavailable"
+    },
+    {
+      "ko": "<size=125%><b><color=#F5EBD6>{0}</color></b></size>\n<size=80%> </size>\n{1}\n파괴 시 보스 고정 피해 <b>{2}</b>\n전환 중 보스 무적에는 피해 없음",
+      "en": "<size=125%><b><color=#F5EBD6>{0}</color></b></size>\n<size=80%> </size>\n{1}\nDestroy to deal <b>{2}</b> fixed damage to the boss\nNo damage while the boss is invulnerable during transitions"
+    },
+    {
+      "ko": "\n기절 중 코스트 충전 불가",
+      "en": "\nCost regeneration blocked while stunned"
+    },
+    {
+      "ko": "\n파멸 강화 적용",
+      "en": "\nEmpowered by the Orb of Ruin"
+    },
+    {
+      "ko": "\"{0}\"을 \"{1}\"으로 교체하겠습니까?",
+      "en": "Replace \"{0}\" with \"{1}\"?"
+    },
+    {
+      "ko": "전투 승리 · HP {1:0} / {2:0}",
+      "en": "Victory · HP {1:0} / {2:0}"
+    },
+    {
+      "ko": "보상 1개를 선택하세요. 필요 없으면 스킵할 수 있습니다.",
+      "en": "Choose one reward. You may skip it."
+    },
+    {
+      "ko": "받을 수 있는 보상이 없습니다. 스킵 후 진행하세요.",
+      "en": "No eligible rewards. Skip to continue."
+    },
+    {
+      "ko": "{0} 선택 · 교체할 카드를 고르세요.",
+      "en": "{0} selected · Choose a card to replace."
+    },
+    {
+      "ko": "편성을 확인하고 다음 전투로 진행하세요.",
+      "en": "Review your deck and proceed to the next battle."
+    },
+    {
+      "ko": "{0}번 · {1}",
+      "en": "{0} · {1}"
+    },
+    {
+      "ko": "시작 손패",
+      "en": "Starting hand"
+    },
+    {
+      "ko": "대기 순서",
+      "en": "Draw queue"
+    },
+    {
+      "ko": "시작 편성",
+      "en": "Starting Deck"
+    },
+    {
+      "ko": "편성을 확인하고 전투를 시작하세요.",
+      "en": "Review your deck and start the battle."
+    },
+    {
+      "ko": "카드를 원하는 자리에 드래그하세요. 1~4번은 시작 손패, 5~8번은 대기열입니다.",
+      "en": "Drag cards to reorder. Slots 1–4 are your starting hand; 5–8 form the draw queue."
+    },
+    {
+      "ko": "계승 선택",
+      "en": "Inheritance"
+    },
+    {
+      "ko": "이번 런에서 얻은 스킬·패시브 중 1개를 계승하세요.",
+      "en": "Inherit one skill or passive acquired during this run."
+    },
+    {
+      "ko": "{0} 계승 · 영구 시작 덱에서 교체할 자리를 고른 뒤 확인을 누르세요.",
+      "en": "Inherit {0} · Select a slot in your permanent starting deck, then confirm."
+    },
+    {
+      "ko": "계승 스킵",
+      "en": "Skip Inheritance"
+    },
+    {
+      "ko": "계승 다시 선택",
+      "en": "Choose Again"
+    },
+    {
+      "ko": "다음 런부터 적용 · 초기화 전까지 유지",
+      "en": "Applies next run · Kept until reset"
+    },
+    {
+      "ko": "계승 <b>{0}</b> / 최대 {1}",
+      "en": "Inherited <b>{0}</b> / Max {1}"
+    },
+    {
+      "ko": "계승 <b>{0}</b>",
+      "en": "Inherited <b>{0}</b>"
+    },
+    {
+      "ko": "  <size=18><color=#E7CB87>계승</color></size>",
+      "en": "  <size=18><color=#E7CB87>Inherited</color></size>"
+    },
+    {
+      "ko": "<size=24><color=#ABAAB0>계승한 패시브가 없습니다.</color></size>",
+      "en": "<size=24><color=#ABAAB0>No inherited passives.</color></size>"
+    },
+    {
+      "ko": "계승을 저장하지 못했습니다. 다시 선택하거나 스킵하세요.",
+      "en": "Could not save inheritance. Choose again or skip."
+    },
+    {
+      "ko": "초기화하지 못했습니다. 다시 시도하세요.",
+      "en": "Could not reset. Please try again."
+    },
+    {
+      "ko": "계승 파일을 읽지 못해 기본 상태로 시작합니다. 기존 파일은 보존했습니다.",
+      "en": "Could not read inheritance. Starting with defaults; the original file was preserved."
+    },
+    {
+      "ko": "계승 파일을 읽지 못해 이전 저장본을 불러왔습니다.",
+      "en": "Could not read inheritance. Loaded the previous backup."
+    },
+    {
+      "ko": "패시브",
+      "en": "Passive"
+    },
+    {
+      "ko": "보유 <b>{0}</b> / 최대 {1}",
+      "en": "Owned <b>{0}</b> / Max {1}"
+    },
+    {
+      "ko": "보유 <b>{0}</b>",
+      "en": "Owned <b>{0}</b>"
+    },
+    {
+      "ko": "선택 즉시 적용 · 덱 유지",
+      "en": "Applies immediately · Deck unchanged"
+    },
+    {
+      "ko": "포션 최대 보유량 <b>+{0:0}</b>",
+      "en": "Potion capacity <b>+{0:0}</b>"
+    },
+    {
+      "ko": "현재 포션 <b>{0:0}개</b> 보충",
+      "en": "Refill <b>{0:0}</b> potion(s)"
+    },
+    {
+      "ko": "즉시 HP <b>{0:0}</b> 회복",
+      "en": "Immediately restore <b>{0:0}</b> HP"
+    },
+    {
+      "ko": "최대 HP <b>+{0:0}</b>",
+      "en": "Max HP <b>+{0:0}</b>"
+    },
+    {
+      "ko": "초당 코스트 충전 <b>+{0:0.##}</b>",
+      "en": "Cost regeneration/sec <b>+{0:0.##}</b>"
+    },
+    {
+      "ko": "매 전투 시작 코스트 <b>+{0:0.#}</b>",
+      "en": "Starting cost each battle <b>+{0:0.#}</b>"
+    },
+    {
+      "ko": "코스트 상한 <b>+{0:0.#}</b>",
+      "en": "Max cost <b>+{0:0.#}</b>"
+    },
+    {
+      "ko": "방어도 부여량 <b>+{0:0%}</b>",
+      "en": "Shield granted <b>+{0:0%}</b>"
+    },
+    {
+      "ko": "차단 성공 경직 <b>+{0:0.##}초</b>",
+      "en": "Interrupt stagger <b>+{0:0.##}s</b>"
+    },
+    {
+      "ko": "크리티컬 확률 <b>+{0:0.#}%p</b>",
+      "en": "Critical chance <b>+{0:0.#} pp</b>"
+    },
+    {
+      "ko": "{0:0.00}s: {1:0.#}배",
+      "en": "{0:0.00}s: {1:0.#}×"
+    },
+    {
+      "ko": "배속 이력(게임 초): {0}",
+      "en": "Speed history (game seconds): {0}"
+    },
+    {
+      "ko": " / 크리티컬",
+      "en": " / Critical"
+    },
+    {
+      "ko": "크리티컬 {0}회 / 유효 피해 타격 {1}회 (사망 후 잔여 연출 제외)",
+      "en": "Critical hits {0} / Eligible hits {1} (excluding effects after death)"
+    },
+    {
+      "ko": "시작 조건: 충전 {0:0.0}/초 / 크리티컬 {1:0.#}% / {2}",
+      "en": "Starting modifiers: Regen {0:0.0}/s / Crit {1:0.#}% / {2}"
+    },
+    {
+      "ko": "[포션 {0:0.00}s] 실회복 {1:0} / 남은 {2}/{3}",
+      "en": "[Potion {0:0.00}s] Healed {1:0} / Remaining {2}/{3}"
+    },
+    {
+      "ko": "포션 사용 {0}회 / 실제 회복 {1:0}",
+      "en": "Potions used {0} / HP restored {1:0}"
+    },
+    {
+      "ko": "[무적 {0:0.00}s] 피해 무효화 {1} (방어력 적용 후 / HP·방어도 감소 0)",
+      "en": "[Invulnerability {0:0.00}s] Damage prevented {1} (after Defense / HP and Shield lost: 0)"
+    },
+    {
+      "ko": "무적 무효화 피해 {0} (방어도 흡수와 별도)",
+      "en": "Damage prevented by invulnerability {0} (separate from Shield absorption)"
+    },
+    {
+      "ko": "빨강 반감 감소 피해 {0} (방어도 흡수·무적과 별도)",
+      "en": "Red attack reduction {0} (separate from Shield absorption and invulnerability)"
+    },
+    {
+      "ko": "현재 설정: {0} · {1}",
+      "en": "Current: {0} · {1}"
+    },
+    {
+      "ko": "전체화면 (테두리 없음)",
+      "en": "Borderless Fullscreen"
+    },
+    {
+      "ko": "창모드",
+      "en": "Windowed"
+    },
+    {
+      "ko": "정말 게임을 초기화 하시겠습니까?\n스테이지 클리어 기록이 사라집니다.\n<size=75%>계승한 스킬·패시브와 튜토리얼 기록도 초기화됩니다.</size>",
+      "en": "Reset the game?\nStage clear records will be deleted.\n<size=75%>Inherited skills, passives and tutorial progress will also be reset.</size>"
+    },
+    {
+      "ko": "초기화하지 못했습니다. 저장 경로를 확인한 뒤 다시 시도하세요.",
+      "en": "Could not reset. Check storage permissions and try again."
+    },
+    {
+      "ko": "기존 데이터가 사라집니다. 그래도 진행하시겠습니까?",
+      "en": "Existing progress will be deleted. Continue?"
+    },
+    {
+      "ko": "전체화면",
+      "en": "Fullscreen"
+    },
+    {
+      "ko": "무제한",
+      "en": "Unlimited"
+    },
+    {
+      "ko": "수직동기화 사용 시 프레임 제한 대신 모니터 주사율을 따릅니다.",
+      "en": "With VSync enabled, your display refresh rate replaces the frame limit."
+    },
+    {
+      "ko": "프레임 제한을 낮추면 그래픽 부하를 줄일 수 있습니다.",
+      "en": "Lower frame limits reduce graphics load."
+    },
+    {
+      "ko": "해당 구역은 타겟팅 된 적의 공격에 대한 정보를 보여줍니다",
+      "en": "This area shows information about your target's attack."
+    },
+    {
+      "ko": "이제 공격스킬을 써서 적을 처치하세요",
+      "en": "Now use your attack skills to defeat the enemy."
+    },
+    {
+      "ko": "<size=36><b>튜토리얼 완료</b></size>\nHP와 포션이 회복된 상태로 다음 전투를 시작합니다.\n스킬 순서를 확인하고 전투를 준비하세요.",
+      "en": "<size=36><b>Tutorial Complete</b></size>\nYour HP and potions will be restored before the next battle.\nCheck your skill order and prepare to fight."
+    },
+    {
+      "ko": "전환 · 무적 {0:0.0}초",
+      "en": "Transition · Invulnerable {0:0.0}s"
+    },
+    {
+      "ko": "사용 불가 — 페이즈 전환",
+      "en": "Unavailable — phase transition"
+    },
+    {
+      "ko": "[Player] 피격 {0} (원본 {1}) 방어도 흡수 {2} → HP -{3} = {4:F0}/{5:F0} (방어도 {6}){7}",
+      "en": "[Player] Damage {0} (raw {1}) Shield absorbed {2} → HP -{3} = {4:F0}/{5:F0} (Shield {6}){7}"
+    },
+    {
+      "ko": " / 빨강 반감 감소 {0}",
+      "en": " / Red attack reduction {0}"
+    },
+    {
+      "ko": "[Player] 회복 {0:0} / 요청 {1:0} → HP {2:0}/{3:0}",
+      "en": "[Player] Healed {0:0} / Requested {1:0} → HP {2:0}/{3:0}"
+    },
+    {
+      "ko": "매직미사일(파이어볼 연출)",
+      "en": "Magic Missile (Fireball effect)"
+    },
+    {
+      "ko": "사일런스",
+      "en": "Silence"
+    },
+    {
+      "ko": "다크홀",
+      "en": "Dark Hole"
+    },
+    {
+      "ko": "나이트메어",
+      "en": "Nightmare"
+    },
+    {
+      "ko": "디엔드",
+      "en": "The End"
+    },
+    {
+      "ko": "인적 드문 오솔길",
+      "en": "Secluded Forest Path"
+    },
+    {
+      "ko": "도적 아지트 입구",
+      "en": "Bandit Hideout Entrance"
+    },
+    {
+      "ko": "불길한 동굴",
+      "en": "Ominous Cave"
+    },
+    {
+      "ko": "전투 준비\n<size=140%>{0}</size>",
+      "en": "Get Ready\n<size=140%>{0}</size>"
+    },
+    {
+      "ko": "오솔길 입구",
+      "en": "Forest Path Entrance"
+    },
+    {
+      "ko": "<size=135%><b><color=#E6CA90>전투 {0} 승리</color></b></size>\n<size=45%> </size>\n<alpha=#CC>남은 HP <alpha=#FF><b>{1:0} / {2:0}</b>\n<alpha=#CC>이 HP로 다음 전투를 시작합니다.",
+      "en": "<size=135%><b><color=#E6CA90>Victory</color></b></size>\n<size=45%> </size>\n<alpha=#CC>Remaining HP <alpha=#FF><b>{1:0} / {2:0}</b>\n<alpha=#CC>You will start the next battle with this HP."
+    },
+    {
+      "ko": "<size=135%><b><color=#E6CA90>모험 완료</color></b></size>\n<size=45%> </size>\n<alpha=#CC>남은 HP <alpha=#FF><b>{0:0} / {1:0}</b>",
+      "en": "<size=135%><b><color=#E6CA90>Adventure Complete</color></b></size>\n<size=45%> </size>\n<alpha=#CC>Remaining HP <alpha=#FF><b>{0:0} / {1:0}</b>"
+    },
+    {
+      "ko": "<size=200%><b><color=#E87878>패배</color></b></size>\n<size=40%> </size>\n이번 런에서 얻은 스킬·패시브 중 1개를 계승할 수 있습니다.",
+      "en": "<size=200%><b><color=#E87878>DEFEAT</color></b></size>\n<size=40%> </size>\nYou may inherit one skill or passive acquired during this run."
+    },
+    {
+      "ko": "처음부터 다시 시작",
+      "en": "Restart from Beginning"
+    },
+    {
+      "ko": "[계승] {0} 저장 / 시작 덱 슬롯 {1}",
+      "en": "[Inheritance] Saved {0} / Starting deck slot {1}"
+    },
+    {
+      "ko": "진행 기록 저장 실패. 저장 경로를 확인하세요.",
+      "en": "Could not save progress. Check storage permissions."
+    },
+    {
+      "ko": "[보상 전투 {0}] 덱 {1}번: {2} → {3}",
+      "en": "[Reward battle {0}] Deck slot {1}: {2} → {3}"
+    },
+    {
+      "ko": "[보상 전투 {0}] 스킵 — 편성 유지",
+      "en": "[Reward battle {0}] Skipped — deck unchanged"
+    },
+    {
+      "ko": "HP {0:0}/{1:0} · 포션 {2}/{3} · 시작 코스트 {4:0.#} / 상한 {5:0.#} · 방어도 배율 {6:0.##} · 차단 경직 {7:0.##}초",
+      "en": "HP {0:0}/{1:0} · Potions {2}/{3} · Starting cost {4:0.#} / Max {5:0.#} · Shield multiplier {6:0.##} · Interrupt stagger {7:0.##}s"
+    },
+    {
+      "ko": "전투 시작",
+      "en": "Start Battle"
+    },
+    {
+      "ko": "다음 전투",
+      "en": "Next Battle"
+    },
+    {
+      "ko": "[편성 전투 {0} 준비] 순서 저장: {1}",
+      "en": "[Deck battle {0} preparation] Saved order: {1}"
+    },
+    {
+      "ko": "[보상 전투 {0}] {1} 획득 / {2}스택 / 충전 {3:0.0}/초 / 크리티컬 {4:0.#}%",
+      "en": "[Reward battle {0}] Acquired {1} / {2} stacks / Regen {3:0.0}/s / Crit {4:0.#}%"
+    },
+    {
+      "ko": "취소",
+      "en": "Cancel"
+    },
+    {
+      "ko": "수직동기화",
+      "en": "VSync"
+    },
+    {
+      "ko": "계승 정보",
+      "en": "Inheritance"
+    },
+    {
+      "ko": "보상 스킵",
+      "en": "Skip Reward"
+    },
+    {
+      "ko": "배경음",
+      "en": "Music"
+    },
+    {
+      "ko": "새 게임 진행",
+      "en": "New Game"
+    },
+    {
+      "ko": "방어도 0",
+      "en": "Shield 0"
+    },
+    {
+      "ko": "확인",
+      "en": "Confirm"
+    },
+    {
+      "ko": "시작 화면으로 돌아가면 진행 중인 전투는 종료됩니다.",
+      "en": "Returning to the title ends the current battle."
+    },
+    {
+      "ko": "포션 3/3 · Shift",
+      "en": "Potions 3/3 · Shift"
+    },
+    {
+      "ko": "스킬 사운드",
+      "en": "Skill Sounds"
+    },
+    {
+      "ko": "조작 정보",
+      "en": "Controls"
+    },
+    {
+      "ko": "치명타 배율",
+      "en": "Critical Multiplier"
+    },
+    {
+      "ko": "<size=36>계승한 스킬·패시브를 모두 지울까요?</size>\n<size=24><color=#B9AF9E>시작 덱과 능력치가 기본 상태로 돌아갑니다.</color></size>",
+      "en": "<size=36>Delete all inherited skills and passives?</size>\n<size=24><color=#B9AF9E>Your starting deck and stats will return to their defaults.</color></size>"
+    },
+    {
+      "ko": "시작 화면으로",
+      "en": "Return to Title"
+    },
+    {
+      "ko": "예",
+      "en": "Yes"
+    },
+    {
+      "ko": "게임 시작",
+      "en": "Start Game"
+    },
+    {
+      "ko": "계속하기",
+      "en": "Continue"
+    },
+    {
+      "ko": "초기화",
+      "en": "Reset"
+    },
+    {
+      "ko": "아니오",
+      "en": "No"
+    },
+    {
+      "ko": "해상도",
+      "en": "Resolution"
+    },
+    {
+      "ko": "옵션",
+      "en": "Options"
+    },
+    {
+      "ko": "튜토리얼은 기본 편성으로 진행합니다. 계승은 본편부터 적용됩니다.\n시작 편성에서 바꾼 순서는 이번 런에만 적용됩니다.",
+      "en": "The tutorial uses the default deck. Inheritance applies afterward.\nChanges to starting card order apply only to this run."
+    },
+    {
+      "ko": "적 사운드",
+      "en": "Enemy Sounds"
+    },
+    {
+      "ko": "생존",
+      "en": "Survival"
+    },
+    {
+      "ko": "능력치",
+      "en": "Stats"
+    },
+    {
+      "ko": "초당 회복",
+      "en": "Regen/sec"
+    },
+    {
+      "ko": "적의 캐스팅을 읽고, 공격과 대응을 선택하세요.",
+      "en": "Read enemy casts. Choose your attack and response."
+    },
+    {
+      "ko": "<line-height=56>Q / W / E / R 또는 카드 좌클릭\n적 좌클릭 또는 좌우 방향키\n카드에 마우스 올리기\nA 또는 우클릭 / 상단 버튼 · Esc 메뉴\nS 또는 상단 속도 버튼 (1배속 / 0.5배속)\nShift 또는 물약 아이콘 좌클릭\n전투 중 우측 상단 버튼 (게임은 멈추지 않음)",
+      "en": "<line-height=56>Q / W / E / R or left-click a card\nLeft-click an enemy or use Left/Right arrows\nHover over a card\nA or right-click / top button · Esc: menu\nS or the speed button (1× / 0.5×)\nShift or left-click the potion icon\nTop-right button during battle (does not pause)"
+    },
+    {
+      "ko": "전체 사운드",
+      "en": "Master Volume"
+    },
+    {
+      "ko": "아니요",
+      "en": "No"
+    },
+    {
+      "ko": "차단 성공 경직",
+      "en": "Interrupt Stagger"
+    },
+    {
+      "ko": "소리는 바로 반영됩니다. 적용하면 저장되고, 취소하면 돌아갑니다.",
+      "en": "Audio previews instantly. Apply to save; Cancel to restore."
+    },
+    {
+      "ko": "<line-height=56>카드 사용\n대상 선택\n카드 정보\n일시정지·재개\n배속 변경\n포션 사용\n능력치",
+      "en": "<line-height=56>Use card\nSelect target\nCard info\nPause/Resume\nChange speed\nUse potion\nStats"
+    },
+    {
+      "ko": "돌아가기",
+      "en": "Back"
+    },
+    {
+      "ko": "시작 덱",
+      "en": "Starting Deck"
+    },
+    {
+      "ko": "화면 모드",
+      "en": "Display Mode"
+    },
+    {
+      "ko": "게임 종료",
+      "en": "Quit Game"
+    },
+    {
+      "ko": "전투 시작 코스트",
+      "en": "Starting Cost"
+    },
+    {
+      "ko": "카드 사용   Q / W / E / R 또는 카드 좌클릭\n대상 선택   적 좌클릭 또는 좌우 방향키\n카드 정보   카드에 마우스 올리기\n일시정지   카드 우클릭 또는 상단 정지 버튼\n배속 변경   상단 속도 버튼 (1배 / 0.5배)",
+      "en": "Use card   Q / W / E / R or left-click a card\nSelect target   Left-click an enemy or Left/Right arrows\nCard info   Hover over a card\nPause   Right-click a card or the pause button\nSpeed   Top speed button (1× / 0.5×)"
+    },
+    {
+      "ko": "게임 초기화",
+      "en": "Reset Game"
+    },
+    {
+      "ko": "저장",
+      "en": "Save"
+    },
+    {
+      "ko": "계승 패시브",
+      "en": "Inherited Passives"
+    },
+    {
+      "ko": "프레임 제한",
+      "en": "Frame Limit"
+    },
+    {
+      "ko": "보상 다시 선택",
+      "en": "Choose Reward Again"
+    },
+    {
+      "ko": "사용",
+      "en": "On"
+    },
+    {
+      "ko": "방어도 부여량",
+      "en": "Shield Granted"
+    },
+    {
+      "ko": "순서 변경",
+      "en": "Reorder"
+    },
+    {
+      "ko": "속도 1배속",
+      "en": "Speed 1×"
+    },
+    {
+      "ko": "카드 교체",
+      "en": "Replace Card"
+    },
+    {
+      "ko": "현재 설정",
+      "en": "Current Settings"
+    },
+    {
+      "ko": "방어력",
+      "en": "Defense"
+    },
+    {
+      "ko": "대응",
+      "en": "Response"
+    },
+    {
+      "ko": "코스트 상한",
+      "en": "Max Cost"
+    },
+    {
+      "ko": "기절 2.0",
+      "en": "Stunned 2.0"
+    },
+    {
+      "ko": "치명타 확률",
+      "en": "Critical Chance"
+    },
+    {
+      "ko": "기존의 데이터가 존재합니다.\n기존 게임 사양으로 시작하겠습니까?",
+      "en": "Existing save data found.\nStart with your saved progress?"
+    },
+    {
+      "ko": "옵     션",
+      "en": "Options"
+    },
+    {
+      "ko": "계승 초기화",
+      "en": "Reset Inheritance"
+    },
+    {
+      "ko": "적용",
+      "en": "Apply"
+    },
+    {
+      "ko": "최대 HP",
+      "en": "Max HP"
+    },
+    {
+      "ko": "코스트",
+      "en": "Cost"
+    },
+    {
+      "ko": "깡패",
+      "en": "Thug"
+    },
+    {
+      "ko": "펀치",
+      "en": "Punch"
+    },
+    {
+      "ko": "전력펀치",
+      "en": "Power Punch"
+    },
+    {
+      "ko": "발차기",
+      "en": "Kick"
+    },
+    {
+      "ko": "약탈자",
+      "en": "Raider"
+    },
+    {
+      "ko": "휘두르기",
+      "en": "Slash"
+    },
+    {
+      "ko": "궁병",
+      "en": "Archer"
+    },
+    {
+      "ko": "속공술",
+      "en": "Rapid Shot"
+    },
+    {
+      "ko": "조준술",
+      "en": "Aimed Shot"
+    },
+    {
+      "ko": "마법사",
+      "en": "Mage"
+    },
+    {
+      "ko": "매직미사일",
+      "en": "Magic Missile"
+    },
+    {
+      "ko": "우두머리",
+      "en": "Bandit Leader"
+    },
+    {
+      "ko": "참격",
+      "en": "Cleave"
+    },
+    {
+      "ko": "회심참",
+      "en": "Heavy Cleave"
+    },
+    {
+      "ko": "잡몹 D",
+      "en": "Enemy D"
+    },
+    {
+      "ko": "일반 공격",
+      "en": "Basic Attack"
+    },
+    {
+      "ko": "기절 공격",
+      "en": "Stunning Attack"
+    },
+    {
+      "ko": "대형 피해",
+      "en": "Heavy Damage"
+    },
+    {
+      "ko": "순환의 오브",
+      "en": "Orb of Haste"
+    },
+    {
+      "ko": "보스 시전 시간 추가 20%p 감소\n2페이즈 총 40% / 3페이즈 20%",
+      "en": "Boss cast time reduced by an extra 20 percentage points\nPhase 2: 40% total / Phase 3: 20%"
+    },
+    {
+      "ko": "파멸의 오브",
+      "en": "Orb of Ruin"
+    },
+    {
+      "ko": "보스 피해 +10%\n강화 사일런스·나이트메어의\n기절 중 코스트 충전 불가",
+      "en": "Boss damage +10%\nEmpowered Silence and Nightmare\nblock cost regeneration while stunned"
+    },
+    {
+      "ko": "응급 물약",
+      "en": "Emergency Potion"
+    },
+    {
+      "ko": "치유의 스크롤",
+      "en": "Scroll of Healing"
+    },
+    {
+      "ko": "최대 HP를 넘는 회복은 버림",
+      "en": "Healing above max HP is discarded"
+    },
+    {
+      "ko": "인내의 스크롤",
+      "en": "Scroll of Endurance"
+    },
+    {
+      "ko": "현재 HP는 회복하지 않음",
+      "en": "Does not restore current HP"
+    },
+    {
+      "ko": "순환의 스크롤",
+      "en": "Scroll of Circulation"
+    },
+    {
+      "ko": "태초의 스크롤",
+      "en": "Scroll of Origin"
+    },
+    {
+      "ko": "현재 코스트는 보충하지 않음",
+      "en": "Does not refill current cost"
+    },
+    {
+      "ko": "심연의 스크롤",
+      "en": "Scroll of the Abyss"
+    },
+    {
+      "ko": "철벽의 스크롤",
+      "en": "Scroll of Fortitude"
+    },
+    {
+      "ko": "기본 부여량 기준으로 합산",
+      "en": "Adds to the base amount granted"
+    },
+    {
+      "ko": "속박의 스크롤",
+      "en": "Scroll of Binding"
+    },
+    {
+      "ko": "플레이어 기절 시간은 유지",
+      "en": "Player stun duration is unchanged"
+    },
+    {
+      "ko": "정밀의 스크롤",
+      "en": "Scroll of Precision"
+    },
+    {
+      "ko": "악마의 스크롤",
+      "en": "Devil's Scroll"
+    },
+    {
+      "ko": "피해 <b>{0}×{1}회</b> · 총합 피해 <b>{6}</b>\n<size=80%><alpha=#CC>적 1체·전 타격·크리티컬/방어 적용 전<alpha=#FF></size>\n첫 타격 {2:0.##}초 / 간격 {3:0.##}초\n타격 후 남은 잠금 {4:0.##}초\n{5}",
+      "en": "Damage <b>{0} × {1} hits</b> · Total <b>{6}</b>\n<size=80%><alpha=#CC>Per enemy · All hits · Before crit/defense<alpha=#FF></size>\nFirst hit {2:0.##}s · Every {3:0.##}s\nFinal-hit lock {4:0.##}s\n{5}"
+    },
+    {
+      "ko": "입력 대상 고정. 사망 시 후딜 {0:0.##}초",
+      "en": "Target locked; death recovery {0:0.##}s"
+    },
+    {
+      "ko": "매 타격 시 생존 적 전체",
+      "en": "Hits all living enemies on each tick"
+    },
+    {
+      "ko": "즉시 무적·기절 면역\n채널링 동안 HP·방어도 피해 무효화\n다른 카드 사용 불가\n종료 시 모두 해제\n이미 기절 중이면 사용 불가",
+      "en": "Immediate invulnerability and stun immunity\nPrevents HP and Shield damage while channeling\nCannot use other cards\nAll effects end when channeling ends\nCannot use while already stunned"
+    },
+    {
+      "ko": "연쇄번개",
+      "en": "Chain Lightning"
+    },
+    {
+      "ko": "매직아머",
+      "en": "Magic Armor"
+    },
+    {
+      "ko": "폭발",
+      "en": "Explosion"
+    },
+    {
+      "ko": "화염탄",
+      "en": "Flame Bolt"
+    },
+    {
+      "ko": "불기둥",
+      "en": "Flame Pillar"
+    },
+    {
+      "ko": "불기둥(광역)",
+      "en": "Flame Pillar (Area)"
+    },
+    {
+      "ko": "서리화살",
+      "en": "Frost Arrow"
+    },
+    {
+      "ko": "관통",
+      "en": "Pierce"
+    },
+    {
+      "ko": "침묵",
+      "en": "Silence"
+    },
+    {
+      "ko": "파이어볼",
+      "en": "Fireball"
+    },
+    {
+      "ko": "아이스애로우",
+      "en": "Ice Arrow"
+    },
+    {
+      "ko": "매직 커터",
+      "en": "Magic Cutter"
+    },
+    {
+      "ko": "파이어 필라",
+      "en": "Fire Pillar"
+    },
+    {
+      "ko": "라이트닝 스피어",
+      "en": "Lightning Spear"
+    },
+    {
+      "ko": "매직 스파크",
+      "en": "Magic Spark"
+    },
+    {
+      "ko": "매직 임팩트",
+      "en": "Magic Impact"
+    },
+    {
+      "ko": "저지먼트",
+      "en": "Judgment"
+    },
+    {
+      "ko": "블리자드",
+      "en": "Blizzard"
+    },
+    {
+      "ko": "다크 이럽션",
+      "en": "Dark Eruption"
+    },
+    {
+      "ko": "제압",
+      "en": "Suppression"
+    },
+    {
+      "ko": "생츄어리",
+      "en": "Sanctuary"
+    },
+    {
+      "ko": "모험가",
+      "en": "Adventurer"
+    },
+    {
+      "ko": "인트로 건너뛰기",
+      "en": "Skip Intro"
+    },
+    {
+      "ko": "대화 건너뛰기",
+      "en": "Skip Dialogue"
+    },
+    {
+      "ko": "고대의 대전쟁 당시, 한 제국은 병사들을 강화하기 위해 대마법사에게 새로운 기술을 개발하도록 명했다. 그렇게 탄생한 것이 바로 ‘비전 스크롤’이었다.",
+      "en": "During the Great War of ancient times, an empire ordered its archmage to develop a way to strengthen its soldiers. Thus, the Arcane Scroll was born."
+    },
+    {
+      "ko": "비전 스크롤에는 마법뿐만 아니라 신체 능력과 기술, 지식까지 담아 다른 이에게 전할 수 있었다. 병사들은 스크롤에 담긴 힘과 기술을 익혀 전장에서 활약했고, 제국은 마침내 전쟁에서 승리했다.",
+      "en": "Arcane Scrolls could hold not only magic, but physical abilities, techniques and knowledge, passing them on to others. Armed with the powers and skills within these scrolls, the empire's soldiers excelled on the battlefield and finally won the war."
+    },
+    {
+      "ko": "하지만 누구나 강력한 힘을 얻을 수 있다는 사실은 사람들의 탐욕을 자극했다. 스크롤을 차지하려는 다툼은 제국 내부로 번졌고, 끝없는 분열 속에서 제국은 결국 몰락했다.",
+      "en": "But the promise of power for anyone stirred people's greed. Struggles over the scrolls spread through the empire, and endless infighting brought about its downfall."
+    },
+    {
+      "ko": "오랜 세월이 흐른 지금도 비전 스크롤은 남아 있다. 그러나 이제는 새로운 기술이나 마법의 기초를 쉽게 익히는 수단으로 여겨질 뿐이다. 한때 제국의 병사들에게 막강한 힘을 부여했다는 이야기는 고대의 전설로 남았다.",
+      "en": "Countless years later, Arcane Scrolls still exist. Today, they are seen merely as an easy way to learn the basics of a new skill or spell. The immense power they once bestowed upon imperial soldiers has faded into ancient legend."
+    },
+    {
+      "ko": "그럼에도 전설 속 힘을 찾아 스크롤을 모으고, 싸우며 모험을 이어가는 이들이 있다.\n사람들은 그들을 스크롤 헌터라 부른다.",
+      "en": "Yet some still seek that legendary power, collecting scrolls and fighting their way through distant lands.\nPeople call them Scroll Hunters."
+    },
+    {
+      "ko": "숲으로 향하는 길목에서 깡패가 앞을 가로막는다.",
+      "en": "A thug blocks the path leading into the forest."
+    },
+    {
+      "ko": "어이, 거기 멈춰. 이 숲에 들어가려면 통행세부터 내야지.",
+      "en": "Hey, stop right there. There's a toll to enter this forest."
+    },
+    {
+      "ko": "통행세? 여기 오는 동안 그런 얘기는 못 들었는데.",
+      "en": "A toll? Nobody mentioned that on the way here."
+    },
+    {
+      "ko": "그럼 지금 알았으면 됐잖아. 돈 내놔.",
+      "en": "Well, now you know. Hand over the money."
+    },
+    {
+      "ko": "길을 막고 돈을 뜯는 걸 통행세라고 하나? 낼 생각 없으니까 비켜.",
+      "en": "Blocking the road and shaking people down counts as a toll now? I'm not paying. Move."
+    },
+    {
+      "ko": "좋게 말하니까 우습게 보이나? 그럼 쓰러뜨리고 직접 챙겨 주지. 가진 건 전부 두고 가게 될 거다.",
+      "en": "Think you can laugh me off? Fine. I'll knock you down and take it myself. You're leaving everything behind."
+    },
+    {
+      "ko": "모험가가 가볍게 웃으며 어깨를 푼다.",
+      "en": "The adventurer chuckles and rolls their shoulders."
+    },
+    {
+      "ko": "마침 잘됐네. 한동안 싸울 일이 없어서 몸이 굳어 있었거든.",
+      "en": "Perfect timing. It's been a while since my last fight. I could use a warm-up."
+    },
+    {
+      "ko": "뭐? 지금 웃음이 나와?",
+      "en": "What? You think this is funny?"
+    },
+    {
+      "ko": "덕분에 몸 좀 풀고 가겠어. 덤벼.",
+      "en": "Thanks for the exercise. Come on, then."
+    },
+    {
+      "ko": "깡패가 주먹을 쥐고 달려든다.",
+      "en": "The thug charges forward with clenched fists."
+    },
+    {
+      "ko": "숲속을 한참 헤매던 모험가가 갈림길 앞에서 걸음을 멈춘다.",
+      "en": "After wandering through the forest for some time, the adventurer stops at a fork in the path."
+    },
+    {
+      "ko": "이 바위… 아까도 지나온 것 같은데. 길을 잘못 들었나?",
+      "en": "That rock... Haven't I passed it already? Did I take a wrong turn?"
+    },
+    {
+      "ko": "그때, 나무 사이에서 약탈자와 궁병이 나타나 길을 가로막는다.",
+      "en": "A raider and an archer emerge from between the trees, blocking the path."
+    },
+    {
+      "ko": "거기, 멈춰. 여기서 뭘 하고 있지?",
+      "en": "Stop there. What are you doing here?"
+    },
+    {
+      "ko": "길을 좀 찾고 있었어. 마침 잘 만났네.",
+      "en": "Trying to find my way. Good thing I ran into you."
+    },
+    {
+      "ko": "길을 잃었으면 돌아가. 이 앞은 우리 구역이야.",
+      "en": "If you're lost, turn back. This is our territory."
+    },
+    {
+      "ko": "모험가는 두 사람의 차림새를 살핀다. 도적단이라면 빼앗아 모은 물건도 적지 않을 터였다. 그중에 비전 스크롤이 있을지도 모른다는 생각이 든다.",
+      "en": "The adventurer studies their clothes. Bandits must have plenty of stolen goods stashed away. Perhaps an Arcane Scroll lies among them."
+    },
+    {
+      "ko": "너희 구역이라… 그럼 안쪽에 동료들도 있겠네?",
+      "en": "Your territory, huh? Then you've got friends farther in?"
+    },
+    {
+      "ko": "그걸 네가 알아서 뭘 하게? 좋게 말할 때 돌아가.",
+      "en": "What's it to you? Turn around while we're still asking nicely."
+    },
+    {
+      "ko": "헛걸음한 줄 알았는데, 오히려 잘 찾아온 것 같아서.",
+      "en": "I thought I'd come the wrong way. Seems I was on the right track after all."
+    },
+    {
+      "ko": "이 자식, 돌아갈 생각이 없군.",
+      "en": "This one doesn't plan on leaving."
+    },
+    {
+      "ko": "궁병이 활에 화살을 건다. 약탈자도 단검을 뽑아 모험가를 겨눈다.",
+      "en": "The archer nocks an arrow. The raider draws a dagger and points it at the adventurer."
+    },
+    {
+      "ko": "계속 얼쩡거리면 무사히 돌아가진 못할 거다.",
+      "en": "Keep snooping around and you won't leave in one piece."
+    },
+    {
+      "ko": "그렇게 막으니까 더 궁금해지는데.",
+      "en": "Now that you're guarding it so closely, I'm even more curious."
+    },
+    {
+      "ko": "말로 해선 안 되겠어. 처리하자!",
+      "en": "Talking won't work. Get them!"
+    },
+    {
+      "ko": "모험가는 날아올 화살을 경계하며 자세를 잡는다.",
+      "en": "The adventurer takes a fighting stance, watching the archer's arrow."
+    },
+    {
+      "ko": "좋아. 그럼 길은 직접 열어야겠네.",
+      "en": "All right. I'll make my own way through."
+    },
+    {
+      "ko": "숲길을 지나자 커다란 동굴 입구가 모습을 드러낸다. 대검을 든 남자가 그 앞을 지키고 있다.",
+      "en": "Beyond the forest path, a large cave entrance comes into view. A man wielding a greatsword stands guard."
+    },
+    {
+      "ko": "드디어 찾았네. 꽤 깊숙이도 숨어 있었군.",
+      "en": "Found it at last. You really tucked yourselves away."
+    },
+    {
+      "ko": "못 보던 얼굴인데. 여기엔 무슨 용무냐?",
+      "en": "Don't know your face. What business have you here?"
+    },
+    {
+      "ko": "물건 하나 찾으러 왔어.",
+      "en": "I'm looking for something."
+    },
+    {
+      "ko": "장사하는 곳 아니다. 귀찮게 하지 말고 당장 꺼져.",
+      "en": "This isn't a shop. Stop wasting my time and get lost."
+    },
+    {
+      "ko": "여기에 꽤 값나가는 스크롤이 있다는 얘길 들었거든. 그것만 넘겨주면 조용히 떠날게.",
+      "en": "I heard there's a pretty valuable scroll here. Hand it over and I'll leave quietly."
+    },
+    {
+      "ko": "우두머리가 잠시 모험가를 노려보다 코웃음을 친다.",
+      "en": "The leader stares at the adventurer for a moment, then scoffs."
+    },
+    {
+      "ko": "어디서 헛소리를 주워들었는지 모르겠군. 여기엔 그런 거 없다.",
+      "en": "Don't know where you heard that nonsense. There's nothing like that here."
+    },
+    {
+      "ko": "그럼 잠깐 안을 둘러봐도 괜찮겠네?",
+      "en": "Then you won't mind if I take a quick look inside?"
+    },
+    {
+      "ko": "하! 설령 있다고 한들, 네놈한테 순순히 내줄 것 같으냐?",
+      "en": "Ha! Even if there were, do you think I'd just hand it over to you?"
+    },
+    {
+      "ko": "우두머리가 대검을 뽑아 들고 모험가에게 다가온다.",
+      "en": "The leader draws his greatsword and steps toward the adventurer."
+    },
+    {
+      "ko": "좋게 보내주려고 했더니, 기어이 칼을 보겠다는 거군.",
+      "en": "I was going to let you walk away. But you just had to see the blade."
+    },
+    {
+      "ko": "역시 말로는 안 되겠네.",
+      "en": "So much for talking it out."
+    },
+    {
+      "ko": "모험가가 거리를 벌리며 전투 자세를 잡는다. 우두머리가 대검을 치켜든다.",
+      "en": "The adventurer backs away into a fighting stance. The leader raises his greatsword."
+    },
+    {
+      "ko": "우두머리가 거칠게 숨을 몰아쉬며 뒤로 물러선다. 여유롭던 얼굴에 당혹감이 번진다.",
+      "en": "The leader staggers back, breathing heavily. His confidence gives way to alarm."
+    },
+    {
+      "ko": "크윽… 어디서 이런 놈이 굴러들어 와서는…!",
+      "en": "Gah... Where did someone like you come from...?!"
+    },
+    {
+      "ko": "이쯤 했으면 비켜주는 게 어때? 나도 더 싸우고 싶진 않은데.",
+      "en": "How about stepping aside now? I'd rather not keep fighting either."
+    },
+    {
+      "ko": "입 다물어!",
+      "en": "Shut up!"
+    },
+    {
+      "ko": "우두머리가 동굴 쪽을 향해 고함을 지른다.",
+      "en": "The leader turns toward the cave and roars."
+    },
+    {
+      "ko": "전부 나와라! 당장!",
+      "en": "Everyone! Out here, now!"
+    },
+    {
+      "ko": "동굴에서 도적단 말단들이 달려 나온다.",
+      "en": "Bandit underlings rush out of the cave."
+    },
+    {
+      "ko": "도적단 말단들",
+      "en": "Bandit Underlings"
+    },
+    {
+      "ko": "두목! 무슨 일입니까?",
+      "en": "Boss! What's going on?"
+    },
+    {
+      "ko": "저놈을 막아라. 무슨 일이 있어도 동굴 안으로 들여보내선 안 된다!",
+      "en": "Stop that one. Whatever happens, do not let them into the cave!"
+    },
+    {
+      "ko": "고작 혼자 온 놈 아닙니까? 저희가 처리하겠습니다.",
+      "en": "It's just one intruder, isn't it? We'll handle this."
+    },
+    {
+      "ko": "방심하지 마라! 처음부터 전력을 다해!",
+      "en": "Don't underestimate them! Give it everything you've got!"
+    },
+    {
+      "ko": "말단들이 무기를 들고 길을 막는다. 모험가는 적들을 번갈아 살피며 한 걸음 물러선다.",
+      "en": "The underlings raise their weapons and block the path. The adventurer steps back, looking from one enemy to the next."
+    },
+    {
+      "ko": "이건 좀 곤란한데. 한꺼번에 상대하는 건 생각 안 했거든.",
+      "en": "This is a problem. I wasn't counting on fighting all of you at once."
+    },
+    {
+      "ko": "이제야 상황을 알겠나? 도망칠 길도 없다!",
+      "en": "Finally understand? There's nowhere to run!"
+    },
+    {
+      "ko": "모험가가 짧게 숨을 고르고 다시 자세를 잡는다.",
+      "en": "The adventurer takes a short breath and steadies their stance."
+    },
+    {
+      "ko": "여기까지 와서 빈손으로 돌아갈 순 없지.",
+      "en": "I've come too far to go back empty-handed."
+    },
+    {
+      "ko": "쳐라!",
+      "en": "Attack!"
+    },
+    {
+      "ko": "좋아. 끝까지 해보자!",
+      "en": "All right. Let's see this through!"
+    },
+    {
+      "ko": "동굴 안으로 들어서자 차갑고 무거운 기운이 온몸을 감싼다. 모험가는 걸음을 늦추고 어둠 속을 살핀다.",
+      "en": "Cold, heavy air presses in as the adventurer enters the cave. Slowing their steps, they peer into the darkness."
+    },
+    {
+      "ko": "……도적들이 이런 곳에 숨어 지낸다고?",
+      "en": "...The bandits were hiding in a place like this?"
+    },
+    {
+      "ko": "동굴 깊숙한 곳에서 지팡이를 든 마법사가 혀를 찬다.",
+      "en": "Deep inside the cave, a mage holding a staff clicks his tongue."
+    },
+    {
+      "ko": "쯧. 한때는 이름난 가문의 호위병이었다기에 기대했건만…… 침입자 하나 막지 못하다니.",
+      "en": "Tch. They said he once guarded a distinguished family. I expected more... Yet he couldn't stop a single intruder."
+    },
+    {
+      "ko": "입구에 있던 덩치를 말하는 건가? 나름 애는 쓰던데.",
+      "en": "You mean the big fellow outside? He did try his best."
+    },
+    {
+      "ko": "그래서, 네놈은 누구지? 이런 곳까지 기어들어 온 이유가 뭐냐.",
+      "en": "And who are you? Why have you crawled all the way in here?"
+    },
+    {
+      "ko": "여기에 값나가는 비전 스크롤이 있다는 소문을 듣고 왔어. 당신이 가지고 있나?",
+      "en": "I heard a valuable Arcane Scroll was hidden here. Do you have it?"
+    },
+    {
+      "ko": "마법사가 모험가를 훑어보더니 비웃음을 흘린다.",
+      "en": "The mage looks the adventurer over and sneers."
+    },
+    {
+      "ko": "스크롤의 힘을 좇아 여기까지 왔다는 건가. 헛수고했군.",
+      "en": "You came all this way chasing a scroll's power? What a wasted journey."
+    },
+    {
+      "ko": "헛수고라니?",
+      "en": "Wasted?"
+    },
+    {
+      "ko": "그 스크롤이라면 이미 내가 사용했다. 그 안에 담긴 지식은 내 연구에 제법 도움이 되었지.",
+      "en": "I've already used that scroll. The knowledge within proved quite useful to my research."
+    },
+    {
+      "ko": "……한발 늦었네. 그럼 밖에 있던 녀석들이 지키던 건 스크롤이 아니라 당신이었군.",
+      "en": "...One step too late. So those men outside were guarding you, not the scroll."
+    },
+    {
+      "ko": "쓸데없는 것들이 몰려들지 않도록 맡겨 두었을 뿐이다. 그조차 제대로 해내지 못했지만.",
+      "en": "I left them to keep nuisances away. They couldn't even manage that."
+    },
+    {
+      "ko": "그 쓸데없는 것에 나도 포함되는 모양이네.",
+      "en": "I take it I'm one of those nuisances."
+    },
+    {
+      "ko": "마법사가 지팡이를 들어 올리자 보라색 보석에서 불길한 빛이 새어 나온다.",
+      "en": "The mage raises his staff. An ominous glow spills from its purple gem."
+    },
+    {
+      "ko": "네놈 때문에 중요한 연구가 중단됐다. 아무 대가도 치르지 않고 돌아갈 수 있을 거라 생각했나?",
+      "en": "You've interrupted important research. Did you think you could walk away without paying for that?"
+    },
+    {
+      "ko": "빈손으로 돌아가는 것도 억울한데, 목숨까지 내놓으라고?",
+      "en": "Going home empty-handed is bad enough. Now you want my life too?"
+    },
+    {
+      "ko": "마침 새로 익힌 마법을 시험할 상대가 필요했지. 네놈이라도 쓸모를 보여 봐라.",
+      "en": "I was just looking for someone to test my new magic on. Make yourself useful."
+    },
+    {
+      "ko": "모험가가 마법사를 경계하며 자세를 잡는다.",
+      "en": "The adventurer takes a fighting stance, keeping a close eye on the mage."
+    },
+    {
+      "ko": "좋아. 그 스크롤로 얼마나 대단해졌는지 한번 보자고.",
+      "en": "Fine. Let's see just how powerful that scroll made you."
+    },
+    {
+      "ko": "다음 카드",
+      "en": "Next Card"
+    },
+    {
+      "ko": "{0}번 · {1}{2}",
+      "en": "{0} · {1}{2}"
+    },
+    {
+      "ko": " <color=#E7CB87>· 계승</color>",
+      "en": " <color=#E7CB87>· Inherited</color>"
+    },
+    {
+      "ko": "계승한 패시브가 없습니다.",
+      "en": "No inherited passives."
+    },
+    {
+      "ko": "사용한 자리에 대기열의 첫 카드가 들어옵니다. 쓰지 않은 카드는 그대로 남습니다.",
+      "en": "The first queued card fills the slot you use. Unused cards stay in your hand."
+    },
+    {
+      "ko": "사용한 카드는 대기열 맨 뒤로 이동합니다.\n대기열의 첫 카드가 방금 사용한 칸에 들어왔습니다.",
+      "en": "The card you used goes to the back of the queue.\nThe first queued card has filled its slot."
+    },
+    {
+      "ko": "스킬에 맞는 코스트가 모이면 스킬을 사용할 수 있습니다.",
+      "en": "You can use a skill once you have enough cost to pay for it."
+    },
+    {
+      "ko": "스킬은 사용 방법에 따라 즉발, 캐스팅, 채널링으로 나뉘며 그 중에서 공격 스킬은 단일기와 광역기로 나뉩니다.",
+      "en": "Skills can be instant, cast or channeled. Attack skills target either one enemy or all enemies."
+    },
+    {
+      "ko": "이 표시는 어떤 적을 타겟팅하고 있는지 보여줍니다.",
+      "en": "This marker shows which enemy you are targeting."
+    },
+    {
+      "ko": "적의 주황색 게이지의 공격은 상태이상을 일으키는 공격입니다.",
+      "en": "An orange cast bar warns of an attack that inflicts a status effect."
+    },
+    {
+      "ko": "적의 빨간색 게이지 공격은 차단이 불가능하고 방어도가 없을 시 치명적인 피해를 입힙니다.",
+      "en": "A red cast bar warns of an uninterruptible attack. Without Shield, it deals devastating damage."
+    },
+    {
+      "ko": "체력이 떨어졌을 때, 게임 시간이 흐르는 중 Shift 또는 물약 아이콘 좌클릭으로 물약을 사용할 수 있습니다.",
+      "en": "When your HP is low, press Shift or left-click the potion icon to heal. Potions can only be used while time is running."
+    },
+    {
+      "ko": "순서 변경 버튼을 누르고 스킬을 드래그하면 해당 위치의 순번으로 배치할 수 있습니다. 저장하면 적용되고 취소하면 편집 전 순서로 돌아갑니다.",
+      "en": "Press Reorder, then drag skills to arrange them. Save applies the order; Cancel restores the previous order."
+    },
+    {
+      "ko": "튜토리얼 스킵",
+      "en": "Skip Tutorial"
+    },
+    {
+      "ko": "이 카드는 다음에 손패로 들어올 카드입니다.\n쓰지 않은 카드는 남아 있으니, 차단과 방어가 필요할 때까지 아껴두세요.",
+      "en": "This card will enter your hand next.\nUnused cards stay in place. Save interrupts and shields until you need them."
+    },
+    {
+      "ko": "Q 또는 아이콘을 눌러 단일 스킬인 파이어볼을 사용하세요.",
+      "en": "Press Q or click the icon to use Fireball, a single-target skill."
+    },
+    {
+      "ko": "E 또는 아이콘을 눌러 차단 스킬인 침묵으로 적의 공격을 차단하세요.",
+      "en": "Press E or click the icon to interrupt the enemy with Silence."
+    },
+    {
+      "ko": "R 또는 아이콘을 눌러 방어 스킬인 매직아머로 방어도를 쌓아 체력을 보존하세요.",
+      "en": "Press R or click the icon to gain Shield with Magic Armor and protect your HP."
+    },
+    {
+      "ko": " (말단)",
+      "en": " (Underling)"
+    },
+    {
+      "ko": "언어",
+      "en": "Language"
+    },
+    {
+      "ko": "언어와 소리는 바로 반영됩니다. 적용하면 저장되고, 취소하면 돌아갑니다.",
+      "en": "Language and audio preview instantly. Apply to save; Cancel to restore."
+    },
+    {
+      "ko": "화면 크기는 브라우저에 맞춰집니다. 전체화면은 웹 플레이어 버튼을 사용하세요.",
+      "en": "The view fits your browser. Use the web player button for fullscreen."
+    }
+  ]
+}

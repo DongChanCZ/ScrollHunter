@@ -19,8 +19,8 @@ public abstract class RunRewardEffect : ScriptableObject
     public bool IsRareReward => rareReward;
     public float OfferChance => Mathf.Clamp01(offerChance);
     public int MaxStacks => maxStacks;
-    public string DisplayName => displayName;
-    public string Description => description;
+    public string DisplayName => GameText.T(displayName);
+    public string Description => GameText.T(description);
     public virtual bool CanOffer(Player player, CostSystem cost) => true;
     /// <summary>효과 목록. 수치는 효과 데이터에서 읽고, 문구·단위는 화면이 정한다(format(능력치, 수치)).</summary>
     public virtual string DescribeEffect(Func<RewardStat, float, string> format, string separator) => string.Empty;

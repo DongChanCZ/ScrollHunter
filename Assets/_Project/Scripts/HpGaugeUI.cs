@@ -138,7 +138,7 @@ public class HpGaugeUI : MonoBehaviour
             // 관통 피해가 있으면 직전 바운스도 멈추고 흡수량만 표시한다.
             shieldFlashRemaining = hpLoss <= 0 ? shieldFlashSeconds : 0f;
             if (shieldIcon != null)
-                Spawn(string.Format(absorbedFormat, absorbed), shieldValueText != null ? shieldValueText.color : Color.white,
+                Spawn(GameText.Format(absorbedFormat, absorbed), shieldValueText != null ? shieldValueText.color : Color.white,
                     damageNumberScale * Mathf.Clamp(absorbedNumberRatio, 0.1f, 0.99f), true);
         }
         else if (hpLoss > 0) shieldFlashRemaining = 0f;
@@ -148,13 +148,13 @@ public class HpGaugeUI : MonoBehaviour
         holdRemaining = ghostHoldSeconds;
         chaseFrom = -1f;
         frameFlashRemaining = frameFlashSeconds;
-        Spawn(string.Format(damageFormat, hpLoss), damageColor, damageNumberScale);
+        Spawn(GameText.Format(damageFormat, hpLoss), damageColor, damageNumberScale);
     }
 
     private void OnHealed(float amount)
     {
         healGlowRemaining = healGlowSeconds;
-        Spawn(string.Format(healFormat, amount), healColor);
+        Spawn(GameText.Format(healFormat, amount), healColor);
     }
 
     /// <summary>전투 시작·재시작·화면 전환: 이전 잔상·숫자·점등을 지우고 새 값에 바로 맞춘다.</summary>
@@ -237,7 +237,7 @@ public class HpGaugeUI : MonoBehaviour
         foreach (Number previous in numbers)
             if (previous.shield == shield) previous.origin.y += numberStackSpacing;
         TMP_Text text = Instantiate(numberTemplate, numberTemplate.transform.parent);
-        text.text = label;
+        text.text = GameText.T(label);
         text.fontSize = numberTemplate.fontSize * sizeMultiplier;
         text.rectTransform.sizeDelta *= sizeMultiplier;
         text.color = color;

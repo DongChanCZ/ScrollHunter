@@ -1,4 +1,4 @@
-﻿using TMPro;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -215,6 +215,7 @@ public class CombatUI : MonoBehaviour
             label.fontSize = 23f;
             label.color = new Color32(231, 203, 135, 255);
             label.text = "다음 카드";
+            label.gameObject.AddComponent<LocalizedLabel>().Initialize("다음 카드");
             label.alignment = TextAlignmentOptions.Center;
             label.raycastTarget = false;
             label.rectTransform.anchorMin = label.rectTransform.anchorMax = new Vector2(0.5f, 1f);
@@ -275,7 +276,7 @@ public class CombatUI : MonoBehaviour
     {
         if (costSystem != null)
         {
-            if (costText != null) costText.text = string.Format(costFormat, costSystem.Current, costSystem.Max);
+            if (costText != null) costText.text = GameText.T(GameText.Format(costFormat, costSystem.Current, costSystem.Max));
             if (costGauge != null) costGauge.Set(costSystem.Current, costSystem.Max);
         }
 
@@ -284,23 +285,23 @@ public class CombatUI : MonoBehaviour
         bool hasPotion = player.PotionsRemaining > 0;
         if (potionText != null)
         {
-            potionText.text = string.Format(potionFormat, player.PotionsRemaining, player.PotionCapacity);
+            potionText.text = GameText.T(GameText.Format(potionFormat, player.PotionsRemaining, player.PotionCapacity));
             potionText.color = hasPotion ? potionReadyColor : potionUnavailableColor;
         }
         if (potionKeyText != null) potionKeyText.color = player.CanUsePotion ? potionReadyColor : potionUnavailableColor;
         if (potionIcon != null) potionIcon.color = hasPotion ? Color.white : potionEmptyIconColor;
         if (hpText != null)
         {
-            hpText.text = string.Format(hpFormat,
+            hpText.text = GameText.T(GameText.Format(hpFormat,
                 Mathf.CeilToInt(player.CurrentHp),
-                Mathf.CeilToInt(player.MaxHp));
+                Mathf.CeilToInt(player.MaxHp)));
         }
 
         bool hasShield = player.Shield > 0;
         if (shieldText != null)
         {
             shieldText.enabled = hasShield;
-            if (hasShield) shieldText.text = string.Format(shieldFormat, player.Shield);
+            if (hasShield) shieldText.text = GameText.T(GameText.Format(shieldFormat, player.Shield));
         }
         if (shieldIcon != null) shieldIcon.color = hasShield ? Color.white : shieldEmptyIconColor;
 
@@ -308,8 +309,8 @@ public class CombatUI : MonoBehaviour
         {
             bool stunned = player.IsStunned;
             stunText.enabled = stunned;
-            if (stunned) stunText.text = string.Format(stunFormat, player.StunRemaining)
-                + (player.IsCostRecoveryBlocked ? costBlockingStunSuffix : "");
+            if (stunned) stunText.text = GameText.T(GameText.Format(GameText.T(stunFormat), player.StunRemaining)
+                + (player.IsCostRecoveryBlocked ? GameText.T(costBlockingStunSuffix) : ""));
         }
     }
 
@@ -339,13 +340,13 @@ public class CombatUI : MonoBehaviour
             if (view.nameText != null)
             {
                 view.nameText.enabled = !hasIcon;
-                view.nameText.text = card != null ? card.DisplayName : emptySlotLabel;
+                view.nameText.text = GameText.T(card != null ? card.DisplayName : emptySlotLabel);
                 view.nameText.color = highContrast ? lockedOrStunnedTextColor : defaultNameColor;
             }
 
             if (view.costText != null)
             {
-                view.costText.text = card != null ? card.Cost.ToString("0.#") : string.Empty;
+                view.costText.text = GameText.T(card != null ? card.Cost.ToString("0.#") : string.Empty);
                 // 코스트 부족은 숫자를 빨갛게 해서 다른 비활성 사유와 구분한다.
                 view.costText.color = highContrast ? lockedOrStunnedTextColor
                     : (state == SlotState.NotEnoughCost ? costShortColor : costNormalColor);
@@ -353,7 +354,7 @@ public class CombatUI : MonoBehaviour
 
             if (view.lockText != null)
             {
-                view.lockText.text = LockLabel(state);
+                view.lockText.text = GameText.T(LockLabel(state));
                 // 남은 시간도 밝게 — 코스트 부족의 빨간 숫자와 헷갈리지 않게 한다.
                 view.lockText.color = highContrast ? lockedOrStunnedTextColor : defaultLockTextColor;
             }
@@ -369,7 +370,7 @@ public class CombatUI : MonoBehaviour
             // 유형 표시는 카드 이름표와 같은 이유로 매 프레임 카드 기준으로 다시 그린다 — 순환하면 즉시 바뀐다.
             if (view.typeText != null)
             {
-                view.typeText.text = card != null ? TypeLabel(card) : string.Empty;
+                view.typeText.text = GameText.T(card != null ? TypeLabel(card) : string.Empty);
                 view.typeText.color = card == null ? defaultNameColor
                     : (highContrast ? lockedOrStunnedTextColor : TypeColor(card.Category));
             }
@@ -390,7 +391,7 @@ public class CombatUI : MonoBehaviour
 
         SkillData next = deckSystem.PeekNext();
         if (nextCardText != null)
-            nextCardText.text = next != null ? next.DisplayName : emptySlotLabel;
+            nextCardText.text = GameText.T(next != null ? next.DisplayName : emptySlotLabel);
         if (nextCardIcon != null)
         {
             nextCardIcon.sprite = next != null ? next.Icon : null;
@@ -453,13 +454,13 @@ public class CombatUI : MonoBehaviour
 
         if (castNameText != null)
         {
-            castNameText.text = string.Format(card.IsChanneling ? channelFormat : castFormat, card.DisplayName);
+            castNameText.text = GameText.T(GameText.Format(card.IsChanneling ? GameText.T(channelFormat) : GameText.T(castFormat), card.DisplayName));
             castNameText.color = castTextColor;
         }
 
         if (castTimeText != null)
         {
-            castTimeText.text = string.Format(castTimeFormat, remaining);
+            castTimeText.text = GameText.T(GameText.Format(castTimeFormat, remaining));
             castTimeText.color = castTextColor;
         }
     }
@@ -473,11 +474,11 @@ public class CombatUI : MonoBehaviour
 
         if (castNameText != null)
         {
-            castNameText.text = string.Format(castCancelledFormat, card.DisplayName);
+            castNameText.text = GameText.T(GameText.Format(GameText.T(castCancelledFormat), card.DisplayName));
             castNameText.color = castCancelledTextColor;
         }
 
-        if (castTimeText != null) castTimeText.text = string.Empty;
+        if (castTimeText != null) castTimeText.text = GameText.T(string.Empty);
     }
 
     /// <summary>
@@ -498,9 +499,9 @@ public class CombatUI : MonoBehaviour
     private string LockLabel(SlotState state)
     {
         if (state == SlotState.ActionLocked) return deckSystem.LockRemaining.ToString("F1");
-        if (state == SlotState.PhaseTransition) return phaseTransitionLabel;
-        if (state == SlotState.NoValidTarget) return noTargetLabel;
-        if (state == SlotState.InvalidConfiguration) return invalidSkillLabel;
+        if (state == SlotState.PhaseTransition) return GameText.T(phaseTransitionLabel);
+        if (state == SlotState.NoValidTarget) return GameText.T(noTargetLabel);
+        if (state == SlotState.InvalidConfiguration) return GameText.T(invalidSkillLabel);
         return string.Empty;
     }
 
@@ -521,9 +522,9 @@ public class CombatUI : MonoBehaviour
     private string TypeLabel(SkillData card)
     {
         SkillCategory category = card.Category;
-        if (category == SkillCategory.Shield) return shieldTypeLabel;
-        if (category == SkillCategory.Interrupt) return interruptTypeLabel;
-        return card.IsAreaOfEffect ? areaTypeLabel : singleTypeLabel;
+        if (category == SkillCategory.Shield) return GameText.T(shieldTypeLabel);
+        if (category == SkillCategory.Interrupt) return GameText.T(interruptTypeLabel);
+        return card.IsAreaOfEffect ? GameText.T(areaTypeLabel) : GameText.T(singleTypeLabel);
     }
 
     private Color TypeColor(SkillCategory category)

@@ -1,4 +1,4 @@
-﻿using TMPro;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,6 +24,7 @@ public class TutorialFlow : MonoBehaviour
     private TMP_Text continueHint;
     [SerializeField] private string continueHintText = "Space";
     [SerializeField, TextArea] private string enemyInfoPrompt = "해당 구역은 타겟팅 된 적의 공격에 대한 정보를 보여줍니다";
+    private string guideSource;
     private bool showingEnemyInfo;
     private bool pendingCycleGuide;
     private int cycleGuideStep;
@@ -61,6 +62,7 @@ public class TutorialFlow : MonoBehaviour
         cost = FindFirstObjectByType<CostSystem>();
         information = FindFirstObjectByType<CombatInfoUI>();
         BuildUI();
+        GameText.Changed += RefreshLanguage;
     }
 
     private void OnEnable()
@@ -158,6 +160,14 @@ public class TutorialFlow : MonoBehaviour
         }
     }
 
+    private void SetGuideText(string value) { guideSource = value; guideText.text = GameText.T(value); }
+    private void RefreshLanguage()
+    {
+        if (guideText != null) guideText.text = GameText.T(guideSource);
+        if (skipRect != null) skipRect.GetComponentInChildren<TMP_Text>(true).text = GameText.T("튜토리얼 스킵");
+    }
+    private void OnDestroy() { GameText.Changed -= RefreshLanguage; }
+
     private void ShowLesson(int lesson)
     {
         Lesson = lesson;
@@ -171,7 +181,7 @@ public class TutorialFlow : MonoBehaviour
         Time.timeScale = 0f;
         if (information != null) information.BeginBattle();
         highlight = focus;
-        guideText.text = text;
+        SetGuideText(text);
         continueHint.gameObject.SetActive(true);
         overlay.SetActive(true);
     }
@@ -211,9 +221,9 @@ public class TutorialFlow : MonoBehaviour
             continueHint.gameObject.SetActive(false);
             highlight = slotHighlights[RequiredSlot];
             cost.EnsureTutorialCost(deck.GetHandCard(RequiredSlot).Cost);
-            guideText.text = Lesson == 3 ? "Q 또는 아이콘을 눌러 단일 스킬인 파이어볼을 사용하세요."
+            SetGuideText(Lesson == 3 ? "Q 또는 아이콘을 눌러 단일 스킬인 파이어볼을 사용하세요."
                 : Lesson == 4 ? "E 또는 아이콘을 눌러 차단 스킬인 침묵으로 적의 공격을 차단하세요."
-                : "R 또는 아이콘을 눌러 방어 스킬인 매직아머로 방어도를 쌓아 체력을 보존하세요.";
+                : "R 또는 아이콘을 눌러 방어 스킬인 매직아머로 방어도를 쌓아 체력을 보존하세요.");
             return true;
         }
         CompletedLessons = Mathf.Max(CompletedLessons, Lesson);
@@ -221,7 +231,7 @@ public class TutorialFlow : MonoBehaviour
         if (Lesson == 6 && !showingDefeatPrompt && tutorialEnemy.CurrentHp > 0)
         {
             showingDefeatPrompt = true;
-            guideText.text = defeatPrompt;
+            SetGuideText(defeatPrompt);
             return true;
         }
         if (Lesson < 3) ShowLesson(Lesson + 1);
@@ -327,7 +337,7 @@ public class TutorialFlow : MonoBehaviour
         label.color = textColor;
         label.alignment = TextAlignmentOptions.Center;
         label.raycastTarget = false;
-        label.text = text;
+        label.text = GameText.T(text);
         var rect = label.rectTransform;
         rect.anchorMin = Vector2.zero; rect.anchorMax = Vector2.one;
         rect.offsetMin = new Vector2(20, 12); rect.offsetMax = new Vector2(-20, -12);

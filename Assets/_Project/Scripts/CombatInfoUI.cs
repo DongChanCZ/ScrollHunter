@@ -203,9 +203,9 @@ public class CombatInfoUI : MonoBehaviour
     private void LateUpdate()
     {
         bool ended = BattleEnded;
-        if (speedLabel != null) speedLabel.text = string.Format(speedFormat, BattleSpeed);
-        pauseLabel.text = ended ? endedText : IsInfoPaused ? resumeText : pauseText;
-        hintText.text = ended ? endedText : IsInfoPaused ? pausedHint : hint;
+        if (speedLabel != null) speedLabel.text = GameText.T(GameText.Format(GameText.T(speedFormat), BattleSpeed));
+        pauseLabel.text = GameText.T(ended ? GameText.T(endedText) : IsInfoPaused ? GameText.T(resumeText) : GameText.T(pauseText));
+        hintText.text = GameText.T(ended ? GameText.T(endedText) : IsInfoPaused ? GameText.T(pausedHint) : GameText.T(hint));
         SkillData card = !ended && selectedSlot >= 0 ? deck.GetHandCard(selectedSlot) : null;
         cardPanel.SetActive(card != null);
         if (card != null)
@@ -226,7 +226,7 @@ public class CombatInfoUI : MonoBehaviour
     {
         // 내용과 폭이 같은 동안에는 긴 보스 설명의 줄 배치를 다시 계산하지 않는다.
         if (text.text == description && Mathf.Approximately(width, text.rectTransform.rect.width) && !text.havePropertiesChanged) return;
-        text.text = description;
+        text.text = GameText.T(description);
         FitHeight(panel, text, minHeight);
         width = text.rectTransform.rect.width;
     }
@@ -252,35 +252,35 @@ public class CombatInfoUI : MonoBehaviour
 
     /// <summary>정보창·보상 후보용 전체 설명: 이름 → 주요 정보 → 상세 설명.</summary>
     public string DescribeCard(SkillData card)
-        => string.Format(cardFormat, card.DisplayName, DescribeCardInfo(card), sectionBreak, DescribeCardEffect(card));
+        => GameText.Format(cardFormat, card.DisplayName, DescribeCardInfo(card), sectionBreak, DescribeCardEffect(card));
 
     /// <summary>분류·대상·코스트·시전(채널링) 시간. 편성 카드는 이 영역을 따로 표시한다.</summary>
     public string DescribeCardInfo(SkillData card)
     {
-        string type = dealLabel;
-        string target = card.IsAreaOfEffect ? allLabel : singleLabel;
-        if (card.Category == SkillCategory.Shield) { type = shieldLabel; target = selfLabel; }
-        else if (card.Category == SkillCategory.Interrupt) { type = interruptLabel; target = singleLabel; }
-        return string.Format(card.IsChanneling ? channelInfoFormat : cardInfoFormat, type, target, card.Cost, card.CastTime);
+        string type = GameText.T(dealLabel);
+        string target = card.IsAreaOfEffect ? GameText.T(allLabel) : GameText.T(singleLabel);
+        if (card.Category == SkillCategory.Shield) { type = GameText.T(shieldLabel); target = GameText.T(selfLabel); }
+        else if (card.Category == SkillCategory.Interrupt) { type = GameText.T(interruptLabel); target = GameText.T(singleLabel); }
+        return GameText.Format(card.IsChanneling ? GameText.T(channelInfoFormat) : GameText.T(cardInfoFormat), type, target, card.Cost, card.CastTime);
     }
 
     /// <summary>효과·조건 등 상세 설명. 현재 능력치 보정(방어도·차단 경직)을 반영한다.</summary>
     public string DescribeCardEffect(SkillData card)
     {
-        if (card.IsChanneling) return card.ChannelEffect != null ? card.ChannelEffect.Describe(card) : channelUnconfiguredLabel;
+        if (card.IsChanneling) return card.ChannelEffect != null ? card.ChannelEffect.Describe(card) : GameText.T(channelUnconfiguredLabel);
         if (card.Category == SkillCategory.Shield)
-            return string.Format(shieldFormat, player != null ? player.GetShieldAmount(card.ShieldAmount) : card.ShieldAmount);
+            return GameText.Format(GameText.T(shieldFormat), player != null ? player.GetShieldAmount(card.ShieldAmount) : card.ShieldAmount);
         if (card.Category == SkillCategory.Interrupt)
             return card.Damage > 0
-                ? string.Format(damagingInterruptFormat, card.Damage, card.HitCount, deck.InterruptStagger, card.TotalDamage)
-                : string.Format(interruptFormat, deck.InterruptStagger);
+                ? GameText.Format(GameText.T(damagingInterruptFormat), card.Damage, card.HitCount, deck.InterruptStagger, card.TotalDamage)
+                : GameText.Format(GameText.T(interruptFormat), deck.InterruptStagger);
         if (card.FinalHitBonus != 0)
         {
             var hits = new string[card.HitCount];
             for (int i = 0; i < hits.Length; i++) hits[i] = card.GetHitDamage(i + 1).ToString();
-            return string.Format(variedDamageFormat, string.Join("·", hits), card.TotalDamage);
+            return GameText.Format(GameText.T(variedDamageFormat), string.Join("·", hits), card.TotalDamage);
         }
-        return string.Format(damageFormat, card.Damage, card.HitCount, card.TotalDamage);
+        return GameText.Format(GameText.T(damageFormat), card.Damage, card.HitCount, card.TotalDamage);
     }
 
     [SerializeField] private string bossNameFormat = "{0} ({1}페이즈)";
@@ -291,22 +291,22 @@ public class CombatInfoUI : MonoBehaviour
     public string DescribeEnemy(Enemy target)
     {
         string name = target.DisplayName;
-        if (target.HasPhases) name = string.Format(bossNameFormat, name, target.PhaseNumber);
-        if (target.IsBossOrb) return string.Format(orbDescriptionFormat, name,
+        if (target.HasPhases) name = GameText.Format(GameText.T(bossNameFormat), name, target.PhaseNumber);
+        if (target.IsBossOrb) return GameText.Format(GameText.T(orbDescriptionFormat), name,
             target.Data.PassiveDescription, target.OrbDestructionDamage);
-        if (target.IsPhaseTransitioning) return string.Format(phaseTransitionFormat, name, target.PhaseTransitionRemaining);
-        if (!target.IsCasting || target.CurrentAttack == null) return string.Format(restingFormat, name);
+        if (target.IsPhaseTransitioning) return GameText.Format(GameText.T(phaseTransitionFormat), name, target.PhaseTransitionRemaining);
+        if (!target.IsCasting || target.CurrentAttack == null) return GameText.Format(GameText.T(restingFormat), name);
         EnemyAttack attack = target.CurrentAttack;
-        string effect = attack.StunSeconds > 0f ? string.Format(stunFormat, attack.StunSeconds) : noEffectLabel;
+        string effect = attack.StunSeconds > 0f ? GameText.Format(GameText.T(stunFormat), attack.StunSeconds) : GameText.T(noEffectLabel);
         if (attack.CastColor == CastColor.Red && player != null)
         {
-            string reduction = string.Format(redShieldEffectFormat, (1f - player.RedShieldDamageMultiplier) * 100f);
+            string reduction = GameText.Format(GameText.T(redShieldEffectFormat), (1f - player.RedShieldDamageMultiplier) * 100f);
             effect = attack.StunSeconds > 0f ? effect + "\n" + reduction : reduction;
         }
-        if (target.CurrentDamageMultiplier > 1f) effect += orbEmpoweredText;
-        if (target.CastBlocksCostRecovery) effect += costBlockingStunText;
-        return string.Format(enemyFormat, name, attack.SkillName, (target.CurrentAttackDamage * target.CurrentDamageMultiplier).ToString("0.#"), target.CurrentCastTime,
-            attack.CastColor == CastColor.Red ? cannotInterruptLabel : canInterruptLabel,
+        if (target.CurrentDamageMultiplier > 1f) effect += GameText.T(orbEmpoweredText);
+        if (target.CastBlocksCostRecovery) effect += GameText.T(costBlockingStunText);
+        return GameText.Format(GameText.T(enemyFormat), name, attack.SkillName, (target.CurrentAttackDamage * target.CurrentDamageMultiplier).ToString("0.#"), target.CurrentCastTime,
+            attack.CastColor == CastColor.Red ? GameText.T(cannotInterruptLabel) : GameText.T(canInterruptLabel),
             effect, sectionBreak);
     }
 
