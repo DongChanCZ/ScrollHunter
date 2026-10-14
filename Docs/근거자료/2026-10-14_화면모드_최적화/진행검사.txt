@@ -1,0 +1,1 @@
+Options/progress: 58 passed. Isolated save: C:/Users/MBC-50~1/AppData/Local/Temp/DefaultCompany/ScrollHunter\MenuProgressCheck-a26a7ca8f8ce4b77b3ee639c6a88d422\save.json. Physical Escape/drag/display switch separate.

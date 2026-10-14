@@ -1,0 +1,25 @@
+{
+  "fontPreserved": true,
+  "fontBefore": "6f67e596de90ba61458746e5a6f1c17e45a3257ddc2af2f44011fd18b90e095b",
+  "fontAfter": "6f67e596de90ba61458746e5a6f1c17e45a3257ddc2af2f44011fd18b90e095b",
+  "handoffMatches": true,
+  "handLayoutPreserved": true,
+  "vSyncCheckboxInScene": true,
+  "newBuild": false,
+  "taskBackupCreatedLocal": "2026-10-14T16:10:20.608138",
+  "userSaveFiles": [
+    {
+      "name": "save.json",
+      "sha256": "9bf77fd9c85855a7d075e5ba2d3a646c49ba80eaf01f2eca39106df475b530a5",
+      "lastWriteLocal": "2026-10-14T15:32:11.622383",
+      "lastWriteBeforeTaskBackup": true
+    },
+    {
+      "name": "save.json.bak",
+      "sha256": "5d4351e99116adbbd1d0826a14116f02ed4083dcac47055bbe0bbd3daa73b1c1",
+      "lastWriteLocal": "2026-10-14T15:27:42.548598",
+      "lastWriteBeforeTaskBackup": true
+    }
+  ],
+  "note": "1.1 빌드 작업전 해시는 이번 작업 시작 전 사용자 플레이로 바뀌어 비교 기준에서 제외. save/backup의 마지막 수정은 이번 작업 백업 생성보다 이전. 파일을 복원하거나 삭제하지 않음."
+}

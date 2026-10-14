@@ -1,0 +1,20 @@
+{
+  "Battle.unity": true,
+  "GmarketSansMedium SDF.asset": true,
+  "save.json": true,
+  "save.json.bak": true,
+  "requiredFiles": [
+    "ScrollHunter.exe",
+    "UnityPlayer.dll",
+    "ScrollHunter_Data/data.unity3d",
+    "MonoBleedingEdge",
+    "CREDITS.md",
+    "실행안내.txt"
+  ],
+  "exeSha256": "595b82c75f43a202e4c19581d625a6449fa07a4d88cc22c131ec07b511c6bf88",
+  "folderBytes": 243992036,
+  "version": "1.1",
+  "splash": false,
+  "oldFolderPreserved": true,
+  "fullPlaytest": false
+}

@@ -1,0 +1,10 @@
+Result: Succeeded
+Output: C:/Users/MBC-501-19/Desktop/ScrollHunter_1.1/ScrollHunter.exe
+Version: 1.1
+Platform: StandaloneWindows64
+Bytes: 243950029
+Seconds: 19.1094419
+Errors: 0
+Warnings: 2
+Warning: Importer(NativeFormatImporter) generated inconsistent result for asset(guid:7b1e16cbc5ea6b246a1276679ec44837) "Assets/_Project/Fonts/GmarketSansMedium SDF.asset"
+Warning: Importer(NativeFormatImporter) generated inconsistent result for asset(guid:7b1e16cbc5ea6b246a1276679ec44837) "Assets/_Project/Fonts/GmarketSansMedium SDF.asset"

@@ -66,6 +66,7 @@ public class CombatInfoUI : MonoBehaviour
     [SerializeField] private StatsPanelUI statsPanel;
     [SerializeField] private float statsPanelGap = 16f;
     private float cardPanelBaseX;
+    private float cardLayoutWidth = -1f, enemyLayoutWidth = -1f;
 
     [Header("설명창 높이")]
     [Tooltip("설명 글 길이에 맞춰 창 높이를 조절한다. 글이 짧아도 이보다 작아지지 않는다")]
@@ -212,13 +213,22 @@ public class CombatInfoUI : MonoBehaviour
             var rect = (RectTransform)cardPanel.transform;
             float x = statsPanel != null && statsPanel.IsOpen ? cardPanelBaseX - statsPanel.Width - statsPanelGap : cardPanelBaseX;
             rect.anchoredPosition = new Vector2(x, rect.anchoredPosition.y);
-            cardText.text = DescribeCard(card);
-            FitHeight(cardPanel, cardText, cardPanelMinHeight);
+            RefreshDescription(cardPanel, cardText, DescribeCard(card), cardPanelMinHeight, ref cardLayoutWidth);
         }
         ShowIcon(cardIcon, card);
         Enemy target = !ended && enemies != null ? enemies.CurrentTarget : null;
         enemyPanel.SetActive(target != null && target.IsAlive);
-        if (target != null && target.IsAlive) { enemyText.text = DescribeEnemy(target); FitHeight(enemyPanel, enemyText, enemyPanelMinHeight); }
+        if (target != null && target.IsAlive)
+            RefreshDescription(enemyPanel, enemyText, DescribeEnemy(target), enemyPanelMinHeight, ref enemyLayoutWidth);
+    }
+
+    private void RefreshDescription(GameObject panel, TMP_Text text, string description, float minHeight, ref float width)
+    {
+        // 내용과 폭이 같은 동안에는 긴 보스 설명의 줄 배치를 다시 계산하지 않는다.
+        if (text.text == description && Mathf.Approximately(width, text.rectTransform.rect.width) && !text.havePropertiesChanged) return;
+        text.text = description;
+        FitHeight(panel, text, minHeight);
+        width = text.rectTransform.rect.width;
     }
 
     /// <summary>글 높이에 맞춰 창 높이를 조절한다. 글 영역은 창에 늘어나게 배치돼 있어 여백은 그대로 유지된다.</summary>

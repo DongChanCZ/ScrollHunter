@@ -1,0 +1,2 @@
+Main menu: 62 passed. Temporary preference keys; editor display switching and actual sound playback are not covered.
+체크박스 후속: 동일 62개 재통과. UI 클릭 이벤트 checked=true / 프레임 선택 비활성화 확인. 재배치 도구/체크 스프라이트/씬 저장 확인.

@@ -139,8 +139,8 @@ public static class MenuProgressChecks
         {
             menu.BackToTitle();nextFrame();Set(flow,"inheritance",realSave);tutorial.enabled=tutorialOn;
             Set(flow,"finishingEffectHold",finish);Set(flow,"defeatEffectHold",defeat);Set(info,"resumeScale",speed);
-            foreach(var name in parameters.Concat(new[]{"Windowed","Width","Height"}))PlayerPrefs.DeleteKey(prefix+name);
-            PlayerPrefs.Save();Set(menu,"preferencesPrefix",oldPrefix);Call(menu,"ReadSavedOptions");Call(menu,"ApplyAudio");
+            foreach(var name in parameters.Concat(new[]{"Windowed","DisplayMode","VSync","FrameLimit","Width","Height"}))PlayerPrefs.DeleteKey(prefix+name);
+            PlayerPrefs.Save();Set(menu,"preferencesPrefix",oldPrefix);Call(menu,"ReadSavedOptions");Call(menu,"ApplyAudio");Call(menu,"ApplyPerformance");
             flow.ReturnToTitle();
         }
     }

@@ -286,3 +286,11 @@
 - **CC BY 3.0**: https://creativecommons.org/licenses/by/3.0/
 - 원본 SVG를 3D 모델로 가공: 두께·모서리·금색/아이보리 색·외곽선·기울임 추가. 원작자의 게임 보증이나 참여를 의미하지 않음.
 - 게임 파일: `Assets/_Project/UI/WingedSwordMarker/`. 원본 SVG·출처 보존. 배포 크레딧에 이 항목 유지.
+
+<a id="fire-pillar-icon-20261014"></a>
+## 파이어 필라 아이콘 (2026-10-14)
+
+- **Fire Icon Pack (11)** — beddedOtaku. 원본: https://opengameart.org/content/fire-icon-pack-11
+- **CC BY 3.0**: https://creativecommons.org/licenses/by/3.0/
+- 선택 B: 원본 PSD `PSD - 1000x1000 no borders.psd`의 `Flame Dive`+`Background`를 PNG로 내보내고 256×256으로 축소. 원화 변경 없음, 금색 원형 테두리 미사용.
+- 파일: `Assets/_Project/UI/FirePillarIcon/FirePillar.png`. SK04에 연결. 기존 Painterly 14종 중 파이어 필라만 교체, 나머지13종 유지.

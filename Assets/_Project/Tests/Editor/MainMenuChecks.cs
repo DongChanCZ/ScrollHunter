@@ -14,7 +14,23 @@ public static class MainMenuChecks
     private static void Set(object o,string n,object v)=>o.GetType().GetField(n,Hidden).SetValue(o,v);
     private static void Call(object o,string n)=>o.GetType().GetMethod(n,Hidden).Invoke(o,null);
     [MenuItem("Tools/Scroll Hunter/Check Main Menu (Fresh Play)")]
-    public static void Menu()=>Debug.Log(Run());
+    public static void Menu()
+    {
+        if(!Application.isPlaying)throw new Exception("Fresh Play required");
+        var menu=UnityEngine.Object.FindFirstObjectByType<MainMenuUI>();
+        menu.OpenOptions();bool wasPaused=EditorApplication.isPaused;EditorApplication.isPaused=false;
+        int ready=Time.frameCount+2;
+        EditorApplication.CallbackFunction wait=null;
+        wait=()=>
+        {
+            if(Application.isPlaying&&Time.frameCount<ready)return;
+            EditorApplication.update-=wait;
+            if(!Application.isPlaying)return;
+            try { menu.ClosePanels();Debug.Log(Run()); }
+            finally { EditorApplication.isPaused=wasPaused; }
+        };
+        EditorApplication.update+=wait;
+    }
     public static string Run()
     {
         if(!Application.isPlaying)throw new Exception("Fresh Play required");
@@ -53,7 +69,12 @@ public static class MainMenuChecks
             ((Button)Get(menu,"inheritanceOpen")).onClick.Invoke();check(inheritance.activeSelf,"inheritance still opens");
             menu.OpenOptions();check(options.activeSelf&&!inheritance.activeSelf&&!controls.activeSelf,"options exclusive modal");
             EditorApplication.isPaused=true;EditorApplication.Step();EditorApplication.Step();
-            bool before=(bool)Get(menu,"windowed");((Button)Get(menu,"modeButton")).onClick.Invoke();check((bool)Get(menu,"windowed")!=before,"mode toggle");
+            check((FullScreenMode)Get(menu,"displayMode")==FullScreenMode.FullScreenWindow,"new defaults retain borderless");
+            check(!(bool)Get(menu,"vSync")&&(int)Get(menu,"frameLimit")==60,"default rendering capped at 60");
+            var mode=(Button)Get(menu,"modeButton");
+            mode.onClick.Invoke();check((FullScreenMode)Get(menu,"displayMode")==FullScreenMode.ExclusiveFullScreen,"exclusive fullscreen available");
+            mode.onClick.Invoke();check((FullScreenMode)Get(menu,"displayMode")==FullScreenMode.Windowed,"windowed available");
+            mode.onClick.Invoke();check((FullScreenMode)Get(menu,"displayMode")==FullScreenMode.FullScreenWindow,"mode cycles back");
             var size=(TMP_Text)Get(menu,"resolutionLabel");string old=size.text;
             ((Button)Get(menu,"resolutionNext")).onClick.Invoke();check(size.text!=old,"resolution next");
             ((Button)Get(menu,"resolutionPrevious")).onClick.Invoke();check(size.text==old,"resolution previous");
@@ -78,7 +99,7 @@ public static class MainMenuChecks
             check(choices.value==savedIndex&&current.text==savedDisplay&&!choices.IsExpanded,"cancel restores resolution and removes popup");
             check(sliders[0].value==1f&&!PlayerPrefs.HasKey(key+"Width"),"cancel discards and does not save");
             choices.value=selected;
-            ((Button)Get(menu,"modeButton")).onClick.Invoke();sliders[0].value=0f;sliders[1].value=.5f;sliders[2].value=.8f;
+            mode.onClick.Invoke();mode.onClick.Invoke();sliders[0].value=0f;sliders[1].value=.5f;sliders[2].value=.8f;
             ((Button)Get(menu,"optionsApply")).onClick.Invoke();
             check(!options.activeSelf&&PlayerPrefs.HasKey(key+"Width")&&PlayerPrefs.GetInt(key+"Windowed")==1,"apply saves settings");
             menu.OpenOptions();
@@ -90,6 +111,35 @@ public static class MainMenuChecks
                 float actual;float expected=i==0?-80f:20f*Mathf.Log10(sliders[i].value);
                 check(mixer.GetFloat(parameters[i],out actual)&&Mathf.Abs(actual-expected)<.01f,"independent audio group "+i);
             }
+            menu.ClosePanels();
+            foreach(var modeToSave in new[]{FullScreenMode.FullScreenWindow,FullScreenMode.ExclusiveFullScreen,FullScreenMode.Windowed})
+            {
+                menu.OpenOptions();Set(menu,"displayMode",modeToSave);menu.ApplyOptions();menu.OpenOptions();
+                check((FullScreenMode)Get(menu,"displayMode")==modeToSave&&PlayerPrefs.GetInt(key+"DisplayMode")== (int)modeToSave,"saved mode "+modeToSave);
+                menu.ClosePanels();
+            }
+            PlayerPrefs.DeleteKey(key+"DisplayMode");PlayerPrefs.SetInt(key+"Windowed",1);menu.OpenOptions();
+            check((FullScreenMode)Get(menu,"displayMode")==FullScreenMode.Windowed,"migrates old windowed");menu.ClosePanels();
+            PlayerPrefs.SetInt(key+"Windowed",0);menu.OpenOptions();
+            check((FullScreenMode)Get(menu,"displayMode")==FullScreenMode.FullScreenWindow,"migrates old borderless");menu.ClosePanels();
+            PlayerPrefs.SetInt(key+"DisplayMode",999);PlayerPrefs.SetInt(key+"FrameLimit",0);menu.OpenOptions();
+            check((FullScreenMode)Get(menu,"displayMode")==FullScreenMode.FullScreenWindow&&(int)Get(menu,"frameLimit")==60,"invalid saved values fall back");
+            var fps=(TMP_Dropdown)Get(menu,"frameLimitDropdown");var sync=(Toggle)Get(menu,"vSyncToggle");
+            var limits=(int[])Get(menu,"frameLimits");
+            foreach(int limit in limits)
+            {
+                fps.value=Array.IndexOf(limits,limit);menu.ApplyOptions();menu.OpenOptions();
+                check(Application.targetFrameRate==limit&&QualitySettings.vSyncCount==0&&PlayerPrefs.GetInt(key+"FrameLimit")==limit,"applies frame limit "+limit);
+            }
+            sync.isOn=!sync.isOn;check(sync.isOn&&!fps.interactable&&QualitySettings.vSyncCount==0,"vsync draft disables limit but waits for Apply");
+            menu.ClosePanels();menu.OpenOptions();check(!sync.isOn&&fps.interactable&&!(bool)Get(menu,"vSync"),"cancel restores sync draft");
+            fps.value=Array.IndexOf(limits,60);sync.isOn=!sync.isOn;menu.ApplyOptions();menu.OpenOptions();
+            check(QualitySettings.vSyncCount==1&&Application.targetFrameRate==-1&&!fps.interactable,"sync takes priority");
+            check(PlayerPrefs.GetInt(key+"FrameLimit")==60&&fps.options[fps.value].text.Contains("60"),"limit retained while sync active");
+            sync.isOn=!sync.isOn;menu.ApplyOptions();menu.OpenOptions();
+            check(QualitySettings.vSyncCount==0&&Application.targetFrameRate==60&&fps.interactable,"sync off restores saved limit");
+            fps.Show();check(fps.IsExpanded,"fps dropdown opens");menu.HandleEscape();check(menu.OptionsVisible,"fps popup Escape preserves options");
+            menu.ClosePanels();
             float period=(float)Get(menu,"glowPeriod");
             check(menu.GlowAt(0)<.001f&&menu.GlowAt(period*.5f)>.999f&&menu.GlowAt(period)<.001f,"runes brighten and fade over full cycle");
             check(((RawImage)Get(menu,"background")).material.shader.name=="ScrollHunter/UI/TitleRuneGlow","glow shader bound");
@@ -99,8 +149,8 @@ public static class MainMenuChecks
         }
         finally
         {
-            foreach(var name in parameters.Concat(new[]{"Windowed","Width","Height"}))PlayerPrefs.DeleteKey(key+name);
-            PlayerPrefs.Save();Set(menu,"preferencesPrefix",originalKey);menu.ClosePanels();inheritance.SetActive(false);Call(menu,"ReadSavedOptions");
+            foreach(var name in parameters.Concat(new[]{"Windowed","DisplayMode","VSync","FrameLimit","Width","Height"}))PlayerPrefs.DeleteKey(key+name);
+            PlayerPrefs.Save();Set(menu,"preferencesPrefix",originalKey);menu.ClosePanels();inheritance.SetActive(false);Call(menu,"ReadSavedOptions");Call(menu,"ApplyPerformance");
             for(int i=0;i<parameters.Length;i++)mixer.SetFloat(parameters[i],originalMix[i]);
             EditorApplication.isPaused=wasPaused;
         }

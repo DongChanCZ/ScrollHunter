@@ -1,0 +1,10 @@
+{
+  "frames": 1200,
+  "averageMs": 17.5780144,
+  "medianMs": 16.6674042,
+  "p95Ms": 17.1206,
+  "maxDraw": 176,
+  "maxTriangles": 159499,
+  "fpsLimit": 60,
+  "vsync": 0
+}

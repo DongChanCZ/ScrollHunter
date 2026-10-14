@@ -1,0 +1,26 @@
+{
+  "Battle.unity": true,
+  "GmarketSansMedium SDF.asset": true,
+  "ProjectSettings.asset": true,
+  "save.json": true,
+  "save.json.bak": true,
+  "currentBuild": "C:\\Users\\MBC-501-19\\Desktop\\ScrollHunter_1.1",
+  "previousBuild": "C:\\Users\\MBC-501-19\\AppData\\Local\\Temp\\ScrollHunter_Rebuild11_20261014\\PreviousBuild",
+  "assemblyChanged": true,
+  "dataChanged": true,
+  "creditsLatest": true,
+  "folderBytes": 244012806,
+  "fullPlaytest": false,
+  "version": "1.1",
+  "files": [
+    "CREDITS.md",
+    "D3D12",
+    "MonoBleedingEdge",
+    "ScrollHunter.exe",
+    "ScrollHunter_Data",
+    "UnityCrashHandler64.exe",
+    "UnityPlayer.dll",
+    "실행안내.txt"
+  ],
+  "handoffMatches": true
+}

@@ -53,7 +53,19 @@ public class MainMenuUI : MonoBehaviour
     private float glowTime;
     private readonly List<Vector2Int> resolutions = new List<Vector2Int>();
     private int resolutionIndex;
-    private bool windowed;
+    private FullScreenMode displayMode;
+    private bool vSync;
+    private int frameLimit;
+    [Header("프레임 설정")]
+    [SerializeField] private Toggle vSyncToggle;
+    [SerializeField] private TMP_Text performanceHint;
+    [SerializeField] private TMP_Dropdown frameLimitDropdown;
+    [SerializeField] private string exclusiveFullscreenText = "전체화면";
+    [SerializeField] private string frameLimitFormat = "{0} FPS", unlimitedText = "무제한";
+    [SerializeField] private string vSyncHint = "수직동기화 사용 시 프레임 제한 대신 모니터 주사율을 따릅니다.";
+    [SerializeField] private string frameLimitHint = "프레임 제한을 낮추면 그래픽 부하를 줄일 수 있습니다.";
+    [SerializeField] private int[] frameLimits = { 30, 60, 90, 120, 144, 240, -1 };
+    [SerializeField, Min(1)] private int defaultFrameLimit = 60;
     public bool OptionsVisible => optionsPanel != null && optionsPanel.activeSelf;
 
     private void Awake()
@@ -77,7 +89,22 @@ public class MainMenuUI : MonoBehaviour
         optionsApply.onClick.AddListener(ApplyOptions);
         inheritanceOpen.onClick.AddListener(ClosePanels);
         quitButton.onClick.AddListener(Quit);
-        modeButton.onClick.AddListener(() => { windowed = !windowed; UpdateDisplayLabels(); });
+        modeButton.onClick.AddListener(() =>
+        {
+            displayMode = displayMode == FullScreenMode.FullScreenWindow ? FullScreenMode.ExclusiveFullScreen
+                : displayMode == FullScreenMode.ExclusiveFullScreen ? FullScreenMode.Windowed : FullScreenMode.FullScreenWindow;
+            UpdateDisplayLabels();
+        });
+        if (vSyncToggle != null) vSyncToggle.onValueChanged.AddListener(value => { vSync = value; UpdateDisplayLabels(); });
+        if (frameLimitDropdown != null)
+        {
+            frameLimitDropdown.ClearOptions();
+            frameLimitDropdown.AddOptions(frameLimits.Select(n => n < 0 ? unlimitedText : string.Format(frameLimitFormat, n)).ToList());
+            frameLimitDropdown.onValueChanged.AddListener(index =>
+            {
+                if (index >= 0 && index < frameLimits.Length) frameLimit = frameLimits[index];
+            });
+        }
         resolutionPrevious.onClick.AddListener(() => ChangeResolution(-1));
         resolutionNext.onClick.AddListener(() => ChangeResolution(1));
         if (resolutionDropdown != null) resolutionDropdown.onValueChanged.AddListener(SelectResolution);
@@ -123,6 +150,7 @@ public class MainMenuUI : MonoBehaviour
         ReadSavedOptions();
         ApplyAudio(); // AudioMixer parameters are applied after Awake.
         ApplyDisplay();
+        ApplyPerformance();
     }
 
     private void Update()
@@ -166,7 +194,14 @@ public class MainMenuUI : MonoBehaviour
 
     private void ReadSavedOptions()
     {
-        windowed = PlayerPrefs.GetInt(preferencesPrefix + "Windowed", 0) == 1;
+        // 이전 빌드의 창모드 선택을 새 저장 형식으로 이어받는다.
+        var legacyMode = PlayerPrefs.GetInt(preferencesPrefix + "Windowed", 0) == 1 ? FullScreenMode.Windowed : FullScreenMode.FullScreenWindow;
+        displayMode = (FullScreenMode)PlayerPrefs.GetInt(preferencesPrefix + "DisplayMode", (int)legacyMode);
+        if (displayMode != FullScreenMode.Windowed && displayMode != FullScreenMode.FullScreenWindow && displayMode != FullScreenMode.ExclusiveFullScreen)
+            displayMode = legacyMode;
+        vSync = PlayerPrefs.GetInt(preferencesPrefix + "VSync", 0) == 1;
+        frameLimit = PlayerPrefs.GetInt(preferencesPrefix + "FrameLimit", defaultFrameLimit);
+        if (!frameLimits.Contains(frameLimit)) frameLimit = defaultFrameLimit;
         var native = NativeSize();
         var saved = new Vector2Int(PlayerPrefs.GetInt(preferencesPrefix + "Width", native.x), PlayerPrefs.GetInt(preferencesPrefix + "Height", native.y));
         resolutionIndex = resolutions.IndexOf(saved);
@@ -258,6 +293,8 @@ public class MainMenuUI : MonoBehaviour
         CloseStartPanels();
         ClearSelection();
         if (OptionsVisible) { ReadSavedOptions(); ApplyAudio(); }
+        if (resolutionDropdown != null && resolutionDropdown.IsExpanded) resolutionDropdown.Hide();
+        if (frameLimitDropdown != null && frameLimitDropdown.IsExpanded) frameLimitDropdown.Hide();
         controlsPanel.SetActive(false); optionsPanel.SetActive(false);
         if (resetPanel != null) resetPanel.SetActive(false);
     }
@@ -266,6 +303,8 @@ public class MainMenuUI : MonoBehaviour
     {
         if (OptionsVisible && resolutionDropdown != null && resolutionDropdown.IsExpanded)
         { resolutionDropdown.Hide(); return; }
+        if (OptionsVisible && frameLimitDropdown != null && frameLimitDropdown.IsExpanded)
+        { frameLimitDropdown.Hide(); return; }
         if (newGamePanel != null && newGamePanel.activeSelf) { CancelNewGame(); return; }
         if (startDataPanel != null && startDataPanel.activeSelf) { CloseStartPanels(); return; }
         if (resetPanel.activeSelf) { resetPanel.SetActive(false); return; }
@@ -329,7 +368,15 @@ public class MainMenuUI : MonoBehaviour
 
     private void UpdateDisplayLabels()
     {
-        modeLabel.text = windowed ? windowedText : fullscreenText;
+        modeLabel.text = displayMode == FullScreenMode.Windowed ? windowedText
+            : displayMode == FullScreenMode.ExclusiveFullScreen ? exclusiveFullscreenText : fullscreenText;
+        if (vSyncToggle != null) vSyncToggle.SetIsOnWithoutNotify(vSync);
+        if (performanceHint != null) performanceHint.text = vSync ? vSyncHint : frameLimitHint;
+        if (frameLimitDropdown != null)
+        {
+            frameLimitDropdown.SetValueWithoutNotify(Array.IndexOf(frameLimits, frameLimit));
+            frameLimitDropdown.interactable = !vSync;
+        }
         var r = resolutions[resolutionIndex];
         resolutionLabel.text = string.Format(resolutionFormat, r.x, r.y);
         if (resolutionDropdown != null) resolutionDropdown.SetValueWithoutNotify(resolutionIndex);
@@ -341,12 +388,15 @@ public class MainMenuUI : MonoBehaviour
     {
         if (!OptionsVisible || (!titlePanel.activeInHierarchy && !PauseMenuVisible)) return;
         var r = resolutions[resolutionIndex];
-        PlayerPrefs.SetInt(preferencesPrefix + "Windowed", windowed ? 1 : 0);
+        PlayerPrefs.SetInt(preferencesPrefix + "DisplayMode", (int)displayMode);
+        PlayerPrefs.SetInt(preferencesPrefix + "Windowed", displayMode == FullScreenMode.Windowed ? 1 : 0);
+        PlayerPrefs.SetInt(preferencesPrefix + "VSync", vSync ? 1 : 0);
+        PlayerPrefs.SetInt(preferencesPrefix + "FrameLimit", frameLimit);
         PlayerPrefs.SetInt(preferencesPrefix + "Width", r.x);
         PlayerPrefs.SetInt(preferencesPrefix + "Height", r.y);
         for (int i = 0; i < volumeSliders.Length; i++) PlayerPrefs.SetFloat(preferencesPrefix + mixerParameters[i], volumeSliders[i].value);
         PlayerPrefs.Save();
-        ApplyAudio(); ApplyDisplay(); ClosePanels();
+        ApplyAudio(); ApplyDisplay(); ApplyPerformance(); ClosePanels();
     }
 
     private void ApplyAudio()
@@ -364,8 +414,14 @@ public class MainMenuUI : MonoBehaviour
         // Game View는 창모드 전환을 재현하지 않는다. 에디터 창/검사 해상도는 바꾸지 않는다.
 #if !UNITY_EDITOR
         var r = resolutions[resolutionIndex];
-        Screen.SetResolution(r.x, r.y, windowed ? FullScreenMode.Windowed : FullScreenMode.FullScreenWindow);
+        Screen.SetResolution(r.x, r.y, displayMode);
 #endif
+    }
+
+    private void ApplyPerformance()
+    {
+        QualitySettings.vSyncCount = vSync ? 1 : 0;
+        Application.targetFrameRate = vSync ? -1 : frameLimit;
     }
 
     public void Quit()

@@ -18,6 +18,39 @@ public static class CombatReadabilityChecks
         passed++;
     }
 
+    public static string RunDescriptionLayout()
+    {
+        if (!Application.isPlaying) throw new Exception("Play required");
+        var info=UnityEngine.Object.FindFirstObjectByType<CombatInfoUI>();
+        var panel=(GameObject)Get(info,"enemyPanel");var text=(TMP_Text)Get(info,"enemyText");
+        var panelRect=(RectTransform)panel.transform;var tr=text.rectTransform;
+        bool visible=panel.activeSelf;string original=text.text;float size=text.fontSize;
+        Vector2 panelSize=panelRect.sizeDelta;float chrome=panelRect.rect.height-tr.rect.height;
+        int count=0;var refresh=typeof(CombatInfoUI).GetMethod("RefreshDescription",Hidden);
+        try
+        {
+            panel.SetActive(true);
+            foreach(float width in new[]{320f,480f}) foreach(float font in new[]{24f,30f})
+            {
+                panelRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal,width);text.fontSize=font;
+                var args=new object[]{panel,text,"마법사 (3페이즈)\n\n디엔드\n피해 200\n차단 불가\n\n파멸 강화 적용",120f,-1f};
+                refresh.Invoke(info,args);text.ForceMeshUpdate();
+                float expected=Mathf.Clamp(text.GetPreferredValues(text.text,tr.rect.width,0).y+chrome,120f,(float)Get(info,"panelMaxHeight"));
+                if(Mathf.Abs(panelRect.rect.height-expected)>.01f)throw new Exception("description resized incorrectly");count++;
+                float height=panelRect.rect.height;refresh.Invoke(info,args);
+                if(Mathf.Abs(panelRect.rect.height-height)>.01f)throw new Exception("stable description changed layout");count++;
+                args[2]="파멸의 오브\n보스 피해량 증가";refresh.Invoke(info,args);
+                if(text.text!=(string)args[2])throw new Exception("target change did not refresh");count++;
+            }
+            return "Description layout: "+count+" passed; content, width, font and stable frames.";
+        }
+        finally
+        {
+            panelRect.sizeDelta=panelSize;text.fontSize=size;text.text=original;panel.SetActive(visible);
+            Set(info,"enemyLayoutWidth",-1f);
+        }
+    }
+
     [MenuItem("Tools/Scroll Hunter/Check Combat Readability (Play)")]
     public static void RunMenu() => Debug.Log(Run());
 

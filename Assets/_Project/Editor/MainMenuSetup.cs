@@ -294,8 +294,89 @@ public static class MainMenuSetup
             }
         }
         Place((RectTransform)panel.Find("Hint"),new Vector2(0,-298),new Vector2(1400,44));
+        ApplyPerformanceControls(so, panel, source, font, dropdown);
         so.ApplyModifiedPropertiesWithoutUndo();
         UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(menu.gameObject.scene);
+    }
+
+    private static void ApplyPerformanceControls(SerializedObject so, Transform panel, Button source, TMP_Text font, TMP_Dropdown resolution)
+    {
+        var oldButton = panel.Find("VSyncButton");
+        if (oldButton) Object.DestroyImmediate(oldButton.gameObject);
+        var toggleRoot = panel.Find("VSyncToggle");
+        if (!toggleRoot)
+        {
+            toggleRoot = new GameObject("VSyncToggle",typeof(RectTransform),typeof(Image),typeof(Toggle)).transform;
+            toggleRoot.SetParent(panel,false);
+            toggleRoot.GetComponent<Image>().color=Color.clear;
+            var border=Box("Border",toggleRoot,new Color(.64f,.51f,.3f,1)).GetComponent<Image>();
+            Place(border.rectTransform,new Vector2(-295,0),new Vector2(48,48));border.raycastTarget=false;
+            var face=Box("Face",border.transform,Color.white).GetComponent<Image>();
+            Place(face.rectTransform,Vector2.zero,new Vector2(44,44));face.raycastTarget=false;
+            var mark=Box("Checkmark",border.transform,new Color(.92f,.84f,.65f,1)).GetComponent<Image>();
+            mark.sprite=AssetDatabase.GetBuiltinExtraResource<Sprite>("UI/Skin/Checkmark.psd");
+            Place(mark.rectTransform,Vector2.zero,new Vector2(36,36));mark.raycastTarget=false;
+            var item=toggleRoot.GetComponent<Toggle>();item.targetGraphic=face;item.graphic=mark;
+            var colors=item.colors;colors.normalColor=new Color(.055f,.07f,.095f,1);
+            colors.highlightedColor=colors.selectedColor=new Color(.12f,.16f,.22f,1);
+            colors.pressedColor=new Color(.23f,.22f,.17f,1);item.colors=colors;
+            Label("Label",toggleRoot,font,"사용",new Vector2(-55,0),new Vector2(380,60),28,TextAlignmentOptions.Left);
+        }
+        var vSync=toggleRoot.GetComponent<Toggle>();vSync.SetIsOnWithoutNotify(false);
+        Place((RectTransform)toggleRoot,new Vector2(170,150),new Vector2(650,60));
+        Link(so,"vSyncToggle",vSync);
+        var limitRoot = panel.Find("FrameLimitDropdown");
+        var limit = limitRoot ? limitRoot.GetComponent<TMP_Dropdown>() : Object.Instantiate(resolution,panel,false);
+        var limitColors=limit.colors;limitColors.disabledColor=new Color(.035f,.045f,.064f,1);limit.colors=limitColors;
+        limit.name = "FrameLimitDropdown"; limit.onValueChanged = new TMP_Dropdown.DropdownEvent();
+        Place((RectTransform)limit.transform,new Vector2(170,75),new Vector2(650,60));
+        limit.ClearOptions();
+        var limits = so.FindProperty("frameLimits");
+        var choices = new System.Collections.Generic.List<string>();
+        for (int i=0;i<limits.arraySize;i++)
+        {
+            int n = limits.GetArrayElementAtIndex(i).intValue;
+            choices.Add(n<0 ? so.FindProperty("unlimitedText").stringValue : string.Format(so.FindProperty("frameLimitFormat").stringValue,n));
+        }
+        limit.AddOptions(choices);limit.SetValueWithoutNotify(1);
+        Link(so,"frameLimitDropdown",limit);
+        string[] names = {"VSyncTitle","FrameLimitTitle"};
+        string[] titles = {"수직동기화","프레임 제한"};
+        for (int i=0;i<names.Length;i++)
+        {
+            var item=panel.Find(names[i]);
+            if(!item) item=Label(names[i],panel,font,titles[i],Vector2.zero,new Vector2(290,60),30,TextAlignmentOptions.Left).transform;
+            Place((RectTransform)item,new Vector2(-440,150-i*75),new Vector2(290,60));
+        }
+        var hintRoot=panel.Find("PerformanceHint");
+        var hint=hintRoot ? hintRoot.GetComponent<TMP_Text>() : Label("PerformanceHint",panel,font,"",Vector2.zero,new Vector2(1400,32),22,TextAlignmentOptions.Center);
+        hint.text=so.FindProperty("frameLimitHint").stringValue;
+        Place(hint.rectTransform,new Vector2(0,-20),new Vector2(1400,32));Link(so,"performanceHint",hint);
+        Place((RectTransform)panel.Find("Title"),new Vector2(0,390),new Vector2(1000,70));
+        foreach (string n in new[]{"Mode","Resolution"})
+        {
+            var rt=(RectTransform)panel.Find(n); var at=rt.anchoredPosition;at.y=n=="Mode"?300:225;rt.anchoredPosition=at;
+        }
+        Place((RectTransform)source.transform,new Vector2(170,300),new Vector2(650,60));
+        foreach (string field in new[]{"resolutionPrevious","resolutionNext"})
+        {
+            var rt=(RectTransform)((Button)so.FindProperty(field).objectReferenceValue).transform;
+            var at=rt.anchoredPosition;at.y=225;rt.anchoredPosition=at;rt.sizeDelta=new Vector2(78,60);
+        }
+        Place((RectTransform)resolution.transform,new Vector2(170,225),new Vector2(360,60));
+        Place((RectTransform)panel.Find("DisplayHint"),new Vector2(0,16),new Vector2(1400,32));
+        Place((RectTransform)panel.Find("DisplaySoundDivider"),new Vector2(0,-52),new Vector2(1160,2));
+        for(int i=0;i<4;i++) foreach(string prefix in new[]{"SoundLabel","Volume","VolumeValue"})
+        {
+            var rt=(RectTransform)panel.Find(prefix+i);var at=rt.anchoredPosition;at.y=-95-i*60;rt.anchoredPosition=at;
+            if(prefix!="Volume")rt.sizeDelta=new Vector2(rt.sizeDelta.x,56);
+        }
+        Place((RectTransform)panel.Find("Hint"),new Vector2(0,-332),new Vector2(1400,42));
+        foreach(string field in new[]{"resetOpen","optionsApply","optionsCancel"})
+        {
+            var rt=(RectTransform)((Button)so.FindProperty(field).objectReferenceValue).transform;
+            var at=rt.anchoredPosition;at.y=-405;rt.anchoredPosition=at;
+        }
     }
 
     [MenuItem("Tools/Scroll Hunter/Apply Start Confirmation and Stage Clear")]

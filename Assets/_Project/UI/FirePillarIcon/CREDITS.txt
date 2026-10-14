@@ -1,0 +1,7 @@
+Fire Icon Pack (11) — beddedOtaku
+https://opengameart.org/content/fire-icon-pack-11
+CC BY 3.0: https://creativecommons.org/licenses/by/3.0/
+선택: 후보 B, PNGs - Border/1.png에 대응하는 PSD Flame Dive 그룹.
+PSD - 1000x1000 no borders.psd의 Background + Flame Dive만 표시해 합성.
+금색 테두리 없는 원화 그대로 사용. Unity용 PNG는 256x256으로 축소.
+원본 그림 변경 없음, 사용 중인 스킬 슬롯 테두리는 유지.

@@ -1,0 +1,11 @@
+{
+  "play": false,
+  "dirty": false,
+  "toggle": true,
+  "checkmark": "Checkmark",
+  "icon": "Assets/_Project/UI/FirePillarIcon/FirePillar.png",
+  "Cost": 4.0,
+  "Damage": 90,
+  "HitCount": 1,
+  "CastTime": 1.0
+}
