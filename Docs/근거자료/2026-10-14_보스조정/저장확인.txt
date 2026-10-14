@@ -1,0 +1,1 @@
+HP=3000; OrbDamage=75; Wave=Boss phase wave; RenderEnabled=False; Play=False; Dirty=False; FontPreserved=True; SavesPreserved=True

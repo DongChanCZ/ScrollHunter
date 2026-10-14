@@ -32,7 +32,7 @@ public static class BossChecks
         {
             t.enabled=false;Set(f,"finishingEffectHold",0f);f.RestartRun();FreshBoss();
             check(f.BattleCount==4 && f.BattleNumber==4 && m.EnemyCount==1 && m.CurrentTarget==e,"final encounter and target");
-            check(e.transform.position.x==m.FormationCenter.x && e.MaxHp==4000 && e.Data.Defense==0,"HP defense centered");
+            check(e.transform.position.x==m.FormationCenter.x && e.MaxHp==3000 && e.Data.Defense==0,"HP defense centered");
             check(p.PotionCapacity == 3 && p.PotionsRemaining == 3 && p.PotionHealAmount==150,"base potion 3/3 and 30%");
             check(e.Data.Attacks.Select(a=>a.Damage).SequenceEqual(new[]{35,40,300,60,600}),"raw attack damage");
             check(e.Data.Attacks.Select(a=>a.CastTime).SequenceEqual(new float[]{2,3,6,5,20}),"base casts");
@@ -41,7 +41,7 @@ public static class BossChecks
             for(int phase=0;phase<3;phase++)
             {
                 FreshBoss();
-                if(phase>0){e.TakeDamage(phase==1?1600:3000);check(!e.IsPhaseTransitioning,"pending cast "+phase);e.TryInterrupt(2.5f);Tick(e,2.5f);}
+                if(phase>0){e.TakeDamage(phase==1?1200:2250);check(!e.IsPhaseTransitioning,"pending cast "+phase);e.TryInterrupt(2.5f);Tick(e,2.5f);}
                 check(e.PhaseNumber==phase+1 && e.Data.Phases[phase].Pattern.SequenceEqual(patterns[phase]),"phase/order "+phase);
                 // Two complete cycles check cursor wrap, cast multiplier and both same-color attacks.
                 for(int i=0;i<patterns[phase].Length*2;i++)
@@ -62,7 +62,7 @@ public static class BossChecks
                 for(int i=0;i<patterns[phase].Length;i++)
                 {
                     FreshBoss();Set(e,"phaseIndex",phase);Set(e,"phasePatternIndex",i);
-                    Set(e,"<CurrentHp>k__BackingField",phase==0?4000:phase==1?2000:900);Call(e,"BeginNextCast");
+                    Set(e,"<CurrentHp>k__BackingField",phase==0?3000:phase==1?1500:675);Call(e,"BeginNextCast");
                     var attack=e.CurrentAttack;
                     if(attack.CastColor==CastColor.Red)continue;
                     check(e.TryInterrupt(2.5f)==InterruptResult.Success,"interrupt accepted "+phase+"/"+i);
@@ -78,22 +78,22 @@ public static class BossChecks
                     }
                 }
             }
-            FreshBoss();e.TakeDamage(1599);e.TryInterrupt(2.5f);check(e.PhaseNumber==1,"above sixty stays one");Tick(e,2.5f);
+            FreshBoss();e.TakeDamage(1199);e.TryInterrupt(2.5f);check(e.PhaseNumber==1,"above sixty stays one");Tick(e,2.5f);
             e.TakeDamage(1);check(e.IsCasting && !e.IsInvulnerable,"exact sixty waits for attack");
             Call(e,"Fire");check(e.PhaseNumber==2 && e.IsInvulnerable && Near(e.PhaseTransitionRemaining,2),"fire starts transition");
             Tick(e,1.999f);check(e.IsInvulnerable && !e.IsCasting,"transition not early");Tick(e,.002f);check(e.IsCasting && !e.IsInvulnerable,"transition ends after rest");
-            FreshBoss();e.TakeDamage(1600);e.TryInterrupt(2.5f);Call(e,"Start");check(e.IsStaggered && e.IsInvulnerable,"first Start preserves transition and stagger");Tick(e,2);
+            FreshBoss();e.TakeDamage(1200);e.TryInterrupt(2.5f);Call(e,"Start");check(e.IsStaggered && e.IsInvulnerable,"first Start preserves transition and stagger");Tick(e,2);
             check(!e.IsInvulnerable && !m.SkillInputBlocked && e.IsStaggered && !e.IsCasting,"2s unlock leaves .5s stagger");
             Tick(e,.499f);check(!e.IsCasting,"stagger not early");Tick(e,.002f);check(e.IsCasting && Near(e.CurrentCastTime,1.2f),"concurrent total 2.5 not 4.5");
-            e.TakeDamage(1399);e.TryInterrupt(2.5f);check(e.PhaseNumber==2,"above twenty five stays two");Tick(e,2.5f);
+            e.TakeDamage(1049);e.TryInterrupt(2.5f);check(e.PhaseNumber==2,"above twenty five stays two");Tick(e,2.5f);
             e.TakeDamage(1);e.TryInterrupt(2.5f);Tick(e,2.5f);check(e.PhaseNumber==3 && e.CurrentAttack==e.Data.Attacks[4] && e.CurrentCastTime==16,"phase3 starts five, cycle orb -20%");
             check(e.TryInterrupt(2.5f)==InterruptResult.FailedRed && e.IsCasting,"red cannot interrupt");
-            FreshBoss();e.TakeDamage(3100);e.TryInterrupt(2.5f);check(e.PhaseNumber==3,"skip phase2");
-            FreshBoss();Call(e,"Fire");e.TakeDamage(1600);check(e.IsInvulnerable,"threshold while resting starts now");Tick(e,2);check(e.IsCasting,"rest and transition parallel");
+            FreshBoss();e.TakeDamage(2325);e.TryInterrupt(2.5f);check(e.PhaseNumber==3,"skip phase2");
+            FreshBoss();Call(e,"Fire");e.TakeDamage(1200);check(e.IsInvulnerable,"threshold while resting starts now");Tick(e,2);check(e.IsCasting,"rest and transition parallel");
 
             FreshBoss();c.EnsureTutorialCost(10);var cards=d.CopyStartingDeck();var cast=cards.First(x=>!x.IsChanneling && x.Damage>0 && x.CastTime>0);
             cards[0]=cast;d.SetDeck(cards);check(d.TryUseSlot(0) && d.IsCasting,"ordinary cast active");
-            e.TakeDamage(1600);e.TryInterrupt(2.5f);int hp=e.CurrentHp,hits=metrics.RecordedHits,crit=metrics.CriticalEligibleHits,damage=metrics.DamageApplied,overkill=metrics.OverkillDamage;
+            e.TakeDamage(1200);e.TryInterrupt(2.5f);int hp=e.CurrentHp,hits=metrics.RecordedHits,crit=metrics.CriticalEligibleHits,damage=metrics.DamageApplied,overkill=metrics.OverkillDamage;
             float cost=c.Current;var hand=d.GetHandCard(0);
             check(Enumerable.Range(0,4).All(i=>!d.TryUseSlot(i)) && c.Current==cost && d.GetHandCard(0)==hand,"transition rejects all without cost/cycle");
             Call(ui,"UpdateHand");check(d.GetSlotState(0)==SlotState.PhaseTransition,"transition state distinct");
@@ -108,11 +108,11 @@ public static class BossChecks
             check(Time.timeScale>0,"manual resume");Tick(e,2.5f);c.EnsureTutorialCost(10);check(d.TryUseSlot(0),"new input accepted after transition");
 
             FreshBoss();cards=d.CopyStartingDeck();var channel=cards.First(x=>x.IsChanneling);cards[0]=channel;d.SetDeck(cards);c.EnsureTutorialCost(10);
-            check(d.TryUseSlot(0) && d.IsChanneling,"channel starts");e.TakeDamage(1600);e.TryInterrupt(2.5f);hp=e.CurrentHp;hits=metrics.RecordedHits;
+            check(d.TryUseSlot(0) && d.IsChanneling,"channel starts");e.TakeDamage(1200);e.TryInterrupt(2.5f);hp=e.CurrentHp;hits=metrics.RecordedHits;
             Call(d,"AdvanceCast",1f);check(d.IsChanneling && e.CurrentHp==hp && metrics.RecordedHits==hits,"channel continues during immunity without fake hits");
             Tick(e,2.5f);Call(d,"AdvanceCast",2f);check(e.CurrentHp<hp,"remaining ticks damage after immunity");
 
-            FreshBoss();e.TakeDamage(4000);m.NotifyEnemyDied();Call(f,"Update");
+            FreshBoss();e.TakeDamage(3000);m.NotifyEnemyDied();Call(f,"Update");
             check(!e.IsAlive && !e.IsInvulnerable && f.State==BattleFlowState.Victory && f.RewardChoiceCount==0,"lethal wins over phase and final has no reward");
             float finalHp=p.CurrentHp;Tick(e,100);f.NextBattle();check(p.CurrentHp==finalHp && f.BattleNumber==4,"no attacks or fifth ordinary battle after victory");
             f.RestartRun();p.TakeDamage(60);p.TryUsePotion();p.TakeDamage(30);float carry=p.CurrentHp;
@@ -123,10 +123,10 @@ public static class BossChecks
                 check(f.SkipReward(),"skip "+stage);f.NextBattle();Call(f,"AdvanceCountdown",3f);
                 check(p.CurrentHp==carry && p.PotionsRemaining == 2,"HP/potion carry "+stage);
             }
-            check(m.CurrentTarget==e && e.CurrentHp==4000 && e.PhaseNumber==1,"ABC to fresh boss");
-            e.TakeDamage(3100);e.TryInterrupt(2.5f);p.TakeDamage(100000);Call(f,"Update");check(f.State==BattleFlowState.Defeat,"player defeat during transition");
+            check(m.CurrentTarget==e && e.CurrentHp==3000 && e.PhaseNumber==1,"ABC to fresh boss");
+            e.TakeDamage(2325);e.TryInterrupt(2.5f);p.TakeDamage(100000);Call(f,"Update");check(f.State==BattleFlowState.Defeat,"player defeat during transition");
             f.RestartRun();check(p.PotionsRemaining == 3 && p.PotionCapacity == 3 && !m.SkillInputBlocked,"restart clears transition, potion 3/3");FreshBoss();
-            check(e.CurrentHp==4000 && e.PhaseNumber==1 && e.CurrentAttack==e.Data.Attacks[0],"boss restart resets phase cursor");
+            check(e.CurrentHp==3000 && e.PhaseNumber==1 && e.CurrentAttack==e.Data.Attacks[0],"boss restart resets phase cursor");
             return "Boss checks passed: "+passed;
         }
         finally{UnityEngine.Random.state=random;Set(f,"finishingEffectHold",hold);t.enabled=enabled;f.RestartRun();}
@@ -151,7 +151,7 @@ public static class BossChecks
     static void ConfigureFrames()
     {
         FreshBoss();if(mode==1)Find<CombatInfoUI>().ToggleSpeed();
-        Boss().TakeDamage(1600);Boss().TryInterrupt(2.5f);
+        Boss().TakeDamage(1200);Boss().TryInterrupt(2.5f);
         elapsed=0;transitionEnded=0;ticks=0;pausedFrames=0;frame=-1;
     }
     static void FrameStep()

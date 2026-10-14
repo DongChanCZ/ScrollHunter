@@ -98,7 +98,7 @@ public static class EndingFeedbackChecks
     {
         Set(Find<CombatInfoUI>(),"resumeScale",mode==1?.5f:1f);Fresh(mode==3?1:mode==4?0:3);
         var p=Find<Player>();var e=mode<3?Boss():Find<EnemyManager>().GetAliveEnemies().First();
-        if(mode<2){e.TakeDamage(3000);e.TryInterrupt(2.5f);Call(e,"AdvanceCombat",2.5f);}
+        if(mode<2){e.TakeDamage(2250);e.TryInterrupt(2.5f);Call(e,"AdvanceCombat",2.5f);}
         if(mode==4)e=Find<EnemyManager>().GetAliveEnemies().First(x=>x.GetComponentInChildren<BowRig>()!=null);
         Call(e,"AdvanceCombat",Mathf.Max(0,e.CurrentCastTime-.05f));Set(p,"currentHp",1f);
         frames=0;age=deadAge=0;sawDeath=sawBlast=sawGrowth=sawFade=false;priorOpacity=0;lastFrame=-1;

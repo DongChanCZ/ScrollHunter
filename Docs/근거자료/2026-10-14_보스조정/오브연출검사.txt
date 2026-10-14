@@ -1,0 +1,3 @@
+Boss orb VFX checks passed: 42 / frames 1786
+initial: transition 101f, core 0.12→0.82, idle pulse 0.970~1.030
+single ruin: break gone after 51f (pause/0.5x included)

@@ -17,6 +17,7 @@ MonoBehaviour:
   cost: 3
   category: 0
   damage: 40
+  finalHitBonus: 10
   hitCount: 3
   resolveHitsSeparately: 1
   activation: 0

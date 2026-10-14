@@ -61,3 +61,11 @@
 - 아이스애로우 화살 꼬리 `Assets/_Project/VFX/Textures/TrailSoft.png`는 이번 작업에서 Unity로 생성한 단순 그라데이션(외부 에셋 아님).
 - 2026-09-29 스킬 연출(매직 커터·매직 스파크·매직 임팩트), 모두 OpenGameArt CC0: "lightning" — wreaderror, https://opengameart.org/content/lightning (보라 전류 4장) / "Weapon Slash - Effect" — Cethiel, https://opengameart.org/content/weapon-slash-effect (파랑 애니메이션 5, 6프레임을 한 줄로 배치) / "Explosion effects and more" — Soluna Software, https://opengameart.org/content/explosion-effects-and-more (Explosion03·Effect95). 원본 PNG 무가공, 색·크기·재생만 Unity에서 설정. 목록은 `Assets/_Project/VFX/OpenGameArt/CREDITS.txt`.
 - 2026-09-29 스킬 연출(다크 이럽션·제압·블리자드·저지먼트): Kenney Particle Pack(CC0)의 `twirl_02`·`dirt_01`·`dirt_03`·`scorch_02`·`circle_05` 추가(원본 PNG 무가공) + 기존 OpenGameArt lightning 재사용. 마법진은 OpenGameArt CC0 "4 Summoning Circles" — Luke.RUSTLTD, https://opengameart.org/content/4-summoning-circles (circle7·circle4, 검은 선을 흰 선+투명도로 변환·512 축소·선 두께 보강). 색·크기·재생은 Unity에서 설정. 목록은 `Assets/_Project/VFX/OpenGameArt/CREDITS.txt`.
+
+
+## 입체 타겟 마커 (2026-10-14)
+
+- **Winged Sword — Lorc / Game-icons.net**. 원본: https://game-icons.net/1x1/lorc/winged-sword.html
+- **CC BY 3.0**: https://creativecommons.org/licenses/by/3.0/
+- 원본 SVG를 3D 모델로 가공: 두께·모서리·금색/아이보리 색·외곽선·기울임 추가. 원작자의 게임 보증이나 참여를 의미하지 않음.
+- 게임 파일: `Assets/_Project/UI/WingedSwordMarker/`. 원본 SVG·출처 보존. 배포 크레딧에 이 항목 유지.

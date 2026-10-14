@@ -77,7 +77,7 @@ public class EnemyData : ScriptableObject
     [SerializeField, TextArea] private string passiveDescription;
     [SerializeField, Min(1f)] private float orbDamageMultiplier = 1.1f;
     [SerializeField, Range(0f, .99f)] private float orbCastTimeReduction = .2f;
-    [SerializeField, Min(0)] private int orbDestructionDamage = 150;
+    [SerializeField, Min(0)] private int orbDestructionDamage = 75;
     public float OrbDamageMultiplier => orbDamageMultiplier;
     public float OrbCastTimeReduction => orbCastTimeReduction;
     public int OrbDestructionDamage => orbDestructionDamage;

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Enemy_Boss
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   displayName: "\uB9C8\uBC95\uC0AC"
-  maxHp: 4000
+  maxHp: 3000
   defense: 0
   attacks:
   - skillName: "\uB9E4\uC9C1\uBBF8\uC0AC\uC77C"
@@ -62,4 +62,4 @@ MonoBehaviour:
   passiveDescription:
   orbDamageMultiplier: 1.1
   orbCastTimeReduction: 0.2
-  orbDestructionDamage: 150
+  orbDestructionDamage: 75

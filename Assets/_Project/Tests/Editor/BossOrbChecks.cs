@@ -17,7 +17,7 @@ public static class BossOrbChecks
     static void Tick(float dt) => Call(Boss(), "AdvanceCombat", dt);
     static BossOrbs Enter(int phase)
     {
-        Fresh(); var boss = Boss(); boss.TakeDamage(phase == 2 ? 1600 : 3000); boss.TryInterrupt(2.5f); Tick(2.5f);
+        Fresh(); var boss = Boss(); boss.TakeDamage(phase == 2 ? 1200 : 2250); boss.TryInterrupt(2.5f); Tick(2.5f);
         return boss.GetComponent<BossOrbs>();
     }
     static void Attack(int index)
@@ -40,7 +40,7 @@ public static class BossOrbChecks
         {
             t.enabled=false;f.RestartRun();Fresh();var o=e.GetComponent<BossOrbs>();
             check(!o.RuinActive && !o.CycleActive && m.GetAliveEnemies().Count==1,"phase1 no orbs");
-            e.TakeDamage(1600);check(!e.IsPhaseTransitioning,"threshold waits current attack");e.TryInterrupt(2.5f);
+            e.TakeDamage(1200);check(!e.IsPhaseTransitioning,"threshold waits current attack");e.TryInterrupt(2.5f);
             check(e.IsPhaseTransitioning && !o.RuinActive && !o.CycleActive,"transition preview no aura");
             check(o.Ruin.gameObject.activeSelf && o.Cycle.gameObject.activeSelf,"preview visible");
             check(!o.Ruin.GetComponent<Collider>().enabled && m.GetAliveEnemies().Count==1,"preview untargetable");
@@ -53,18 +53,18 @@ public static class BossOrbChecks
                 check(orb.MaxHp==400 && orb.CurrentHp==400 && orb.Data.Defense==0,"orb stats");
                 check(!orb.IsCasting && orb.CurrentAttack==null && orb.TryInterrupt(2.5f)==InterruptResult.NotCasting,"no attacks or interrupt");
                 check(orb.GetComponent<Collider>().enabled && orb.HpBarRect!=null,"click and HP bar");
-                check(info.DescribeEnemy(orb).Contains("150"),"orb tooltip");
+                check(info.DescribeEnemy(orb).Contains("75"),"orb tooltip");
             }
             check(o.Ruin.transform.position.x<e.transform.position.x && o.Cycle.transform.position.x>e.transform.position.x,"left/right");
             check(m.GetAliveEnemies().Count==3 && m.EnemyCount==1,"targets 3, encounter enemy 1");
             Tick(.5f);check(Near(e.CurrentCastTime,1.2f) && Near(e.CurrentDamageMultiplier,1.1f),"phase2 snapshot 60% and 110%");
-            hp=e.CurrentHp;o.Ruin.TakeDamage(400);check(e.CurrentHp==hp-150 && m.OrbsDestroyed==1,"fixed 150 once");
-            o.Ruin.TakeDamage(400);check(e.CurrentHp==hp-150,"dead orb cannot retrigger");
+            hp=e.CurrentHp;o.Ruin.TakeDamage(400);check(e.CurrentHp==hp-75 && m.OrbsDestroyed==1,"fixed 75 once");
+            o.Ruin.TakeDamage(400);check(e.CurrentHp==hp-75,"dead orb cannot retrigger");
             o.Cycle.TakeDamage(400);check(Near(e.CurrentCastTime,1.2f) && Near(e.CurrentDamageMultiplier,1.1f),"destroy during cast preserves snapshot");
             p.BeginBattle(true);Call(e,"Fire");check(p.CurrentHp==468,"35 x1.1 /1.2 rounded once to32");Tick(1);
             check(Near(e.CurrentCastTime,1.6f) && Near(e.CurrentDamageMultiplier,1),"next cast resamples missing orbs");
 
-            o=Enter(2);o.Ruin.TakeDamage(50);o.Cycle.TakeDamage(90);e.TakeDamage(1400);e.TryInterrupt(2.5f);
+            o=Enter(2);o.Ruin.TakeDamage(50);o.Cycle.TakeDamage(90);e.TakeDamage(1050);e.TryInterrupt(2.5f);
             check(e.PhaseNumber==3 && o.Ruin.CurrentHp==350 && o.Cycle.CurrentHp==310,"phase3 keeps existing HP");
             hp=e.CurrentHp;o.Ruin.TakeDamage(400);check(e.CurrentHp==hp && !o.RuinActive,"transition invulnerability blocks destruction damage");
             Tick(2.5f);check(e.CurrentHp==hp && !o.RuinActive && o.Cycle.CurrentHp==310,"no deferred damage or refill");
@@ -116,7 +116,7 @@ public static class BossOrbChecks
             finally{p.AddCriticalChanceBonus(100);}
             o=Enter(3);Call(m,"SelectTarget",o.Ruin);o.Ruin.TakeDamage(400);m.NotifyEnemyDied();check(m.CurrentTarget!=o.Ruin && m.CurrentTarget.IsAlive,"orb death auto target");
             hp=e.CurrentHp;e.TakeDamage(hp);m.NotifyEnemyDied();check(m.CombatEnded && !o.CycleActive && m.OrbsDestroyed==1,"boss death cleans live orb without destruction");
-            o=Enter(3);Set(e,"<CurrentHp>k__BackingField",150);o.Ruin.TakeDamage(400);m.NotifyEnemyDied();check(!e.IsAlive && !o.CycleActive && m.CombatEnded,"indirect 150 boss kill wins");
+            o=Enter(3);Set(e,"<CurrentHp>k__BackingField",75);o.Ruin.TakeDamage(400);m.NotifyEnemyDied();check(!e.IsAlive && !o.CycleActive && m.CombatEnded,"indirect 75 boss kill wins");
             o=Enter(3);o.Ruin.TakeDamage(400);o.Cycle.TakeDamage(400);Attack(3);Set(p,"currentHp",1f);Call(e,"Fire");Call(f,"Update");
             check(!o.RuinActive && !o.CycleActive && f.State==BattleFlowState.Defeat,"lethal dark hole no respawn");
             Fresh();check(!o.RuinActive && !o.CycleActive && m.GetAliveEnemies().Count==1 && m.OrbsDestroyed==0 && !p.IsCostRecoveryBlocked,"fresh run reset");
@@ -142,7 +142,7 @@ public static class BossOrbChecks
                 check(o.Ruin.CurrentHp==400-channel.Damage && e.CurrentHp<hp,"next channel tick includes new orb once");
 
                 Fresh();o=e.GetComponent<BossOrbs>();cards=d.CopyStartingDeck();cards.Remove(channel);cards.Insert(0,channel);d.SetDeck(cards);c.EnsureTutorialCost(10);
-                check(d.TryUseSlot(0),"channel starts before phase transition");e.TakeDamage(1600);e.TryInterrupt(2.5f);hp=e.CurrentHp;
+                check(d.TryUseSlot(0),"channel starts before phase transition");e.TakeDamage(1200);e.TryInterrupt(2.5f);hp=e.CurrentHp;
                 Call(d,"AdvanceCast",timing.FirstHitDelay);
                 check(e.CurrentHp==hp && !o.RuinActive && !o.CycleActive,"preview and invulnerable boss excluded from channel damage");
                 Tick(2);check(o.Ruin.CurrentHp==400 && d.IsChanneling,"orbs activate while existing channel continues");
@@ -150,7 +150,7 @@ public static class BossOrbChecks
                 check(o.Ruin.CurrentHp==400-channel.Damage && o.Cycle.CurrentHp==400-channel.Damage,"next channel tick hits both activated orbs");
 
                 Fresh();cards=d.CopyStartingDeck();cards.Remove(area);cards.Insert(0,area);d.SetDeck(cards);c.EnsureTutorialCost(10);
-                check(d.TryUseSlot(0),"ordinary AoE starts before transition");e.TakeDamage(1600);e.TryInterrupt(2.5f);hp=e.CurrentHp;
+                check(d.TryUseSlot(0),"ordinary AoE starts before transition");e.TakeDamage(1200);e.TryInterrupt(2.5f);hp=e.CurrentHp;
                 Call(d,"AdvanceCast",area.CastTime+.001f);
                 check(e.CurrentHp==hp && !o.RuinActive && !o.CycleActive,"AoE completed during preview hits neither orb nor invulnerable boss");
                 Tick(2);check(o.Ruin.CurrentHp==400 && o.Cycle.CurrentHp==400,"completed AoE not replayed on activation");
@@ -179,7 +179,7 @@ public static class BossOrbChecks
     static void ConfigureFrames()
     {
         Fresh();var info=Find<CombatInfoUI>();if(!Near(info.BattleSpeed,mode==0?1f:.5f))info.ToggleSpeed();
-        Boss().TakeDamage(1600);Boss().TryInterrupt(2.5f);
+        Boss().TakeDamage(1200);Boss().TryInterrupt(2.5f);
         stage=0;frame=-1;ticks=0;pauseFrames=0;started=Time.time;
     }
     static void FrameStep()

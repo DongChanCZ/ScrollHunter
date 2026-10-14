@@ -1,0 +1,13 @@
+2026-10-14 후보 A 입체 타겟 마커
+
+최종 WingedSwordMarkerChecks.Run: 12개 통과
+타겟 시작/변경/추적/사망 자동 이동/보스: 7개 통과
+일반 프레임 밝기: 밝은 픽셀 9748/불투명 픽셀 9828
+오브 타겟 선택, 튜토리얼 강조 영역 일치 확인
+1920x1080: 3체 전투, 보스, 튜토리얼
+1366x768: 오브 선택
+
+초기 문제: UV 반전 및 외곽선 깊이 쓰기로 표면이 가려짐. 방향 수정·외곽선 ZWrite Off 후 재확인.
+검사는 임시 계승 저장·상태 지정·함수 호출, 직접 손 조작/전체 런/새 빌드는 미확인.
+
+부유 후속: Winged sword marker: 12 checks passed; hover peak-to-peak 10.15625 UI px; minimum texture edge 17px; live clock 15.8109s, timeScale 0

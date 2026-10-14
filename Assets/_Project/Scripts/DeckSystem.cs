@@ -504,7 +504,7 @@ public class DeckSystem : MonoBehaviour
         if (visualOnly && !allowRemainingVisual) return 0;
         // 사망 후 잔여 숫자는 기존 일반 피해로 표시하며 추첨·치명타 집계에 넣지 않는다.
         bool critical = !visualOnly && player != null && player.RollCritical();
-        int amount = DamageFormula.Compute(card.Damage, 1, target.Data.Defense,
+        int amount = DamageFormula.Compute(card.GetHitDamage(hitIndex), 1, target.Data.Defense,
             critical ? player.CriticalMultiplier : 1f);
         int before = target.CurrentHp;
         if (visualOnly) target.ShowOverkill(amount);

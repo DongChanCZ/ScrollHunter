@@ -121,7 +121,7 @@ public class EnemyManager : MonoBehaviour
             if (enemy != null) enemy.SetEncounterActive(false);
     }
 
-    public void BeginBattle(IList<Enemy> combatants, Enemy centerEnemy = null)
+    public void BeginBattle(IList<Enemy> combatants, Enemy centerEnemy = null, bool supportingUnderlings = false)
     {
         foreach (Enemy enemy in enemies)
             if (enemy != null) enemy.SetEncounterActive(false);
@@ -142,7 +142,7 @@ public class EnemyManager : MonoBehaviour
         foreach (Enemy enemy in enemies)
         {
             enemy.Initialize(this, player);
-            enemy.BeginBattle();
+            enemy.BeginBattle(supportingUnderlings && enemies.Count == 3 && centerEnemy != null && enemy != centerEnemy);
         }
         CurrentTarget = InitialTarget();
     }

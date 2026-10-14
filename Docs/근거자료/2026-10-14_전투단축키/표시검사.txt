@@ -1,0 +1,3 @@
+pauseButton: key, edge-center, no raycast, single instance PASS
+speedButton: key, edge-center, no raycast, single instance PASS
+Pause / 0.5x / resume / unchanged A,S PASS

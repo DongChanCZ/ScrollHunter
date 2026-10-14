@@ -1,4 +1,4 @@
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -31,16 +31,20 @@ public class BattleRewardUI : MonoBehaviour
     [SerializeField] private Button backButton;
     [SerializeField] private Button confirmReplacementButton;
     [SerializeField] private CanvasGroup confirmReplacementVisual;
+    [SerializeField] private GameObject rewardReplacementConfirmation;
+    [SerializeField] private TMP_Text rewardReplacementPrompt;
+    [SerializeField] private Button rewardReplacementYes, rewardReplacementNo;
+    [SerializeField] private string rewardReplacementFormat = "\"{0}\"을 \"{1}\"으로 교체하겠습니까?";
     [SerializeField, Range(0f, 1f)] private float disabledConfirmAlpha = 0.45f;
     [SerializeField] private string titleFormat = "전투 승리 · HP {1:0} / {2:0}";
     [SerializeField] private string chooseText = "보상 1개를 선택하세요. 필요 없으면 스킵할 수 있습니다.";
     [SerializeField] private string noChoicesText = "받을 수 있는 보상이 없습니다. 스킵 후 진행하세요.";
-    [SerializeField] private string replaceFormat = "{0} 선택 · 교체할 카드를 고른 뒤 확인을 누르세요.";
+    [SerializeField] private string replaceFormat = "{0} 선택 · 교체할 카드를 고르세요.";
     [SerializeField] private string readyText = "편성을 확인하고 다음 전투로 진행하세요.";
     [Tooltip("{0} 순번, {1} 시작 손패·대기열")]
     [SerializeField] private string deckSlotFormat = "{0}번 · {1}";
     [SerializeField] private string handLabel = "시작 손패";
-    [SerializeField] private string queueLabel = "대기열";
+    [SerializeField] private string queueLabel = "대기 순서";
 
     [Header("편성 순서")]
     [SerializeField] private Button reorderButton;
@@ -75,6 +79,9 @@ public class BattleRewardUI : MonoBehaviour
     [SerializeField] private string loadFailedText = "계승 파일을 읽지 못해 기본 상태로 시작합니다. 기존 파일은 보존했습니다.";
     [SerializeField] private string backupLoadedText = "계승 파일을 읽지 못해 이전 저장본을 불러왔습니다.";
     private string rewardSkipText, rewardBackText;
+    private Vector2 inheritanceSkipAnchorMin, inheritanceSkipAnchorMax, inheritanceSkipPosition, inheritanceSkipSize;
+    private float inheritanceSkipFontSize;
+    private Vector2 inheritanceBackPosition;
 
     private void Awake()
     {
@@ -83,6 +90,13 @@ public class BattleRewardUI : MonoBehaviour
         if (player == null) player = FindFirstObjectByType<Player>();
         rewardSkipText = skipButton.GetComponentInChildren<TMP_Text>().text;
         rewardBackText = backButton.GetComponentInChildren<TMP_Text>().text;
+        inheritanceBackPosition = ((RectTransform)backButton.transform).anchoredPosition;
+        var skipRect = (RectTransform)skipButton.transform;
+        inheritanceSkipAnchorMin = skipRect.anchorMin;
+        inheritanceSkipAnchorMax = skipRect.anchorMax;
+        inheritanceSkipPosition = skipRect.anchoredPosition;
+        inheritanceSkipSize = skipRect.sizeDelta;
+        inheritanceSkipFontSize = skipButton.GetComponentInChildren<TMP_Text>(true).fontSize;
         if (inheritanceOpen != null) inheritanceOpen.onClick.AddListener(() =>
         { if (flow.State == BattleFlowState.Title) { inheritancePanel.SetActive(true); RefreshInheritance(); } });
         if (inheritanceClose != null) inheritanceClose.onClick.AddListener(() => inheritancePanel.SetActive(false));
@@ -103,6 +117,8 @@ public class BattleRewardUI : MonoBehaviour
         skipButton.onClick.AddListener(() => flow.SkipReward());
         backButton.onClick.AddListener(flow.CancelRewardSelection);
         if (confirmReplacementButton != null) confirmReplacementButton.onClick.AddListener(() => flow.ConfirmReplacement());
+        if (rewardReplacementYes != null) rewardReplacementYes.onClick.AddListener(() => flow.ConfirmReplacement());
+        if (rewardReplacementNo != null) rewardReplacementNo.onClick.AddListener(flow.CancelReplacementSlot);
         if (reorderButton != null) reorderButton.onClick.AddListener(() => flow.BeginOrderEdit());
         if (saveOrderButton != null) saveOrderButton.onClick.AddListener(() => flow.SaveOrder());
         if (cancelOrderButton != null) cancelOrderButton.onClick.AddListener(flow.CancelOrderEdit);
@@ -167,6 +183,8 @@ public class BattleRewardUI : MonoBehaviour
         new StatText { stat = RewardStat.CriticalChance, format = "크리티컬 확률 <b>+{0:0.#}%p</b>" },
     };
 
+    public const string CycleHint = "사용한 자리에 대기열의 첫 카드가 들어옵니다. 쓰지 않은 카드는 그대로 남습니다.";
+
     public void Refresh()
     {
         bool preparing = flow != null && flow.State == BattleFlowState.Preparing;
@@ -183,6 +201,8 @@ public class BattleRewardUI : MonoBehaviour
         instruction.text = editing ? orderText : preparing ? preparationText : flow.RewardResolved ? readyText
             : replacing ? string.Format(replaceFormat, flow.SelectedReward.DisplayName)
             : flow.RewardChoiceCount == 0 ? noChoicesText : chooseText;
+        if (!inheriting && (preparing || flow.RewardResolved))
+            instruction.text += "\n<size=23><color=#C5B99D>" + CycleHint + "</color></size>";
         if (inheriting)
             instruction.text = (flow.InheritanceSaveFailed ? saveFailedText + "\n" : string.Empty)
                 + (replacing ? string.Format(inheritanceReplaceFormat, flow.SelectedReward.DisplayName) : inheritanceChoiceText);
@@ -190,15 +210,31 @@ public class BattleRewardUI : MonoBehaviour
         backButton.GetComponentInChildren<TMP_Text>().text = inheriting ? inheritanceBackText : rewardBackText;
         choicesRoot.SetActive(choosing);
         deckRoot.SetActive(!choosing);
-        skipButton.gameObject.SetActive((between || inheriting) && !flow.RewardResolved);
+        RefreshSkipButton(inheriting);
+        skipButton.gameObject.SetActive(!flow.RewardResolved && (inheriting || (between && choosing)));
         if (reorderButton != null) reorderButton.gameObject.SetActive(flow.CanEditOrder && !editing);
         if (saveOrderButton != null) saveOrderButton.gameObject.SetActive(editing);
         if (cancelOrderButton != null) cancelOrderButton.gameObject.SetActive(editing);
+        ((RectTransform)backButton.transform).anchoredPosition = inheriting
+            ? inheritanceBackPosition : new Vector2(0f, inheritanceBackPosition.y);
         backButton.gameObject.SetActive(replacing);
         bool selected = replacing && flow.SelectedReplacementIndex >= 0;
+        bool confirmingReward = between && selected && rewardReplacementConfirmation != null;
+        if (rewardReplacementConfirmation != null)
+        {
+            bool wasOpen = rewardReplacementConfirmation.activeSelf;
+            if (confirmingReward)
+                rewardReplacementPrompt.text = string.Format(rewardReplacementFormat,
+                    flow.GetDeckCard(flow.SelectedReplacementIndex).DisplayName, flow.SelectedReward.DisplayName);
+            rewardReplacementConfirmation.SetActive(confirmingReward);
+            rewardReplacementYes.interactable = rewardReplacementNo.interactable = confirmingReward;
+            if (EventSystem.current != null && wasOpen != confirmingReward)
+                EventSystem.current.SetSelectedGameObject(confirmingReward ? rewardReplacementNo.gameObject : null);
+        }
+        backButton.interactable = !confirmingReward;
         if (confirmReplacementButton != null)
         {
-            confirmReplacementButton.gameObject.SetActive(replacing);
+            confirmReplacementButton.gameObject.SetActive(replacing && (inheriting || rewardReplacementConfirmation == null));
             confirmReplacementButton.interactable = selected;
             if (confirmReplacementVisual != null) confirmReplacementVisual.alpha = selected ? 1f : disabledConfirmAlpha;
         }
@@ -235,14 +271,27 @@ public class BattleRewardUI : MonoBehaviour
         {
             SkillData card = flow.GetOrderCard(i);
             deckButtons[i].gameObject.SetActive(card != null);
-            deckButtons[i].interactable = replacing || editing;
+            deckButtons[i].interactable = (replacing && !confirmingReward) || editing;
             SetText(deckSlotLabels, i, card == null ? string.Empty
-                : string.Format(deckSlotFormat, i + 1, i < DeckSystem.HandSize ? handLabel : queueLabel));
+                : string.Format(deckSlotFormat, i + 1, i < DeckSystem.HandSize
+                    ? "<color=#E7CB87>" + handLabel + " " + "QWER"[i] + "</color>"
+                    : "<color=#ADC8D8>" + queueLabel + " " + (i - DeckSystem.HandSize + 1) + "</color>"));
             SetText(deckNameLabels, i, card == null ? string.Empty : card.DisplayName);
             SetText(deckInfoLabels, i, card == null ? string.Empty : information.DescribeCardInfo(card));
             SetText(deckLabels, i, card == null ? string.Empty : information.DescribeCardEffect(card));
             if (deckIcons != null && i < deckIcons.Length) CombatInfoUI.ShowIcon(deckIcons[i], card);
         }
+    }
+
+    private void RefreshSkipButton(bool inheriting)
+    {
+        // 계승은 저장된 하단 배치, 일반 보상은 우측 상단의 작은 버튼을 사용한다.
+        var rect = (RectTransform)skipButton.transform;
+        rect.anchorMin = inheriting ? inheritanceSkipAnchorMin : Vector2.one;
+        rect.anchorMax = inheriting ? inheritanceSkipAnchorMax : Vector2.one;
+        rect.anchoredPosition = inheriting ? inheritanceSkipPosition : new Vector2(-126f, -60f);
+        rect.sizeDelta = inheriting ? inheritanceSkipSize : new Vector2(180f, 56f);
+        skipButton.GetComponentInChildren<TMP_Text>(true).fontSize = inheriting ? inheritanceSkipFontSize : 24f;
     }
 
     private static void SetText(TMP_Text[] labels, int index, string text)

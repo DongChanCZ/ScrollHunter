@@ -31,6 +31,7 @@ public static class MainMenuChecks
         var controls=(GameObject)Get(menu,"controlsPanel");
         var options=(GameObject)Get(menu,"optionsPanel");
         var inheritance=(GameObject)Get(menu,"inheritancePanel");
+        bool wasPaused=EditorApplication.isPaused;
         var originalMix=new float[parameters.Length];
         for(int i=0;i<parameters.Length;i++)mixer.GetFloat(parameters[i],out originalMix[i]);
         try
@@ -51,16 +52,39 @@ public static class MainMenuChecks
             ((Button)Get(menu,"controlsClose")).onClick.Invoke();check(!controls.activeSelf,"controls close");
             ((Button)Get(menu,"inheritanceOpen")).onClick.Invoke();check(inheritance.activeSelf,"inheritance still opens");
             menu.OpenOptions();check(options.activeSelf&&!inheritance.activeSelf&&!controls.activeSelf,"options exclusive modal");
+            EditorApplication.isPaused=true;EditorApplication.Step();EditorApplication.Step();
             bool before=(bool)Get(menu,"windowed");((Button)Get(menu,"modeButton")).onClick.Invoke();check((bool)Get(menu,"windowed")!=before,"mode toggle");
             var size=(TMP_Text)Get(menu,"resolutionLabel");string old=size.text;
             ((Button)Get(menu,"resolutionNext")).onClick.Invoke();check(size.text!=old,"resolution next");
             ((Button)Get(menu,"resolutionPrevious")).onClick.Invoke();check(size.text==old,"resolution previous");
+            var choices=(TMP_Dropdown)Get(menu,"resolutionDropdown");
+            var current=(TMP_Text)Get(menu,"currentDisplayLabel");
+            var sizes=(System.Collections.Generic.List<Vector2Int>)Get(menu,"resolutions");
+            int savedIndex=choices.value, selected=(savedIndex+1)%choices.options.Count;
+            string savedDisplay=current.text;
+            check(choices.options.Count==sizes.Count&&choices.options.Select(x=>x.text).Distinct().Count()==sizes.Count,"one option per resolution");
+            check(choices.captionText==size&&choices.options[choices.value].text==size.text,"caption and arrows synchronized");
+            choices.value=selected;
+            check((int)Get(menu,"resolutionIndex")==selected&&size.text==choices.options[selected].text,"list selects resolution draft");
+            check(current.text==savedDisplay&&!PlayerPrefs.HasKey(key+"Width"),"current setting unchanged until Apply");
+            var divider=options.transform.Find("DisplaySoundDivider").GetComponent<Image>();
+            check(!divider.raycastTarget&&((RectTransform)divider.transform).anchoredPosition.y<current.rectTransform.anchoredPosition.y
+                &&((RectTransform)divider.transform).anchoredPosition.y>((RectTransform)sliders[0].transform).anchoredPosition.y,"divider separates display and sound without blocking input");
+            UnityEngine.EventSystems.ExecuteEvents.Execute(choices.gameObject,
+                new UnityEngine.EventSystems.PointerEventData(UnityEngine.EventSystems.EventSystem.current),UnityEngine.EventSystems.ExecuteEvents.pointerClickHandler);
+            check(choices.IsExpanded&&choices.transform.Find("Dropdown List").GetComponentsInChildren<Toggle>().Length==sizes.Count,"click opens complete scrollable list");
+            menu.HandleEscape();check(menu.OptionsVisible,"first Escape closes list only");
             sliders[0].value=.2f;menu.ClosePanels();menu.OpenOptions();
+            check(choices.value==savedIndex&&current.text==savedDisplay&&!choices.IsExpanded,"cancel restores resolution and removes popup");
             check(sliders[0].value==1f&&!PlayerPrefs.HasKey(key+"Width"),"cancel discards and does not save");
+            choices.value=selected;
             ((Button)Get(menu,"modeButton")).onClick.Invoke();sliders[0].value=0f;sliders[1].value=.5f;sliders[2].value=.8f;
             ((Button)Get(menu,"optionsApply")).onClick.Invoke();
             check(!options.activeSelf&&PlayerPrefs.HasKey(key+"Width")&&PlayerPrefs.GetInt(key+"Windowed")==1,"apply saves settings");
-            menu.OpenOptions();check(sliders[0].value==0&&sliders[1].value==.5f&&sliders[2].value==.8f,"saved values reread");
+            menu.OpenOptions();
+            check(choices.value==selected&&PlayerPrefs.GetInt(key+"Width")==sizes[selected].x&&PlayerPrefs.GetInt(key+"Height")==sizes[selected].y,"selected resolution persists and rereads");
+            check(current.text.Contains(size.text)&&current.text.Contains(((TMP_Text)Get(menu,"modeLabel")).text),"current setting reflects saved mode and resolution");
+            check(sliders[0].value==0&&sliders[1].value==.5f&&sliders[2].value==.8f,"saved values reread");
             for(int i=0;i<parameters.Length;i++)
             {
                 float actual;float expected=i==0?-80f:20f*Mathf.Log10(sliders[i].value);
@@ -78,6 +102,7 @@ public static class MainMenuChecks
             foreach(var name in parameters.Concat(new[]{"Windowed","Width","Height"}))PlayerPrefs.DeleteKey(key+name);
             PlayerPrefs.Save();Set(menu,"preferencesPrefix",originalKey);menu.ClosePanels();inheritance.SetActive(false);Call(menu,"ReadSavedOptions");
             for(int i=0;i<parameters.Length;i++)mixer.SetFloat(parameters[i],originalMix[i]);
+            EditorApplication.isPaused=wasPaused;
         }
     }
 }

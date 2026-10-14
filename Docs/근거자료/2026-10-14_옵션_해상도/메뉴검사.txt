@@ -1,0 +1,1 @@
+Main menu: 38 passed. Temporary preference keys; editor display switching and actual sound playback are not covered.

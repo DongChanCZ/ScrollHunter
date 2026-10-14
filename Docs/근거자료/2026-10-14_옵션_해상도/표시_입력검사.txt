@@ -1,0 +1,1 @@
+Final styling: no silver sprite; wheel event moves list; raycast selects 1680 × 1050; cancel restores saved resolution. Physical mouse not tested.

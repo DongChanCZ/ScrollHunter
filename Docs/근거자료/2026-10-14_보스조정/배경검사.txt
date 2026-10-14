@@ -1,0 +1,2 @@
+Battle background checks passed: 36. Function checks; screenshots and real-frame timing separate.
+Phase VFX frames passed: 22 / frames 428 (1x, 0.5x, manual pause, restart, phase skip, defeat)

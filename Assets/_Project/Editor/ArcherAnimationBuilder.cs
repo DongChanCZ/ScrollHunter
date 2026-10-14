@@ -392,9 +392,12 @@ public static class ArcherAnimationBuilder
                 c.lockRootPositionXZ = false;
                 c.keepOriginalOrientation = c.keepOriginalPositionY = true;
                 c.rotationOffset = rotationOffset;
-                c.curves = curves != null && curves.TryGetValue(m.file, out var curve)
-                    ? new[] { new ClipAnimationInfoCurve { name = "BowDraw", curve = curve } }
-                    : new ClipAnimationInfoCurve[0];
+                // 사망 중 활시위는 0 고정. Importer 추가 곡선의 시간은 초가 아니라 0~1이다.
+                c.curves = m.state == "Death"
+                    ? new[] { new ClipAnimationInfoCurve { name = "BowDraw", curve = AnimationCurve.Constant(0f, 1f, 0f) } }
+                    : curves != null && curves.TryGetValue(m.file, out var curve)
+                        ? new[] { new ClipAnimationInfoCurve { name = "BowDraw", curve = curve } }
+                        : new ClipAnimationInfoCurve[0];
             }
             importer.clipAnimations = clips;
             importer.SaveAndReimport();

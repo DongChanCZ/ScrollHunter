@@ -487,7 +487,7 @@ public static class GameAudioChecks
             Check(CountSince(lib.select, f) == 1 && CountSince(lib.rewardConfirm, f) == 0, "skill reward choice: select, not confirm");
             f = Time.frameCount; buttons.First(b => b.name == "Deck2").onClick.Invoke(); yield return Steps(1);
             Check(CountSince(lib.select, f) == 1 && CountSince(lib.rewardConfirm, f) == 0 && !flow.RewardResolved, "slot choice: select, not confirm");
-            f = Time.frameCount; buttons.First(b => b.name == "ConfirmReplacement").onClick.Invoke(); yield return Steps(1);
+            f = Time.frameCount; buttons.First(b => b.name == "ConfirmRewardReplacement").onClick.Invoke(); yield return Steps(1);
             Check(flow.RewardResolved && CountSince(lib.rewardConfirm, f) == 1, "confirm replacement: reward confirm once");
         }
         else notes += "reward: no skill choice this roll, replacement path not exercised\n";

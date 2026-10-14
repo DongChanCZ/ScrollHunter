@@ -1,0 +1,22 @@
+normal 40/40/50
+critical 60/60/75
+Defeat title: 60pt; no overflow
+<size=125%><b><color=#F5EBD6>매직 임팩트</color></b></size>
+<size=80%> </size>
+공격<alpha=#CC> · <alpha=#FF>적 1체
+<alpha=#CC>코스트 <alpha=#FF><b>3</b><alpha=#CC>   ·   시전 <alpha=#FF><b>0초</b>
+<size=80%> </size>
+<size=85%>피해 <b>40·40·50</b> · 총합 피해 <b>130</b>
+<size=80%><alpha=#CC>적 1체·전 타격·크리티컬/방어 적용 전<alpha=#FF></size></size>
+<size=125%><b><color=#F5EBD6>제압</color></b></size>
+<size=80%> </size>
+차단<alpha=#CC> · <alpha=#FF>적 1체
+<alpha=#CC>코스트 <alpha=#FF><b>2</b><alpha=#CC>   ·   시전 <alpha=#FF><b>0.2초</b>
+<size=80%> </size>
+<size=85%>피해 <b>40×1회</b> · 총합 피해 <b>40</b>
+<size=80%><alpha=#CC>적 1체·전 타격·크리티컬/방어 적용 전<alpha=#FF></size>
+적 캐스팅 중에만 사용. 피해 후 차단
+초록·주황: 경직 <b>2.5초</b>
+빨강·시전 종료: 피해만 적용</size>
+C:\Users\MBC-501-19\Documents\ScrollHunter\Docs\근거자료\2026-10-14_패배_단일조정\01_패배_1920.png
+C:\Users\MBC-501-19\Documents\ScrollHunter\Docs\근거자료\2026-10-14_패배_단일조정\02_패배_1366.png

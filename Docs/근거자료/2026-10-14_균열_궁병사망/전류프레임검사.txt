@@ -1,0 +1,1 @@
+Phase VFX frames passed: 34 / frames 1272 (1x, 0.5x, manual pause, restart, phase skip, defeat)

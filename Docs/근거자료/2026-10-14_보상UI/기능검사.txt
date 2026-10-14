@@ -1,0 +1,26 @@
+PASS preparation
+PASS combat victory opens rewards
+PASS skip visible while choosing
+PASS small upper-right skip
+PASS replacement has no skip or old confirm
+PASS no prompt before selecting old card
+PASS card click opens yes/no prompt
+PASS both card names displayed
+PASS no change before yes
+PASS underlying controls disabled
+PASS no keeps reward and returns to slot selection
+PASS no preserves deck and restores input
+PASS reselected card updates prompt
+PASS yes replaces selected slot and closes prompt
+PASS no duplicate application and skip stays hidden
+PASS back restores upper-right skip
+PASS skip preserves deck
+PASS empty reward pool can skip
+PASS skip proceeds to next battle
+PASS inheritance skip unchanged
+PASS inheritance replacement unchanged
+Isolated save: C:/Users/MBC-50~1/AppData/Local/Temp/DefaultCompany/ScrollHunter\RewardUI-a5a1b91b1ade4a29bde971ba9752a15f.json
+PASS raycast skip (separate frame)
+PASS raycast rewardReplacementYes
+PASS raycast rewardReplacementNo
+PASS raycast deckButtons

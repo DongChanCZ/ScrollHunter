@@ -119,10 +119,10 @@ public static class StartingDeckChecks
             Check(deck.GetHandCard(0) == fire, "input cycles same slot");
             Step(0.99f); Check(a.CurrentHp == a.MaxHp && b.CurrentHp == b.MaxHp && c.CurrentHp == c.MaxHp, "pillar waits for cast");
             a.TakeDamage(a.CurrentHp); enemies.NotifyEnemyDied(); Step(0.011f);
-            Check(a.CurrentHp == 0 && b.CurrentHp == b.MaxHp - 50 && c.CurrentHp == c.MaxHp - 50, "pillar alive targets only");
-            Check(metrics.RecordedHits == 2 && metrics.DamageApplied == 100, "pillar records two targets / one use");
+            Check(a.CurrentHp == 0 && b.CurrentHp == b.MaxHp - 90 && c.CurrentHp == c.MaxHp - 90, "pillar alive targets only");
+            Check(metrics.RecordedHits == 2 && metrics.DamageApplied == 180, "pillar records two targets / one use");
             Reset(pillar, true); deck.TryUseSlot(0); Step(1f);
-            Check(a.CurrentHp == a.MaxHp - 50 && b.CurrentHp == b.MaxHp - 50 && c.CurrentHp == c.MaxHp - 50, "pillar three targets 150");
+            Check(a.CurrentHp == a.MaxHp - 90 && b.CurrentHp == b.MaxHp - 90 && c.CurrentHp == c.MaxHp - 90, "pillar three targets 270");
 
             Reset(spear); deck.TryUseSlot(0); Step(0.79f);
             Check(b.CurrentHp == b.MaxHp && cost.Current == 6f, "spear cost and pre-cast");
@@ -213,13 +213,13 @@ public static class StartingDeckChecks
 
             Reset(spark, true); deck.TryUseSlot(0); Step(0.249f);
             Check(a.CurrentHp == a.MaxHp && b.CurrentHp == b.MaxHp && c.CurrentHp == c.MaxHp, "spark no early hit");
-            Step(0.001f); Check(a.CurrentHp == a.MaxHp - 5 && b.CurrentHp == b.MaxHp - 5 && c.CurrentHp == c.MaxHp - 5, "spark first 5 to all");
+            Step(0.001f); Check(a.CurrentHp == a.MaxHp - 10 && b.CurrentHp == b.MaxHp - 10 && c.CurrentHp == c.MaxHp - 10, "spark first 10 to all");
             for (int i = 0; i < 7; i++) Step(0.25f);
-            Check(a.CurrentHp == a.MaxHp - 40 && b.CurrentHp == b.MaxHp - 40 && c.CurrentHp == c.MaxHp - 40
+            Check(a.CurrentHp == a.MaxHp - 80 && b.CurrentHp == b.MaxHp - 80 && c.CurrentHp == c.MaxHp - 80
                 && metrics.RecordedHits == 24 && Near(deck.LockRemaining, 0.2f), "spark eight hits each / tail");
             Step(0.201f); Check(!deck.IsLocked && metrics.RecordedHits == 24 && cost.Current == 7f, "spark completes no extra hit or cost");
             Reset(spark); SetHp(b, 5); deck.TryUseSlot(0); Step(2.2f);
-            Check(!b.IsAlive && c.CurrentHp == c.MaxHp - 40 && metrics.RecordedHits == 9 && !deck.IsLocked, "spark continues on survivors");
+            Check(!b.IsAlive && c.CurrentHp == c.MaxHp - 80 && metrics.RecordedHits == 9 && !deck.IsLocked, "spark continues on survivors");
 
             foreach (SkillData card in new[] { pillar, spear, ice, spark, armor, silence })
             {

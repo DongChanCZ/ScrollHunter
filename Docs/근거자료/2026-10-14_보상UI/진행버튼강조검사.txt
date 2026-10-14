@@ -1,0 +1,11 @@
+PASS next visible with original label
+PASS button size matches
+PASS same button frame
+PASS primary and hover contrast
+PASS slightly larger warm gold text
+PASS single gold outline
+PASS decorative arrow does not intercept clicks: ProceedChevronTop
+PASS decorative arrow does not intercept clicks: ProceedChevronBottom
+PASS hidden during order editing
+PASS restored after cancel
+PASS next pointer raycast

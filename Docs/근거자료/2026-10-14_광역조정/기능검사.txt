@@ -1,0 +1,4 @@
+Starting deck checks passed: 117
+Remaining skill checks passed: 77
+Reward checks passed: 59. Function/UI event checks; not physical input or balance validation.
+Combat readability checks: 33 passed (current HP preserved)

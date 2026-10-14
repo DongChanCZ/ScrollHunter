@@ -1,11 +1,11 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
 /// 스킬·포션 입력이 수락됐을 때의 짧은 아이콘 연출(10 A37 후속). 거절된 입력에는 재생하지 않는다.
 /// 카드는 수락 즉시 순환하므로 사용한 카드 아이콘을 따로 띄워 수축·복귀·점등 뒤 위로 사라지게 해
 /// 새로 들어온 카드와 구분한다. 입력 수락만 알리며 효과 성공 여부는 표시하지 않는다.
-/// 카드 순환·시전·GCD·입력 가능 시점에는 관여하지 않는다.
+/// 다음 카드 복사본은 같은 슬롯으로 이동한다. 실제 순환·시전·GCD·입력 가능 시점에는 관여하지 않는다.
 /// </summary>
 public class UseFeedbackUI : MonoBehaviour
 {
@@ -20,6 +20,9 @@ public class UseFeedbackUI : MonoBehaviour
         [System.NonSerialized] public Vector2 basePosition;
         [System.NonSerialized] public Vector3 baseScale;
         [System.NonSerialized] public Color flashColor;
+        [System.NonSerialized] public Image incomingIcon;
+        [System.NonSerialized] public Vector3 incomingStart, incomingEnd;
+        [System.NonSerialized] public Vector2 incomingSize;
     }
 
     [SerializeField] private DeckSystem deck;
@@ -47,6 +50,9 @@ public class UseFeedbackUI : MonoBehaviour
 
     // 연출 난수는 전투의 UnityEngine.Random 상태를 바꾸지 않는다(치명타 추첨과 분리).
     private readonly System.Random moteRandom = new System.Random();
+    private Image nextIcon;
+    private Vector3 nextBaseScale;
+    private BattleFlow flow;
     private float potionAge = -1f;
     private Vector3 potionBaseScale = Vector3.one;
     private Color potionGlowColor;
@@ -67,6 +73,10 @@ public class UseFeedbackUI : MonoBehaviour
     {
         if (deck == null) deck = FindFirstObjectByType<DeckSystem>();
         if (player == null) player = FindFirstObjectByType<Player>();
+        flow = FindFirstObjectByType<BattleFlow>();
+        var combat = FindFirstObjectByType<CombatUI>();
+        nextIcon = combat != null ? combat.NextCardIcon : null;
+        if (nextIcon != null) nextBaseScale = nextIcon.rectTransform.localScale;
         foreach (SlotFx fx in slots)
         {
             if (fx == null) continue;
@@ -74,6 +84,10 @@ public class UseFeedbackUI : MonoBehaviour
             {
                 fx.basePosition = fx.usedIcon.rectTransform.anchoredPosition;
                 fx.baseScale = fx.usedIcon.rectTransform.localScale;
+                fx.incomingIcon = new GameObject("IncomingCard", typeof(RectTransform), typeof(Image)).GetComponent<Image>();
+                fx.incomingIcon.transform.SetParent(fx.usedIcon.transform.parent, false);
+                fx.incomingIcon.raycastTarget = false;
+                fx.incomingIcon.preserveAspect = true;
             }
             if (fx.frameFlash != null) fx.flashColor = fx.frameFlash.color;
         }
@@ -123,6 +137,14 @@ public class UseFeedbackUI : MonoBehaviour
             fx.usedIcon.sprite = card != null ? card.Icon : null;
             fx.usedIcon.enabled = fx.usedIcon.sprite != null;
         }
+        if (fx.incomingIcon != null && nextIcon != null)
+        {
+            var incoming = deck.GetHandCard(slot);
+            fx.incomingIcon.sprite = incoming != null ? incoming.Icon : null;
+            fx.incomingStart = nextIcon.rectTransform.position;
+            fx.incomingEnd = fx.usedIcon.rectTransform.position;
+            fx.incomingSize = fx.usedIcon.rectTransform.rect.size;
+        }
         Apply(fx);
     }
 
@@ -147,10 +169,15 @@ public class UseFeedbackUI : MonoBehaviour
             Apply(fx);
         }
         potionAge = -1f;
+        if (nextIcon != null) nextIcon.rectTransform.localScale = nextBaseScale;
         ApplyPotion();
     }
 
-    private void Update() => Tick(Time.unscaledDeltaTime);
+    private void Update()
+    {
+        if (flow != null && flow.State != BattleFlowState.Fighting) { Clear(); return; }
+        Tick(Time.unscaledDeltaTime);
+    }
 
     private void Tick(float dt)
     {
@@ -160,6 +187,13 @@ public class UseFeedbackUI : MonoBehaviour
             fx.age += dt;
             if (fx.age >= SlotDuration) fx.age = -1f;
             Apply(fx);
+        }
+        if (nextIcon != null)
+        {
+            float pulse = 0f;
+            foreach (SlotFx fx in slots)
+                if (fx != null && fx.age >= 0f) pulse = Mathf.Max(pulse, Mathf.Sin(Mathf.PI * Mathf.Clamp01(fx.age / SlotDuration)));
+            nextIcon.rectTransform.localScale = nextBaseScale * (1f + pulse * 0.12f);
         }
         if (potionAge >= 0f)
         {
@@ -206,6 +240,19 @@ public class UseFeedbackUI : MonoBehaviour
                 rect.localScale = fx.baseScale * PressScale(fx.age);
                 rect.anchoredPosition = fx.basePosition + Vector2.up * (usedIconRise * fade);
                 fx.usedIcon.color = new Color(1f, 1f, 1f, 1f - fade);
+            }
+        }
+        if (fx.incomingIcon != null)
+        {
+            float travel = playing ? Mathf.Clamp01((fx.age - shrinkSeconds) / (SlotDuration - shrinkSeconds)) : 1f;
+            fx.incomingIcon.enabled = playing && fx.age >= shrinkSeconds && fx.incomingIcon.sprite != null;
+            if (fx.incomingIcon.enabled)
+            {
+                float eased = Smooth(travel);
+                var rect = fx.incomingIcon.rectTransform;
+                rect.position = Vector3.Lerp(fx.incomingStart, fx.incomingEnd, eased);
+                rect.sizeDelta = fx.incomingSize * Mathf.Lerp(0.5f, 1f, eased);
+                fx.incomingIcon.color = new Color(1f, 1f, 1f, 0.85f * (1f - Mathf.InverseLerp(0.8f, 1f, travel)));
             }
         }
         if (fx.frameFlash != null)

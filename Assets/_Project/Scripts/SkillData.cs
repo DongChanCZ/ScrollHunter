@@ -30,7 +30,10 @@ public class SkillData : ScriptableObject
     [Tooltip("1타 피해량(절대값). 공격력 스탯은 없다. 카드에 적힌 이 숫자가 곧 피해다.")]
     [SerializeField] private int damage = 0;
 
-    [Tooltip("타수. 총 피해 = 피해량 × 타수")]
+    [Tooltip("마지막 타격에만 더하는 기본 피해. 크리티컬·방어력 계산 전 적용.")]
+    [SerializeField, Min(0)] private int finalHitBonus = 0;
+
+    [Tooltip("타수. 총 피해 = 피해량 × 타수 + 마지막 타격 추가 피해")]
     [SerializeField] private int hitCount = 1;
 
     // 구 에셋 직렬화 호환용. 현재 피해는 이 값과 무관하게 타격별로 처리한다.
@@ -62,6 +65,9 @@ public class SkillData : ScriptableObject
     public float Cost => cost;
     public SkillCategory Category => category;
     public int Damage => damage;
+    public int FinalHitBonus => finalHitBonus;
+    public long TotalDamage => (long)damage * HitCount + finalHitBonus;
+    public int GetHitDamage(int hitIndex) => damage + (hitIndex == HitCount ? finalHitBonus : 0);
     public int HitCount => Mathf.Max(1, hitCount); // 02 E19: 미설정·0타도 1타로 보정.
     public bool ResolveHitsSeparately => resolveHitsSeparately;
     public float CastTime => castTime;

@@ -1,0 +1,185 @@
+﻿02·03·04·10 현행 확정값과 Unity 저장값 대조. 과거 기록·빈칸·후속안은 확정값으로 처리하지 않음.
+Player.maxHp: 500.0 — 일치
+Player.defense: 20.0 — 일치
+Player.criticalChance: 15.0 — 일치
+Player.criticalMultiplier: 1.5 — 일치
+Player.basePotionCapacity: 3 — 일치
+Player.potionHealFraction: 0.30000001192092896 — 일치
+Player.redShieldDamageMultiplier: 0.5 — 일치
+CostSystem.regenPerSecond: 0.800000011920929 — 일치
+CostSystem.maxCost: 10.0 — 일치
+CostSystem.startCost: 3.0 — 일치
+DeckSystem.minGcd: 0.4000000059604645 — 일치
+DeckSystem.interruptStagger: 2.5 — 일치
+Tutorial.HP: 300 — 일치
+Tutorial.방어력: 0.0 — 일치
+Tutorial.공격 수: 3 — 일치
+Tutorial.공격1.damage: 20 — 일치
+Tutorial.공격1.castTime: 3.0 — 일치
+Tutorial.공격1.stunSeconds: 0.0 — 일치
+Tutorial.공격1.staggerAfterCast: 1.0 — 일치
+Tutorial.공격2.damage: 30 — 일치
+Tutorial.공격2.castTime: 4.0 — 일치
+Tutorial.공격2.stunSeconds: 2.0 — 일치
+Tutorial.공격2.staggerAfterCast: 1.5 — 일치
+Tutorial.공격3.damage: 350 — 일치
+Tutorial.공격3.castTime: 4.0 — 일치
+Tutorial.공격3.stunSeconds: 0.0 — 일치
+Tutorial.공격3.staggerAfterCast: 2.0 — 일치
+A_Green.HP: 350 — 일치
+A_Green.방어력: 0.0 — 일치
+A_Green.공격 수: 1 — 일치
+A_Green.공격1.damage: 20 — 일치
+A_Green.공격1.castTime: 2.5 — 일치
+A_Green.공격1.stunSeconds: 0.0 — 일치
+A_Green.공격1.staggerAfterCast: 1.0 — 일치
+B_Orange.HP: 300 — 일치
+B_Orange.방어력: 0.0 — 일치
+B_Orange.공격 수: 2 — 일치
+B_Orange.공격1.damage: 25 — 일치
+B_Orange.공격1.castTime: 2.5 — 일치
+B_Orange.공격1.stunSeconds: 0.0 — 일치
+B_Orange.공격1.staggerAfterCast: 1.0 — 일치
+B_Orange.공격2.damage: 40 — 일치
+B_Orange.공격2.castTime: 3.0 — 일치
+B_Orange.공격2.stunSeconds: 2.0 — 일치
+B_Orange.공격2.staggerAfterCast: 1.5 — 일치
+C_Red.HP: 500 — 일치
+C_Red.방어력: 0.0 — 일치
+C_Red.공격 수: 2 — 일치
+C_Red.공격1.damage: 30 — 일치
+C_Red.공격1.castTime: 2.5 — 일치
+C_Red.공격1.stunSeconds: 0.0 — 일치
+C_Red.공격1.staggerAfterCast: 1.0 — 일치
+C_Red.공격2.damage: 240 — 일치
+C_Red.공격2.castTime: 4.0 — 일치
+C_Red.공격2.stunSeconds: 0.0 — 일치
+C_Red.공격2.staggerAfterCast: 2.0 — 일치
+D_Mixed.HP: 800 — 일치
+D_Mixed.방어력: 0.0 — 일치
+D_Mixed.공격 수: 3 — 일치
+D_Mixed.공격1.damage: 30 — 일치
+D_Mixed.공격1.castTime: 2.5 — 일치
+D_Mixed.공격1.stunSeconds: 0.0 — 일치
+D_Mixed.공격1.staggerAfterCast: 1.0 — 일치
+D_Mixed.공격2.damage: 40 — 일치
+D_Mixed.공격2.castTime: 2.5 — 일치
+D_Mixed.공격2.stunSeconds: 2.0 — 일치
+D_Mixed.공격2.staggerAfterCast: 1.5 — 일치
+D_Mixed.공격3.damage: 150 — 일치
+D_Mixed.공격3.castTime: 3.5 — 일치
+D_Mixed.공격3.stunSeconds: 0.0 — 일치
+D_Mixed.공격3.staggerAfterCast: 2.0 — 일치
+Boss.HP: 3000 — 일치
+Boss.방어력: 0.0 — 일치
+Boss.공격 수: 5 — 일치
+Boss.공격1.damage: 35 — 일치
+Boss.공격1.castTime: 2.0 — 일치
+Boss.공격1.stunSeconds: 0.0 — 일치
+Boss.공격1.staggerAfterCast: 1.0 — 일치
+Boss.공격2.damage: 40 — 일치
+Boss.공격2.castTime: 3.0 — 일치
+Boss.공격2.stunSeconds: 2.0 — 일치
+Boss.공격2.staggerAfterCast: 1.5 — 일치
+Boss.공격3.damage: 300 — 일치
+Boss.공격3.castTime: 6.0 — 일치
+Boss.공격3.stunSeconds: 0.0 — 일치
+Boss.공격3.staggerAfterCast: 2.0 — 일치
+Boss.공격4.damage: 60 — 일치
+Boss.공격4.castTime: 5.0 — 일치
+Boss.공격4.stunSeconds: 5.0 — 일치
+Boss.공격4.staggerAfterCast: 1.5 — 일치
+Boss.공격5.damage: 600 — 일치
+Boss.공격5.castTime: 20.0 — 일치
+Boss.공격5.stunSeconds: 0.0 — 일치
+Boss.공격5.staggerAfterCast: 2.0 — 일치
+Orb_Ruin.HP: 400 — 일치
+Orb_Ruin.방어력: 0.0 — 일치
+Orb_Ruin.공격 수: 0 — 일치
+Orb_Cycle.HP: 400 — 일치
+Orb_Cycle.방어력: 0.0 — 일치
+Orb_Cycle.공격 수: 0 — 일치
+Boss.phase1.hpThreshold: 1.0 — 일치
+Boss.phase1.castTimeMultiplier: 1.0 — 일치
+Boss.phase1.pattern: [1, 2, 1, 3] — 일치
+Boss.phase2.hpThreshold: 0.6000000238418579 — 일치
+Boss.phase2.castTimeMultiplier: 0.800000011920929 — 일치
+Boss.phase2.pattern: [1, 1, 4, 1, 3, 1, 2] — 일치
+Boss.phase3.hpThreshold: 0.25 — 일치
+Boss.phase3.castTimeMultiplier: 1.0 — 일치
+Boss.phase3.pattern: [5, 1, 4, 1, 3, 1] — 일치
+Boss.phaseTransitionSeconds: 2.0 — 일치
+Boss.orbDamageMultiplier: 1.100000023841858 — 일치
+Boss.orbCastTimeReduction: 0.20000000298023224 — 일치
+Boss.orbDestructionDamage: 75 — 일치
+PS01_EmergencyPotion.maxStacks: 3 — 일치
+PS01_EmergencyPotion.stat: 7 — 일치
+PS01_EmergencyPotion.amount: 1.0 — 일치
+PS01_EmergencyPotion.rareReward: False — 일치
+PS01_EmergencyPotion.추가 효과 수: 1 — 일치
+PS01_EmergencyPotion.추가효과 종류0: 9 — 일치
+PS01_EmergencyPotion.추가효과 수치0: 1.0 — 일치
+PS02_Healing.maxStacks: 0 — 일치
+PS02_Healing.stat: 8 — 일치
+PS02_Healing.amount: 150.0 — 일치
+PS02_Healing.rareReward: False — 일치
+PS02_Healing.추가 효과 수: 0 — 일치
+PS03_Endurance.maxStacks: 0 — 일치
+PS03_Endurance.stat: 2 — 일치
+PS03_Endurance.amount: 50.0 — 일치
+PS03_Endurance.rareReward: False — 일치
+PS03_Endurance.추가 효과 수: 0 — 일치
+PS04_Circulation.maxStacks: 4 — 일치
+PS04_Circulation.stat: 0 — 일치
+PS04_Circulation.amount: 0.10000000149011612 — 일치
+PS04_Circulation.rareReward: False — 일치
+PS04_Circulation.추가 효과 수: 0 — 일치
+PS05_Origin.maxStacks: 3 — 일치
+PS05_Origin.stat: 3 — 일치
+PS05_Origin.amount: 1.0 — 일치
+PS05_Origin.rareReward: False — 일치
+PS05_Origin.추가 효과 수: 0 — 일치
+PS06_Abyss.maxStacks: 2 — 일치
+PS06_Abyss.stat: 4 — 일치
+PS06_Abyss.amount: 2.0 — 일치
+PS06_Abyss.rareReward: False — 일치
+PS06_Abyss.추가 효과 수: 0 — 일치
+PS07_Bulwark.maxStacks: 5 — 일치
+PS07_Bulwark.stat: 5 — 일치
+PS07_Bulwark.amount: 0.20000000298023224 — 일치
+PS07_Bulwark.rareReward: False — 일치
+PS07_Bulwark.추가 효과 수: 0 — 일치
+PS08_Binding.maxStacks: 2 — 일치
+PS08_Binding.stat: 6 — 일치
+PS08_Binding.amount: 0.5 — 일치
+PS08_Binding.rareReward: False — 일치
+PS08_Binding.추가 효과 수: 0 — 일치
+PS09_Precision.maxStacks: 3 — 일치
+PS09_Precision.stat: 1 — 일치
+PS09_Precision.amount: 5.0 — 일치
+PS09_Precision.rareReward: False — 일치
+PS09_Precision.추가 효과 수: 0 — 일치
+PS10_Devil.maxStacks: 1 — 일치
+PS10_Devil.stat: 2 — 일치
+PS10_Devil.amount: 50.0 — 일치
+PS10_Devil.rareReward: True — 일치
+PS10_Devil.추가 효과 수: 6 — 일치
+PS10_Devil.추가효과 종류0: 0 — 일치
+PS10_Devil.추가효과 수치0: 0.10000000149011612 — 일치
+PS10_Devil.추가효과 종류1: 3 — 일치
+PS10_Devil.추가효과 수치1: 1.0 — 일치
+PS10_Devil.추가효과 종류2: 4 — 일치
+PS10_Devil.추가효과 수치2: 1.0 — 일치
+PS10_Devil.추가효과 종류3: 5 — 일치
+PS10_Devil.추가효과 수치3: 0.20000000298023224 — 일치
+PS10_Devil.추가효과 종류4: 6 — 일치
+PS10_Devil.추가효과 수치4: 0.5 — 일치
+PS10_Devil.추가효과 종류5: 1 — 일치
+PS10_Devil.추가효과 수치5: 10.0 — 일치
+PS10_Devil.등장률: 0.009999999776482582 — 일치
+시작 덱 장수: 8 — 일치
+시작 덱 총 코스트: 24.0 — 일치
+회복량 기준 시간: 30.0 — 일치
+0.5배속 실제1초 회복량: 0.4 — 일치
+기본·적·보스·패시브 자동 대조 182개 통과.
+3인전 말단 절반 올림(10·13/20), EnemyManager 발동 간격0.5초, 채널링 간격은 코드·문서 별도 대조.

@@ -1,0 +1,14 @@
+PASS reward back centered
+PASS next hidden during replacement
+PASS modal still disables back
+PASS no restores centered back
+PASS inheritance back unchanged
+PASS order and next visible after reward
+PASS normal hover pressed selected disabled colors match
+PASS label style matches
+PASS button frame matches
+PASS next hidden while dragging order
+PASS cancel restores styled next
+PASS save restores styled next
+PASS initial preparation shares style
+PASS between-battle label remains

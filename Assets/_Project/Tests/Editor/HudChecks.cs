@@ -321,7 +321,7 @@ public static class HudChecks
             freshBattle();
             player.TakeDamage(99999);
             Check(lastNumber() == "-500", "overkill shows actual HP lost");
-            flow.RestartRun();
+            flow.ReturnToTitle();
             Check(!stats.Available && !((Button)Get(stats, "toggleButton")).gameObject.activeSelf || !stats.Available, "stats hidden outside normal battle");
             return "HUD checks passed: " + passed + ". Function/Tick and frame-step checks; physical input not covered.";
         }

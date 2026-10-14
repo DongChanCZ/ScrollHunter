@@ -1,0 +1,1 @@
+passed=True accepted=True frames=209 visibleFrames=54 xTravel=872.3799 tutorialStep=1

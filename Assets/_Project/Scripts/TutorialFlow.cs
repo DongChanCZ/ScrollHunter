@@ -1,4 +1,4 @@
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,6 +25,8 @@ public class TutorialFlow : MonoBehaviour
     [SerializeField] private string continueHintText = "Space";
     [SerializeField, TextArea] private string enemyInfoPrompt = "해당 구역은 타겟팅 된 적의 공격에 대한 정보를 보여줍니다";
     private bool showingEnemyInfo;
+    private bool pendingCycleGuide;
+    private int cycleGuideStep;
     [SerializeField, TextArea] private string defeatPrompt = "이제 공격스킬을 써서 적을 처치하세요";
     [SerializeField, TextArea] private string completionPrompt = "<size=36><b>튜토리얼 완료</b></size>\nHP와 포션이 회복된 상태로 다음 전투를 시작합니다.\n스킬 순서를 확인하고 전투를 준비하세요.";
     [Header("외형 (10 A37) — 비우면 단색 사각형")]
@@ -76,13 +78,16 @@ public class TutorialFlow : MonoBehaviour
             tutorialEnemy.AttackFired -= OnAttackFired;
             tutorialEnemy.HoldTutorialDefeat = false;
         }
-        Active = ShowingGuide = WaitingForSkill = showingEnemyInfo = false;
+        Active = ShowingGuide = WaitingForSkill = showingEnemyInfo = pendingCycleGuide = false;
+        cycleGuideStep = 0;
         if (overlay != null) overlay.SetActive(false);
         if (skipRect != null) skipRect.gameObject.SetActive(false);
     }
 
     public void Begin(int hp, bool retry)
     {
+        pendingCycleGuide = false;
+        cycleGuideStep = 0;
         if (!retry) CompletedLessons = 0;
         Active = true;
         ShowingGuide = WaitingForSkill = false;
@@ -117,12 +122,19 @@ public class TutorialFlow : MonoBehaviour
     {
         if (!Active) return;
         if (!player.IsAlive) { flow.BeginTutorial(true); return; }
+        if (pendingCycleGuide && !deck.IsLocked)
+        {
+            pendingCycleGuide = false;
+            cycleGuideStep = 1;
+            ShowGuide("사용한 카드는 대기열 맨 뒤로 이동합니다.\n대기열의 첫 카드가 방금 사용한 칸에 들어왔습니다.", slotHighlights[0]);
+            consumedFrame = Time.frameCount;
+        }
         if (CompletedLessons >= 6 && tutorialEnemy.CurrentHp <= 0) Complete();
     }
 
     private void OnCastAdvanced()
     {
-        if (!Active || ShowingGuide || WaitingForSkill || tutorialEnemy.CastProgress01 < 0.5f) return;
+        if (!Active || pendingCycleGuide || ShowingGuide || WaitingForSkill || tutorialEnemy.CastProgress01 < 0.5f) return;
         if (CompletedLessons == 3 && tutorialEnemy.CastColor == CastColor.Orange) ShowLesson(4);
         else if (CompletedLessons == 4 && tutorialEnemy.CastColor == CastColor.Red) ShowLesson(5);
     }
@@ -172,6 +184,18 @@ public class TutorialFlow : MonoBehaviour
         {
             ShowLesson(7);
             flow.OpenTutorialPreparation();
+            return true;
+        }
+        if (cycleGuideStep > 0)
+        {
+            if (cycleGuideStep == 1)
+            {
+                cycleGuideStep = 2;
+                var combat = FindFirstObjectByType<CombatUI>();
+                ShowGuide("이 카드는 다음에 손패로 들어올 카드입니다.\n쓰지 않은 카드는 남아 있으니, 차단과 방어가 필요할 때까지 아껴두세요.",
+                    combat != null && combat.NextCardIcon != null ? combat.NextCardIcon.rectTransform : null);
+            }
+            else { HideGuide(); ResumeTime(); }
             return true;
         }
         // 3단계 안에서 마커 → 적 정보 → 파이어볼 순서로 안내한다.
@@ -227,13 +251,15 @@ public class TutorialFlow : MonoBehaviour
         CompletedLessons = Lesson;
         Debug.Log("[튜토리얼] 학습 " + Lesson + " 입력 수락 / " + card.DisplayName, this);
         HideGuide();
+        pendingCycleGuide = Lesson == 3;
         ResumeTime();
     }
 
     private void ResumeTime() => Time.timeScale = information != null ? information.BattleSpeed : 1f;
     private void HideGuide()
     {
-        ShowingGuide = WaitingForSkill = showingDefeatPrompt = showingEnemyInfo = false;
+        ShowingGuide = WaitingForSkill = showingDefeatPrompt = showingEnemyInfo = pendingCycleGuide = false;
+        cycleGuideStep = 0;
         overlay.SetActive(false);
     }
 

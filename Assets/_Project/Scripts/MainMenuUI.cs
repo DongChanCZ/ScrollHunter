@@ -14,6 +14,9 @@ public class MainMenuUI : MonoBehaviour
     [SerializeField] private Button controlsOpen, controlsClose, optionsOpen, optionsCancel, optionsApply, quitButton, inheritanceOpen;
     [SerializeField] private Button modeButton, resolutionPrevious, resolutionNext;
     [SerializeField] private TMP_Text modeLabel, resolutionLabel;
+    [SerializeField] private TMP_Dropdown resolutionDropdown;
+    [SerializeField] private TMP_Text currentDisplayLabel;
+    [SerializeField] private string currentDisplayFormat = "현재 설정: {0} · {1}";
     [SerializeField] private Slider[] volumeSliders;
     [SerializeField] private TMP_Text[] volumeLabels;
     [SerializeField] private AudioMixer mixer;
@@ -77,6 +80,7 @@ public class MainMenuUI : MonoBehaviour
         modeButton.onClick.AddListener(() => { windowed = !windowed; UpdateDisplayLabels(); });
         resolutionPrevious.onClick.AddListener(() => ChangeResolution(-1));
         resolutionNext.onClick.AddListener(() => ChangeResolution(1));
+        if (resolutionDropdown != null) resolutionDropdown.onValueChanged.AddListener(SelectResolution);
         for (int i = 0; i < volumeSliders.Length; i++)
         {
             int index = i;
@@ -153,6 +157,11 @@ public class MainMenuUI : MonoBehaviour
         resolutions.Add(native);
         var unique = resolutions.Distinct().OrderBy(r => r.x).ThenBy(r => r.y).ToArray();
         resolutions.Clear(); resolutions.AddRange(unique);
+        if (resolutionDropdown != null)
+        {
+            resolutionDropdown.ClearOptions();
+            resolutionDropdown.AddOptions(resolutions.Select(r => string.Format(resolutionFormat, r.x, r.y)).ToList());
+        }
     }
 
     private void ReadSavedOptions()
@@ -169,6 +178,8 @@ public class MainMenuUI : MonoBehaviour
             UpdateVolumeLabel(i);
         }
         UpdateDisplayLabels();
+        if (currentDisplayLabel != null)
+            currentDisplayLabel.text = string.Format(currentDisplayFormat, modeLabel.text, resolutionLabel.text);
     }
 
     public void RequestStart()
@@ -253,6 +264,8 @@ public class MainMenuUI : MonoBehaviour
 
     public void HandleEscape()
     {
+        if (OptionsVisible && resolutionDropdown != null && resolutionDropdown.IsExpanded)
+        { resolutionDropdown.Hide(); return; }
         if (newGamePanel != null && newGamePanel.activeSelf) { CancelNewGame(); return; }
         if (startDataPanel != null && startDataPanel.activeSelf) { CloseStartPanels(); return; }
         if (resetPanel.activeSelf) { resetPanel.SetActive(false); return; }
@@ -307,11 +320,19 @@ public class MainMenuUI : MonoBehaviour
         UpdateDisplayLabels();
     }
 
+    private void SelectResolution(int index)
+    {
+        if (index < 0 || index >= resolutions.Count) return;
+        resolutionIndex = index;
+        UpdateDisplayLabels();
+    }
+
     private void UpdateDisplayLabels()
     {
         modeLabel.text = windowed ? windowedText : fullscreenText;
         var r = resolutions[resolutionIndex];
         resolutionLabel.text = string.Format(resolutionFormat, r.x, r.y);
+        if (resolutionDropdown != null) resolutionDropdown.SetValueWithoutNotify(resolutionIndex);
     }
 
     private void UpdateVolumeLabel(int index) => volumeLabels[index].text = string.Format(volumeFormat, volumeSliders[index].value * 100f);

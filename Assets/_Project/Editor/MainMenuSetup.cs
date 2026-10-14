@@ -206,9 +206,97 @@ public static class MainMenuSetup
             var label=values.GetComponent<TMP_Text>();
             if(!label.text.Contains("Esc")) label.text=label.text.Replace("A 또는 우클릭 / 상단 정지·재개 버튼","A 또는 우클릭 / 상단 버튼 · Esc 메뉴");
         }
+        ApplyResolutionOptions();
         UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(flow.gameObject.scene);
     }
 
+    [MenuItem("Tools/Scroll Hunter/Apply Resolution Options")]
+    public static void ApplyResolutionOptions()
+    {
+        if (Application.isPlaying) throw new System.InvalidOperationException("Stop Play first.");
+        var menu = Object.FindFirstObjectByType<MainMenuUI>();
+        var so = new SerializedObject(menu);
+        var panel = ((GameObject)so.FindProperty("optionsPanel").objectReferenceValue).transform;
+        var source = (Button)so.FindProperty("modeButton").objectReferenceValue;
+        var font = source.GetComponentInChildren<TMP_Text>(true);
+        var old = panel.Find("ResolutionValue");
+        if (old) Object.DestroyImmediate(old.gameObject);
+        var control = panel.Find("ResolutionDropdown");
+        if (!control)
+        {
+            control = TMP_DefaultControls.CreateDropdown(new TMP_DefaultControls.Resources()).transform;
+            control.name = "ResolutionDropdown"; control.SetParent(panel, false);
+        }
+        var dropdown = control.GetComponent<TMP_Dropdown>();
+        Place((RectTransform)control, new Vector2(170,145), new Vector2(360,70));
+        var background = control.GetComponent<Image>();
+        background.sprite = null; background.type = Image.Type.Simple; background.color = new Color(.64f,.51f,.3f,.8f);
+        var border = control.GetComponent<Outline>(); if (border) Object.DestroyImmediate(border);
+        var face = control.Find("SelectionBackground");
+        if (!face) face = Box("SelectionBackground",control,Color.white).transform;
+        face.SetAsFirstSibling();
+        var faceRect = (RectTransform)face; faceRect.anchorMin = Vector2.zero; faceRect.anchorMax = Vector2.one;
+        faceRect.offsetMin = Vector2.one; faceRect.offsetMax = -Vector2.one;
+        var faceImage = face.GetComponent<Image>(); faceImage.raycastTarget = false; dropdown.targetGraphic = faceImage;
+        var selectionColors = dropdown.colors;
+        selectionColors.normalColor = new Color(.055f,.07f,.095f,1);
+        selectionColors.highlightedColor = selectionColors.selectedColor = new Color(.10f,.13f,.18f,1);
+        selectionColors.pressedColor = new Color(.16f,.15f,.12f,1); dropdown.colors = selectionColors;
+        foreach (var text in dropdown.GetComponentsInChildren<TMP_Text>(true))
+        {
+            text.font = font.font; text.fontSharedMaterial = font.fontSharedMaterial;
+            text.fontSize = 28; text.color = new Color32(234,221,195,255);
+            text.alignment = TextAlignmentOptions.MidlineLeft; text.raycastTarget = false;
+            text.textWrappingMode = TextWrappingModes.NoWrap;
+        }
+        dropdown.captionText.rectTransform.offsetMin = new Vector2(24,6);
+        dropdown.captionText.rectTransform.offsetMax = new Vector2(-48,-6);
+        control.Find("Arrow").gameObject.SetActive(false);
+        var arrow = control.Find("ArrowLabel");
+        if (!arrow) arrow = Label("ArrowLabel",control,font,"▼",Vector2.zero,new Vector2(32,50),22,TextAlignmentOptions.Center).transform;
+        var ar = (RectTransform)arrow; ar.anchorMin = ar.anchorMax = new Vector2(1,.5f); ar.anchoredPosition = new Vector2(-25,0);
+        var template = dropdown.template;
+        template.sizeDelta = new Vector2(0,320); template.anchoredPosition = new Vector2(0,-6);
+        template.GetComponent<ScrollRect>().scrollSensitivity = 40f;
+        var paper = template.GetComponent<Image>(); paper.sprite = null; paper.color = new Color(.035f,.045f,.064f,1);
+        var outline = template.GetComponent<Outline>(); if (outline) Object.DestroyImmediate(outline);
+        var content = (RectTransform)template.Find("Viewport/Content"); content.sizeDelta = new Vector2(0,60);
+        var item = (RectTransform)content.Find("Item"); item.sizeDelta = new Vector2(0,52);
+        var toggle = item.GetComponent<Toggle>(); var colors = toggle.colors;
+        colors.normalColor = new Color(.055f,.07f,.095f,1);
+        colors.highlightedColor = colors.selectedColor = new Color(.20f,.23f,.28f,1);
+        colors.pressedColor = new Color(.32f,.28f,.19f,1); toggle.colors = colors;
+        item.Find("Item Background").GetComponent<Image>().color = Color.white;
+        var check = (RectTransform)item.Find("Item Checkmark"); check.sizeDelta = new Vector2(4,26); check.anchoredPosition = new Vector2(12,0);
+        check.GetComponent<Image>().color = new Color(.86f,.74f,.5f,1);
+        dropdown.itemText.rectTransform.offsetMin = new Vector2(28,1);
+        dropdown.itemText.rectTransform.offsetMax = new Vector2(-12,-1);
+        var bar = template.Find("Scrollbar").GetComponent<Scrollbar>();
+        bar.GetComponent<Image>().color = new Color(.08f,.10f,.14f,1);
+        bar.handleRect.GetComponent<Image>().color = new Color(.64f,.51f,.3f,1);
+        dropdown.ClearOptions(); dropdown.AddOptions(new System.Collections.Generic.List<string>{"1920 × 1080"});
+        Link(so,"resolutionDropdown",dropdown); Link(so,"resolutionLabel",dropdown.captionText);
+        var current = panel.Find("DisplayHint").GetComponent<TMP_Text>();
+        // 실행 때 저장된 화면 모드·해상도를 표시한다.
+        current.text = "현재 설정"; current.fontSize = 24;
+        Place(current.rectTransform,new Vector2(0,84),new Vector2(1200,38));
+        Link(so,"currentDisplayLabel",current);
+        var separator = panel.Find("DisplaySoundDivider");
+        if (!separator) separator = Box("DisplaySoundDivider",panel,new Color(.64f,.51f,.3f,.6f)).transform;
+        Place((RectTransform)separator,new Vector2(0,52),new Vector2(1160,2));
+        separator.GetComponent<Image>().raycastTarget = false;
+        for (int i=0;i<4;i++)
+        {
+            float y = -i*80;
+            foreach (string name in new[]{"SoundLabel","Volume","VolumeValue"})
+            {
+                var row = (RectTransform)panel.Find(name+i); var at = row.anchoredPosition; at.y = y; row.anchoredPosition = at;
+            }
+        }
+        Place((RectTransform)panel.Find("Hint"),new Vector2(0,-298),new Vector2(1400,44));
+        so.ApplyModifiedPropertiesWithoutUndo();
+        UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(menu.gameObject.scene);
+    }
 
     [MenuItem("Tools/Scroll Hunter/Apply Start Confirmation and Stage Clear")]
     public static void ApplyStartAndEnding()

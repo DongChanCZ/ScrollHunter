@@ -32,6 +32,42 @@ public static class FantasyUiTrial
         r.anchorMin = Vector2.zero; r.anchorMax = Vector2.one;
         r.offsetMin = min; r.offsetMax = max;
     }
+    [MenuItem("Tools/Scroll Hunter/Apply Combat Shortcut Labels")]
+    public static void ApplyCombatShortcutLabels()
+    {
+        if (EditorApplication.isPlaying) throw new System.InvalidOperationException("Stop Play before applying UI.");
+        var scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
+        if (scene.name != "Battle") throw new System.InvalidOperationException("Open Battle scene.");
+        var info = new SerializedObject(Object.FindFirstObjectByType<CombatInfoUI>());
+        var combat = new SerializedObject(Object.FindFirstObjectByType<CombatUI>());
+        var potionKey = (TMP_Text)combat.FindProperty("potionKeyText").objectReferenceValue;
+        string[] buttons = { "pauseButton", "speedButton" };
+        string[] keys = { "A", "S" };
+        for (int i = 0; i < buttons.Length; i++)
+        {
+            var button = (RectTransform)info.FindProperty(buttons[i]).objectReferenceValue;
+            var chip = button.Find("ShortcutKey");
+            if (!chip)
+                chip = Object.Instantiate(potionKey.transform.parent.gameObject, button, false).transform;
+            chip.name = "ShortcutKey";
+            chip.localScale = Vector3.one;
+            chip.localRotation = Quaternion.identity;
+            Rect((RectTransform)chip, new Vector2(0, .5f), new Vector2(.5f, .5f), Vector2.zero, new Vector2(30, 34));
+            chip.GetComponent<Image>().raycastTarget = false;
+            var label = chip.GetComponentInChildren<TMP_Text>(true);
+            label.name = "KeyLabel";
+            label.text = keys[i];
+            label.fontSize = 26;
+            label.enableAutoSizing = false;
+            label.alignment = TextAlignmentOptions.Center;
+            label.margin = Vector4.zero;
+            label.raycastTarget = false;
+            Stretch(label.rectTransform, Vector2.zero, Vector2.zero);
+            chip.gameObject.SetActive(true);
+        }
+        EditorSceneManager.MarkSceneDirty(scene);
+    }
+
     [MenuItem("Tools/Scroll Hunter/Apply Fantasy UI Trial")]
     public static void Apply()
     {
@@ -164,6 +200,7 @@ public static class FantasyUiTrial
                 image.sprite = null; image.color = new Color(.075f,.085f,.10f,.80f);
             }
         }
+        ApplyCombatShortcutLabels();
         LayoutRebuilder.ForceRebuildLayoutImmediate(root);
         AssetDatabase.SaveAssets(); EditorSceneManager.MarkSceneDirty(scene); EditorSceneManager.SaveScene(scene);
         Debug.Log("Square skill icons, parchment tooltip and clean gauges saved.");

@@ -19,7 +19,7 @@ public static class InheritanceSetup
             entry.FindPropertyRelative("inheritanceId").stringValue = AssetDatabase.AssetPathToGUID(AssetDatabase.GetAssetPath(asset));
             entry.FindPropertyRelative("inheritable").boolValue = !asset.name.StartsWith("PS02_");
         }
-        f.FindProperty("defeatFormat").stringValue = "전투 {0} 패배\n이번 런에서 얻은 스킬·패시브 중 1개를 계승할 수 있습니다.";
+        f.FindProperty("defeatFormat").stringValue = BattleFlow.DefeatMessage;
         f.ApplyModifiedPropertiesWithoutUndo();
         var ui = f.FindProperty("rewardUI").objectReferenceValue as BattleRewardUI;
         var u = new SerializedObject(ui);
@@ -73,7 +73,7 @@ public static class InheritanceSetup
         var visual = confirm.GetComponent<CanvasGroup>();
         if (visual == null) visual = confirm.gameObject.AddComponent<CanvasGroup>();
         Link(u, "confirmReplacementVisual", visual);
-        u.FindProperty("replaceFormat").stringValue = "{0} 선택 · 교체할 카드를 고른 뒤 확인을 누르세요.";
+        u.FindProperty("replaceFormat").stringValue = "{0} 선택 · 교체할 카드를 고르세요.";
         u.FindProperty("inheritanceReplaceFormat").stringValue = "{0} 계승 · 영구 시작 덱에서 교체할 자리를 고른 뒤 확인을 누르세요.";
         u.ApplyModifiedPropertiesWithoutUndo();
         var buttons = new[] { back, confirm, skip };
@@ -93,8 +93,59 @@ public static class InheritanceSetup
         confirm.interactable = false;
         visual.alpha = u.FindProperty("disabledConfirmAlpha").floatValue;
         confirm.gameObject.SetActive(false);
+        var flow = new SerializedObject(Object.FindFirstObjectByType<BattleFlow>());
+        var next = (Button)flow.FindProperty("nextButton").objectReferenceValue;
+        var reorder = (Button)u.FindProperty("reorderButton").objectReferenceValue;
+        var nextColors = reorder.colors;
+        nextColors.normalColor = new Color(.21f, .28f, .39f);
+        nextColors.highlightedColor = new Color(.36f, .46f, .62f);
+        nextColors.selectedColor = nextColors.highlightedColor;
+        nextColors.pressedColor = new Color(.16f, .22f, .31f);
+        next.colors = nextColors;
+        var gold = new Color32(242, 210, 145, 255);
+        var nextLabel = next.GetComponentInChildren<TMP_Text>(true);
+        nextLabel.color = gold;
+        nextLabel.fontSize = 29f;
+        Place(nextLabel.rectTransform, new Vector2(-14f, 0f), new Vector2(236f, 60f));
+        var outline = next.GetComponent<Outline>();
+        if (outline == null) outline = next.gameObject.AddComponent<Outline>();
+        outline.effectColor = new Color(0.88f, 0.68f, 0.32f, 0.8f);
+        outline.effectDistance = new Vector2(1.5f, -1.5f);
+        outline.useGraphicAlpha = true;
+        Decoration(next.transform, "ProceedChevronTop", new Vector2(124f, 4f), new Vector2(14f, 3f), gold)
+            .rectTransform.localRotation = Quaternion.Euler(0f, 0f, -45f);
+        Decoration(next.transform, "ProceedChevronBottom", new Vector2(124f, -4f), new Vector2(14f, 3f), gold)
+            .rectTransform.localRotation = Quaternion.Euler(0f, 0f, 45f);
+        ApplyRewardReplacementPrompt(ui);
         UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(ui.gameObject.scene);
     }
+    private static void ApplyRewardReplacementPrompt(BattleRewardUI ui)
+    {
+        var so = new SerializedObject(ui);
+        if (so.FindProperty("rewardReplacementConfirmation").objectReferenceValue != null) return;
+        var parent = ((GameObject)so.FindProperty("panel").objectReferenceValue).transform;
+        var source = (Button)so.FindProperty("backButton").objectReferenceValue;
+        var label = source.GetComponentInChildren<TMP_Text>(true);
+        var modal = Panel("RewardReplacementConfirmation", parent, new Color(.015f, .02f, .03f, .88f));
+        var frame = Decoration(modal.transform, "Frame", Vector2.zero, new Vector2(1214, 394), new Color32(190,153,92,255));
+        frame.sprite = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/_Project/UI/KenneyBorders/panel-border-002.png");
+        frame.type = Image.Type.Sliced;
+        Decoration(modal.transform, "Body", Vector2.zero, new Vector2(1200, 380), new Color32(13,18,28,255)).transform.SetAsFirstSibling();
+        Label("Title", modal.transform, label, "카드 교체", new Vector2(0, 120), new Vector2(1100,60), 36, TextAlignmentOptions.Center);
+        var prompt = Label("Prompt", modal.transform, label, "", new Vector2(0,25), new Vector2(1100,120), 30, TextAlignmentOptions.Center);
+        prompt.textWrappingMode = TextWrappingModes.Normal;
+        var yes = ButtonCopy("ConfirmRewardReplacement", modal.transform, source, "예", new Vector2(-210,-115));
+        var no = ButtonCopy("CancelRewardReplacement", modal.transform, source, "아니요", new Vector2(210,-115));
+        yes.interactable = no.interactable = true;
+        Link(so, "rewardReplacementConfirmation", modal);
+        Link(so, "rewardReplacementPrompt", prompt);
+        Link(so, "rewardReplacementYes", yes);
+        Link(so, "rewardReplacementNo", no);
+        so.ApplyModifiedPropertiesWithoutUndo();
+        modal.transform.SetAsLastSibling();
+        modal.SetActive(false);
+    }
+
     [MenuItem("Tools/Scroll Hunter/Style Inheritance Overview")]
     public static void ApplyOverviewStyle()
     {

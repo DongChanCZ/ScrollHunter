@@ -61,14 +61,14 @@ public static class RemainingSkillChecks
             Set(flow, "countdownSeconds", 0f); Set(flow, "finishingEffectHold", 0f);
             Set(player, "criticalChance", 0f); Set(metrics, "logEachInput", false);
             Check(pool.Count(o => o.Card != null) == 6 && pool.Count(o => o.Effect != null) == 10, "six reward cards and ten passives");
-            Check(judgment.Cost == 6 && judgment.CastTime == 2.75f && judgment.Damage == 365 && judgment.HitCount == 1 && !judgment.IsAreaOfEffect && !judgment.IsChanneling, "SK08 saved specification");
-            Check(blizzard.Cost == 5 && blizzard.CastTime == 1 && blizzard.Damage == 20 && blizzard.HitCount == 4 && blizzard.IsAreaOfEffect && !blizzard.IsChanneling, "SK09 saved specification");
+            Check(judgment.Cost == 7 && judgment.CastTime == 2.75f && judgment.Damage == 365 && judgment.HitCount == 1 && !judgment.IsAreaOfEffect && !judgment.IsChanneling, "SK08 saved specification");
+            Check(blizzard.Cost == 5 && blizzard.CastTime == 1 && blizzard.Damage == 30 && blizzard.HitCount == 4 && blizzard.IsAreaOfEffect && !blizzard.IsChanneling, "SK09 saved specification");
             Check(sanctuary.Cost == 5 && sanctuary.CastTime == 2.5f && sanctuary.Category == SkillCategory.Shield && sanctuary.IsChanneling && sanctuary.HasValidChannel, "SK14 saved specification");
             Check(info.DescribeCard(sanctuary).Contains("무적") && !info.DescribeCard(sanctuary).Contains("방어도 +0"), "sanctuary tooltip explains protection");
             // 신성한 빛 연출(빛 띠·광원·빛줄기·반짝임)의 이미지 수와 무관하게 입력을 가로채지 않아야 한다.
             Check(frame != null && frame.GetComponentsInChildren<Image>(true).Length > 0 && frame.GetComponentsInChildren<Image>(true).All(i => !i.raycastTarget), "gold frame never intercepts input");
 
-            Reset(judgment); Check(deck.TryUseSlot(0) && cost.Current == 4 && deck.GetHandCard(0) == original[4], "judgment input pays and cycles");
+            Reset(judgment); Check(deck.TryUseSlot(0) && cost.Current == 3 && deck.GetHandCard(0) == original[4], "judgment input pays and cycles");
             Step(2.74f); Check(metrics.RecordedHits == 0, "judgment waits until completion");
             typeof(EnemyManager).GetProperty("CurrentTarget").SetValue(enemies, c);
             Step(.011f); Check(b.CurrentHp == b.MaxHp && c.CurrentHp == c.MaxHp - 365 && metrics.RecordedHits == 1, "judgment effect-time target / 365");
@@ -79,17 +79,17 @@ public static class RemainingSkillChecks
 
             Reset(blizzard, true); deck.TryUseSlot(0); Step(.99f);
             Check(cost.Current == 5 && metrics.RecordedHits == 0, "blizzard pays now / waits 1s");
-            Step(.011f); Check(a.CurrentHp == a.MaxHp-80 && b.CurrentHp == b.MaxHp-80 && c.CurrentHp == c.MaxHp-80 && metrics.RecordedHits == 12 && (int)Get(metrics,"totalUses") == 1, "blizzard 4 hits each / one use");
+            Step(.011f); Check(a.CurrentHp == a.MaxHp-120 && b.CurrentHp == b.MaxHp-120 && c.CurrentHp == c.MaxHp-120 && metrics.RecordedHits == 12 && (int)Get(metrics,"totalUses") == 1, "blizzard 4 hits each / one use");
             Reset(blizzard, true); deck.TryUseSlot(0); a.TakeDamage(a.CurrentHp); enemies.NotifyEnemyDied(); Step(1f);
-            Check(metrics.RecordedHits == 8 && b.CurrentHp == b.MaxHp-80 && c.CurrentHp == c.MaxHp-80, "blizzard excludes targets dead before effect");
+            Check(metrics.RecordedHits == 8 && b.CurrentHp == b.MaxHp-120 && c.CurrentHp == c.MaxHp-120, "blizzard excludes targets dead before effect");
             Reset(blizzard); SetHp(b, 10); deck.TryUseSlot(0); Step(1f);
-            Check(metrics.RecordedHits == 8 && metrics.DamageApplied == 90 && metrics.OverkillDamage == 70 && metrics.CriticalEligibleHits == 5 && c.CurrentHp == c.MaxHp-80, "blizzard lethal remainder is visual-only / no retarget");
+            Check(metrics.RecordedHits == 8 && metrics.DamageApplied == 130 && metrics.OverkillDamage == 110 && metrics.CriticalEligibleHits == 5 && c.CurrentHp == c.MaxHp-120, "blizzard lethal remainder is visual-only / no retarget");
             Reset(blizzard); enemies.BeginBattle(new[]{b}); SetHp(b,10); deck.TryUseSlot(0); Step(1f); int hits=metrics.RecordedHits; Step(4f);
             Check(enemies.CombatEnded && hits==4 && metrics.RecordedHits==hits && !deck.TryUseSlot(1), "blizzard final kill retains visuals / no post-victory damage");
             Reset(blizzard,true); Set(player,"criticalChance",50f); UnityEngine.Random.InitState(2718);
             int expected=0; for(int i=0;i<12;i++) if(UnityEngine.Random.value*100f<50f) expected++;
             UnityEngine.Random.InitState(2718); deck.TryUseSlot(0); Step(1f);
-            Check(metrics.CriticalEligibleHits==12 && metrics.CriticalHits==expected && metrics.DamageApplied==240+10*expected, "independent critical draw for every target and hit");
+            Check(metrics.CriticalEligibleHits==12 && metrics.CriticalHits==expected && metrics.DamageApplied==360+15*expected, "independent critical draw for every target and hit");
             Set(player,"criticalChance",0f);
 
             foreach(var card in new[]{judgment,blizzard})
@@ -147,7 +147,7 @@ public static class RemainingSkillChecks
                 var buttons=(Button[])Get(rewardUI,"choiceButtons"); buttons[0].onClick.Invoke();
                 Check(flow.SelectedReward==card, "UI selects reward: "+card.name);
                 ((Button[])Get(rewardUI,"deckButtons"))[0].onClick.Invoke();
-                ((Button)Get(rewardUI,"confirmReplacementButton")).onClick.Invoke();
+                ((Button)Get(rewardUI,"rewardReplacementYes")).onClick.Invoke();
                 Check(flow.RewardResolved && flow.DeckCount==8 && flow.GetDeckCard(0)==card, "UI replaces same deck slot: "+card.name);
                 ((Button)Get(flow,"nextButton")).onClick.Invoke();
                 Check(flow.BattleNumber==2 && deck.GetHandCard(0)==card, "acquired card enters next battle: "+card.name);

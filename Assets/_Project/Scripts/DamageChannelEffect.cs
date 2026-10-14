@@ -32,7 +32,7 @@ public class DamageChannelEffect : ChannelEffect
     public override string Describe(SkillData skill)
         => string.Format(timingFormat, skill.Damage, skill.HitCount, firstHitDelay, hitInterval,
             Mathf.Max(0f, skill.CastTime - firstHitDelay - (skill.HitCount - 1) * hitInterval),
-            skill.IsAreaOfEffect ? areaTargetText : string.Format(singleTargetFormat, targetDeathRecovery), (long)skill.Damage * skill.HitCount);
+            skill.IsAreaOfEffect ? areaTargetText : string.Format(singleTargetFormat, targetDeathRecovery), skill.TotalDamage);
 
     public override void Begin(ChannelContext context)
     {

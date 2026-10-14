@@ -106,6 +106,9 @@ public class Enemy : MonoBehaviour
     public Vector3 BarWorldPosition => transform.position + Vector3.up * barWorldHeight;
 
     public EnemyData Data => data;
+    public bool IsUnderling { get; private set; }
+    public string DisplayName => (data != null ? data.DisplayName : name) + (IsUnderling ? " (말단)" : "");
+    public int CurrentAttackDamage => current == null ? 0 : IsUnderling ? Mathf.CeilToInt(current.Damage * .5f) : current.Damage;
     public int MaxHp => data != null ? data.MaxHp : 0;
     public int CurrentHp { get; private set; }
     public bool IsAlive => CurrentHp > 0 || HoldTutorialDefeat;
@@ -182,8 +185,9 @@ public class Enemy : MonoBehaviour
         if (castBarRoot != null) castBarRoot.gameObject.SetActive(active);
     }
 
-    public void BeginBattle()
+    public void BeginBattle(bool underling = false)
     {
+        IsUnderling = underling && !HasPhases && !IsBossOrb;
         if (orbs != null) orbs.Clear();
         if (HasPhases && data.RuinOrb != null && data.CycleOrb != null)
         {
@@ -298,14 +302,14 @@ public class Enemy : MonoBehaviour
         bool restoreOrb = orbs != null && PhaseNumber == 3 && current == data.Attacks[2];
         if (player != null)
         {
-            player.TakeModifiedDamage(current.Damage, current.CastColor, CurrentDamageMultiplier);
+            player.TakeModifiedDamage(CurrentAttackDamage, current.CastColor, CurrentDamageMultiplier);
             if (current.StunSeconds > 0f)
             {
                 if (CastBlocksCostRecovery) player.ApplyCostBlockingStun(current.StunSeconds);
                 else player.ApplyStun(current.StunSeconds);
             }
         }
-        Debug.Log($"[{name}] 발동: {current.SkillName} ({current.CastColor}) 피해 {current.Damage}" +
+        Debug.Log($"[{DisplayName}] 발동: {current.SkillName} ({current.CastColor}) 피해 {CurrentAttackDamage}" +
             (ruinAtCastStart ? $" ×{CurrentDamageMultiplier:0.##} (파멸 강화)" : ""), this);
 
         // 쿨다운 상태 갱신

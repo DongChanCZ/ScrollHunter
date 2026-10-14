@@ -1,0 +1,12 @@
+Boss checks passed: 315
+Boss orb checks passed: 79
+BattleEnvironmentChecks: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.Exception: Backgrounds: tutorial forest edge
+  at BattleEnvironmentChecks+<>c__DisplayClass3_0.<Run>b__1 (System.Boolean ok, System.String label) [0x00024] in C:\Users\MBC-501-19\Documents\ScrollHunter\Assets\_Project\Tests\Editor\BattleEnvironmentChecks.cs:33 
+  at BattleEnvironmentChecks.Run () [0x0014f] in C:\Users\MBC-501-19\Documents\ScrollHunter\Assets\_Project\Tests\Editor\BattleEnvironmentChecks.cs:38 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <41d29b352f6a475ab1bf7c6628b82790>:0 
+   --- End of inner exception stack trace ---
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00083] in <41d29b352f6a475ab1bf7c6628b82790>:0 
+  at System.Reflection.MethodBase.Invoke (System.Object obj, System.Object[] parameters) [0x00000] in <41d29b352f6a475ab1bf7c6628b82790>:0 
+  at MCPDynamicCode.Execute () [0x000ec] in <80400e2119f74c36aa9ccb4c88c7363e>:0 
+Ending feedback checks passed: 23

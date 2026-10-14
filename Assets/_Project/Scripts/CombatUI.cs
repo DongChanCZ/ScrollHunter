@@ -1,4 +1,4 @@
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -73,6 +73,7 @@ public class CombatUI : MonoBehaviour
     [SerializeField] private HandSlotView[] handSlots = new HandSlotView[DeckSystem.HandSize];
     [SerializeField] private TMP_Text nextCardText;
     [SerializeField] private Image nextCardIcon;
+    public Image NextCardIcon => nextCardIcon;
     [SerializeField] private Color iconColor = new Color(.93f, .86f, .70f, 1f);
     [SerializeField] private Color inactiveIconColor = new Color(1f, 1f, 1f, .35f);
 
@@ -206,6 +207,20 @@ public class CombatUI : MonoBehaviour
 
     private void Awake()
     {
+        if (nextCardIcon != null && nextCardText != null)
+        {
+            var label = new GameObject("NextCardLabel", typeof(RectTransform), typeof(TextMeshProUGUI)).GetComponent<TextMeshProUGUI>();
+            label.transform.SetParent(nextCardIcon.transform, false);
+            label.font = nextCardText.font;
+            label.fontSize = 23f;
+            label.color = new Color32(231, 203, 135, 255);
+            label.text = "다음 카드";
+            label.alignment = TextAlignmentOptions.Center;
+            label.raycastTarget = false;
+            label.rectTransform.anchorMin = label.rectTransform.anchorMax = new Vector2(0.5f, 1f);
+            label.rectTransform.anchoredPosition = new Vector2(0f, 22f);
+            label.rectTransform.sizeDelta = new Vector2(190f, 32f);
+        }
         if (costSystem == null) costSystem = FindFirstObjectByType<CostSystem>();
         if (deckSystem == null) deckSystem = FindFirstObjectByType<DeckSystem>();
         if (enemyManager == null) enemyManager = FindFirstObjectByType<EnemyManager>();

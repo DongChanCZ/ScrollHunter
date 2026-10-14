@@ -1,0 +1,5 @@
+Reward checks passed: 59. Function/UI event checks; not physical input or balance validation.
+Critical checks passed: 100. Function integration checks; not natural play or balance validation.
+Starting deck checks passed: 117
+Remaining skill checks passed: 77
+Combat readability checks: 33 passed (current HP preserved)

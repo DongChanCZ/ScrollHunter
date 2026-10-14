@@ -473,10 +473,10 @@ public sealed class GameAudio : MonoBehaviour
     {
         string n = button.name;
         UiKind kind = UiKind.Click;
-        if (n == "Close" || n == "Cancel" || n == "Back" || n == "CancelOrder" || n == "Skip") kind = UiKind.Cancel;
+        if (n == "Close" || n == "Cancel" || n == "Back" || n == "CancelOrder" || n == "Skip" || n == "CancelRewardReplacement") kind = UiKind.Cancel;
         else if (n == "StartButton" || n == "NextBattle" || n == "RestartRun" || n == "Apply" || n == "SaveOrder" || n == "Confirm") kind = UiKind.Confirm;
         else if (n.StartsWith("Reward")) kind = UiKind.Reward;
-        else if (n == "ConfirmReplacement") kind = UiKind.Replace;
+        else if (n == "ConfirmReplacement" || n == "ConfirmRewardReplacement") kind = UiKind.Replace;
         else if (n.StartsWith("Deck")) kind = UiKind.Select;
         button.onClick.AddListener(() => OnButton(kind));
     }

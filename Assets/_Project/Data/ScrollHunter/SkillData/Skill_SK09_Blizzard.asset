@@ -16,7 +16,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 1847c76bbe65b014da6224d663349bc4, type: 3}
   cost: 5
   category: 0
-  damage: 20
+  damage: 30
   hitCount: 4
   resolveHitsSeparately: 1
   activation: 0

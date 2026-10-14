@@ -32,7 +32,7 @@ public static class BossOrbVfxCheck
     /// <summary>전환을 실제 프레임으로 끝까지 진행해 오브를 활성화한다.</summary>
     static BossOrbs Enter(int phase)
     {
-        Fresh(); var e = Boss(); e.TakeDamage(phase == 2 ? 1600 : 3000); e.TryInterrupt(2.5f);
+        Fresh(); var e = Boss(); e.TakeDamage(phase == 2 ? 1200 : 2250); e.TryInterrupt(2.5f);
         StepUntil(() => !e.IsPhaseTransitioning, 400, "transition " + phase);
         var o = e.GetComponent<BossOrbs>();
         StepUntil(() => !Visual(o.Ruin).IsSummoning && !Visual(o.Cycle).IsSummoning, 100, "idle " + phase);
@@ -101,7 +101,7 @@ public static class BossOrbVfxCheck
             f.RestartRun(); Fresh(); SetSpeed(1f);
             var e = Boss(); var o = e.GetComponent<BossOrbs>();
             Check(Breaks().Length == 0, "no break effects at start");
-            e.TakeDamage(1600); e.TryInterrupt(2.5f);
+            e.TakeDamage(1200); e.TryInterrupt(2.5f);
             var rv = Visual(o.Ruin); var cv = Visual(o.Cycle);
             Check(rv != null && cv != null && !o.Ruin.GetComponent<Renderer>().enabled && !o.Cycle.GetComponent<Renderer>().enabled, "visual attached, temp sphere hidden");
             Check(rv.IsSummoning && cv.IsSummoning && rv.CurrentScale < .2f, "transition starts small summon");
@@ -133,13 +133,13 @@ public static class BossOrbVfxCheck
             Check(o.Ruin.transform.position == pos && rv.transform.localPosition == Vector3.zero && lo > .9f && hi < 1.1f, "idle pulse only, no position shake");
             notes += "initial: transition " + transitionFrames + "f, core 0.12→" + last.ToString("0.00") + ", idle pulse " + lo.ToString("0.000") + "~" + hi.ToString("0.000") + "\n";
 
-            // ② 단일 공격으로 파멸·순환 각각 파괴: 판정(보스 150)은 같은 프레임, 파괴 연출 1개, 정지·0.5배속 추종, 스스로 소멸
+            // ② 단일 공격으로 파멸·순환 각각 파괴: 판정(보스 75)은 같은 프레임, 파괴 연출 1개, 정지·0.5배속 추종, 스스로 소멸
             p.SetSanctuary(true);
             o.Ruin.TakeDamage(o.Ruin.CurrentHp - 1);
             int hp = e.CurrentHp; Vector3 ruinPos = o.Ruin.transform.position;
             Check(UseCard(x => !x.IsAreaOfEffect && x.Damage > 0 && !x.IsChanneling, o.Ruin), "single card accepted");
             var br = Breaks();
-            Check(!o.RuinActive && br.Length == 1 && e.CurrentHp == hp - 150, "single kill: one break, boss 150 immediately");
+            Check(!o.RuinActive && br.Length == 1 && e.CurrentHp == hp - 75, "single kill: one break, boss 75 immediately");
             var brk = br[0];
             Check(Vector3.Distance(brk.transform.position, ruinPos) < .01f && !brk.Released, "break at orb position, contracting");
             info.TogglePause(); float el = brk.Elapsed; Steps(12); Check(Near(brk.Elapsed, el, 1e-5f), "break frozen while paused"); info.Resume();
@@ -149,7 +149,7 @@ public static class BossOrbVfxCheck
             notes += "single ruin: break gone after " + breakFrames + "f (pause/0.5x included)\n";
             o.Cycle.TakeDamage(o.Cycle.CurrentHp - 1); hp = e.CurrentHp;
             Check(UseCard(x => !x.IsAreaOfEffect && x.Damage > 0 && !x.IsChanneling, o.Cycle), "single card on cycle");
-            Check(!o.CycleActive && Breaks().Length == 1 && e.CurrentHp == hp - 150, "cycle single kill: one break, boss 150");
+            Check(!o.CycleActive && Breaks().Length == 1 && e.CurrentHp == hp - 75, "cycle single kill: one break, boss 75");
             StepUntil(() => Breaks().Length == 0, 200, "cycle break end");
 
             // ③ 광역으로 두 오브 동시 파괴
@@ -187,18 +187,18 @@ public static class BossOrbVfxCheck
 
             // ⑥ 2→3 전환 중 살아 있는 오브: 소환 연출·회복 없음
             o = Enter(2); e = Boss(); o.Ruin.TakeDamage(30); int ruinHp = o.Ruin.CurrentHp;
-            e.TakeDamage(1400); e.TryInterrupt(2.5f); Check(e.PhaseNumber == 3 && e.IsPhaseTransitioning, "phase3 transition");
+            e.TakeDamage(1050); e.TryInterrupt(2.5f); Check(e.PhaseNumber == 3 && e.IsPhaseTransitioning, "phase3 transition");
             Steps(20); Check(!Visual(o.Ruin).IsSummoning && !Visual(o.Cycle).IsSummoning && o.Ruin.CurrentHp == ruinHp, "phase3 transition: live orbs not resummoned");
             StepUntil(() => !e.IsPhaseTransitioning, 200, "phase3 transition end");
             Check(!Visual(o.Ruin).IsSummoning && o.Ruin.CurrentHp == ruinHp, "phase3 activation: no replay");
 
             // ⑦ 2페이즈 건너뛰기: 최초 소환 연출
-            Fresh(); e = Boss(); o = e.GetComponent<BossOrbs>(); e.TakeDamage(3000); e.TryInterrupt(2.5f);
+            Fresh(); e = Boss(); o = e.GetComponent<BossOrbs>(); e.TakeDamage(2250); e.TryInterrupt(2.5f);
             Check(e.PhaseNumber == 3 && Visual(o.Ruin).IsSummoning && Visual(o.Ruin).CurrentScale < .2f && !o.RuinActive, "phase2 skip: initial summon during transition");
             StepUntil(() => !e.IsPhaseTransitioning, 200, "skip transition"); Check(o.RuinActive && o.CycleActive, "skip activation");
 
             // ⑧ 재시작(소환 중): 잔여 없음
-            Fresh(); e = Boss(); o = e.GetComponent<BossOrbs>(); e.TakeDamage(1600); e.TryInterrupt(2.5f); Steps(30);
+            Fresh(); e = Boss(); o = e.GetComponent<BossOrbs>(); e.TakeDamage(1200); e.TryInterrupt(2.5f); Steps(30);
             f.RestartRun(); Steps(2);
             Check(Breaks().Length == 0 && !o.Ruin.gameObject.activeSelf && !o.Cycle.gameObject.activeSelf, "restart mid-summon leaves nothing");
 
@@ -208,7 +208,7 @@ public static class BossOrbVfxCheck
             Check(f.State == BattleFlowState.Victory, "boss death ends battle");
 
             // ⑩ 오브 파괴 피해로 보스 사망: 실제 파괴 연출 1개만, 기존 종료 처리, 연출은 실제 시간으로 끝남
-            o = Enter(3); e = Boss(); Set(e, "<CurrentHp>k__BackingField", 150);
+            o = Enter(3); e = Boss(); Set(e, "<CurrentHp>k__BackingField", 75);
             o.Ruin.TakeDamage(400); Steps(2);
             br = Breaks();
             Check(!e.IsAlive && f.State == BattleFlowState.Victory && br.Length == 1 && !o.CycleActive, "orb-destruction kill: one break, victory");

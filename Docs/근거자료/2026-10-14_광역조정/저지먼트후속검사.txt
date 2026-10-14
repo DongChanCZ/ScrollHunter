@@ -1,0 +1,9 @@
+Remaining skill checks passed: 77
+Judgment boundary: 6 rejected without consumption/cycle, 7 paid and casts, tooltip 7/365/2.75 confirmed.
+<size=125%><b><color=#F5EBD6>저지먼트</color></b></size>
+<size=80%> </size>
+공격<alpha=#CC> · <alpha=#FF>적 1체
+<alpha=#CC>코스트 <alpha=#FF><b>7</b><alpha=#CC>   ·   시전 <alpha=#FF><b>2.75초</b>
+<size=80%> </size>
+<size=85%>피해 <b>365×1회</b> · 총합 피해 <b>365</b>
+<size=80%><alpha=#CC>적 1체·전 타격·크리티컬/방어 적용 전<alpha=#FF></size></size>

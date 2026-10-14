@@ -120,6 +120,8 @@ public static class BattleEnvironmentSetup
         for (int i = 0; i < 4; i++) { items.GetArrayElementAtIndex(i).objectReferenceValue = stages[i]; backgrounds.GetArrayElementAtIndex(i).objectReferenceValue = plates[i]; }
         so.FindProperty("magicCircle").objectReferenceValue = circle;
         so.ApplyModifiedPropertiesWithoutUndo();
+        ApplyPhaseTransitionVfx();
+        ApplyPhaseEnvironment();
         AddContactShadows();
         controller.Refresh(0);
         AssetDatabase.SaveAssets();
@@ -127,6 +129,129 @@ public static class BattleEnvironmentSetup
         Selection.activeGameObject = root;
         Debug.Log("Backgrounds placed: 4 stages / 7 VARCO props / wall circle. Scene not saved by builder.");
     }
+    [MenuItem("Tools/Scroll Hunter/Apply Boss Phase Transition VFX")]
+    public static void ApplyPhaseTransitionVfx()
+    {
+        if (Application.isPlaying) throw new System.InvalidOperationException("Exit Play first");
+        var controller = UnityEngine.Object.FindFirstObjectByType<BattleEnvironment>();
+        var so = new SerializedObject(controller);
+        var circle = (Transform)so.FindProperty("magicCircle").objectReferenceValue;
+        var material = Material("BossPhaseWave", "Universal Render Pipeline/Particles/Unlit");
+        material.CopyPropertiesFromMaterial(circle.GetComponent<Renderer>().sharedMaterial);
+        material.SetTexture("_BaseMap", AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/_Project/UI/SanctuaryVfx/lightmask_ring_b.png"));
+        material.SetColor("_BaseColor", new Color(1.15f, .3f, 1.8f, 0f));
+        EditorUtility.SetDirty(material);
+        var wave = circle.parent.Find("Boss phase wave");
+        if (!wave) wave = Quad("Boss phase wave", circle.parent, material);
+        wave.position = circle.position - circle.forward * .03f;
+        wave.rotation = circle.rotation;
+        wave.localScale = Vector3.one;
+        var renderer = wave.GetComponent<Renderer>();
+        renderer.sharedMaterial = material;
+        renderer.enabled = false;
+        so.FindProperty("phaseWave").objectReferenceValue = renderer;
+        so.ApplyModifiedPropertiesWithoutUndo();
+        EditorSceneManager.MarkSceneDirty(controller.gameObject.scene);
+        AssetDatabase.SaveAssets();
+    }
+
+
+    [MenuItem("Tools/Scroll Hunter/Apply Boss Phase Environment")]
+    public static void ApplyPhaseEnvironment()
+    {
+        if (Application.isPlaying) throw new System.InvalidOperationException("Exit Play first");
+        var controller = UnityEngine.Object.FindFirstObjectByType<BattleEnvironment>();
+        var so = new SerializedObject(controller);
+        var circle = (Transform)so.FindProperty("magicCircle").objectReferenceValue;
+        var root = circle.parent.Find("Phase surroundings");
+        if (!root) { root = new GameObject("Phase surroundings").transform; root.SetParent(circle.parent, false); }
+        var glowMat = Material("BossPhaseGlow", "Universal Render Pipeline/Particles/Unlit");
+        glowMat.CopyPropertiesFromMaterial(circle.GetComponent<Renderer>().sharedMaterial);
+        glowMat.SetTexture("_BaseMap", AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/_Project/VFX/Textures/smoke_04.png"));
+        glowMat.SetColor("_BaseColor", new Color(.75f,.17f,1.3f,0));
+        EditorUtility.SetDirty(glowMat);
+        var glows = new Renderer[4];
+        for (int i=0;i<glows.Length;i++)
+        {
+            string name = i==2 ? "Floor violet glow" : i==3 ? "Background violet fog" : "Wall violet glow " + i;
+            var q = root.Find(name); if(!q)q=Quad(name,root,glowMat);
+            q.GetComponent<Renderer>().sharedMaterial=glowMat;
+            q.position = i==2 ? new Vector3(0,-.10f,6) : i==3 ? new Vector3(0,4f,11.75f) : new Vector3(i==0?-4.7f:4.7f,2.8f,11.8f);
+            q.rotation = i==2 ? Quaternion.Euler(90,0,0) : Camera.main.transform.rotation;
+            q.localScale = i==2 ? new Vector3(20,15,1) : i==3 ? new Vector3(20,12,1) : new Vector3(12,10,1);
+            glows[i]=q.GetComponent<Renderer>(); glows[i].enabled=false;
+        }
+        var currentMat=Material("BossPhaseCracks","Universal Render Pipeline/Particles/Unlit");
+        currentMat.CopyPropertiesFromMaterial(glowMat);currentMat.SetTexture("_BaseMap",Texture2D.whiteTexture);
+        EditorUtility.SetDirty(currentMat);
+        foreach(string prefix in new[]{"Wall crack ","Wall branch ","Floor crack ","Floor branch "})
+            foreach(int side in new[]{-1,1}) {var old=root.Find(prefix+side);if(old)Object.DestroyImmediate(old.gameObject);}
+        var cracks=new System.Collections.Generic.List<Renderer>();
+        float radius=so.FindProperty("circleDiameters").GetArrayElementAtIndex(2).floatValue*.42f;
+        float[] angles={155f,25f,210f,330f};
+        Vector3[][] routes={
+            new[]{new Vector3(-5.8f,5.3f,11.7f),new Vector3(-6.5f,4.75f,11.7f),new Vector3(-7.2f,5.2f,11.7f),new Vector3(-7.8f,4.7f,11.7f)},
+            new[]{new Vector3(5.9f,5.6f,11.7f),new Vector3(6.35f,4.8f,11.7f),new Vector3(7.25f,4.4f,11.7f),new Vector3(7.5f,3.7f,11.7f)},
+            new[]{new Vector3(-5.15f,.25f,10f),new Vector3(-5.0f,-.10f,7.6f),new Vector3(-4.3f,-.10f,5.8f),new Vector3(-3.6f,-.10f,3.2f)},
+            new[]{new Vector3(5.4f,.3f,10f),new Vector3(5.55f,-.10f,7.2f),new Vector3(4.5f,-.10f,5.4f),new Vector3(4.05f,-.10f,2.6f)}
+        };
+        for(int i=0;i<routes.Length;i++)
+        {
+            float angle=angles[i]*Mathf.Deg2Rad;
+            var start=circle.position+Camera.main.transform.right*(Mathf.Cos(angle)*radius)
+                +Camera.main.transform.up*(Mathf.Sin(angle)*radius)-Camera.main.transform.forward*.06f;
+            var anchors=new System.Collections.Generic.List<Vector3>{start};anchors.AddRange(routes[i]);
+            var points=new System.Collections.Generic.List<Vector3>();
+            for(int j=0;j<anchors.Count-1;j++)
+            {
+                int steps=Mathf.Max(3,Mathf.CeilToInt(Vector3.Distance(anchors[j],anchors[j+1])/.22f));
+                for(int k=0;k<steps;k++)points.Add(Vector3.Lerp(anchors[j],anchors[j+1],(float)k/steps));
+            }
+            points.Add(anchors[anchors.Count-1]);
+            cracks.Add(PhaseLine(root,"Violet current "+i,currentMat,points.ToArray(),.024f));
+            cracks.Add(PhaseLine(root,"Violet current glow "+i,currentMat,points.ToArray(),.12f));
+        }
+        var emberRoot=root.Find("Rising violet motes");
+        if(!emberRoot){emberRoot=new GameObject("Rising violet motes").transform;emberRoot.SetParent(root,false);}
+        emberRoot.localPosition=new Vector3(0,2.3f,9.5f);
+        var ps=emberRoot.GetComponent<ParticleSystem>();if(!ps)ps=emberRoot.gameObject.AddComponent<ParticleSystem>();
+        ps.Stop(true,ParticleSystemStopBehavior.StopEmittingAndClear);
+        ps.useAutoRandomSeed=false;ps.randomSeed=214;
+        var main=ps.main; main.playOnAwake=false;main.loop=true;main.useUnscaledTime=false;main.maxParticles=40;
+        main.startLifetime=new ParticleSystem.MinMaxCurve(3f,5f);main.startSize=new ParticleSystem.MinMaxCurve(.05f,.12f);
+        main.startSpeed=0;main.startColor=new Color(.7f,.28f,1f,.55f);main.simulationSpace=ParticleSystemSimulationSpace.Local;
+        var emission=ps.emission;emission.rateOverTime=6;
+        var shape=ps.shape;shape.enabled=true;shape.shapeType=ParticleSystemShapeType.Box;shape.scale=new Vector3(12,3.2f,1);
+        var velocity=ps.velocityOverLifetime;velocity.enabled=true;velocity.y=.35f;velocity.x=.04f;
+        var colors=ps.colorOverLifetime;colors.enabled=true;
+        var gradient=new Gradient();gradient.SetKeys(new[]{new GradientColorKey(Color.white,0),new GradientColorKey(Color.white,1)},
+            new[]{new GradientAlphaKey(0,0),new GradientAlphaKey(1,.2f),new GradientAlphaKey(.7f,.7f),new GradientAlphaKey(0,1)});
+        colors.color=gradient;
+        var emberMat=Material("BossPhaseMotes","Universal Render Pipeline/Particles/Unlit");
+        emberMat.CopyPropertiesFromMaterial(glowMat);
+        emberMat.SetTexture("_BaseMap", AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/_Project/VFX/Textures/circle_05.png"));
+        emberMat.SetColor("_BaseColor",new Color(1.2f,.7f,2f,1));EditorUtility.SetDirty(emberMat);
+        var pr=ps.GetComponent<ParticleSystemRenderer>();pr.sharedMaterial=emberMat;pr.shadowCastingMode=ShadowCastingMode.Off;pr.receiveShadows=false;
+        var array=so.FindProperty("phaseGlows");array.arraySize=glows.Length;
+        for(int i=0;i<glows.Length;i++)array.GetArrayElementAtIndex(i).objectReferenceValue=glows[i];
+        array=so.FindProperty("phaseCracks");array.arraySize=cracks.Count;
+        for(int i=0;i<cracks.Count;i++)array.GetArrayElementAtIndex(i).objectReferenceValue=cracks[i];
+        so.FindProperty("phaseEmbers").objectReferenceValue=ps;so.ApplyModifiedPropertiesWithoutUndo();
+        AssetDatabase.SaveAssets();EditorSceneManager.MarkSceneDirty(controller.gameObject.scene);
+    }
+
+    static LineRenderer PhaseLine(Transform root,string name,Material material,Vector3[] points,float width)
+    {
+        var child=root.Find(name);
+        if(!child){child=new GameObject(name).transform;child.SetParent(root,false);}
+        var line=child.GetComponent<LineRenderer>();if(!line)line=child.gameObject.AddComponent<LineRenderer>();
+        line.sharedMaterial=material;line.useWorldSpace=true;line.positionCount=points.Length;line.SetPositions(points);
+        line.widthMultiplier=width;line.widthCurve=new AnimationCurve(new Keyframe(0,.35f),new Keyframe(.15f,1f),new Keyframe(.85f,.7f),new Keyframe(1,0));
+        line.numCornerVertices=0;line.numCapVertices=0;line.alignment=LineAlignment.View;
+        line.shadowCastingMode=ShadowCastingMode.Off;line.receiveShadows=false;line.enabled=false;
+        return line;
+    }
+
     public static void AddContactShadows()
     {
         var mat = Material("EnemyContactShadow", "Universal Render Pipeline/Unlit");

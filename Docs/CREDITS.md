@@ -278,3 +278,11 @@
 
 - 우두머리 초상 후속: 프로젝트의 VARCO 모델·얼굴 보정 화면을 참고해 OpenAI imagegen으로 재제작. 최종 프롬프트는 `근거자료/2026-10-12_우두머리초상/프롬프트.json`.
 - 마법사 초상 후속: 프로젝트의 VARCO 마법사 모델·기존 지팡이를 참고해 OpenAI imagegen으로 재제작. 최종 프롬프트는 `근거자료/2026-10-12_마법사초상/프롬프트.json`.
+
+
+## 입체 타겟 마커 (2026-10-14)
+
+- **Winged Sword — Lorc / Game-icons.net**. 원본: https://game-icons.net/1x1/lorc/winged-sword.html
+- **CC BY 3.0**: https://creativecommons.org/licenses/by/3.0/
+- 원본 SVG를 3D 모델로 가공: 두께·모서리·금색/아이보리 색·외곽선·기울임 추가. 원작자의 게임 보증이나 참여를 의미하지 않음.
+- 게임 파일: `Assets/_Project/UI/WingedSwordMarker/`. 원본 SVG·출처 보존. 배포 크레딧에 이 항목 유지.

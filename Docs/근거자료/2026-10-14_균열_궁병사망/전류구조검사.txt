@@ -1,0 +1,1 @@
+Electric current structure checks passed: 24; 4 cores + 4 glows, no collider/shadows.

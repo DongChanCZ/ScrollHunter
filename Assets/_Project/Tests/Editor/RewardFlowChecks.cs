@@ -33,7 +33,7 @@ public static class RewardFlowChecks
         var next = (Button)Get(flow, "nextButton");
         var choices = (Button[])Get(ui, "choiceButtons");
         var slots = (Button[])Get(ui, "deckButtons");
-        var confirm = (Button)Get(ui, "confirmReplacementButton");
+        var confirm = (Button)Get(ui, "rewardReplacementYes");
         var encounters = (BattleFlow.Encounter[])Get(flow, "encounters");
         Enemy b = encounters[0].enemies[0], c = encounters[1].enemies[0];
         int passed = 0;
@@ -65,7 +65,7 @@ public static class RewardFlowChecks
             check(!confirm.interactable && !flow.ConfirmReplacement(), "no slot cannot confirm");
             Click(slots[1]);
             check(confirm.interactable && !flow.RewardResolved && flow.GetDeckCard(1) == original[1], "slot click only selects");
-            Click((Button)Get(ui, "backButton")); check(flow.SelectedReward == null && flow.GetDeckCard(0) == original[0], "back does not acquire");
+            Click((Button)Get(ui, "rewardReplacementNo")); Click((Button)Get(ui, "backButton")); check(flow.SelectedReward == null && flow.GetDeckCard(0) == original[0], "back does not acquire");
             Click(choices[Enumerable.Range(0, flow.RewardChoiceCount).First(i => flow.GetRewardChoice(i).Card == impact)]); Click(slots[0]);
             check(flow.SelectedReplacementIndex == 0 && !flow.RewardResolved && flow.GetDeckCard(0) == original[0], "no mutation before confirm");
             Click(confirm);
@@ -78,7 +78,7 @@ public static class RewardFlowChecks
             Click(next);
             check(flow.BattleNumber == 2 && deck.GetHandCard(0) == impact && player.CurrentHp == carried && cost.Current == 3, "new deck and HP enter C");
             int hp = c.CurrentHp;
-            check(deck.TryUseSlot(0) && c.CurrentHp == hp - 120 && cost.Current == 0 && metrics.RecordedHits == 3, "acquired impact immediately playable");
+            check(deck.TryUseSlot(0) && c.CurrentHp == hp - 130 && cost.Current == 0 && metrics.RecordedHits == 3, "acquired impact immediately playable");
             Set(flow, "rewardPool", pool.Take(3).ToArray()); win();
             check(flow.RewardChoiceCount == 2 && Enumerable.Range(0, 2).All(i => flow.GetRewardChoice(i).Card != impact), "owned reward excluded next time");
             check(!choices[2].gameObject.activeSelf, "unused third choice hidden");
@@ -86,7 +86,7 @@ public static class RewardFlowChecks
             check(flow.BattleNumber == 3 && deck.GetHandCard(0) == impact && deck.GetHandCard(2) == suppression, "two acquired cards retained in BC");
             win(); check(flow.State == BattleFlowState.Victory && !((GameObject)Get(ui, "panel")).activeSelf && !flow.SelectReward(0), "final victory has no reward");
             flow.RestartRun(); check(player.CurrentHp == player.MaxHp && Enumerable.Range(0, 8).All(i => flow.GetDeckCard(i) == original[i]), "restart resets original deck and HP");
-            win(); flow.SelectReward(0); Click(slots[1]); Click((Button)Get(ui, "skipButton"));
+            win(); flow.SelectReward(0); Click(slots[1]); Click((Button)Get(ui, "rewardReplacementNo")); Click((Button)Get(ui, "backButton")); Click((Button)Get(ui, "skipButton"));
             check(flow.SelectedReplacementIndex == -1 && !flow.ConfirmReplacement(), "skip discards pending slot"); Click(next); win();
             check(flow.RewardChoiceCount == 2 && flow.GetDeckCard(0) == original[0], "skip pending selection keeps deck and all choices");
             flow.SkipReward(); flow.NextBattle(); player.TakeDamage(100000); Call(flow, "Update");
@@ -95,34 +95,34 @@ public static class RewardFlowChecks
             check(flow.RewardChoiceCount == 0 && flow.SkipReward(), "empty pool can skip");
             flow.NextBattle(); check(flow.BattleNumber == 2, "empty pool no dead end"); Set(flow, "rewardPool", pool);
 
-            check(impact.Cost == 3 && impact.CastTime == 0 && impact.Damage == 40 && impact.HitCount == 3 && !impact.IsAreaOfEffect, "SK07 values");
-            check(eruption.Cost == 2 && eruption.CastTime == 0.5f && eruption.Damage == 40 && eruption.HitCount == 1 && eruption.IsAreaOfEffect, "SK10 values");
-            check(suppression.Cost == 2 && suppression.CastTime == 0.2f && suppression.Damage == 30 && suppression.Category == SkillCategory.Interrupt, "SK12 values");
+            check(impact.Cost == 3 && impact.CastTime == 0 && impact.Damage == 40 && impact.HitCount == 3 && impact.TotalDamage == 130 && impact.GetHitDamage(1) == 40 && impact.GetHitDamage(2) == 40 && impact.GetHitDamage(3) == 50 && !impact.IsAreaOfEffect, "SK07 values");
+            check(eruption.Cost == 2 && eruption.CastTime == 0.5f && eruption.Damage == 50 && eruption.HitCount == 1 && eruption.IsAreaOfEffect, "SK10 values");
+            check(suppression.Cost == 2 && suppression.CastTime == 0.2f && suppression.Damage == 40 && suppression.Category == SkillCategory.Interrupt, "SK12 values");
             reset(impact, true); typeof(Enemy).GetProperty("CurrentHp").SetValue(b, 50); hp = c.CurrentHp;
-            check(deck.TryUseSlot(0) && !b.IsAlive && c.CurrentHp == hp && metrics.DamageApplied == 50 && metrics.OverkillDamage == 70 && metrics.RecordedHits == 3, "impact lethal per-hit accounting");
+            check(deck.TryUseSlot(0) && !b.IsAlive && c.CurrentHp == hp && metrics.DamageApplied == 50 && metrics.OverkillDamage == 80 && metrics.RecordedHits == 3, "impact lethal per-hit accounting");
             reset(eruption, true); int bhp = b.CurrentHp; int chp = c.CurrentHp;
             check(deck.TryUseSlot(0) && cost.Current == 8 && b.CurrentHp == bhp && c.CurrentHp == chp, "eruption delayed and paid immediately");
             Call(deck, "AdvanceCast", 0.49f); check(b.CurrentHp == bhp && c.CurrentHp == chp, "eruption no early damage");
-            Call(deck, "AdvanceCast", 0.02f); check(b.CurrentHp == bhp - 40 && c.CurrentHp == chp - 40 && metrics.RecordedHits == 2 && (int)Get(metrics, "totalUses") == 1, "eruption hits both once");
+            Call(deck, "AdvanceCast", 0.02f); check(b.CurrentHp == bhp - 50 && c.CurrentHp == chp - 50 && metrics.RecordedHits == 2 && (int)Get(metrics, "totalUses") == 1, "eruption hits both once");
             reset(eruption, true); deck.TryUseSlot(0); b.TakeDamage(b.CurrentHp); enemies.NotifyEnemyDied(); chp = c.CurrentHp;
-            Call(deck, "AdvanceCast", 0.51f); check(c.CurrentHp == chp - 40 && metrics.RecordedHits == 1, "eruption excludes dead enemy");
+            Call(deck, "AdvanceCast", 0.51f); check(c.CurrentHp == chp - 50 && metrics.RecordedHits == 1, "eruption excludes dead enemy");
             reset(eruption, true); deck.TryUseSlot(0); player.ApplyStun(2); Call(deck, "AdvanceCast", 0.51f);
             check(metrics.RecordedHits == 0 && cost.Current == 8 && deck.GetHandCard(0) == original[4] && !deck.IsCasting, "eruption stun cancels without refund or extra rotation");
             reset(suppression, false); bhp = b.CurrentHp;
             check(deck.TryUseSlot(0), "orange suppression accepted"); Call(deck, "AdvanceCast", 0.21f);
-            check(b.CurrentHp == bhp - 30 && b.IsStaggered && (float)Get(b, "staggerTimer") == 2.5f, "suppression damage then 2.5 stagger");
+            check(b.CurrentHp == bhp - 40 && b.IsStaggered && (float)Get(b, "staggerTimer") == 2.5f, "suppression damage then 2.5 stagger");
             check((int)Get(metrics, "interruptAttempts") == 1 && (int)Get(metrics, "interruptSuccesses") == 1, "suppression attempt and success metrics");
             reset(suppression, false); b.TryInterrupt(2.5f);
             check(!deck.TryUseSlot(0) && cost.Current == 10 && deck.GetHandCard(0) == suppression, "noncasting suppression spends nothing");
             reset(suppression, true); typeof(EnemyManager).GetProperty("CurrentTarget").SetValue(enemies, c); chp = c.CurrentHp;
             check(deck.TryUseSlot(0), "red suppression accepted"); Call(deck, "AdvanceCast", 0.21f);
-            check(c.CurrentHp == chp - 30 && c.IsCasting && !c.IsStaggered && (int)Get(metrics, "interruptSuccesses") == 0 && cost.Current == 8, "red takes damage without interrupt");
+            check(c.CurrentHp == chp - 40 && c.IsCasting && !c.IsStaggered && (int)Get(metrics, "interruptSuccesses") == 0 && cost.Current == 8, "red takes damage without interrupt");
             reset(suppression, false); Set(b, "current", b.Data.Find(CastColor.Green)); bhp = b.CurrentHp;
             check(deck.TryUseSlot(0), "late green suppression accepted"); Call(b, "Fire"); Call(deck, "AdvanceCast", 0.21f);
-            check(b.CurrentHp == bhp - 30 && !b.IsStaggered && (int)Get(metrics, "interruptSuccesses") == 0, "cast ended still takes damage without interrupt");
+            check(b.CurrentHp == bhp - 40 && !b.IsStaggered && (int)Get(metrics, "interruptSuccesses") == 0, "cast ended still takes damage without interrupt");
             reset(suppression, true); bhp = b.CurrentHp; chp = c.CurrentHp; deck.TryUseSlot(0);
             typeof(EnemyManager).GetProperty("CurrentTarget").SetValue(enemies, c); Call(deck, "AdvanceCast", 0.21f);
-            check(b.CurrentHp == bhp && c.CurrentHp == chp - 30 && !c.IsStaggered, "effect-time target used");
+            check(b.CurrentHp == bhp && c.CurrentHp == chp - 40 && !c.IsStaggered, "effect-time target used");
             reset(suppression, false); deck.TryUseSlot(0); player.ApplyStun(2); Call(deck, "AdvanceCast", 0.21f);
             check(metrics.RecordedHits == 0 && cost.Current == 8 && deck.GetHandCard(0) == original[4], "suppression stun cancellation");
             reset(suppression, false); typeof(Enemy).GetProperty("CurrentHp").SetValue(b, 30);
@@ -132,7 +132,7 @@ public static class RewardFlowChecks
             finally { Application.logMessageReceived -= capture; }
             check(!b.IsAlive && metrics.DamageApplied == 30 && (int)Get(metrics, "interruptSuccesses") == 0, "lethal suppression has damage but no interrupt success");
             check(logs.Last().Contains("전투 종료 요약") && logs.Last().Contains("실피해 30"), "lethal suppression summary last and complete");
-            check(info.DescribeCard(suppression).Contains("피해 후") && info.DescribeCard(suppression).Contains("30"), "damaging interrupt tooltip");
+            check(info.DescribeCard(suppression).Contains("피해 후") && info.DescribeCard(suppression).Contains("40"), "damaging interrupt tooltip");
 
             flow.RestartRun(); probe = ScriptableObject.CreateInstance<RewardProbeEffect>();
             RewardProbeEffect.Applied = RewardProbeEffect.Removed = 0;

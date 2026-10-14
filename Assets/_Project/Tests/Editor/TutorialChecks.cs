@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Linq;
 using System.Reflection;
 using UnityEditor;
@@ -100,6 +100,20 @@ public static class TutorialChecks
             check(d.TryUseSlot(0) && t.CompletedLessons == 3 && Time.timeScale > 0, "Q accepted resumes time");
             check(d.GetHandCard(0)==next && c.Current==before-q.Cost && !d.TryUseSlot(0), "one cycle, cost, replacement locked");
             CastTime(d, 0.4f);
+            t.TickCombat();
+            check(t.ShowingGuide && !t.WaitingForSkill && Time.timeScale==0 && (int)Get(t,"cycleGuideStep")==1,
+                "first fireball completes before cycle explanation");
+            check(body.text.Contains("대기열 맨 뒤") && (RectTransform)Get(t,"highlight")==((RectTransform[])Get(t,"slotHighlights"))[0],
+                "used slot highlighted with queue tail explanation");
+            check(!t.AdvanceGuide() && !d.TryUseSlot(0), "opening cycle guide consumes input frame");
+            Advance(t);
+            check((int)Get(t,"cycleGuideStep")==2 && (RectTransform)Get(t,"highlight")==ui.NextCardIcon.rectTransform
+                && body.text.Contains("쓰지 않은 카드"), "next card highlighted; retain unused cards explained");
+            menu.OpenPauseMenu(); check(!t.AdvanceGuide(), "Esc preserves cycling guide");
+            menu.ResumeGame(); Set(f,"menuInputFrame",-1);
+            Advance(t);
+            check(!t.ShowingGuide && Time.timeScale>0 && t.CompletedLessons==3 && !(bool)Get(t,"pendingCycleGuide"),
+                "cycle guide resumes without replaying fireball");
             check(Enumerable.Range(0,4).All(i=>d.GetSlotState(i)==SlotState.TutorialLocked), "all cards locked between lessons");
             halfway(4, CastColor.Orange);
             c.TrySpend(c.Current); // Retrying the lesson restores required cost before input.

@@ -18,6 +18,8 @@ public class BattleFlow : MonoBehaviour
         public Enemy[] enemies;
         [Tooltip("3체 구성에서 가장 강한 적을 지정한다. 이 적을 중앙에 배치한다.")]
         public Enemy centerEnemy;
+        [Tooltip("3체 전투의 중앙 적을 제외한 적: 말단 표시·피해 절반 올림")]
+        public bool supportingUnderlings;
     }
 
     [SerializeField] private Encounter[] encounters;
@@ -65,7 +67,8 @@ public class BattleFlow : MonoBehaviour
     [SerializeField] private string tutorialMapName = "오솔길 입구";
     [SerializeField] private string victoryFormat = "전투 {0} 승리\n남은 HP {1:0} / {2:0}\n이 HP로 다음 전투를 시작합니다.";
     [SerializeField] private string completeFormat = "모험 완료\n남은 HP {0:0} / {1:0}";
-    [SerializeField] private string defeatFormat = "전투 {0} 패배\n처음부터 다시 도전할 수 있습니다.";
+    public const string DefeatMessage = "<size=200%><b><color=#E87878>패배</color></b></size>\n<size=40%> </size>\n이번 런에서 얻은 스킬·패시브 중 1개를 계승할 수 있습니다.";
+    [SerializeField] private string defeatFormat = DefeatMessage;
 
     [Header("계승")]
     [SerializeField] private string inheritanceFileName = "save.json";
@@ -565,6 +568,13 @@ public class BattleFlow : MonoBehaviour
         return true;
     }
 
+    public void CancelReplacementSlot()
+    {
+        if (IsMenuPaused || State != BattleFlowState.BetweenBattles || RewardResolved) return;
+        SelectedReplacementIndex = -1;
+        RefreshUI();
+    }
+
     public bool ConfirmReplacement()
     {
         if (IsMenuPaused) return false;
@@ -827,7 +837,7 @@ public class BattleFlow : MonoBehaviour
         BattleNumber = tutorialEnemies != null ? 0 : index + 1;
         metrics.BeginBattle(BattleNumber);
         metrics.RecordRunModifiers(cost.RegenerationPerSecond, player.CriticalChance, tutorialEnemies != null ? "튜토리얼 (일반 전투와 별도)" : PassiveSummary, ResourceStatus);
-        enemies.BeginBattle(tutorialEnemies ?? encounters[index].enemies, tutorialEnemies != null ? null : encounters[index].centerEnemy);
+        enemies.BeginBattle(tutorialEnemies ?? encounters[index].enemies, tutorialEnemies != null ? null : encounters[index].centerEnemy, tutorialEnemies == null && encounters[index].supportingUnderlings);
         State = BattleFlowState.Fighting;
         RefreshUI();
         Time.timeScale = information != null ? information.BattleSpeed : 1f;

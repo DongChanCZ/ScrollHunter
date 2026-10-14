@@ -43,6 +43,7 @@ public class CombatInfoUI : MonoBehaviour
     [SerializeField] private string sectionBreak = "\n<size=80%> </size>";
     [SerializeField] private string channelUnconfiguredLabel = "채널링 효과 연결 필요";
     [SerializeField] private string damageFormat = "피해 <b>{0}×{1}회</b> · 총합 피해 <b>{2}</b>\n<size=80%><alpha=#CC>적 1체·전 타격·크리티컬/방어 적용 전<alpha=#FF></size>";
+    [SerializeField] private string variedDamageFormat = "피해 <b>{0}</b> · 총합 피해 <b>{1}</b>\n<size=80%><alpha=#CC>적 1체·전 타격·크리티컬/방어 적용 전<alpha=#FF></size>";
     [SerializeField] private string shieldFormat = "방어도 <b>+{0}</b>";
     [SerializeField] private string interruptFormat = "캐스팅 중인 대상에게 사용\n효과 적용 때도 초록·주황\n시전 중이면 성공\n성공 경직 <b>{0:0.##}초</b>\n빨강·적 선발동: 실패, 코스트·카드 소모";
     [SerializeField] private string damagingInterruptFormat = "피해 <b>{0}×{1}회</b> · 총합 피해 <b>{3}</b>\n<size=80%><alpha=#CC>적 1체·전 타격·크리티컬/방어 적용 전<alpha=#FF></size>\n적 캐스팅 중에만 사용. 피해 후 차단\n초록·주황: 경직 <b>{2:0.##}초</b>\n빨강·시전 종료: 피해만 적용";
@@ -261,9 +262,15 @@ public class CombatInfoUI : MonoBehaviour
             return string.Format(shieldFormat, player != null ? player.GetShieldAmount(card.ShieldAmount) : card.ShieldAmount);
         if (card.Category == SkillCategory.Interrupt)
             return card.Damage > 0
-                ? string.Format(damagingInterruptFormat, card.Damage, card.HitCount, deck.InterruptStagger, (long)card.Damage * card.HitCount)
+                ? string.Format(damagingInterruptFormat, card.Damage, card.HitCount, deck.InterruptStagger, card.TotalDamage)
                 : string.Format(interruptFormat, deck.InterruptStagger);
-        return string.Format(damageFormat, card.Damage, card.HitCount, (long)card.Damage * card.HitCount);
+        if (card.FinalHitBonus != 0)
+        {
+            var hits = new string[card.HitCount];
+            for (int i = 0; i < hits.Length; i++) hits[i] = card.GetHitDamage(i + 1).ToString();
+            return string.Format(variedDamageFormat, string.Join("·", hits), card.TotalDamage);
+        }
+        return string.Format(damageFormat, card.Damage, card.HitCount, card.TotalDamage);
     }
 
     [SerializeField] private string bossNameFormat = "{0} ({1}페이즈)";
@@ -273,7 +280,7 @@ public class CombatInfoUI : MonoBehaviour
     [SerializeField] private string orbEmpoweredText = "\n파멸 강화 적용";
     public string DescribeEnemy(Enemy target)
     {
-        string name = target.Data.DisplayName;
+        string name = target.DisplayName;
         if (target.HasPhases) name = string.Format(bossNameFormat, name, target.PhaseNumber);
         if (target.IsBossOrb) return string.Format(orbDescriptionFormat, name,
             target.Data.PassiveDescription, target.OrbDestructionDamage);
@@ -288,7 +295,7 @@ public class CombatInfoUI : MonoBehaviour
         }
         if (target.CurrentDamageMultiplier > 1f) effect += orbEmpoweredText;
         if (target.CastBlocksCostRecovery) effect += costBlockingStunText;
-        return string.Format(enemyFormat, name, attack.SkillName, (attack.Damage * target.CurrentDamageMultiplier).ToString("0.#"), target.CurrentCastTime,
+        return string.Format(enemyFormat, name, attack.SkillName, (target.CurrentAttackDamage * target.CurrentDamageMultiplier).ToString("0.#"), target.CurrentCastTime,
             attack.CastColor == CastColor.Red ? cannotInterruptLabel : canInterruptLabel,
             effect, sectionBreak);
     }

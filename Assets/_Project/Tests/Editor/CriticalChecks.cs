@@ -69,11 +69,13 @@ public static class CriticalChecks
                 if (card.CastTime > 0) check(amounts.Count == 0, "no damage on input " + card.DisplayName);
                 Call(deck, "AdvanceCast", card.CastTime + 0.01f);
                 int hits = card.Damage > 0 ? card.HitCount * (card.IsAreaOfEffect ? 2 : 1) : 0;
-                int perHit = DamageFormula.Compute(card.Damage, 1, 0, 1.5f);
-                check(amounts.Count == hits && flags.All(x => x) && amounts.All(x => x == perHit), "critical amounts and flags " + card.DisplayName);
+                var perTarget = Enumerable.Range(1, card.HitCount).Select(i => DamageFormula.Compute(card.GetHitDamage(i), 1, 0, 1.5f)).ToArray();
+                var expectedHits = Enumerable.Range(0, hits).Select(i => perTarget[i % card.HitCount]);
+                int targetDamage = card.Damage > 0 ? perTarget.Sum() : 0;
+                check(amounts.Count == hits && flags.All(x => x) && amounts.SequenceEqual(expectedHits), "critical amounts and flags " + card.DisplayName);
                 check(metrics.CriticalHits == hits && metrics.CriticalEligibleHits == hits, "critical metrics " + card.DisplayName);
-                check(b.CurrentHp == Mathf.Max(0, hpB - perHit * (card.Damage > 0 ? card.HitCount : 0))
-                    && (!card.IsAreaOfEffect || c.CurrentHp == Mathf.Max(0, hpC - perHit * card.HitCount)), "actual HP " + card.DisplayName);
+                check(b.CurrentHp == Mathf.Max(0, hpB - targetDamage)
+                    && (!card.IsAreaOfEffect || c.CurrentHp == Mathf.Max(0, hpC - targetDamage)), "actual HP " + card.DisplayName);
                 if (card.Category == SkillCategory.Shield) check(player.Shield == card.ShieldAmount, "shield unaffected");
                 if (card.Category == SkillCategory.Interrupt) check(b.IsStaggered && (float)Get(b, "staggerTimer") == 2.5f, "stagger unaffected");
             }
