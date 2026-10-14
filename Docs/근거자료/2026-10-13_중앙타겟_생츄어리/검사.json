@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-13",
+  "changes": {
+    "initialTarget": "Three combatants: middle enemy in left-to-right formation. One/two: first alive. Current A-C-B: C.",
+    "sanctuary": {
+      "oldCost": 4,
+      "newCost": 5,
+      "reason": "과도한 성능",
+      "channelSeconds": 2.5
+    }
+  },
+  "validation": "Click input checks: 66 passed (1920x1080); function/UI raycasts, physical input excluded.",
+  "screenshot": "01_중앙선택_생츄어리5.png",
+  "saveSceneFontHashesUnchanged": {
+    "Assets/_Project/Fonts/GmarketSansMedium SDF.asset": "62-7E-A6-F6-C0-5D-EB-14-76-AC-A5-33-42-0B-F9-BA-A4-23-31-98-8A-14-90-7B-21-1E-08-6D-E8-D0-24-08",
+    "Assets/_Project/Scenes/Battle.unity": "4D-3D-05-77-CA-F1-24-D4-1B-77-A0-44-B5-4F-8A-A9-ED-BA-0A-E4-83-21-CB-25-80-BE-A3-9A-8D-A8-D5-21",
+    "C:/Users/MBC-501-19/AppData/LocalLow/DefaultCompany/ScrollHunter/save.json": "A0-D9-AC-7E-59-30-98-96-B6-DB-E4-FD-B4-7F-07-61-9F-90-FC-F7-02-61-CE-BE-90-F7-BD-C7-80-8B-5A-2E",
+    "C:/Users/MBC-501-19/AppData/LocalLow/DefaultCompany/ScrollHunter/save.json.bak": "E9-AD-E9-CC-D8-31-62-75-55-E5-E8-05-00-D1-DA-54-F1-75-0A-07-A1-B7-D6-95-C9-C5-09-49-41-3D-22-81"
+  },
+  "console": {
+    "errors": 0,
+    "warnings": 0
+  },
+  "finalState": {
+    "playing": false,
+    "sceneDirty": false
+  },
+  "limits": [
+    "physical input",
+    "complete player run/balance",
+    "new build",
+    "Excel recalculation/rendering"
+  ],
+  "spreadsheet": {
+    "file": "밸런스시트.xlsx",
+    "cell": "스킬!D18",
+    "value": 5,
+    "preservation": "Only D18 value differs; formulas, styles and other ZIP entries unchanged",
+    "fallback": "Artifact import rejected pre-existing font size 1000. Updated target XML numeric value only."
+  }
+}

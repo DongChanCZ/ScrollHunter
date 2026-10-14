@@ -63,7 +63,7 @@ public static class RemainingSkillChecks
             Check(pool.Count(o => o.Card != null) == 6 && pool.Count(o => o.Effect != null) == 10, "six reward cards and ten passives");
             Check(judgment.Cost == 6 && judgment.CastTime == 2.75f && judgment.Damage == 365 && judgment.HitCount == 1 && !judgment.IsAreaOfEffect && !judgment.IsChanneling, "SK08 saved specification");
             Check(blizzard.Cost == 5 && blizzard.CastTime == 1 && blizzard.Damage == 20 && blizzard.HitCount == 4 && blizzard.IsAreaOfEffect && !blizzard.IsChanneling, "SK09 saved specification");
-            Check(sanctuary.Cost == 4 && sanctuary.CastTime == 2.5f && sanctuary.Category == SkillCategory.Shield && sanctuary.IsChanneling && sanctuary.HasValidChannel, "SK14 saved specification");
+            Check(sanctuary.Cost == 5 && sanctuary.CastTime == 2.5f && sanctuary.Category == SkillCategory.Shield && sanctuary.IsChanneling && sanctuary.HasValidChannel, "SK14 saved specification");
             Check(info.DescribeCard(sanctuary).Contains("무적") && !info.DescribeCard(sanctuary).Contains("방어도 +0"), "sanctuary tooltip explains protection");
             // 신성한 빛 연출(빛 띠·광원·빛줄기·반짝임)의 이미지 수와 무관하게 입력을 가로채지 않아야 한다.
             Check(frame != null && frame.GetComponentsInChildren<Image>(true).Length > 0 && frame.GetComponentsInChildren<Image>(true).All(i => !i.raycastTarget), "gold frame never intercepts input");
@@ -103,15 +103,15 @@ public static class RemainingSkillChecks
 
             Reset(sanctuary); player.ApplyStun(2);
             Check(!deck.TryUseSlot(0) && cost.Current==10 && deck.GetHandCard(0)==sanctuary && !player.IsInvulnerable, "cannot use sanctuary while stunned");
-            Reset(sanctuary); typeof(CostSystem).GetProperty("Current").SetValue(cost,3f);
-            Check(!deck.TryUseSlot(0) && cost.Current==3 && !player.IsInvulnerable, "insufficient cost grants no protection");
+            Reset(sanctuary); typeof(CostSystem).GetProperty("Current").SetValue(cost,4f);
+            Check(!deck.TryUseSlot(0) && cost.Current==4 && !player.IsInvulnerable, "insufficient cost grants no protection");
             Reset(sanctuary); player.AddShield(40); Check(deck.TryUseSlot(0), "sanctuary accepted");
-            Check(cost.Current==6 && deck.GetHandCard(0)==original[4] && player.IsInvulnerable && player.IsStunImmune, "instant protection / input consumption");
+            Check(cost.Current==5 && deck.GetHandCard(0)==original[4] && player.IsInvulnerable && player.IsStunImmune, "instant protection / input consumption");
             Call(ui,"UpdateSanctuary"); Check(frame.activeSelf, "gold border appears");
             player.TakeDamage(150); player.ApplyStun(2);
             Check(player.CurrentHp==500 && player.Shield==40 && !player.IsStunned && metrics.InvulnerabilityPrevented==125 && (int)Get(metrics,"shieldAbsorbed")==0, "125 prevented separately / shield and HP preserved");
             Call(b,"Fire"); Check(!player.IsStunned && player.CurrentHp==500 && metrics.InvulnerabilityPrevented==158, "actual orange Fire cannot damage or stun");
-            Check(!deck.TryUseSlot(1) && cost.Current==6, "channel blocks other cards");
+            Check(!deck.TryUseSlot(1) && cost.Current==5, "channel blocks other cards");
             Step(2.49f); Check(player.IsInvulnerable && deck.IsChanneling, "protection lasts full duration");
             Step(.011f); Call(ui,"UpdateSanctuary");
             Check(!player.IsInvulnerable && !player.IsStunImmune && !frame.activeSelf && !deck.IsLocked, "duration ends / no extra lock / border off");

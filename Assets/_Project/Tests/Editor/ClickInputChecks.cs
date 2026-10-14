@@ -73,8 +73,31 @@ public static class ClickInputChecks
           set(p,"currentHp",200f);clickPotion();check(p.CurrentHp==350f&&p.PotionsRemaining==2&&d.IsCasting,"potion during cast/channel "+channel);
          }
          fresh(0);
+         var sanctuary=AssetDatabase.LoadAssetAtPath<SkillData>("Assets/_Project/Data/ScrollHunter/SkillData/Skill_SK14_Sanctuary.asset");
+         var sanctuaryDeck=d.CopyStartingDeck();sanctuaryDeck.Remove(sanctuary);sanctuaryDeck.Insert(0,sanctuary);d.SetDeck(sanctuaryDeck.Take(8).ToList());
+         var cost=UnityEngine.Object.FindFirstObjectByType<CostSystem>();
+         cost.EnsureTutorialCost(4);
+         check(sanctuary.Cost==5 && !d.TryUseSlot(0) && cost.Current==4 && !p.IsInvulnerable && d.GetHandCard(0)==sanctuary,"sanctuary rejects four cost without consumption");
+         cost.EnsureTutorialCost(5);
+         check(d.TryUseSlot(0) && cost.Current==0 && p.IsInvulnerable && p.IsStunImmune && d.CastRemaining==2.5f,"sanctuary spends exactly five and protects for 2.5s");
+         call(d,"AdvanceCast",new object[]{2.5f});
+         check(!p.IsInvulnerable && !p.IsStunImmune && !d.IsChanneling,"sanctuary protection ends normally");
+         check(System.Text.RegularExpressions.Regex.Replace(info.DescribeCard(sanctuary), "<[^>]+>", "").Contains("코스트 5"),"sanctuary description shows five");
          foreach(int encounter in new[]{0,1,2,3}){
-          fresh(encounter);foreach(var e in m.Enemies){
+          fresh(encounter);
+          var initial=m.Enemies[m.Enemies.Count==3?1:0];
+          check(m.CurrentTarget==initial,"initial target follows formation "+encounter);
+          call(ui,"UpdateMarker",new object[0]);
+          var marker=(RectTransform)get(ui,"targetMarker");
+          check(marker.gameObject.activeSelf && Mathf.Abs(marker.position.x-cam.WorldToScreenPoint(initial.BarWorldPosition).x)<1f,"marker starts above selected enemy "+encounter);
+          if(m.Enemies.Count==3){
+           call(m,"StepTarget",new object[]{1});check(m.CurrentTarget==m.Enemies[2],"center steps right");
+           call(m,"StepTarget",new object[]{-1});check(m.CurrentTarget==initial,"right steps back to center");
+           initial.TakeDamage(initial.CurrentHp);m.NotifyEnemyDied();
+           check(m.CurrentTarget==m.Enemies[0],"center death moves to first survivor");
+           fresh(encounter);check(m.CurrentTarget==m.Enemies[1],"three-enemy restart selects center");
+          }
+          foreach(var e in m.Enemies){
            Rect b=bodyRect(e);Vector2 point=new Vector2(b.xMax+12f*Screen.height/1080f,b.center.y);
            check(pick(point)==e,"outside body selectable "+e.name+" encounter "+encounter);
            check(pick(cam.WorldToScreenPoint(e.GetComponent<Collider>().bounds.center))==e,"body center stays correct "+e.name);
@@ -92,6 +115,7 @@ public static class ClickInputChecks
          check(pick(cam.WorldToScreenPoint(orbs.Ruin.transform.position))==null,"preview orb untargetable");
          set(p,"currentHp",200f);clickPotion();check(p.CurrentHp==350f&&boss.IsPhaseTransitioning,"potion allowed during boss transition");
          call(boss,"AdvanceCombat",new object[]{2.5f});Physics.SyncTransforms();
+         check(m.CurrentTarget==boss,"orb summoning keeps boss target");
          foreach(var orb in new[]{orbs.Ruin,orbs.Cycle}){
           var b=bodyRect(orb);check(pick(new Vector2(b.xMax+12f*Screen.height/1080f,b.center.y))==orb,"active orb padding "+orb.name);
          }

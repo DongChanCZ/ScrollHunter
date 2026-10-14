@@ -1,0 +1,17 @@
+{
+  "build": "Succeeded",
+  "output": "C:/Users/MBC-501-19/Desktop/ScrollHunter_2026-10-13/ScrollHunter.exe",
+  "errors": 0,
+  "warnings": 2,
+  "messages": [
+    "Importer(NativeFormatImporter) generated inconsistent result for asset(guid:7b1e16cbc5ea6b246a1276679ec44837) \"Assets/_Project/Fonts/GmarketSansMedium SDF.asset\"",
+    "Importer(NativeFormatImporter) generated inconsistent result for asset(guid:7b1e16cbc5ea6b246a1276679ec44837) \"Assets/_Project/Fonts/GmarketSansMedium SDF.asset\""
+  ],
+  "hashes": {
+    "Assets/_Project/Scenes/Battle.unity": "4D-3D-05-77-CA-F1-24-D4-1B-77-A0-44-B5-4F-8A-A9-ED-BA-0A-E4-83-21-CB-25-80-BE-A3-9A-8D-A8-D5-21",
+    "Assets/_Project/Fonts/GmarketSansMedium SDF.asset": "62-7E-A6-F6-C0-5D-EB-14-76-AC-A5-33-42-0B-F9-BA-A4-23-31-98-8A-14-90-7B-21-1E-08-6D-E8-D0-24-08",
+    "C:/Users/MBC-501-19/AppData/LocalLow/DefaultCompany/ScrollHunter/save.json": "2B-9A-E8-AF-F3-12-E5-53-47-D0-2C-4A-4F-51-5F-0E-E2-DF-4E-67-C4-DE-A7-5B-61-F1-2F-7E-22-8B-D8-E0"
+  },
+  "splash": false,
+  "unityLogo": false
+}

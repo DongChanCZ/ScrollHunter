@@ -1,5 +1,10 @@
 # CREDITS
 
+### 게임 아이콘 (2026-10-13)
+
+- OpenAI imagegen으로 프로젝트용 제작. 푸른 문자·금색 장식의 스크롤, 카툰풍.
+- `Assets/_Project/UI/AppIcon/ScrollHunter_Icon.png`. 생성 원본·프롬프트는 `Docs/근거자료/2026-10-13_게임아이콘/`에 보존. Windows 실행 파일 아이콘으로 사용.
+
 **프로젝트** Scroll Hunter (가칭) — Soul Wanderer 재설계 | **제작** [ 이름 ] | **기간** [ ]
 
 <!-- 빌드 폴더 및 프로젝트 루트에 함께 넣으세요. 포트폴리오는 공개물이므로 라이선스 확인은 필수입니다. -->

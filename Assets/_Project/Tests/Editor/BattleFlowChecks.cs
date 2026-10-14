@@ -124,8 +124,10 @@ public static class BattleFlowChecks
             flow.RestartRun();
             Check(enemies.EnemyCount == 3 && enemies.Enemies[0] == a && enemies.Enemies[1] == c
                 && enemies.Enemies[2] == b && c.transform.position.x == centerX, "three enemies strongest in center");
+            Check(enemies.CurrentTarget == c, "three-enemy battle starts on center");
             Call(enemies, "StepTarget", 1);
-            Check(enemies.CurrentTarget == c, "target step follows new left to right order");
+            Check(enemies.CurrentTarget == b, "target step follows new left to right order");
+            Call(enemies, "StepTarget", -1);
             foreach (var enemy in enemies.Enemies)
             {
                 Call(enemy, "LateUpdate");

@@ -110,7 +110,7 @@ public class EnemyManager : MonoBehaviour
             enemies[i].RefreshBarColor();
         }
 
-        CurrentTarget = FirstAlive();   // 전투 시작 시 1번 적 자동 지정
+        CurrentTarget = InitialTarget();
     }
 
     public void WaitForBattle()
@@ -144,7 +144,7 @@ public class EnemyManager : MonoBehaviour
             enemy.Initialize(this, player);
             enemy.BeginBattle();
         }
-        CurrentTarget = FirstAlive();
+        CurrentTarget = InitialTarget();
     }
 
     internal void RegisterOrb(Enemy orb)
@@ -181,6 +181,13 @@ public class EnemyManager : MonoBehaviour
         else if (Input.GetKeyDown(targetRightKey)) StepTarget(1);
 
         if (Input.GetMouseButtonDown(0)) TryClickTarget();
+    }
+
+    private Enemy InitialTarget()
+    {
+        // 좌우 정렬된 3체 편성은 중앙을 먼저 선택한다. 사망 후 이동 규칙은 유지.
+        if (enemies.Count == 3 && enemies[1] != null && enemies[1].IsAlive) return enemies[1];
+        return FirstAlive();
     }
 
     private Enemy FirstAlive()

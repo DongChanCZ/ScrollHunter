@@ -1,0 +1,13 @@
+제작: Codex 내장 image_gen
+용도: Scroll Hunter 게임 아이콘 시안 1종
+배경: 불투명
+
+Use case: stylized-concept.
+Asset type: ONE square PC fantasy game application icon for "Scroll Hunter", suitable as a Unity game build icon. Create a single finished 1024 x 1024 icon image, no mockup, no variations, no grid.
+Primary request: An ancient arcane parchment scroll, partly unfurled, with luminous BLUE mysterious runic symbols. The magic is emitted by the writing itself, bathing the parchment's inner folds in cyan-blue light. The scroll is the only focal object, representing finding and inheriting forgotten powers.
+Composition: centered large scroll occupying about 80% of the square, tilted slightly diagonally with its top toward upper right; readable chunky silhouette, two clearly recognizable rolled ends, broad open parchment between them, believable smooth unbroken paper shape. Keep all extremities comfortably inside the frame with 8% safe margin. Small number of bold invented rune strokes and one central arcane sigil, legible as shapes at thumbnail size, no readable lettering.
+Art direction: polished hand-painted CARTOON fantasy game illustration, smooth soft shading with natural clean contours, modest dimensional depth, rich but restrained details. Match a medieval fantasy game with stylized low-poly characters but the icon illustration has NO polygon facets or triangulated shading. NOT photorealistic, NOT a toy-like shiny mobile icon, NOT flat vector. Warm aged ivory parchment, restrained aged brass/gold tips on the wooden scroll rods, deep brown underside. Crisp silhouette and strong light-dark contrast.
+Background: opaque near-black blue-black background with a subtle muted navy vignette and a tiny restrained blue aura immediately around the scroll. Keep corners very dark and empty. No scenery, no table, no hands, no people, no weapons, no extra props, no thick frame or app-tile border.
+Lighting: inner electric-blue rune glow with soft cyan reflected light, warm parchment remains identifiable. Controlled luminosity, no white blown-out center, no excessive sparks.
+Constraints: one icon only; no title, no Latin letters, no numbers, no watermark, no UI, no logo text. Icon must remain recognizable at 64px.
+
