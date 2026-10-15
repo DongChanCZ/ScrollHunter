@@ -1,0 +1,13 @@
+Use case: compositing / ads-marketing.
+Adapt the supplied Scroll Hunter scroll icon into ONE finished itch.io game cover, using the other supplied game images as strict branding and illustration-style references.
+Input 1 is the existing scroll app icon: preserve its recognizable aged parchment, carved golden roller ends, central cyan arcane symbol and blue runes, but redraw its surfaces in the softer illustrated style of input 3.
+Input 2 is the actual game's title screen: match the elegant gold classical serif / small-cap style and restrained thin gold ornament beneath the title. Do not include the menu buttons, descriptive subtitle, credits, or screenshot interface.
+Input 3 is the actual story artwork: match its hand-painted fantasy cartoon illustration, natural clean contours, smooth simplified shading, limited detail and muted forest colors. No visible low-poly facets, photorealism, realistic CGI or glossy mobile-game look.
+Output canvas: landscape 1260 x 1000 pixels, exact aspect ratio 63:50 (itch.io cover). Fill the entire canvas with art, no outer frame or mockup.
+Composition: a single large, partly unrolled magical scroll angled very gently in three-quarter perspective across the lower central area. Blue ancient runes emit cyan light onto the parchment and nearby surroundings. Keep the whole scroll silhouette inside the frame with breathing room. Behind it, a subdued atmospheric medieval woodland path in deep blue-green shadow, softly painted trunks framing the sides and a modest hint of distant rocky cave. Background shapes support the focal scroll rather than competing with it. A few restrained blue motes, no explosion.
+Across the upper third, prominent readable gold game title in two centered lines, exact English text only:
+SCROLL
+HUNTER
+Use the title screen's Roman serif character and restrained gold color, with subtle dark outline/shadow for small-thumbnail legibility and a fine gold divider underneath. Keep lettering crisp, not highly ornate or excessively beveled. No extra tagline, no additional text.
+At 315 x 250 preview size the title and blue-glowing scroll must remain immediately recognizable. Keep title and important art within 8% safe margins.
+Cohesive illustrated key art from this existing game's world, not a screenshot and not a new art direction. No people, no additional weapons, no dragons, no watermark. Opaque background.

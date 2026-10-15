@@ -1,0 +1,74 @@
+[
+  {
+    "Path": "C:\\Users\\MBC-501-19\\Documents\\ScrollHunter\\Assets\\_Project\\Fonts\\GmarketSansMedium SDF.asset",
+    "Before": "F077B9B448F1C70B761BE3AFDF6E294A20CFE986631EE25E645AE8DDD02952A8",
+    "After": "F077B9B448F1C70B761BE3AFDF6E294A20CFE986631EE25E645AE8DDD02952A8",
+    "Same": true
+  },
+  {
+    "Path": "C:\\Users\\MBC-501-19\\Documents\\ScrollHunter\\Assets\\_Project\\Fonts\\Cinzel\\Cinzel Bold Title SDF.asset",
+    "Before": "A2CE5203DFE38CDDC1FFF7AE85E0D4D8445A41C07AE13D308AA497A42420274C",
+    "After": "A2CE5203DFE38CDDC1FFF7AE85E0D4D8445A41C07AE13D308AA497A42420274C",
+    "Same": true
+  },
+  {
+    "Path": "C:\\Users\\MBC-501-19\\Documents\\ScrollHunter\\Assets\\_Project\\Fonts\\NEXON_Maplestory\\Maplestory Bold Damage SDF.asset",
+    "Before": "1308E9BDF3DBC1DF000DB7CD34217913D4A5CE060F334F40E96620A887991682",
+    "After": "1308E9BDF3DBC1DF000DB7CD34217913D4A5CE060F334F40E96620A887991682",
+    "Same": true
+  },
+  {
+    "Path": "C:\\Users\\MBC-501-19\\Documents\\ScrollHunter\\Assets\\_Project\\Fonts\\NotoSansCJK\\NotoSansJP-Medium SDF.asset",
+    "Before": "013C42C8B8321A34227E73B80D1BF21D32DB09A31B527A3CE447D2A3B1E9810C",
+    "After": "013C42C8B8321A34227E73B80D1BF21D32DB09A31B527A3CE447D2A3B1E9810C",
+    "Same": true
+  },
+  {
+    "Path": "C:\\Users\\MBC-501-19\\Documents\\ScrollHunter\\Assets\\_Project\\Fonts\\NotoSansCJK\\NotoSansSC-Medium SDF.asset",
+    "Before": "BB1A0DCE1B185FE37C7DB503F1B3D131E45D497941495387620F9FD302633D37",
+    "After": "BB1A0DCE1B185FE37C7DB503F1B3D131E45D497941495387620F9FD302633D37",
+    "Same": true
+  },
+  {
+    "Path": "C:\\Users\\MBC-501-19\\Documents\\ScrollHunter\\Assets\\_Project\\Scenes\\Battle.unity",
+    "Before": "AB80BCE6FE7817AB40DE64F8CB6CB23A40913556C55783D717C3EE908505B430",
+    "After": "AB80BCE6FE7817AB40DE64F8CB6CB23A40913556C55783D717C3EE908505B430",
+    "Same": true
+  },
+  {
+    "Path": "C:\\Users\\MBC-501-19\\Documents\\ScrollHunter\\Assets\\TextMesh Pro\\Resources\\TMP Settings.asset",
+    "Before": "21294E530731E4391946E1E27A4AD8856B625A2FF82625BC9D24C3A154AC568C",
+    "After": "21294E530731E4391946E1E27A4AD8856B625A2FF82625BC9D24C3A154AC568C",
+    "Same": true
+  },
+  {
+    "Path": "C:\\Users\\MBC-501-19\\Documents\\ScrollHunter\\ProjectSettings\\GraphicsSettings.asset",
+    "Before": "6736F33DC62C35B0E7A88E275242080BC7A1D94C91154D18FCEB332B661A6BCE",
+    "After": "6736F33DC62C35B0E7A88E275242080BC7A1D94C91154D18FCEB332B661A6BCE",
+    "Same": true
+  },
+  {
+    "Path": "C:\\Users\\MBC-501-19\\Documents\\ScrollHunter\\ProjectSettings\\ProjectSettings.asset",
+    "Before": "8DCED13D86322A87C5BA334D2E73D9F96D7769E6B04FADED70618805AD33EAD7",
+    "After": "8DCED13D86322A87C5BA334D2E73D9F96D7769E6B04FADED70618805AD33EAD7",
+    "Same": true
+  },
+  {
+    "Path": "C:\\Users\\MBC-501-19\\Documents\\ScrollHunter\\Assets\\Settings\\UniversalRenderPipelineGlobalSettings.asset",
+    "Before": "9F26063EACA4043CABD5FAB18EEA9C1DDF34E2B269232E7FE333211051766EDF",
+    "After": "9F26063EACA4043CABD5FAB18EEA9C1DDF34E2B269232E7FE333211051766EDF",
+    "Same": true
+  },
+  {
+    "Path": "C:\\Users\\MBC-501-19\\AppData\\LocalLow\\DefaultCompany\\ScrollHunter\\save.json",
+    "Before": "E9ADE9CCD831627555E5E80500D1DA54F1750A07A1B7D695C9C50949413D2281",
+    "After": "E9ADE9CCD831627555E5E80500D1DA54F1750A07A1B7D695C9C50949413D2281",
+    "Same": true
+  },
+  {
+    "Path": "C:\\Users\\MBC-501-19\\AppData\\LocalLow\\DefaultCompany\\ScrollHunter\\save.json.bak",
+    "Before": "E9EA65B2325FD3BB7B9F6CDAE394E2D7A54A40D9C743813B1D92986DA7EF58C9",
+    "After": "E9EA65B2325FD3BB7B9F6CDAE394E2D7A54A40D9C743813B1D92986DA7EF58C9",
+    "Same": true
+  }
+]

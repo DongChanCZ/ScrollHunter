@@ -1,0 +1,164 @@
+{
+  "skillFieldsCompared": 84,
+  "mismatches": [],
+  "skills": [
+    {
+      "id": "SK01",
+      "name": "파이어볼",
+      "cost": 1.0,
+      "seconds": 0.0,
+      "damage": 30,
+      "hits": 1,
+      "finalHitBonus": 0,
+      "totalDamage": 30,
+      "shield": 0
+    },
+    {
+      "id": "SK02",
+      "name": "아이스애로우",
+      "cost": 5.0,
+      "seconds": 2.799999952316284,
+      "damage": 35,
+      "hits": 5,
+      "finalHitBonus": 0,
+      "totalDamage": 175,
+      "shield": 0
+    },
+    {
+      "id": "SK03",
+      "name": "매직 커터",
+      "cost": 2.0,
+      "seconds": 0.0,
+      "damage": 30,
+      "hits": 2,
+      "finalHitBonus": 0,
+      "totalDamage": 60,
+      "shield": 0
+    },
+    {
+      "id": "SK04",
+      "name": "파이어 필라",
+      "cost": 4.0,
+      "seconds": 1.0,
+      "damage": 90,
+      "hits": 1,
+      "finalHitBonus": 0,
+      "totalDamage": 90,
+      "shield": 0
+    },
+    {
+      "id": "SK05",
+      "name": "라이트닝 스피어",
+      "cost": 4.0,
+      "seconds": 0.800000011920929,
+      "damage": 135,
+      "hits": 1,
+      "finalHitBonus": 0,
+      "totalDamage": 135,
+      "shield": 0
+    },
+    {
+      "id": "SK06",
+      "name": "매직 스파크",
+      "cost": 3.0,
+      "seconds": 2.200000047683716,
+      "damage": 10,
+      "hits": 8,
+      "finalHitBonus": 0,
+      "totalDamage": 80,
+      "shield": 0
+    },
+    {
+      "id": "SK07",
+      "name": "매직 임팩트",
+      "cost": 3.0,
+      "seconds": 0.0,
+      "damage": 40,
+      "hits": 3,
+      "finalHitBonus": 10,
+      "totalDamage": 130,
+      "shield": 0
+    },
+    {
+      "id": "SK08",
+      "name": "저지먼트",
+      "cost": 7.0,
+      "seconds": 2.75,
+      "damage": 365,
+      "hits": 1,
+      "finalHitBonus": 0,
+      "totalDamage": 365,
+      "shield": 0
+    },
+    {
+      "id": "SK09",
+      "name": "블리자드",
+      "cost": 5.0,
+      "seconds": 1.0,
+      "damage": 30,
+      "hits": 4,
+      "finalHitBonus": 0,
+      "totalDamage": 120,
+      "shield": 0
+    },
+    {
+      "id": "SK10",
+      "name": "다크 이럽션",
+      "cost": 2.0,
+      "seconds": 0.5,
+      "damage": 50,
+      "hits": 1,
+      "finalHitBonus": 0,
+      "totalDamage": 50,
+      "shield": 0
+    },
+    {
+      "id": "SK11",
+      "name": "침묵",
+      "cost": 2.0,
+      "seconds": 0.20000000298023224,
+      "damage": 0,
+      "hits": 1,
+      "finalHitBonus": 0,
+      "totalDamage": 0,
+      "shield": 0
+    },
+    {
+      "id": "SK12",
+      "name": "제압",
+      "cost": 2.0,
+      "seconds": 0.20000000298023224,
+      "damage": 40,
+      "hits": 1,
+      "finalHitBonus": 0,
+      "totalDamage": 40,
+      "shield": 0
+    },
+    {
+      "id": "SK13",
+      "name": "매직아머",
+      "cost": 3.0,
+      "seconds": 0.20000000298023224,
+      "damage": 0,
+      "hits": 1,
+      "finalHitBonus": 0,
+      "totalDamage": 0,
+      "shield": 120
+    },
+    {
+      "id": "SK14",
+      "name": "생츄어리",
+      "cost": 5.0,
+      "seconds": 2.5,
+      "damage": 0,
+      "hits": 1,
+      "finalHitBonus": 0,
+      "totalDamage": 0,
+      "shield": 0
+    }
+  ],
+  "languageEntries": 384,
+  "missingLanguageFields": [],
+  "workbookModified": false,
+  "formulaRecalculationPerformed": false
+}

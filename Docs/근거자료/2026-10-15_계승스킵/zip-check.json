@@ -1,0 +1,50 @@
+{
+  "path": "C:\\Users\\MBC-501-19\\Desktop\\ScrollHunter_Web_1.1.zip",
+  "bytes": 134988436,
+  "files": 7,
+  "rootIndex": true,
+  "entries": [
+    {
+      "file": "CREDITS.md",
+      "bytes": 43021,
+      "hash": "3B97E2203FFDB63F75A7027E88BC7569D56DE0DE5B63923A85BD212C087C5316",
+      "match": true
+    },
+    {
+      "file": "index.html",
+      "bytes": 6463,
+      "hash": "5733AA35232A4DE65CF390907C97275EE086C4C81AEDEB4238D05CF381C3E7A4",
+      "match": true
+    },
+    {
+      "file": "OFL_NotoSansCJK.txt",
+      "bytes": 4301,
+      "hash": "6A73F9541C2DE74158C0E7CF6B0A58EF774F5A780BF191F2D7EC9CC53EFE2BF2",
+      "match": true
+    },
+    {
+      "file": "Build/ScrollHunter_Web_1.1.data.gz",
+      "bytes": 121042131,
+      "hash": "FD221E00D4B5B38F522B193C4A2AE07BD255ED17B91D1F0C5405D86186E7F721",
+      "match": true
+    },
+    {
+      "file": "Build/ScrollHunter_Web_1.1.framework.js.gz",
+      "bytes": 91756,
+      "hash": "0411A48E622B745009B4FE533332747BD01E5C7BE067B1A1139AF2906C05D02E",
+      "match": true
+    },
+    {
+      "file": "Build/ScrollHunter_Web_1.1.loader.js",
+      "bytes": 26982,
+      "hash": "119BAE61E224F3EAE0620E55DB0952B3F0FD8D2867D0011EF51EBD2C81F94665",
+      "match": true
+    },
+    {
+      "file": "Build/ScrollHunter_Web_1.1.wasm.gz",
+      "bytes": 14387516,
+      "hash": "5ADAFB9C821F78D83CE35C75B2D896986EE24AF33EBBD62CC697BD0D8BC3CA1A",
+      "match": true
+    }
+  ]
+}

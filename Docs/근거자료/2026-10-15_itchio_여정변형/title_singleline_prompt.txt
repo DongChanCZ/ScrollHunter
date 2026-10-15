@@ -1,0 +1,14 @@
+Tool: built-in image_gen
+Date: 2026-10-15
+Output: ScrollHunter_Moonlit_Cover_SingleLine.png
+
+Use case: compositing.
+Create ONE alternate finished game cover with a SINGLE-LINE title.
+Input image 1 is the exact title-free background to preserve: moonlit blue forest, traveler from behind with backpack and small scroll, stone arch, winding valley river and mountains.
+Input image 2 is a reference for the EXISTING GOLD TITLE STYLE ONLY. The user wants its two-line title changed to one single line. Do not reproduce its two-line layout.
+
+Exact title text: "SCROLL HUNTER"
+Render BOTH words side by side on ONE baseline, no line breaks, no stacked words.
+Position: horizontally centered across the upper sky, title spanning about 88-90% of the entire image width with safe margins, between y=10% and y=23%. Large, stately fantasy classical serif letters, the same warm pale gold/ivory face, restrained gold texture and crisp dark navy shadow as image 2. Letter proportions should remain natural and readable. Place one fine gold ornamental horizontal divider with a small central knot underneath at y=26%. It should look like the same game's logo in a wide single-line arrangement. Keep a clear space between words. Text must spell SCROLL HUNTER correctly, no extra words or subtitles.
+
+Preserve image 1 background composition, framing, lighting, colors, art style, traveler's shape and details and every landscape feature. Overlay title only, do not redraw or add objects to the scene. Preserve the original 5:4 landscape format. No banner or opaque rectangle, no cropping, no watermark. The title should be conspicuous and easily legible in a small thumbnail while the traveler and valley remain unobstructed.

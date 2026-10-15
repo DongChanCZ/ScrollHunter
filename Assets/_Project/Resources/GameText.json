@@ -2652,6 +2652,41 @@
       "ja": "（{0}）",
       "zh": "（{0}）",
       "es": "({0})"
+    },
+    {
+      "ko": "Space 누른 채 Q/W/E/R: 스킬 정보",
+      "en": "Hold Space + Q/W/E/R: skill info",
+      "ja": "Spaceを押しながらQ/W/E/R：スキル情報",
+      "zh": "按住Space再按Q/W/E/R：技能信息",
+      "es": "Mantén Space + Q/W/E/R: información"
+    },
+    {
+      "ko": "설명을 확인할 스킬 키를 누르세요 (Q/W/E/R)",
+      "en": "Press a skill key to inspect (Q/W/E/R)",
+      "ja": "説明を見るスキルのキーを押してください（Q/W/E/R）",
+      "zh": "按技能键查看说明（Q/W/E/R）",
+      "es": "Pulsa una tecla para ver su habilidad (Q/W/E/R)"
+    },
+    {
+      "ko": "Space를 놓으면 설명이 닫힙니다.",
+      "en": "Release Space to close the description.",
+      "ja": "Spaceを離すと説明が消えます。",
+      "zh": "松开Space即可关闭说明。",
+      "es": "Suelta Space para cerrar la descripción."
+    },
+    {
+      "ko": "Space를 누른 채 Q를 눌러 파이어볼의 설명을 확인해 보세요.\nSpace를 누르는 동안에는 스킬이 사용되지 않습니다.",
+      "en": "Hold Space and press Q to inspect Fireball.\nSkills cannot be used while Space is held.",
+      "ja": "Spaceを押しながらQを押して、ファイアボールの説明を確認しましょう。\nSpaceを押している間はスキルを使用しません。",
+      "zh": "按住Space并按Q，查看火球术的说明。\n按住Space时不会使用技能。",
+      "es": "Mantén Space y pulsa Q para consultar Bola de fuego.\nMientras mantengas Space, no usarás habilidades."
+    },
+    {
+      "ko": "<line-height=56>Q / W / E / R 또는 카드 좌클릭\n적 좌클릭 또는 좌우 방향키\nSpace 누른 채 Q/W/E/R 또는 카드에 마우스 올리기\nA 또는 우클릭 / 상단 버튼 · Esc 메뉴\nS 또는 상단 속도 버튼 (1배속 / 0.5배속)\nShift 또는 물약 아이콘 좌클릭\n전투 중 우측 상단 버튼 (게임은 멈추지 않음)",
+      "en": "<line-height=56>Q / W / E / R or left-click a card\nLeft-click an enemy or use Left/Right arrows\nHold Space + Q/W/E/R, or hover over a card\nA or right-click / top button · Esc: menu\nS or the speed button (1× / 0.5×)\nShift or left-click the potion icon\nTop-right button during battle (does not pause)",
+      "ja": "<line-height=56>Q / W / E / R またはカードを左クリック\n敵を左クリックまたは左右方向キー\nSpaceを押しながらQ/W/E/R、またはカードにマウスを乗せる\nA または右クリック / 上部ボタン · Esc メニュー\nS または上部の速度ボタン (1倍速 / 0.5倍速)\nShift またはポーションアイコンを左クリック\n戦闘中に右上のボタン (ゲームは停止しません)",
+      "zh": "<line-height=56>Q / W / E / R 或左键点击卡牌\n左键点击敌人或左右方向键\n按住Space再按Q/W/E/R，或将鼠标悬停在卡牌上\nA 或右键 / 顶部按钮 · Esc 菜单\nS 或顶部速度按钮（1倍速 / 0.5倍速）\nShift 或左键点击药水图标\n战斗中右上角按钮（游戏不会暂停）",
+      "es": "<line-height=56>Q / W / E / R o clic izquierdo en una carta\nClic izquierdo en un enemigo o flechas izquierda/derecha\nMantén Space y pulsa Q/W/E/R, o pasa el ratón por la carta\nA o clic derecho / botón superior · Esc: menú\nS o el botón de velocidad (1× / 0.5×)\nShift o clic izquierdo en el icono de poción\nBotón superior derecho en combate (no pausa)"
     }
   ]
 }

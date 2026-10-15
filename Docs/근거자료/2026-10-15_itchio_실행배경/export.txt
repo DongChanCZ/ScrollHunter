@@ -1,0 +1,16 @@
+2026-10-15 itch.io 실행 대기 배경
+파일: ScrollHunter_LaunchBackground.png (1920x1080, 16:9 PNG)
+원본: Assets/_Project/UI/TitleMenu/ScrollTable_Cartoon.png
+효과: 현재 Battle MainMenuUI가 참조한 TitleRuneGlow 재질과 TitleRuneMask 셰이더.
+MainMenuUI.GlowAt(발광 주기 / 2) = 1, 실제 게임 발광 최대값으로 Unity GPU에서 렌더.
+게임의 EnvelopeParent와 같은 2160x1080 배경에서 중앙 1920x1080 영역 추출.
+메뉴 버튼, 제목, 안내 문구는 포함하지 않음. 새 이미지 생성이나 리터칭 없음.
+기존 08_문자광원_발광.png와 구도·발광을 시각 대조함.
+Unity Play 실행·씬 저장·게임 파일 수정 없음. 작업 전 Battle 미저장 표시 유지.
+바탕화면: ScrollHunter_Itch_LaunchBackground.png
+
+후속: 사용자 캡처의 640x360 프레임에서 원본이 크게 잘려 보임.
+같은 구도·발광으로 720x360 렌더 후 중앙 640x360 추출.
+파일: ScrollHunter_LaunchBackground_640x360.png
+바탕화면: ScrollHunter_Itch_EmbedBG_640x360.png
+교체 업로드 후 실제 itch.io 표시 결과는 아직 확인하지 않음.

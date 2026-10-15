@@ -90,6 +90,7 @@ public static class InheritanceSetup
             colors.disabledColor = new Color(.14f, .16f, .20f);
             b.colors = colors;
         }
+        ui.RefreshSkipButton();
         confirm.interactable = false;
         visual.alpha = u.FindProperty("disabledConfirmAlpha").floatValue;
         confirm.gameObject.SetActive(false);

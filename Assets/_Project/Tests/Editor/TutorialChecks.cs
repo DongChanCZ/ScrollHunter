@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Reflection;
 using UnityEditor;
@@ -14,6 +14,15 @@ public static class TutorialChecks
     private static void Call(object obj, string name, params object[] args) => obj.GetType().GetMethod(name, Hidden).Invoke(obj, args);
     private static void NextFrame(TutorialFlow t) => Set(t, "consumedFrame", -1);
     private static void Advance(TutorialFlow t) { NextFrame(t); if (!t.AdvanceGuide()) throw new Exception("Guide advance rejected"); }
+    private static void InspectTooltip(TutorialFlow t)
+    {
+        var info = UnityEngine.Object.FindFirstObjectByType<CombatInfoUI>();
+        NextFrame(t);
+        Call(info, "UpdateKeyboardInspection", true, 0, -1);
+        Call(info, "UpdateKeyboardInspection", false, -1, -1);
+        Set(info, "inspectionClosedFrame", -1);
+        NextFrame(t);
+    }
     private static void CastTime(DeckSystem d, float seconds) => Call(d, "AdvanceCast", seconds);
 
     [MenuItem("Tools/Scroll Hunter/Check Tutorial (Play)")]
@@ -40,7 +49,7 @@ public static class TutorialChecks
         int passed = 0;
         Action<bool, string> check = (ok, text) => { if (!ok) throw new Exception("Tutorial: " + text); passed++; };
         Action fresh = () => { f.BeginTutorial(false); NextFrame(t); };
-        Action qPrompt = () => { fresh(); Advance(t); Advance(t); Advance(t); Advance(t); NextFrame(t); };
+        Action qPrompt = () => { fresh(); Advance(t); Advance(t); Advance(t); Advance(t); InspectTooltip(t); NextFrame(t); };
         Action<int, CastColor> halfway = (lesson, color) =>
         {
             e.BeginTutorial(e.CurrentHp, color == CastColor.Orange ? 1 : 2);
@@ -87,7 +96,11 @@ public static class TutorialChecks
             Advance(t);
             check((RectTransform)Get(t, "highlight") == ((RectTransform[])Get(t, "slotHighlights"))[0],
                 "next advance highlights Q slot");
-            check(!hint.gameObject.activeSelf, "Space hint hidden when designated skill required");
+            check(t.WaitingForTooltip && !hint.gameObject.activeSelf, "Space+Q practice hides advance hint");
+            NextFrame(t); check(!t.AdvanceGuide() && !d.TryUseSlot(0), "practice cannot be bypassed by guide advance or casting");
+            InspectTooltip(t);
+            check(t.WaitingForSkill && !t.WaitingForTooltip, "release enters fireball use step");
+            Set(t, "consumedFrame", Time.frameCount);
             check(!d.TryUseSlot(0), "advance click cannot also use Q");
             NextFrame(t);
             check(d.GetSlotState(0) == SlotState.Ready && Enumerable.Range(1,3).All(i=>d.GetSlotState(i)==SlotState.TutorialLocked), "only Q enabled while frozen");
@@ -390,7 +403,8 @@ public static class TutorialChecks
                 if(((GameObject)Get(reward,"panel")).activeSelf || Time.timeScale!=0)throw new Exception("Completion revealed deck or resumed time");
                 sawCompletion=true;
             }
-            if(probe.ShowingGuide && !probe.WaitingForSkill)probe.AdvanceGuide();
+            if(probe.WaitingForTooltip)InspectTooltip(probe);
+            else if(probe.ShowingGuide && !probe.WaitingForSkill)probe.AdvanceGuide();
             else if(probe.WaitingForSkill)d.TryUseSlot(probe.Lesson==3?0:probe.Lesson==4?2:3);
             else if(probe.Active && probe.CompletedLessons>=6)
             {

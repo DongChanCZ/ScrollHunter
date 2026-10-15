@@ -199,6 +199,10 @@ public class CombatUI : MonoBehaviour
     }
 
     private Vector3 markerBaseScale = Vector3.one;
+    private CombatInfoUI information;
+    [SerializeField] private float inspectionFramePadding = 5f;
+    private readonly Image[] inspectionFrames = new Image[DeckSystem.HandSize];
+    [SerializeField] private Color inspectionColor = new Color(1f, .84f, .35f, 1f);
 
     // 행동 잠금·기절이 아닐 때 되돌릴 원래 글자색. 4슬롯 스타일이 같으므로 하나만 캐싱한다.
     private Color defaultNameColor = Color.black;
@@ -207,6 +211,24 @@ public class CombatUI : MonoBehaviour
 
     private void Awake()
     {
+        information = FindFirstObjectByType<CombatInfoUI>();
+        for (int i = 0; i < handSlots.Length; i++)
+        {
+            var source = handSlots[i].background != null ? handSlots[i].background.transform.Find("IconFrame") : null;
+            if (source == null) continue;
+            var frame = new GameObject("InspectionFrame", typeof(RectTransform), typeof(Image)).GetComponent<Image>();
+            frame.transform.SetParent(source.parent, false);
+            frame.sprite = source.GetComponent<Image>().sprite;
+            frame.type = source.GetComponent<Image>().type;
+            frame.color = inspectionColor;
+            frame.raycastTarget = false;
+            frame.rectTransform.anchorMin = Vector2.zero;
+            frame.rectTransform.anchorMax = Vector2.one;
+            frame.rectTransform.offsetMin = -Vector2.one * inspectionFramePadding;
+            frame.rectTransform.offsetMax = Vector2.one * inspectionFramePadding;
+            frame.enabled = false;
+            inspectionFrames[i] = frame;
+        }
         if (nextCardIcon != null && nextCardText != null)
         {
             var label = new GameObject("NextCardLabel", typeof(RectTransform), typeof(TextMeshProUGUI)).GetComponent<TextMeshProUGUI>();
@@ -359,8 +381,11 @@ public class CombatUI : MonoBehaviour
                 view.lockText.color = highContrast ? lockedOrStunnedTextColor : defaultLockTextColor;
             }
 
+            bool inspecting = information != null && information.IsInspecting;
             if (view.keyLabel != null)
-                view.keyLabel.color = highContrast ? lockedOrStunnedTextColor : defaultKeyLabelColor;
+                view.keyLabel.color = inspecting ? inspectionColor : highContrast ? lockedOrStunnedTextColor : defaultKeyLabelColor;
+            if (inspectionFrames[i] != null)
+                inspectionFrames[i].enabled = inspecting && information.InspectedSlot == i;
 
             if (view.background != null)
                 view.background.color = SlotColor(state);

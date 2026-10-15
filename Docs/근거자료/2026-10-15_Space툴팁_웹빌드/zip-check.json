@@ -1,0 +1,47 @@
+{
+  "archive": "C:\\Users\\MBC-501-19\\Desktop\\ScrollHunter_Web_1.1.zip",
+  "bytes": 134967479,
+  "files": [
+    {
+      "path": "Build/ScrollHunter_Web_1.1.data.gz",
+      "bytes": 121042909,
+      "sha256": "0fb6f9675698fc581af761478ea517471ddd69ef27816403e768e076eeaf99d8"
+    },
+    {
+      "path": "Build/ScrollHunter_Web_1.1.framework.js.gz",
+      "bytes": 91756,
+      "sha256": "69cf46c413e674f1238152999ce6a1ab286fe77c0464c158ce09e82d081527b4"
+    },
+    {
+      "path": "Build/ScrollHunter_Web_1.1.loader.js",
+      "bytes": 26982,
+      "sha256": "6a17babe6ce7d01c7611c3be1eb0dd8148d33b5f9a4c288437a726c43660181c"
+    },
+    {
+      "path": "Build/ScrollHunter_Web_1.1.wasm.gz",
+      "bytes": 14391173,
+      "sha256": "40274d259e06654a2261229b2679a08bb2f8eed20732829b1472acb3b52f5c43"
+    },
+    {
+      "path": "CREDITS.md",
+      "bytes": 43021,
+      "sha256": "3b97e2203ffdb63f75a7027e88bc7569d56de0de5b63923a85bd212c087c5316"
+    },
+    {
+      "path": "index.html",
+      "bytes": 6463,
+      "sha256": "5733aa35232a4de65cf390907c97275ee086c4c81aedeb4238d05cf381c3e7a4"
+    },
+    {
+      "path": "OFL_NotoSansCJK.txt",
+      "bytes": 4301,
+      "sha256": "6a73f9541c2de74158c0e7cf6b0a58ef774f5a780bf191f2d7ec9cc53efe2bf2"
+    }
+  ],
+  "zip_integrity": true,
+  "hashes_match": true,
+  "root_index": true,
+  "language_picker": true,
+  "default_english": true,
+  "space_input_compiled_and_translation_resource_included": true
+}

@@ -28,6 +28,11 @@ public class BattleRewardUI : MonoBehaviour
     [Tooltip("교체 화면의 덱 카드 아이콘")]
     [SerializeField] private Image[] deckIcons;
     [SerializeField] private Button skipButton;
+    [SerializeField] private Vector2 skipButtonPosition = new Vector2(-126f, -60f);
+    [SerializeField] private Vector2 skipButtonSize = new Vector2(180f, 56f);
+    [SerializeField] private Vector2 skipLabelPadding = new Vector2(16f, 8f);
+    [SerializeField] private float skipLabelFontSize = 24f;
+    [SerializeField] private float skipLabelMinFontSize = 18f;
     [SerializeField] private Button backButton;
     [SerializeField] private Button confirmReplacementButton;
     [SerializeField] private CanvasGroup confirmReplacementVisual;
@@ -79,8 +84,6 @@ public class BattleRewardUI : MonoBehaviour
     [SerializeField] private string loadFailedText = "계승 파일을 읽지 못해 기본 상태로 시작합니다. 기존 파일은 보존했습니다.";
     [SerializeField] private string backupLoadedText = "계승 파일을 읽지 못해 이전 저장본을 불러왔습니다.";
     private string rewardSkipText, rewardBackText;
-    private Vector2 inheritanceSkipAnchorMin, inheritanceSkipAnchorMax, inheritanceSkipPosition, inheritanceSkipSize;
-    private float inheritanceSkipFontSize;
     private Vector2 inheritanceBackPosition;
 
     private void Awake()
@@ -91,12 +94,7 @@ public class BattleRewardUI : MonoBehaviour
         rewardSkipText = "보상 스킵";
         rewardBackText = "보상 다시 선택";
         inheritanceBackPosition = ((RectTransform)backButton.transform).anchoredPosition;
-        var skipRect = (RectTransform)skipButton.transform;
-        inheritanceSkipAnchorMin = skipRect.anchorMin;
-        inheritanceSkipAnchorMax = skipRect.anchorMax;
-        inheritanceSkipPosition = skipRect.anchoredPosition;
-        inheritanceSkipSize = skipRect.sizeDelta;
-        inheritanceSkipFontSize = skipButton.GetComponentInChildren<TMP_Text>(true).fontSize;
+
         if (inheritanceOpen != null) inheritanceOpen.onClick.AddListener(() =>
         { if (flow.State == BattleFlowState.Title) { inheritancePanel.SetActive(true); RefreshInheritance(); } });
         if (inheritanceClose != null) inheritanceClose.onClick.AddListener(() => inheritancePanel.SetActive(false));
@@ -210,7 +208,7 @@ public class BattleRewardUI : MonoBehaviour
         backButton.GetComponentInChildren<TMP_Text>().text = GameText.T(inheriting ? GameText.T(inheritanceBackText) : rewardBackText);
         choicesRoot.SetActive(choosing);
         deckRoot.SetActive(!choosing);
-        RefreshSkipButton(inheriting);
+        RefreshSkipButton();
         skipButton.gameObject.SetActive(!flow.RewardResolved && (inheriting || (between && choosing)));
         if (reorderButton != null) reorderButton.gameObject.SetActive(flow.CanEditOrder && !editing);
         if (saveOrderButton != null) saveOrderButton.gameObject.SetActive(editing);
@@ -283,15 +281,22 @@ public class BattleRewardUI : MonoBehaviour
         }
     }
 
-    private void RefreshSkipButton(bool inheriting)
+    public void RefreshSkipButton()
     {
-        // 계승은 저장된 하단 배치, 일반 보상은 우측 상단의 작은 버튼을 사용한다.
+        // 보상과 계승은 같은 작은 스킵 버튼을 쓰며, 번역도 버튼 안에 한 줄로 맞춘다.
         var rect = (RectTransform)skipButton.transform;
-        rect.anchorMin = inheriting ? inheritanceSkipAnchorMin : Vector2.one;
-        rect.anchorMax = inheriting ? inheritanceSkipAnchorMax : Vector2.one;
-        rect.anchoredPosition = inheriting ? inheritanceSkipPosition : new Vector2(-126f, -60f);
-        rect.sizeDelta = inheriting ? inheritanceSkipSize : new Vector2(180f, 56f);
-        skipButton.GetComponentInChildren<TMP_Text>(true).fontSize = inheriting ? inheritanceSkipFontSize : 24f;
+        rect.anchorMin = rect.anchorMax = Vector2.one;
+        rect.anchoredPosition = skipButtonPosition;
+        rect.sizeDelta = skipButtonSize;
+        var label = skipButton.GetComponentInChildren<TMP_Text>(true);
+        label.rectTransform.anchorMin = Vector2.zero;
+        label.rectTransform.anchorMax = Vector2.one;
+        label.rectTransform.anchoredPosition = Vector2.zero;
+        label.rectTransform.sizeDelta = -skipLabelPadding;
+        label.fontSize = label.fontSizeMax = skipLabelFontSize;
+        label.fontSizeMin = skipLabelMinFontSize;
+        label.enableAutoSizing = true;
+        label.textWrappingMode = TextWrappingModes.NoWrap;
     }
 
     private static void SetText(TMP_Text[] labels, int index, string text)

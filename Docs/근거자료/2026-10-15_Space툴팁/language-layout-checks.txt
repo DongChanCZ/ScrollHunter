@@ -1,0 +1,11 @@
+Korean: controls 7 rows; no overflow
+English: controls 7 rows; no overflow
+Japanese: controls 7 rows; no overflow
+ChineseSimplified: controls 7 rows; no overflow
+Spanish: controls 7 rows; no overflow
+Space help glyphs: 1696; missing 0
+Korean: practice guide height 180; no overflow
+English: practice guide height 180; no overflow
+Japanese: practice guide height 180; no overflow
+ChineseSimplified: practice guide height 180; no overflow
+Spanish: practice guide height 180; no overflow

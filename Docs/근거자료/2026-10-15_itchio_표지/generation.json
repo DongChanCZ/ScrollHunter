@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-15",
+  "tool": "image_gen.imagegen (built-in)",
+  "output": "ScrollHunter_Itch_Cover_v1.png",
+  "dimensions": [1408, 1117],
+  "purpose": "itch.io 프로젝트 표지 후보 1장",
+  "references": [
+    "Assets/_Project/UI/AppIcon/ScrollHunter_Icon.png",
+    "Docs/근거자료/2026-10-15_웹오브_수정/03-final-title.jpg",
+    "Assets/_Project/UI/Story/Intro05_Traveler.png"
+  ],
+  "prompt": "prompt.txt",
+  "review": "Scroll Hunter 영문 제목, 금색 세리프, 푸른 비전 스크롤, 숲/동굴 배경, 카툰풍과 외곽 잘림 없음 확인",
+  "gameFilesChanged": false,
+  "published": false
+}

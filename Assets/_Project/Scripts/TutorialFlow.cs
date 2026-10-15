@@ -26,6 +26,14 @@ public class TutorialFlow : MonoBehaviour
     [SerializeField, TextArea] private string enemyInfoPrompt = "해당 구역은 타겟팅 된 적의 공격에 대한 정보를 보여줍니다";
     private string guideSource;
     private bool showingEnemyInfo;
+    private int tooltipGuideStep;
+    [SerializeField] private Vector2 tooltipGuidePosition = new Vector2(-250f, 255f);
+    [SerializeField] private float tooltipGuideWidth = 900f;
+    private Vector2 defaultGuidePosition;
+    private float defaultGuideWidth;
+    public bool WaitingForTooltip => isActiveAndEnabled && ShowingGuide && tooltipGuideStep > 0;
+    [SerializeField, TextArea] private string tooltipPrompt = "Space를 누른 채 Q를 눌러 파이어볼의 설명을 확인해 보세요.\nSpace를 누르는 동안에는 스킬이 사용되지 않습니다.";
+    [SerializeField, TextArea] private string tooltipReleasePrompt = "Space를 놓으면 설명이 닫힙니다.";
     private bool pendingCycleGuide;
     private int cycleGuideStep;
     [SerializeField, TextArea] private string defeatPrompt = "이제 공격스킬을 써서 적을 처치하세요";
@@ -62,6 +70,8 @@ public class TutorialFlow : MonoBehaviour
         cost = FindFirstObjectByType<CostSystem>();
         information = FindFirstObjectByType<CombatInfoUI>();
         BuildUI();
+        defaultGuidePosition = guide.anchoredPosition;
+        defaultGuideWidth = guide.sizeDelta.x;
         GameText.Changed += RefreshLanguage;
     }
 
@@ -81,7 +91,7 @@ public class TutorialFlow : MonoBehaviour
             tutorialEnemy.HoldTutorialDefeat = false;
         }
         Active = ShowingGuide = WaitingForSkill = showingEnemyInfo = pendingCycleGuide = false;
-        cycleGuideStep = 0;
+        cycleGuideStep = tooltipGuideStep = 0;
         if (overlay != null) overlay.SetActive(false);
         if (skipRect != null) skipRect.gameObject.SetActive(false);
     }
@@ -89,7 +99,7 @@ public class TutorialFlow : MonoBehaviour
     public void Begin(int hp, bool retry)
     {
         pendingCycleGuide = false;
-        cycleGuideStep = 0;
+        cycleGuideStep = tooltipGuideStep = 0;
         if (!retry) CompletedLessons = 0;
         Active = true;
         ShowingGuide = WaitingForSkill = false;
@@ -113,7 +123,7 @@ public class TutorialFlow : MonoBehaviour
     {
         if (flow != null && flow.MenuBlocksInput) return;
         if (!Active && !ShowingGuide && consumedFrame == Time.frameCount - 1) flow.RefreshTutorialUI();
-        if (!ShowingGuide || WaitingForSkill || BlocksInputThisFrame) return;
+        if (!ShowingGuide || WaitingForSkill || WaitingForTooltip || BlocksInputThisFrame) return;
         bool click = Input.GetMouseButtonDown(0);
         if (click && Active && RectTransformUtility.RectangleContainsScreenPoint(skipRect, Input.mousePosition)) return;
         if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter)
@@ -177,6 +187,7 @@ public class TutorialFlow : MonoBehaviour
     private void ShowGuide(string text, RectTransform focus)
     {
         ShowingGuide = true;
+        tooltipGuideStep = 0;
         WaitingForSkill = showingDefeatPrompt = showingEnemyInfo = false;
         Time.timeScale = 0f;
         if (information != null) information.BeginBattle();
@@ -188,7 +199,7 @@ public class TutorialFlow : MonoBehaviour
 
     public bool AdvanceGuide()
     {
-        if (flow.MenuBlocksInput || !ShowingGuide || WaitingForSkill || BlocksInputThisFrame) return false;
+        if (flow.MenuBlocksInput || !ShowingGuide || WaitingForSkill || WaitingForTooltip || BlocksInputThisFrame) return false;
         consumedFrame = Time.frameCount;
         if (flow.State == BattleFlowState.TutorialComplete)
         {
@@ -208,14 +219,21 @@ public class TutorialFlow : MonoBehaviour
             else { HideGuide(); ResumeTime(); }
             return true;
         }
-        // 3단계 안에서 마커 → 적 정보 → 파이어볼 순서로 안내한다.
+        // 3단계 안에서 마커 → 적 정보 → Space+Q 실습 → 파이어볼 사용 순서로 안내한다.
         if (Lesson == 3 && !showingEnemyInfo)
         {
             ShowGuide(enemyInfoPrompt, enemyInfoHighlight);
             showingEnemyInfo = true;
             return true;
         }
-        if (Lesson >= 3 && Lesson <= 5)
+        if (Lesson == 3)
+        {
+            ShowGuide(tooltipPrompt, slotHighlights[0]);
+            tooltipGuideStep = 1;
+            continueHint.gameObject.SetActive(false);
+            return true;
+        }
+        if (Lesson >= 4 && Lesson <= 5)
         {
             WaitingForSkill = true;
             continueHint.gameObject.SetActive(false);
@@ -245,6 +263,27 @@ public class TutorialFlow : MonoBehaviour
         return true;
     }
 
+    internal void ObserveTooltip(bool held, int slot)
+    {
+        if (!WaitingForTooltip || BlocksInputThisFrame || flow.MenuBlocksInput) return;
+        if (tooltipGuideStep == 1 && held && slot == 0)
+        {
+            tooltipGuideStep = 2;
+            SetGuideText(tooltipReleasePrompt);
+            highlight = information.CardInfoRect;
+        }
+        else if (tooltipGuideStep == 2 && !held)
+        {
+            tooltipGuideStep = 0;
+            showingEnemyInfo = true;
+            WaitingForSkill = true;
+            highlight = slotHighlights[0];
+            cost.EnsureTutorialCost(deck.GetHandCard(0).Cost);
+            SetGuideText("Q 또는 아이콘을 눌러 단일 스킬인 파이어볼을 사용하세요.");
+            consumedFrame = Time.frameCount;
+        }
+    }
+
     public bool AllowsSlot(int slot, SkillData card)
     {
         if (!isActiveAndEnabled) return true;
@@ -269,7 +308,8 @@ public class TutorialFlow : MonoBehaviour
     private void HideGuide()
     {
         ShowingGuide = WaitingForSkill = showingDefeatPrompt = showingEnemyInfo = pendingCycleGuide = false;
-        cycleGuideStep = 0;
+        cycleGuideStep = tooltipGuideStep = 0;
+        if (information != null) information.BeginBattle();
         overlay.SetActive(false);
     }
 
@@ -393,6 +433,9 @@ public class TutorialFlow : MonoBehaviour
     private void LateUpdate()
     {
         if (!ShowingGuide) return;
+        // 실습 중 오른쪽 스킬 설명을 가리지 않도록 안내는 왼쪽에 둔다.
+        guide.anchoredPosition = WaitingForTooltip ? tooltipGuidePosition : defaultGuidePosition;
+        guide.sizeDelta = new Vector2(WaitingForTooltip ? tooltipGuideWidth : defaultGuideWidth, guide.sizeDelta.y);
         // 넓힌 행간에도 안내와 Space가 겹치지 않도록 위쪽으로 확장한다.
         guide.sizeDelta = new Vector2(guide.sizeDelta.x, Mathf.Max(guideMinimumHeight,
             guideText.GetPreferredValues(guideText.text, guide.sizeDelta.x - 60f, Mathf.Infinity).y + 80f));

@@ -57,6 +57,7 @@ public class DeckSystem : MonoBehaviour
     private readonly SkillData[] hand = new SkillData[HandSize];
     private readonly Queue<SkillData> queue = new Queue<SkillData>();
     private bool initialized;
+    private CombatInfoUI information;
     private TutorialFlow tutorial;
     private BattleFlow flow;
     [SerializeField] private string phaseTransitionLabel = "사용 불가 — 페이즈 전환";
@@ -121,6 +122,7 @@ public class DeckSystem : MonoBehaviour
 
     private void Awake()
     {
+        information = FindFirstObjectByType<CombatInfoUI>();
         tutorial = FindFirstObjectByType<TutorialFlow>();
         flow = FindFirstObjectByType<BattleFlow>();
         if (costSystem == null) costSystem = FindFirstObjectByType<CostSystem>();
@@ -209,19 +211,23 @@ public class DeckSystem : MonoBehaviour
         return target != null && target.IsCasting;
     }
 
+    public bool InspectKeyHeld => Input.GetKey(KeyCode.Space);
+
+    public int PressedHandSlot()
+    {
+        for (int i = 0; i < Mathf.Min(handKeys.Length, HandSize); i++)
+            if (Input.GetKeyDown(handKeys[i])) return i;
+        return -1;
+    }
+
     private void Update()
     {
         AdvanceCast(Time.deltaTime);
         if ((Time.timeScale <= 0f && (tutorial == null || !tutorial.WaitingForSkill))
             || BattleEnded || IsLocked || (player != null && player.IsStunned)) return;
 
-        int count = Mathf.Min(handKeys.Length, HandSize);
-        for (int i = 0; i < count; i++)
-        {
-            if (!Input.GetKeyDown(handKeys[i])) continue;
-            TryUseSlot(i);
-            break;
-        }
+        int slot = PressedHandSlot();
+        if (slot >= 0) TryUseSlot(slot);
     }
 
     private void AdvanceCast(float deltaTime)
@@ -274,6 +280,8 @@ public class DeckSystem : MonoBehaviour
     /// <summary>입력 수락 시 코스트·카드 소모. 발동 방식에 따라 효과를 시작한다.</summary>
     public bool TryUseSlot(int slot)
     {
+        // 키보드·좌클릭·튜토리얼의 모든 사용 경로에서 정보 확인 입력을 먼저 소비한다.
+        if (InspectKeyHeld || (information != null && information.BlocksSkillInput)) return false;
         if (flow != null && flow.MenuBlocksInput) return false;
         if (BattleEnded || (Time.timeScale <= 0f && (tutorial == null || !tutorial.WaitingForSkill))) return false;
         SkillData card = GetHandCard(slot);

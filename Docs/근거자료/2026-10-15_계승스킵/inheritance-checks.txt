@@ -1,0 +1,1 @@
+Inheritance: 68 checks passed. Isolated store: C:/Users/MBC-50~1/AppData/Local/Temp/DefaultCompany/ScrollHunter\InheritanceCheck-c203cde208a341d4b8defc20d2052d74

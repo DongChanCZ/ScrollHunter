@@ -1,0 +1,49 @@
+var f=UnityEngine.Object.FindFirstObjectByType<BattleFlow>();
+var ui=UnityEngine.Object.FindFirstObjectByType<BattleRewardUI>();
+var h=System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic;
+var b=(UnityEngine.UI.Button)ui.GetType().GetField("skipButton",h).GetValue(ui);
+var label=b.GetComponentInChildren<TMPro.TMP_Text>(true);
+var rect=(RectTransform)b.transform;
+var selected=f.GetRewardChoice(0).Card;
+var rows=new System.Collections.Generic.List<object>();
+int passed=0;
+System.Action<bool,string> check=(ok,name)=>{if(!ok)throw new System.Exception(name);passed++;};
+foreach(var size in new[]{new Vector2Int(1920,1080),new Vector2Int(1366,768)})
+{
+    UiCapture.SetGameViewSize(size.x,size.y);EditorApplication.Step();EditorApplication.Step();
+    foreach(GameLanguage lang in System.Enum.GetValues(typeof(GameLanguage)))
+    {
+        GameText.SetLanguage(lang);
+        foreach(var mode in new[]{"inherit-choice","inherit-replace","reward-choice","reward-replace"})
+        {
+            bool inherit=mode.StartsWith("inherit"), replace=mode.EndsWith("replace");
+            f.GetType().GetProperty("State").SetValue(f,inherit?BattleFlowState.Inheriting:BattleFlowState.BetweenBattles,null);
+            f.GetType().GetProperty("SelectedReward").SetValue(f,replace?selected:null,null);
+            f.GetType().GetProperty("SelectedReplacementIndex").SetValue(f,-1,null);
+            ui.Refresh();EditorApplication.Step();Canvas.ForceUpdateCanvases();label.ForceMeshUpdate(true);
+            bool expected=inherit||!replace;
+            check(b.gameObject.activeInHierarchy==expected,mode+" visible");
+            if(expected)
+            {
+                var corners=new Vector3[4];rect.GetWorldCorners(corners);
+                check(corners[0].x>Screen.width*.75f&&corners[0].y>Screen.height*.85f&&corners[2].x<=Screen.width&&corners[2].y<=Screen.height,mode+" top-right inside screen");
+                check(label.textInfo.lineCount==1&&!label.isTextOverflowing,mode+" single-line fits "+lang);
+                var bounds=label.textBounds;
+                check(bounds.size.x<=label.rectTransform.rect.width+1f,mode+" label width "+lang);
+                var pointer=new UnityEngine.EventSystems.PointerEventData(UnityEngine.EventSystems.EventSystem.current);
+                pointer.position=RectTransformUtility.WorldToScreenPoint(null,rect.TransformPoint(rect.rect.center));
+                var hits=new System.Collections.Generic.List<UnityEngine.EventSystems.RaycastResult>();
+                UnityEngine.EventSystems.EventSystem.current.RaycastAll(pointer,hits);
+                check(hits.Count>0&&hits[0].gameObject.GetComponentInParent<UnityEngine.UI.Button>()==b,mode+" clickable");
+            }
+            rows.Add(new {resolution=Screen.width+"x"+Screen.height,language=lang.ToString(),mode=mode,visible=expected,text=label.text,font=label.fontSize,lines=label.textInfo.lineCount});
+        }
+    }
+}
+f.GetType().GetProperty("State").SetValue(f,BattleFlowState.Inheriting,null);
+f.GetType().GetProperty("SelectedReward").SetValue(f,selected,null);
+GameText.SetLanguage(GameLanguage.Spanish);ui.Refresh();
+string screenshot=UiCapture.Save("Docs/근거자료/2026-10-15_계승스킵/02-replace-es-1366.png",1366,768);
+var output=new {passed=passed,combinations=rows.Count,rows=rows};
+System.IO.File.WriteAllText("Docs/근거자료/2026-10-15_계승스킵/ui-checks.json",Newtonsoft.Json.JsonConvert.SerializeObject(output,Newtonsoft.Json.Formatting.Indented));
+return new {passed=passed,combinations=rows.Count,screenshot=screenshot};

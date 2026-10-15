@@ -319,10 +319,19 @@ public class MainMenuUI : MonoBehaviour
         flow.StartRun();
     }
 
+    public const string ControlsDescription = "<line-height=56>Q / W / E / R 또는 카드 좌클릭\n적 좌클릭 또는 좌우 방향키\nSpace 누른 채 Q/W/E/R 또는 카드에 마우스 올리기\nA 또는 우클릭 / 상단 버튼 · Esc 메뉴\nS 또는 상단 속도 버튼 (1배속 / 0.5배속)\nShift 또는 물약 아이콘 좌클릭\n전투 중 우측 상단 버튼 (게임은 멈추지 않음)";
+
+    [SerializeField, TextArea] private string controlsDescription = ControlsDescription;
+
     public void OpenControls()
     {
         if (!titlePanel.activeInHierarchy) return;
         ClosePanels(); inheritancePanel.SetActive(false);
+        var label = controlsPanel.transform.Find("ControlsPanel/Values").GetComponent<TMP_Text>();
+        label.text = controlsDescription;
+        var localized = label.GetComponent<LocalizedLabel>();
+        if (localized != null) localized.Initialize(controlsDescription);
+        else label.text = GameText.T(controlsDescription);
         controlsPanel.SetActive(true); controlsPanel.transform.SetAsLastSibling();
     }
 

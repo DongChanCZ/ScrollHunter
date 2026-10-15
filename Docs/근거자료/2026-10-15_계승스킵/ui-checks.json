@@ -1,0 +1,366 @@
+{
+  "passed": 160,
+  "combinations": 40,
+  "rows": [
+    {
+      "resolution": "1920x1080",
+      "language": "Korean",
+      "mode": "inherit-choice",
+      "visible": true,
+      "text": "계승 스킵",
+      "font": 24.0,
+      "lines": 1
+    },
+    {
+      "resolution": "1920x1080",
+      "language": "Korean",
+      "mode": "inherit-replace",
+      "visible": true,
+      "text": "계승 스킵",
+      "font": 24.0,
+      "lines": 1
+    },
+    {
+      "resolution": "1920x1080",
+      "language": "Korean",
+      "mode": "reward-choice",
+      "visible": true,
+      "text": "보상 스킵",
+      "font": 24.0,
+      "lines": 1
+    },
+    {
+      "resolution": "1920x1080",
+      "language": "Korean",
+      "mode": "reward-replace",
+      "visible": false,
+      "text": "보상 스킵",
+      "font": 24.0,
+      "lines": 1
+    },
+    {
+      "resolution": "1920x1080",
+      "language": "English",
+      "mode": "inherit-choice",
+      "visible": true,
+      "text": "Skip Inheritance",
+      "font": 18.6,
+      "lines": 1
+    },
+    {
+      "resolution": "1920x1080",
+      "language": "English",
+      "mode": "inherit-replace",
+      "visible": true,
+      "text": "Skip Inheritance",
+      "font": 18.6,
+      "lines": 1
+    },
+    {
+      "resolution": "1920x1080",
+      "language": "English",
+      "mode": "reward-choice",
+      "visible": true,
+      "text": "Skip Reward",
+      "font": 23.9,
+      "lines": 1
+    },
+    {
+      "resolution": "1920x1080",
+      "language": "English",
+      "mode": "reward-replace",
+      "visible": false,
+      "text": "Skip Reward",
+      "font": 23.9,
+      "lines": 1
+    },
+    {
+      "resolution": "1920x1080",
+      "language": "Japanese",
+      "mode": "inherit-choice",
+      "visible": true,
+      "text": "継承スキップ",
+      "font": 24.0,
+      "lines": 1
+    },
+    {
+      "resolution": "1920x1080",
+      "language": "Japanese",
+      "mode": "inherit-replace",
+      "visible": true,
+      "text": "継承スキップ",
+      "font": 24.0,
+      "lines": 1
+    },
+    {
+      "resolution": "1920x1080",
+      "language": "Japanese",
+      "mode": "reward-choice",
+      "visible": true,
+      "text": "報酬スキップ",
+      "font": 24.0,
+      "lines": 1
+    },
+    {
+      "resolution": "1920x1080",
+      "language": "Japanese",
+      "mode": "reward-replace",
+      "visible": false,
+      "text": "報酬スキップ",
+      "font": 24.0,
+      "lines": 1
+    },
+    {
+      "resolution": "1920x1080",
+      "language": "ChineseSimplified",
+      "mode": "inherit-choice",
+      "visible": true,
+      "text": "跳过继承",
+      "font": 24.0,
+      "lines": 1
+    },
+    {
+      "resolution": "1920x1080",
+      "language": "ChineseSimplified",
+      "mode": "inherit-replace",
+      "visible": true,
+      "text": "跳过继承",
+      "font": 24.0,
+      "lines": 1
+    },
+    {
+      "resolution": "1920x1080",
+      "language": "ChineseSimplified",
+      "mode": "reward-choice",
+      "visible": true,
+      "text": "跳过奖励",
+      "font": 24.0,
+      "lines": 1
+    },
+    {
+      "resolution": "1920x1080",
+      "language": "ChineseSimplified",
+      "mode": "reward-replace",
+      "visible": false,
+      "text": "跳过奖励",
+      "font": 24.0,
+      "lines": 1
+    },
+    {
+      "resolution": "1920x1080",
+      "language": "Spanish",
+      "mode": "inherit-choice",
+      "visible": true,
+      "text": "Omitir herencia",
+      "font": 21.95,
+      "lines": 1
+    },
+    {
+      "resolution": "1920x1080",
+      "language": "Spanish",
+      "mode": "inherit-replace",
+      "visible": true,
+      "text": "Omitir herencia",
+      "font": 21.95,
+      "lines": 1
+    },
+    {
+      "resolution": "1920x1080",
+      "language": "Spanish",
+      "mode": "reward-choice",
+      "visible": true,
+      "text": "Omitir",
+      "font": 24.0,
+      "lines": 1
+    },
+    {
+      "resolution": "1920x1080",
+      "language": "Spanish",
+      "mode": "reward-replace",
+      "visible": false,
+      "text": "Omitir",
+      "font": 24.0,
+      "lines": 1
+    },
+    {
+      "resolution": "1366x768",
+      "language": "Korean",
+      "mode": "inherit-choice",
+      "visible": true,
+      "text": "계승 스킵",
+      "font": 24.0,
+      "lines": 1
+    },
+    {
+      "resolution": "1366x768",
+      "language": "Korean",
+      "mode": "inherit-replace",
+      "visible": true,
+      "text": "계승 스킵",
+      "font": 24.0,
+      "lines": 1
+    },
+    {
+      "resolution": "1366x768",
+      "language": "Korean",
+      "mode": "reward-choice",
+      "visible": true,
+      "text": "보상 스킵",
+      "font": 24.0,
+      "lines": 1
+    },
+    {
+      "resolution": "1366x768",
+      "language": "Korean",
+      "mode": "reward-replace",
+      "visible": false,
+      "text": "보상 스킵",
+      "font": 24.0,
+      "lines": 1
+    },
+    {
+      "resolution": "1366x768",
+      "language": "English",
+      "mode": "inherit-choice",
+      "visible": true,
+      "text": "Skip Inheritance",
+      "font": 18.6,
+      "lines": 1
+    },
+    {
+      "resolution": "1366x768",
+      "language": "English",
+      "mode": "inherit-replace",
+      "visible": true,
+      "text": "Skip Inheritance",
+      "font": 18.6,
+      "lines": 1
+    },
+    {
+      "resolution": "1366x768",
+      "language": "English",
+      "mode": "reward-choice",
+      "visible": true,
+      "text": "Skip Reward",
+      "font": 23.9,
+      "lines": 1
+    },
+    {
+      "resolution": "1366x768",
+      "language": "English",
+      "mode": "reward-replace",
+      "visible": false,
+      "text": "Skip Reward",
+      "font": 23.9,
+      "lines": 1
+    },
+    {
+      "resolution": "1366x768",
+      "language": "Japanese",
+      "mode": "inherit-choice",
+      "visible": true,
+      "text": "継承スキップ",
+      "font": 24.0,
+      "lines": 1
+    },
+    {
+      "resolution": "1366x768",
+      "language": "Japanese",
+      "mode": "inherit-replace",
+      "visible": true,
+      "text": "継承スキップ",
+      "font": 24.0,
+      "lines": 1
+    },
+    {
+      "resolution": "1366x768",
+      "language": "Japanese",
+      "mode": "reward-choice",
+      "visible": true,
+      "text": "報酬スキップ",
+      "font": 24.0,
+      "lines": 1
+    },
+    {
+      "resolution": "1366x768",
+      "language": "Japanese",
+      "mode": "reward-replace",
+      "visible": false,
+      "text": "報酬スキップ",
+      "font": 24.0,
+      "lines": 1
+    },
+    {
+      "resolution": "1366x768",
+      "language": "ChineseSimplified",
+      "mode": "inherit-choice",
+      "visible": true,
+      "text": "跳过继承",
+      "font": 24.0,
+      "lines": 1
+    },
+    {
+      "resolution": "1366x768",
+      "language": "ChineseSimplified",
+      "mode": "inherit-replace",
+      "visible": true,
+      "text": "跳过继承",
+      "font": 24.0,
+      "lines": 1
+    },
+    {
+      "resolution": "1366x768",
+      "language": "ChineseSimplified",
+      "mode": "reward-choice",
+      "visible": true,
+      "text": "跳过奖励",
+      "font": 24.0,
+      "lines": 1
+    },
+    {
+      "resolution": "1366x768",
+      "language": "ChineseSimplified",
+      "mode": "reward-replace",
+      "visible": false,
+      "text": "跳过奖励",
+      "font": 24.0,
+      "lines": 1
+    },
+    {
+      "resolution": "1366x768",
+      "language": "Spanish",
+      "mode": "inherit-choice",
+      "visible": true,
+      "text": "Omitir herencia",
+      "font": 21.95,
+      "lines": 1
+    },
+    {
+      "resolution": "1366x768",
+      "language": "Spanish",
+      "mode": "inherit-replace",
+      "visible": true,
+      "text": "Omitir herencia",
+      "font": 21.95,
+      "lines": 1
+    },
+    {
+      "resolution": "1366x768",
+      "language": "Spanish",
+      "mode": "reward-choice",
+      "visible": true,
+      "text": "Omitir",
+      "font": 24.0,
+      "lines": 1
+    },
+    {
+      "resolution": "1366x768",
+      "language": "Spanish",
+      "mode": "reward-replace",
+      "visible": false,
+      "text": "Omitir",
+      "font": 24.0,
+      "lines": 1
+    }
+  ]
+}

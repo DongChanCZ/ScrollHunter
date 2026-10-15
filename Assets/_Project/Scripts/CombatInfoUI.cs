@@ -84,6 +84,17 @@ public class CombatInfoUI : MonoBehaviour
 
     public float BattleSpeed => resumeScale;
     private int selectedSlot = -1;
+    private int inspectionClosedFrame = -1;
+    public bool IsInspecting { get; private set; }
+    public int InspectedSlot => IsInspecting && CanInspect ? selectedSlot : -1;
+    public bool BlocksSkillInput => IsInspecting || inspectionClosedFrame == Time.frameCount;
+    public RectTransform CardInfoRect => (RectTransform)cardPanel.transform;
+    [SerializeField] private string keyboardHint = "Space 누른 채 Q/W/E/R: 스킬 정보";
+    [SerializeField] private string inspectionPrompt = "설명을 확인할 스킬 키를 누르세요 (Q/W/E/R)";
+    [SerializeField] private string inspectionReleaseHint = "Space를 놓으면 설명이 닫힙니다.";
+    [SerializeField] private float keyboardHintMinSize = 16f;
+    private bool CanInspect => !BattleEnded && (flow == null || (flow.State == BattleFlowState.Fighting && !flow.MenuBlocksInput))
+        && (tutorial == null || !tutorial.BlocksOtherControls || tutorial.WaitingForTooltip || tutorial.WaitingForSkill);
     private TutorialFlow tutorial;
     private BattleFlow flow;
     private float resumeScale = 1f;
@@ -105,6 +116,9 @@ public class CombatInfoUI : MonoBehaviour
         }
         if (metrics == null) metrics = FindFirstObjectByType<CombatMetrics>();
         if (cardPanel != null) cardPanelBaseX = ((RectTransform)cardPanel.transform).anchoredPosition.x;
+        hintText.enableAutoSizing = true;
+        hintText.fontSizeMax = hintText.fontSize;
+        hintText.fontSizeMin = keyboardHintMinSize;
     }
 
     private bool Contains(RectTransform rect)
@@ -117,20 +131,21 @@ public class CombatInfoUI : MonoBehaviour
 
     private void Update()
     {
-        if (flow != null && (flow.MenuBlocksInput || flow.IsCountingDown)) return;
+        if (flow != null && (flow.MenuBlocksInput || flow.IsCountingDown)) { ClearInspection(); return; }
         if (tutorial != null && tutorial.BlocksOtherControls)
         {
-            selectedSlot = -1;
+            if ((tutorial.WaitingForTooltip || tutorial.WaitingForSkill) && !tutorial.BlocksInputThisFrame)
+                UpdateKeyboardInspection(deck.InspectKeyHeld, deck.PressedHandSlot(), -1);
+            else ClearInspection();
             if (tutorial.WaitingForSkill && !tutorial.BlocksInputThisFrame && Input.GetMouseButtonDown(0))
                 for (int i = 0; i < slots.Length; i++) if (Contains(slots[i])) { deck.TryUseSlot(i); break; }
             return;
         }
-        if (BattleEnded) { IsInfoPaused = false; Time.timeScale = 0f; return; }
+        if (BattleEnded) { ClearInspection(); IsInfoPaused = false; Time.timeScale = 0f; return; }
         int hovered = -1;
         for (int i = 0; slots != null && i < slots.Length; i++)
             if (Contains(slots[i])) { hovered = i; break; }
-        if (hovered >= 0) selectedSlot = hovered;
-        else if (!IsInfoPaused) selectedSlot = -1;
+        UpdateKeyboardInspection(deck.InspectKeyHeld, deck.PressedHandSlot(), hovered);
 
         if (Input.GetKeyDown(pauseKey)) TogglePause();
         else if (Input.GetKeyDown(speedKey)) ToggleSpeed();
@@ -148,6 +163,36 @@ public class CombatInfoUI : MonoBehaviour
         }
     }
 
+    private void UpdateKeyboardInspection(bool held, int pressedSlot, int hovered)
+    {
+        if (!CanInspect) { ClearInspection(); return; }
+        bool released = IsInspecting && !held;
+        if (held)
+        {
+            if (!IsInspecting) selectedSlot = -1;
+            IsInspecting = true;
+            if (pressedSlot >= 0 && pressedSlot < DeckSystem.HandSize && deck.GetHandCard(pressedSlot) != null)
+                selectedSlot = pressedSlot;
+        }
+        else
+        {
+            if (released) inspectionClosedFrame = Time.frameCount;
+            IsInspecting = false;
+            selectedSlot = released ? -1 : hovered;
+        }
+        if (tutorial != null && tutorial.WaitingForTooltip)
+            tutorial.ObserveTooltip(held, selectedSlot);
+    }
+
+    private void ClearInspection()
+    {
+        if (IsInspecting) inspectionClosedFrame = Time.frameCount;
+        IsInspecting = false;
+        selectedSlot = -1;
+    }
+
+    private void OnApplicationFocus(bool focused) { if (!focused) ClearInspection(); }
+
     // 안내를 넘긴 클릭은 TutorialFlow가 먼저 소비한다. 버튼을 누른 프레임에만 사용한다.
     private bool TryPotionClick(Vector2 position)
     {
@@ -162,7 +207,7 @@ public class CombatInfoUI : MonoBehaviour
     public void BeginBattle()
     {
         IsInfoPaused = false;
-        selectedSlot = -1;
+        ClearInspection();
         if (cardPanel != null) cardPanel.SetActive(false);
     }
 
@@ -205,7 +250,8 @@ public class CombatInfoUI : MonoBehaviour
         bool ended = BattleEnded;
         if (speedLabel != null) speedLabel.text = GameText.T(GameText.Format(GameText.T(speedFormat), BattleSpeed));
         pauseLabel.text = GameText.T(ended ? GameText.T(endedText) : IsInfoPaused ? GameText.T(resumeText) : GameText.T(pauseText));
-        hintText.text = GameText.T(ended ? GameText.T(endedText) : IsInfoPaused ? GameText.T(pausedHint) : GameText.T(hint));
+        string help = IsInspecting ? (selectedSlot < 0 ? inspectionPrompt : inspectionReleaseHint) : keyboardHint;
+        hintText.text = ended ? GameText.T(endedText) : GameText.T(IsInfoPaused ? pausedHint : hint) + "\n" + GameText.T(help);
         SkillData card = !ended && selectedSlot >= 0 ? deck.GetHandCard(selectedSlot) : null;
         cardPanel.SetActive(card != null);
         if (card != null)
@@ -312,6 +358,7 @@ public class CombatInfoUI : MonoBehaviour
 
     private void OnDisable()
     {
+        ClearInspection();
         if (IsInfoPaused && !BattleEnded) Time.timeScale = resumeScale;
         IsInfoPaused = false;
     }

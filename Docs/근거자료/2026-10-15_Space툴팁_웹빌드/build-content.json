@@ -1,0 +1,12 @@
+{
+  "resource": "Assets/_Project/Resources/GameText.json",
+  "packedBytes": 133708,
+  "sourceBytes": 133689,
+  "compiledMethods": [
+    "CombatInfoUI_UpdateKeyboardInspection",
+    "DeckSystem_get_InspectKeyHeld",
+    "TutorialFlow_ObserveTooltip"
+  ],
+  "resourceIncluded": true,
+  "compiledMethodsPresent": true
+}

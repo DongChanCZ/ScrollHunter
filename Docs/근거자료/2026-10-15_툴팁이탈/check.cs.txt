@@ -1,0 +1,49 @@
+UnityEditor.EditorApplication.isPaused=true;
+var info=UnityEngine.Object.FindFirstObjectByType<CombatInfoUI>(UnityEngine.FindObjectsInactive.Include);
+var deck=UnityEngine.Object.FindFirstObjectByType<DeckSystem>();
+var cost=UnityEngine.Object.FindFirstObjectByType<CostSystem>();
+var h=System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic;
+var names=new[]{"flow","tutorial","metrics","player","enemies","slots"};
+var old=new System.Collections.Generic.Dictionary<string,object>();
+foreach(var name in names){var field=info.GetType().GetField(name,h);old[name]=field.GetValue(info);if(name!="slots")field.SetValue(info,null);}
+var parent=info.GetComponentInParent<UnityEngine.Canvas>();
+var roots=new System.Collections.Generic.List<UnityEngine.GameObject>();
+var slots=new UnityEngine.RectTransform[4];
+var panel=(UnityEngine.GameObject)info.GetType().GetField("cardPanel",h).GetValue(info);
+int passed=0;
+System.Action<bool,string> check=(ok,name)=>{if(!ok)throw new System.Exception(name);passed++;};
+var update=info.GetType().GetMethod("Update",h);
+var late=info.GetType().GetMethod("LateUpdate",h);
+float originalScale=UnityEngine.Time.timeScale;
+float originalCost=cost.Current;
+var cards=new SkillData[4];
+for(int i=0;i<4;i++)cards[i]=deck.GetHandCard(i);
+try{
+ for(int i=0;i<4;i++){var go=new UnityEngine.GameObject("HoverCheck"+i,typeof(UnityEngine.RectTransform));roots.Add(go);slots[i]=(UnityEngine.RectTransform)go.transform;slots[i].SetParent(parent.transform,false);slots[i].sizeDelta=new UnityEngine.Vector2(100,100);slots[i].position=UnityEngine.Input.mousePosition+new UnityEngine.Vector3(10000+i*200,10000,0);}
+ info.GetType().GetField("slots",h).SetValue(info,slots);
+ foreach(float speed in new[]{1f,.5f}){
+  info.BeginBattle();UnityEngine.Time.timeScale=speed;
+  foreach(bool paused in new[]{false,true}){
+   if(paused)info.TogglePause();
+   for(int i=0;i<4;i++){
+    slots[i].position=UnityEngine.Input.mousePosition;UnityEngine.Canvas.ForceUpdateCanvases();
+    update.Invoke(info,null);late.Invoke(info,null);
+    check((int)info.GetType().GetField("selectedSlot",h).GetValue(info)==i&&panel.activeSelf,"hover opens "+i);
+    slots[i].position=UnityEngine.Input.mousePosition+new UnityEngine.Vector3(10000,10000,0);
+    update.Invoke(info,null);late.Invoke(info,null);
+    check((int)info.GetType().GetField("selectedSlot",h).GetValue(info)==-1&&!panel.activeSelf,"exit closes "+i);
+    check(info.IsInfoPaused==paused&&UnityEngine.Time.timeScale==(paused?0f:speed),"pause/speed unchanged");
+   }
+   if(paused){info.Resume();check(UnityEngine.Time.timeScale==speed,"resume original speed");}
+  }
+ }
+ check(cost.Current==originalCost,"cost unchanged");
+ for(int i=0;i<4;i++)check(deck.GetHandCard(i)==cards[i],"hand unchanged "+i);
+ var result=new {passed=passed,scope="Real Update/LateUpdate with test RectTransforms at and away from current mouse position; 4 slots, playing/paused, 1x/0.5x. No physical mouse input."};
+ System.IO.File.WriteAllText("Docs/근거자료/2026-10-15_툴팁이탈/checks.json",Newtonsoft.Json.JsonConvert.SerializeObject(result,Newtonsoft.Json.Formatting.Indented));
+ return result;
+}finally{
+ info.BeginBattle();foreach(var pair in old)info.GetType().GetField(pair.Key,h).SetValue(info,pair.Value);
+ foreach(var go in roots)UnityEngine.Object.DestroyImmediate(go);
+ panel.SetActive(false);UnityEngine.Time.timeScale=originalScale;
+}

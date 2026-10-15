@@ -1,0 +1,1 @@
+Keyboard tooltip checks passed: 74. Isolated save; routed inputs, not physical keyboard events.

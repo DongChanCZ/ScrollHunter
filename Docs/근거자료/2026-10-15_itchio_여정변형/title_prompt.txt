@@ -1,0 +1,14 @@
+Tool: built-in image_gen
+Date: 2026-10-15
+Output: ScrollHunter_Moonlit_Cover.png
+
+Use case: compositing.
+Create a finished itch.io thumbnail by adding a very large game title to INPUT IMAGE 1. Image 1 (blue moonlit traveler journey) is the EDIT TARGET and must remain the background. Image 2 is TYPOGRAPHY REFERENCE ONLY: use its elegant gold/ivory classical serif lettering and delicate gold horizontal divider; do not borrow its giant scroll or its scene.
+
+Preserve the exact image 1 landscape composition, traveler seen from behind, backpack, handheld small scroll, forest ruins, river, mountains, cool blue palette and painterly style. Add only a graphic title overlay in the dark upper central sky. No other scene changes or extra objects.
+
+Exact text, with this two-line layout:
+SCROLL
+HUNTER
+
+The title is centered horizontally, very large, occupying about 65% of image width and y=5%-29% of canvas height. Use a bold, stately, readable classical fantasy serif: warm pale gold / ivory face, restrained gold shading, a crisp dark navy outline or subtle tight shadow for excellent small-thumbnail contrast, not cartoon bubble letters or excessive 3D chrome. Both lines large and closely balanced; HUNTER slightly wider. Place a slender gold ornamental divider under the title at around y=32%, with a small simple center knot ornament matching reference 2. Keep generous safe margins. Title must not overlap the traveler's head, which begins near y=41%. The title is the main readable focal element, easily legible reduced to 315px width. Preserve the valley view below it. No dark opaque box, no banner, no extra subtitle, no watermark, no extra text. Retain original 5:4 landscape image size and full-bleed framing.

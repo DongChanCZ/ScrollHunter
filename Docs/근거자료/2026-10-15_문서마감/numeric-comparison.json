@@ -1,0 +1,30 @@
+{
+  "comparison": "2026-10-14 verified snapshot vs current Unity serialization",
+  "records": 43,
+  "numericValuesCompared": 398,
+  "differences": [
+    {
+      "path": "Assets/_Project/Data/Enemy_Tutorial.asset.MonoBehaviour.orbDestructionDamage",
+      "old": 150,
+      "current": 75
+    },
+    {
+      "path": "Assets/_Project/Data/ScrollHunter/EnemyData/Enemy_A_Green.asset.MonoBehaviour.orbDestructionDamage",
+      "old": 150,
+      "current": 75
+    },
+    {
+      "path": "Assets/_Project/Data/ScrollHunter/EnemyData/Enemy_B_Orange.asset.MonoBehaviour.orbDestructionDamage",
+      "old": 150,
+      "current": 75
+    },
+    {
+      "path": "Assets/_Project/Data/ScrollHunter/EnemyData/Enemy_C_Red.asset.MonoBehaviour.orbDestructionDamage",
+      "old": 150,
+      "current": 75
+    }
+  ],
+  "playing": false,
+  "sceneDirty": true,
+  "note": "Read-only. Historical assets included; scene values read from current unsaved editor scene."
+}
