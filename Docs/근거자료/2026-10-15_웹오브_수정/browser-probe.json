@@ -1,0 +1,991 @@
+{
+  "url": "http://127.0.0.1:8776/",
+  "scope": "Normal WebGL build, test-only extra define; boss direct entry and scripted assertions, not full manual run",
+  "checks": 41,
+  "logs": [
+    {
+      "level": "log",
+      "message": "[UnityMemory] Configuration Parameters - Can be set up in boot.config\n",
+      "timestamp": "2026-10-15T03:11:21.729Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "    \"memorysetup-allocator-temp-initial-block-size-main=262144\"\n",
+      "timestamp": "2026-10-15T03:11:21.732Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "    \"memorysetup-allocator-temp-initial-block-size-worker=262144\"\n",
+      "timestamp": "2026-10-15T03:11:21.733Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "    \"memorysetup-temp-allocator-size-audio-worker=65536\"\n",
+      "timestamp": "2026-10-15T03:11:21.733Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "    \"memorysetup-temp-allocator-size-background-worker=32768\"\n",
+      "timestamp": "2026-10-15T03:11:21.733Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "    \"memorysetup-bucket-allocator-granularity=16\"\n",
+      "timestamp": "2026-10-15T03:11:21.733Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "    \"memorysetup-bucket-allocator-bucket-count=8\"\n",
+      "timestamp": "2026-10-15T03:11:21.733Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "    \"memorysetup-bucket-allocator-block-size=4194304\"\n",
+      "timestamp": "2026-10-15T03:11:21.733Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "    \"memorysetup-bucket-allocator-block-count=1\"\n",
+      "timestamp": "2026-10-15T03:11:21.733Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "    \"memorysetup-main-allocator-block-size=16777216\"\n",
+      "timestamp": "2026-10-15T03:11:21.733Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "    \"memorysetup-thread-allocator-block-size=16777216\"\n",
+      "timestamp": "2026-10-15T03:11:21.733Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "    \"memorysetup-gfx-main-allocator-block-size=16777216\"\n",
+      "timestamp": "2026-10-15T03:11:21.733Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "    \"memorysetup-gfx-thread-allocator-block-size=16777216\"\n",
+      "timestamp": "2026-10-15T03:11:21.733Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "    \"memorysetup-cache-allocator-block-size=4194304\"\n",
+      "timestamp": "2026-10-15T03:11:21.733Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "    \"memorysetup-typetree-allocator-block-size=2097152\"\n",
+      "timestamp": "2026-10-15T03:11:21.733Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "    \"memorysetup-profiler-bucket-allocator-granularity=16\"\n",
+      "timestamp": "2026-10-15T03:11:21.733Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "    \"memorysetup-profiler-bucket-allocator-bucket-count=8\"\n",
+      "timestamp": "2026-10-15T03:11:21.733Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "    \"memorysetup-profiler-bucket-allocator-block-size=4194304\"\n",
+      "timestamp": "2026-10-15T03:11:21.733Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "    \"memorysetup-profiler-bucket-allocator-block-count=1\"\n",
+      "timestamp": "2026-10-15T03:11:21.733Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "    \"memorysetup-profiler-allocator-block-size=16777216\"\n",
+      "timestamp": "2026-10-15T03:11:21.734Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "    \"memorysetup-profiler-editor-allocator-block-size=1048576\"\n",
+      "timestamp": "2026-10-15T03:11:21.734Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "    \"memorysetup-temp-allocator-size-main=4194304\"\n",
+      "timestamp": "2026-10-15T03:11:21.734Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "    \"memorysetup-job-temp-allocator-block-size=2097152\"\n",
+      "timestamp": "2026-10-15T03:11:21.734Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "    \"memorysetup-job-temp-allocator-block-size-background=1048576\"\n",
+      "timestamp": "2026-10-15T03:11:21.734Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "    \"memorysetup-job-temp-allocator-reduction-small-platforms=262144\"\n",
+      "timestamp": "2026-10-15T03:11:21.734Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Input System module state changed to: Initialized.\n",
+      "timestamp": "2026-10-15T03:11:21.783Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "[Physics::Module] Initialized fallback backend.\n",
+      "timestamp": "2026-10-15T03:11:21.785Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "[Physics::Module] Id: 0xdecafbad\n",
+      "timestamp": "2026-10-15T03:11:21.785Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Loading player data from data.unity3d\n",
+      "timestamp": "2026-10-15T03:11:21.786Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Initialize engine version: 6000.3.18f1 (5ebeb53e4c07)\n",
+      "timestamp": "2026-10-15T03:11:21.792Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "[Subsystems] Discovering subsystems at path UnitySubsystems\n",
+      "timestamp": "2026-10-15T03:11:21.793Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Creating WebGL 2.0 context.",
+      "timestamp": "2026-10-15T03:11:21.795Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.loader.js"
+    },
+    {
+      "level": "log",
+      "message": "Renderer: WebKit WebGL\n",
+      "timestamp": "2026-10-15T03:11:21.807Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Vendor:   WebKit\n",
+      "timestamp": "2026-10-15T03:11:21.808Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Version:  OpenGL ES 3.0 (WebGL 2.0 (OpenGL ES 3.0 Chromium))\n",
+      "timestamp": "2026-10-15T03:11:21.808Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "GLES:     3\n",
+      "timestamp": "2026-10-15T03:11:21.808Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": " EXT_clip_control EXT_color_buffer_float EXT_color_buffer_half_float EXT_conservative_depth EXT_depth_clamp EXT_disjoint_timer_query_webgl2 EXT_float_blend EXT_polygon_offset_clamp EXT_render_snorm EXT_texture_compression_bptc EXT_texture_compression_rgtc EXT_texture_filter_anisotropic EXT_texture_mirror_clamp_to_edge EXT_texture_norm16 KHR_parallel_shader_compile NV_shader_noperspective_interpolation OES_draw_buffers_indexed OES_sample_variables OES_shader_multisample_interpolation OES_texture_float_linear OVR_multiview2 WEBGL_blend_func_extended WEBGL_clip_cull_distance WEBGL_compressed_texture_s3tc WEBGL_compressed_texture_s3tc_srgb WEBGL_debug_renderer_info WEBGL_debug_shaders WEBGL_lose_context WEBGL_multi_draw WEBGL_polygon_mode WEBGL_provoking_vertex WEBGL_stencil_texturing GL_EXT_clip_control GL_EXT_color_buffer_float GL_EXT_color_buffer_half_float GL_EXT_conservative_depth GL_EXT_depth_clamp GL_EXT_disjoint_timer_query_webgl2 GL_EXT_float_blend GL_EXT_polygon_offset_clamp GL_EXT_render_snorm GL_EXT_\n",
+      "timestamp": "2026-10-15T03:11:21.809Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "texture_compression_bptc GL_EXT_texture_compression_rgtc GL_EXT_texture_filter_anisotropic GL_EXT_texture_mirror_clamp_to_edge GL_EXT_texture_norm16 GL_KHR_parallel_shader_compile GL_NV_shader_noperspective_interpolation GL_OES_draw_buffers_indexed GL_OES_sample_variables GL_OES_shader_multisample_interpolation GL_OES_texture_float_linear GL_OVR_multiview2 GL_WEBGL_blend_func_extended GL_WEBGL_clip_cull_distance GL_WEBGL_compressed_texture_s3tc GL_WEBGL_compressed_texture_s3tc_srgb GL_WEBGL_debug_renderer_info GL_WEBGL_debug_shaders GL_WEBGL_lose_context GL_WEBGL_multi_draw GL_WEBGL_polygon_mode GL_WEBGL_provoking_vertex GL_WEBGL_stencil_texturing\n",
+      "timestamp": "2026-10-15T03:11:21.809Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "OPENGL LOG: Creating OpenGL ES 3.0 graphics device ; Context level  <OpenGL ES 3.0> ; Context handle 1\n",
+      "timestamp": "2026-10-15T03:11:21.813Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "[Physics::Module] Selected backend.\n",
+      "timestamp": "2026-10-15T03:11:21.889Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "[Physics::Module] Name: PhysX\n",
+      "timestamp": "2026-10-15T03:11:21.890Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "[Physics::Module] Id: 0xf2b8ea05\n",
+      "timestamp": "2026-10-15T03:11:21.890Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "[Physics::Module] SDK Version: 4.1.2\n",
+      "timestamp": "2026-10-15T03:11:21.890Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "[Physics::Module] Integration Version: 1.0.0\n",
+      "timestamp": "2026-10-15T03:11:21.890Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "[Physics::Module] Threading Mode: Single-Threaded\n",
+      "timestamp": "2026-10-15T03:11:21.890Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "ERROR: Shader ",
+      "timestamp": "2026-10-15T03:11:21.947Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Hidden/CoreSRP/CoreCopy shader is not supported on this GPU (none of subshaders/fallbacks are suitable)\n",
+      "timestamp": "2026-10-15T03:11:21.947Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "ERROR: Shader ",
+      "timestamp": "2026-10-15T03:11:21.948Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Hidden/Universal Render Pipeline/StencilDitherMaskSeed shader is not supported on this GPU (none of subshaders/fallbacks are suitable)\n",
+      "timestamp": "2026-10-15T03:11:21.948Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "ERROR: Shader ",
+      "timestamp": "2026-10-15T03:11:21.961Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Hidden/Universal/HDRDebugView shader is not supported on this GPU (none of subshaders/fallbacks are suitable)\n",
+      "timestamp": "2026-10-15T03:11:21.961Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Input Manager initialize...\n",
+      "timestamp": "2026-10-15T03:11:22.003Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Input System initialize...\n",
+      "timestamp": "2026-10-15T03:11:22.004Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.156Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.157Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.157Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.158Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.158Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.158Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.158Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.159Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.160Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.160Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.160Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.161Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.161Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.161Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.161Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.162Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.162Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.162Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.163Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.163Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.163Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.163Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.163Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.164Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.166Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.166Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.166Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.166Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.166Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.166Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.166Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.166Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.167Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.168Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.169Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.169Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.169Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.170Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.170Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.170Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.170Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.171Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.171Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.171Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.172Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.172Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.172Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.172Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.172Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.173Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.173Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.174Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.174Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.174Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.174Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.175Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.176Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.177Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.177Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.181Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.181Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.181Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.182Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.182Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.182Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.183Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.183Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.183Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.183Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.183Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.183Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.183Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.183Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.183Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "UnloadTime: 1.600000 ms\n",
+      "timestamp": "2026-10-15T03:11:22.440Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Audio context resumed after 0.705 seconds.",
+      "timestamp": "2026-10-15T03:11:22.558Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:22.588Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "[보스 오브] 최초 소환 준비 — 전환 종료 때 활성화\n",
+      "timestamp": "2026-10-15T03:11:22.917Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "[Enemy_Boss] 2페이즈 전환 2.0초\n",
+      "timestamp": "2026-10-15T03:11:22.918Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "Trying to get length of sound which is not loaded yet.",
+      "timestamp": "2026-10-15T03:11:23.007Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "[UnityCache] 'http://127.0.0.1:8776/Build/ProbeBuild.data.gz' successfully downloaded and stored in the browser cache",
+      "timestamp": "2026-10-15T03:11:23.731Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.loader.js"
+    },
+    {
+      "level": "log",
+      "message": "[보스 오브] Orb of Ruin 활성화 / HP 400\n",
+      "timestamp": "2026-10-15T03:11:24.863Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "[보스 오브] Orb of Haste 활성화 / HP 400\n",
+      "timestamp": "2026-10-15T03:11:24.864Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "[WEB ORB PROBE] PHASE2_VISIBLE\n",
+      "timestamp": "2026-10-15T03:11:25.462Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "[Enemy_Boss] 3페이즈 전환 2.0초\n",
+      "timestamp": "2026-10-15T03:11:33.478Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "[Orb of Ruin] 사망\n",
+      "timestamp": "2026-10-15T03:11:36.479Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "[보스 오브] Orb of Ruin 파괴 / 보스 고정 피해 75\n",
+      "timestamp": "2026-10-15T03:11:36.481Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "[Orb of Haste] 사망\n",
+      "timestamp": "2026-10-15T03:11:36.482Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "[보스 오브] Orb of Haste 파괴 / 보스 고정 피해 75\n",
+      "timestamp": "2026-10-15T03:11:36.482Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "[Player] 피격 275 (원본 600) 방어도 흡수 275 → HP -0 = 500/500 (방어도 99725) / 빨강 반감 감소 275\n",
+      "timestamp": "2026-10-15T03:11:51.980Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "[Mage] 발동: The End (Red) 피해 600 ×1.1 (파멸 강화)\n",
+      "timestamp": "2026-10-15T03:11:51.981Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "[Player] 피격 29 (원본 35) 방어도 흡수 29 → HP -0 = 500/500 (방어도 99696)\n",
+      "timestamp": "2026-10-15T03:11:56.011Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "[Mage] 발동: Magic Missile (Green) 피해 35\n",
+      "timestamp": "2026-10-15T03:11:56.012Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "[Player] 피격 50 (원본 60) 방어도 흡수 50 → HP -0 = 500/500 (방어도 99646)\n",
+      "timestamp": "2026-10-15T03:12:02.027Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "[Player] 기절 5초\n",
+      "timestamp": "2026-10-15T03:12:02.027Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "[Mage] 발동: Nightmare (Orange) 피해 60\n",
+      "timestamp": "2026-10-15T03:12:02.028Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "[Player] 피격 29 (원본 35) 방어도 흡수 29 → HP -0 = 500/500 (방어도 99617)\n",
+      "timestamp": "2026-10-15T03:12:05.545Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "[Mage] 발동: Magic Missile (Green) 피해 35\n",
+      "timestamp": "2026-10-15T03:12:05.546Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "[Player] 피격 125 (원본 300) 방어도 흡수 125 → HP -0 = 500/500 (방어도 99492) / 빨강 반감 감소 125\n",
+      "timestamp": "2026-10-15T03:12:12.545Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "[Mage] 발동: Dark Hole (Red) 피해 300\n",
+      "timestamp": "2026-10-15T03:12:12.546Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "[보스 오브] Orb of Ruin 활성화 / HP 400\n",
+      "timestamp": "2026-10-15T03:12:12.548Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "[Player] 피격 138 (원본 300) 방어도 흡수 138 → HP -0 = 500/500 (방어도 99354) / 빨강 반감 감소 137\n",
+      "timestamp": "2026-10-15T03:12:12.549Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "[Mage] 발동: Dark Hole (Red) 피해 300 ×1.1 (파멸 강화)\n",
+      "timestamp": "2026-10-15T03:12:12.550Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "[보스 오브] Orb of Haste 활성화 / HP 400\n",
+      "timestamp": "2026-10-15T03:12:12.550Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "[WEB ORB PROBE] PHASE3_RESPAWN_VISIBLE\n",
+      "timestamp": "2026-10-15T03:12:13.544Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "[Enemy_Boss] 사망\n",
+      "timestamp": "2026-10-15T03:12:21.543Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "[보스 오브] 최초 소환 준비 — 전환 종료 때 활성화\n",
+      "timestamp": "2026-10-15T03:12:21.547Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "[Enemy_Boss] 3페이즈 전환 2.0초\n",
+      "timestamp": "2026-10-15T03:12:21.547Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "[보스 오브] Orb of Ruin 활성화 / HP 400\n",
+      "timestamp": "2026-10-15T03:12:23.560Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "[보스 오브] Orb of Haste 활성화 / HP 400\n",
+      "timestamp": "2026-10-15T03:12:23.560Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    },
+    {
+      "level": "log",
+      "message": "[WEB ORB PROBE] PASSED 41 checks\n",
+      "timestamp": "2026-10-15T03:12:24.143Z",
+      "url": "http://127.0.0.1:8776/Build/ProbeBuild.framework.js.gz"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Slot0",
+    "match": true,
+    "driver": "HorizontalLayoutGroup"
+  },
+  {
+    "name": "Slot3",
+    "match": true,
+    "driver": "HorizontalLayoutGroup"
+  },
+  {
+    "name": "Slot1",
+    "match": true,
+    "driver": "HorizontalLayoutGroup"
+  },
+  {
+    "name": "Slot2",
+    "match": true,
+    "driver": "HorizontalLayoutGroup"
+  }
+]

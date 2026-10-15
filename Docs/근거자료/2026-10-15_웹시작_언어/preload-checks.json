@@ -1,0 +1,5 @@
+{
+  "passed": 76,
+  "failures": 0,
+  "scope": "launcher + JS bridge; real Unity startup verified separately"
+}

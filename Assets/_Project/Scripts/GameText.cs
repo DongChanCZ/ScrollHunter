@@ -37,6 +37,10 @@ public static class GameText
         Changed = null;
         tables = null;
         Current = Saved();
+#if UNITY_WEBGL && !UNITY_EDITOR
+        int selected = ScrollHunter_GetLaunchLanguage();
+        if (IsValid(selected)) { Current = (GameLanguage)selected; Save(); }
+#endif
     }
 
     public static bool IsValid(int value) => value >= 0 && value < NativeNames.Length;
@@ -69,7 +73,20 @@ public static class GameText
     }
 
     public static void LoadSaved() => SetLanguage(Saved());
-    public static void Save() { PlayerPrefs.SetInt(PreferenceKey, (int)Current); PlayerPrefs.Save(); }
+    public static void Save()
+    {
+        PlayerPrefs.SetInt(PreferenceKey, (int)Current); PlayerPrefs.Save();
+#if UNITY_WEBGL && !UNITY_EDITOR
+        ScrollHunter_RememberLanguage((int)Current);
+#endif
+    }
+
+#if UNITY_WEBGL && !UNITY_EDITOR
+    [System.Runtime.InteropServices.DllImport("__Internal")]
+    private static extern int ScrollHunter_GetLaunchLanguage();
+    [System.Runtime.InteropServices.DllImport("__Internal")]
+    private static extern void ScrollHunter_RememberLanguage(int value);
+#endif
 
     public static string T(string source) => T(source, Current);
 

@@ -1,0 +1,19 @@
+{
+  "browser": "Codex In-app Browser (Chromium)",
+  "viewport": {
+    "width": 1280,
+    "height": 748
+  },
+  "url": "http://127.0.0.1:8775/",
+  "initialLauncher": "English",
+  "selectedLaunch": "Japanese",
+  "inGameApplied": "Spanish",
+  "reloadedLauncher": "Español / Jugar",
+  "restartedGame": "Spanish",
+  "errors": [],
+  "notTested": [
+    "Full combat run",
+    "itch.io upload",
+    "Other PCs"
+  ]
+}

@@ -1,0 +1,38 @@
+using System;
+using System.IO;
+using UnityEditor;
+using UnityEngine;
+
+public static class WebOrbProbeBuild
+{
+    const string Key = "ScrollHunter.WebOrbProbeBuild";
+    public static string Schedule()
+    {
+        var state = SessionState.GetString(Key, "");
+        if (state == "scheduled" || state == "building") return state;
+        SessionState.SetString(Key, "scheduled");
+        EditorApplication.update += Run;
+        return "scheduled";
+    }
+    static void Run()
+    {
+        EditorApplication.update -= Run;
+        SessionState.SetString(Key, "building");
+        const string evidence = "Docs/근거자료/2026-10-15_웹오브_수정/";
+        try
+        {
+            var folder = Path.Combine(Path.GetTempPath(), "ScrollHunter_WebOrbs_20261015", "ProbeBuild");
+            var report = BuildPipeline.BuildPlayer(new BuildPlayerOptions {
+                scenes = new[] { "Assets/_Project/Scenes/Battle.unity" }, locationPathName = folder,
+                target = BuildTarget.WebGL, options = BuildOptions.None,
+                extraScriptingDefines = new[] { "SCROLLHUNTER_WEB_ORB_PROBE" }
+            });
+            File.WriteAllText(evidence + "probe-build-result.json", Newtonsoft.Json.JsonConvert.SerializeObject(new {
+                result = report.summary.result.ToString(), errors = report.summary.totalErrors,
+                warnings = report.summary.totalWarnings, seconds = report.summary.totalTime.TotalSeconds, path = folder
+            }, Newtonsoft.Json.Formatting.Indented));
+            SessionState.SetString(Key, "done");
+        }
+        catch (Exception error) { File.WriteAllText(evidence + "probe-build-error.txt", error.ToString()); SessionState.SetString(Key, "failed"); }
+    }
+}

@@ -503,7 +503,8 @@ public class Enemy : MonoBehaviour
         var material = new Material(Shader.Find("Universal Render Pipeline/Lit"));
         material.color = color;
         obj.GetComponent<Renderer>().sharedMaterial = material;
-        obj.GetComponent<Collider>().enabled = false;
+        // 구형 충돌체를 직접 참조해 WebGL 빌드의 코드 제거 대상에서 제외한다.
+        obj.GetComponent<SphereCollider>().enabled = false;
         return orb;
     }
 

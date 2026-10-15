@@ -1,0 +1,114 @@
+// 검사용 빌드에만 잠시 복사. 배포 빌드에는 포함하지 않는다.
+#if SCROLLHUNTER_WEB_ORB_PROBE && UNITY_WEBGL && !UNITY_EDITOR
+using System;
+using System.Collections;
+using System.Linq;
+using System.Reflection;
+using UnityEngine;
+
+public sealed class WebOrbBuildProbe : MonoBehaviour
+{
+    const BindingFlags Hidden = BindingFlags.Instance | BindingFlags.NonPublic;
+    int checks;
+    BattleFlow flow;
+    Enemy boss;
+    EnemyManager manager;
+    Player player;
+    static object Call(object target, string name, params object[] args) => target.GetType().GetMethod(name, Hidden).Invoke(target, args);
+    static void Set(object target, string name, object value) => target.GetType().GetField(name, Hidden).SetValue(target, value);
+    void Check(bool ok, string name) { if (!ok) throw new Exception(name); checks++; }
+    BossOrbs Orbs => boss.GetComponent<BossOrbs>();
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+    static void Boot() => new GameObject("WebOrbBuildProbe").AddComponent<WebOrbBuildProbe>();
+
+    IEnumerator Start()
+    {
+        yield return null;
+        yield return null;
+        var run = Scenarios();
+        while (true)
+        {
+            bool next;
+            try { next = run.MoveNext(); }
+            catch (Exception error) { Time.timeScale = 0; Debug.LogError("[WEB ORB PROBE] FAILED " + error); yield break; }
+            if (!next) break;
+            yield return run.Current;
+        }
+        Debug.Log("[WEB ORB PROBE] PASSED " + checks + " checks");
+    }
+
+    void Fresh()
+    {
+        Call(flow, "BeginBattle", 3, true, null);
+        player.AddShield(100000);
+    }
+    void CheckActive(Enemy orb)
+    {
+        Check(orb != null && orb.CurrentHp == 400 && orb.IsAlive, "orb HP400");
+        // Collider로만 검사해 검사 코드가 SphereCollider 보존을 유발하지 않도록 한다.
+        var collider = orb.GetComponent<Collider>();
+        Check(collider != null && collider.enabled && collider.GetType().Name == "SphereCollider", "runtime sphere collider");
+        Check(orb.HpBarRect != null && orb.HpBarRect.gameObject.activeInHierarchy, "HP bar active");
+        Check(orb.GetComponentInChildren<BossOrbVisual>() != null && !orb.GetComponent<Renderer>().enabled, "visual replaces temporary sphere");
+        Call(manager, "SelectTarget", orb);
+        Check(manager.CurrentTarget == orb, "orb selectable");
+    }
+    IEnumerator Scenarios()
+    {
+        flow = FindFirstObjectByType<BattleFlow>();
+        manager = FindFirstObjectByType<EnemyManager>();
+        player = FindFirstObjectByType<Player>();
+        boss = FindObjectsByType<Enemy>(FindObjectsInactive.Include, FindObjectsSortMode.None).Single(e => e.HasPhases);
+        flow.ReturnToTitle();
+        Set(flow, "story", null);
+        FindFirstObjectByType<TutorialFlow>().enabled = false;
+        flow.RestartRun();
+        Fresh();
+        boss.TakeDamage(1200);
+        boss.TryInterrupt(2.5f);
+        Check(boss.IsPhaseTransitioning && Orbs.Ruin != null && Orbs.Cycle != null, "phase2 preview created");
+        Check(!Orbs.RuinActive && !Orbs.CycleActive && manager.GetAliveEnemies().Count == 1, "preview untargetable");
+        yield return new WaitForSeconds(2.6f);
+        Check(boss.PhaseNumber == 2 && !boss.IsPhaseTransitioning, "phase2 transition finished");
+        CheckActive(Orbs.Ruin); CheckActive(Orbs.Cycle);
+        Check(manager.GetAliveEnemies().Count == 3, "boss and two targets");
+        Debug.Log("[WEB ORB PROBE] PHASE2_VISIBLE");
+        Time.timeScale = 0;
+        yield return new WaitForSecondsRealtime(8);
+        Time.timeScale = 1;
+        boss.TakeDamage(1050);
+        if (boss.IsCasting) boss.TryInterrupt(2.5f);
+        yield return new WaitForSeconds(3);
+        Check(boss.PhaseNumber == 3 && !boss.IsPhaseTransitioning, "phase3 transition finished");
+        int hp = boss.CurrentHp;
+        Orbs.Ruin.TakeDamage(400);
+        Orbs.Cycle.TakeDamage(400);
+        Check(!Orbs.RuinActive && !Orbs.CycleActive && boss.CurrentHp == hp - 150, "destroy both for75 each");
+        float deadline = Time.realtimeSinceStartup + 60;
+        while (!Orbs.RuinActive && Time.realtimeSinceStartup < deadline) yield return null;
+        Check(Orbs.RuinActive && !Orbs.CycleActive, "natural dark hole restores ruin first");
+        CheckActive(Orbs.Ruin);
+        // 두 번째 빈자리 복원도 같은 실제 발동 경로를 사용한다.
+        Call(boss, "BeginNextCast");
+        Set(boss, "current", boss.Data.Attacks[2]);
+        Call(boss, "Fire");
+        yield return new WaitForSeconds(1);
+        CheckActive(Orbs.Cycle);
+        Check(manager.GetAliveEnemies().Count == 3, "no duplicate registration");
+        Debug.Log("[WEB ORB PROBE] PHASE3_RESPAWN_VISIBLE");
+        Time.timeScale = 0;
+        yield return new WaitForSecondsRealtime(8);
+        Time.timeScale = 1;
+        boss.TakeDamage(boss.CurrentHp);
+        Check(!Orbs.RuinActive && !Orbs.CycleActive, "boss death cleans orbs");
+        Fresh();
+        Check(!Orbs.RuinActive && !Orbs.CycleActive, "restart clears orbs");
+        boss.TakeDamage(2250); boss.TryInterrupt(2.5f);
+        yield return new WaitForSeconds(2.6f);
+        Check(boss.PhaseNumber == 3, "direct phase3");
+        CheckActive(Orbs.Ruin); CheckActive(Orbs.Cycle);
+        Time.timeScale = 0;
+    }
+}
+#endif

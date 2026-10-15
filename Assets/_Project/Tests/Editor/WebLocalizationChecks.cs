@@ -85,7 +85,7 @@ public static class WebLocalizationChecks
                 var start=((Button)Get(menu,"optionsOpen")).GetComponentInChildren<TMP_Text>(true);
                 check(start.font==fonts.FontFor(lang),"menu font swap "+lang+": "+start.font.name);
                 foreach(var c in GameText.NativeNames) foreach(char ch in c)
-                    check(fonts.FontFor(lang).HasCharacter(ch,true,false)||TMP_Settings.fallbackFontAssets.Any(f=>f.HasCharacter(ch,true,false)),"native name glyph "+lang+" "+ch);
+                    check(fonts.FontFor(lang).HasCharacter(ch,true,true)||TMP_Settings.fallbackFontAssets.Any(f=>f.HasCharacter(ch,true,true)),"native name glyph "+lang+" "+ch);
             }
             // 2) 데이터 문구(스킬·적·패시브)
             foreach(var lang in Translations)
