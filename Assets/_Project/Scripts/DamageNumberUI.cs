@@ -91,6 +91,7 @@ public class DamageNumberUI : MonoBehaviour
         TMP_Text text = Instantiate(numberTemplate, root);
         text.text = GameText.T(label);
         text.fontSize = numberTemplate.fontSize * sizeMultiplier;
+        text.textWrappingMode = TextWrappingModes.NoWrap;
         text.raycastTarget = false;
         text.color = color;
         text.rectTransform.anchoredPosition = local;

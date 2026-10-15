@@ -70,6 +70,16 @@ public class StatsPanelUI : MonoBehaviour
         if (deck == null) deck = FindFirstObjectByType<DeckSystem>();
         if (flow == null) flow = FindFirstObjectByType<BattleFlow>();
         if (tutorial == null) tutorial = FindFirstObjectByType<TutorialFlow>();
+        // 패시브 10종과 두 줄 설명도 화면 안에 들어가도록 항목 사이 여백만 줄인다.
+        var group = panel != null ? panel.GetComponent<VerticalLayoutGroup>() : null;
+        if (group != null) group.spacing = 1f;
+        // 보조 설명은 줄 수에 맞춰 높이를 늘려 아래 항목을 밀어낸다.
+        if (defense != null && defense.detail != null)
+        {
+            defense.detail.textWrappingMode = TextWrappingModes.Normal;
+            var layout = defense.detail.GetComponent<LayoutElement>();
+            if (layout != null) layout.preferredHeight = -1f;
+        }
         if (toggleButton != null) toggleButton.onClick.AddListener(Toggle);
     }
 

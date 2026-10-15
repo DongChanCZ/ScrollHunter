@@ -41,6 +41,8 @@
 | 폰트 (일반 UI) | Gmarket Sans Medium | Gmarket | [공식 배포](https://corp.gmarket.com/fonts/), `Assets/_Project/Fonts/GmarketSansOTF/GmarketSansMedium.otf` | SIL Open Font License (공식 안내) | 라이선스 원문·배포물 동봉 확인 전 |
 | 폰트 (피해 숫자) | NEXON Maplestory Bold | NEXON | 사용자 제공 `Assets/_Project/Fonts/NEXON_Maplestory/TTF/Maplestory Bold.ttf` | 제공 원문 확인 전 | 확인 전 |
 | 폰트 (시작 제목) | Cinzel Bold | Natanael Gama / The Cinzel Project Authors | [공식 저장소](https://github.com/NDISCOVER/Cinzel), `Assets/_Project/Fonts/Cinzel/Cinzel-Bold.ttf` | SIL Open Font License 1.1 | 저작권·라이선스 원문 `Assets/_Project/Fonts/Cinzel/OFL.txt` 동봉 |
+| 폰트 (日本語·Español) | Noto Sans JP Medium | Adobe / Google (Noto CJK) | [공식 저장소](https://github.com/notofonts/noto-cjk) `Sans/SubsetOTF/JP/NotoSansJP-Medium.otf`, `Assets/_Project/Fonts/NotoSansCJK/` | SIL Open Font License 1.1 | 라이선스 원문 `Assets/_Project/Fonts/NotoSansCJK/OFL.txt` 동봉 |
+| 폰트 (简体中文) | Noto Sans SC Medium | Adobe / Google (Noto CJK) | [공식 저장소](https://github.com/notofonts/noto-cjk) `Sans/SubsetOTF/SC/NotoSansSC-Medium.otf`, `Assets/_Project/Fonts/NotoSansCJK/` | SIL Open Font License 1.1 | 위와 같음 |
 | 셰이더 / 툴 | [ ] | [ ] | [ ] | [ ] | [ ] |
 
 ---
@@ -294,3 +296,11 @@
 - **CC BY 3.0**: https://creativecommons.org/licenses/by/3.0/
 - 선택 B: 원본 PSD `PSD - 1000x1000 no borders.psd`의 `Flame Dive`+`Background`를 PNG로 내보내고 256×256으로 축소. 원화 변경 없음, 금색 원형 테두리 미사용.
 - 파일: `Assets/_Project/UI/FirePillarIcon/FirePillar.png`. SK04에 연결. 기존 Painterly 14종 중 파이어 필라만 교체, 나머지13종 유지.
+
+<a id="multilingual-fonts-20261015"></a>
+## 다국어 글꼴 (2026-10-15)
+
+- **Noto Sans JP Medium / Noto Sans SC Medium** — Adobe / Google, Noto CJK. 원본: https://github.com/notofonts/noto-cjk (`Sans/SubsetOTF/JP`, `Sans/SubsetOTF/SC`)
+- **SIL Open Font License 1.1**: 원문 `Assets/_Project/Fonts/NotoSansCJK/OFL.txt`, 웹 빌드에 `OFL_NotoSansCJK.txt`로 동봉.
+- 원본 OTF 무가공 보존. SHA256 JP `F396A3B57256E4515BE9CB41F7AAC54766D654890082A9F1B5C2451B5C093D8A`, SC `7633F5A016D4DD95E685A69633D818AABC4644C4B08E26BD35B1B30C45ED5DDA`.
+- 게임에는 Unity에서 생성한 정적 TMP SDF(문구표에 쓰인 글자만)를 사용. 日本語·Español은 JP, 简体中文은 SC. 한국어·영어는 기존 Gmarket Sans 유지.

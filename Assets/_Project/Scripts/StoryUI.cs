@@ -237,7 +237,7 @@ public sealed class StoryUI : MonoBehaviour
         speakerName.gameObject.SetActive(!narration);
         speakerName.alignment = enemy ? TextAlignmentOptions.TopRight : TextAlignmentOptions.TopLeft;
         speakerName.text = GameText.T(content.playerName);
-        body.text = GameText.T(narration ? "(" + GameText.T(line.text).Trim().Trim('(', ')') + ")" : line.text);
+        body.text = narration ? GameText.Format("({0})", GameText.T(line.text).Trim().Trim('(', ')', '（', '）')) : GameText.T(line.text);
         body.fontStyle = narration ? FontStyles.Italic : FontStyles.Normal;
         if (narration) body.rectTransform.offsetMax = new Vector2(-textInset, -textInset);
         if (enemy && content.portraits != null && line.portraitIndex >= 0 && line.portraitIndex < content.portraits.Length)

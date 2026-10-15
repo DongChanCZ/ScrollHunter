@@ -76,8 +76,8 @@ public class MainMenuUI : MonoBehaviour
         if (languageDropdown != null)
         {
             languageDropdown.ClearOptions();
-            languageDropdown.AddOptions(new List<string> { "한국어", "English" });
-            languageDropdown.onValueChanged.AddListener(index => GameText.SetEnglish(index == 1));
+            languageDropdown.AddOptions(GameText.NativeNames.ToList());
+            languageDropdown.onValueChanged.AddListener(index => GameText.SetLanguage((GameLanguage)index));
         }
         GameText.Changed += RefreshLanguage;
         if (startExisting != null) startExisting.onClick.AddListener(ConfirmExistingStart);
@@ -107,8 +107,7 @@ public class MainMenuUI : MonoBehaviour
         if (vSyncToggle != null) vSyncToggle.onValueChanged.AddListener(value => { vSync = value; UpdateDisplayLabels(); });
         if (frameLimitDropdown != null)
         {
-            frameLimitDropdown.ClearOptions();
-            frameLimitDropdown.AddOptions(frameLimits.Select(n => n < 0 ? GameText.T(unlimitedText) : GameText.Format(GameText.T(frameLimitFormat), n)).ToList());
+            BuildFrameLimitOptions();
             frameLimitDropdown.onValueChanged.AddListener(index =>
             {
                 if (index >= 0 && index < frameLimits.Length) frameLimit = frameLimits[index];
@@ -132,9 +131,18 @@ public class MainMenuUI : MonoBehaviour
         ClosePanels();
     }
 
+    private void BuildFrameLimitOptions()
+    {
+        frameLimitDropdown.ClearOptions();
+        frameLimitDropdown.AddOptions(frameLimits.Select(n => n < 0 ? GameText.T(unlimitedText) : GameText.Format(GameText.T(frameLimitFormat), n)).ToList());
+        int index = Array.IndexOf(frameLimits, frameLimit);
+        if (index >= 0) frameLimitDropdown.SetValueWithoutNotify(index);
+    }
+
     private void RefreshLanguage()
     {
-        if (languageDropdown != null) languageDropdown.SetValueWithoutNotify(GameText.English ? 1 : 0);
+        if (languageDropdown != null) languageDropdown.SetValueWithoutNotify((int)GameText.Current);
+        if (frameLimitDropdown != null) BuildFrameLimitOptions();
         if (resolutions.Count > 0) UpdateDisplayLabels();
         if (flow != null) flow.RefreshTutorialUI();
         var rewards = GetComponent<BattleRewardUI>();
@@ -237,7 +245,7 @@ public class MainMenuUI : MonoBehaviour
     private void ReadSavedOptions()
     {
         GameText.LoadSaved();
-        if (languageDropdown != null) languageDropdown.SetValueWithoutNotify(GameText.English ? 1 : 0);
+        if (languageDropdown != null) languageDropdown.SetValueWithoutNotify((int)GameText.Current);
         // 이전 빌드의 창모드 선택을 새 저장 형식으로 이어받는다.
         var legacyMode = PlayerPrefs.GetInt(preferencesPrefix + "Windowed", 0) == 1 ? FullScreenMode.Windowed : FullScreenMode.FullScreenWindow;
         displayMode = (FullScreenMode)PlayerPrefs.GetInt(preferencesPrefix + "DisplayMode", (int)legacyMode);

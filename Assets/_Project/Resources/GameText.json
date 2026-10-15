@@ -2,1515 +2,2656 @@
   "entries": [
     {
       "ko": "기본 {0:0} · 패시브 +{1:0}",
-      "en": "Base {0:0} · Passive +{1:0}"
+      "en": "Base {0:0} · Passive +{1:0}",
+      "ja": "基本 {0:0} · パッシブ +{1:0}",
+      "zh": "基础 {0:0} · 被动 +{1:0}",
+      "es": "Base {0:0} · Pasiva +{1:0}"
     },
     {
       "ko": "기본 {0:0.#}% · 패시브 +{1:0.#}%p",
-      "en": "Base {0:0.#}% · Passive +{1:0.#} pp"
+      "en": "Base {0:0.#}% · Passive +{1:0.#} pp",
+      "ja": "基本 {0:0.#}% · パッシブ +{1:0.#}pt",
+      "zh": "基础 {0:0.#}% · 被动 +{1:0.#}个百分点",
+      "es": "Base {0:0.#}% · Pasiva +{1:0.#} pp"
     },
     {
       "ko": "기본 {0:0.0#} · 패시브 +{1:0.0#}",
-      "en": "Base {0:0.0#} · Passive +{1:0.0#}"
+      "en": "Base {0:0.0#} · Passive +{1:0.0#}",
+      "ja": "基本 {0:0.0#} · パッシブ +{1:0.0#}",
+      "zh": "基础 {0:0.0#} · 被动 +{1:0.0#}",
+      "es": "Base {0:0.0#} · Pasiva +{1:0.0#}"
     },
     {
       "ko": "기본 {0:0.#} · 패시브 +{1:0.#}",
-      "en": "Base {0:0.#} · Passive +{1:0.#}"
+      "en": "Base {0:0.#} · Passive +{1:0.#}",
+      "ja": "基本 {0:0.#} · パッシブ +{1:0.#}",
+      "zh": "基础 {0:0.#} · 被动 +{1:0.#}",
+      "es": "Base {0:0.#} · Pasiva +{1:0.#}"
     },
     {
       "ko": "기본 {0:0%} · 패시브 +{1:0%}",
-      "en": "Base {0:0%} · Passive +{1:0%}"
+      "en": "Base {0:0%} · Passive +{1:0%}",
+      "ja": "基本 {0:0%} · パッシブ +{1:0%}",
+      "zh": "基础 {0:0%} · 被动 +{1:0%}",
+      "es": "Base {0:0%} · Pasiva +{1:0%}"
     },
     {
       "ko": "{0:0.0#}초",
-      "en": "{0:0.0#}s"
+      "en": "{0:0.0#}s",
+      "ja": "{0:0.0#}秒",
+      "zh": "{0:0.0#}秒",
+      "es": "{0:0.0#} s"
     },
     {
       "ko": "기본 {0:0.0#}초 · 패시브 +{1:0.0#}초",
-      "en": "Base {0:0.0#}s · Passive +{1:0.0#}s"
+      "en": "Base {0:0.0#}s · Passive +{1:0.0#}s",
+      "ja": "基本 {0:0.0#}秒 · パッシブ +{1:0.0#}秒",
+      "zh": "基础 {0:0.0#}秒 · 被动 +{1:0.0#}秒",
+      "es": "Base {0:0.0#} s · Pasiva +{1:0.0#} s"
     },
     {
       "ko": "받는 피해 {0:0.#}% 감소 · 방어도와 별개",
-      "en": "Damage taken reduced by {0:0.#}% · Separate from Shield"
+      "en": "Damage taken reduced by {0:0.#}% · Separate from Shield",
+      "ja": "被ダメージ {0:0.#}% 軽減 · シールドとは別",
+      "zh": "受到的伤害降低{0:0.#}% · 与护盾独立",
+      "es": "Daño recibido -{0:0.#}% · Independiente del escudo"
     },
     {
       "ko": "패시브 없음",
-      "en": "No passives"
+      "en": "No passives",
+      "ja": "パッシブなし",
+      "zh": "无被动",
+      "es": "Sin pasivas"
     },
     {
       "ko": "기절 {0:0.0}",
-      "en": "Stunned {0:0.0}"
+      "en": "Stunned {0:0.0}",
+      "ja": "気絶 {0:0.0}",
+      "zh": "眩晕 {0:0.0}",
+      "es": "Aturdido {0:0.0}"
     },
     {
       "ko": "\n<size=55%>코스트 충전 불가</size>",
-      "en": "\n<size=55%>Cost regeneration blocked</size>"
+      "en": "\n<size=55%>Cost regeneration blocked</size>",
+      "ja": "\n<size=55%>コスト回復不可</size>",
+      "zh": "\n<size=55%>费用无法回复</size>",
+      "es": "\n<size=55%>Sin regeneración de coste</size>"
     },
     {
       "ko": "시전 {0}",
-      "en": "Casting {0}"
+      "en": "Casting {0}",
+      "ja": "詠唱 {0}",
+      "zh": "施法 {0}",
+      "es": "Lanzando {0}"
     },
     {
       "ko": "채널링 {0}",
-      "en": "Channeling {0}"
+      "en": "Channeling {0}",
+      "ja": "チャネリング {0}",
+      "zh": "引导 {0}",
+      "es": "Canalizando {0}"
     },
     {
       "ko": "{0} 시전 취소",
-      "en": "{0} canceled"
+      "en": "{0} canceled",
+      "ja": "{0} 詠唱キャンセル",
+      "zh": "{0} 施法取消",
+      "es": "Cancelado: {0}"
     },
     {
       "ko": "단일",
-      "en": "Single"
+      "en": "Single",
+      "ja": "単体",
+      "zh": "单体",
+      "es": "Individual"
     },
     {
       "ko": "광역",
-      "en": "Area"
+      "en": "Area",
+      "ja": "全体",
+      "zh": "群体",
+      "es": "Área"
     },
     {
       "ko": "방어",
-      "en": "Shield"
+      "en": "Shield",
+      "ja": "防御",
+      "zh": "防御",
+      "es": "Escudo"
     },
     {
       "ko": "차단",
-      "en": "Interrupt"
+      "en": "Interrupt",
+      "ja": "妨害",
+      "zh": "打断",
+      "es": "Interrupción"
     },
     {
       "ko": "잠김",
-      "en": "Locked"
+      "en": "Locked",
+      "ja": "ロック",
+      "zh": "锁定",
+      "es": "Bloqueado"
     },
     {
       "ko": "설정 필요",
-      "en": "Not configured"
+      "en": "Not configured",
+      "ja": "未設定",
+      "zh": "未设置",
+      "es": "Sin configurar"
     },
     {
       "ko": "전환 중",
-      "en": "Transition"
+      "en": "Transition",
+      "ja": "移行中",
+      "zh": "转换中",
+      "es": "Transición"
     },
     {
       "ko": "차단!",
-      "en": "Interrupted!"
+      "en": "Interrupted!",
+      "ja": "妨害！",
+      "zh": "打断！",
+      "es": "¡Interrumpido!"
     },
     {
       "ko": "일시정지",
-      "en": "Pause"
+      "en": "Pause",
+      "ja": "一時停止",
+      "zh": "暂停",
+      "es": "Pausa"
     },
     {
       "ko": "재개",
-      "en": "Resume"
+      "en": "Resume",
+      "ja": "再開",
+      "zh": "继续",
+      "es": "Reanudar"
     },
     {
       "ko": "전투 종료",
-      "en": "Battle ended"
+      "en": "Battle ended",
+      "ja": "戦闘終了",
+      "zh": "战斗结束",
+      "es": "Terminado"
     },
     {
       "ko": "A 정지·재개 · S 배속 · 카드에 마우스: 정보",
-      "en": "A: Pause/Resume · S: Speed · Hover a card for info"
+      "en": "A: Pause/Resume · S: Speed · Hover a card for info",
+      "ja": "A 一時停止・再開 · S 倍速 · カードにマウス: 情報",
+      "zh": "A 暂停/继续 · S 倍速 · 鼠标悬停卡牌：查看信息",
+      "es": "A: Pausa/Reanudar · S: Velocidad · Ratón sobre carta: info"
     },
     {
       "ko": "일시정지 · A/우클릭 재개 · S 배속",
-      "en": "Paused · A/Right-click: Resume · S: Speed"
+      "en": "Paused · A/Right-click: Resume · S: Speed",
+      "ja": "一時停止中 · A/右クリック 再開 · S 倍速",
+      "zh": "已暂停 · A/右键 继续 · S 倍速",
+      "es": "En pausa · A/Clic derecho: Reanudar · S: Velocidad"
     },
     {
       "ko": "{0}<alpha=#CC> · <alpha=#FF>{1}\n<alpha=#CC>코스트 <alpha=#FF><b>{2:0.#}</b><alpha=#CC>   ·   시전 <alpha=#FF><b>{3:0.##}초</b>",
-      "en": "{0}<alpha=#CC> · <alpha=#FF>{1}\n<alpha=#CC>Cost <alpha=#FF><b>{2:0.#}</b><alpha=#CC>   ·   Cast <alpha=#FF><b>{3:0.##}s</b>"
+      "en": "{0}<alpha=#CC> · <alpha=#FF>{1}\n<alpha=#CC>Cost <alpha=#FF><b>{2:0.#}</b><alpha=#CC>   ·   Cast <alpha=#FF><b>{3:0.##}s</b>",
+      "ja": "{0}<alpha=#CC> · <alpha=#FF>{1}\n<alpha=#CC>コスト <alpha=#FF><b>{2:0.#}</b><alpha=#CC>   ·   詠唱 <alpha=#FF><b>{3:0.##}秒</b>",
+      "zh": "{0}<alpha=#CC> · <alpha=#FF>{1}\n<alpha=#CC>费用 <alpha=#FF><b>{2:0.#}</b><alpha=#CC>   ·   施法 <alpha=#FF><b>{3:0.##}秒</b>",
+      "es": "{0}<alpha=#CC> · <alpha=#FF>{1}\n<alpha=#CC>Coste <alpha=#FF><b>{2:0.#}</b><alpha=#CC>   ·   Lanzamiento <alpha=#FF><b>{3:0.##} s</b>"
     },
     {
       "ko": "{0}<alpha=#CC> · <alpha=#FF>{1}\n<alpha=#CC>코스트 <alpha=#FF><b>{2:0.#}</b><alpha=#CC>   ·   채널링 <alpha=#FF><b>{3:0.##}초</b>",
-      "en": "{0}<alpha=#CC> · <alpha=#FF>{1}\n<alpha=#CC>Cost <alpha=#FF><b>{2:0.#}</b><alpha=#CC>   ·   Channel <alpha=#FF><b>{3:0.##}s</b>"
+      "en": "{0}<alpha=#CC> · <alpha=#FF>{1}\n<alpha=#CC>Cost <alpha=#FF><b>{2:0.#}</b><alpha=#CC>   ·   Channel <alpha=#FF><b>{3:0.##}s</b>",
+      "ja": "{0}<alpha=#CC> · <alpha=#FF>{1}\n<alpha=#CC>コスト <alpha=#FF><b>{2:0.#}</b><alpha=#CC>   ·   チャネリング <alpha=#FF><b>{3:0.##}秒</b>",
+      "zh": "{0}<alpha=#CC> · <alpha=#FF>{1}\n<alpha=#CC>费用 <alpha=#FF><b>{2:0.#}</b><alpha=#CC>   ·   引导 <alpha=#FF><b>{3:0.##}秒</b>",
+      "es": "{0}<alpha=#CC> · <alpha=#FF>{1}\n<alpha=#CC>Coste <alpha=#FF><b>{2:0.#}</b><alpha=#CC>   ·   Canalización <alpha=#FF><b>{3:0.##} s</b>"
     },
     {
       "ko": "채널링 효과 연결 필요",
-      "en": "Channeling effect not assigned"
+      "en": "Channeling effect not assigned",
+      "ja": "チャネリング効果が未設定",
+      "zh": "未连接引导效果",
+      "es": "Efecto de canalización sin asignar"
     },
     {
       "ko": "피해 <b>{0}×{1}회</b> · 총합 피해 <b>{2}</b>\n<size=80%><alpha=#CC>적 1체·전 타격·크리티컬/방어 적용 전<alpha=#FF></size>",
-      "en": "Damage <b>{0} × {1} hits</b> · Total <b>{2}</b>\n<size=80%><alpha=#CC>Per enemy · All hits · Before crit/defense<alpha=#FF></size>"
+      "en": "Damage <b>{0} × {1} hits</b> · Total <b>{2}</b>\n<size=80%><alpha=#CC>Per enemy · All hits · Before crit/defense<alpha=#FF></size>",
+      "ja": "ダメージ <b>{0}×{1}回</b> · 合計ダメージ <b>{2}</b>\n<size=80%><alpha=#CC>敵1体・全ヒット・クリティカル/防御適用前<alpha=#FF></size>",
+      "zh": "伤害 <b>{0}×{1}次</b> · 总伤害 <b>{2}</b>\n<size=80%><alpha=#CC>单个敌人·全部命中·暴击/防御计算前<alpha=#FF></size>",
+      "es": "Daño <b>{0}×{1} golpes</b> · Total <b>{2}</b>\n<size=80%><alpha=#CC>Por enemigo · Todos los golpes · Sin crítico/defensa<alpha=#FF></size>"
     },
     {
       "ko": "피해 <b>{0}</b> · 총합 피해 <b>{1}</b>\n<size=80%><alpha=#CC>적 1체·전 타격·크리티컬/방어 적용 전<alpha=#FF></size>",
-      "en": "Damage <b>{0}</b> · Total <b>{1}</b>\n<size=80%><alpha=#CC>Per enemy · All hits · Before crit/defense<alpha=#FF></size>"
+      "en": "Damage <b>{0}</b> · Total <b>{1}</b>\n<size=80%><alpha=#CC>Per enemy · All hits · Before crit/defense<alpha=#FF></size>",
+      "ja": "ダメージ <b>{0}</b> · 合計ダメージ <b>{1}</b>\n<size=80%><alpha=#CC>敵1体・全ヒット・クリティカル/防御適用前<alpha=#FF></size>",
+      "zh": "伤害 <b>{0}</b> · 总伤害 <b>{1}</b>\n<size=80%><alpha=#CC>单个敌人·全部命中·暴击/防御计算前<alpha=#FF></size>",
+      "es": "Daño <b>{0}</b> · Total <b>{1}</b>\n<size=80%><alpha=#CC>Por enemigo · Todos los golpes · Sin crítico/defensa<alpha=#FF></size>"
     },
     {
       "ko": "방어도 <b>+{0}</b>",
-      "en": "Shield <b>+{0}</b>"
+      "en": "Shield <b>+{0}</b>",
+      "ja": "シールド <b>+{0}</b>",
+      "zh": "护盾 <b>+{0}</b>",
+      "es": "Escudo <b>+{0}</b>"
     },
     {
       "ko": "캐스팅 중인 대상에게 사용\n효과 적용 때도 초록·주황\n시전 중이면 성공\n성공 경직 <b>{0:0.##}초</b>\n빨강·적 선발동: 실패, 코스트·카드 소모",
-      "en": "Use on a casting enemy\nInterrupts a green/orange cast\nif it is still casting on impact\nStagger: <b>{0:0.##}s</b>\nRed/cast finished: fails; cost and card consumed"
+      "en": "Use on a casting enemy\nInterrupts a green/orange cast\nif it is still casting on impact\nStagger: <b>{0:0.##}s</b>\nRed/cast finished: fails; cost and card consumed",
+      "ja": "詠唱中の敵に使用\n効果発動時も緑・オレンジの\n詠唱中なら成功\n成功時の硬直 <b>{0:0.##}秒</b>\n赤・敵の先行発動: 失敗、コスト・カード消費",
+      "zh": "对施法中的敌人使用\n生效时若绿色·橙色\n仍在施法则成功\n成功硬直 <b>{0:0.##}秒</b>\n红色·敌人先发动：失败，消耗费用和卡牌",
+      "es": "Úsala si el enemigo lanza\nInterrumpe verde/naranja\nsi sigue lanzando al impactar\nTambaleo: <b>{0:0.##} s</b>\nRojo/ya lanzado: falla; gasta coste y carta"
     },
     {
       "ko": "피해 <b>{0}×{1}회</b> · 총합 피해 <b>{3}</b>\n<size=80%><alpha=#CC>적 1체·전 타격·크리티컬/방어 적용 전<alpha=#FF></size>\n적 캐스팅 중에만 사용. 피해 후 차단\n초록·주황: 경직 <b>{2:0.##}초</b>\n빨강·시전 종료: 피해만 적용",
-      "en": "Damage <b>{0} × {1} hits</b> · Total <b>{3}</b>\n<size=80%><alpha=#CC>Per enemy · All hits · Before crit/defense<alpha=#FF></size>\nOnly usable on a casting enemy. Damage, then interrupt\nGreen/orange: stagger <b>{2:0.##}s</b>\nRed/cast finished: damage only"
+      "en": "Damage <b>{0} × {1} hits</b> · Total <b>{3}</b>\n<size=80%><alpha=#CC>Per enemy · All hits · Before crit/defense<alpha=#FF></size>\nOnly usable on a casting enemy. Damage, then interrupt\nGreen/orange: stagger <b>{2:0.##}s</b>\nRed/cast finished: damage only",
+      "ja": "ダメージ <b>{0}×{1}回</b> · 合計ダメージ <b>{3}</b>\n<size=80%><alpha=#CC>敵1体・全ヒット・クリティカル/防御適用前<alpha=#FF></size>\n敵の詠唱中のみ使用可。ダメージ後に妨害\n緑・オレンジ: 硬直 <b>{2:0.##}秒</b>\n赤・詠唱終了: ダメージのみ適用",
+      "zh": "伤害 <b>{0}×{1}次</b> · 总伤害 <b>{3}</b>\n<size=80%><alpha=#CC>单个敌人·全部命中·暴击/防御计算前<alpha=#FF></size>\n仅可在敌人施法时使用。造成伤害后打断\n绿色·橙色：硬直 <b>{2:0.##}秒</b>\n红色·施法结束：仅造成伤害",
+      "es": "Daño <b>{0}×{1} golpes</b> · Total <b>{3}</b>\n<size=80%><alpha=#CC>Por enemigo · Todos los golpes · Sin crítico/defensa<alpha=#FF></size>\nSolo si el enemigo lanza. Daña y luego interrumpe\nVerde/naranja: tambaleo <b>{2:0.##} s</b>\nRojo/ya lanzado: solo daño"
     },
     {
       "ko": "<size=125%><b><color=#F5EBD6>{0}</color></b></size>\n<size=80%> </size>\n<b><color=#F5EBD6>{1}</color></b>\n<alpha=#CC>기본 피해 <alpha=#FF><b>{2}</b><alpha=#CC> (방어력 적용 전)\n시전 <alpha=#FF><b>{3:0.##}초</b><alpha=#CC> · <alpha=#FF><color=#F5EBD6>{4}</color>{6}\n<size=85%>{5}</size>",
-      "en": "<size=125%><b><color=#F5EBD6>{0}</color></b></size>\n<size=80%> </size>\n<b><color=#F5EBD6>{1}</color></b>\n<alpha=#CC>Base damage <alpha=#FF><b>{2}</b><alpha=#CC> (before Defense)\nCast <alpha=#FF><b>{3:0.##}s</b><alpha=#CC> · <alpha=#FF><color=#F5EBD6>{4}</color>{6}\n<size=85%>{5}</size>"
+      "en": "<size=125%><b><color=#F5EBD6>{0}</color></b></size>\n<size=80%> </size>\n<b><color=#F5EBD6>{1}</color></b>\n<alpha=#CC>Base damage <alpha=#FF><b>{2}</b><alpha=#CC> (before Defense)\nCast <alpha=#FF><b>{3:0.##}s</b><alpha=#CC> · <alpha=#FF><color=#F5EBD6>{4}</color>{6}\n<size=85%>{5}</size>",
+      "ja": "<size=125%><b><color=#F5EBD6>{0}</color></b></size>\n<size=80%> </size>\n<b><color=#F5EBD6>{1}</color></b>\n<alpha=#CC>基本ダメージ <alpha=#FF><b>{2}</b><alpha=#CC> (防御力適用前)\n詠唱 <alpha=#FF><b>{3:0.##}秒</b><alpha=#CC> · <alpha=#FF><color=#F5EBD6>{4}</color>{6}\n<size=85%>{5}</size>",
+      "zh": "<size=125%><b><color=#F5EBD6>{0}</color></b></size>\n<size=80%> </size>\n<b><color=#F5EBD6>{1}</color></b>\n<alpha=#CC>基础伤害 <alpha=#FF><b>{2}</b><alpha=#CC>（防御力计算前）\n施法 <alpha=#FF><b>{3:0.##}秒</b><alpha=#CC> · <alpha=#FF><color=#F5EBD6>{4}</color>{6}\n<size=85%>{5}</size>",
+      "es": "<size=125%><b><color=#F5EBD6>{0}</color></b></size>\n<size=80%> </size>\n<b><color=#F5EBD6>{1}</color></b>\n<alpha=#CC>Daño base <alpha=#FF><b>{2}</b><alpha=#CC> (antes de Defensa)\nLanzamiento <alpha=#FF><b>{3:0.##} s</b><alpha=#CC> · <alpha=#FF><color=#F5EBD6>{4}</color>{6}\n<size=85%>{5}</size>"
     },
     {
       "ko": "기절 <b>{0:0.##}초</b>",
-      "en": "Stun <b>{0:0.##}s</b>"
+      "en": "Stun <b>{0:0.##}s</b>",
+      "ja": "気絶 <b>{0:0.##}秒</b>",
+      "zh": "眩晕 <b>{0:0.##}秒</b>",
+      "es": "Aturde <b>{0:0.##} s</b>"
     },
     {
       "ko": "<size=125%><b><color=#F5EBD6>{0}</color></b></size>\n<size=80%> </size>\n<alpha=#CC>현재 시전 중인 공격 없음",
-      "en": "<size=125%><b><color=#F5EBD6>{0}</color></b></size>\n<size=80%> </size>\n<alpha=#CC>Not currently casting"
+      "en": "<size=125%><b><color=#F5EBD6>{0}</color></b></size>\n<size=80%> </size>\n<alpha=#CC>Not currently casting",
+      "ja": "<size=125%><b><color=#F5EBD6>{0}</color></b></size>\n<size=80%> </size>\n<alpha=#CC>現在詠唱中の攻撃なし",
+      "zh": "<size=125%><b><color=#F5EBD6>{0}</color></b></size>\n<size=80%> </size>\n<alpha=#CC>当前没有施法中的攻击",
+      "es": "<size=125%><b><color=#F5EBD6>{0}</color></b></size>\n<size=80%> </size>\n<alpha=#CC>No está lanzando nada"
     },
     {
       "ko": "공격",
-      "en": "Attack"
+      "en": "Attack",
+      "ja": "攻撃",
+      "zh": "攻击",
+      "es": "Ataque"
     },
     {
       "ko": "적 1체",
-      "en": "One enemy"
+      "en": "One enemy",
+      "ja": "敵1体",
+      "zh": "单个敌人",
+      "es": "Un enemigo"
     },
     {
       "ko": "적 전체",
-      "en": "All enemies"
+      "en": "All enemies",
+      "ja": "敵全体",
+      "zh": "全体敌人",
+      "es": "Todos los enemigos"
     },
     {
       "ko": "자신",
-      "en": "Self"
+      "en": "Self",
+      "ja": "自分",
+      "zh": "自身",
+      "es": "Uno mismo"
     },
     {
       "ko": "차단 가능",
-      "en": "Interruptible"
+      "en": "Interruptible",
+      "ja": "妨害可能",
+      "zh": "可打断",
+      "es": "Interrumpible"
     },
     {
       "ko": "차단 불가",
-      "en": "Uninterruptible"
+      "en": "Uninterruptible",
+      "ja": "妨害不可",
+      "zh": "不可打断",
+      "es": "No interrumpible"
     },
     {
       "ko": "추가 효과 없음",
-      "en": "No additional effect"
+      "en": "No additional effect",
+      "ja": "追加効果なし",
+      "zh": "无附加效果",
+      "es": "Sin efecto adicional"
     },
     {
       "ko": "피격 직전 방어도가 있으면 피해 <b>{0:0.#}%</b> 감소 후 흡수",
-      "en": "Having Shield before impact reduces damage by <b>{0:0.#}%</b>, then Shield absorbs it"
+      "en": "Having Shield before impact reduces damage by <b>{0:0.#}%</b>, then Shield absorbs it",
+      "ja": "被弾直前にシールドがあればダメージを <b>{0:0.#}%</b> 軽減後に吸収",
+      "zh": "受击前若有护盾，伤害降低<b>{0:0.#}%</b>后由护盾吸收",
+      "es": "Con escudo antes del impacto, el daño se reduce un <b>{0:0.#}%</b> y el escudo lo absorbe"
     },
     {
       "ko": "속도 {0:0.#}배속",
-      "en": "Speed {0:0.#}×"
+      "en": "Speed {0:0.#}×",
+      "ja": "速度 {0:0.#}倍速",
+      "zh": "速度 {0:0.#}倍",
+      "es": "Velocidad {0:0.#}×"
     },
     {
       "ko": "{0} ({1}페이즈)",
-      "en": "{0} (Phase {1})"
+      "en": "{0} (Phase {1})",
+      "ja": "{0} (フェーズ{1})",
+      "zh": "{0}（第{1}阶段）",
+      "es": "{0} (Fase {1})"
     },
     {
       "ko": "<size=125%><b><color=#F5EBD6>{0}</color></b></size>\n<size=80%> </size>\n<color=#F5EBD6>전환 중</color>\n무적 <b>{1:0.0}초</b> · 새 스킬 사용 불가",
-      "en": "<size=125%><b><color=#F5EBD6>{0}</color></b></size>\n<size=80%> </size>\n<color=#F5EBD6>Phase transition</color>\nInvulnerable for <b>{1:0.0}s</b> · New skills unavailable"
+      "en": "<size=125%><b><color=#F5EBD6>{0}</color></b></size>\n<size=80%> </size>\n<color=#F5EBD6>Phase transition</color>\nInvulnerable for <b>{1:0.0}s</b> · New skills unavailable",
+      "ja": "<size=125%><b><color=#F5EBD6>{0}</color></b></size>\n<size=80%> </size>\n<color=#F5EBD6>フェーズ移行中</color>\n無敵 <b>{1:0.0}秒</b> · 新しいスキル使用不可",
+      "zh": "<size=125%><b><color=#F5EBD6>{0}</color></b></size>\n<size=80%> </size>\n<color=#F5EBD6>阶段转换中</color>\n无敌 <b>{1:0.0}秒</b> · 无法使用新技能",
+      "es": "<size=125%><b><color=#F5EBD6>{0}</color></b></size>\n<size=80%> </size>\n<color=#F5EBD6>Transición de fase</color>\nInvulnerable <b>{1:0.0} s</b> · Sin habilidades nuevas"
     },
     {
       "ko": "<size=125%><b><color=#F5EBD6>{0}</color></b></size>\n<size=80%> </size>\n{1}\n파괴 시 보스 고정 피해 <b>{2}</b>\n전환 중 보스 무적에는 피해 없음",
-      "en": "<size=125%><b><color=#F5EBD6>{0}</color></b></size>\n<size=80%> </size>\n{1}\nDestroy to deal <b>{2}</b> fixed damage to the boss\nNo damage while the boss is invulnerable during transitions"
+      "en": "<size=125%><b><color=#F5EBD6>{0}</color></b></size>\n<size=80%> </size>\n{1}\nDestroy to deal <b>{2}</b> fixed damage to the boss\nNo damage while the boss is invulnerable during transitions",
+      "ja": "<size=125%><b><color=#F5EBD6>{0}</color></b></size>\n<size=80%> </size>\n{1}\n破壊時ボスに固定ダメージ <b>{2}</b>\n移行中のボス無敵時はダメージなし",
+      "zh": "<size=125%><b><color=#F5EBD6>{0}</color></b></size>\n<size=80%> </size>\n{1}\n摧毁时对首领造成固定伤害 <b>{2}</b>\n首领在阶段转换中无敌时不造成伤害",
+      "es": "<size=125%><b><color=#F5EBD6>{0}</color></b></size>\n<size=80%> </size>\n{1}\nAl destruirlo, inflige <b>{2}</b> de daño fijo al jefe\nSin daño si el jefe es invulnerable en la transición"
     },
     {
       "ko": "\n기절 중 코스트 충전 불가",
-      "en": "\nCost regeneration blocked while stunned"
+      "en": "\nCost regeneration blocked while stunned",
+      "ja": "\n気絶中はコスト回復不可",
+      "zh": "\n眩晕期间无法回复费用",
+      "es": "\nSin regenerar coste durante el aturdimiento"
     },
     {
       "ko": "\n파멸 강화 적용",
-      "en": "\nEmpowered by the Orb of Ruin"
+      "en": "\nEmpowered by the Orb of Ruin",
+      "ja": "\n破滅強化適用",
+      "zh": "\n毁灭强化生效",
+      "es": "\nPotenciado por el Orbe de la ruina"
     },
     {
       "ko": "\"{0}\"을 \"{1}\"으로 교체하겠습니까?",
-      "en": "Replace \"{0}\" with \"{1}\"?"
+      "en": "Replace \"{0}\" with \"{1}\"?",
+      "ja": "「{0}」を「{1}」に入れ替えますか？",
+      "zh": "要将“{0}”替换为“{1}”吗？",
+      "es": "¿Reemplazar \"{0}\" por \"{1}\"?"
     },
     {
       "ko": "전투 승리 · HP {1:0} / {2:0}",
-      "en": "Victory · HP {1:0} / {2:0}"
+      "en": "Victory · HP {1:0} / {2:0}",
+      "ja": "戦闘勝利 · HP {1:0} / {2:0}",
+      "zh": "战斗胜利 · HP {1:0} / {2:0}",
+      "es": "Victoria · HP {1:0} / {2:0}"
     },
     {
       "ko": "보상 1개를 선택하세요. 필요 없으면 스킵할 수 있습니다.",
-      "en": "Choose one reward. You may skip it."
+      "en": "Choose one reward. You may skip it.",
+      "ja": "報酬を1つ選択してください。不要ならスキップできます。",
+      "zh": "请选择1个奖励。不需要时可以跳过。",
+      "es": "Elige una recompensa. Puedes omitirla."
     },
     {
       "ko": "받을 수 있는 보상이 없습니다. 스킵 후 진행하세요.",
-      "en": "No eligible rewards. Skip to continue."
+      "en": "No eligible rewards. Skip to continue.",
+      "ja": "受け取れる報酬がありません。スキップして進んでください。",
+      "zh": "没有可领取的奖励。请跳过后继续。",
+      "es": "No hay recompensas disponibles. Omite para continuar."
     },
     {
       "ko": "{0} 선택 · 교체할 카드를 고르세요.",
-      "en": "{0} selected · Choose a card to replace."
+      "en": "{0} selected · Choose a card to replace.",
+      "ja": "{0} 選択 · 入れ替えるカードを選んでください。",
+      "zh": "已选择{0} · 请选择要替换的卡牌。",
+      "es": "Elegiste {0} · Elige qué carta reemplazar."
     },
     {
       "ko": "편성을 확인하고 다음 전투로 진행하세요.",
-      "en": "Review your deck and proceed to the next battle."
+      "en": "Review your deck and proceed to the next battle.",
+      "ja": "デッキを確認して次の戦闘へ進んでください。",
+      "zh": "请确认卡组后进入下一场战斗。",
+      "es": "Revisa tu mazo y pasa al siguiente combate."
     },
     {
       "ko": "{0}번 · {1}",
-      "en": "{0} · {1}"
+      "en": "{0} · {1}",
+      "ja": "{0}番 · {1}",
+      "zh": "{0}号 · {1}",
+      "es": "{0} · {1}"
     },
     {
       "ko": "시작 손패",
-      "en": "Starting hand"
+      "en": "Starting hand",
+      "ja": "初期手札",
+      "zh": "起始手牌",
+      "es": "Mano inicial"
     },
     {
       "ko": "대기 순서",
-      "en": "Draw queue"
+      "en": "Draw queue",
+      "ja": "待機列",
+      "zh": "待抽队列",
+      "es": "Cola de robo"
     },
     {
       "ko": "시작 편성",
-      "en": "Starting Deck"
+      "en": "Starting Deck",
+      "ja": "初期デッキ",
+      "zh": "起始卡组",
+      "es": "Mazo inicial"
     },
     {
       "ko": "편성을 확인하고 전투를 시작하세요.",
-      "en": "Review your deck and start the battle."
+      "en": "Review your deck and start the battle.",
+      "ja": "デッキを確認して戦闘を開始してください。",
+      "zh": "请确认卡组后开始战斗。",
+      "es": "Revisa tu mazo y empieza el combate."
     },
     {
       "ko": "카드를 원하는 자리에 드래그하세요. 1~4번은 시작 손패, 5~8번은 대기열입니다.",
-      "en": "Drag cards to reorder. Slots 1–4 are your starting hand; 5–8 form the draw queue."
+      "en": "Drag cards to reorder. Slots 1–4 are your starting hand; 5–8 form the draw queue.",
+      "ja": "カードを好きな位置にドラッグしてください。1〜4番は初期手札、5〜8番は待機列です。",
+      "zh": "将卡牌拖动到想要的位置。1~4号为起始手牌，5~8号为待抽队列。",
+      "es": "Arrastra cartas para reordenar. Las posiciones 1–4 son tu mano inicial; 5–8, la cola de robo."
     },
     {
       "ko": "계승 선택",
-      "en": "Inheritance"
+      "en": "Inheritance",
+      "ja": "継承選択",
+      "zh": "选择继承",
+      "es": "Herencia"
     },
     {
       "ko": "이번 런에서 얻은 스킬·패시브 중 1개를 계승하세요.",
-      "en": "Inherit one skill or passive acquired during this run."
+      "en": "Inherit one skill or passive acquired during this run.",
+      "ja": "このランで獲得したスキル・パッシブから1つを継承してください。",
+      "zh": "请从本轮获得的技能·被动中继承1个。",
+      "es": "Hereda una habilidad o pasiva obtenida en esta partida."
     },
     {
       "ko": "{0} 계승 · 영구 시작 덱에서 교체할 자리를 고른 뒤 확인을 누르세요.",
-      "en": "Inherit {0} · Select a slot in your permanent starting deck, then confirm."
+      "en": "Inherit {0} · Select a slot in your permanent starting deck, then confirm.",
+      "ja": "{0} 継承 · 永続初期デッキで入れ替える位置を選び、確認を押してください。",
+      "zh": "继承{0} · 请在永久起始卡组中选择要替换的位置，然后点击确认。",
+      "es": "Heredar {0} · Elige una posición de tu mazo inicial permanente y confirma."
     },
     {
       "ko": "계승 스킵",
-      "en": "Skip Inheritance"
+      "en": "Skip Inheritance",
+      "ja": "継承スキップ",
+      "zh": "跳过继承",
+      "es": "Omitir herencia"
     },
     {
       "ko": "계승 다시 선택",
-      "en": "Choose Again"
+      "en": "Choose Again",
+      "ja": "継承を選び直す",
+      "zh": "重新选择继承",
+      "es": "Elegir de nuevo"
     },
     {
       "ko": "다음 런부터 적용 · 초기화 전까지 유지",
-      "en": "Applies next run · Kept until reset"
+      "en": "Applies next run · Kept until reset",
+      "ja": "次のランから適用 · 初期化するまで維持",
+      "zh": "下一轮起生效 · 重置前一直保留",
+      "es": "Desde la próxima partida · Hasta reiniciar"
     },
     {
       "ko": "계승 <b>{0}</b> / 최대 {1}",
-      "en": "Inherited <b>{0}</b> / Max {1}"
+      "en": "Inherited <b>{0}</b> / Max {1}",
+      "ja": "継承 <b>{0}</b> / 最大 {1}",
+      "zh": "继承 <b>{0}</b> / 上限 {1}",
+      "es": "Heredadas <b>{0}</b> / Máximo {1}"
     },
     {
       "ko": "계승 <b>{0}</b>",
-      "en": "Inherited <b>{0}</b>"
+      "en": "Inherited <b>{0}</b>",
+      "ja": "継承 <b>{0}</b>",
+      "zh": "继承 <b>{0}</b>",
+      "es": "Heredadas <b>{0}</b>"
     },
     {
       "ko": "  <size=18><color=#E7CB87>계승</color></size>",
-      "en": "  <size=18><color=#E7CB87>Inherited</color></size>"
+      "en": "  <size=18><color=#E7CB87>Inherited</color></size>",
+      "ja": "  <size=18><color=#E7CB87>継承</color></size>",
+      "zh": "  <size=18><color=#E7CB87>继承</color></size>",
+      "es": "  <size=18><color=#E7CB87>Heredada</color></size>"
     },
     {
       "ko": "<size=24><color=#ABAAB0>계승한 패시브가 없습니다.</color></size>",
-      "en": "<size=24><color=#ABAAB0>No inherited passives.</color></size>"
+      "en": "<size=24><color=#ABAAB0>No inherited passives.</color></size>",
+      "ja": "<size=24><color=#ABAAB0>継承したパッシブはありません。</color></size>",
+      "zh": "<size=24><color=#ABAAB0>没有继承的被动。</color></size>",
+      "es": "<size=24><color=#ABAAB0>No hay pasivas heredadas.</color></size>"
     },
     {
       "ko": "계승을 저장하지 못했습니다. 다시 선택하거나 스킵하세요.",
-      "en": "Could not save inheritance. Choose again or skip."
+      "en": "Could not save inheritance. Choose again or skip.",
+      "ja": "継承を保存できませんでした。選び直すかスキップしてください。",
+      "zh": "无法保存继承。请重新选择或跳过。",
+      "es": "No se pudo guardar la herencia. Elige de nuevo u omite."
     },
     {
       "ko": "초기화하지 못했습니다. 다시 시도하세요.",
-      "en": "Could not reset. Please try again."
+      "en": "Could not reset. Please try again.",
+      "ja": "初期化できませんでした。もう一度お試しください。",
+      "zh": "重置失败。请重试。",
+      "es": "No se pudo reiniciar. Inténtalo de nuevo."
     },
     {
       "ko": "계승 파일을 읽지 못해 기본 상태로 시작합니다. 기존 파일은 보존했습니다.",
-      "en": "Could not read inheritance. Starting with defaults; the original file was preserved."
+      "en": "Could not read inheritance. Starting with defaults; the original file was preserved.",
+      "ja": "継承ファイルを読み込めなかったため、初期状態で開始します。元のファイルは保存されています。",
+      "zh": "无法读取继承文件，将以默认状态开始。原文件已保留。",
+      "es": "No se pudo leer la herencia. Empiezas con los valores base; el archivo original se ha conservado."
     },
     {
       "ko": "계승 파일을 읽지 못해 이전 저장본을 불러왔습니다.",
-      "en": "Could not read inheritance. Loaded the previous backup."
+      "en": "Could not read inheritance. Loaded the previous backup.",
+      "ja": "継承ファイルを読み込めなかったため、以前の保存データを読み込みました。",
+      "zh": "无法读取继承文件，已加载上一份存档。",
+      "es": "No se pudo leer la herencia. Se cargó la copia de seguridad anterior."
     },
     {
       "ko": "패시브",
-      "en": "Passive"
+      "en": "Passive",
+      "ja": "パッシブ",
+      "zh": "被动",
+      "es": "Pasiva"
     },
     {
       "ko": "보유 <b>{0}</b> / 최대 {1}",
-      "en": "Owned <b>{0}</b> / Max {1}"
+      "en": "Owned <b>{0}</b> / Max {1}",
+      "ja": "所持 <b>{0}</b> / 最大 {1}",
+      "zh": "持有 <b>{0}</b> / 上限 {1}",
+      "es": "Tienes <b>{0}</b> / Máximo {1}"
     },
     {
       "ko": "보유 <b>{0}</b>",
-      "en": "Owned <b>{0}</b>"
+      "en": "Owned <b>{0}</b>",
+      "ja": "所持 <b>{0}</b>",
+      "zh": "持有 <b>{0}</b>",
+      "es": "Tienes <b>{0}</b>"
     },
     {
       "ko": "선택 즉시 적용 · 덱 유지",
-      "en": "Applies immediately · Deck unchanged"
+      "en": "Applies immediately · Deck unchanged",
+      "ja": "選択後すぐ適用 · デッキ維持",
+      "zh": "选择后立即生效 · 卡组不变",
+      "es": "Efecto inmediato · Mazo sin cambios"
     },
     {
       "ko": "포션 최대 보유량 <b>+{0:0}</b>",
-      "en": "Potion capacity <b>+{0:0}</b>"
+      "en": "Potion capacity <b>+{0:0}</b>",
+      "ja": "ポーション最大所持数 <b>+{0:0}</b>",
+      "zh": "药水持有上限 <b>+{0:0}</b>",
+      "es": "Capacidad de pociones <b>+{0:0}</b>"
     },
     {
       "ko": "현재 포션 <b>{0:0}개</b> 보충",
-      "en": "Refill <b>{0:0}</b> potion(s)"
+      "en": "Refill <b>{0:0}</b> potion(s)",
+      "ja": "現在のポーションを <b>{0:0}個</b> 補充",
+      "zh": "补充当前药水 <b>{0:0}瓶</b>",
+      "es": "Repone <b>{0:0}</b> poción(es)"
     },
     {
       "ko": "즉시 HP <b>{0:0}</b> 회복",
-      "en": "Immediately restore <b>{0:0}</b> HP"
+      "en": "Immediately restore <b>{0:0}</b> HP",
+      "ja": "即座に HP <b>{0:0}</b> 回復",
+      "zh": "立即回复HP <b>{0:0}</b>",
+      "es": "Recupera <b>{0:0}</b> HP al instante"
     },
     {
       "ko": "최대 HP <b>+{0:0}</b>",
-      "en": "Max HP <b>+{0:0}</b>"
+      "en": "Max HP <b>+{0:0}</b>",
+      "ja": "最大 HP <b>+{0:0}</b>",
+      "zh": "最大HP <b>+{0:0}</b>",
+      "es": "HP máximo <b>+{0:0}</b>"
     },
     {
       "ko": "초당 코스트 충전 <b>+{0:0.##}</b>",
-      "en": "Cost regeneration/sec <b>+{0:0.##}</b>"
+      "en": "Cost regeneration/sec <b>+{0:0.##}</b>",
+      "ja": "毎秒コスト回復 <b>+{0:0.##}</b>",
+      "zh": "每秒费用回复 <b>+{0:0.##}</b>",
+      "es": "Regeneración de coste/s <b>+{0:0.##}</b>"
     },
     {
       "ko": "매 전투 시작 코스트 <b>+{0:0.#}</b>",
-      "en": "Starting cost each battle <b>+{0:0.#}</b>"
+      "en": "Starting cost each battle <b>+{0:0.#}</b>",
+      "ja": "毎戦闘開始時コスト <b>+{0:0.#}</b>",
+      "zh": "每场战斗起始费用 <b>+{0:0.#}</b>",
+      "es": "Coste inicial por combate <b>+{0:0.#}</b>"
     },
     {
       "ko": "코스트 상한 <b>+{0:0.#}</b>",
-      "en": "Max cost <b>+{0:0.#}</b>"
+      "en": "Max cost <b>+{0:0.#}</b>",
+      "ja": "コスト上限 <b>+{0:0.#}</b>",
+      "zh": "费用上限 <b>+{0:0.#}</b>",
+      "es": "Coste máximo <b>+{0:0.#}</b>"
     },
     {
       "ko": "방어도 부여량 <b>+{0:0%}</b>",
-      "en": "Shield granted <b>+{0:0%}</b>"
+      "en": "Shield granted <b>+{0:0%}</b>",
+      "ja": "シールド付与量 <b>+{0:0%}</b>",
+      "zh": "护盾获得量 <b>+{0:0%}</b>",
+      "es": "Escudo otorgado <b>+{0:0%}</b>"
     },
     {
       "ko": "차단 성공 경직 <b>+{0:0.##}초</b>",
-      "en": "Interrupt stagger <b>+{0:0.##}s</b>"
+      "en": "Interrupt stagger <b>+{0:0.##}s</b>",
+      "ja": "妨害成功時の硬直 <b>+{0:0.##}秒</b>",
+      "zh": "打断成功硬直 <b>+{0:0.##}秒</b>",
+      "es": "Tambaleo al interrumpir <b>+{0:0.##} s</b>"
     },
     {
       "ko": "크리티컬 확률 <b>+{0:0.#}%p</b>",
-      "en": "Critical chance <b>+{0:0.#} pp</b>"
+      "en": "Critical chance <b>+{0:0.#} pp</b>",
+      "ja": "クリティカル率 <b>+{0:0.#}pt</b>",
+      "zh": "暴击率 <b>+{0:0.#}个百分点</b>",
+      "es": "Probabilidad de crítico <b>+{0:0.#} pp</b>"
     },
     {
       "ko": "{0:0.00}s: {1:0.#}배",
-      "en": "{0:0.00}s: {1:0.#}×"
+      "en": "{0:0.00}s: {1:0.#}×",
+      "ja": "{0:0.00}秒: {1:0.#}倍",
+      "zh": "{0:0.00}s: {1:0.#}倍",
+      "es": "{0:0.00}s: {1:0.#}×"
     },
     {
       "ko": "배속 이력(게임 초): {0}",
-      "en": "Speed history (game seconds): {0}"
+      "en": "Speed history (game seconds): {0}",
+      "ja": "倍速履歴(ゲーム内秒): {0}",
+      "zh": "倍速记录（游戏秒）：{0}",
+      "es": "Historial de velocidad (segundos de juego): {0}"
     },
     {
       "ko": " / 크리티컬",
-      "en": " / Critical"
+      "en": " / Critical",
+      "ja": " / クリティカル",
+      "zh": " / 暴击",
+      "es": " / Crítico"
     },
     {
       "ko": "크리티컬 {0}회 / 유효 피해 타격 {1}회 (사망 후 잔여 연출 제외)",
-      "en": "Critical hits {0} / Eligible hits {1} (excluding effects after death)"
+      "en": "Critical hits {0} / Eligible hits {1} (excluding effects after death)",
+      "ja": "クリティカル {0}回 / 有効ダメージヒット {1}回 (死亡後の残り演出を除く)",
+      "zh": "暴击 {0}次 / 有效伤害命中 {1}次（不含死亡后的残余特效）",
+      "es": "Críticos {0} / Golpes válidos {1} (sin efectos tras la muerte)"
     },
     {
       "ko": "시작 조건: 충전 {0:0.0}/초 / 크리티컬 {1:0.#}% / {2}",
-      "en": "Starting modifiers: Regen {0:0.0}/s / Crit {1:0.#}% / {2}"
+      "en": "Starting modifiers: Regen {0:0.0}/s / Crit {1:0.#}% / {2}",
+      "ja": "開始条件: 回復 {0:0.0}/秒 / クリティカル {1:0.#}% / {2}",
+      "zh": "起始条件：回复 {0:0.0}/秒 / 暴击 {1:0.#}% / {2}",
+      "es": "Condiciones iniciales: Regeneración {0:0.0}/s / Crítico {1:0.#}% / {2}"
     },
     {
       "ko": "[포션 {0:0.00}s] 실회복 {1:0} / 남은 {2}/{3}",
-      "en": "[Potion {0:0.00}s] Healed {1:0} / Remaining {2}/{3}"
+      "en": "[Potion {0:0.00}s] Healed {1:0} / Remaining {2}/{3}",
+      "ja": "[ポーション {0:0.00}秒] 実回復 {1:0} / 残り {2}/{3}",
+      "zh": "[药水 {0:0.00}s] 实际回复 {1:0} / 剩余 {2}/{3}",
+      "es": "[Poción {0:0.00}s] Curado {1:0} / Restantes {2}/{3}"
     },
     {
       "ko": "포션 사용 {0}회 / 실제 회복 {1:0}",
-      "en": "Potions used {0} / HP restored {1:0}"
+      "en": "Potions used {0} / HP restored {1:0}",
+      "ja": "ポーション使用 {0}回 / 実際の回復 {1:0}",
+      "zh": "药水使用 {0}次 / 实际回复 {1:0}",
+      "es": "Pociones usadas {0} / HP recuperado {1:0}"
     },
     {
       "ko": "[무적 {0:0.00}s] 피해 무효화 {1} (방어력 적용 후 / HP·방어도 감소 0)",
-      "en": "[Invulnerability {0:0.00}s] Damage prevented {1} (after Defense / HP and Shield lost: 0)"
+      "en": "[Invulnerability {0:0.00}s] Damage prevented {1} (after Defense / HP and Shield lost: 0)",
+      "ja": "[無敵 {0:0.00}秒] ダメージ無効化 {1} (防御力適用後 / HP・シールド減少 0)",
+      "zh": "[无敌 {0:0.00}s] 伤害无效化 {1}（防御力计算后 / HP·护盾减少 0）",
+      "es": "[Invulnerabilidad {0:0.00}s] Daño anulado {1} (tras Defensa / HP y escudo perdidos: 0)"
     },
     {
       "ko": "무적 무효화 피해 {0} (방어도 흡수와 별도)",
-      "en": "Damage prevented by invulnerability {0} (separate from Shield absorption)"
+      "en": "Damage prevented by invulnerability {0} (separate from Shield absorption)",
+      "ja": "無敵による無効化ダメージ {0} (シールド吸収とは別)",
+      "zh": "无敌无效化伤害 {0}（与护盾吸收分开计算）",
+      "es": "Daño anulado por invulnerabilidad {0} (aparte de la absorción del escudo)"
     },
     {
       "ko": "빨강 반감 감소 피해 {0} (방어도 흡수·무적과 별도)",
-      "en": "Red attack reduction {0} (separate from Shield absorption and invulnerability)"
+      "en": "Red attack reduction {0} (separate from Shield absorption and invulnerability)",
+      "ja": "赤半減による軽減ダメージ {0} (シールド吸収・無敵とは別)",
+      "zh": "红色减半减少伤害 {0}（与护盾吸收·无敌分开计算）",
+      "es": "Reducción de ataque rojo {0} (aparte de la absorción del escudo y la invulnerabilidad)"
     },
     {
       "ko": "현재 설정: {0} · {1}",
-      "en": "Current: {0} · {1}"
+      "en": "Current: {0} · {1}",
+      "ja": "現在の設定: {0} · {1}",
+      "zh": "当前设置：{0} · {1}",
+      "es": "Actual: {0} · {1}"
     },
     {
       "ko": "전체화면 (테두리 없음)",
-      "en": "Borderless Fullscreen"
+      "en": "Borderless Fullscreen",
+      "ja": "フルスクリーン (ボーダーレス)",
+      "zh": "全屏（无边框）",
+      "es": "Pantalla completa sin bordes"
     },
     {
       "ko": "창모드",
-      "en": "Windowed"
+      "en": "Windowed",
+      "ja": "ウィンドウモード",
+      "zh": "窗口模式",
+      "es": "Ventana"
     },
     {
       "ko": "정말 게임을 초기화 하시겠습니까?\n스테이지 클리어 기록이 사라집니다.\n<size=75%>계승한 스킬·패시브와 튜토리얼 기록도 초기화됩니다.</size>",
-      "en": "Reset the game?\nStage clear records will be deleted.\n<size=75%>Inherited skills, passives and tutorial progress will also be reset.</size>"
+      "en": "Reset the game?\nStage clear records will be deleted.\n<size=75%>Inherited skills, passives and tutorial progress will also be reset.</size>",
+      "ja": "本当にゲームを初期化しますか？\nステージクリア記録が消去されます。\n<size=75%>継承したスキル・パッシブとチュートリアル記録も初期化されます。</size>",
+      "zh": "确定要重置游戏吗？\n关卡通关记录将被清除。\n<size=75%>继承的技能·被动和教程记录也将被重置。</size>",
+      "es": "¿Reiniciar el juego?\nSe borrarán los registros de fases superadas.\n<size=75%>También se reiniciarán las habilidades y pasivas heredadas y el progreso del tutorial.</size>"
     },
     {
       "ko": "초기화하지 못했습니다. 저장 경로를 확인한 뒤 다시 시도하세요.",
-      "en": "Could not reset. Check storage permissions and try again."
+      "en": "Could not reset. Check storage permissions and try again.",
+      "ja": "初期化できませんでした。保存先を確認してから再度お試しください。",
+      "zh": "重置失败。请检查存储路径后重试。",
+      "es": "No se pudo reiniciar. Revisa los permisos de almacenamiento e inténtalo de nuevo."
     },
     {
       "ko": "기존 데이터가 사라집니다. 그래도 진행하시겠습니까?",
-      "en": "Existing progress will be deleted. Continue?"
+      "en": "Existing progress will be deleted. Continue?",
+      "ja": "既存のデータが消去されます。それでも続けますか？",
+      "zh": "现有数据将被清除。仍要继续吗？",
+      "es": "Se borrará el progreso actual. ¿Continuar?"
     },
     {
       "ko": "전체화면",
-      "en": "Fullscreen"
+      "en": "Fullscreen",
+      "ja": "フルスクリーン",
+      "zh": "全屏",
+      "es": "Pantalla completa"
     },
     {
       "ko": "무제한",
-      "en": "Unlimited"
+      "en": "Unlimited",
+      "ja": "無制限",
+      "zh": "无限制",
+      "es": "Ilimitado"
     },
     {
       "ko": "수직동기화 사용 시 프레임 제한 대신 모니터 주사율을 따릅니다.",
-      "en": "With VSync enabled, your display refresh rate replaces the frame limit."
+      "en": "With VSync enabled, your display refresh rate replaces the frame limit.",
+      "ja": "垂直同期を使用すると、フレーム制限の代わりにモニターのリフレッシュレートに従います。",
+      "zh": "启用垂直同步时，将按显示器刷新率运行，而非帧率限制。",
+      "es": "Con VSync activado, se usa la frecuencia del monitor en lugar del límite de FPS."
     },
     {
       "ko": "프레임 제한을 낮추면 그래픽 부하를 줄일 수 있습니다.",
-      "en": "Lower frame limits reduce graphics load."
+      "en": "Lower frame limits reduce graphics load.",
+      "ja": "フレーム制限を下げるとグラフィック負荷を減らせます。",
+      "zh": "降低帧率限制可减轻图形负载。",
+      "es": "Bajar el límite de FPS reduce la carga gráfica."
     },
     {
       "ko": "해당 구역은 타겟팅 된 적의 공격에 대한 정보를 보여줍니다",
-      "en": "This area shows information about your target's attack."
+      "en": "This area shows information about your target's attack.",
+      "ja": "このエリアには、ターゲット中の敵の攻撃情報が表示されます",
+      "zh": "该区域显示当前目标敌人的攻击信息",
+      "es": "Esta zona muestra información sobre el ataque de tu objetivo."
     },
     {
       "ko": "이제 공격스킬을 써서 적을 처치하세요",
-      "en": "Now use your attack skills to defeat the enemy."
+      "en": "Now use your attack skills to defeat the enemy.",
+      "ja": "では攻撃スキルを使って敵を倒しましょう",
+      "zh": "现在使用攻击技能击败敌人",
+      "es": "Ahora usa tus habilidades de ataque para derrotar al enemigo."
     },
     {
       "ko": "<size=36><b>튜토리얼 완료</b></size>\nHP와 포션이 회복된 상태로 다음 전투를 시작합니다.\n스킬 순서를 확인하고 전투를 준비하세요.",
-      "en": "<size=36><b>Tutorial Complete</b></size>\nYour HP and potions will be restored before the next battle.\nCheck your skill order and prepare to fight."
+      "en": "<size=36><b>Tutorial Complete</b></size>\nYour HP and potions will be restored before the next battle.\nCheck your skill order and prepare to fight.",
+      "ja": "<size=36><b>チュートリアル完了</b></size>\nHPとポーションが回復した状態で次の戦闘を開始します。\nスキルの順番を確認して戦闘に備えてください。",
+      "zh": "<size=36><b>教程完成</b></size>\n将在HP和药水恢复的状态下开始下一场战斗。\n请确认技能顺序并做好战斗准备。",
+      "es": "<size=36><b>Tutorial completado</b></size>\nTu HP y tus pociones se restaurarán antes del siguiente combate.\nRevisa el orden de tus habilidades y prepárate para luchar."
     },
     {
       "ko": "전환 · 무적 {0:0.0}초",
-      "en": "Transition · Invulnerable {0:0.0}s"
+      "en": "Transition · Invulnerable {0:0.0}s",
+      "ja": "移行 · 無敵 {0:0.0}秒",
+      "zh": "转换 · 无敌 {0:0.0}秒",
+      "es": "Transición · Invulnerable {0:0.0} s"
     },
     {
       "ko": "사용 불가 — 페이즈 전환",
-      "en": "Unavailable — phase transition"
+      "en": "Unavailable — phase transition",
+      "ja": "使用不可 — フェーズ移行",
+      "zh": "无法使用 — 阶段转换",
+      "es": "No disponible — transición de fase"
     },
     {
       "ko": "[Player] 피격 {0} (원본 {1}) 방어도 흡수 {2} → HP -{3} = {4:F0}/{5:F0} (방어도 {6}){7}",
-      "en": "[Player] Damage {0} (raw {1}) Shield absorbed {2} → HP -{3} = {4:F0}/{5:F0} (Shield {6}){7}"
+      "en": "[Player] Damage {0} (raw {1}) Shield absorbed {2} → HP -{3} = {4:F0}/{5:F0} (Shield {6}){7}",
+      "ja": "[Player] 被弾 {0} (元 {1}) シールド吸収 {2} → HP -{3} = {4:F0}/{5:F0} (シールド {6}){7}",
+      "zh": "[Player] 受击 {0}（原始 {1}）护盾吸收 {2} → HP -{3} = {4:F0}/{5:F0}（护盾 {6}）{7}",
+      "es": "[Player] Daño {0} (bruto {1}) Escudo absorbió {2} → HP -{3} = {4:F0}/{5:F0} (Escudo {6}){7}"
     },
     {
       "ko": " / 빨강 반감 감소 {0}",
-      "en": " / Red attack reduction {0}"
+      "en": " / Red attack reduction {0}",
+      "ja": " / 赤半減による軽減 {0}",
+      "zh": " / 红色减半减少 {0}",
+      "es": " / Reducción de ataque rojo {0}"
     },
     {
       "ko": "[Player] 회복 {0:0} / 요청 {1:0} → HP {2:0}/{3:0}",
-      "en": "[Player] Healed {0:0} / Requested {1:0} → HP {2:0}/{3:0}"
+      "en": "[Player] Healed {0:0} / Requested {1:0} → HP {2:0}/{3:0}",
+      "ja": "[Player] 回復 {0:0} / 要求 {1:0} → HP {2:0}/{3:0}",
+      "zh": "[Player] 回复 {0:0} / 请求 {1:0} → HP {2:0}/{3:0}",
+      "es": "[Player] Curado {0:0} / Solicitado {1:0} → HP {2:0}/{3:0}"
     },
     {
       "ko": "매직미사일(파이어볼 연출)",
-      "en": "Magic Missile (Fireball effect)"
+      "en": "Magic Missile (Fireball effect)",
+      "ja": "マジックミサイル(ファイアボール演出)",
+      "zh": "魔法飞弹（火球术特效）",
+      "es": "Proyectil mágico (efecto de Bola de fuego)"
     },
     {
       "ko": "사일런스",
-      "en": "Silence"
+      "en": "Silence",
+      "ja": "サイレンス",
+      "zh": "静默",
+      "es": "Silencio"
     },
     {
       "ko": "다크홀",
-      "en": "Dark Hole"
+      "en": "Dark Hole",
+      "ja": "ダークホール",
+      "zh": "黑洞",
+      "es": "Agujero oscuro"
     },
     {
       "ko": "나이트메어",
-      "en": "Nightmare"
+      "en": "Nightmare",
+      "ja": "ナイトメア",
+      "zh": "梦魇",
+      "es": "Pesadilla"
     },
     {
       "ko": "디엔드",
-      "en": "The End"
+      "en": "The End",
+      "ja": "ジ・エンド",
+      "zh": "终焉",
+      "es": "El Fin"
     },
     {
       "ko": "인적 드문 오솔길",
-      "en": "Secluded Forest Path"
+      "en": "Secluded Forest Path",
+      "ja": "人気のない小道",
+      "zh": "人迹罕至的小径",
+      "es": "Sendero apartado"
     },
     {
       "ko": "도적 아지트 입구",
-      "en": "Bandit Hideout Entrance"
+      "en": "Bandit Hideout Entrance",
+      "ja": "盗賊のアジト入口",
+      "zh": "盗贼巢穴入口",
+      "es": "Entrada de la guarida"
     },
     {
       "ko": "불길한 동굴",
-      "en": "Ominous Cave"
+      "en": "Ominous Cave",
+      "ja": "不吉な洞窟",
+      "zh": "不祥洞窟",
+      "es": "Cueva siniestra"
     },
     {
       "ko": "전투 준비\n<size=140%>{0}</size>",
-      "en": "Get Ready\n<size=140%>{0}</size>"
+      "en": "Get Ready\n<size=140%>{0}</size>",
+      "ja": "戦闘準備\n<size=140%>{0}</size>",
+      "zh": "战斗准备\n<size=140%>{0}</size>",
+      "es": "¡Prepárate!\n<size=140%>{0}</size>"
     },
     {
       "ko": "오솔길 입구",
-      "en": "Forest Path Entrance"
+      "en": "Forest Path Entrance",
+      "ja": "小道の入口",
+      "zh": "小径入口",
+      "es": "Entrada del sendero"
     },
     {
       "ko": "<size=135%><b><color=#E6CA90>전투 {0} 승리</color></b></size>\n<size=45%> </size>\n<alpha=#CC>남은 HP <alpha=#FF><b>{1:0} / {2:0}</b>\n<alpha=#CC>이 HP로 다음 전투를 시작합니다.",
-      "en": "<size=135%><b><color=#E6CA90>Victory</color></b></size>\n<size=45%> </size>\n<alpha=#CC>Remaining HP <alpha=#FF><b>{1:0} / {2:0}</b>\n<alpha=#CC>You will start the next battle with this HP."
+      "en": "<size=135%><b><color=#E6CA90>Victory</color></b></size>\n<size=45%> </size>\n<alpha=#CC>Remaining HP <alpha=#FF><b>{1:0} / {2:0}</b>\n<alpha=#CC>You will start the next battle with this HP.",
+      "ja": "<size=135%><b><color=#E6CA90>戦闘 {0} 勝利</color></b></size>\n<size=45%> </size>\n<alpha=#CC>残り HP <alpha=#FF><b>{1:0} / {2:0}</b>\n<alpha=#CC>このHPで次の戦闘を開始します。",
+      "zh": "<size=135%><b><color=#E6CA90>战斗 {0} 胜利</color></b></size>\n<size=45%> </size>\n<alpha=#CC>剩余HP <alpha=#FF><b>{1:0} / {2:0}</b>\n<alpha=#CC>将以此HP开始下一场战斗。",
+      "es": "<size=135%><b><color=#E6CA90>Victoria en el combate {0}</color></b></size>\n<size=45%> </size>\n<alpha=#CC>HP restante <alpha=#FF><b>{1:0} / {2:0}</b>\n<alpha=#CC>Empezarás el siguiente combate con este HP."
     },
     {
       "ko": "<size=135%><b><color=#E6CA90>모험 완료</color></b></size>\n<size=45%> </size>\n<alpha=#CC>남은 HP <alpha=#FF><b>{0:0} / {1:0}</b>",
-      "en": "<size=135%><b><color=#E6CA90>Adventure Complete</color></b></size>\n<size=45%> </size>\n<alpha=#CC>Remaining HP <alpha=#FF><b>{0:0} / {1:0}</b>"
+      "en": "<size=135%><b><color=#E6CA90>Adventure Complete</color></b></size>\n<size=45%> </size>\n<alpha=#CC>Remaining HP <alpha=#FF><b>{0:0} / {1:0}</b>",
+      "ja": "<size=135%><b><color=#E6CA90>冒険完了</color></b></size>\n<size=45%> </size>\n<alpha=#CC>残り HP <alpha=#FF><b>{0:0} / {1:0}</b>",
+      "zh": "<size=135%><b><color=#E6CA90>冒险完成</color></b></size>\n<size=45%> </size>\n<alpha=#CC>剩余HP <alpha=#FF><b>{0:0} / {1:0}</b>",
+      "es": "<size=135%><b><color=#E6CA90>Aventura completada</color></b></size>\n<size=45%> </size>\n<alpha=#CC>HP restante <alpha=#FF><b>{0:0} / {1:0}</b>"
     },
     {
       "ko": "<size=200%><b><color=#E87878>패배</color></b></size>\n<size=40%> </size>\n이번 런에서 얻은 스킬·패시브 중 1개를 계승할 수 있습니다.",
-      "en": "<size=200%><b><color=#E87878>DEFEAT</color></b></size>\n<size=40%> </size>\nYou may inherit one skill or passive acquired during this run."
+      "en": "<size=200%><b><color=#E87878>DEFEAT</color></b></size>\n<size=40%> </size>\nYou may inherit one skill or passive acquired during this run.",
+      "ja": "<size=200%><b><color=#E87878>敗北</color></b></size>\n<size=40%> </size>\nこのランで獲得したスキル・パッシブから1つを継承できます。",
+      "zh": "<size=200%><b><color=#E87878>败北</color></b></size>\n<size=40%> </size>\n可以从本轮获得的技能·被动中继承1个。",
+      "es": "<size=200%><b><color=#E87878>DERROTA</color></b></size>\n<size=40%> </size>\nPuedes heredar una habilidad o pasiva obtenida en esta partida."
     },
     {
       "ko": "처음부터 다시 시작",
-      "en": "Restart from Beginning"
+      "en": "Restart from Beginning",
+      "ja": "最初からやり直す",
+      "zh": "从头开始",
+      "es": "Empezar de nuevo"
     },
     {
       "ko": "[계승] {0} 저장 / 시작 덱 슬롯 {1}",
-      "en": "[Inheritance] Saved {0} / Starting deck slot {1}"
+      "en": "[Inheritance] Saved {0} / Starting deck slot {1}",
+      "ja": "[継承] {0} 保存 / 初期デッキスロット {1}",
+      "zh": "[继承] 已保存{0} / 起始卡组槽位 {1}",
+      "es": "[Herencia] Guardado {0} / Posición del mazo inicial {1}"
     },
     {
       "ko": "진행 기록 저장 실패. 저장 경로를 확인하세요.",
-      "en": "Could not save progress. Check storage permissions."
+      "en": "Could not save progress. Check storage permissions.",
+      "ja": "進行記録の保存に失敗しました。保存先を確認してください。",
+      "zh": "进度保存失败。请检查存储路径。",
+      "es": "No se pudo guardar el progreso. Revisa los permisos de almacenamiento."
     },
     {
       "ko": "[보상 전투 {0}] 덱 {1}번: {2} → {3}",
-      "en": "[Reward battle {0}] Deck slot {1}: {2} → {3}"
+      "en": "[Reward battle {0}] Deck slot {1}: {2} → {3}",
+      "ja": "[報酬 戦闘 {0}] デッキ {1}番: {2} → {3}",
+      "zh": "[奖励 战斗{0}] 卡组{1}号：{2} → {3}",
+      "es": "[Recompensa combate {0}] Mazo, posición {1}: {2} → {3}"
     },
     {
       "ko": "[보상 전투 {0}] 스킵 — 편성 유지",
-      "en": "[Reward battle {0}] Skipped — deck unchanged"
+      "en": "[Reward battle {0}] Skipped — deck unchanged",
+      "ja": "[報酬 戦闘 {0}] スキップ — デッキ維持",
+      "zh": "[奖励 战斗{0}] 跳过 — 卡组不变",
+      "es": "[Recompensa combate {0}] Omitida — mazo sin cambios"
     },
     {
       "ko": "HP {0:0}/{1:0} · 포션 {2}/{3} · 시작 코스트 {4:0.#} / 상한 {5:0.#} · 방어도 배율 {6:0.##} · 차단 경직 {7:0.##}초",
-      "en": "HP {0:0}/{1:0} · Potions {2}/{3} · Starting cost {4:0.#} / Max {5:0.#} · Shield multiplier {6:0.##} · Interrupt stagger {7:0.##}s"
+      "en": "HP {0:0}/{1:0} · Potions {2}/{3} · Starting cost {4:0.#} / Max {5:0.#} · Shield multiplier {6:0.##} · Interrupt stagger {7:0.##}s",
+      "ja": "HP {0:0}/{1:0} · ポーション {2}/{3} · 開始コスト {4:0.#} / 上限 {5:0.#} · シールド倍率 {6:0.##} · 妨害硬直 {7:0.##}秒",
+      "zh": "HP {0:0}/{1:0} · 药水 {2}/{3} · 起始费用 {4:0.#} / 上限 {5:0.#} · 护盾倍率 {6:0.##} · 打断硬直 {7:0.##}秒",
+      "es": "HP {0:0}/{1:0} · Pociones {2}/{3} · Coste inicial {4:0.#} / Máximo {5:0.#} · Multiplicador de escudo {6:0.##} · Tambaleo al interrumpir {7:0.##} s"
     },
     {
       "ko": "전투 시작",
-      "en": "Start Battle"
+      "en": "Start Battle",
+      "ja": "戦闘開始",
+      "zh": "开始战斗",
+      "es": "Iniciar combate"
     },
     {
       "ko": "다음 전투",
-      "en": "Next Battle"
+      "en": "Next Battle",
+      "ja": "次の戦闘",
+      "zh": "下一场战斗",
+      "es": "Próximo combate"
     },
     {
       "ko": "[편성 전투 {0} 준비] 순서 저장: {1}",
-      "en": "[Deck battle {0} preparation] Saved order: {1}"
+      "en": "[Deck battle {0} preparation] Saved order: {1}",
+      "ja": "[デッキ 戦闘 {0} 準備] 順番保存: {1}",
+      "zh": "[卡组 战斗{0} 准备] 顺序已保存：{1}",
+      "es": "[Mazo combate {0} preparación] Orden guardado: {1}"
     },
     {
       "ko": "[보상 전투 {0}] {1} 획득 / {2}스택 / 충전 {3:0.0}/초 / 크리티컬 {4:0.#}%",
-      "en": "[Reward battle {0}] Acquired {1} / {2} stacks / Regen {3:0.0}/s / Crit {4:0.#}%"
+      "en": "[Reward battle {0}] Acquired {1} / {2} stacks / Regen {3:0.0}/s / Crit {4:0.#}%",
+      "ja": "[報酬 戦闘 {0}] {1} 獲得 / {2}スタック / 回復 {3:0.0}/秒 / クリティカル {4:0.#}%",
+      "zh": "[奖励 战斗{0}] 获得{1} / {2}层 / 回复 {3:0.0}/秒 / 暴击 {4:0.#}%",
+      "es": "[Recompensa combate {0}] Obtenido {1} / {2} acumulaciones / Regeneración {3:0.0}/s / Crítico {4:0.#}%"
     },
     {
       "ko": "취소",
-      "en": "Cancel"
+      "en": "Cancel",
+      "ja": "キャンセル",
+      "zh": "取消",
+      "es": "Cancelar"
     },
     {
       "ko": "수직동기화",
-      "en": "VSync"
+      "en": "VSync",
+      "ja": "垂直同期",
+      "zh": "垂直同步",
+      "es": "VSync"
     },
     {
       "ko": "계승 정보",
-      "en": "Inheritance"
+      "en": "Inheritance",
+      "ja": "継承情報",
+      "zh": "继承信息",
+      "es": "Herencia"
     },
     {
       "ko": "보상 스킵",
-      "en": "Skip Reward"
+      "en": "Skip Reward",
+      "ja": "報酬スキップ",
+      "zh": "跳过奖励",
+      "es": "Omitir"
     },
     {
       "ko": "배경음",
-      "en": "Music"
+      "en": "Music",
+      "ja": "BGM",
+      "zh": "背景音乐",
+      "es": "Música"
     },
     {
       "ko": "새 게임 진행",
-      "en": "New Game"
+      "en": "New Game",
+      "ja": "ニューゲーム",
+      "zh": "开始新游戏",
+      "es": "Nueva partida"
     },
     {
       "ko": "방어도 0",
-      "en": "Shield 0"
+      "en": "Shield 0",
+      "ja": "シールド 0",
+      "zh": "护盾 0",
+      "es": "Escudo 0"
     },
     {
       "ko": "확인",
-      "en": "Confirm"
+      "en": "Confirm",
+      "ja": "確認",
+      "zh": "确认",
+      "es": "Confirmar"
     },
     {
       "ko": "시작 화면으로 돌아가면 진행 중인 전투는 종료됩니다.",
-      "en": "Returning to the title ends the current battle."
+      "en": "Returning to the title ends the current battle.",
+      "ja": "タイトル画面に戻ると、進行中の戦闘は終了します。",
+      "zh": "返回标题画面后，进行中的战斗将会结束。",
+      "es": "Volver al título terminará el combate actual."
     },
     {
       "ko": "포션 3/3 · Shift",
-      "en": "Potions 3/3 · Shift"
+      "en": "Potions 3/3 · Shift",
+      "ja": "ポーション 3/3 · Shift",
+      "zh": "药水 3/3 · Shift",
+      "es": "Pociones 3/3 · Shift"
     },
     {
       "ko": "스킬 사운드",
-      "en": "Skill Sounds"
+      "en": "Skill Sounds",
+      "ja": "スキル効果音",
+      "zh": "技能音效",
+      "es": "Habilidades"
     },
     {
       "ko": "조작 정보",
-      "en": "Controls"
+      "en": "Controls",
+      "ja": "操作説明",
+      "zh": "操作说明",
+      "es": "Controles"
     },
     {
       "ko": "치명타 배율",
-      "en": "Critical Multiplier"
+      "en": "Critical Multiplier",
+      "ja": "クリティカル倍率",
+      "zh": "暴击倍率",
+      "es": "Multiplicador crítico"
     },
     {
       "ko": "<size=36>계승한 스킬·패시브를 모두 지울까요?</size>\n<size=24><color=#B9AF9E>시작 덱과 능력치가 기본 상태로 돌아갑니다.</color></size>",
-      "en": "<size=36>Delete all inherited skills and passives?</size>\n<size=24><color=#B9AF9E>Your starting deck and stats will return to their defaults.</color></size>"
+      "en": "<size=36>Delete all inherited skills and passives?</size>\n<size=24><color=#B9AF9E>Your starting deck and stats will return to their defaults.</color></size>",
+      "ja": "<size=36>継承したスキル・パッシブをすべて削除しますか？</size>\n<size=24><color=#B9AF9E>初期デッキとステータスが初期状態に戻ります。</color></size>",
+      "zh": "<size=36>要清除所有继承的技能·被动吗？</size>\n<size=24><color=#B9AF9E>起始卡组和属性将恢复为默认状态。</color></size>",
+      "es": "<size=36>¿Borrar todas las habilidades y pasivas heredadas?</size>\n<size=24><color=#B9AF9E>Tu mazo inicial y tus estadísticas volverán a los valores base.</color></size>"
     },
     {
       "ko": "시작 화면으로",
-      "en": "Return to Title"
+      "en": "Return to Title",
+      "ja": "タイトル画面へ",
+      "zh": "返回标题",
+      "es": "Volver al título"
     },
     {
       "ko": "예",
-      "en": "Yes"
+      "en": "Yes",
+      "ja": "はい",
+      "zh": "是",
+      "es": "Sí"
     },
     {
       "ko": "게임 시작",
-      "en": "Start Game"
+      "en": "Start Game",
+      "ja": "ゲーム開始",
+      "zh": "开始游戏",
+      "es": "Iniciar juego"
     },
     {
       "ko": "계속하기",
-      "en": "Continue"
+      "en": "Continue",
+      "ja": "続きから",
+      "zh": "继续游戏",
+      "es": "Continuar"
     },
     {
       "ko": "초기화",
-      "en": "Reset"
+      "en": "Reset",
+      "ja": "初期化",
+      "zh": "重置",
+      "es": "Reiniciar"
     },
     {
       "ko": "아니오",
-      "en": "No"
+      "en": "No",
+      "ja": "いいえ",
+      "zh": "否",
+      "es": "No"
     },
     {
       "ko": "해상도",
-      "en": "Resolution"
+      "en": "Resolution",
+      "ja": "解像度",
+      "zh": "分辨率",
+      "es": "Resolución"
     },
     {
       "ko": "옵션",
-      "en": "Options"
+      "en": "Options",
+      "ja": "オプション",
+      "zh": "选项",
+      "es": "Opciones"
     },
     {
       "ko": "튜토리얼은 기본 편성으로 진행합니다. 계승은 본편부터 적용됩니다.\n시작 편성에서 바꾼 순서는 이번 런에만 적용됩니다.",
-      "en": "The tutorial uses the default deck. Inheritance applies afterward.\nChanges to starting card order apply only to this run."
+      "en": "The tutorial uses the default deck. Inheritance applies afterward.\nChanges to starting card order apply only to this run.",
+      "ja": "チュートリアルは基本デッキで進行します。継承は本編から適用されます。\n初期デッキで変更した順番はこのランのみ適用されます。",
+      "zh": "教程使用默认卡组进行。继承从正篇开始生效。\n在起始卡组中调整的顺序仅对本轮有效。",
+      "es": "El tutorial usa el mazo predeterminado. La herencia se aplica después.\nLos cambios en el orden inicial solo se aplican a esta partida."
     },
     {
       "ko": "적 사운드",
-      "en": "Enemy Sounds"
+      "en": "Enemy Sounds",
+      "ja": "敵効果音",
+      "zh": "敌人音效",
+      "es": "Enemigos"
     },
     {
       "ko": "생존",
-      "en": "Survival"
+      "en": "Survival",
+      "ja": "生存",
+      "zh": "生存",
+      "es": "Supervivencia"
     },
     {
       "ko": "능력치",
-      "en": "Stats"
+      "en": "Stats",
+      "ja": "ステータス",
+      "zh": "属性",
+      "es": "Estadísticas"
     },
     {
       "ko": "초당 회복",
-      "en": "Regen/sec"
+      "en": "Regen/sec",
+      "ja": "毎秒回復",
+      "zh": "每秒回复",
+      "es": "Regeneración/s"
     },
     {
       "ko": "적의 캐스팅을 읽고, 공격과 대응을 선택하세요.",
-      "en": "Read enemy casts. Choose your attack and response."
+      "en": "Read enemy casts. Choose your attack and response.",
+      "ja": "敵の詠唱を読み、攻撃と対応を選びましょう。",
+      "zh": "解读敌人的施法，选择攻击与应对。",
+      "es": "Lee los lanzamientos enemigos. Elige tu ataque y tu respuesta."
     },
     {
       "ko": "<line-height=56>Q / W / E / R 또는 카드 좌클릭\n적 좌클릭 또는 좌우 방향키\n카드에 마우스 올리기\nA 또는 우클릭 / 상단 버튼 · Esc 메뉴\nS 또는 상단 속도 버튼 (1배속 / 0.5배속)\nShift 또는 물약 아이콘 좌클릭\n전투 중 우측 상단 버튼 (게임은 멈추지 않음)",
-      "en": "<line-height=56>Q / W / E / R or left-click a card\nLeft-click an enemy or use Left/Right arrows\nHover over a card\nA or right-click / top button · Esc: menu\nS or the speed button (1× / 0.5×)\nShift or left-click the potion icon\nTop-right button during battle (does not pause)"
+      "en": "<line-height=56>Q / W / E / R or left-click a card\nLeft-click an enemy or use Left/Right arrows\nHover over a card\nA or right-click / top button · Esc: menu\nS or the speed button (1× / 0.5×)\nShift or left-click the potion icon\nTop-right button during battle (does not pause)",
+      "ja": "<line-height=56>Q / W / E / R またはカードを左クリック\n敵を左クリックまたは左右方向キー\nカードにマウスを乗せる\nA または右クリック / 上部ボタン · Esc メニュー\nS または上部の速度ボタン (1倍速 / 0.5倍速)\nShift またはポーションアイコンを左クリック\n戦闘中に右上のボタン (ゲームは停止しません)",
+      "zh": "<line-height=56>Q / W / E / R 或左键点击卡牌\n左键点击敌人或左右方向键\n鼠标悬停在卡牌上\nA 或右键 / 顶部按钮 · Esc 菜单\nS 或顶部速度按钮（1倍速 / 0.5倍速）\nShift 或左键点击药水图标\n战斗中右上角按钮（游戏不会暂停）",
+      "es": "<line-height=56>Q / W / E / R o clic izquierdo en una carta\nClic izquierdo en un enemigo o flechas izquierda/derecha\nPasa el ratón sobre una carta\nA o clic derecho / botón superior · Esc: menú\nS o el botón de velocidad (1× / 0.5×)\nShift o clic izquierdo en el icono de poción\nBotón superior derecho en combate (no pausa)"
     },
     {
       "ko": "전체 사운드",
-      "en": "Master Volume"
+      "en": "Master Volume",
+      "ja": "全体音量",
+      "zh": "主音量",
+      "es": "Volumen general"
     },
     {
       "ko": "아니요",
-      "en": "No"
+      "en": "No",
+      "ja": "いいえ",
+      "zh": "否",
+      "es": "No"
     },
     {
       "ko": "차단 성공 경직",
-      "en": "Interrupt Stagger"
+      "en": "Interrupt Stagger",
+      "ja": "妨害成功時の硬直",
+      "zh": "打断成功硬直",
+      "es": "Tambaleo al interrumpir"
     },
     {
       "ko": "소리는 바로 반영됩니다. 적용하면 저장되고, 취소하면 돌아갑니다.",
-      "en": "Audio previews instantly. Apply to save; Cancel to restore."
+      "en": "Audio previews instantly. Apply to save; Cancel to restore.",
+      "ja": "音量はすぐに反映されます。適用すると保存され、キャンセルすると元に戻ります。",
+      "zh": "音量会立即生效。点击应用即保存，点击取消则恢复。",
+      "es": "El audio se aplica al momento. Aplicar guarda; Cancelar restaura."
     },
     {
       "ko": "<line-height=56>카드 사용\n대상 선택\n카드 정보\n일시정지·재개\n배속 변경\n포션 사용\n능력치",
-      "en": "<line-height=56>Use card\nSelect target\nCard info\nPause/Resume\nChange speed\nUse potion\nStats"
+      "en": "<line-height=56>Use card\nSelect target\nCard info\nPause/Resume\nChange speed\nUse potion\nStats",
+      "ja": "<line-height=56>カード使用\nターゲット選択\nカード情報\n一時停止・再開\n倍速変更\nポーション使用\nステータス",
+      "zh": "<line-height=56>使用卡牌\n选择目标\n卡牌信息\n暂停·继续\n切换倍速\n使用药水\n属性",
+      "es": "<line-height=56>Usar carta\nElegir objetivo\nDetalles de carta\nPausa/Reanudar\nCambiar velocidad\nUsar poción\nEstadísticas"
     },
     {
       "ko": "돌아가기",
-      "en": "Back"
+      "en": "Back",
+      "ja": "戻る",
+      "zh": "返回",
+      "es": "Volver"
     },
     {
       "ko": "시작 덱",
-      "en": "Starting Deck"
+      "en": "Starting Deck",
+      "ja": "初期デッキ",
+      "zh": "起始卡组",
+      "es": "Mazo inicial"
     },
     {
       "ko": "화면 모드",
-      "en": "Display Mode"
+      "en": "Display Mode",
+      "ja": "画面モード",
+      "zh": "显示模式",
+      "es": "Modo de pantalla"
     },
     {
       "ko": "게임 종료",
-      "en": "Quit Game"
+      "en": "Quit Game",
+      "ja": "ゲーム終了",
+      "zh": "退出游戏",
+      "es": "Salir del juego"
     },
     {
       "ko": "전투 시작 코스트",
-      "en": "Starting Cost"
+      "en": "Starting Cost",
+      "ja": "戦闘開始時コスト",
+      "zh": "战斗起始费用",
+      "es": "Coste inicial"
     },
     {
       "ko": "카드 사용   Q / W / E / R 또는 카드 좌클릭\n대상 선택   적 좌클릭 또는 좌우 방향키\n카드 정보   카드에 마우스 올리기\n일시정지   카드 우클릭 또는 상단 정지 버튼\n배속 변경   상단 속도 버튼 (1배 / 0.5배)",
-      "en": "Use card   Q / W / E / R or left-click a card\nSelect target   Left-click an enemy or Left/Right arrows\nCard info   Hover over a card\nPause   Right-click a card or the pause button\nSpeed   Top speed button (1× / 0.5×)"
+      "en": "Use card   Q / W / E / R or left-click a card\nSelect target   Left-click an enemy or Left/Right arrows\nCard info   Hover over a card\nPause   Right-click a card or the pause button\nSpeed   Top speed button (1× / 0.5×)",
+      "ja": "カード使用   Q / W / E / R またはカードを左クリック\nターゲット選択   敵を左クリックまたは左右方向キー\nカード情報   カードにマウスを乗せる\n一時停止   カードを右クリックまたは上部の停止ボタン\n倍速変更   上部の速度ボタン (1倍 / 0.5倍)",
+      "zh": "使用卡牌   Q / W / E / R 或左键点击卡牌\n选择目标   左键点击敌人或左右方向键\n卡牌信息   鼠标悬停在卡牌上\n暂停   右键点击卡牌或顶部暂停按钮\n切换倍速   顶部速度按钮（1倍 / 0.5倍）",
+      "es": "Usar carta   Q / W / E / R o clic izquierdo en una carta\nElegir objetivo   Clic izquierdo en un enemigo o flechas izquierda/derecha\nDetalles de carta   Pasa el ratón sobre una carta\nPausa   Clic derecho en una carta o botón de pausa\nVelocidad   Botón de velocidad superior (1× / 0.5×)"
     },
     {
       "ko": "게임 초기화",
-      "en": "Reset Game"
+      "en": "Reset Game",
+      "ja": "ゲーム初期化",
+      "zh": "重置游戏",
+      "es": "Reiniciar juego"
     },
     {
       "ko": "저장",
-      "en": "Save"
+      "en": "Save",
+      "ja": "保存",
+      "zh": "保存",
+      "es": "Guardar"
     },
     {
       "ko": "계승 패시브",
-      "en": "Inherited Passives"
+      "en": "Inherited Passives",
+      "ja": "継承パッシブ",
+      "zh": "继承被动",
+      "es": "Pasivas heredadas"
     },
     {
       "ko": "프레임 제한",
-      "en": "Frame Limit"
+      "en": "Frame Limit",
+      "ja": "フレーム制限",
+      "zh": "帧率限制",
+      "es": "Límite de FPS"
     },
     {
       "ko": "보상 다시 선택",
-      "en": "Choose Reward Again"
+      "en": "Choose Reward Again",
+      "ja": "報酬を選び直す",
+      "zh": "重新选择奖励",
+      "es": "Elegir de nuevo"
     },
     {
       "ko": "사용",
-      "en": "On"
+      "en": "On",
+      "ja": "有効",
+      "zh": "启用",
+      "es": "Activado"
     },
     {
       "ko": "방어도 부여량",
-      "en": "Shield Granted"
+      "en": "Shield Granted",
+      "ja": "シールド付与量",
+      "zh": "护盾获得量",
+      "es": "Escudo otorgado"
     },
     {
       "ko": "순서 변경",
-      "en": "Reorder"
+      "en": "Reorder",
+      "ja": "順番変更",
+      "zh": "调整顺序",
+      "es": "Reordenar"
     },
     {
       "ko": "속도 1배속",
-      "en": "Speed 1×"
+      "en": "Speed 1×",
+      "ja": "速度 1倍速",
+      "zh": "速度 1倍",
+      "es": "Velocidad 1×"
     },
     {
       "ko": "카드 교체",
-      "en": "Replace Card"
+      "en": "Replace Card",
+      "ja": "カード入れ替え",
+      "zh": "替换卡牌",
+      "es": "Cambiar carta"
     },
     {
       "ko": "현재 설정",
-      "en": "Current Settings"
+      "en": "Current Settings",
+      "ja": "現在の設定",
+      "zh": "当前设置",
+      "es": "Configuración actual"
     },
     {
       "ko": "방어력",
-      "en": "Defense"
+      "en": "Defense",
+      "ja": "防御力",
+      "zh": "防御力",
+      "es": "Defensa"
     },
     {
       "ko": "대응",
-      "en": "Response"
+      "en": "Response",
+      "ja": "対応",
+      "zh": "应对",
+      "es": "Respuesta"
     },
     {
       "ko": "코스트 상한",
-      "en": "Max Cost"
+      "en": "Max Cost",
+      "ja": "コスト上限",
+      "zh": "费用上限",
+      "es": "Coste máximo"
     },
     {
       "ko": "기절 2.0",
-      "en": "Stunned 2.0"
+      "en": "Stunned 2.0",
+      "ja": "気絶 2.0",
+      "zh": "眩晕 2.0",
+      "es": "Aturdido 2.0"
     },
     {
       "ko": "치명타 확률",
-      "en": "Critical Chance"
+      "en": "Critical Chance",
+      "ja": "クリティカル率",
+      "zh": "暴击率",
+      "es": "Probabilidad de crítico"
     },
     {
       "ko": "기존의 데이터가 존재합니다.\n기존 게임 사양으로 시작하겠습니까?",
-      "en": "Existing save data found.\nStart with your saved progress?"
+      "en": "Existing save data found.\nStart with your saved progress?",
+      "ja": "既存のデータがあります。\n保存データで始めますか？",
+      "zh": "检测到已有存档。\n要以现有进度开始吗？",
+      "es": "Se encontraron datos guardados.\n¿Empezar con tu progreso guardado?"
     },
     {
       "ko": "옵     션",
-      "en": "Options"
+      "en": "Options",
+      "ja": "オプション",
+      "zh": "选　项",
+      "es": "Opciones"
     },
     {
       "ko": "계승 초기화",
-      "en": "Reset Inheritance"
+      "en": "Reset Inheritance",
+      "ja": "継承初期化",
+      "zh": "重置继承",
+      "es": "Reiniciar herencia"
     },
     {
       "ko": "적용",
-      "en": "Apply"
+      "en": "Apply",
+      "ja": "適用",
+      "zh": "应用",
+      "es": "Aplicar"
     },
     {
       "ko": "최대 HP",
-      "en": "Max HP"
+      "en": "Max HP",
+      "ja": "最大 HP",
+      "zh": "最大HP",
+      "es": "HP máximo"
     },
     {
       "ko": "코스트",
-      "en": "Cost"
+      "en": "Cost",
+      "ja": "コスト",
+      "zh": "费用",
+      "es": "Coste"
     },
     {
       "ko": "깡패",
-      "en": "Thug"
+      "en": "Thug",
+      "ja": "チンピラ",
+      "zh": "地痞",
+      "es": "Matón"
     },
     {
       "ko": "펀치",
-      "en": "Punch"
+      "en": "Punch",
+      "ja": "パンチ",
+      "zh": "拳击",
+      "es": "Puñetazo"
     },
     {
       "ko": "전력펀치",
-      "en": "Power Punch"
+      "en": "Power Punch",
+      "ja": "渾身パンチ",
+      "zh": "全力重拳",
+      "es": "Puñetazo potente"
     },
     {
       "ko": "발차기",
-      "en": "Kick"
+      "en": "Kick",
+      "ja": "キック",
+      "zh": "踢击",
+      "es": "Patada"
     },
     {
       "ko": "약탈자",
-      "en": "Raider"
+      "en": "Raider",
+      "ja": "略奪者",
+      "zh": "掠夺者",
+      "es": "Saqueador"
     },
     {
       "ko": "휘두르기",
-      "en": "Slash"
+      "en": "Slash",
+      "ja": "斬りつけ",
+      "zh": "挥砍",
+      "es": "Tajo"
     },
     {
       "ko": "궁병",
-      "en": "Archer"
+      "en": "Archer",
+      "ja": "弓兵",
+      "zh": "弓兵",
+      "es": "Arquero"
     },
     {
       "ko": "속공술",
-      "en": "Rapid Shot"
+      "en": "Rapid Shot",
+      "ja": "速射",
+      "zh": "速射",
+      "es": "Disparo rápido"
     },
     {
       "ko": "조준술",
-      "en": "Aimed Shot"
+      "en": "Aimed Shot",
+      "ja": "狙い撃ち",
+      "zh": "瞄准射击",
+      "es": "Disparo certero"
     },
     {
       "ko": "마법사",
-      "en": "Mage"
+      "en": "Mage",
+      "ja": "魔法使い",
+      "zh": "法师",
+      "es": "Mago"
     },
     {
       "ko": "매직미사일",
-      "en": "Magic Missile"
+      "en": "Magic Missile",
+      "ja": "マジックミサイル",
+      "zh": "魔法飞弹",
+      "es": "Proyectil mágico"
     },
     {
       "ko": "우두머리",
-      "en": "Bandit Leader"
+      "en": "Bandit Leader",
+      "ja": "頭目",
+      "zh": "头目",
+      "es": "Líder bandido"
     },
     {
       "ko": "참격",
-      "en": "Cleave"
+      "en": "Cleave",
+      "ja": "斬撃",
+      "zh": "斩击",
+      "es": "Corte"
     },
     {
       "ko": "회심참",
-      "en": "Heavy Cleave"
+      "en": "Heavy Cleave",
+      "ja": "会心斬",
+      "zh": "会心斩",
+      "es": "Corte devastador"
     },
     {
       "ko": "잡몹 D",
-      "en": "Enemy D"
+      "en": "Enemy D",
+      "ja": "雑魚D",
+      "zh": "杂兵D",
+      "es": "Enemigo D"
     },
     {
       "ko": "일반 공격",
-      "en": "Basic Attack"
+      "en": "Basic Attack",
+      "ja": "通常攻撃",
+      "zh": "普通攻击",
+      "es": "Ataque básico"
     },
     {
       "ko": "기절 공격",
-      "en": "Stunning Attack"
+      "en": "Stunning Attack",
+      "ja": "気絶攻撃",
+      "zh": "眩晕攻击",
+      "es": "Ataque aturdidor"
     },
     {
       "ko": "대형 피해",
-      "en": "Heavy Damage"
+      "en": "Heavy Damage",
+      "ja": "大ダメージ",
+      "zh": "重创",
+      "es": "Daño masivo"
     },
     {
       "ko": "순환의 오브",
-      "en": "Orb of Haste"
+      "en": "Orb of Haste",
+      "ja": "循環のオーブ",
+      "zh": "循环宝珠",
+      "es": "Orbe de presteza"
     },
     {
       "ko": "보스 시전 시간 추가 20%p 감소\n2페이즈 총 40% / 3페이즈 20%",
-      "en": "Boss cast time reduced by an extra 20 percentage points\nPhase 2: 40% total / Phase 3: 20%"
+      "en": "Boss cast time reduced by an extra 20 percentage points\nPhase 2: 40% total / Phase 3: 20%",
+      "ja": "ボスの詠唱時間がさらに20pt短縮\nフェーズ2 合計40% / フェーズ3 20%",
+      "zh": "首领施法时间额外缩短20个百分点\n第2阶段共40% / 第3阶段20%",
+      "es": "Reduce 20 pp más el lanzamiento del jefe\nFase 2: 40% en total / Fase 3: 20%"
     },
     {
       "ko": "파멸의 오브",
-      "en": "Orb of Ruin"
+      "en": "Orb of Ruin",
+      "ja": "破滅のオーブ",
+      "zh": "毁灭宝珠",
+      "es": "Orbe de la ruina"
     },
     {
       "ko": "보스 피해 +10%\n강화 사일런스·나이트메어의\n기절 중 코스트 충전 불가",
-      "en": "Boss damage +10%\nEmpowered Silence and Nightmare\nblock cost regeneration while stunned"
+      "en": "Boss damage +10%\nEmpowered Silence and Nightmare\nblock cost regeneration while stunned",
+      "ja": "ボスのダメージ +10%\n強化サイレンス・ナイトメアの\n気絶中はコスト回復不可",
+      "zh": "首领伤害 +10%\n强化后的静默·梦魇\n眩晕期间无法回复费用",
+      "es": "Daño del jefe +10%\nSilencio y Pesadilla potenciados\nimpiden regenerar coste al aturdir"
     },
     {
       "ko": "응급 물약",
-      "en": "Emergency Potion"
+      "en": "Emergency Potion",
+      "ja": "応急ポーション",
+      "zh": "急救药水",
+      "es": "Poción de emergencia"
     },
     {
       "ko": "치유의 스크롤",
-      "en": "Scroll of Healing"
+      "en": "Scroll of Healing",
+      "ja": "治癒のスクロール",
+      "zh": "治愈卷轴",
+      "es": "Pergamino de curación"
     },
     {
       "ko": "최대 HP를 넘는 회복은 버림",
-      "en": "Healing above max HP is discarded"
+      "en": "Healing above max HP is discarded",
+      "ja": "最大HPを超える回復は切り捨て",
+      "zh": "超出最大HP的回复量将被舍弃",
+      "es": "La curación por encima del HP máximo se pierde"
     },
     {
       "ko": "인내의 스크롤",
-      "en": "Scroll of Endurance"
+      "en": "Scroll of Endurance",
+      "ja": "忍耐のスクロール",
+      "zh": "坚忍卷轴",
+      "es": "Pergamino de resistencia"
     },
     {
       "ko": "현재 HP는 회복하지 않음",
-      "en": "Does not restore current HP"
+      "en": "Does not restore current HP",
+      "ja": "現在HPは回復しない",
+      "zh": "不回复当前HP",
+      "es": "No recupera el HP actual"
     },
     {
       "ko": "순환의 스크롤",
-      "en": "Scroll of Circulation"
+      "en": "Scroll of Circulation",
+      "ja": "循環のスクロール",
+      "zh": "循环卷轴",
+      "es": "Pergamino de circulación"
     },
     {
       "ko": "태초의 스크롤",
-      "en": "Scroll of Origin"
+      "en": "Scroll of Origin",
+      "ja": "太初のスクロール",
+      "zh": "太初卷轴",
+      "es": "Pergamino del origen"
     },
     {
       "ko": "현재 코스트는 보충하지 않음",
-      "en": "Does not refill current cost"
+      "en": "Does not refill current cost",
+      "ja": "現在のコストは補充しない",
+      "zh": "不补充当前费用",
+      "es": "No repone el coste actual"
     },
     {
       "ko": "심연의 스크롤",
-      "en": "Scroll of the Abyss"
+      "en": "Scroll of the Abyss",
+      "ja": "深淵のスクロール",
+      "zh": "深渊卷轴",
+      "es": "Pergamino del abismo"
     },
     {
       "ko": "철벽의 스크롤",
-      "en": "Scroll of Fortitude"
+      "en": "Scroll of Fortitude",
+      "ja": "鉄壁のスクロール",
+      "zh": "铁壁卷轴",
+      "es": "Pergamino de fortaleza"
     },
     {
       "ko": "기본 부여량 기준으로 합산",
-      "en": "Adds to the base amount granted"
+      "en": "Adds to the base amount granted",
+      "ja": "基本付与量を基準に加算",
+      "zh": "按基础获得量累加",
+      "es": "Se suma a la cantidad base otorgada"
     },
     {
       "ko": "속박의 스크롤",
-      "en": "Scroll of Binding"
+      "en": "Scroll of Binding",
+      "ja": "束縛のスクロール",
+      "zh": "束缚卷轴",
+      "es": "Pergamino de atadura"
     },
     {
       "ko": "플레이어 기절 시간은 유지",
-      "en": "Player stun duration is unchanged"
+      "en": "Player stun duration is unchanged",
+      "ja": "プレイヤーの気絶時間は変わらない",
+      "zh": "玩家眩晕时间不变",
+      "es": "La duración del aturdimiento del jugador no cambia"
     },
     {
       "ko": "정밀의 스크롤",
-      "en": "Scroll of Precision"
+      "en": "Scroll of Precision",
+      "ja": "精密のスクロール",
+      "zh": "精准卷轴",
+      "es": "Pergamino de precisión"
     },
     {
       "ko": "악마의 스크롤",
-      "en": "Devil's Scroll"
+      "en": "Devil's Scroll",
+      "ja": "悪魔のスクロール",
+      "zh": "恶魔卷轴",
+      "es": "Pergamino del diablo"
     },
     {
       "ko": "피해 <b>{0}×{1}회</b> · 총합 피해 <b>{6}</b>\n<size=80%><alpha=#CC>적 1체·전 타격·크리티컬/방어 적용 전<alpha=#FF></size>\n첫 타격 {2:0.##}초 / 간격 {3:0.##}초\n타격 후 남은 잠금 {4:0.##}초\n{5}",
-      "en": "Damage <b>{0} × {1} hits</b> · Total <b>{6}</b>\n<size=80%><alpha=#CC>Per enemy · All hits · Before crit/defense<alpha=#FF></size>\nFirst hit {2:0.##}s · Every {3:0.##}s\nFinal-hit lock {4:0.##}s\n{5}"
+      "en": "Damage <b>{0} × {1} hits</b> · Total <b>{6}</b>\n<size=80%><alpha=#CC>Per enemy · All hits · Before crit/defense<alpha=#FF></size>\nFirst hit {2:0.##}s · Every {3:0.##}s\nFinal-hit lock {4:0.##}s\n{5}",
+      "ja": "ダメージ <b>{0}×{1}回</b> · 合計ダメージ <b>{6}</b>\n<size=80%><alpha=#CC>敵1体・全ヒット・クリティカル/防御適用前<alpha=#FF></size>\n初撃 {2:0.##}秒 / 間隔 {3:0.##}秒\nヒット後の残りロック {4:0.##}秒\n{5}",
+      "zh": "伤害 <b>{0}×{1}次</b> · 总伤害 <b>{6}</b>\n<size=80%><alpha=#CC>单个敌人·全部命中·暴击/防御计算前<alpha=#FF></size>\n首次命中 {2:0.##}秒 / 间隔 {3:0.##}秒\n命中后剩余锁定 {4:0.##}秒\n{5}",
+      "es": "Daño <b>{0}×{1} golpes</b> · Total <b>{6}</b>\n<size=80%><alpha=#CC>Por enemigo · Todos los golpes · Sin crítico/defensa<alpha=#FF></size>\nPrimer golpe {2:0.##} s · Cada {3:0.##} s\nBloqueo final {4:0.##} s\n{5}"
     },
     {
       "ko": "입력 대상 고정. 사망 시 후딜 {0:0.##}초",
-      "en": "Target locked; death recovery {0:0.##}s"
+      "en": "Target locked; death recovery {0:0.##}s",
+      "ja": "入力時のターゲットに固定。死亡時の後隙 {0:0.##}秒",
+      "zh": "目标锁定。目标死亡时后摇 {0:0.##}秒",
+      "es": "Objetivo fijo; si muere, recuperación {0:0.##} s"
     },
     {
       "ko": "매 타격 시 생존 적 전체",
-      "en": "Hits all living enemies on each tick"
+      "en": "Hits all living enemies on each tick",
+      "ja": "ヒットごとに生存中の敵全体",
+      "zh": "每次命中时攻击所有存活敌人",
+      "es": "Golpea a todos los enemigos vivos en cada impacto"
     },
     {
       "ko": "즉시 무적·기절 면역\n채널링 동안 HP·방어도 피해 무효화\n다른 카드 사용 불가\n종료 시 모두 해제\n이미 기절 중이면 사용 불가",
-      "en": "Immediate invulnerability and stun immunity\nPrevents HP and Shield damage while channeling\nCannot use other cards\nAll effects end when channeling ends\nCannot use while already stunned"
+      "en": "Immediate invulnerability and stun immunity\nPrevents HP and Shield damage while channeling\nCannot use other cards\nAll effects end when channeling ends\nCannot use while already stunned",
+      "ja": "即座に無敵・気絶無効\nチャネリング中はHP・シールドへのダメージ無効\n他のカード使用不可\n終了時にすべて解除\nすでに気絶中なら使用不可",
+      "zh": "立即无敌·眩晕免疫\n引导期间HP·护盾伤害无效\n无法使用其他卡牌\n结束时全部解除\n已处于眩晕时无法使用",
+      "es": "Invulnerable e inmune al aturdimiento al instante\nAnula el daño a HP y escudo al canalizar\nNo puedes usar otras cartas\nTodos los efectos acaban al terminar\nNo se puede usar durante un aturdimiento"
     },
     {
       "ko": "연쇄번개",
-      "en": "Chain Lightning"
+      "en": "Chain Lightning",
+      "ja": "チェインライトニング",
+      "zh": "连锁闪电",
+      "es": "Rayo en cadena"
     },
     {
       "ko": "매직아머",
-      "en": "Magic Armor"
+      "en": "Magic Armor",
+      "ja": "マジックアーマー",
+      "zh": "魔法护甲",
+      "es": "Armadura mágica"
     },
     {
       "ko": "폭발",
-      "en": "Explosion"
+      "en": "Explosion",
+      "ja": "爆発",
+      "zh": "爆炸",
+      "es": "Explosión"
     },
     {
       "ko": "화염탄",
-      "en": "Flame Bolt"
+      "en": "Flame Bolt",
+      "ja": "火炎弾",
+      "zh": "火焰弹",
+      "es": "Proyectil de llamas"
     },
     {
       "ko": "불기둥",
-      "en": "Flame Pillar"
+      "en": "Flame Pillar",
+      "ja": "炎の柱",
+      "zh": "烈焰之柱",
+      "es": "Columna de llamas"
     },
     {
       "ko": "불기둥(광역)",
-      "en": "Flame Pillar (Area)"
+      "en": "Flame Pillar (Area)",
+      "ja": "炎の柱（全体）",
+      "zh": "烈焰之柱（群体）",
+      "es": "Columna de llamas (Área)"
     },
     {
       "ko": "서리화살",
-      "en": "Frost Arrow"
+      "en": "Frost Arrow",
+      "ja": "フロストアロー",
+      "zh": "霜箭",
+      "es": "Flecha de escarcha"
     },
     {
       "ko": "관통",
-      "en": "Pierce"
+      "en": "Pierce",
+      "ja": "貫通",
+      "zh": "贯穿",
+      "es": "Perforar"
     },
     {
       "ko": "침묵",
-      "en": "Silence"
+      "en": "Silence",
+      "ja": "沈黙",
+      "zh": "沉默",
+      "es": "Silencio"
     },
     {
       "ko": "파이어볼",
-      "en": "Fireball"
+      "en": "Fireball",
+      "ja": "ファイアボール",
+      "zh": "火球术",
+      "es": "Bola de fuego"
     },
     {
       "ko": "아이스애로우",
-      "en": "Ice Arrow"
+      "en": "Ice Arrow",
+      "ja": "アイスアロー",
+      "zh": "冰箭",
+      "es": "Flecha de hielo"
     },
     {
       "ko": "매직 커터",
-      "en": "Magic Cutter"
+      "en": "Magic Cutter",
+      "ja": "マジックカッター",
+      "zh": "魔法利刃",
+      "es": "Filo mágico"
     },
     {
       "ko": "파이어 필라",
-      "en": "Fire Pillar"
+      "en": "Fire Pillar",
+      "ja": "ファイアピラー",
+      "zh": "火柱",
+      "es": "Pilar de fuego"
     },
     {
       "ko": "라이트닝 스피어",
-      "en": "Lightning Spear"
+      "en": "Lightning Spear",
+      "ja": "ライトニングスピア",
+      "zh": "雷霆之矛",
+      "es": "Lanza de rayo"
     },
     {
       "ko": "매직 스파크",
-      "en": "Magic Spark"
+      "en": "Magic Spark",
+      "ja": "マジックスパーク",
+      "zh": "魔法火花",
+      "es": "Chispa mágica"
     },
     {
       "ko": "매직 임팩트",
-      "en": "Magic Impact"
+      "en": "Magic Impact",
+      "ja": "マジックインパクト",
+      "zh": "魔力冲击",
+      "es": "Impacto mágico"
     },
     {
       "ko": "저지먼트",
-      "en": "Judgment"
+      "en": "Judgment",
+      "ja": "ジャッジメント",
+      "zh": "审判",
+      "es": "Juicio"
     },
     {
       "ko": "블리자드",
-      "en": "Blizzard"
+      "en": "Blizzard",
+      "ja": "ブリザード",
+      "zh": "暴风雪",
+      "es": "Ventisca"
     },
     {
       "ko": "다크 이럽션",
-      "en": "Dark Eruption"
+      "en": "Dark Eruption",
+      "ja": "ダークイラプション",
+      "zh": "暗黑爆发",
+      "es": "Erupción oscura"
     },
     {
       "ko": "제압",
-      "en": "Suppression"
+      "en": "Suppression",
+      "ja": "制圧",
+      "zh": "压制",
+      "es": "Supresión"
     },
     {
       "ko": "생츄어리",
-      "en": "Sanctuary"
+      "en": "Sanctuary",
+      "ja": "サンクチュアリ",
+      "zh": "圣域",
+      "es": "Santuario"
     },
     {
       "ko": "모험가",
-      "en": "Adventurer"
+      "en": "Adventurer",
+      "ja": "冒険者",
+      "zh": "冒险者",
+      "es": "Aventurero"
     },
     {
       "ko": "인트로 건너뛰기",
-      "en": "Skip Intro"
+      "en": "Skip Intro",
+      "ja": "イントロをスキップ",
+      "zh": "跳过开场",
+      "es": "Omitir intro"
     },
     {
       "ko": "대화 건너뛰기",
-      "en": "Skip Dialogue"
+      "en": "Skip Dialogue",
+      "ja": "会話をスキップ",
+      "zh": "跳过对话",
+      "es": "Omitir diálogo"
     },
     {
       "ko": "고대의 대전쟁 당시, 한 제국은 병사들을 강화하기 위해 대마법사에게 새로운 기술을 개발하도록 명했다. 그렇게 탄생한 것이 바로 ‘비전 스크롤’이었다.",
-      "en": "During the Great War of ancient times, an empire ordered its archmage to develop a way to strengthen its soldiers. Thus, the Arcane Scroll was born."
+      "en": "During the Great War of ancient times, an empire ordered its archmage to develop a way to strengthen its soldiers. Thus, the Arcane Scroll was born.",
+      "ja": "古代の大戦争の時代、ある帝国は兵士たちを強化するため、大魔法使いに新たな技術の開発を命じた。そうして生まれたのが「秘術のスクロール」だった。",
+      "zh": "远古大战时期，一个帝国为了强化士兵，命令大魔法师开发一种新技术。由此诞生的，正是“奥术卷轴”。",
+      "es": "Durante la Gran Guerra de la antigüedad, un imperio ordenó a su archimago crear una nueva técnica para fortalecer a sus soldados. Así nació el Pergamino Arcano."
     },
     {
       "ko": "비전 스크롤에는 마법뿐만 아니라 신체 능력과 기술, 지식까지 담아 다른 이에게 전할 수 있었다. 병사들은 스크롤에 담긴 힘과 기술을 익혀 전장에서 활약했고, 제국은 마침내 전쟁에서 승리했다.",
-      "en": "Arcane Scrolls could hold not only magic, but physical abilities, techniques and knowledge, passing them on to others. Armed with the powers and skills within these scrolls, the empire's soldiers excelled on the battlefield and finally won the war."
+      "en": "Arcane Scrolls could hold not only magic, but physical abilities, techniques and knowledge, passing them on to others. Armed with the powers and skills within these scrolls, the empire's soldiers excelled on the battlefield and finally won the war.",
+      "ja": "秘術のスクロールには魔法だけでなく、身体能力や技術、知識までも込めて他者に伝えることができた。兵士たちはスクロールに込められた力と技術を身につけて戦場で活躍し、帝国はついに戦争に勝利した。",
+      "zh": "奥术卷轴不仅能承载魔法，还能将身体能力、技艺乃至知识传给他人。士兵们习得卷轴中蕴含的力量与技艺，在战场上大显身手，帝国最终赢得了战争。",
+      "es": "Los Pergaminos Arcanos podían contener no solo magia, sino también capacidades físicas, técnicas e incluso conocimientos, y transmitirlos a otros. Con el poder y las técnicas de los pergaminos, los soldados brillaron en el campo de batalla y el imperio por fin ganó la guerra."
     },
     {
       "ko": "하지만 누구나 강력한 힘을 얻을 수 있다는 사실은 사람들의 탐욕을 자극했다. 스크롤을 차지하려는 다툼은 제국 내부로 번졌고, 끝없는 분열 속에서 제국은 결국 몰락했다.",
-      "en": "But the promise of power for anyone stirred people's greed. Struggles over the scrolls spread through the empire, and endless infighting brought about its downfall."
+      "en": "But the promise of power for anyone stirred people's greed. Struggles over the scrolls spread through the empire, and endless infighting brought about its downfall.",
+      "ja": "しかし、誰もが強大な力を得られるという事実は人々の欲望を刺激した。スクロールを巡る争いは帝国内部へと広がり、終わりなき分裂の中で帝国はついに滅亡した。",
+      "zh": "然而，任何人都能获得强大力量这一事实，激起了人们的贪婪。争夺卷轴的纷争蔓延至帝国内部，在无尽的分裂中，帝国最终走向了覆灭。",
+      "es": "Pero que cualquiera pudiera obtener un gran poder despertó la codicia de la gente. Las disputas por los pergaminos se extendieron por el imperio, y entre divisiones sin fin, el imperio acabó cayendo."
     },
     {
       "ko": "오랜 세월이 흐른 지금도 비전 스크롤은 남아 있다. 그러나 이제는 새로운 기술이나 마법의 기초를 쉽게 익히는 수단으로 여겨질 뿐이다. 한때 제국의 병사들에게 막강한 힘을 부여했다는 이야기는 고대의 전설로 남았다.",
-      "en": "Countless years later, Arcane Scrolls still exist. Today, they are seen merely as an easy way to learn the basics of a new skill or spell. The immense power they once bestowed upon imperial soldiers has faded into ancient legend."
+      "en": "Countless years later, Arcane Scrolls still exist. Today, they are seen merely as an easy way to learn the basics of a new skill or spell. The immense power they once bestowed upon imperial soldiers has faded into ancient legend.",
+      "ja": "長い年月が流れた今も、秘術のスクロールは残っている。しかし今では、新しい技術や魔法の基礎を手軽に習得するための手段と見なされているにすぎない。かつて帝国の兵士たちに絶大な力を与えたという話は、古代の伝説となった。",
+      "zh": "漫长岁月过去，奥术卷轴依然留存于世。但如今，它只被视为轻松掌握新技艺或魔法基础的手段。曾赋予帝国士兵强大力量的故事，已成为远古的传说。",
+      "es": "Muchos años después, los Pergaminos Arcanos siguen existiendo. Pero hoy solo se consideran un medio fácil para aprender las bases de una nueva técnica o hechizo. Que una vez otorgaran un poder inmenso a los soldados del imperio es ya una antigua leyenda."
     },
     {
       "ko": "그럼에도 전설 속 힘을 찾아 스크롤을 모으고, 싸우며 모험을 이어가는 이들이 있다.\n사람들은 그들을 스크롤 헌터라 부른다.",
-      "en": "Yet some still seek that legendary power, collecting scrolls and fighting their way through distant lands.\nPeople call them Scroll Hunters."
+      "en": "Yet some still seek that legendary power, collecting scrolls and fighting their way through distant lands.\nPeople call them Scroll Hunters.",
+      "ja": "それでも伝説の力を求めてスクロールを集め、戦い、冒険を続ける者たちがいる。\n人々は彼らをスクロールハンターと呼ぶ。",
+      "zh": "尽管如此，仍有人为了寻找传说中的力量而收集卷轴，在战斗中继续冒险。\n人们称他们为卷轴猎人。",
+      "es": "Aun así, hay quienes buscan ese poder legendario, reuniendo pergaminos y luchando de aventura en aventura.\nLa gente los llama Cazadores de Pergaminos."
     },
     {
       "ko": "숲으로 향하는 길목에서 깡패가 앞을 가로막는다.",
-      "en": "A thug blocks the path leading into the forest."
+      "en": "A thug blocks the path leading into the forest.",
+      "ja": "森へ続く道の途中で、チンピラが行く手を阻む。",
+      "zh": "在通往森林的路口，一个地痞拦住了去路。",
+      "es": "En el camino hacia el bosque, un matón bloquea el paso."
     },
     {
       "ko": "어이, 거기 멈춰. 이 숲에 들어가려면 통행세부터 내야지.",
-      "en": "Hey, stop right there. There's a toll to enter this forest."
+      "en": "Hey, stop right there. There's a toll to enter this forest.",
+      "ja": "おい、そこで止まれ。この森に入りたけりゃ、まず通行料を払いな。",
+      "zh": "喂，站住。想进这片森林，先交过路费。",
+      "es": "Eh, tú, alto ahí. Si quieres entrar en este bosque, primero paga el peaje."
     },
     {
       "ko": "통행세? 여기 오는 동안 그런 얘기는 못 들었는데.",
-      "en": "A toll? Nobody mentioned that on the way here."
+      "en": "A toll? Nobody mentioned that on the way here.",
+      "ja": "通行料？ ここに来るまで、そんな話は聞かなかったけど。",
+      "zh": "过路费？来的路上可没听说过这种事。",
+      "es": "¿Peaje? Nadie me habló de eso de camino aquí."
     },
     {
       "ko": "그럼 지금 알았으면 됐잖아. 돈 내놔.",
-      "en": "Well, now you know. Hand over the money."
+      "en": "Well, now you know. Hand over the money.",
+      "ja": "じゃあ今知ったんだからいいだろ。金を出せ。",
+      "zh": "那你现在知道了不就行了。把钱交出来。",
+      "es": "Pues ahora ya lo sabes. Suelta el dinero."
     },
     {
       "ko": "길을 막고 돈을 뜯는 걸 통행세라고 하나? 낼 생각 없으니까 비켜.",
-      "en": "Blocking the road and shaking people down counts as a toll now? I'm not paying. Move."
+      "en": "Blocking the road and shaking people down counts as a toll now? I'm not paying. Move.",
+      "ja": "道を塞いで金を巻き上げるのを通行料って言うのか？ 払う気はないから、どいてくれ。",
+      "zh": "拦路勒索也能叫过路费？我没打算交，让开。",
+      "es": "¿Ahora cortar el camino para sacar dinero se llama peaje? No pienso pagar. Apártate."
     },
     {
       "ko": "좋게 말하니까 우습게 보이나? 그럼 쓰러뜨리고 직접 챙겨 주지. 가진 건 전부 두고 가게 될 거다.",
-      "en": "Think you can laugh me off? Fine. I'll knock you down and take it myself. You're leaving everything behind."
+      "en": "Think you can laugh me off? Fine. I'll knock you down and take it myself. You're leaving everything behind.",
+      "ja": "優しく言ってりゃ舐めやがって。なら、ぶっ倒して自分で頂くまでだ。持ってるもんは全部置いていってもらうぜ。",
+      "zh": "好好跟你说话，你还当我好欺负？那我就把你撂倒，自己动手拿。你身上的东西全都得留下。",
+      "es": "¿Te crees que puedes reírte de mí porque te hablo bien? Pues te tumbaré y lo tomaré yo mismo. Vas a dejar aquí todo lo que tengas."
     },
     {
       "ko": "모험가가 가볍게 웃으며 어깨를 푼다.",
-      "en": "The adventurer chuckles and rolls their shoulders."
+      "en": "The adventurer chuckles and rolls their shoulders.",
+      "ja": "冒険者が軽く笑いながら肩をほぐす。",
+      "zh": "冒险者轻轻一笑，活动了一下肩膀。",
+      "es": "El aventurero sonríe con ligereza y estira los hombros."
     },
     {
       "ko": "마침 잘됐네. 한동안 싸울 일이 없어서 몸이 굳어 있었거든.",
-      "en": "Perfect timing. It's been a while since my last fight. I could use a warm-up."
+      "en": "Perfect timing. It's been a while since my last fight. I could use a warm-up.",
+      "ja": "ちょうどよかった。しばらく戦う機会がなくて、体がなまってたんだ。",
+      "zh": "正好。好一阵子没打架，身体都僵了。",
+      "es": "¡Qué oportuno! Hace tiempo que no peleo y tengo el cuerpo entumecido."
     },
     {
       "ko": "뭐? 지금 웃음이 나와?",
-      "en": "What? You think this is funny?"
+      "en": "What? You think this is funny?",
+      "ja": "なんだと？ 今笑うところか？",
+      "zh": "什么？你还笑得出来？",
+      "es": "¿Qué? ¿Encima te ríes?"
     },
     {
       "ko": "덕분에 몸 좀 풀고 가겠어. 덤벼.",
-      "en": "Thanks for the exercise. Come on, then."
+      "en": "Thanks for the exercise. Come on, then.",
+      "ja": "おかげで少し体をほぐしていけそうだ。かかってこい。",
+      "zh": "多亏你，我能活动活动筋骨了。来吧。",
+      "es": "Me servirás para calentar. ¡Adelante!"
     },
     {
       "ko": "깡패가 주먹을 쥐고 달려든다.",
-      "en": "The thug charges forward with clenched fists."
+      "en": "The thug charges forward with clenched fists.",
+      "ja": "チンピラが拳を握りしめて飛びかかってくる。",
+      "zh": "地痞握紧拳头冲了上来。",
+      "es": "El matón aprieta los puños y se abalanza."
     },
     {
       "ko": "숲속을 한참 헤매던 모험가가 갈림길 앞에서 걸음을 멈춘다.",
-      "en": "After wandering through the forest for some time, the adventurer stops at a fork in the path."
+      "en": "After wandering through the forest for some time, the adventurer stops at a fork in the path.",
+      "ja": "森の中をしばらくさまよっていた冒険者が、分かれ道の前で足を止める。",
+      "zh": "在森林里绕了好一阵的冒险者，在岔路口前停下了脚步。",
+      "es": "Tras vagar un buen rato por el bosque, el aventurero se detiene ante una bifurcación."
     },
     {
       "ko": "이 바위… 아까도 지나온 것 같은데. 길을 잘못 들었나?",
-      "en": "That rock... Haven't I passed it already? Did I take a wrong turn?"
+      "en": "That rock... Haven't I passed it already? Did I take a wrong turn?",
+      "ja": "この岩……さっきも通った気がする。道を間違えたかな？",
+      "zh": "这块岩石……刚才好像也经过了。走错路了吗？",
+      "es": "Esta roca... Creo que ya pasé por aquí. ¿Me habré equivocado de camino?"
     },
     {
       "ko": "그때, 나무 사이에서 약탈자와 궁병이 나타나 길을 가로막는다.",
-      "en": "A raider and an archer emerge from between the trees, blocking the path."
+      "en": "A raider and an archer emerge from between the trees, blocking the path.",
+      "ja": "そのとき、木々の間から略奪者と弓兵が現れて行く手を阻む。",
+      "zh": "就在这时，掠夺者和弓兵从树林间现身，挡住了去路。",
+      "es": "En ese momento, un saqueador y un arquero salen de entre los árboles y bloquean el camino."
     },
     {
       "ko": "거기, 멈춰. 여기서 뭘 하고 있지?",
-      "en": "Stop there. What are you doing here?"
+      "en": "Stop there. What are you doing here?",
+      "ja": "そこ、止まれ。ここで何をしている？",
+      "zh": "站住。你在这里干什么？",
+      "es": "Alto ahí. ¿Qué haces aquí?"
     },
     {
       "ko": "길을 좀 찾고 있었어. 마침 잘 만났네.",
-      "en": "Trying to find my way. Good thing I ran into you."
+      "en": "Trying to find my way. Good thing I ran into you.",
+      "ja": "ちょっと道を探してたんだ。ちょうどいいところで会えたよ。",
+      "zh": "我在找路。正好碰上你们了。",
+      "es": "Buscaba el camino. Justo a tiempo."
     },
     {
       "ko": "길을 잃었으면 돌아가. 이 앞은 우리 구역이야.",
-      "en": "If you're lost, turn back. This is our territory."
+      "en": "If you're lost, turn back. This is our territory.",
+      "ja": "迷ったなら引き返せ。この先は俺たちの縄張りだ。",
+      "zh": "迷路了就回去。前面是我们的地盘。",
+      "es": "Si te has perdido, da la vuelta. Esto es territorio nuestro."
     },
     {
       "ko": "모험가는 두 사람의 차림새를 살핀다. 도적단이라면 빼앗아 모은 물건도 적지 않을 터였다. 그중에 비전 스크롤이 있을지도 모른다는 생각이 든다.",
-      "en": "The adventurer studies their clothes. Bandits must have plenty of stolen goods stashed away. Perhaps an Arcane Scroll lies among them."
+      "en": "The adventurer studies their clothes. Bandits must have plenty of stolen goods stashed away. Perhaps an Arcane Scroll lies among them.",
+      "ja": "冒険者は二人の身なりをうかがう。盗賊団なら、奪い集めた品も少なくないはずだ。その中に秘術のスクロールがあるかもしれない、という考えが浮かぶ。",
+      "zh": "冒险者打量着两人的装束。如果是盗贼团，抢来的东西应该不少。说不定其中就有奥术卷轴。",
+      "es": "El aventurero observa la ropa de ambos. Si son bandidos, seguro que han acumulado bastante botín. Quizá entre todo eso haya un Pergamino Arcano."
     },
     {
       "ko": "너희 구역이라… 그럼 안쪽에 동료들도 있겠네?",
-      "en": "Your territory, huh? Then you've got friends farther in?"
+      "en": "Your territory, huh? Then you've got friends farther in?",
+      "ja": "あんたたちの縄張りか……じゃあ、奥には仲間もいるってこと？",
+      "zh": "你们的地盘……那里面还有你们的同伙吧？",
+      "es": "Conque su territorio... Entonces habrá más compañeros dentro, ¿no?"
     },
     {
       "ko": "그걸 네가 알아서 뭘 하게? 좋게 말할 때 돌아가.",
-      "en": "What's it to you? Turn around while we're still asking nicely."
+      "en": "What's it to you? Turn around while we're still asking nicely.",
+      "ja": "それを知ってどうする？ 優しく言ってるうちに帰りな。",
+      "zh": "你知道这个想干什么？趁我们还好好说话，赶紧回去。",
+      "es": "¿Y a ti qué te importa? Da la vuelta mientras te lo pedimos por las buenas."
     },
     {
       "ko": "헛걸음한 줄 알았는데, 오히려 잘 찾아온 것 같아서.",
-      "en": "I thought I'd come the wrong way. Seems I was on the right track after all."
+      "en": "I thought I'd come the wrong way. Seems I was on the right track after all.",
+      "ja": "無駄足かと思ったけど、むしろ当たりだったみたいだ。",
+      "zh": "还以为白跑了一趟，看来反而找对地方了。",
+      "es": "Creía que había venido para nada, pero parece que llegué al sitio correcto."
     },
     {
       "ko": "이 자식, 돌아갈 생각이 없군.",
-      "en": "This one doesn't plan on leaving."
+      "en": "This one doesn't plan on leaving.",
+      "ja": "こいつ、帰る気がねえな。",
+      "zh": "这家伙，根本没打算回去啊。",
+      "es": "Este tipo no piensa irse."
     },
     {
       "ko": "궁병이 활에 화살을 건다. 약탈자도 단검을 뽑아 모험가를 겨눈다.",
-      "en": "The archer nocks an arrow. The raider draws a dagger and points it at the adventurer."
+      "en": "The archer nocks an arrow. The raider draws a dagger and points it at the adventurer.",
+      "ja": "弓兵が弓に矢をつがえる。略奪者も短剣を抜いて冒険者に向ける。",
+      "zh": "弓兵搭箭上弦。掠夺者也拔出匕首，对准了冒险者。",
+      "es": "El arquero carga una flecha en el arco. El saqueador también desenvaina una daga y apunta al aventurero."
     },
     {
       "ko": "계속 얼쩡거리면 무사히 돌아가진 못할 거다.",
-      "en": "Keep snooping around and you won't leave in one piece."
+      "en": "Keep snooping around and you won't leave in one piece.",
+      "ja": "これ以上うろつくなら、無事には帰れねえぞ。",
+      "zh": "再在这里转悠，你可就别想全身而退了。",
+      "es": "Si sigues husmeando, no saldrás de aquí de una pieza."
     },
     {
       "ko": "그렇게 막으니까 더 궁금해지는데.",
-      "en": "Now that you're guarding it so closely, I'm even more curious."
+      "en": "Now that you're guarding it so closely, I'm even more curious.",
+      "ja": "そうやって隠されると、余計に気になるな。",
+      "zh": "你们拦得这么紧，我反而更好奇了。",
+      "es": "Si lo protegen tanto, me da todavía más curiosidad."
     },
     {
       "ko": "말로 해선 안 되겠어. 처리하자!",
-      "en": "Talking won't work. Get them!"
+      "en": "Talking won't work. Get them!",
+      "ja": "話して分かる相手じゃねえ。片付けるぞ！",
+      "zh": "跟这家伙说不通。解决掉！",
+      "es": "Hablando no llegaremos a nada. ¡Acabemos con esto!"
     },
     {
       "ko": "모험가는 날아올 화살을 경계하며 자세를 잡는다.",
-      "en": "The adventurer takes a fighting stance, watching the archer's arrow."
+      "en": "The adventurer takes a fighting stance, watching the archer's arrow.",
+      "ja": "冒険者は飛んでくる矢を警戒しながら構える。",
+      "zh": "冒险者警惕着随时可能射来的箭，摆好架势。",
+      "es": "El aventurero adopta una postura de combate, atento a las flechas que puedan llegar."
     },
     {
       "ko": "좋아. 그럼 길은 직접 열어야겠네.",
-      "en": "All right. I'll make my own way through."
+      "en": "All right. I'll make my own way through.",
+      "ja": "よし。じゃあ、道は自分で切り開くとしよう。",
+      "zh": "好吧。那路就只能自己开了。",
+      "es": "Muy bien. Entonces tendré que abrirme paso."
     },
     {
       "ko": "숲길을 지나자 커다란 동굴 입구가 모습을 드러낸다. 대검을 든 남자가 그 앞을 지키고 있다.",
-      "en": "Beyond the forest path, a large cave entrance comes into view. A man wielding a greatsword stands guard."
+      "en": "Beyond the forest path, a large cave entrance comes into view. A man wielding a greatsword stands guard.",
+      "ja": "森の小道を抜けると、大きな洞窟の入口が姿を現す。大剣を手にした男がその前を守っている。",
+      "zh": "穿过林间小路，一个巨大的洞窟入口映入眼帘。一名手持大剑的男人守在洞口前。",
+      "es": "Más allá del sendero del bosque aparece la entrada de una gran cueva. Un hombre con un mandoble la vigila."
     },
     {
       "ko": "드디어 찾았네. 꽤 깊숙이도 숨어 있었군.",
-      "en": "Found it at last. You really tucked yourselves away."
+      "en": "Found it at last. You really tucked yourselves away.",
+      "ja": "やっと見つけた。ずいぶん奥に隠れてたんだな。",
+      "zh": "终于找到了。藏得可真够深的。",
+      "es": "Por fin. Sí que estaban bien escondidos."
     },
     {
       "ko": "못 보던 얼굴인데. 여기엔 무슨 용무냐?",
-      "en": "Don't know your face. What business have you here?"
+      "en": "Don't know your face. What business have you here?",
+      "ja": "見ない顔だな。ここに何の用だ？",
+      "zh": "生面孔啊。来这儿有什么事？",
+      "es": "No conozco tu cara. ¿Qué asunto te trae aquí?"
     },
     {
       "ko": "물건 하나 찾으러 왔어.",
-      "en": "I'm looking for something."
+      "en": "I'm looking for something.",
+      "ja": "ちょっと探し物をしに来たんだ。",
+      "zh": "我来找一样东西。",
+      "es": "Vengo a buscar una cosa."
     },
     {
       "ko": "장사하는 곳 아니다. 귀찮게 하지 말고 당장 꺼져.",
-      "en": "This isn't a shop. Stop wasting my time and get lost."
+      "en": "This isn't a shop. Stop wasting my time and get lost.",
+      "ja": "ここは店じゃねえ。面倒をかけずにとっとと失せろ。",
+      "zh": "这里不是做买卖的地方。别烦我，马上滚。",
+      "es": "Esto no es una tienda. Deja de molestar y lárgate."
     },
     {
       "ko": "여기에 꽤 값나가는 스크롤이 있다는 얘길 들었거든. 그것만 넘겨주면 조용히 떠날게.",
-      "en": "I heard there's a pretty valuable scroll here. Hand it over and I'll leave quietly."
+      "en": "I heard there's a pretty valuable scroll here. Hand it over and I'll leave quietly.",
+      "ja": "ここにかなり値打ちのあるスクロールがあるって聞いてね。それさえ渡してくれれば、おとなしく帰るよ。",
+      "zh": "听说这里有一张很值钱的卷轴。只要交出来，我就安安静静地离开。",
+      "es": "Oí que aquí hay un pergamino bastante valioso. Entrégamelo y me iré sin hacer ruido."
     },
     {
       "ko": "우두머리가 잠시 모험가를 노려보다 코웃음을 친다.",
-      "en": "The leader stares at the adventurer for a moment, then scoffs."
+      "en": "The leader stares at the adventurer for a moment, then scoffs.",
+      "ja": "頭目がしばらく冒険者をにらみつけ、鼻で笑う。",
+      "zh": "头目盯着冒险者看了一会儿，嗤笑一声。",
+      "es": "El líder mira fijamente al aventurero un momento y luego suelta un bufido."
     },
     {
       "ko": "어디서 헛소리를 주워들었는지 모르겠군. 여기엔 그런 거 없다.",
-      "en": "Don't know where you heard that nonsense. There's nothing like that here."
+      "en": "Don't know where you heard that nonsense. There's nothing like that here.",
+      "ja": "どこでそんな戯言を聞きつけたか知らんが、ここにそんなものはない。",
+      "zh": "不知道你从哪儿听来的鬼话。这里没那种东西。",
+      "es": "No sé dónde oíste esas tonterías. Aquí no hay nada parecido."
     },
     {
       "ko": "그럼 잠깐 안을 둘러봐도 괜찮겠네?",
-      "en": "Then you won't mind if I take a quick look inside?"
+      "en": "Then you won't mind if I take a quick look inside?",
+      "ja": "なら、ちょっと中を見て回ってもいいよね？",
+      "zh": "那我进去稍微看一眼也没关系吧？",
+      "es": "Entonces no te importará que eche un vistazo dentro, ¿verdad?"
     },
     {
       "ko": "하! 설령 있다고 한들, 네놈한테 순순히 내줄 것 같으냐?",
-      "en": "Ha! Even if there were, do you think I'd just hand it over to you?"
+      "en": "Ha! Even if there were, do you think I'd just hand it over to you?",
+      "ja": "はっ！ 仮にあったとして、貴様に素直に渡すとでも思ったか？",
+      "zh": "哈！就算有，你以为我会乖乖交给你这家伙？",
+      "es": "¡Ja! Aunque lo hubiera, ¿crees que te lo daría así como así?"
     },
     {
       "ko": "우두머리가 대검을 뽑아 들고 모험가에게 다가온다.",
-      "en": "The leader draws his greatsword and steps toward the adventurer."
+      "en": "The leader draws his greatsword and steps toward the adventurer.",
+      "ja": "頭目が大剣を抜き、冒険者に近づいてくる。",
+      "zh": "头目拔出大剑，朝冒险者走来。",
+      "es": "El líder desenvaina su mandoble y avanza hacia el aventurero."
     },
     {
       "ko": "좋게 보내주려고 했더니, 기어이 칼을 보겠다는 거군.",
-      "en": "I was going to let you walk away. But you just had to see the blade."
+      "en": "I was going to let you walk away. But you just had to see the blade.",
+      "ja": "穏便に帰してやろうと思ったが、どうしても刃を拝みたいらしいな。",
+      "zh": "本想放你一马，你偏要见识见识我的剑啊。",
+      "es": "Iba a dejarte marchar por las buenas, pero insistes en ver mi espada."
     },
     {
       "ko": "역시 말로는 안 되겠네.",
-      "en": "So much for talking it out."
+      "en": "So much for talking it out.",
+      "ja": "やっぱり話し合いじゃ無理か。",
+      "zh": "果然说不通啊。",
+      "es": "Está claro que hablando no se arregla."
     },
     {
       "ko": "모험가가 거리를 벌리며 전투 자세를 잡는다. 우두머리가 대검을 치켜든다.",
-      "en": "The adventurer backs away into a fighting stance. The leader raises his greatsword."
+      "en": "The adventurer backs away into a fighting stance. The leader raises his greatsword.",
+      "ja": "冒険者が距離を取り、戦闘の構えをとる。頭目が大剣を振り上げる。",
+      "zh": "冒险者拉开距离，摆出战斗架势。头目高高举起大剑。",
+      "es": "El aventurero toma distancia y adopta una postura de combate. El líder alza su mandoble."
     },
     {
       "ko": "우두머리가 거칠게 숨을 몰아쉬며 뒤로 물러선다. 여유롭던 얼굴에 당혹감이 번진다.",
-      "en": "The leader staggers back, breathing heavily. His confidence gives way to alarm."
+      "en": "The leader staggers back, breathing heavily. His confidence gives way to alarm.",
+      "ja": "頭目が荒く息をつきながら後ずさる。余裕のあった顔に動揺が広がる。",
+      "zh": "头目粗重地喘着气向后退去。原本从容的脸上浮现出慌乱。",
+      "es": "El líder retrocede jadeando. La confianza de su rostro da paso al desconcierto."
     },
     {
       "ko": "크윽… 어디서 이런 놈이 굴러들어 와서는…!",
-      "en": "Gah... Where did someone like you come from...?!"
+      "en": "Gah... Where did someone like you come from...?!",
+      "ja": "ぐっ……どこからこんな奴が転がり込んできやがった……！",
+      "zh": "呃……哪里冒出来的家伙……！",
+      "es": "Grr... ¡¿De dónde salió alguien como tú...?!"
     },
     {
       "ko": "이쯤 했으면 비켜주는 게 어때? 나도 더 싸우고 싶진 않은데.",
-      "en": "How about stepping aside now? I'd rather not keep fighting either."
+      "en": "How about stepping aside now? I'd rather not keep fighting either.",
+      "ja": "そろそろ道を開けてくれない？ こっちもこれ以上戦いたくはないんだけど。",
+      "zh": "打到这份上，让开怎么样？我也不想再打下去了。",
+      "es": "¿Qué tal si te apartas ya? Yo tampoco quiero seguir peleando."
     },
     {
       "ko": "입 다물어!",
-      "en": "Shut up!"
+      "en": "Shut up!",
+      "ja": "黙れ！",
+      "zh": "闭嘴！",
+      "es": "¡Cállate!"
     },
     {
       "ko": "우두머리가 동굴 쪽을 향해 고함을 지른다.",
-      "en": "The leader turns toward the cave and roars."
+      "en": "The leader turns toward the cave and roars.",
+      "ja": "頭目が洞窟に向かって怒鳴る。",
+      "zh": "头目朝洞窟方向大吼。",
+      "es": "El líder grita hacia la cueva."
     },
     {
       "ko": "전부 나와라! 당장!",
-      "en": "Everyone! Out here, now!"
+      "en": "Everyone! Out here, now!",
+      "ja": "全員出てこい！ 今すぐだ！",
+      "zh": "全都给我出来！马上！",
+      "es": "¡Todos afuera! ¡Ya!"
     },
     {
       "ko": "동굴에서 도적단 말단들이 달려 나온다.",
-      "en": "Bandit underlings rush out of the cave."
+      "en": "Bandit underlings rush out of the cave.",
+      "ja": "洞窟から盗賊団の下っ端たちが駆け出してくる。",
+      "zh": "盗贼团喽啰们从洞窟里冲了出来。",
+      "es": "Los secuaces bandidos salen corriendo de la cueva."
     },
     {
       "ko": "도적단 말단들",
-      "en": "Bandit Underlings"
+      "en": "Bandit Underlings",
+      "ja": "盗賊団の下っ端たち",
+      "zh": "盗贼团喽啰们",
+      "es": "Secuaces bandidos"
     },
     {
       "ko": "두목! 무슨 일입니까?",
-      "en": "Boss! What's going on?"
+      "en": "Boss! What's going on?",
+      "ja": "お頭！ 何事ですか？",
+      "zh": "老大！出什么事了？",
+      "es": "¡Jefe! ¿Qué pasa?"
     },
     {
       "ko": "저놈을 막아라. 무슨 일이 있어도 동굴 안으로 들여보내선 안 된다!",
-      "en": "Stop that one. Whatever happens, do not let them into the cave!"
+      "en": "Stop that one. Whatever happens, do not let them into the cave!",
+      "ja": "あいつを止めろ。何があっても洞窟の中に入れるな！",
+      "zh": "拦住那家伙。无论如何都不准放进洞里！",
+      "es": "¡Detengan a ese! ¡Pase lo que pase, que no entre en la cueva!"
     },
     {
       "ko": "고작 혼자 온 놈 아닙니까? 저희가 처리하겠습니다.",
-      "en": "It's just one intruder, isn't it? We'll handle this."
+      "en": "It's just one intruder, isn't it? We'll handle this.",
+      "ja": "たった一人で来た奴じゃないですか？ 俺たちが片付けますよ。",
+      "zh": "不就一个人吗？交给我们来解决。",
+      "es": "¿No es solo uno? Nosotros nos encargamos."
     },
     {
       "ko": "방심하지 마라! 처음부터 전력을 다해!",
-      "en": "Don't underestimate them! Give it everything you've got!"
+      "en": "Don't underestimate them! Give it everything you've got!",
+      "ja": "油断するな！ 最初から全力でかかれ！",
+      "zh": "别大意！一开始就全力以赴！",
+      "es": "¡No se confíen! ¡Den todo desde el principio!"
     },
     {
       "ko": "말단들이 무기를 들고 길을 막는다. 모험가는 적들을 번갈아 살피며 한 걸음 물러선다.",
-      "en": "The underlings raise their weapons and block the path. The adventurer steps back, looking from one enemy to the next."
+      "en": "The underlings raise their weapons and block the path. The adventurer steps back, looking from one enemy to the next.",
+      "ja": "下っ端たちが武器を構えて道を塞ぐ。冒険者は敵を交互に見やりながら一歩下がる。",
+      "zh": "喽啰们举起武器挡住去路。冒险者轮流打量着敌人，后退了一步。",
+      "es": "Los secuaces alzan sus armas y cierran el paso. El aventurero retrocede un paso, vigilando a uno y otro enemigo."
     },
     {
       "ko": "이건 좀 곤란한데. 한꺼번에 상대하는 건 생각 안 했거든.",
-      "en": "This is a problem. I wasn't counting on fighting all of you at once."
+      "en": "This is a problem. I wasn't counting on fighting all of you at once.",
+      "ja": "これはちょっと困ったな。全員まとめて相手にするとは思ってなかった。",
+      "zh": "这就有点麻烦了。我可没想过要同时对付这么多人。",
+      "es": "Esto se complica. No contaba con enfrentarme a todos a la vez."
     },
     {
       "ko": "이제야 상황을 알겠나? 도망칠 길도 없다!",
-      "en": "Finally understand? There's nowhere to run!"
+      "en": "Finally understand? There's nowhere to run!",
+      "ja": "やっと状況が分かったか？ 逃げ道もないぞ！",
+      "zh": "现在才明白处境吗？你已经无路可逃了！",
+      "es": "¿Por fin lo entiendes? ¡No tienes escapatoria!"
     },
     {
       "ko": "모험가가 짧게 숨을 고르고 다시 자세를 잡는다.",
-      "en": "The adventurer takes a short breath and steadies their stance."
+      "en": "The adventurer takes a short breath and steadies their stance.",
+      "ja": "冒険者が短く息を整え、再び構える。",
+      "zh": "冒险者短暂地调整呼吸，重新摆好架势。",
+      "es": "El aventurero recupera el aliento y vuelve a ponerse en guardia."
     },
     {
       "ko": "여기까지 와서 빈손으로 돌아갈 순 없지.",
-      "en": "I've come too far to go back empty-handed."
+      "en": "I've come too far to go back empty-handed.",
+      "ja": "ここまで来て、手ぶらで帰るわけにはいかないな。",
+      "zh": "都走到这一步了，可不能空手而归。",
+      "es": "No he llegado hasta aquí para volver con las manos vacías."
     },
     {
       "ko": "쳐라!",
-      "en": "Attack!"
+      "en": "Attack!",
+      "ja": "かかれ！",
+      "zh": "上！",
+      "es": "¡Al ataque!"
     },
     {
       "ko": "좋아. 끝까지 해보자!",
-      "en": "All right. Let's see this through!"
+      "en": "All right. Let's see this through!",
+      "ja": "よし。最後までやってやる！",
+      "zh": "好。那就奉陪到底！",
+      "es": "Muy bien. ¡Hasta el final!"
     },
     {
       "ko": "동굴 안으로 들어서자 차갑고 무거운 기운이 온몸을 감싼다. 모험가는 걸음을 늦추고 어둠 속을 살핀다.",
-      "en": "Cold, heavy air presses in as the adventurer enters the cave. Slowing their steps, they peer into the darkness."
+      "en": "Cold, heavy air presses in as the adventurer enters the cave. Slowing their steps, they peer into the darkness.",
+      "ja": "洞窟に足を踏み入れると、冷たく重い気配が全身を包み込む。冒険者は歩みを緩め、闇の中をうかがう。",
+      "zh": "一踏入洞窟，冰冷沉重的气息便笼罩全身。冒险者放慢脚步，审视着黑暗深处。",
+      "es": "Al entrar en la cueva, un aire frío y pesado envuelve todo su cuerpo. El aventurero aminora el paso y escudriña la oscuridad."
     },
     {
       "ko": "……도적들이 이런 곳에 숨어 지낸다고?",
-      "en": "...The bandits were hiding in a place like this?"
+      "en": "...The bandits were hiding in a place like this?",
+      "ja": "……盗賊がこんなところに潜んでいるって？",
+      "zh": "……盗贼们竟然藏身在这种地方？",
+      "es": "...¿Los bandidos se escondían en un lugar así?"
     },
     {
       "ko": "동굴 깊숙한 곳에서 지팡이를 든 마법사가 혀를 찬다.",
-      "en": "Deep inside the cave, a mage holding a staff clicks his tongue."
+      "en": "Deep inside the cave, a mage holding a staff clicks his tongue.",
+      "ja": "洞窟の奥深くで、杖を持った魔法使いが舌打ちする。",
+      "zh": "洞窟深处，一名手持法杖的法师咂了咂舌。",
+      "es": "En lo más profundo de la cueva, un mago con un bastón chasquea la lengua."
     },
     {
       "ko": "쯧. 한때는 이름난 가문의 호위병이었다기에 기대했건만…… 침입자 하나 막지 못하다니.",
-      "en": "Tch. They said he once guarded a distinguished family. I expected more... Yet he couldn't stop a single intruder."
+      "en": "Tch. They said he once guarded a distinguished family. I expected more... Yet he couldn't stop a single intruder.",
+      "ja": "チッ。かつては名家の護衛だったというから期待していたのだが……侵入者一人止められんとはな。",
+      "zh": "啧。听说他曾是名门世家的护卫，还以为能派上用场……结果连一个入侵者都拦不住。",
+      "es": "Tsk. Decían que fue escolta de una familia ilustre y esperaba más de él... Ni siquiera pudo detener a un solo intruso."
     },
     {
       "ko": "입구에 있던 덩치를 말하는 건가? 나름 애는 쓰던데.",
-      "en": "You mean the big fellow outside? He did try his best."
+      "en": "You mean the big fellow outside? He did try his best.",
+      "ja": "入口にいた大男のことか？ それなりに頑張ってはいたけど。",
+      "zh": "你说的是门口那个大块头？他倒是挺卖力的。",
+      "es": "¿Hablas del grandullón de la entrada? Se esforzó, eso sí."
     },
     {
       "ko": "그래서, 네놈은 누구지? 이런 곳까지 기어들어 온 이유가 뭐냐.",
-      "en": "And who are you? Why have you crawled all the way in here?"
+      "en": "And who are you? Why have you crawled all the way in here?",
+      "ja": "それで、貴様は何者だ？ こんなところまで這い込んできた理由は何だ。",
+      "zh": "那么，你这家伙是谁？爬到这种地方来，有何目的？",
+      "es": "¿Y quién eres tú? ¿Por qué te has arrastrado hasta un lugar como este?"
     },
     {
       "ko": "여기에 값나가는 비전 스크롤이 있다는 소문을 듣고 왔어. 당신이 가지고 있나?",
-      "en": "I heard a valuable Arcane Scroll was hidden here. Do you have it?"
+      "en": "I heard a valuable Arcane Scroll was hidden here. Do you have it?",
+      "ja": "ここに値打ちのある秘術のスクロールがあるって噂を聞いて来たんだ。あんたが持ってるのか？",
+      "zh": "我听说这里有一张值钱的奥术卷轴。在你手上吗？",
+      "es": "Oí el rumor de que aquí había un valioso Pergamino Arcano. ¿Lo tienes tú?"
     },
     {
       "ko": "마법사가 모험가를 훑어보더니 비웃음을 흘린다.",
-      "en": "The mage looks the adventurer over and sneers."
+      "en": "The mage looks the adventurer over and sneers.",
+      "ja": "魔法使いが冒険者を眺め回し、嘲笑を漏らす。",
+      "zh": "法师上下打量了冒险者一番，露出嘲讽的笑。",
+      "es": "El mago observa al aventurero de arriba abajo y suelta una risa burlona."
     },
     {
       "ko": "스크롤의 힘을 좇아 여기까지 왔다는 건가. 헛수고했군.",
-      "en": "You came all this way chasing a scroll's power? What a wasted journey."
+      "en": "You came all this way chasing a scroll's power? What a wasted journey.",
+      "ja": "スクロールの力を追ってここまで来たというのか。無駄足だったな。",
+      "zh": "为了追寻卷轴的力量才来到这里吗？白费力气。",
+      "es": "¿Has venido hasta aquí persiguiendo el poder de un pergamino? Qué esfuerzo tan inútil."
     },
     {
       "ko": "헛수고라니?",
-      "en": "Wasted?"
+      "en": "Wasted?",
+      "ja": "無駄足？",
+      "zh": "白费力气？",
+      "es": "¿Inútil?"
     },
     {
       "ko": "그 스크롤이라면 이미 내가 사용했다. 그 안에 담긴 지식은 내 연구에 제법 도움이 되었지.",
-      "en": "I've already used that scroll. The knowledge within proved quite useful to my research."
+      "en": "I've already used that scroll. The knowledge within proved quite useful to my research.",
+      "ja": "そのスクロールなら、すでに私が使った。中に込められた知識は、私の研究になかなか役立ったぞ。",
+      "zh": "那张卷轴我早就用掉了。其中蕴含的知识，对我的研究颇有帮助。",
+      "es": "Ese pergamino ya lo he usado. El conocimiento que contenía resultó bastante útil para mi investigación."
     },
     {
       "ko": "……한발 늦었네. 그럼 밖에 있던 녀석들이 지키던 건 스크롤이 아니라 당신이었군.",
-      "en": "...One step too late. So those men outside were guarding you, not the scroll."
+      "en": "...One step too late. So those men outside were guarding you, not the scroll.",
+      "ja": "……一足遅かったか。じゃあ、外にいた連中が守っていたのはスクロールじゃなく、あんただったんだな。",
+      "zh": "……晚了一步啊。这么说，外面那些家伙守护的不是卷轴，而是你。",
+      "es": "...Llego tarde. Entonces lo que protegían los de fuera no era el pergamino, sino a ti."
     },
     {
       "ko": "쓸데없는 것들이 몰려들지 않도록 맡겨 두었을 뿐이다. 그조차 제대로 해내지 못했지만.",
-      "en": "I left them to keep nuisances away. They couldn't even manage that."
+      "en": "I left them to keep nuisances away. They couldn't even manage that.",
+      "ja": "くだらん輩が集まってこないよう任せておいただけだ。それすらまともにこなせなかったがな。",
+      "zh": "我只是让他们挡住那些碍事的东西罢了。可他们连这点事都办不好。",
+      "es": "Solo les encargué mantener alejadas a las molestias. Y ni eso supieron hacer."
     },
     {
       "ko": "그 쓸데없는 것에 나도 포함되는 모양이네.",
-      "en": "I take it I'm one of those nuisances."
+      "en": "I take it I'm one of those nuisances.",
+      "ja": "そのくだらない輩には、こっちも入ってるみたいだな。",
+      "zh": "看来我也算在那些碍事的东西里了。",
+      "es": "Parece que yo también soy una de esas molestias."
     },
     {
       "ko": "마법사가 지팡이를 들어 올리자 보라색 보석에서 불길한 빛이 새어 나온다.",
-      "en": "The mage raises his staff. An ominous glow spills from its purple gem."
+      "en": "The mage raises his staff. An ominous glow spills from its purple gem.",
+      "ja": "魔法使いが杖を掲げると、紫の宝石から不吉な光が漏れ出す。",
+      "zh": "法师举起法杖，紫色宝石中渗出不祥的光芒。",
+      "es": "El mago alza su bastón y una luz siniestra brota de su gema púrpura."
     },
     {
       "ko": "네놈 때문에 중요한 연구가 중단됐다. 아무 대가도 치르지 않고 돌아갈 수 있을 거라 생각했나?",
-      "en": "You've interrupted important research. Did you think you could walk away without paying for that?"
+      "en": "You've interrupted important research. Did you think you could walk away without paying for that?",
+      "ja": "貴様のせいで重要な研究が中断された。何の代償も払わずに帰れるとでも思ったか？",
+      "zh": "因为你，我重要的研究被打断了。你以为不付出任何代价就能回去吗？",
+      "es": "Por tu culpa se ha interrumpido una investigación importante. ¿Creías que podrías irte sin pagar por ello?"
     },
     {
       "ko": "빈손으로 돌아가는 것도 억울한데, 목숨까지 내놓으라고?",
-      "en": "Going home empty-handed is bad enough. Now you want my life too?"
+      "en": "Going home empty-handed is bad enough. Now you want my life too?",
+      "ja": "手ぶらで帰るだけでも悔しいのに、命まで差し出せって？",
+      "zh": "空手而归已经够憋屈了，还要我把命也搭上？",
+      "es": "Ya es bastante injusto volver con las manos vacías, ¿y ahora también quieres mi vida?"
     },
     {
       "ko": "마침 새로 익힌 마법을 시험할 상대가 필요했지. 네놈이라도 쓸모를 보여 봐라.",
-      "en": "I was just looking for someone to test my new magic on. Make yourself useful."
+      "en": "I was just looking for someone to test my new magic on. Make yourself useful.",
+      "ja": "ちょうど新しく習得した魔法を試す相手が必要だったのだ。せめて役に立ってみせろ。",
+      "zh": "正好需要一个对手来试试新学的魔法。就让你这家伙派上点用场吧。",
+      "es": "Justo necesitaba a alguien para probar mi nueva magia. Al menos demuestra que sirves para algo."
     },
     {
       "ko": "모험가가 마법사를 경계하며 자세를 잡는다.",
-      "en": "The adventurer takes a fighting stance, keeping a close eye on the mage."
+      "en": "The adventurer takes a fighting stance, keeping a close eye on the mage.",
+      "ja": "冒険者が魔法使いを警戒しながら構える。",
+      "zh": "冒险者警惕着法师，摆好架势。",
+      "es": "El aventurero se pone en guardia, sin perder de vista al mago."
     },
     {
       "ko": "좋아. 그 스크롤로 얼마나 대단해졌는지 한번 보자고.",
-      "en": "Fine. Let's see just how powerful that scroll made you."
+      "en": "Fine. Let's see just how powerful that scroll made you.",
+      "ja": "いいだろう。そのスクロールでどれだけ強くなったのか、見せてもらおうか。",
+      "zh": "好吧。就让我看看那张卷轴把你变得有多厉害。",
+      "es": "Muy bien. Veamos cuánto poder te dio ese pergamino."
     },
     {
       "ko": "다음 카드",
-      "en": "Next Card"
+      "en": "Next Card",
+      "ja": "次のカード",
+      "zh": "下一张卡牌",
+      "es": "Siguiente carta"
     },
     {
       "ko": "{0}번 · {1}{2}",
-      "en": "{0} · {1}{2}"
+      "en": "{0} · {1}{2}",
+      "ja": "{0}番 · {1}{2}",
+      "zh": "{0}号 · {1}{2}",
+      "es": "{0} · {1}{2}"
     },
     {
       "ko": " <color=#E7CB87>· 계승</color>",
-      "en": " <color=#E7CB87>· Inherited</color>"
+      "en": " <color=#E7CB87>· Inherited</color>",
+      "ja": " <color=#E7CB87>· 継承</color>",
+      "zh": " <color=#E7CB87>· 继承</color>",
+      "es": " <color=#E7CB87>· Heredada</color>"
     },
     {
       "ko": "계승한 패시브가 없습니다.",
-      "en": "No inherited passives."
+      "en": "No inherited passives.",
+      "ja": "継承したパッシブはありません。",
+      "zh": "没有继承的被动。",
+      "es": "No hay pasivas heredadas."
     },
     {
       "ko": "사용한 자리에 대기열의 첫 카드가 들어옵니다. 쓰지 않은 카드는 그대로 남습니다.",
-      "en": "The first queued card fills the slot you use. Unused cards stay in your hand."
+      "en": "The first queued card fills the slot you use. Unused cards stay in your hand.",
+      "ja": "使った枠に待機列の先頭カードが入ります。使わなかったカードはそのまま残ります。",
+      "zh": "使用过的位置会由待抽队列的第一张卡牌补上。未使用的卡牌会保留。",
+      "es": "La primera carta de la cola entra en la posición usada. Las cartas no usadas siguen en tu mano."
     },
     {
       "ko": "사용한 카드는 대기열 맨 뒤로 이동합니다.\n대기열의 첫 카드가 방금 사용한 칸에 들어왔습니다.",
-      "en": "The card you used goes to the back of the queue.\nThe first queued card has filled its slot."
+      "en": "The card you used goes to the back of the queue.\nThe first queued card has filled its slot.",
+      "ja": "使用したカードは待機列の最後尾に移動します。\n待機列の先頭カードが今使った枠に入りました。",
+      "zh": "使用过的卡牌会移到队列末尾。\n待抽队列的第一张卡牌已进入刚才使用的位置。",
+      "es": "La carta usada pasa al final de la cola.\nLa primera carta de la cola ha ocupado su lugar."
     },
     {
       "ko": "스킬에 맞는 코스트가 모이면 스킬을 사용할 수 있습니다.",
-      "en": "You can use a skill once you have enough cost to pay for it."
+      "en": "You can use a skill once you have enough cost to pay for it.",
+      "ja": "スキルに必要なコストが貯まると、スキルを使用できます。",
+      "zh": "费用积攒到技能所需数值后即可使用技能。",
+      "es": "Puedes usar una habilidad cuando tengas el coste suficiente."
     },
     {
       "ko": "스킬은 사용 방법에 따라 즉발, 캐스팅, 채널링으로 나뉘며 그 중에서 공격 스킬은 단일기와 광역기로 나뉩니다.",
-      "en": "Skills can be instant, cast or channeled. Attack skills target either one enemy or all enemies."
+      "en": "Skills can be instant, cast or channeled. Attack skills target either one enemy or all enemies.",
+      "ja": "スキルは使い方によって即時・詠唱・チャネリングに分かれ、その中で攻撃スキルは単体スキルと全体スキルに分かれます。",
+      "zh": "技能按使用方式分为瞬发、施法和引导，其中攻击技能又分为单体技能和群体技能。",
+      "es": "Las habilidades pueden ser instantáneas, de lanzamiento o de canalización. Las de ataque afectan a un enemigo o a todos."
     },
     {
       "ko": "이 표시는 어떤 적을 타겟팅하고 있는지 보여줍니다.",
-      "en": "This marker shows which enemy you are targeting."
+      "en": "This marker shows which enemy you are targeting.",
+      "ja": "このマーカーは、どの敵をターゲットしているかを示します。",
+      "zh": "此标记显示当前正在锁定的敌人。",
+      "es": "Este marcador indica a qué enemigo apuntas."
     },
     {
       "ko": "적의 주황색 게이지의 공격은 상태이상을 일으키는 공격입니다.",
-      "en": "An orange cast bar warns of an attack that inflicts a status effect."
+      "en": "An orange cast bar warns of an attack that inflicts a status effect.",
+      "ja": "敵のオレンジ色のゲージの攻撃は、状態異常を引き起こす攻撃です。",
+      "zh": "敌人橙色施法条的攻击会造成异常状态。",
+      "es": "Una barra de lanzamiento naranja avisa de un ataque que causa un estado alterado."
     },
     {
       "ko": "적의 빨간색 게이지 공격은 차단이 불가능하고 방어도가 없을 시 치명적인 피해를 입힙니다.",
-      "en": "A red cast bar warns of an uninterruptible attack. Without Shield, it deals devastating damage."
+      "en": "A red cast bar warns of an uninterruptible attack. Without Shield, it deals devastating damage.",
+      "ja": "敵の赤色のゲージの攻撃は妨害できず、シールドがないと致命的なダメージを受けます。",
+      "zh": "敌人红色施法条的攻击无法打断，没有护盾时会造成致命伤害。",
+      "es": "Una barra de lanzamiento roja avisa de un ataque que no se puede interrumpir. Sin escudo, causa un daño devastador."
     },
     {
       "ko": "체력이 떨어졌을 때, 게임 시간이 흐르는 중 Shift 또는 물약 아이콘 좌클릭으로 물약을 사용할 수 있습니다.",
-      "en": "When your HP is low, press Shift or left-click the potion icon to heal. Potions can only be used while time is running."
+      "en": "When your HP is low, press Shift or left-click the potion icon to heal. Potions can only be used while time is running.",
+      "ja": "HPが減ったときは、ゲーム時間が流れている間に Shift またはポーションアイコンの左クリックでポーションを使用できます。",
+      "zh": "HP降低时，可在游戏时间流动期间按 Shift 或左键点击药水图标使用药水。",
+      "es": "Cuando tengas poco HP, pulsa Shift o haz clic izquierdo en el icono de poción para curarte. Solo puedes usar pociones mientras el tiempo corre."
     },
     {
       "ko": "순서 변경 버튼을 누르고 스킬을 드래그하면 해당 위치의 순번으로 배치할 수 있습니다. 저장하면 적용되고 취소하면 편집 전 순서로 돌아갑니다.",
-      "en": "Press Reorder, then drag skills to arrange them. Save applies the order; Cancel restores the previous order."
+      "en": "Press Reorder, then drag skills to arrange them. Save applies the order; Cancel restores the previous order.",
+      "ja": "順番変更ボタンを押してスキルをドラッグすると、その位置の順番に配置できます。保存すると適用され、キャンセルすると編集前の順番に戻ります。",
+      "zh": "点击调整顺序按钮后拖动技能，即可将其放到对应位置的顺序。保存后生效，取消则恢复编辑前的顺序。",
+      "es": "Pulsa Reordenar y arrastra las habilidades para colocarlas. Guardar aplica el orden; Cancelar restaura el anterior."
     },
     {
       "ko": "튜토리얼 스킵",
-      "en": "Skip Tutorial"
+      "en": "Skip Tutorial",
+      "ja": "チュートリアルをスキップ",
+      "zh": "跳过教程",
+      "es": "Omitir tutorial"
     },
     {
       "ko": "이 카드는 다음에 손패로 들어올 카드입니다.\n쓰지 않은 카드는 남아 있으니, 차단과 방어가 필요할 때까지 아껴두세요.",
-      "en": "This card will enter your hand next.\nUnused cards stay in place. Save interrupts and shields until you need them."
+      "en": "This card will enter your hand next.\nUnused cards stay in place. Save interrupts and shields until you need them.",
+      "ja": "このカードは次に手札に入るカードです。\n使わなかったカードは残るので、妨害と防御が必要になるまで温存しましょう。",
+      "zh": "这张卡牌是下一张进入手牌的卡牌。\n未使用的卡牌会保留，请把打断和防御留到需要时再用。",
+      "es": "Esta carta será la próxima en entrar en tu mano.\nLas cartas no usadas se quedan. Guarda las interrupciones y escudos para cuando los necesites."
     },
     {
       "ko": "Q 또는 아이콘을 눌러 단일 스킬인 파이어볼을 사용하세요.",
-      "en": "Press Q or click the icon to use Fireball, a single-target skill."
+      "en": "Press Q or click the icon to use Fireball, a single-target skill.",
+      "ja": "Q またはアイコンを押して、単体スキルのファイアボールを使用してください。",
+      "zh": "按 Q 或点击图标，使用单体技能火球术。",
+      "es": "Pulsa Q o haz clic en el icono para usar Bola de fuego, una habilidad de un solo objetivo."
     },
     {
       "ko": "E 또는 아이콘을 눌러 차단 스킬인 침묵으로 적의 공격을 차단하세요.",
-      "en": "Press E or click the icon to interrupt the enemy with Silence."
+      "en": "Press E or click the icon to interrupt the enemy with Silence.",
+      "ja": "E またはアイコンを押して、妨害スキルの沈黙で敵の攻撃を妨害してください。",
+      "zh": "按 E 或点击图标，用打断技能沉默打断敌人的攻击。",
+      "es": "Pulsa E o haz clic en el icono para interrumpir al enemigo con Silencio."
     },
     {
       "ko": "R 또는 아이콘을 눌러 방어 스킬인 매직아머로 방어도를 쌓아 체력을 보존하세요.",
-      "en": "Press R or click the icon to gain Shield with Magic Armor and protect your HP."
+      "en": "Press R or click the icon to gain Shield with Magic Armor and protect your HP.",
+      "ja": "R またはアイコンを押して、防御スキルのマジックアーマーでシールドを貯め、HPを守ってください。",
+      "zh": "按 R 或点击图标，用防御技能魔法护甲叠加护盾，保护HP。",
+      "es": "Pulsa R o haz clic en el icono para obtener escudo con Armadura mágica y proteger tu HP."
     },
     {
       "ko": " (말단)",
-      "en": " (Underling)"
+      "en": " (Underling)",
+      "ja": " (下っ端)",
+      "zh": " (喽啰)",
+      "es": " (secuaz)"
     },
     {
       "ko": "언어",
-      "en": "Language"
+      "en": "Language",
+      "ja": "言語",
+      "zh": "语言",
+      "es": "Idioma"
     },
     {
       "ko": "언어와 소리는 바로 반영됩니다. 적용하면 저장되고, 취소하면 돌아갑니다.",
-      "en": "Language and audio preview instantly. Apply to save; Cancel to restore."
+      "en": "Language and audio preview instantly. Apply to save; Cancel to restore.",
+      "ja": "言語と音量はすぐに反映されます。適用すると保存され、キャンセルすると元に戻ります。",
+      "zh": "语言和声音会立即生效。点击应用即保存，点击取消则恢复。",
+      "es": "El idioma y el audio se aplican al momento. Aplicar guarda; Cancelar restaura."
     },
     {
       "ko": "화면 크기는 브라우저에 맞춰집니다. 전체화면은 웹 플레이어 버튼을 사용하세요.",
-      "en": "The view fits your browser. Use the web player button for fullscreen."
+      "en": "The view fits your browser. Use the web player button for fullscreen.",
+      "ja": "画面サイズはブラウザに合わせて調整されます。フルスクリーンにはWebプレイヤーのボタンを使用してください。",
+      "zh": "画面大小会适应浏览器。全屏请使用网页播放器按钮。",
+      "es": "La vista se ajusta al navegador. Usa el botón del reproductor web para pantalla completa."
+    },
+    {
+      "ko": "({0})",
+      "en": "({0})",
+      "ja": "（{0}）",
+      "zh": "（{0}）",
+      "es": "({0})"
     }
   ]
 }

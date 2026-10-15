@@ -1,0 +1,37 @@
+{
+  "bytes": 132127773,
+  "indexAtRoot": true,
+  "allMatch": true,
+  "files": [
+    {
+      "name": "Build/ScrollHunter_Web_1.1.data.gz",
+      "bytes": 118191168,
+      "matches": true
+    },
+    {
+      "name": "Build/ScrollHunter_Web_1.1.framework.js.gz",
+      "bytes": 91593,
+      "matches": true
+    },
+    {
+      "name": "Build/ScrollHunter_Web_1.1.loader.js",
+      "bytes": 26982,
+      "matches": true
+    },
+    {
+      "name": "Build/ScrollHunter_Web_1.1.wasm.gz",
+      "bytes": 14387987,
+      "matches": true
+    },
+    {
+      "name": "CREDITS.md",
+      "bytes": 41988,
+      "matches": true
+    },
+    {
+      "name": "index.html",
+      "bytes": 3629,
+      "matches": true
+    }
+  ]
+}

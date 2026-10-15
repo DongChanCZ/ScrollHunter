@@ -21,7 +21,7 @@ public static class WebBuildSetup
         var language = found != null ? found.GetComponent<TMP_Dropdown>() : UnityEngine.Object.Instantiate(source, panel, false);
         language.name = "LanguageDropdown";
         language.onValueChanged = new TMP_Dropdown.DropdownEvent();
-        language.ClearOptions(); language.AddOptions(new System.Collections.Generic.List<string> { "한국어", "English" });
+        language.ClearOptions(); language.AddOptions(GameText.NativeNames.ToList());
         language.SetValueWithoutNotify(0);
         var r = (RectTransform)language.transform;
         r.anchoredPosition = new Vector2(170, 280); r.sizeDelta = new Vector2(650, 60);
@@ -59,7 +59,34 @@ public static class WebBuildSetup
     }
 
     [MenuItem("Tools/Scroll Hunter/Build Web 1.1")]
-    public static void Build()
+    public static void Build() => BuildTo("Docs/근거자료/2026-10-14_웹빌드_언어");
+
+    private const string ScheduledKey = "ScrollHunter.WebBuildScheduled";
+    public static string ScheduleState => SessionState.GetString(ScheduledKey, "");
+
+    /// <summary>
+    /// MCP 등에서 빌드를 1회만 예약하고 바로 돌아온다. 이미 예약·진행 중이면 다시 예약하지 않는다.
+    /// 완료 여부는 근거 폴더의 build-result.json과 ScheduleState로 확인한다.
+    /// </summary>
+    public static string ScheduleOnce(string evidenceFolder)
+    {
+        if (Application.isPlaying) return "play";
+        var state = ScheduleState;
+        if (state == "scheduled" || state == "building") return "already " + state;
+        SessionState.SetString(ScheduledKey, "scheduled");
+        EditorApplication.CallbackFunction run = null;
+        run = () =>
+        {
+            EditorApplication.update -= run;
+            SessionState.SetString(ScheduledKey, "building");
+            try { BuildTo(evidenceFolder); SessionState.SetString(ScheduledKey, "done"); }
+            catch (Exception e) { SessionState.SetString(ScheduledKey, "failed: " + e.Message); Debug.LogException(e); }
+        };
+        EditorApplication.update += run;
+        return "scheduled";
+    }
+
+    private static void BuildTo(string evidenceFolder)
     {
         if (Application.isPlaying) throw new InvalidOperationException("Stop Play first.");
         PlayerSettings.WebGL.compressionFormat = WebGLCompressionFormat.Gzip;
@@ -80,11 +107,14 @@ public static class WebBuildSetup
         });
         var result = new { result = report.summary.result.ToString(), errors = report.summary.totalErrors,
             warnings = report.summary.totalWarnings, bytes = report.summary.totalSize, seconds = report.summary.totalTime.TotalSeconds, path };
-        var evidence = Path.Combine(Directory.GetParent(Application.dataPath).FullName, "Docs/근거자료/2026-10-14_웹빌드_언어");
+        var evidence = Path.Combine(Directory.GetParent(Application.dataPath).FullName, evidenceFolder);
+        Directory.CreateDirectory(evidence);
         File.WriteAllText(Path.Combine(evidence,"build-result.json"), Newtonsoft.Json.JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented));
         if (report.summary.result != UnityEditor.Build.Reporting.BuildResult.Succeeded) throw new Exception("Web build failed; see Console.");
         var credits=Path.Combine(Directory.GetParent(Application.dataPath).FullName,"Docs/CREDITS.md");
         if(File.Exists(credits)) File.Copy(credits,Path.Combine(path,"CREDITS.md"),true);
+        var noto=Path.Combine(Application.dataPath,"_Project/Fonts/NotoSansCJK/OFL.txt");
+        if(File.Exists(noto)) File.Copy(noto,Path.Combine(path,"OFL_NotoSansCJK.txt"),true);
         Debug.Log("[Web Build] " + result.path + " / " + result.bytes);
     }
 }

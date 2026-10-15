@@ -170,6 +170,7 @@ public class Enemy : MonoBehaviour
     {
         cam = Camera.main;
         if (data != null) CurrentHp = data.MaxHp;
+        GameText.Changed += RefreshBar;
     }
 
     private void Start()
@@ -522,6 +523,7 @@ public class Enemy : MonoBehaviour
 
     private void OnDestroy()
     {
+        GameText.Changed -= RefreshBar;
         if (!IsBossOrb) return;
         if (castBarRoot != null) Destroy(castBarRoot.gameObject);
         var renderer = GetComponent<Renderer>();

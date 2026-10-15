@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-/// <summary>영어 카드 설명이 고정 영역을 넘지 않게 조절하고, 한국어 크기는 유지한다.</summary>
+/// <summary>번역된 카드 설명이 고정 영역을 넘지 않게 조절하고, 한국어 크기는 유지한다.</summary>
 public class LocalizedTextFit : MonoBehaviour
 {
     private TMP_Text label;
@@ -15,10 +15,10 @@ public class LocalizedTextFit : MonoBehaviour
     }
     private void Refresh()
     {
-        label.enableAutoSizing = GameText.English || automatic;
-        label.fontSizeMin = GameText.English ? size * .78f : minimum;
-        label.fontSizeMax = GameText.English ? size : maximum;
-        if (!GameText.English) label.fontSize = size;
+        label.enableAutoSizing = GameText.Translated || automatic;
+        label.fontSizeMin = GameText.Translated ? size * .78f : minimum;
+        label.fontSizeMax = GameText.Translated ? size : maximum;
+        if (!GameText.Translated) label.fontSize = size;
     }
     private void OnDestroy() { GameText.Changed -= Refresh; }
 }

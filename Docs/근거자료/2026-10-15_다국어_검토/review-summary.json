@@ -1,0 +1,37 @@
+{
+  "reviewedLanguages": [
+    "Japanese",
+    "ChineseSimplified",
+    "Spanish"
+  ],
+  "catalogs": 379,
+  "localizationChecks": 67033,
+  "cardBoxChecks": 528,
+  "cardTooltipChecks": 63,
+  "enemyTooltipChecks": 45,
+  "confirmedIssues": [
+    {
+      "id": 1,
+      "language": "Spanish",
+      "screen": "StatsPanel/Detail_defense",
+      "source": "Assets/_Project/Resources/GameText.json:57",
+      "text": "Daño recibido -16.7% · Independiente del escudo",
+      "textWidth": 401.591827,
+      "rectWidth": 328,
+      "rightAt1366": 1391.30981,
+      "rightAt1920": 1955.5918,
+      "cause": "NoWrap and no auto sizing",
+      "proposedFix": "Use a shorter Spanish sentence or reserve two lines with an adjusted row height."
+    }
+  ],
+  "observations": [
+    "Some long Japanese/Spanish card names exceed the text rectangle by about 1.5-2 UI units, but no missing letters or card border clipping was confirmed.",
+    "Spanish interrupt label ends at1280.507; value begins1289.094 at1366px: close but not overlapping."
+  ],
+  "limits": [
+    "No new WebGL build or itch.io whole-run test",
+    "Existing screenshots complemented by current editor checks",
+    "Prototype Skill_FlamePillar_AoeTest overflow excluded because it is not offered in the current game"
+  ],
+  "gameCodeChanged": false
+}

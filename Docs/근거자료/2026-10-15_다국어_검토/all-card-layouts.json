@@ -1,0 +1,113 @@
+{
+  "checkedTexts": 528,
+  "notes": [
+    {
+      "language": "Japanese",
+      "context": "deck/Skill_ChainLightning/name",
+      "objectName": "Name",
+      "text": "チェインライトニング",
+      "rect": "(x:-152.00, y:-44.00, width:304.00, height:44.00)",
+      "widthOver": 1.48495483,
+      "heightOver": -15.4500008,
+      "overflow": false,
+      "fontSize": 28.55,
+      "mode": "Overflow"
+    },
+    {
+      "language": "Japanese",
+      "context": "deck/Skill_SK05_LightningSpear/name",
+      "objectName": "Name",
+      "text": "ライトニングスピア",
+      "rect": "(x:-152.00, y:-44.00, width:304.00, height:44.00)",
+      "widthOver": 1.75250244,
+      "heightOver": -12.25,
+      "overflow": false,
+      "fontSize": 31.75,
+      "mode": "Overflow"
+    },
+    {
+      "language": "Japanese",
+      "context": "deck/Skill_SK07_MagicImpact/name",
+      "objectName": "Name",
+      "text": "マジックインパクト",
+      "rect": "(x:-152.00, y:-44.00, width:304.00, height:44.00)",
+      "widthOver": 1.75250244,
+      "heightOver": -12.25,
+      "overflow": false,
+      "fontSize": 31.75,
+      "mode": "Overflow"
+    },
+    {
+      "language": "Japanese",
+      "context": "deck/Skill_SK10_DarkEruption/name",
+      "objectName": "Name",
+      "text": "ダークイラプション",
+      "rect": "(x:-152.00, y:-44.00, width:304.00, height:44.00)",
+      "widthOver": 1.75250244,
+      "heightOver": -12.25,
+      "overflow": false,
+      "fontSize": 31.75,
+      "mode": "Overflow"
+    },
+    {
+      "language": "Spanish",
+      "context": "deck/Skill_CrystalShield/name",
+      "objectName": "Name",
+      "text": "Armadura mágica",
+      "rect": "(x:-152.00, y:-44.00, width:304.00, height:44.00)",
+      "widthOver": 2.05340576,
+      "heightOver": -11.8999977,
+      "overflow": false,
+      "fontSize": 32.1,
+      "mode": "Overflow"
+    },
+    {
+      "language": "Spanish",
+      "context": "deck/Skill_Fireball/name",
+      "objectName": "Name",
+      "text": "Proyectil de llamas",
+      "rect": "(x:-152.00, y:-44.00, width:304.00, height:44.00)",
+      "widthOver": 2.002594,
+      "heightOver": -14.6499977,
+      "overflow": false,
+      "fontSize": 29.35,
+      "mode": "Overflow"
+    },
+    {
+      "language": "Spanish",
+      "context": "deck/Skill_FlamePillar/name",
+      "objectName": "Name",
+      "text": "Columna de llamas",
+      "rect": "(x:-152.00, y:-44.00, width:304.00, height:44.00)",
+      "widthOver": 1.64608765,
+      "heightOver": -14.3999958,
+      "overflow": false,
+      "fontSize": 29.6,
+      "mode": "Overflow"
+    },
+    {
+      "language": "Spanish",
+      "context": "deck/Skill_FlamePillar_AoeTest/name",
+      "objectName": "Name",
+      "text": "Columna de llamas (Área)",
+      "rect": "(x:-152.00, y:-44.00, width:304.00, height:44.00)",
+      "widthOver": -32.01407,
+      "heightOver": 9.040001,
+      "overflow": true,
+      "fontSize": 26.5199986,
+      "mode": "Overflow"
+    },
+    {
+      "language": "Spanish",
+      "context": "deck/Skill_Frostbolt/name",
+      "objectName": "Name",
+      "text": "Flecha de escarcha",
+      "rect": "(x:-152.00, y:-44.00, width:304.00, height:44.00)",
+      "widthOver": 1.68161011,
+      "heightOver": -14.3499966,
+      "overflow": false,
+      "fontSize": 29.65,
+      "mode": "Overflow"
+    }
+  ]
+}
