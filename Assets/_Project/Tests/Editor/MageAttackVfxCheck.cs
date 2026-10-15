@@ -287,7 +287,7 @@ public static class MageAttackVfxCheck
                 if (counts.ContainsKey("fx VFX_Mage_DarkHoleBurst")) { Time.timeScale = 1f; Note("FORCE " + Force(3, 1)); Next("nightmare phase2"); }
                 break;
             case 4: // 2페이즈 나이트메어(배율 0.8) → 발동
-                if (vfx.PreparedSkill == 3 && Once("p2")) { Note($"phase {boss.PhaseNumber} cast {boss.CurrentCastTime:0.00}"); if (Mathf.Abs(boss.CurrentCastTime - 4f) > 0.01f) Fail("phase2 nightmare cast time " + boss.CurrentCastTime); }
+                if (vfx.PreparedSkill == 3 && Once("p2")) { Note($"phase {boss.PhaseNumber} cast {boss.CurrentCastTime:0.00}"); if (Mathf.Abs(boss.CurrentCastTime - boss.CurrentAttack.CastTime * (boss.Data.Phases[boss.PhaseNumber - 1].CastTimeMultiplier - ((bool)typeof(Enemy).GetField("cycleAtCastStart", Hidden).GetValue(boss) ? boss.Data.OrbCastTimeReduction : 0f))) > 0.01f) Fail("phase2 nightmare cast time " + boss.CurrentCastTime); }
                 if (counts.ContainsKey("fx VFX_Mage_NightmareBurst")) { Note("FORCE " + Force(2, 1)); Next("darkhole phase2 + fire gap"); }
                 break;
             case 5: // 2페이즈 다크홀: 발동 간격 대기 재현(다른 적 발동 직후처럼 manager의 마지막 발동 시각을 당겨 둠)
@@ -303,7 +303,7 @@ public static class MageAttackVfxCheck
                 if (counts.ContainsKey("fx VFX_Mage_DarkHoleBurst") && counts["fx VFX_Mage_DarkHoleBurst"] >= 2) { Note("FORCE " + Force(4, 2)); Next("the end"); }
                 break;
             }
-            case 6: // 3페이즈 디엔드 20초: 성장 → 유지 → 발동
+            case 6: // 3페이즈 디엔드 기본 22초: 성장 → 유지 → 발동
                 if (vfx.PreparedSkill == 4 && vfx.ChargeObject != null)
                 {
                     float s = vfx.ChargeScale;

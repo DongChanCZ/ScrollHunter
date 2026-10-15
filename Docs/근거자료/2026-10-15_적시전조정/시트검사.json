@@ -1,0 +1,31 @@
+{
+  "changed_cells": [
+    [
+      "적",
+      "G5",
+      2.5,
+      3
+    ],
+    [
+      "적",
+      "G6",
+      3,
+      3.6
+    ],
+    [
+      "적",
+      "G7",
+      4,
+      4.8
+    ],
+    [
+      "적",
+      "G8",
+      3.5,
+      4.2
+    ]
+  ],
+  "all_other_package_entries_identical": true,
+  "formulas_and_styles_unchanged": true,
+  "artifact_import_limitation": "Existing rich text font size 1000 rejected by Artifact Tool. Preserved existing workbook XML and changed only four numeric cells; native rendering/recalculation not performed."
+}

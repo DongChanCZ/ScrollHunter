@@ -1,0 +1,70 @@
+{
+  "Assets/_Project/Data/Enemy_Tutorial.asset": [
+    [
+      3,
+      4,
+      4
+    ],
+    [
+      3.6,
+      4.8,
+      4.8
+    ]
+  ],
+  "Assets/_Project/Data/ScrollHunter/EnemyData/Enemy_A_Green.asset": [
+    [
+      2.5
+    ],
+    [
+      3
+    ]
+  ],
+  "Assets/_Project/Data/ScrollHunter/EnemyData/Enemy_B_Orange.asset": [
+    [
+      2.5,
+      3
+    ],
+    [
+      3,
+      3.6
+    ]
+  ],
+  "Assets/_Project/Data/ScrollHunter/EnemyData/Enemy_C_Red.asset": [
+    [
+      2.5,
+      4
+    ],
+    [
+      3,
+      4.8
+    ]
+  ],
+  "Assets/_Project/Data/ScrollHunter/EnemyData/Enemy_D_Mixed.asset": [
+    [
+      2.5,
+      2.5,
+      3.5
+    ],
+    [
+      3,
+      3,
+      4.2
+    ]
+  ],
+  "Assets/_Project/Data/ScrollHunter/EnemyData/Enemy_Boss.asset": [
+    [
+      2,
+      3,
+      6,
+      5,
+      20
+    ],
+    [
+      2.4,
+      3.6,
+      7.2,
+      6,
+      22
+    ]
+  ]
+}

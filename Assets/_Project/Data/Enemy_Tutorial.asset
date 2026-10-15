@@ -18,19 +18,19 @@ MonoBehaviour:
   attacks:
   - skillName: "\uD380\uCE58"
     castColor: 0
-    castTime: 3
+    castTime: 3.6
     damage: 20
     staggerAfterCast: 1
     stunSeconds: 0
   - skillName: "\uC804\uB825\uD380\uCE58"
     castColor: 1
-    castTime: 4
+    castTime: 4.8
     damage: 30
     staggerAfterCast: 1.5
     stunSeconds: 2
   - skillName: "\uBC1C\uCC28\uAE30"
     castColor: 2
-    castTime: 4
+    castTime: 4.8
     damage: 350
     staggerAfterCast: 2
     stunSeconds: 0

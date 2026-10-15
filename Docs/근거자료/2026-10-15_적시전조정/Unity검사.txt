@@ -1,0 +1,26 @@
+StartingDeckChecks: Starting deck checks passed: 117
+RedShieldChecks: FAILED System.Exception: fatal red reduction captured
+  at RedShieldChecks+<>c__DisplayClass2_0.<Run>b__3 (System.Boolean ok, System.String label) [0x0001a] in C:\Users\MBC-501-19\Documents\ScrollHunter\Assets\_Project\Tests\Editor\RedShieldChecks.cs:29 
+  at RedShieldChecks.Run () [0x0094c] in C:\Users\MBC-501-19\Documents\ScrollHunter\Assets\_Project\Tests\Editor\RedShieldChecks.cs:101 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <41d29b352f6a475ab1bf7c6628b82790>:0 
+BossChecks: Boss checks passed: 315
+BossOrbChecks: Boss orb checks passed: 79
+TutorialChecks: FAILED System.Exception: Tutorial: skip button opens optional order editor without lesson seven
+  at TutorialChecks+<>c__DisplayClass9_0.<Run>b__0 (System.Boolean ok, System.String text) [0x00024] in C:\Users\MBC-501-19\Documents\ScrollHunter\Assets\_Project\Tests\Editor\TutorialChecks.cs:50 
+  at TutorialChecks.Run () [0x01d4f] in C:\Users\MBC-501-19\Documents\ScrollHunter\Assets\_Project\Tests\Editor\TutorialChecks.cs:197 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <41d29b352f6a475ab1bf7c6628b82790>:0 
+EnemyAnimationLinkChecks: FAILED System.Exception: Animation link: battle 0 Enemy_A_Green cast start pose
+  at EnemyAnimationLinkChecks+<>c__DisplayClass10_0.<Run>b__0 (System.Boolean ok, System.String msg) [0x00024] in C:\Users\MBC-501-19\Documents\ScrollHunter\Assets\_Project\Tests\Editor\EnemyAnimationLinkChecks.cs:121 
+  at EnemyAnimationLinkChecks+<>c__DisplayClass10_0.<Run>g__CheckEncounter|6 (System.String label, System.Collections.Generic.IList`1[T] enemies, System.Boolean killAll) [0x000da] in C:\Users\MBC-501-19\Documents\ScrollHunter\Assets\_Project\Tests\Editor\EnemyAnimationLinkChecks.cs:143 
+  at EnemyAnimationLinkChecks.Run () [0x0020c] in C:\Users\MBC-501-19\Documents\ScrollHunter\Assets\_Project\Tests\Editor\EnemyAnimationLinkChecks.cs:225 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <41d29b352f6a475ab1bf7c6628b82790>:0 
+Fixture retry: Tutorial: skip button opens optional order editor without lesson seven
+Red shield checks passed: 33 (finishingEffectHold=0 in test only)
+TutorialChecks before-change control: Tutorial: one advance per frame
+EnemyAnimationLinkChecks before-change control: Animation link: battle 0 Enemy_A_Green cast start pose
+Enemy attack timing checks passed: 359, attacks/phases: 23, models: 5. Function/Animator checks; real frames separate.
+Tutorial before-change control (enabled): Tutorial: skip button opens optional order editor without lesson seven
+Frame probe: incomplete: editor single-step progression too slow; fresh session has no console exceptions

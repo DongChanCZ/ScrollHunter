@@ -20,7 +20,7 @@ public class EnemyAttack
 
     [SerializeField] private CastColor castColor = CastColor.Green;
 
-    [SerializeField] private float castTime = 2.5f;
+    [SerializeField] private float castTime = 3f;
 
     [Tooltip("방어력 적용 전 피해량(절대값)")]
     [SerializeField] private int damage = 30;

@@ -18,7 +18,7 @@ MonoBehaviour:
   attacks:
   - skillName: "\uD718\uB450\uB974\uAE30"
     castColor: 0
-    castTime: 2.5
+    castTime: 3
     damage: 20
     staggerAfterCast: 1
     stunSeconds: 0
