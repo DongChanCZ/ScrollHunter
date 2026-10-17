@@ -68,7 +68,7 @@ public static class CombatReadabilityChecks
         var candidate = (TMP_Text)candidates.GetValue(0).GetType().GetField("detail").GetValue(candidates.GetValue(0));
         passed = 0;
         Check((KeyCode)Get(info, "pauseKey") == KeyCode.A && (KeyCode)Get(info, "speedKey") == KeyCode.S, "A/S bindings");
-        Check(string.Format((string)Get(info, "speedFormat"), 0.5f) == "속도 0.5배속"
+        Check(string.Format((string)Get(info, "speedFormat"), 2f) == "속도 2배속"
             && string.Format((string)Get(info, "speedFormat"), 1f) == "속도 1배속", "speed labels");
         int cards = 0;
         foreach (string guid in AssetDatabase.FindAssets("t:SkillData", new[] { "Assets/_Project/Data" }))
@@ -120,7 +120,7 @@ public static class CombatReadabilityChecks
             flow.RestartRun();
             if (info.BattleSpeed != 1f) info.ToggleSpeed();
             info.ToggleSpeed();
-            Check(info.BattleSpeed == 0.5f && Time.timeScale == 0.5f, "half speed");
+            Check(info.BattleSpeed == 2f && Time.timeScale == 2f, "double speed");
             info.TogglePause();
             Check(info.IsInfoPaused && Time.timeScale == 0f && !deck.TryUseSlot(0), "pause blocks cards");
             info.ToggleSpeed();
@@ -130,24 +130,24 @@ public static class CombatReadabilityChecks
             info.ToggleSpeed();
             info.TogglePause();
             info.Resume();
-            Check(Time.timeScale == 0.5f, "resume half speed");
+            Check(Time.timeScale == 2f, "resume double speed");
             flow.RestartRun();
-            Check(info.BattleSpeed == 0.5f && Time.timeScale == 0.5f, "restart retains speed");
+            Check(info.BattleSpeed == 2f && Time.timeScale == 2f, "restart retains speed");
             enemies.CurrentTarget.TakeDamage(enemies.CurrentTarget.CurrentHp);
             enemies.NotifyEnemyDied();
             Call(flow, "Update");
             Check(flow.State == BattleFlowState.BetweenBattles && Time.timeScale == 0f, "victory waits");
             info.ToggleSpeed();
-            Check(info.BattleSpeed == 0.5f && Time.timeScale == 0f, "result cannot restart time");
+            Check(info.BattleSpeed == 2f && Time.timeScale == 0f, "result cannot restart time");
             flow.SkipReward();
             flow.NextBattle();
-            Check(flow.BattleNumber == 2 && Time.timeScale == 0.5f, "C retains speed");
+            Check(flow.BattleNumber == 2 && Time.timeScale == 2f, "C retains speed");
             enemies.CurrentTarget.TakeDamage(enemies.CurrentTarget.CurrentHp);
             enemies.NotifyEnemyDied();
             Call(flow, "Update");
             flow.SkipReward();
             flow.NextBattle();
-            Check(flow.BattleNumber == 3 && Time.timeScale == 0.5f, "BC retains speed");
+            Check(flow.BattleNumber == 3 && Time.timeScale == 2f, "BC retains speed");
             player.TakeDamage(100000);
             Call(flow, "Update");
             info.ToggleSpeed();
@@ -156,7 +156,7 @@ public static class CombatReadabilityChecks
             Check(((string)Get(metrics, "pendingSummary")) == null, "summary flushed at end");
             flow.RestartRun();
             Call(info, "LateUpdate");
-            Check(((TMP_Text)Get(info, "speedLabel")).text.Contains("0.5"), "speed label");
+            Check(((TMP_Text)Get(info, "speedLabel")).text.Contains("2"), "speed label");
 
             Set(cost, "<Current>k__BackingField", 0f);
             Call(ui, "LateUpdate");

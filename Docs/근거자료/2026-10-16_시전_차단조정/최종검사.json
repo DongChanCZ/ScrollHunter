@@ -1,0 +1,83 @@
+{
+  "cast_values": {
+    "Enemy_Tutorial": [
+      3.3,
+      4.4,
+      4.4
+    ],
+    "Enemy_A_Green": [
+      2.75
+    ],
+    "Enemy_Boss": [
+      2.2,
+      3.3,
+      6.6,
+      5.5,
+      22.0
+    ],
+    "Enemy_B_Orange": [
+      2.75,
+      3.3
+    ],
+    "Enemy_C_Red": [
+      2.75,
+      4.4
+    ],
+    "Enemy_D_Mixed": [
+      2.75,
+      2.75,
+      3.85
+    ]
+  },
+  "stagger_saved": 3,
+  "sheet_changed": [
+    [
+      "스킬",
+      "P15",
+      2.5,
+      3
+    ],
+    [
+      "스킬",
+      "P16",
+      2.5,
+      3
+    ],
+    [
+      "적",
+      "G5",
+      3,
+      2.75
+    ],
+    [
+      "적",
+      "G6",
+      3.6,
+      3.3
+    ],
+    [
+      "적",
+      "G7",
+      4.8,
+      4.4
+    ],
+    [
+      "적",
+      "G8",
+      4.2,
+      3.85
+    ]
+  ],
+  "unchanged_formulas": 279,
+  "sheet_only_parts_changed": [
+    "xl/worksheets/sheet3.xml",
+    "xl/worksheets/sheet5.xml"
+  ],
+  "agents_claude_equal": true,
+  "preserved_files": 45,
+  "font_matches_starting_head": true,
+  "scene_only_requested_change": true,
+  "checks_passed": 1091,
+  "full_run": false,
+  "new_build": false
+}

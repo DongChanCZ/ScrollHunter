@@ -33,7 +33,7 @@ public class CombatInfoUI : MonoBehaviour
     [SerializeField] private string hint = "A 정지·재개 · S 배속 · 카드에 마우스: 정보";
     [SerializeField] private string pausedHint = "일시정지 · A/우클릭 재개 · S 배속";
     // 위계: 이름(125%·굵게·아이보리) → 주요 정보(항목명 흐리게·수치만 굵게) → 간격 → 상세 설명.
-    // 설명 패널은 어두운 청흑색 판(10 A37 후속 정정). 본문은 글자색(회백색), 강조는 투명도·굵기로 구분한다.
+    // 일반 본문은 회백색, 총합 피해·방어도·차단 효과만 색으로 구분한다.
     [Tooltip("{0} 이름, {1} 주요 정보, {2} 간격, {3} 상세 설명")]
     [SerializeField] private string cardFormat = "<size=125%><b><color=#F5EBD6>{0}</color></b></size>\n<size=80%> </size>\n{1}{2}\n<size=85%>{3}</size>";
     [Tooltip("주요 정보. 편성 카드는 이 줄만 따로 표시한다. {0} 분류, {1} 대상, {2} 코스트, {3} 시간")]
@@ -44,9 +44,19 @@ public class CombatInfoUI : MonoBehaviour
     [SerializeField] private string channelUnconfiguredLabel = "채널링 효과 연결 필요";
     [SerializeField] private string damageFormat = "피해 <b>{0}×{1}회</b> · 총합 피해 <b>{2}</b>\n<size=80%><alpha=#CC>적 1체·전 타격·크리티컬/방어 적용 전<alpha=#FF></size>";
     [SerializeField] private string variedDamageFormat = "피해 <b>{0}</b> · 총합 피해 <b>{1}</b>\n<size=80%><alpha=#CC>적 1체·전 타격·크리티컬/방어 적용 전<alpha=#FF></size>";
+    [SerializeField] private string totalDamageFormat = "총합 피해 <b>{0}</b>";
+    [SerializeField] private Color totalDamageColor = new Color32(255, 179, 138, 255);
+    [SerializeField] private Color singleTargetColor = new Color32(227, 231, 237, 255);
+    [SerializeField] private Color areaTargetColor = new Color32(242, 208, 107, 255);
+    [SerializeField] private Color protectionColor = new Color32(145, 207, 255, 255);
+    [SerializeField] private Color interruptColor = new Color32(198, 170, 255, 255);
+    [SerializeField] private string interruptSuccessFormat = "성공 시 경직 <b>{0:0.##}초</b>";
+    [SerializeField] private string damageThenInterruptLabel = "피해 후 차단";
+    [SerializeField] private string sanctuaryProtectionLabel = "즉시 무적·기절 면역";
+    [Tooltip("스킬 설명의 기존 줄 간격에 더할 값. 전투·보상·편성·계승에 공통 적용")]
+    [SerializeField] private float skillDescriptionExtraLineSpacing = 4f;
     [SerializeField] private string shieldFormat = "방어도 <b>+{0}</b>";
-    [SerializeField] private string interruptFormat = "캐스팅 중인 대상에게 사용\n효과 적용 때도 초록·주황\n시전 중이면 성공\n성공 경직 <b>{0:0.##}초</b>\n빨강·적 선발동: 실패, 코스트·카드 소모";
-    [SerializeField] private string damagingInterruptFormat = "피해 <b>{0}×{1}회</b> · 총합 피해 <b>{3}</b>\n<size=80%><alpha=#CC>적 1체·전 타격·크리티컬/방어 적용 전<alpha=#FF></size>\n적 캐스팅 중에만 사용. 피해 후 차단\n초록·주황: 경직 <b>{2:0.##}초</b>\n빨강·시전 종료: 피해만 적용";
+    [SerializeField] private string interruptRulesWithDetailFormat = "적 캐스팅 중에만 사용{1}\n성공 시 경직 <b>{0:0.##}초</b>\n빨강·캐스팅 종료 시 실패";
     [SerializeField] private string enemyFormat = "<size=125%><b><color=#F5EBD6>{0}</color></b></size>\n<size=80%> </size>\n<b><color=#F5EBD6>{1}</color></b>\n<alpha=#CC>기본 피해 <alpha=#FF><b>{2}</b><alpha=#CC> (방어력 적용 전)\n시전 <alpha=#FF><b>{3:0.##}초</b><alpha=#CC> · <alpha=#FF><color=#F5EBD6>{4}</color>{6}\n<size=85%>{5}</size>";
     [SerializeField] private string stunFormat = "기절 <b>{0:0.##}초</b>";
     [SerializeField] private string restingFormat = "<size=125%><b><color=#F5EBD6>{0}</color></b></size>\n<size=80%> </size>\n<alpha=#CC>현재 시전 중인 공격 없음";
@@ -78,7 +88,7 @@ public class CombatInfoUI : MonoBehaviour
     [Header("전투 배속")]
     [SerializeField] private RectTransform speedButton;
     [SerializeField] private TMP_Text speedLabel;
-    [SerializeField] private float slowSpeed = 0.5f;
+    [SerializeField] private float fastSpeed = 2f;
     [SerializeField] private float normalSpeed = 1f;
     [SerializeField] private string speedFormat = "속도 {0:0.#}배속";
 
@@ -116,6 +126,7 @@ public class CombatInfoUI : MonoBehaviour
         }
         if (metrics == null) metrics = FindFirstObjectByType<CombatMetrics>();
         if (cardPanel != null) cardPanelBaseX = ((RectTransform)cardPanel.transform).anchoredPosition.x;
+        AddSkillDescriptionSpacing(cardText);
         hintText.enableAutoSizing = true;
         hintText.fontSizeMax = hintText.fontSize;
         hintText.fontSizeMin = keyboardHintMinSize;
@@ -221,7 +232,7 @@ public class CombatInfoUI : MonoBehaviour
     public void ToggleSpeed()
     {
         if (BattleEnded || (flow != null && (flow.MenuBlocksInput || flow.IsCountingDown)) || (tutorial != null && tutorial.BlocksOtherControls)) return;
-        resumeScale = Mathf.Approximately(resumeScale, normalSpeed) ? slowSpeed : normalSpeed;
+        resumeScale = Mathf.Approximately(resumeScale, normalSpeed) ? fastSpeed : normalSpeed;
         // 정보 확인 정지를 해제하지 않고 재개할 배속만 바꾼다.
         if (!IsInfoPaused && Time.timeScale > 0f) Time.timeScale = resumeScale;
         if (metrics != null) metrics.RecordBattleSpeed(resumeScale);
@@ -303,23 +314,62 @@ public class CombatInfoUI : MonoBehaviour
     /// <summary>분류·대상·코스트·시전(채널링) 시간. 편성 카드는 이 영역을 따로 표시한다.</summary>
     public string DescribeCardInfo(SkillData card)
     {
-        string type = GameText.T(dealLabel);
-        string target = card.IsAreaOfEffect ? GameText.T(allLabel) : GameText.T(singleLabel);
-        if (card.Category == SkillCategory.Shield) { type = GameText.T(shieldLabel); target = GameText.T(selfLabel); }
-        else if (card.Category == SkillCategory.Interrupt) { type = GameText.T(interruptLabel); target = GameText.T(singleLabel); }
+        string type = ColorText(GameText.T(dealLabel), totalDamageColor);
+        string target = card.IsAreaOfEffect ? ColorText(GameText.T(allLabel), areaTargetColor) : ColorText(GameText.T(singleLabel), singleTargetColor);
+        if (card.Category == SkillCategory.Shield) { type = ColorText(GameText.T(shieldLabel), protectionColor); target = GameText.T(selfLabel); }
+        else if (card.Category == SkillCategory.Interrupt) { type = ColorText(GameText.T(interruptLabel), interruptColor); target = ColorText(GameText.T(singleLabel), singleTargetColor); }
         return GameText.Format(card.IsChanneling ? GameText.T(channelInfoFormat) : GameText.T(cardInfoFormat), type, target, card.Cost, card.CastTime);
     }
 
     /// <summary>효과·조건 등 상세 설명. 현재 능력치 보정(방어도·차단 경직)을 반영한다.</summary>
     public string DescribeCardEffect(SkillData card)
     {
+        string description = DescribeCardEffectText(card);
+        string total = GameText.Format(totalDamageFormat, card.TotalDamage);
+        description = description.Replace(total, ColorText(total, totalDamageColor));
+        if (card.Category == SkillCategory.Shield && !card.IsChanneling)
+            return ColorText(description, protectionColor);
+        if (card.ChannelEffect is SanctuaryChannelEffect)
+        {
+            string protection = GameText.T(sanctuaryProtectionLabel);
+            description = description.Replace(protection, ColorText(protection, protectionColor));
+        }
+        if (card.Category == SkillCategory.Interrupt)
+        {
+            string stagger = GameText.Format(interruptSuccessFormat, deck.InterruptStagger);
+            description = description.Replace(stagger, ColorText(stagger, interruptColor));
+            string interrupt = GameText.T(damageThenInterruptLabel);
+            // 짧은 동작 구절은 한 묶음으로 내려 보내 마지막 단어만 남지 않게 한다.
+            description = description.Replace(interrupt, ColorText("<nobr>" + interrupt + "</nobr>", interruptColor));
+        }
+        return description;
+    }
+
+    private static string ColorText(string text, Color color)
+        => $"<color=#{ColorUtility.ToHtmlStringRGB(color)}>{text}</color>";
+
+    // 각 UI의 기존 간격을 유지하고, 생성 시 한 번만 더한다.
+    public void AddSkillDescriptionSpacing(TMP_Text text)
+    {
+        if (text == null) return;
+        text.lineSpacing += skillDescriptionExtraLineSpacing;
+        text.textWrappingMode = TextWrappingModes.Normal;
+    }
+
+    private string DescribeCardEffectText(SkillData card)
+    {
         if (card.IsChanneling) return card.ChannelEffect != null ? card.ChannelEffect.Describe(card) : GameText.T(channelUnconfiguredLabel);
         if (card.Category == SkillCategory.Shield)
             return GameText.Format(GameText.T(shieldFormat), player != null ? player.GetShieldAmount(card.ShieldAmount) : card.ShieldAmount);
         if (card.Category == SkillCategory.Interrupt)
+        {
+            string rules = GameText.Format(interruptRulesWithDetailFormat, deck.InterruptStagger,
+                card.Damage > 0 ? " · " + GameText.T(damageThenInterruptLabel) : string.Empty);
             return card.Damage > 0
-                ? GameText.Format(GameText.T(damagingInterruptFormat), card.Damage, card.HitCount, deck.InterruptStagger, card.TotalDamage)
-                : GameText.Format(GameText.T(interruptFormat), deck.InterruptStagger);
+                ? GameText.Format(damageFormat, card.Damage, card.HitCount, card.TotalDamage)
+                    + "\n" + rules
+                : rules;
+        }
         if (card.FinalHitBonus != 0)
         {
             var hits = new string[card.HitCount];

@@ -110,7 +110,7 @@ public static class RewardFlowChecks
             check(metrics.RecordedHits == 0 && cost.Current == 8 && deck.GetHandCard(0) == original[4] && !deck.IsCasting, "eruption stun cancels without refund or extra rotation");
             reset(suppression, false); bhp = b.CurrentHp;
             check(deck.TryUseSlot(0), "orange suppression accepted"); Call(deck, "AdvanceCast", 0.21f);
-            check(b.CurrentHp == bhp - 40 && b.IsStaggered && (float)Get(b, "staggerTimer") == 2.5f, "suppression damage then 2.5 stagger");
+            check(b.CurrentHp == bhp - 40 && b.IsStaggered && (float)Get(b, "staggerTimer") == 2.7f, "suppression damage then 2.7 stagger");
             check((int)Get(metrics, "interruptAttempts") == 1 && (int)Get(metrics, "interruptSuccesses") == 1, "suppression attempt and success metrics");
             reset(suppression, false); b.TryInterrupt(2.5f);
             check(!deck.TryUseSlot(0) && cost.Current == 10 && deck.GetHandCard(0) == suppression, "noncasting suppression spends nothing");

@@ -35,7 +35,7 @@ public static class BossChecks
             check(e.transform.position.x==m.FormationCenter.x && e.MaxHp==3000 && e.Data.Defense==0,"HP defense centered");
             check(p.PotionCapacity == 3 && p.PotionsRemaining == 3 && p.PotionHealAmount==150,"base potion 3/3 and 30%");
             check(e.Data.Attacks.Select(a=>a.Damage).SequenceEqual(new[]{35,40,300,60,600}),"raw attack damage");
-            check(e.Data.Attacks.Select(a=>a.CastTime).SequenceEqual(new float[]{2.4f,3.6f,7.2f,6f,22f}),"base casts");
+            check(e.Data.Attacks.Select(a=>a.CastTime).SequenceEqual(new float[]{2f,3f,6f,5f,25f}),"base casts");
             check(e.Data.Attacks.Select(a=>a.StunSeconds).SequenceEqual(new float[]{0,2,0,5,0}),"nightmare exception");
             check(e.Data.Phases.Select(x=>x.HpThreshold).SequenceEqual(new[]{1f,.6f,.25f}),"thresholds");
             for(int phase=0;phase<3;phase++)
@@ -84,9 +84,9 @@ public static class BossChecks
             Tick(e,1.999f);check(e.IsInvulnerable && !e.IsCasting,"transition not early");Tick(e,.002f);check(e.IsCasting && !e.IsInvulnerable,"transition ends after rest");
             FreshBoss();e.TakeDamage(1200);e.TryInterrupt(2.5f);Call(e,"Start");check(e.IsStaggered && e.IsInvulnerable,"first Start preserves transition and stagger");Tick(e,2);
             check(!e.IsInvulnerable && !m.SkillInputBlocked && e.IsStaggered && !e.IsCasting,"2s unlock leaves .5s stagger");
-            Tick(e,.499f);check(!e.IsCasting,"stagger not early");Tick(e,.002f);check(e.IsCasting && Near(e.CurrentCastTime,1.44f),"concurrent total 2.5 not 4.5");
+            Tick(e,.499f);check(!e.IsCasting,"stagger not early");Tick(e,.002f);check(e.IsCasting && Near(e.CurrentCastTime,1.2f),"concurrent total 2.5 not 4.5");
             e.TakeDamage(1049);e.TryInterrupt(2.5f);check(e.PhaseNumber==2,"above twenty five stays two");Tick(e,2.5f);
-            e.TakeDamage(1);e.TryInterrupt(2.5f);Tick(e,2.5f);check(e.PhaseNumber==3 && e.CurrentAttack==e.Data.Attacks[4] && Near(e.CurrentCastTime,17.6f),"phase3 starts five, cycle orb -20%");
+            e.TakeDamage(1);e.TryInterrupt(2.5f);Tick(e,2.5f);check(e.PhaseNumber==3 && e.CurrentAttack==e.Data.Attacks[4] && Near(e.CurrentCastTime,20f),"phase3 starts five, cycle orb -20%");
             check(e.TryInterrupt(2.5f)==InterruptResult.FailedRed && e.IsCasting,"red cannot interrupt");
             FreshBoss();e.TakeDamage(2325);e.TryInterrupt(2.5f);check(e.PhaseNumber==3,"skip phase2");
             FreshBoss();Call(e,"Fire");e.TakeDamage(1200);check(e.IsInvulnerable,"threshold while resting starts now");Tick(e,2);check(e.IsCasting,"rest and transition parallel");
@@ -177,9 +177,9 @@ public static class BossChecks
             if(e.IsCasting)
             {
                 if(Mathf.Abs(transitionEnded-2)>.055f || Mathf.Abs(elapsed-2.5f)>.055f
-                    || Mathf.Abs(c.Current-(3+.8f*elapsed))>.08f || !Near(e.CurrentCastTime,1.44f))
+                    || Mathf.Abs(c.Current-(3+.8f*elapsed))>.08f || !Near(e.CurrentCastTime,1.2f))
                     throw new Exception("timing mismatch: transition="+transitionEnded+" next="+elapsed+" cost="+c.Current);
-                frameLines+=(mode==0?"1x":"0.5x")+": transition="+transitionEnded.ToString("0.000")+"s next="+elapsed.ToString("0.000")+"s cost="+c.Current.ToString("0.00")+", pause 12 frames frozen; "+ticks+" frames\n";
+                frameLines+=(mode==0?"1x":"2x")+": transition="+transitionEnded.ToString("0.000")+"s next="+elapsed.ToString("0.000")+"s cost="+c.Current.ToString("0.00")+", pause 12 frames frozen; "+ticks+" frames\n";
                 if(mode++==0)ConfigureFrames();else{FinishFrames("passed\n"+frameLines);return;}
             }
             EditorApplication.Step();

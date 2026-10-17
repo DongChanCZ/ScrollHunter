@@ -312,8 +312,8 @@ public static class GameAudioChecks
                 Check(s.castLoop.clips.Any(audio.IsPlaying), "sanctuary sustained loop during channel");
                 info.TogglePause(); yield return Steps(5);
                 Check(audio.PausedVoices > 0, "sanctuary loop pauses with game");
-                info.Resume(); info.ToggleSpeed(); yield return Steps(60);
-                Check(deck.IsCasting && s.castLoop.clips.Any(audio.IsPlaying), "sanctuary sustained at 0.5x");
+                info.Resume(); info.ToggleSpeed(); yield return Steps(15);
+                Check(deck.IsCasting && s.castLoop.clips.Any(audio.IsPlaying), "sanctuary sustained at 2x");
                 info.ToggleSpeed();
             }
             yield return Until(() => !deck.IsCasting, 400, s.skill.name + " cast");
@@ -436,7 +436,7 @@ public static class GameAudioChecks
         notes += "boss: phase/orb summon/break/cleanup/victory PASS\n";
     }
 
-    // ⑤ 수동 정지·0.5배속·재시작·중복 구독
+    // ⑤ 수동 정지·2배속·재시작·중복 구독
     static IEnumerator PauseSpeedRestart()
     {
         yield return Fresh(3); var boss = EnemyOf("Enemy_Boss"); yield return Steps(20);
@@ -451,7 +451,7 @@ public static class GameAudioChecks
         info.Resume(); yield return Steps(3);
         Check(audio.PausedVoices == 0 && dark.prepareLoop.clips.Any(audio.IsPlaying), "resume: loop continues");
         info.ToggleSpeed(); yield return Steps(5);
-        Check(Mathf.Approximately(Time.timeScale, .5f) && Mathf.Approximately(audio.MusicPitch, 1f), "0.5x: music pitch unchanged");
+        Check(Mathf.Approximately(Time.timeScale, 2f) && Mathf.Approximately(audio.MusicPitch, 1f), "2x: music pitch unchanged");
         info.ToggleSpeed();
         // 재시작: 반복음·지연 예약 정리
         yield return Fresh(0); var archer = EnemyOf("Enemy_B_Orange"); yield return Steps(20); ForceCast(archer, 0, .99f); yield return Until(() => audio.PendingDelayed > 0, 20, "arrow pending");
@@ -468,7 +468,7 @@ public static class GameAudioChecks
         ForceCast(leader, 1); UseFirst(silence, leader); yield return Steps(25); f = Time.frameCount;
         Check(deck.TryUseSlot(0), "silence after restart"); yield return Until(() => !deck.IsCasting, 40, "silence");
         Check(CountSince(lib.interruptFail, f) == 1, "after restart: one sound per event");
-        notes += "pause/0.5x/restart/no duplicate PASS\n";
+        notes += "pause/2x/restart/no duplicate PASS\n";
     }
 
     // ⑥ 일반 승리·보상 선택/확정·패배(디엔드 발동음 유지)

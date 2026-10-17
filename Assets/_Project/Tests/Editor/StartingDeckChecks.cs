@@ -67,17 +67,17 @@ public static class StartingDeckChecks
             flow.RestartRun();
             Check(player.MaxHp == 500f && player.Defense == 20f && cost.Current == 3f && cost.Max == 10f
                 && Near((float)Get(cost, "regenPerSecond"), 0.8f), "player and cost baseline");
-            Check(Near((float)Get(deck, "minGcd"), 0.4f) && Near(deck.InterruptStagger, 2.5f), "GCD and interrupt configuration");
+            Check(Near((float)Get(deck, "minGcd"), 0.4f) && Near(deck.InterruptStagger, 2.7f), "GCD and interrupt configuration");
             foreach (Enemy e in new[] { a, b, c })
             {
                 EnemyAttack green = e.Data.Find(CastColor.Green);
                 Check(e.MaxHp == e.Data.MaxHp && e.MaxHp > 0 && e.Data.Defense == 0 && green.Damage == (e == a ? 20 : e == b ? 25 : 30)
-                    && green.CastTime == 3f && green.StaggerAfterCast == 1f, "enemy green / HP / defense " + e.name);
+                    && green.CastTime == 2.5f && green.StaggerAfterCast == 1f, "enemy green / HP / defense " + e.name);
             }
             var orange = b.Data.Find(CastColor.Orange); var red = c.Data.Find(CastColor.Red);
-            Check(orange.Damage == 40 && orange.CastTime == 3.6f && orange.StaggerAfterCast == 1.5f
+            Check(orange.Damage == 40 && orange.CastTime == 3f && orange.StaggerAfterCast == 1.5f
                 && orange.StunSeconds == 2f, "orange saved values");
-            Check(red.Damage == 240 && red.CastTime == 4.8f && red.StaggerAfterCast == 2f, "red saved values (A33)");
+            Check(red.Damage == 240 && red.CastTime == 4f && red.StaggerAfterCast == 2f, "red saved values (A33)");
             Check(DamageFormula.Compute(20,1,20) == 17 && DamageFormula.Compute(25,1,20) == 21 && DamageFormula.Compute(30,1,20) == 25 && DamageFormula.Compute(40,1,20) == 33
                 && DamageFormula.Compute(150,1,20) == 125 && DamageFormula.Compute(0,1,0) == 0
                 && DamageFormula.Compute(1,1,9999) == 1, "damage rounding / zero / minimum");
@@ -256,7 +256,7 @@ public static class StartingDeckChecks
             player.TakeDamage(c.Data.Find(CastColor.Red).Damage, CastColor.Red);
             Check(player.Shield == 20 && player.CurrentHp == 500, "armor red halves then absorbs 100 / shield20 / HP0");
             Reset(silence); deck.TryUseSlot(0); Step(0.2f);
-            Check(b.IsStaggered && Near((float)Get(b, "staggerTimer"), 2.5f), "orange interrupt 2.5");
+            Check(b.IsStaggered && Near((float)Get(b, "staggerTimer"), 2.7f), "orange interrupt 2.7");
             Reset(silence); Call(enemies, "StepTarget", 1); deck.TryUseSlot(0); Step(0.2f);
             Check(c.IsCasting && !c.IsStaggered && cost.Current == 8f, "red failure consumes");
             Reset(silence); b.TryInterrupt(2.5f);

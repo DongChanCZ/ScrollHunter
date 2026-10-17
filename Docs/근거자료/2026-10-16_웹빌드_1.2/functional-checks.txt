@@ -1,0 +1,5 @@
+StartingDeckChecks: Starting deck checks passed: 117
+RewardFlowChecks: FAIL two card choices visible
+AllPassiveChecks: FAIL All passives: modified tooltips
+CriticalChecks: FAIL critical included in final summary
+HudChecks: FAIL HUD: stats panel blocks clicks

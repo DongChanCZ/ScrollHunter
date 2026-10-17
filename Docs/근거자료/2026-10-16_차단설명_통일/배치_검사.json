@@ -1,0 +1,857 @@
+[
+  {
+    "language": 0,
+    "card": "Skill_Silence",
+    "surface": 0,
+    "size": 22.0,
+    "spacing": 10.0,
+    "width": 239.4998,
+    "height": 178.2,
+    "box": "(408.00, 580.00)",
+    "fits": true,
+    "missing": 0,
+    "colors": [
+      "F5EBD6",
+      "C6AAFF",
+      "D9D6CF",
+      "E3E7ED"
+    ]
+  },
+  {
+    "language": 0,
+    "card": "Skill_Silence",
+    "surface": 1,
+    "size": 22.0,
+    "spacing": 14.0,
+    "width": 239.4998,
+    "height": 47.08,
+    "box": "(384.00, 52.00)",
+    "fits": true,
+    "missing": 0,
+    "colors": [
+      "C6AAFF",
+      "D9D6CF",
+      "E3E7ED"
+    ]
+  },
+  {
+    "language": 0,
+    "card": "Skill_Silence",
+    "surface": 2,
+    "size": 20.0,
+    "spacing": 24.0,
+    "width": 215.63887,
+    "height": 69.6,
+    "box": "(384.00, 130.00)",
+    "fits": true,
+    "missing": 0,
+    "colors": [
+      "D9D6CF",
+      "C6AAFF"
+    ]
+  },
+  {
+    "language": 0,
+    "card": "Skill_Silence",
+    "surface": 3,
+    "size": 23.0,
+    "spacing": 4.0,
+    "width": 251.766129,
+    "height": 46.9200058,
+    "box": "(405.00, 62.00)",
+    "fits": true,
+    "missing": 0,
+    "colors": [
+      "C6AAFF",
+      "D9D6CF",
+      "E3E7ED"
+    ]
+  },
+  {
+    "language": 0,
+    "card": "Skill_Silence",
+    "surface": 4,
+    "size": 21.0,
+    "spacing": 8.0,
+    "width": 226.420837,
+    "height": 66.36,
+    "box": "(405.00, 174.00)",
+    "fits": true,
+    "missing": 0,
+    "colors": [
+      "D9D6CF",
+      "C6AAFF"
+    ]
+  },
+  {
+    "language": 0,
+    "card": "Skill_SK12_Suppression",
+    "surface": 0,
+    "size": 22.0,
+    "spacing": 10.0,
+    "width": 294.525024,
+    "height": 218.9,
+    "box": "(408.00, 580.00)",
+    "fits": true,
+    "missing": 0,
+    "colors": [
+      "F5EBD6",
+      "C6AAFF",
+      "D9D6CF",
+      "E3E7ED",
+      "FFB38A"
+    ]
+  },
+  {
+    "language": 0,
+    "card": "Skill_SK12_Suppression",
+    "surface": 1,
+    "size": 22.0,
+    "spacing": 14.0,
+    "width": 239.4998,
+    "height": 47.08,
+    "box": "(384.00, 52.00)",
+    "fits": true,
+    "missing": 0,
+    "colors": [
+      "C6AAFF",
+      "D9D6CF",
+      "E3E7ED"
+    ]
+  },
+  {
+    "language": 0,
+    "card": "Skill_SK12_Suppression",
+    "surface": 2,
+    "size": 20.0,
+    "spacing": 24.0,
+    "width": 315.000031,
+    "height": 115.2,
+    "box": "(384.00, 130.00)",
+    "fits": true,
+    "missing": 0,
+    "colors": [
+      "D9D6CF",
+      "FFB38A",
+      "C6AAFF"
+    ]
+  },
+  {
+    "language": 0,
+    "card": "Skill_SK12_Suppression",
+    "surface": 3,
+    "size": 23.0,
+    "spacing": 4.0,
+    "width": 251.766129,
+    "height": 46.9200058,
+    "box": "(405.00, 62.00)",
+    "fits": true,
+    "missing": 0,
+    "colors": [
+      "C6AAFF",
+      "D9D6CF",
+      "E3E7ED"
+    ]
+  },
+  {
+    "language": 0,
+    "card": "Skill_SK12_Suppression",
+    "surface": 4,
+    "size": 21.0,
+    "spacing": 8.0,
+    "width": 330.750031,
+    "height": 107.519989,
+    "box": "(405.00, 174.00)",
+    "fits": true,
+    "missing": 0,
+    "colors": [
+      "D9D6CF",
+      "FFB38A",
+      "C6AAFF"
+    ]
+  },
+  {
+    "language": 1,
+    "card": "Skill_Silence",
+    "surface": 0,
+    "size": 22.0,
+    "spacing": 10.0,
+    "width": 336.679138,
+    "height": 178.2,
+    "box": "(408.00, 580.00)",
+    "fits": true,
+    "missing": 0,
+    "colors": [
+      "F5EBD6",
+      "C6AAFF",
+      "D9D6CF",
+      "E3E7ED"
+    ]
+  },
+  {
+    "language": 1,
+    "card": "Skill_Silence",
+    "surface": 1,
+    "size": 22.0,
+    "spacing": 14.0,
+    "width": 261.1203,
+    "height": 47.08,
+    "box": "(384.00, 52.00)",
+    "fits": true,
+    "missing": 0,
+    "colors": [
+      "C6AAFF",
+      "D9D6CF",
+      "E3E7ED"
+    ]
+  },
+  {
+    "language": 1,
+    "card": "Skill_Silence",
+    "surface": 2,
+    "size": 20.0,
+    "spacing": 24.0,
+    "width": 360.0846,
+    "height": 69.6,
+    "box": "(384.00, 130.00)",
+    "fits": true,
+    "missing": 0,
+    "colors": [
+      "D9D6CF",
+      "C6AAFF"
+    ]
+  },
+  {
+    "language": 1,
+    "card": "Skill_Silence",
+    "surface": 3,
+    "size": 23.0,
+    "spacing": 4.0,
+    "width": 274.622375,
+    "height": 46.9200058,
+    "box": "(405.00, 62.00)",
+    "fits": true,
+    "missing": 0,
+    "colors": [
+      "C6AAFF",
+      "D9D6CF",
+      "E3E7ED"
+    ]
+  },
+  {
+    "language": 1,
+    "card": "Skill_Silence",
+    "surface": 4,
+    "size": 21.0,
+    "spacing": 8.0,
+    "width": 379.4328,
+    "height": 66.36,
+    "box": "(405.00, 174.00)",
+    "fits": true,
+    "missing": 0,
+    "colors": [
+      "D9D6CF",
+      "C6AAFF"
+    ]
+  },
+  {
+    "language": 1,
+    "card": "Skill_SK12_Suppression",
+    "surface": 0,
+    "size": 22.0,
+    "spacing": 10.0,
+    "width": 381.46582,
+    "height": 239.799988,
+    "box": "(408.00, 580.00)",
+    "fits": true,
+    "missing": 0,
+    "colors": [
+      "F5EBD6",
+      "C6AAFF",
+      "D9D6CF",
+      "E3E7ED",
+      "FFB38A"
+    ]
+  },
+  {
+    "language": 1,
+    "card": "Skill_SK12_Suppression",
+    "surface": 1,
+    "size": 22.0,
+    "spacing": 14.0,
+    "width": 261.1203,
+    "height": 47.08,
+    "box": "(384.00, 52.00)",
+    "fits": true,
+    "missing": 0,
+    "colors": [
+      "C6AAFF",
+      "D9D6CF",
+      "E3E7ED"
+    ]
+  },
+  {
+    "language": 1,
+    "card": "Skill_SK12_Suppression",
+    "surface": 2,
+    "size": 18.55,
+    "spacing": 24.0,
+    "width": 333.978424,
+    "height": 129.849991,
+    "box": "(384.00, 130.00)",
+    "fits": true,
+    "missing": 0,
+    "colors": [
+      "D9D6CF",
+      "FFB38A",
+      "C6AAFF"
+    ]
+  },
+  {
+    "language": 1,
+    "card": "Skill_SK12_Suppression",
+    "surface": 3,
+    "size": 23.0,
+    "spacing": 4.0,
+    "width": 274.622375,
+    "height": 46.9200058,
+    "box": "(405.00, 62.00)",
+    "fits": true,
+    "missing": 0,
+    "colors": [
+      "C6AAFF",
+      "D9D6CF",
+      "E3E7ED"
+    ]
+  },
+  {
+    "language": 1,
+    "card": "Skill_SK12_Suppression",
+    "surface": 4,
+    "size": 21.0,
+    "spacing": 8.0,
+    "width": 379.4328,
+    "height": 130.2,
+    "box": "(405.00, 174.00)",
+    "fits": true,
+    "missing": 0,
+    "colors": [
+      "D9D6CF",
+      "FFB38A",
+      "C6AAFF"
+    ]
+  },
+  {
+    "language": 2,
+    "card": "Skill_Silence",
+    "surface": 0,
+    "size": 22.0,
+    "spacing": 10.0,
+    "width": 236.085052,
+    "height": 178.2,
+    "box": "(408.00, 580.00)",
+    "fits": true,
+    "missing": 0,
+    "colors": [
+      "F5EBD6",
+      "C6AAFF",
+      "D9D6CF",
+      "E3E7ED"
+    ]
+  },
+  {
+    "language": 2,
+    "card": "Skill_Silence",
+    "surface": 1,
+    "size": 22.0,
+    "spacing": 14.0,
+    "width": 236.085052,
+    "height": 47.08,
+    "box": "(384.00, 52.00)",
+    "fits": true,
+    "missing": 0,
+    "colors": [
+      "C6AAFF",
+      "D9D6CF",
+      "E3E7ED"
+    ]
+  },
+  {
+    "language": 2,
+    "card": "Skill_Silence",
+    "surface": 2,
+    "size": 20.0,
+    "spacing": 24.0,
+    "width": 200.0,
+    "height": 69.6000061,
+    "box": "(384.00, 130.00)",
+    "fits": true,
+    "missing": 0,
+    "colors": [
+      "D9D6CF",
+      "C6AAFF"
+    ]
+  },
+  {
+    "language": 2,
+    "card": "Skill_Silence",
+    "surface": 3,
+    "size": 23.0,
+    "spacing": 4.0,
+    "width": 246.816177,
+    "height": 46.9200058,
+    "box": "(405.00, 62.00)",
+    "fits": true,
+    "missing": 0,
+    "colors": [
+      "C6AAFF",
+      "D9D6CF",
+      "E3E7ED"
+    ]
+  },
+  {
+    "language": 2,
+    "card": "Skill_Silence",
+    "surface": 4,
+    "size": 21.0,
+    "spacing": 8.0,
+    "width": 210.0,
+    "height": 66.36001,
+    "box": "(405.00, 174.00)",
+    "fits": true,
+    "missing": 0,
+    "colors": [
+      "D9D6CF",
+      "C6AAFF"
+    ]
+  },
+  {
+    "language": 2,
+    "card": "Skill_SK12_Suppression",
+    "surface": 0,
+    "size": 22.0,
+    "spacing": 10.0,
+    "width": 355.74353,
+    "height": 218.900009,
+    "box": "(408.00, 580.00)",
+    "fits": true,
+    "missing": 0,
+    "colors": [
+      "F5EBD6",
+      "C6AAFF",
+      "D9D6CF",
+      "E3E7ED",
+      "FFB38A"
+    ]
+  },
+  {
+    "language": 2,
+    "card": "Skill_SK12_Suppression",
+    "surface": 1,
+    "size": 22.0,
+    "spacing": 14.0,
+    "width": 236.085052,
+    "height": 47.08,
+    "box": "(384.00, 52.00)",
+    "fits": true,
+    "missing": 0,
+    "colors": [
+      "C6AAFF",
+      "D9D6CF",
+      "E3E7ED"
+    ]
+  },
+  {
+    "language": 2,
+    "card": "Skill_SK12_Suppression",
+    "surface": 2,
+    "size": 20.0,
+    "spacing": 24.0,
+    "width": 380.474335,
+    "height": 115.200012,
+    "box": "(384.00, 130.00)",
+    "fits": true,
+    "missing": 0,
+    "colors": [
+      "D9D6CF",
+      "FFB38A",
+      "C6AAFF"
+    ]
+  },
+  {
+    "language": 2,
+    "card": "Skill_SK12_Suppression",
+    "surface": 3,
+    "size": 23.0,
+    "spacing": 4.0,
+    "width": 246.816177,
+    "height": 46.9200058,
+    "box": "(405.00, 62.00)",
+    "fits": true,
+    "missing": 0,
+    "colors": [
+      "C6AAFF",
+      "D9D6CF",
+      "E3E7ED"
+    ]
+  },
+  {
+    "language": 2,
+    "card": "Skill_SK12_Suppression",
+    "surface": 4,
+    "size": 21.0,
+    "spacing": 8.0,
+    "width": 399.498047,
+    "height": 107.520004,
+    "box": "(405.00, 174.00)",
+    "fits": true,
+    "missing": 0,
+    "colors": [
+      "D9D6CF",
+      "FFB38A",
+      "C6AAFF"
+    ]
+  },
+  {
+    "language": 3,
+    "card": "Skill_Silence",
+    "surface": 0,
+    "size": 22.0,
+    "spacing": 10.0,
+    "width": 223.458374,
+    "height": 178.2,
+    "box": "(408.00, 580.00)",
+    "fits": true,
+    "missing": 0,
+    "colors": [
+      "F5EBD6",
+      "C6AAFF",
+      "D9D6CF",
+      "E3E7ED"
+    ]
+  },
+  {
+    "language": 3,
+    "card": "Skill_Silence",
+    "surface": 1,
+    "size": 22.0,
+    "spacing": 14.0,
+    "width": 223.458374,
+    "height": 47.08,
+    "box": "(384.00, 52.00)",
+    "fits": true,
+    "missing": 0,
+    "colors": [
+      "C6AAFF",
+      "D9D6CF",
+      "E3E7ED"
+    ]
+  },
+  {
+    "language": 3,
+    "card": "Skill_Silence",
+    "surface": 2,
+    "size": 20.0,
+    "spacing": 24.0,
+    "width": 200.0,
+    "height": 69.6000061,
+    "box": "(384.00, 130.00)",
+    "fits": true,
+    "missing": 0,
+    "colors": [
+      "D9D6CF",
+      "C6AAFF"
+    ]
+  },
+  {
+    "language": 3,
+    "card": "Skill_Silence",
+    "surface": 3,
+    "size": 23.0,
+    "spacing": 4.0,
+    "width": 233.615555,
+    "height": 46.9200058,
+    "box": "(405.00, 62.00)",
+    "fits": true,
+    "missing": 0,
+    "colors": [
+      "C6AAFF",
+      "D9D6CF",
+      "E3E7ED"
+    ]
+  },
+  {
+    "language": 3,
+    "card": "Skill_Silence",
+    "surface": 4,
+    "size": 21.0,
+    "spacing": 8.0,
+    "width": 210.0,
+    "height": 66.36001,
+    "box": "(405.00, 174.00)",
+    "fits": true,
+    "missing": 0,
+    "colors": [
+      "D9D6CF",
+      "C6AAFF"
+    ]
+  },
+  {
+    "language": 3,
+    "card": "Skill_SK12_Suppression",
+    "surface": 0,
+    "size": 22.0,
+    "spacing": 10.0,
+    "width": 345.010864,
+    "height": 218.900009,
+    "box": "(408.00, 580.00)",
+    "fits": true,
+    "missing": 0,
+    "colors": [
+      "F5EBD6",
+      "C6AAFF",
+      "D9D6CF",
+      "E3E7ED",
+      "FFB38A"
+    ]
+  },
+  {
+    "language": 3,
+    "card": "Skill_SK12_Suppression",
+    "surface": 1,
+    "size": 22.0,
+    "spacing": 14.0,
+    "width": 223.458374,
+    "height": 47.08,
+    "box": "(384.00, 52.00)",
+    "fits": true,
+    "missing": 0,
+    "colors": [
+      "C6AAFF",
+      "D9D6CF",
+      "E3E7ED"
+    ]
+  },
+  {
+    "language": 3,
+    "card": "Skill_SK12_Suppression",
+    "surface": 2,
+    "size": 20.0,
+    "spacing": 24.0,
+    "width": 368.995544,
+    "height": 115.200012,
+    "box": "(384.00, 130.00)",
+    "fits": true,
+    "missing": 0,
+    "colors": [
+      "D9D6CF",
+      "FFB38A",
+      "C6AAFF"
+    ]
+  },
+  {
+    "language": 3,
+    "card": "Skill_SK12_Suppression",
+    "surface": 3,
+    "size": 23.0,
+    "spacing": 4.0,
+    "width": 233.615555,
+    "height": 46.9200058,
+    "box": "(405.00, 62.00)",
+    "fits": true,
+    "missing": 0,
+    "colors": [
+      "C6AAFF",
+      "D9D6CF",
+      "E3E7ED"
+    ]
+  },
+  {
+    "language": 3,
+    "card": "Skill_SK12_Suppression",
+    "surface": 4,
+    "size": 21.0,
+    "spacing": 8.0,
+    "width": 387.4453,
+    "height": 107.520004,
+    "box": "(405.00, 174.00)",
+    "fits": true,
+    "missing": 0,
+    "colors": [
+      "D9D6CF",
+      "FFB38A",
+      "C6AAFF"
+    ]
+  },
+  {
+    "language": 4,
+    "card": "Skill_Silence",
+    "surface": 0,
+    "size": 22.0,
+    "spacing": 10.0,
+    "width": 331.7476,
+    "height": 178.2,
+    "box": "(408.00, 580.00)",
+    "fits": true,
+    "missing": 0,
+    "colors": [
+      "F5EBD6",
+      "C6AAFF",
+      "D9D6CF",
+      "E3E7ED"
+    ]
+  },
+  {
+    "language": 4,
+    "card": "Skill_Silence",
+    "surface": 1,
+    "size": 22.0,
+    "spacing": 14.0,
+    "width": 318.203766,
+    "height": 47.08,
+    "box": "(384.00, 52.00)",
+    "fits": true,
+    "missing": 0,
+    "colors": [
+      "C6AAFF",
+      "D9D6CF",
+      "E3E7ED"
+    ]
+  },
+  {
+    "language": 4,
+    "card": "Skill_Silence",
+    "surface": 2,
+    "size": 20.0,
+    "spacing": 24.0,
+    "width": 354.810333,
+    "height": 69.6000061,
+    "box": "(384.00, 130.00)",
+    "fits": true,
+    "missing": 0,
+    "colors": [
+      "D9D6CF",
+      "C6AAFF"
+    ]
+  },
+  {
+    "language": 4,
+    "card": "Skill_Silence",
+    "surface": 3,
+    "size": 23.0,
+    "spacing": 4.0,
+    "width": 332.667542,
+    "height": 46.9200058,
+    "box": "(405.00, 62.00)",
+    "fits": true,
+    "missing": 0,
+    "colors": [
+      "C6AAFF",
+      "D9D6CF",
+      "E3E7ED"
+    ]
+  },
+  {
+    "language": 4,
+    "card": "Skill_Silence",
+    "surface": 4,
+    "size": 21.0,
+    "spacing": 8.0,
+    "width": 372.550781,
+    "height": 66.36001,
+    "box": "(405.00, 174.00)",
+    "fits": true,
+    "missing": 0,
+    "colors": [
+      "D9D6CF",
+      "C6AAFF"
+    ]
+  },
+  {
+    "language": 4,
+    "card": "Skill_SK12_Suppression",
+    "surface": 0,
+    "size": 22.0,
+    "spacing": 10.0,
+    "width": 347.416138,
+    "height": 259.599976,
+    "box": "(408.00, 580.00)",
+    "fits": true,
+    "missing": 0,
+    "colors": [
+      "F5EBD6",
+      "C6AAFF",
+      "D9D6CF",
+      "E3E7ED",
+      "FFB38A"
+    ]
+  },
+  {
+    "language": 4,
+    "card": "Skill_SK12_Suppression",
+    "surface": 1,
+    "size": 22.0,
+    "spacing": 14.0,
+    "width": 318.203766,
+    "height": 47.08,
+    "box": "(384.00, 52.00)",
+    "fits": true,
+    "missing": 0,
+    "colors": [
+      "C6AAFF",
+      "D9D6CF",
+      "E3E7ED"
+    ]
+  },
+  {
+    "language": 4,
+    "card": "Skill_SK12_Suppression",
+    "surface": 2,
+    "size": 18.55,
+    "spacing": 24.0,
+    "width": 371.5465,
+    "height": 129.849991,
+    "box": "(384.00, 130.00)",
+    "fits": true,
+    "missing": 0,
+    "colors": [
+      "D9D6CF",
+      "FFB38A",
+      "C6AAFF"
+    ]
+  },
+  {
+    "language": 4,
+    "card": "Skill_SK12_Suppression",
+    "surface": 3,
+    "size": 23.0,
+    "spacing": 4.0,
+    "width": 332.667542,
+    "height": 46.9200058,
+    "box": "(405.00, 62.00)",
+    "fits": true,
+    "missing": 0,
+    "colors": [
+      "C6AAFF",
+      "D9D6CF",
+      "E3E7ED"
+    ]
+  },
+  {
+    "language": 4,
+    "card": "Skill_SK12_Suppression",
+    "surface": 4,
+    "size": 21.0,
+    "spacing": 8.0,
+    "width": 390.146484,
+    "height": 148.680008,
+    "box": "(405.00, 174.00)",
+    "fits": true,
+    "missing": 0,
+    "colors": [
+      "D9D6CF",
+      "FFB38A",
+      "C6AAFF"
+    ]
+  }
+]

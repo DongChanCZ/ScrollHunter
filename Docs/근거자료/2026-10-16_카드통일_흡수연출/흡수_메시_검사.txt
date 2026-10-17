@@ -1,0 +1,1 @@
+edgeOnly=True alpha=0.22 vertices=12 triangles=16 central area untouched=True

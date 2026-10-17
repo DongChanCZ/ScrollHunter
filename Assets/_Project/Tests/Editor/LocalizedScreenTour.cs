@@ -15,8 +15,8 @@ using UnityEngine.UI;
 public static class LocalizedScreenTour
 {
     private const BindingFlags Hidden = BindingFlags.NonPublic | BindingFlags.Instance;
-    private const string Folder = "Docs/근거자료/2026-10-15_다국어";
-    private static readonly GameLanguage[] Shots = { GameLanguage.Japanese, GameLanguage.ChineseSimplified, GameLanguage.Spanish };
+    private static string Folder;
+    private static readonly GameLanguage[] Shots = (GameLanguage[])Enum.GetValues(typeof(GameLanguage));
     private class Step { public string name; public Func<bool> ready; public Action enter; public bool audit = true; }
     private static List<Step> steps;
     private static int index, shot, waitFrame;
@@ -28,8 +28,11 @@ public static class LocalizedScreenTour
     private static T Field<T>(object o, string name) => (T)o.GetType().GetField(name, Hidden).GetValue(o);
 
     [MenuItem("Tools/Scroll Hunter/Localized Screen Tour (Fresh Play)")]
-    public static void Run()
+    public static void Run() => Run("Docs/근거자료/2026-10-15_다국어");
+
+    public static void Run(string folder)
     {
+        Folder = folder;
         if (!Application.isPlaying) throw new InvalidOperationException("Fresh Play required");
         var flow = UnityEngine.Object.FindFirstObjectByType<BattleFlow>();
         if (flow.State != BattleFlowState.Title) throw new InvalidOperationException("Start at title");
@@ -53,7 +56,7 @@ public static class LocalizedScreenTour
                 flow.GetType().GetField("inheritance", Hidden).SetValue(flow, isolated);
                 menu.ClosePanels(); flow.StartRun();
             }, ready = () => flow.State == BattleFlowState.Preparing },
-            new Step { name = "dialogue", enter = () => flow.NextBattle(), ready = () => story.Active },
+            new Step { name = "dialogue", enter = () => { flow.NextBattle(); }, ready = () => story.Active },
             new Step { name = "battle-card-info", enter = () => Field<Button>(story, "skip").onClick.Invoke(), ready = () =>
             {
                 if (flow.State != BattleFlowState.Fighting) return false;
@@ -77,10 +80,13 @@ public static class LocalizedScreenTour
             {
                 if (story.Active) { Field<Button>(story, "skip").onClick.Invoke(); return false; }
                 if (flow.State == BattleFlowState.Fighting && player.CurrentHp > 0) player.TakeDamage(99999, CastColor.Red);
-                return flow.State == BattleFlowState.Defeat && !flow.ResultPanelHeld;
+                return flow.State == BattleFlowState.Defeat && !flow.ResultPanelHeld
+                    && Field<CanvasGroup>(flow, "resultFade").alpha >= 1f;
             } },
             new Step { name = "inheritance", enter = () => flow.ContinueAfterResult(), ready = () => flow.State == BattleFlowState.Inheriting },
             new Step { name = "inheritance-confirm", enter = () => { flow.SelectReward(0); flow.SelectReplacementSlot(0); }, ready = () => true },
+            new Step { name = "retry-preparation", enter = () => flow.ConfirmReplacement(), ready = () => flow.State == BattleFlowState.Preparing },
+            new Step { name = "retry-confirmation", enter = () => flow.NextBattle(), ready = () => UnityEngine.Object.FindFirstObjectByType<BattleRewardUI>().RetryConfirmationVisible },
         };
         index = 0; shot = -1; waitFrame = 0; entered = false; report.Clear();
         deadline = EditorApplication.timeSinceStartup + 300;

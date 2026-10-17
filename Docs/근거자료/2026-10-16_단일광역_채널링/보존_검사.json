@@ -1,0 +1,48 @@
+[
+  {
+    "path": "C:\\Users\\MBC-501-19\\Documents\\ScrollHunter\\Assets\\_Project\\Scenes\\Battle.unity",
+    "unchanged": true
+  },
+  {
+    "path": "C:\\Users\\MBC-501-19\\Documents\\ScrollHunter\\Assets\\_Project\\Fonts\\GmarketSansMedium SDF.asset",
+    "unchanged": true
+  },
+  {
+    "path": "C:\\Users\\MBC-501-19\\AppData\\LocalLow\\DefaultCompany\\ScrollHunter\\save.json",
+    "unchanged": true
+  },
+  {
+    "path": "C:\\Users\\MBC-501-19\\AppData\\LocalLow\\DefaultCompany\\ScrollHunter\\save.json.bak",
+    "unchanged": true
+  },
+  {
+    "asset": "Channel_SK02_IceArrow.asset",
+    "field": "firstHitDelay",
+    "unchanged": true
+  },
+  {
+    "asset": "Channel_SK02_IceArrow.asset",
+    "field": "hitInterval",
+    "unchanged": true
+  },
+  {
+    "asset": "Channel_SK02_IceArrow.asset",
+    "field": "targetDeathRecovery",
+    "unchanged": true
+  },
+  {
+    "asset": "Channel_SK06_MagicSpark.asset",
+    "field": "firstHitDelay",
+    "unchanged": true
+  },
+  {
+    "asset": "Channel_SK06_MagicSpark.asset",
+    "field": "hitInterval",
+    "unchanged": true
+  },
+  {
+    "asset": "Channel_SK06_MagicSpark.asset",
+    "field": "targetDeathRecovery",
+    "unchanged": true
+  }
+]

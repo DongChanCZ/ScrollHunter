@@ -1,0 +1,3 @@
+Cost gauge: outer 22 -> 30, fill 9 -> 17; width 840 and position (60,0) unchanged.
+5/10 fill=0.5; ticks=9; clear of hand=True.
+1366x768 screenshot checked; returned to 1920x1080. Enemy/player cast bars unchanged.

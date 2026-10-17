@@ -122,11 +122,11 @@ public static class AllPassiveChecks
             for (int i = 0; i < 4; i++) acquire("PS07"); reopen();
             check(near(player.ShieldGainMultiplier, 2) && player.GetShieldAmount(120) == 240 && flow.RewardChoiceCount == 0, "additive shield cap");
             acquire("PS08"); acquire("PS08"); reopen();
-            check(near(deck.InterruptStagger, 3.5f) && flow.RewardChoiceCount == 0, "stagger cap");
+            check(near(deck.InterruptStagger, 3.7f) && flow.RewardChoiceCount == 0, "stagger cap");
             flow.SkipReward(); flow.NextBattle();
             var cards = deck.CopyStartingDeck(); var armor = cards.Single(c => c.Category == SkillCategory.Shield);
             var silence = cards.Single(c => c.Category == SkillCategory.Interrupt);
-            check(info.DescribeCard(armor).Contains("240") && info.DescribeCard(silence).Contains("3.5"), "modified tooltips");
+            check(info.DescribeCard(armor).Contains("240") && info.DescribeCard(silence).Contains("3.7"), "modified tooltips");
             Property(cost, "Current", 10f); check(deck.TryUseSlot(3), "shield card starts");
             typeof(DeckSystem).GetMethod("AdvanceCast", Hidden).Invoke(deck, new object[] { .5f });
             check(player.Shield == 240, "deck uses enhanced shield");
@@ -134,9 +134,9 @@ public static class AllPassiveChecks
             var b = UnityEngine.Object.FindObjectsByType<Enemy>(FindObjectsInactive.Include, FindObjectsSortMode.None).Single(e => e.Data.name == "Enemy_B_Orange");
             enemies.BeginBattle(new[] { b }, null); deck.SetDeck(cards); Property(cost, "Current", 10f);
             check(deck.TryUseSlot(2), "silence input"); typeof(DeckSystem).GetMethod("AdvanceCast", Hidden).Invoke(deck, new object[] { .3f });
-            check(b.IsStaggered && near((float)Get(b, "staggerTimer"), 3.5f), "enhanced actual stagger");
+            check(b.IsStaggered && near((float)Get(b, "staggerTimer"), 3.7f), "enhanced actual stagger");
             player.ApplyStun(2); check(player.StunRemaining == 2, "player stun unchanged");
-            flow.RestartRun(); check(player.GetShieldAmount(120) == 120 && near(deck.InterruptStagger, 2.5f), "response stats reset");
+            flow.RestartRun(); check(player.GetShieldAmount(120) == 120 && near(deck.InterruptStagger, 2.7f), "response stats reset");
 
             // PS10 contributes independently even when the single-stat PS is capped.
             for (int i = 0; i < 4; i++) acquire("PS04");
@@ -149,7 +149,7 @@ public static class AllPassiveChecks
             acquire("PS10");
             check(player.MaxHp == 550 && player.CurrentHp == 350 && cost.Current == resource, "PS10 maximum does not refill");
             check(near(cost.RegenerationPerSecond, 1.3f) && cost.StartingCost == 7 && cost.Max == 15, "PS10 adds beyond independent cost caps");
-            check(player.GetShieldAmount(120) == 264 && near(deck.InterruptStagger, 4) && player.CriticalChance == 40, "PS10 response and critical contribution");
+            check(player.GetShieldAmount(120) == 264 && near(deck.InterruptStagger, 4.2f) && player.CriticalChance == 40, "PS10 response and critical contribution");
             check(flow.GetPassiveStacks(ps["PS04"].Effect) == 4 && flow.GetPassiveStacks(ps["PS09"].Effect) == 3, "PS10 does not consume other stacks");
             reopen(); check(flow.RewardChoiceCount == 0 && !flow.SelectReward(0), "PS10 one stack cap");
             flow.SkipReward(); flow.NextBattle();
@@ -157,7 +157,7 @@ public static class AllPassiveChecks
             check(((string)Get(metrics, "runModifiers")).Contains("시작 코스트 7 / 상한 15"), "full modifier snapshot in metrics");
             player.TakeDamage(100000); Call(flow, "Update"); flow.RestartRun();
             check(player.MaxHp == 500 && player.CurrentHp == 500 && player.CriticalChance == 15 && player.GetShieldAmount(120) == 120, "defeat restart clears player bonuses");
-            check(near(cost.RegenerationPerSecond, .8f) && cost.Current == 3 && cost.Max == 10 && near(deck.InterruptStagger, 2.5f), "defeat restart clears cost and stagger");
+            check(near(cost.RegenerationPerSecond, .8f) && cost.Current == 3 && cost.Max == 10 && near(deck.InterruptStagger, 2.7f), "defeat restart clears cost and stagger");
             check(ps.Values.All(o => flow.GetPassiveStacks(o.Effect) == 0), "defeat restart clears all stacks");
 
             Set(flow, "rewardPool", new[] { ps["PS04"], ps["PS10"] });

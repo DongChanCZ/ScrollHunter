@@ -1,0 +1,5 @@
+InheritanceChecks: 74 passed; isolated store InheritanceCheck-18c564ae5f4941e59136f38dd8bda7cb
+CombatScreenFeedbackChecks: 50 passed
+Reward UI: 137 passed (보상_동작_검사.json)
+Card layout: 14 skills, 388 checks per resolution (1920x1080 / 1366x768), 0 issues.
+Physical input, comfort, other languages, WebGL not tested.

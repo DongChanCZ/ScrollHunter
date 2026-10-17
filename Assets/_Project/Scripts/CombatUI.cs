@@ -42,6 +42,7 @@ public class CombatUI : MonoBehaviour
     [SerializeField] private TMP_Text costText;
     [Tooltip("손패 아래 코스트 게이지. 소수 충전과 최대치 변경을 그대로 반영한다")]
     [SerializeField] private SegmentedGaugeUI costGauge;
+    [SerializeField, Min(1f)] private float costGaugeHeight = 30f;
     [SerializeField] private TMP_Text hpText;
     [Tooltip("포션 현재/최대 개수. 최대치는 패시브 적용값")]
     [SerializeField] private TMP_Text potionText;
@@ -61,6 +62,14 @@ public class CombatUI : MonoBehaviour
     [SerializeField, Min(1f)] private float shieldDisplayScale = 1.5f;
     [SerializeField] private Color shieldEmptyIconColor = new Color(1f, 1f, 1f, 0.3f);
 
+    [Header("코스트 보석 표식")]
+    [SerializeField] private Vector2 handCostGemSize = new Vector2(60f, 64f);
+    [SerializeField] private Vector2 handCostGemPosition = new Vector2(6f, -6f);
+    [SerializeField] private float handCostGemFontSize = 38f;
+    [SerializeField] private Vector2 resourceCostTextSize = new Vector2(156f, 40f);
+    [SerializeField] private Vector2 resourceCostTextPosition = new Vector2(-48f, 0f);
+    [SerializeField] private float resourceCostFontSize = 32f;
+
     [Header("기절 표시 (화면 중앙)")]
     [Tooltip("기절 중에만 켜진다. 슬롯 색만으로는 손패를 안 볼 때 놓친다. (02 §6.5.4)")]
     [SerializeField] private TMP_Text stunText;
@@ -76,6 +85,8 @@ public class CombatUI : MonoBehaviour
     public Image NextCardIcon => nextCardIcon;
     [SerializeField] private Color iconColor = new Color(.93f, .86f, .70f, 1f);
     [SerializeField] private Color inactiveIconColor = new Color(1f, 1f, 1f, .35f);
+    [Tooltip("코스트 부족 시 아이콘 전체 밝기. 시계방향 충전 음영은 그 위에 유지한다")]
+    [SerializeField] private Color costPoorIconColor = new Color(.42f, .42f, .42f, 1f);
 
     [Header("시전 표시 (손패 위) — 시전 시간만 쓴다. 손패 슬롯의 행동 잠금 숫자와는 다른 타이머다")]
     [Tooltip("시전 중과 취소 표시 동안에만 켜진다. 비워두면 시전 표시를 하지 않는다")]
@@ -267,7 +278,58 @@ public class CombatUI : MonoBehaviour
                 shieldText.fontSize *= shieldDisplayScale;
             }
         }
+        BuildCostGems();
+        if (costGauge != null)
+            ((RectTransform)costGauge.transform).SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, costGaugeHeight);
         CacheDefaultTextColors();
+    }
+
+    private void BuildCostGems()
+    {
+        foreach (var view in handSlots)
+        {
+            if (view == null || view.costText == null) continue;
+            var label = view.costText;
+            var oldChip = label.transform.parent.Find("CostChip");
+            if (oldChip != null) oldChip.gameObject.SetActive(false);
+            var gem = CreateCostGem(label.transform.parent, "CostGem", new Vector2(0f, 1f),
+                new Vector2(0f, 1f), handCostGemPosition, handCostGemSize);
+            // 부족 음영보다 앞, 숫자보다 뒤에 두어 코스트가 항상 읽히게 한다.
+            gem.transform.SetSiblingIndex(label.transform.GetSiblingIndex());
+            var rect = label.rectTransform;
+            rect.anchorMin = rect.anchorMax = rect.pivot = new Vector2(0f, 1f);
+            rect.anchoredPosition = handCostGemPosition;
+            rect.sizeDelta = handCostGemSize;
+            label.fontSize = handCostGemFontSize;
+            label.enableAutoSizing = false;
+            label.fontStyle = FontStyles.Bold;
+            label.alignment = TextAlignmentOptions.Midline;
+            label.raycastTarget = false;
+        }
+        if (costText == null) return;
+        var resource = costText.rectTransform;
+        resource.anchorMin = resource.anchorMax = resource.pivot = new Vector2(0f, .5f);
+        resource.anchoredPosition = resourceCostTextPosition;
+        resource.sizeDelta = resourceCostTextSize;
+        costText.fontSize = resourceCostFontSize;
+        costText.enableAutoSizing = false;
+        costText.fontStyle = FontStyles.Bold;
+        costText.alignment = TextAlignmentOptions.MidlineRight;
+    }
+
+    private static CostGemGraphic CreateCostGem(Transform parent, string name, Vector2 anchor,
+        Vector2 pivot, Vector2 position, Vector2 size)
+    {
+        var gem = new GameObject(name, typeof(RectTransform), typeof(CostGemGraphic)).GetComponent<CostGemGraphic>();
+        gem.transform.SetParent(parent, false);
+        gem.gameObject.layer = parent.gameObject.layer;
+        gem.raycastTarget = false;
+        var rect = gem.rectTransform;
+        rect.anchorMin = rect.anchorMax = anchor;
+        rect.pivot = pivot;
+        rect.anchoredPosition = position;
+        rect.sizeDelta = size;
+        return gem;
     }
 
     private void CacheDefaultTextColors()
@@ -357,7 +419,7 @@ public class CombatUI : MonoBehaviour
                 view.skillIcon.sprite = card != null ? card.Icon : null;
                 view.skillIcon.enabled = hasIcon;
                 view.skillIcon.color = highContrast || state == SlotState.NoValidTarget || (state == SlotState.TutorialLocked || state == SlotState.PhaseTransition)
-                    ? inactiveIconColor : iconColor;
+                    ? inactiveIconColor : state == SlotState.NotEnoughCost ? costPoorIconColor : iconColor;
             }
             if (view.nameText != null)
             {

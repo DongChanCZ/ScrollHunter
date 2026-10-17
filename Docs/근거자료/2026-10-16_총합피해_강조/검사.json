@@ -1,0 +1,730 @@
+{
+  "cases": 70,
+  "failures": [],
+  "details": [
+    {
+      "language": "Korean",
+      "skill": "Skill_CrystalShield",
+      "total": 0,
+      "highlight": 0,
+      "layoutSame": true
+    },
+    {
+      "language": "Korean",
+      "skill": "Skill_Silence",
+      "total": 0,
+      "highlight": 0,
+      "layoutSame": true
+    },
+    {
+      "language": "Korean",
+      "skill": "Skill_SK01_Fireball",
+      "total": 30,
+      "highlight": 1,
+      "layoutSame": true
+    },
+    {
+      "language": "Korean",
+      "skill": "Skill_SK02_IceArrow",
+      "total": 175,
+      "highlight": 1,
+      "layoutSame": true
+    },
+    {
+      "language": "Korean",
+      "skill": "Skill_SK03_MagicCutter",
+      "total": 60,
+      "highlight": 1,
+      "layoutSame": true
+    },
+    {
+      "language": "Korean",
+      "skill": "Skill_SK04_FirePillar",
+      "total": 90,
+      "highlight": 1,
+      "layoutSame": true
+    },
+    {
+      "language": "Korean",
+      "skill": "Skill_SK05_LightningSpear",
+      "total": 135,
+      "highlight": 1,
+      "layoutSame": true
+    },
+    {
+      "language": "Korean",
+      "skill": "Skill_SK06_MagicSpark",
+      "total": 80,
+      "highlight": 1,
+      "layoutSame": true
+    },
+    {
+      "language": "Korean",
+      "skill": "Skill_SK07_MagicImpact",
+      "total": 130,
+      "highlight": 1,
+      "layoutSame": true
+    },
+    {
+      "language": "Korean",
+      "skill": "Skill_SK08_Judgment",
+      "total": 365,
+      "highlight": 1,
+      "layoutSame": true
+    },
+    {
+      "language": "Korean",
+      "skill": "Skill_SK09_Blizzard",
+      "total": 120,
+      "highlight": 1,
+      "layoutSame": true
+    },
+    {
+      "language": "Korean",
+      "skill": "Skill_SK10_DarkEruption",
+      "total": 50,
+      "highlight": 1,
+      "layoutSame": true
+    },
+    {
+      "language": "Korean",
+      "skill": "Skill_SK12_Suppression",
+      "total": 40,
+      "highlight": 1,
+      "layoutSame": true
+    },
+    {
+      "language": "Korean",
+      "skill": "Skill_SK14_Sanctuary",
+      "total": 0,
+      "highlight": 0,
+      "layoutSame": true
+    },
+    {
+      "language": "English",
+      "skill": "Skill_CrystalShield",
+      "total": 0,
+      "highlight": 0,
+      "layoutSame": true
+    },
+    {
+      "language": "English",
+      "skill": "Skill_Silence",
+      "total": 0,
+      "highlight": 0,
+      "layoutSame": true
+    },
+    {
+      "language": "English",
+      "skill": "Skill_SK01_Fireball",
+      "total": 30,
+      "highlight": 1,
+      "layoutSame": true
+    },
+    {
+      "language": "English",
+      "skill": "Skill_SK02_IceArrow",
+      "total": 175,
+      "highlight": 1,
+      "layoutSame": true
+    },
+    {
+      "language": "English",
+      "skill": "Skill_SK03_MagicCutter",
+      "total": 60,
+      "highlight": 1,
+      "layoutSame": true
+    },
+    {
+      "language": "English",
+      "skill": "Skill_SK04_FirePillar",
+      "total": 90,
+      "highlight": 1,
+      "layoutSame": true
+    },
+    {
+      "language": "English",
+      "skill": "Skill_SK05_LightningSpear",
+      "total": 135,
+      "highlight": 1,
+      "layoutSame": true
+    },
+    {
+      "language": "English",
+      "skill": "Skill_SK06_MagicSpark",
+      "total": 80,
+      "highlight": 1,
+      "layoutSame": true
+    },
+    {
+      "language": "English",
+      "skill": "Skill_SK07_MagicImpact",
+      "total": 130,
+      "highlight": 1,
+      "layoutSame": true
+    },
+    {
+      "language": "English",
+      "skill": "Skill_SK08_Judgment",
+      "total": 365,
+      "highlight": 1,
+      "layoutSame": true
+    },
+    {
+      "language": "English",
+      "skill": "Skill_SK09_Blizzard",
+      "total": 120,
+      "highlight": 1,
+      "layoutSame": true
+    },
+    {
+      "language": "English",
+      "skill": "Skill_SK10_DarkEruption",
+      "total": 50,
+      "highlight": 1,
+      "layoutSame": true
+    },
+    {
+      "language": "English",
+      "skill": "Skill_SK12_Suppression",
+      "total": 40,
+      "highlight": 1,
+      "layoutSame": true
+    },
+    {
+      "language": "English",
+      "skill": "Skill_SK14_Sanctuary",
+      "total": 0,
+      "highlight": 0,
+      "layoutSame": true
+    },
+    {
+      "language": "Japanese",
+      "skill": "Skill_CrystalShield",
+      "total": 0,
+      "highlight": 0,
+      "layoutSame": true
+    },
+    {
+      "language": "Japanese",
+      "skill": "Skill_Silence",
+      "total": 0,
+      "highlight": 0,
+      "layoutSame": true
+    },
+    {
+      "language": "Japanese",
+      "skill": "Skill_SK01_Fireball",
+      "total": 30,
+      "highlight": 1,
+      "layoutSame": true
+    },
+    {
+      "language": "Japanese",
+      "skill": "Skill_SK02_IceArrow",
+      "total": 175,
+      "highlight": 1,
+      "layoutSame": true
+    },
+    {
+      "language": "Japanese",
+      "skill": "Skill_SK03_MagicCutter",
+      "total": 60,
+      "highlight": 1,
+      "layoutSame": true
+    },
+    {
+      "language": "Japanese",
+      "skill": "Skill_SK04_FirePillar",
+      "total": 90,
+      "highlight": 1,
+      "layoutSame": true
+    },
+    {
+      "language": "Japanese",
+      "skill": "Skill_SK05_LightningSpear",
+      "total": 135,
+      "highlight": 1,
+      "layoutSame": true
+    },
+    {
+      "language": "Japanese",
+      "skill": "Skill_SK06_MagicSpark",
+      "total": 80,
+      "highlight": 1,
+      "layoutSame": true
+    },
+    {
+      "language": "Japanese",
+      "skill": "Skill_SK07_MagicImpact",
+      "total": 130,
+      "highlight": 1,
+      "layoutSame": true
+    },
+    {
+      "language": "Japanese",
+      "skill": "Skill_SK08_Judgment",
+      "total": 365,
+      "highlight": 1,
+      "layoutSame": true
+    },
+    {
+      "language": "Japanese",
+      "skill": "Skill_SK09_Blizzard",
+      "total": 120,
+      "highlight": 1,
+      "layoutSame": true
+    },
+    {
+      "language": "Japanese",
+      "skill": "Skill_SK10_DarkEruption",
+      "total": 50,
+      "highlight": 1,
+      "layoutSame": true
+    },
+    {
+      "language": "Japanese",
+      "skill": "Skill_SK12_Suppression",
+      "total": 40,
+      "highlight": 1,
+      "layoutSame": true
+    },
+    {
+      "language": "Japanese",
+      "skill": "Skill_SK14_Sanctuary",
+      "total": 0,
+      "highlight": 0,
+      "layoutSame": true
+    },
+    {
+      "language": "ChineseSimplified",
+      "skill": "Skill_CrystalShield",
+      "total": 0,
+      "highlight": 0,
+      "layoutSame": true
+    },
+    {
+      "language": "ChineseSimplified",
+      "skill": "Skill_Silence",
+      "total": 0,
+      "highlight": 0,
+      "layoutSame": true
+    },
+    {
+      "language": "ChineseSimplified",
+      "skill": "Skill_SK01_Fireball",
+      "total": 30,
+      "highlight": 1,
+      "layoutSame": true
+    },
+    {
+      "language": "ChineseSimplified",
+      "skill": "Skill_SK02_IceArrow",
+      "total": 175,
+      "highlight": 1,
+      "layoutSame": true
+    },
+    {
+      "language": "ChineseSimplified",
+      "skill": "Skill_SK03_MagicCutter",
+      "total": 60,
+      "highlight": 1,
+      "layoutSame": true
+    },
+    {
+      "language": "ChineseSimplified",
+      "skill": "Skill_SK04_FirePillar",
+      "total": 90,
+      "highlight": 1,
+      "layoutSame": true
+    },
+    {
+      "language": "ChineseSimplified",
+      "skill": "Skill_SK05_LightningSpear",
+      "total": 135,
+      "highlight": 1,
+      "layoutSame": true
+    },
+    {
+      "language": "ChineseSimplified",
+      "skill": "Skill_SK06_MagicSpark",
+      "total": 80,
+      "highlight": 1,
+      "layoutSame": true
+    },
+    {
+      "language": "ChineseSimplified",
+      "skill": "Skill_SK07_MagicImpact",
+      "total": 130,
+      "highlight": 1,
+      "layoutSame": true
+    },
+    {
+      "language": "ChineseSimplified",
+      "skill": "Skill_SK08_Judgment",
+      "total": 365,
+      "highlight": 1,
+      "layoutSame": true
+    },
+    {
+      "language": "ChineseSimplified",
+      "skill": "Skill_SK09_Blizzard",
+      "total": 120,
+      "highlight": 1,
+      "layoutSame": true
+    },
+    {
+      "language": "ChineseSimplified",
+      "skill": "Skill_SK10_DarkEruption",
+      "total": 50,
+      "highlight": 1,
+      "layoutSame": true
+    },
+    {
+      "language": "ChineseSimplified",
+      "skill": "Skill_SK12_Suppression",
+      "total": 40,
+      "highlight": 1,
+      "layoutSame": true
+    },
+    {
+      "language": "ChineseSimplified",
+      "skill": "Skill_SK14_Sanctuary",
+      "total": 0,
+      "highlight": 0,
+      "layoutSame": true
+    },
+    {
+      "language": "Spanish",
+      "skill": "Skill_CrystalShield",
+      "total": 0,
+      "highlight": 0,
+      "layoutSame": true
+    },
+    {
+      "language": "Spanish",
+      "skill": "Skill_Silence",
+      "total": 0,
+      "highlight": 0,
+      "layoutSame": true
+    },
+    {
+      "language": "Spanish",
+      "skill": "Skill_SK01_Fireball",
+      "total": 30,
+      "highlight": 1,
+      "layoutSame": true
+    },
+    {
+      "language": "Spanish",
+      "skill": "Skill_SK02_IceArrow",
+      "total": 175,
+      "highlight": 1,
+      "layoutSame": true
+    },
+    {
+      "language": "Spanish",
+      "skill": "Skill_SK03_MagicCutter",
+      "total": 60,
+      "highlight": 1,
+      "layoutSame": true
+    },
+    {
+      "language": "Spanish",
+      "skill": "Skill_SK04_FirePillar",
+      "total": 90,
+      "highlight": 1,
+      "layoutSame": true
+    },
+    {
+      "language": "Spanish",
+      "skill": "Skill_SK05_LightningSpear",
+      "total": 135,
+      "highlight": 1,
+      "layoutSame": true
+    },
+    {
+      "language": "Spanish",
+      "skill": "Skill_SK06_MagicSpark",
+      "total": 80,
+      "highlight": 1,
+      "layoutSame": true
+    },
+    {
+      "language": "Spanish",
+      "skill": "Skill_SK07_MagicImpact",
+      "total": 130,
+      "highlight": 1,
+      "layoutSame": true
+    },
+    {
+      "language": "Spanish",
+      "skill": "Skill_SK08_Judgment",
+      "total": 365,
+      "highlight": 1,
+      "layoutSame": true
+    },
+    {
+      "language": "Spanish",
+      "skill": "Skill_SK09_Blizzard",
+      "total": 120,
+      "highlight": 1,
+      "layoutSame": true
+    },
+    {
+      "language": "Spanish",
+      "skill": "Skill_SK10_DarkEruption",
+      "total": 50,
+      "highlight": 1,
+      "layoutSame": true
+    },
+    {
+      "language": "Spanish",
+      "skill": "Skill_SK12_Suppression",
+      "total": 40,
+      "highlight": 1,
+      "layoutSame": true
+    },
+    {
+      "language": "Spanish",
+      "skill": "Skill_SK14_Sanctuary",
+      "total": 0,
+      "highlight": 0,
+      "layoutSame": true
+    }
+  ],
+  "ui": [
+    {
+      "field": "CombatInfoUI.pauseLabel",
+      "rich": true,
+      "overrideColor": false
+    },
+    {
+      "field": "CombatInfoUI.cardText",
+      "rich": true,
+      "overrideColor": false
+    },
+    {
+      "field": "CombatInfoUI.enemyText",
+      "rich": true,
+      "overrideColor": false
+    },
+    {
+      "field": "CombatInfoUI.hintText",
+      "rich": true,
+      "overrideColor": false
+    },
+    {
+      "field": "CombatInfoUI.speedLabel",
+      "rich": true,
+      "overrideColor": false
+    },
+    {
+      "field": "BattleRewardUI.title",
+      "rich": true,
+      "overrideColor": false
+    },
+    {
+      "field": "BattleRewardUI.instruction",
+      "rich": true,
+      "overrideColor": false
+    },
+    {
+      "field": "BattleRewardUI.choiceLabels",
+      "rich": true,
+      "overrideColor": false
+    },
+    {
+      "field": "BattleRewardUI.choiceLabels",
+      "rich": true,
+      "overrideColor": false
+    },
+    {
+      "field": "BattleRewardUI.choiceLabels",
+      "rich": true,
+      "overrideColor": false
+    },
+    {
+      "field": "BattleRewardUI.deckLabels",
+      "rich": true,
+      "overrideColor": false
+    },
+    {
+      "field": "BattleRewardUI.deckLabels",
+      "rich": true,
+      "overrideColor": false
+    },
+    {
+      "field": "BattleRewardUI.deckLabels",
+      "rich": true,
+      "overrideColor": false
+    },
+    {
+      "field": "BattleRewardUI.deckLabels",
+      "rich": true,
+      "overrideColor": false
+    },
+    {
+      "field": "BattleRewardUI.deckLabels",
+      "rich": true,
+      "overrideColor": false
+    },
+    {
+      "field": "BattleRewardUI.deckLabels",
+      "rich": true,
+      "overrideColor": false
+    },
+    {
+      "field": "BattleRewardUI.deckLabels",
+      "rich": true,
+      "overrideColor": false
+    },
+    {
+      "field": "BattleRewardUI.deckLabels",
+      "rich": true,
+      "overrideColor": false
+    },
+    {
+      "field": "BattleRewardUI.deckSlotLabels",
+      "rich": true,
+      "overrideColor": false
+    },
+    {
+      "field": "BattleRewardUI.deckSlotLabels",
+      "rich": true,
+      "overrideColor": false
+    },
+    {
+      "field": "BattleRewardUI.deckSlotLabels",
+      "rich": true,
+      "overrideColor": false
+    },
+    {
+      "field": "BattleRewardUI.deckSlotLabels",
+      "rich": true,
+      "overrideColor": false
+    },
+    {
+      "field": "BattleRewardUI.deckSlotLabels",
+      "rich": true,
+      "overrideColor": false
+    },
+    {
+      "field": "BattleRewardUI.deckSlotLabels",
+      "rich": true,
+      "overrideColor": false
+    },
+    {
+      "field": "BattleRewardUI.deckSlotLabels",
+      "rich": true,
+      "overrideColor": false
+    },
+    {
+      "field": "BattleRewardUI.deckSlotLabels",
+      "rich": true,
+      "overrideColor": false
+    },
+    {
+      "field": "BattleRewardUI.deckNameLabels",
+      "rich": true,
+      "overrideColor": false
+    },
+    {
+      "field": "BattleRewardUI.deckNameLabels",
+      "rich": true,
+      "overrideColor": false
+    },
+    {
+      "field": "BattleRewardUI.deckNameLabels",
+      "rich": true,
+      "overrideColor": false
+    },
+    {
+      "field": "BattleRewardUI.deckNameLabels",
+      "rich": true,
+      "overrideColor": false
+    },
+    {
+      "field": "BattleRewardUI.deckNameLabels",
+      "rich": true,
+      "overrideColor": false
+    },
+    {
+      "field": "BattleRewardUI.deckNameLabels",
+      "rich": true,
+      "overrideColor": false
+    },
+    {
+      "field": "BattleRewardUI.deckNameLabels",
+      "rich": true,
+      "overrideColor": false
+    },
+    {
+      "field": "BattleRewardUI.deckNameLabels",
+      "rich": true,
+      "overrideColor": false
+    },
+    {
+      "field": "BattleRewardUI.deckInfoLabels",
+      "rich": true,
+      "overrideColor": false
+    },
+    {
+      "field": "BattleRewardUI.deckInfoLabels",
+      "rich": true,
+      "overrideColor": false
+    },
+    {
+      "field": "BattleRewardUI.deckInfoLabels",
+      "rich": true,
+      "overrideColor": false
+    },
+    {
+      "field": "BattleRewardUI.deckInfoLabels",
+      "rich": true,
+      "overrideColor": false
+    },
+    {
+      "field": "BattleRewardUI.deckInfoLabels",
+      "rich": true,
+      "overrideColor": false
+    },
+    {
+      "field": "BattleRewardUI.deckInfoLabels",
+      "rich": true,
+      "overrideColor": false
+    },
+    {
+      "field": "BattleRewardUI.deckInfoLabels",
+      "rich": true,
+      "overrideColor": false
+    },
+    {
+      "field": "BattleRewardUI.deckInfoLabels",
+      "rich": true,
+      "overrideColor": false
+    },
+    {
+      "field": "BattleRewardUI.rewardReplacementPrompt",
+      "rich": true,
+      "overrideColor": false
+    },
+    {
+      "field": "BattleRewardUI.inheritedCards",
+      "rich": true,
+      "overrideColor": false
+    },
+    {
+      "field": "BattleRewardUI.inheritedPassives",
+      "rich": true,
+      "overrideColor": false
+    },
+    {
+      "field": "BattleRewardUI.inheritanceStatus",
+      "rich": true,
+      "overrideColor": false
+    }
+  ],
+  "playing": false,
+  "dirty": true
+}

@@ -1,0 +1,230 @@
+{
+  "cases": [
+    {
+      "language": "Korean",
+      "prompt": "targetingPrompt",
+      "height": 260.0,
+      "lines": 2,
+      "overflow": false,
+      "onScreen": true,
+      "centered": true
+    },
+    {
+      "language": "Korean",
+      "prompt": "interruptExplanationPrompt",
+      "height": 260.0,
+      "lines": 2,
+      "overflow": false,
+      "onScreen": true,
+      "centered": true
+    },
+    {
+      "language": "Korean",
+      "prompt": "interruptTimingPrompt",
+      "height": 260.0,
+      "lines": 3,
+      "overflow": false,
+      "onScreen": true,
+      "centered": true
+    },
+    {
+      "language": "Korean",
+      "prompt": "shieldExplanationPrompt",
+      "height": 260.0,
+      "lines": 2,
+      "overflow": false,
+      "onScreen": true,
+      "centered": true
+    },
+    {
+      "language": "Korean",
+      "prompt": "shieldConceptPrompt",
+      "height": 260.0,
+      "lines": 3,
+      "overflow": false,
+      "onScreen": true,
+      "centered": true
+    },
+    {
+      "language": "English",
+      "prompt": "targetingPrompt",
+      "height": 260.0,
+      "lines": 3,
+      "overflow": false,
+      "onScreen": true,
+      "centered": true
+    },
+    {
+      "language": "English",
+      "prompt": "interruptExplanationPrompt",
+      "height": 260.0,
+      "lines": 3,
+      "overflow": false,
+      "onScreen": true,
+      "centered": true
+    },
+    {
+      "language": "English",
+      "prompt": "interruptTimingPrompt",
+      "height": 298.64,
+      "lines": 4,
+      "overflow": false,
+      "onScreen": true,
+      "centered": true
+    },
+    {
+      "language": "English",
+      "prompt": "shieldExplanationPrompt",
+      "height": 260.0,
+      "lines": 3,
+      "overflow": false,
+      "onScreen": true,
+      "centered": true
+    },
+    {
+      "language": "English",
+      "prompt": "shieldConceptPrompt",
+      "height": 260.0,
+      "lines": 3,
+      "overflow": false,
+      "onScreen": true,
+      "centered": true
+    },
+    {
+      "language": "Japanese",
+      "prompt": "targetingPrompt",
+      "height": 260.0,
+      "lines": 3,
+      "overflow": false,
+      "onScreen": true,
+      "centered": true
+    },
+    {
+      "language": "Japanese",
+      "prompt": "interruptExplanationPrompt",
+      "height": 260.0,
+      "lines": 2,
+      "overflow": false,
+      "onScreen": true,
+      "centered": true
+    },
+    {
+      "language": "Japanese",
+      "prompt": "interruptTimingPrompt",
+      "height": 260.0,
+      "lines": 3,
+      "overflow": false,
+      "onScreen": true,
+      "centered": true
+    },
+    {
+      "language": "Japanese",
+      "prompt": "shieldExplanationPrompt",
+      "height": 260.0,
+      "lines": 2,
+      "overflow": false,
+      "onScreen": true,
+      "centered": true
+    },
+    {
+      "language": "Japanese",
+      "prompt": "shieldConceptPrompt",
+      "height": 260.0,
+      "lines": 3,
+      "overflow": false,
+      "onScreen": true,
+      "centered": true
+    },
+    {
+      "language": "ChineseSimplified",
+      "prompt": "targetingPrompt",
+      "height": 260.0,
+      "lines": 2,
+      "overflow": false,
+      "onScreen": true,
+      "centered": true
+    },
+    {
+      "language": "ChineseSimplified",
+      "prompt": "interruptExplanationPrompt",
+      "height": 260.0,
+      "lines": 2,
+      "overflow": false,
+      "onScreen": true,
+      "centered": true
+    },
+    {
+      "language": "ChineseSimplified",
+      "prompt": "interruptTimingPrompt",
+      "height": 260.0,
+      "lines": 3,
+      "overflow": false,
+      "onScreen": true,
+      "centered": true
+    },
+    {
+      "language": "ChineseSimplified",
+      "prompt": "shieldExplanationPrompt",
+      "height": 260.0,
+      "lines": 2,
+      "overflow": false,
+      "onScreen": true,
+      "centered": true
+    },
+    {
+      "language": "ChineseSimplified",
+      "prompt": "shieldConceptPrompt",
+      "height": 260.0,
+      "lines": 3,
+      "overflow": false,
+      "onScreen": true,
+      "centered": true
+    },
+    {
+      "language": "Spanish",
+      "prompt": "targetingPrompt",
+      "height": 260.0,
+      "lines": 3,
+      "overflow": false,
+      "onScreen": true,
+      "centered": true
+    },
+    {
+      "language": "Spanish",
+      "prompt": "interruptExplanationPrompt",
+      "height": 260.0,
+      "lines": 3,
+      "overflow": false,
+      "onScreen": true,
+      "centered": true
+    },
+    {
+      "language": "Spanish",
+      "prompt": "interruptTimingPrompt",
+      "height": 260.0,
+      "lines": 3,
+      "overflow": false,
+      "onScreen": true,
+      "centered": true
+    },
+    {
+      "language": "Spanish",
+      "prompt": "shieldExplanationPrompt",
+      "height": 260.0,
+      "lines": 2,
+      "overflow": false,
+      "onScreen": true,
+      "centered": true
+    },
+    {
+      "language": "Spanish",
+      "prompt": "shieldConceptPrompt",
+      "height": 260.0,
+      "lines": 3,
+      "overflow": false,
+      "onScreen": true,
+      "centered": true
+    }
+  ],
+  "problems": []
+}

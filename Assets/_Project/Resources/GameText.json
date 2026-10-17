@@ -1,6 +1,27 @@
 {
   "entries": [
     {
+      "ko": "변경한 설정은 적용하면 저장되고, 취소하면 돌아갑니다.",
+      "en": "Apply saves your changes. Cancel restores them.",
+      "ja": "適用で変更を保存し、キャンセルで元に戻します。",
+      "zh": "应用保存设置，取消恢复原设置。",
+      "es": "Aplicar guarda los cambios. Cancelar los revierte."
+    },
+    {
+      "ko": "피격·기절 화면 효과",
+      "en": "Damage & stun effects",
+      "ja": "被ダメージ・気絶の画面効果",
+      "zh": "受伤与眩晕画面效果",
+      "es": "Efectos de daño y aturdimiento"
+    },
+    {
+      "ko": "화면 흔들림",
+      "en": "Screen shake",
+      "ja": "画面の揺れ",
+      "zh": "画面摇动",
+      "es": "Sacudida de pantalla"
+    },
+    {
       "ko": "기본 {0:0} · 패시브 +{1:0}",
       "en": "Base {0:0} · Passive +{1:0}",
       "ja": "基本 {0:0} · パッシブ +{1:0}",
@@ -232,11 +253,11 @@
       "es": "Escudo <b>+{0}</b>"
     },
     {
-      "ko": "캐스팅 중인 대상에게 사용\n효과 적용 때도 초록·주황\n시전 중이면 성공\n성공 경직 <b>{0:0.##}초</b>\n빨강·적 선발동: 실패, 코스트·카드 소모",
-      "en": "Use on a casting enemy\nInterrupts a green/orange cast\nif it is still casting on impact\nStagger: <b>{0:0.##}s</b>\nRed/cast finished: fails; cost and card consumed",
-      "ja": "詠唱中の敵に使用\n効果発動時も緑・オレンジの\n詠唱中なら成功\n成功時の硬直 <b>{0:0.##}秒</b>\n赤・敵の先行発動: 失敗、コスト・カード消費",
-      "zh": "对施法中的敌人使用\n生效时若绿色·橙色\n仍在施法则成功\n成功硬直 <b>{0:0.##}秒</b>\n红色·敌人先发动：失败，消耗费用和卡牌",
-      "es": "Úsala si el enemigo lanza\nInterrumpe verde/naranja\nsi sigue lanzando al impactar\nTambaleo: <b>{0:0.##} s</b>\nRojo/ya lanzado: falla; gasta coste y carta"
+      "ko": "적 캐스팅 중에만 사용{1}\n성공 시 경직 <b>{0:0.##}초</b>\n빨강·캐스팅 종료 시 실패",
+      "en": "Only usable on a casting enemy{1}\nOn success: stagger <b>{0:0.##}s</b>\nFails on red or after casting ends",
+      "ja": "敵の詠唱中のみ使用可{1}\n成功時の硬直 <b>{0:0.##}秒</b>\n赤・詠唱終了時は失敗",
+      "zh": "仅可在敌人施法时使用{1}\n成功硬直 <b>{0:0.##}秒</b>\n红色·施法结束时失败",
+      "es": "Solo durante el lanzamiento enemigo{1}\nAl acertar: tambaleo <b>{0:0.##} s</b>\nFalla en rojo o si ya terminó de lanzar"
     },
     {
       "ko": "피해 <b>{0}×{1}회</b> · 총합 피해 <b>{3}</b>\n<size=80%><alpha=#CC>적 1체·전 타격·크리티컬/방어 적용 전<alpha=#FF></size>\n적 캐스팅 중에만 사용. 피해 후 차단\n초록·주황: 경직 <b>{2:0.##}초</b>\n빨강·시전 종료: 피해만 적용",
@@ -412,6 +433,20 @@
       "ja": "{0}番 · {1}",
       "zh": "{0}号 · {1}",
       "es": "{0} · {1}"
+    },
+    {
+      "ko": "손패",
+      "en": "Hand",
+      "ja": "手札",
+      "zh": "手牌",
+      "es": "Mano"
+    },
+    {
+      "ko": "대기",
+      "en": "Queue",
+      "ja": "待機",
+      "zh": "待抽",
+      "es": "Cola"
     },
     {
       "ko": "시작 손패",
@@ -1198,11 +1233,11 @@
       "es": "Lee los lanzamientos enemigos. Elige tu ataque y tu respuesta."
     },
     {
-      "ko": "<line-height=56>Q / W / E / R 또는 카드 좌클릭\n적 좌클릭 또는 좌우 방향키\n카드에 마우스 올리기\nA 또는 우클릭 / 상단 버튼 · Esc 메뉴\nS 또는 상단 속도 버튼 (1배속 / 0.5배속)\nShift 또는 물약 아이콘 좌클릭\n전투 중 우측 상단 버튼 (게임은 멈추지 않음)",
-      "en": "<line-height=56>Q / W / E / R or left-click a card\nLeft-click an enemy or use Left/Right arrows\nHover over a card\nA or right-click / top button · Esc: menu\nS or the speed button (1× / 0.5×)\nShift or left-click the potion icon\nTop-right button during battle (does not pause)",
-      "ja": "<line-height=56>Q / W / E / R またはカードを左クリック\n敵を左クリックまたは左右方向キー\nカードにマウスを乗せる\nA または右クリック / 上部ボタン · Esc メニュー\nS または上部の速度ボタン (1倍速 / 0.5倍速)\nShift またはポーションアイコンを左クリック\n戦闘中に右上のボタン (ゲームは停止しません)",
-      "zh": "<line-height=56>Q / W / E / R 或左键点击卡牌\n左键点击敌人或左右方向键\n鼠标悬停在卡牌上\nA 或右键 / 顶部按钮 · Esc 菜单\nS 或顶部速度按钮（1倍速 / 0.5倍速）\nShift 或左键点击药水图标\n战斗中右上角按钮（游戏不会暂停）",
-      "es": "<line-height=56>Q / W / E / R o clic izquierdo en una carta\nClic izquierdo en un enemigo o flechas izquierda/derecha\nPasa el ratón sobre una carta\nA o clic derecho / botón superior · Esc: menú\nS o el botón de velocidad (1× / 0.5×)\nShift o clic izquierdo en el icono de poción\nBotón superior derecho en combate (no pausa)"
+      "ko": "<line-height=56>Q / W / E / R 또는 카드 좌클릭\n적 좌클릭 또는 좌우 방향키\n카드에 마우스 올리기\nA 또는 우클릭 / 상단 버튼 · Esc 메뉴\nS 또는 상단 속도 버튼 (1배속 / 2배속)\nShift 또는 물약 아이콘 좌클릭\n전투 중 우측 상단 버튼 (게임은 멈추지 않음)",
+      "en": "<line-height=56>Q / W / E / R or left-click a card\nLeft-click an enemy or use Left/Right arrows\nHover over a card\nA or right-click / top button · Esc: menu\nS or the speed button (1× / 2×)\nShift or left-click the potion icon\nTop-right button during battle (does not pause)",
+      "ja": "<line-height=56>Q / W / E / R またはカードを左クリック\n敵を左クリックまたは左右方向キー\nカードにマウスを乗せる\nA または右クリック / 上部ボタン · Esc メニュー\nS または上部の速度ボタン (1倍速 / 2倍速)\nShift またはポーションアイコンを左クリック\n戦闘中に右上のボタン (ゲームは停止しません)",
+      "zh": "<line-height=56>Q / W / E / R 或左键点击卡牌\n左键点击敌人或左右方向键\n鼠标悬停在卡牌上\nA 或右键 / 顶部按钮 · Esc 菜单\nS 或顶部速度按钮（1倍速 / 2倍速）\nShift 或左键点击药水图标\n战斗中右上角按钮（游戏不会暂停）",
+      "es": "<line-height=56>Q / W / E / R o clic izquierdo en una carta\nClic izquierdo en un enemigo o flechas izquierda/derecha\nPasa el ratón sobre una carta\nA o clic derecho / botón superior · Esc: menú\nS o el botón de velocidad (1× / 2×)\nShift o clic izquierdo en el icono de poción\nBotón superior derecho en combate (no pausa)"
     },
     {
       "ko": "전체 사운드",
@@ -1275,11 +1310,11 @@
       "es": "Coste inicial"
     },
     {
-      "ko": "카드 사용   Q / W / E / R 또는 카드 좌클릭\n대상 선택   적 좌클릭 또는 좌우 방향키\n카드 정보   카드에 마우스 올리기\n일시정지   카드 우클릭 또는 상단 정지 버튼\n배속 변경   상단 속도 버튼 (1배 / 0.5배)",
-      "en": "Use card   Q / W / E / R or left-click a card\nSelect target   Left-click an enemy or Left/Right arrows\nCard info   Hover over a card\nPause   Right-click a card or the pause button\nSpeed   Top speed button (1× / 0.5×)",
-      "ja": "カード使用   Q / W / E / R またはカードを左クリック\nターゲット選択   敵を左クリックまたは左右方向キー\nカード情報   カードにマウスを乗せる\n一時停止   カードを右クリックまたは上部の停止ボタン\n倍速変更   上部の速度ボタン (1倍 / 0.5倍)",
-      "zh": "使用卡牌   Q / W / E / R 或左键点击卡牌\n选择目标   左键点击敌人或左右方向键\n卡牌信息   鼠标悬停在卡牌上\n暂停   右键点击卡牌或顶部暂停按钮\n切换倍速   顶部速度按钮（1倍 / 0.5倍）",
-      "es": "Usar carta   Q / W / E / R o clic izquierdo en una carta\nElegir objetivo   Clic izquierdo en un enemigo o flechas izquierda/derecha\nDetalles de carta   Pasa el ratón sobre una carta\nPausa   Clic derecho en una carta o botón de pausa\nVelocidad   Botón de velocidad superior (1× / 0.5×)"
+      "ko": "카드 사용   Q / W / E / R 또는 카드 좌클릭\n대상 선택   적 좌클릭 또는 좌우 방향키\n카드 정보   카드에 마우스 올리기\n일시정지   카드 우클릭 또는 상단 정지 버튼\n배속 변경   상단 속도 버튼 (1배 / 2배)",
+      "en": "Use card   Q / W / E / R or left-click a card\nSelect target   Left-click an enemy or Left/Right arrows\nCard info   Hover over a card\nPause   Right-click a card or the pause button\nSpeed   Top speed button (1× / 2×)",
+      "ja": "カード使用   Q / W / E / R またはカードを左クリック\nターゲット選択   敵を左クリックまたは左右方向キー\nカード情報   カードにマウスを乗せる\n一時停止   カードを右クリックまたは上部の停止ボタン\n倍速変更   上部の速度ボタン (1倍 / 2倍)",
+      "zh": "使用卡牌   Q / W / E / R 或左键点击卡牌\n选择目标   左键点击敌人或左右方向键\n卡牌信息   鼠标悬停在卡牌上\n暂停   右键点击卡牌或顶部暂停按钮\n切换倍速   顶部速度按钮（1倍 / 2倍）",
+      "es": "Usar carta   Q / W / E / R o clic izquierdo en una carta\nElegir objetivo   Clic izquierdo en un enemigo o flechas izquierda/derecha\nDetalles de carta   Pasa el ratón sobre una carta\nPausa   Clic derecho en una carta o botón de pausa\nVelocidad   Botón de velocidad superior (1× / 2×)"
     },
     {
       "ko": "게임 초기화",
@@ -1311,7 +1346,7 @@
     },
     {
       "ko": "보상 다시 선택",
-      "en": "Choose Reward Again",
+      "en": "Reselect Reward",
       "ja": "報酬を選び直す",
       "zh": "重新选择奖励",
       "es": "Elegir de nuevo"
@@ -1695,18 +1730,18 @@
       "es": "Pergamino del diablo"
     },
     {
-      "ko": "피해 <b>{0}×{1}회</b> · 총합 피해 <b>{6}</b>\n<size=80%><alpha=#CC>적 1체·전 타격·크리티컬/방어 적용 전<alpha=#FF></size>\n첫 타격 {2:0.##}초 / 간격 {3:0.##}초\n타격 후 남은 잠금 {4:0.##}초\n{5}",
-      "en": "Damage <b>{0} × {1} hits</b> · Total <b>{6}</b>\n<size=80%><alpha=#CC>Per enemy · All hits · Before crit/defense<alpha=#FF></size>\nFirst hit {2:0.##}s · Every {3:0.##}s\nFinal-hit lock {4:0.##}s\n{5}",
-      "ja": "ダメージ <b>{0}×{1}回</b> · 合計ダメージ <b>{6}</b>\n<size=80%><alpha=#CC>敵1体・全ヒット・クリティカル/防御適用前<alpha=#FF></size>\n初撃 {2:0.##}秒 / 間隔 {3:0.##}秒\nヒット後の残りロック {4:0.##}秒\n{5}",
-      "zh": "伤害 <b>{0}×{1}次</b> · 总伤害 <b>{6}</b>\n<size=80%><alpha=#CC>单个敌人·全部命中·暴击/防御计算前<alpha=#FF></size>\n首次命中 {2:0.##}秒 / 间隔 {3:0.##}秒\n命中后剩余锁定 {4:0.##}秒\n{5}",
-      "es": "Daño <b>{0}×{1} golpes</b> · Total <b>{6}</b>\n<size=80%><alpha=#CC>Por enemigo · Todos los golpes · Sin crítico/defensa<alpha=#FF></size>\nPrimer golpe {2:0.##} s · Cada {3:0.##} s\nBloqueo final {4:0.##} s\n{5}"
+      "ko": "피해 <b>{0}×{1}회</b> · 총합 피해 <b>{2}</b>\n<size=80%><alpha=#CC>적 1체·전 타격·크리티컬/방어 적용 전<alpha=#FF></size>\n{3}",
+      "en": "Damage <b>{0} × {1} hits</b> · Total <b>{2}</b>\n<size=80%><alpha=#CC>Per enemy · All hits · Before crit/defense<alpha=#FF></size>\n{3}",
+      "ja": "ダメージ <b>{0}×{1}回</b> · 合計ダメージ <b>{2}</b>\n<size=80%><alpha=#CC>敵1体・全ヒット・クリティカル/防御適用前<alpha=#FF></size>\n{3}",
+      "zh": "伤害 <b>{0}×{1}次</b> · 总伤害 <b>{2}</b>\n<size=80%><alpha=#CC>单个敌人·全部命中·暴击/防御计算前<alpha=#FF></size>\n{3}",
+      "es": "Daño <b>{0}×{1} golpes</b> · Total <b>{2}</b>\n<size=80%><alpha=#CC>Por enemigo · Todos los golpes · Sin crítico/defensa<alpha=#FF></size>\n{3}"
     },
     {
-      "ko": "입력 대상 고정. 사망 시 후딜 {0:0.##}초",
-      "en": "Target locked; death recovery {0:0.##}s",
-      "ja": "入力時のターゲットに固定。死亡時の後隙 {0:0.##}秒",
-      "zh": "目标锁定。目标死亡时后摇 {0:0.##}秒",
-      "es": "Objetivo fijo; si muere, recuperación {0:0.##} s"
+      "ko": "입력 대상 고정",
+      "en": "Target locked",
+      "ja": "入力時のターゲットに固定",
+      "zh": "目标锁定",
+      "es": "Objetivo fijo"
     },
     {
       "ko": "매 타격 시 생존 적 전체",
@@ -1717,7 +1752,7 @@
     },
     {
       "ko": "즉시 무적·기절 면역\n채널링 동안 HP·방어도 피해 무효화\n다른 카드 사용 불가\n종료 시 모두 해제\n이미 기절 중이면 사용 불가",
-      "en": "Immediate invulnerability and stun immunity\nPrevents HP and Shield damage while channeling\nCannot use other cards\nAll effects end when channeling ends\nCannot use while already stunned",
+      "en": "Instant invulnerability and stun immunity\nNo HP or Shield loss while channeling\nCannot use other cards\nEffects end with channeling\nCannot use while already stunned",
       "ja": "即座に無敵・気絶無効\nチャネリング中はHP・シールドへのダメージ無効\n他のカード使用不可\n終了時にすべて解除\nすでに気絶中なら使用不可",
       "zh": "立即无敌·眩晕免疫\n引导期间HP·护盾伤害无效\n无法使用其他卡牌\n结束时全部解除\n已处于眩晕时无法使用",
       "es": "Invulnerable e inmune al aturdimiento al instante\nAnula el daño a HP y escudo al canalizar\nNo puedes usar otras cartas\nTodos los efectos acaban al terminar\nNo se puede usar durante un aturdimiento"
@@ -2682,11 +2717,144 @@
       "es": "Mantén Space y pulsa Q para consultar Bola de fuego.\nMientras mantengas Space, no usarás habilidades."
     },
     {
-      "ko": "<line-height=56>Q / W / E / R 또는 카드 좌클릭\n적 좌클릭 또는 좌우 방향키\nSpace 누른 채 Q/W/E/R 또는 카드에 마우스 올리기\nA 또는 우클릭 / 상단 버튼 · Esc 메뉴\nS 또는 상단 속도 버튼 (1배속 / 0.5배속)\nShift 또는 물약 아이콘 좌클릭\n전투 중 우측 상단 버튼 (게임은 멈추지 않음)",
-      "en": "<line-height=56>Q / W / E / R or left-click a card\nLeft-click an enemy or use Left/Right arrows\nHold Space + Q/W/E/R, or hover over a card\nA or right-click / top button · Esc: menu\nS or the speed button (1× / 0.5×)\nShift or left-click the potion icon\nTop-right button during battle (does not pause)",
-      "ja": "<line-height=56>Q / W / E / R またはカードを左クリック\n敵を左クリックまたは左右方向キー\nSpaceを押しながらQ/W/E/R、またはカードにマウスを乗せる\nA または右クリック / 上部ボタン · Esc メニュー\nS または上部の速度ボタン (1倍速 / 0.5倍速)\nShift またはポーションアイコンを左クリック\n戦闘中に右上のボタン (ゲームは停止しません)",
-      "zh": "<line-height=56>Q / W / E / R 或左键点击卡牌\n左键点击敌人或左右方向键\n按住Space再按Q/W/E/R，或将鼠标悬停在卡牌上\nA 或右键 / 顶部按钮 · Esc 菜单\nS 或顶部速度按钮（1倍速 / 0.5倍速）\nShift 或左键点击药水图标\n战斗中右上角按钮（游戏不会暂停）",
-      "es": "<line-height=56>Q / W / E / R o clic izquierdo en una carta\nClic izquierdo en un enemigo o flechas izquierda/derecha\nMantén Space y pulsa Q/W/E/R, o pasa el ratón por la carta\nA o clic derecho / botón superior · Esc: menú\nS o el botón de velocidad (1× / 0.5×)\nShift o clic izquierdo en el icono de poción\nBotón superior derecho en combate (no pausa)"
+      "ko": "<line-height=56>Q / W / E / R 또는 카드 좌클릭\n적 좌클릭 또는 좌우 방향키\nSpace 누른 채 Q/W/E/R 또는 카드에 마우스 올리기\nA 또는 우클릭 / 상단 버튼 · Esc 메뉴\nS 또는 상단 속도 버튼 (1배속 / 2배속)\nShift 또는 물약 아이콘 좌클릭\n전투 중 우측 상단 버튼 (게임은 멈추지 않음)",
+      "en": "<line-height=56>Q / W / E / R or left-click a card\nLeft-click an enemy or use Left/Right arrows\nHold Space + Q/W/E/R, or hover over a card\nA or right-click / top button · Esc: menu\nS or the speed button (1× / 2×)\nShift or left-click the potion icon\nTop-right button during battle (does not pause)",
+      "ja": "<line-height=56>Q / W / E / R またはカードを左クリック\n敵を左クリックまたは左右方向キー\nSpaceを押しながらQ/W/E/R、またはカードにマウスを乗せる\nA または右クリック / 上部ボタン · Esc メニュー\nS または上部の速度ボタン (1倍速 / 2倍速)\nShift またはポーションアイコンを左クリック\n戦闘中に右上のボタン (ゲームは停止しません)",
+      "zh": "<line-height=56>Q / W / E / R 或左键点击卡牌\n左键点击敌人或左右方向键\n按住Space再按Q/W/E/R，或将鼠标悬停在卡牌上\nA 或右键 / 顶部按钮 · Esc 菜单\nS 或顶部速度按钮（1倍速 / 2倍速）\nShift 或左键点击药水图标\n战斗中右上角按钮（游戏不会暂停）",
+      "es": "<line-height=56>Q / W / E / R o clic izquierdo en una carta\nClic izquierdo en un enemigo o flechas izquierda/derecha\nMantén Space y pulsa Q/W/E/R, o pasa el ratón por la carta\nA o clic derecho / botón superior · Esc: menú\nS o el botón de velocidad (1× / 2×)\nShift o clic izquierdo en el icono de poción\nBotón superior derecho en combate (no pausa)"
+    },
+    {
+      "ko": "총합 피해 <b>{0}</b>",
+      "en": "Total <b>{0}</b>",
+      "ja": "合計ダメージ <b>{0}</b>",
+      "zh": "总伤害 <b>{0}</b>",
+      "es": "Total <b>{0}</b>"
+    },
+    {
+      "ko": "이 표시는 현재 타겟팅한 적을 보여줍니다.\n적이 여러 명이면 좌우 방향키 또는 다른 적 클릭으로 타겟을 바꿀 수 있습니다.",
+      "en": "This marker shows your current target.\nWhen facing multiple enemies, use Left/Right arrows or click another enemy to change targets.",
+      "ja": "このマーカーは現在のターゲットを示します。\n敵が2体以上いるときは、左右キーか他の敵をクリックして切り替えられます。",
+      "zh": "此标记表示当前目标。\n有多个敌人时，可用左右方向键或点击其他敌人切换目标。",
+      "es": "Este marcador indica tu objetivo actual.\nSi hay varios enemigos, usa las flechas izquierda/derecha o haz clic en otro enemigo para cambiar de objetivo."
+    },
+    {
+      "ko": "주황색 공격은 기절을 일으킵니다.\n발동 전에 차단하면 공격을 취소하고 적을 2.7초 동안 경직시킵니다.",
+      "en": "Orange attacks stun you.\nInterrupt before the attack activates to cancel it and stagger the enemy for 2.7 seconds.",
+      "ja": "オレンジ色の攻撃は気絶を引き起こします。\n発動前に妨害すると攻撃を止めし、敵を2.7秒間硬直させます。",
+      "zh": "橙色攻击会使你眩晕。\n在攻击发动前打断，可取消攻击并使敌人硬直2.7秒。",
+      "es": "Los ataques naranjas te aturden.\nInterrúmpelos antes de que se activen para cancelar el ataque y dejar al enemigo tambaleándose durante 2.7 segundos."
+    },
+    {
+      "ko": "공격 발동 직전에 차단하면\n적이 시전에 쓴 시간까지 최대한 벌 수 있습니다.\n침묵도 시전에 0.2초가 필요하니 너무 늦게 누르지 마세요.",
+      "en": "Interrupt just before the attack activates\nto gain as much time as possible from the enemy's casting.\nSilence also takes 0.2 seconds to cast, so do not press it too late.",
+      "ja": "攻撃が発動する直前に妨害すれば、\n敵が詠唱に使った時間も最大限に利用できます。\n沈黙の詠唱にも0.2秒かかるので、遅すぎないように使いましょう。",
+      "zh": "在攻击即将发动前打断，\n能最大限度地利用敌人已经花费的施法时间。\n沉默也需要0.2秒施法，请不要按得太晚。",
+      "es": "Interrumpe justo antes de que se active el ataque\npara aprovechar al máximo el tiempo que el enemigo dedica a lanzarlo.\nSilencio tarda 0.2 segundos en lanzarse: no lo pulses demasiado tarde."
+    },
+    {
+      "ko": "빨간색 공격은 차단할 수 없습니다.\n맞는 순간 방어도가 남아 있으면 피해가 절반으로 줄어듭니다.",
+      "en": "Red attacks cannot be interrupted.\nIf you have any Shield when the attack hits, its damage is halved.",
+      "ja": "赤色の攻撃は妨害できません。\n攻撃を受ける瞬間にシールドが残っていれば、ダメージが半分になります。",
+      "zh": "红色攻击无法打断。\n受到攻击时若仍有护盾，伤害减半。",
+      "es": "Los ataques rojos no se pueden interrumpir.\nSi te queda Escudo al recibir el golpe, el daño se reduce a la mitad."
+    },
+    {
+      "ko": "방어도는 미리 쌓아둘 수 있으며, 여러 번 사용하면 누적됩니다.\n피해를 받으면 체력보다 방어도가 먼저 줄어듭니다.\n남은 방어도는 전투가 끝나면 사라집니다.",
+      "en": "You can build up Shield in advance; repeated uses stack.\nDamage reduces Shield before HP.\nAny remaining Shield is lost when combat ends.",
+      "ja": "シールドは事前にためられ、何度も使うと加算されます。\nダメージを受けると、HPより先にシールドが減ります。\n残ったシールドは戦闘終了時に消えます。",
+      "zh": "护盾可以事先积累，多次使用会叠加。\n受到伤害时，先消耗护盾，再消耗生命。\n战斗结束时，剩余护盾会消失。",
+      "es": "Puedes acumular Escudo de antemano; sus usos se suman.\nEl daño reduce el Escudo antes que los PV.\nEl Escudo restante desaparece al terminar el combate."
+    },
+    {
+      "ko": "성공 시 경직 <b>{0:0.##}초</b>",
+      "en": "On success: stagger <b>{0:0.##}s</b>",
+      "ja": "成功時の硬直 <b>{0:0.##}秒</b>",
+      "zh": "成功硬直 <b>{0:0.##}秒</b>",
+      "es": "Al acertar: tambaleo <b>{0:0.##} s</b>"
+    },
+    {
+      "ko": "경직 <b>{0:0.##}초</b>",
+      "en": "stagger <b>{0:0.##}s</b>",
+      "ja": "硬直 <b>{0:0.##}秒</b>",
+      "zh": "硬直 <b>{0:0.##}秒</b>",
+      "es": "tambaleo <b>{0:0.##} s</b>"
+    },
+    {
+      "ko": "피해 후 차단",
+      "en": "Damage, then interrupt",
+      "ja": "ダメージ後に妨害",
+      "zh": "造成伤害后打断",
+      "es": "Daña y luego interrumpe"
+    },
+    {
+      "ko": "즉시 무적·기절 면역",
+      "en": "Instant invulnerability and stun immunity",
+      "ja": "即座に無敵・気絶無効",
+      "zh": "立即无敌·眩晕免疫",
+      "es": "Invulnerable e inmune al aturdimiento al instante"
+    },
+    {
+      "ko": "<size=260%><b><color=#D56B75>패배</color></b></size>\n<size=50%> </size>\n모험가가 쓰러졌습니다.\n이번 도전은 종료되었습니다.\n<size=50%> </size>\n계승을 마치면 처음부터 다시 도전합니다.",
+      "en": "<size=260%><b><color=#D56B75>DEFEAT</color></b></size>\n<size=50%> </size>\nThe adventurer has fallen.\nThis run has ended.\n<size=50%> </size>\nChoose an inheritance, then try again from the beginning.",
+      "ja": "<size=260%><b><color=#D56B75>敗北</color></b></size>\n<size=50%> </size>\n冒険者は倒れました。\n今回の挑戦は終了です。\n<size=50%> </size>\n継承を終えると、最初から再挑戦できます。",
+      "zh": "<size=260%><b><color=#D56B75>失败</color></b></size>\n<size=50%> </size>\n冒险者倒下了。\n本次挑战已结束。\n<size=50%> </size>\n完成继承后，从头开始再次挑战。",
+      "es": "<size=260%><b><color=#D56B75>DERROTA</color></b></size>\n<size=50%> </size>\nEl aventurero ha caído.\nEsta partida ha terminado.\n<size=50%> </size>\nElige tu legado y vuelve a intentarlo desde el principio."
+    },
+    {
+      "ko": "<size=260%><b><color=#D56B75>패배</color></b></size>\n<size=50%> </size>\n모험가가 쓰러졌습니다.\n이번 도전은 종료되었습니다.\n<size=50%> </size>\n처음부터 다시 도전합니다.",
+      "en": "<size=260%><b><color=#D56B75>DEFEAT</color></b></size>\n<size=50%> </size>\nThe adventurer has fallen.\nThis run has ended.\n<size=50%> </size>\nTry again from the beginning.",
+      "ja": "<size=260%><b><color=#D56B75>敗北</color></b></size>\n<size=50%> </size>\n冒険者は倒れました。\n今回の挑戦は終了です。\n<size=50%> </size>\n最初から再挑戦できます。",
+      "zh": "<size=260%><b><color=#D56B75>失败</color></b></size>\n<size=50%> </size>\n冒险者倒下了。\n本次挑战已结束。\n<size=50%> </size>\n从头开始再次挑战。",
+      "es": "<size=260%><b><color=#D56B75>DERROTA</color></b></size>\n<size=50%> </size>\nEl aventurero ha caído.\nEsta partida ha terminado.\n<size=50%> </size>\nVuelve a intentarlo desde el principio."
+    },
+    {
+      "ko": "다시 도전",
+      "en": "Try Again",
+      "ja": "再挑戦",
+      "zh": "再次挑战",
+      "es": "Reintentar"
+    },
+    {
+      "ko": "다시 도전 준비",
+      "en": "Prepare to Retry",
+      "ja": "再挑戦の準備",
+      "zh": "准备再次挑战",
+      "es": "Preparar otro intento"
+    },
+    {
+      "ko": "이미 본 전투 대화 건너뛰기",
+      "en": "Skip battle dialogue already seen",
+      "ja": "読んだ戦闘会話をスキップ",
+      "zh": "跳过已看过的战斗对话",
+      "es": "Omitir diálogos de combate ya vistos"
+    },
+    {
+      "ko": "획득할 스킬",
+      "en": "Skill to Gain",
+      "ja": "獲得するスキル",
+      "zh": "将获得的技能",
+      "es": "Habilidad nueva"
+    },
+    {
+      "ko": "교체할 기존 카드",
+      "en": "Card to Replace",
+      "ja": "交換するカード",
+      "zh": "要替换的卡牌",
+      "es": "Carta a sustituir"
+    },
+    {
+      "ko": "스테이지의 맨 처음부터 다시 시작합니다.",
+      "en": "You will restart from the beginning of the stage.",
+      "ja": "ステージの最初から再開します。",
+      "zh": "将从关卡的起点重新开始。",
+      "es": "Volverás al principio de la etapa."
+    },
+    {
+      "ko": "첫 재도전을 시작하면 변경할 수 있습니다.",
+      "en": "Available after you start your first retry.",
+      "ja": "初めて再挑戦を開始すると変更できます。",
+      "zh": "开始首次重新挑战后即可更改。",
+      "es": "Disponible al iniciar tu primer reintento."
     }
   ]
 }

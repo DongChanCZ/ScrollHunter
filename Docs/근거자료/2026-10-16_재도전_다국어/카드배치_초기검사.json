@@ -1,0 +1,320 @@
+{
+  "checks": 1330,
+  "issues": [
+    {
+      "lang": "English",
+      "context": "Skill_SK05_LightningSpear/0/name",
+      "text": "Lightning Spear",
+      "width": 306.0,
+      "height": 44.0,
+      "renderWidth": 308.1433,
+      "renderHeight": 31.6499977
+    },
+    {
+      "lang": "English",
+      "context": "Skill_SK05_LightningSpear/1/name",
+      "text": "Lightning Spear",
+      "width": 306.0,
+      "height": 44.0,
+      "renderWidth": 308.1433,
+      "renderHeight": 31.6499977
+    },
+    {
+      "lang": "English",
+      "context": "Skill_SK14_Sanctuary/1/detail",
+      "text": "<color=#91CFFF>Immediate invulnerability and stun immunity</color>\n<line-height=12> \n</line-height>Prevents HP and Shield damage while channeling\nCannot use other cards\nAll effects end when channeling ends\nCannot use while already stunned",
+      "width": 306.0,
+      "height": 142.0,
+      "renderWidth": 291.1712,
+      "renderHeight": 146.784
+    },
+    {
+      "lang": "Japanese",
+      "context": "Skill_SK02_IceArrow/0/info",
+      "text": "<color=#FFB38A>攻撃</color><alpha=#CC> · <alpha=#FF><color=#E3E7ED>敵1体</color>\n<alpha=#CC>コスト <alpha=#FF><b>5</b><alpha=#CC>   ·   チャネリング <alpha=#FF><b>2.8秒</b>",
+      "width": 306.0,
+      "height": 50.0,
+      "renderWidth": 307.1443,
+      "renderHeight": 43.368
+    },
+    {
+      "lang": "Japanese",
+      "context": "Skill_SK02_IceArrow/1/info",
+      "text": "<color=#FFB38A>攻撃</color><alpha=#CC> · <alpha=#FF><color=#E3E7ED>敵1体</color>\n<alpha=#CC>コスト <alpha=#FF><b>5</b><alpha=#CC>   ·   チャネリング <alpha=#FF><b>2.8秒</b>",
+      "width": 306.0,
+      "height": 50.0,
+      "renderWidth": 307.1443,
+      "renderHeight": 43.368
+    },
+    {
+      "lang": "Japanese",
+      "context": "Skill_SK05_LightningSpear/0/name",
+      "text": "ライトニングスピア",
+      "width": 306.0,
+      "height": 44.0,
+      "renderWidth": 308.16,
+      "renderHeight": 32.0
+    },
+    {
+      "lang": "Japanese",
+      "context": "Skill_SK05_LightningSpear/1/name",
+      "text": "ライトニングスピア",
+      "width": 306.0,
+      "height": 44.0,
+      "renderWidth": 308.16,
+      "renderHeight": 32.0
+    },
+    {
+      "lang": "Japanese",
+      "context": "Skill_SK06_MagicSpark/0/info",
+      "text": "<color=#FFB38A>攻撃</color><alpha=#CC> · <alpha=#FF><color=#F2D06B>敵全体</color>\n<alpha=#CC>コスト <alpha=#FF><b>3</b><alpha=#CC>   ·   チャネリング <alpha=#FF><b>2.2秒</b>",
+      "width": 306.0,
+      "height": 50.0,
+      "renderWidth": 307.1443,
+      "renderHeight": 43.368
+    },
+    {
+      "lang": "Japanese",
+      "context": "Skill_SK06_MagicSpark/1/info",
+      "text": "<color=#FFB38A>攻撃</color><alpha=#CC> · <alpha=#FF><color=#F2D06B>敵全体</color>\n<alpha=#CC>コスト <alpha=#FF><b>3</b><alpha=#CC>   ·   チャネリング <alpha=#FF><b>2.2秒</b>",
+      "width": 306.0,
+      "height": 50.0,
+      "renderWidth": 307.1443,
+      "renderHeight": 43.368
+    },
+    {
+      "lang": "Japanese",
+      "context": "Skill_SK07_MagicImpact/0/name",
+      "text": "マジックインパクト",
+      "width": 306.0,
+      "height": 44.0,
+      "renderWidth": 308.16,
+      "renderHeight": 32.0
+    },
+    {
+      "lang": "Japanese",
+      "context": "Skill_SK07_MagicImpact/1/name",
+      "text": "マジックインパクト",
+      "width": 306.0,
+      "height": 44.0,
+      "renderWidth": 308.16,
+      "renderHeight": 32.0
+    },
+    {
+      "lang": "Japanese",
+      "context": "Skill_SK10_DarkEruption/0/name",
+      "text": "ダークイラプション",
+      "width": 306.0,
+      "height": 44.0,
+      "renderWidth": 308.16,
+      "renderHeight": 32.0
+    },
+    {
+      "lang": "Japanese",
+      "context": "Skill_SK10_DarkEruption/1/name",
+      "text": "ダークイラプション",
+      "width": 306.0,
+      "height": 44.0,
+      "renderWidth": 308.16,
+      "renderHeight": 32.0
+    },
+    {
+      "lang": "Japanese",
+      "context": "Skill_SK14_Sanctuary/0/info",
+      "text": "<color=#91CFFF>防御</color><alpha=#CC> · <alpha=#FF>自分\n<alpha=#CC>コスト <alpha=#FF><b>5</b><alpha=#CC>   ·   チャネリング <alpha=#FF><b>2.5秒</b>",
+      "width": 306.0,
+      "height": 50.0,
+      "renderWidth": 307.1443,
+      "renderHeight": 43.368
+    },
+    {
+      "lang": "Japanese",
+      "context": "Skill_SK14_Sanctuary/1/info",
+      "text": "<color=#91CFFF>防御</color><alpha=#CC> · <alpha=#FF>自分\n<alpha=#CC>コスト <alpha=#FF><b>5</b><alpha=#CC>   ·   チャネリング <alpha=#FF><b>2.5秒</b>",
+      "width": 306.0,
+      "height": 50.0,
+      "renderWidth": 307.1443,
+      "renderHeight": 43.368
+    },
+    {
+      "lang": "Spanish",
+      "context": "Skill_CrystalShield/0/name",
+      "text": "Armadura mágica",
+      "width": 306.0,
+      "height": 44.0,
+      "renderWidth": 307.9603,
+      "renderHeight": 32.3000031
+    },
+    {
+      "lang": "Spanish",
+      "context": "Skill_CrystalShield/0/info",
+      "text": "<color=#91CFFF>Escudo</color><alpha=#CC> · <alpha=#FF>Uno mismo\n<alpha=#CC>Coste <alpha=#FF><b>3</b><alpha=#CC>   ·   Lanzamiento <alpha=#FF><b>0.2 s</b>",
+      "width": 306.0,
+      "height": 50.0,
+      "renderWidth": 307.355927,
+      "renderHeight": 44.2000046
+    },
+    {
+      "lang": "Spanish",
+      "context": "Skill_CrystalShield/1/name",
+      "text": "Armadura mágica",
+      "width": 306.0,
+      "height": 44.0,
+      "renderWidth": 307.9603,
+      "renderHeight": 32.3000031
+    },
+    {
+      "lang": "Spanish",
+      "context": "Skill_CrystalShield/1/info",
+      "text": "<color=#91CFFF>Escudo</color><alpha=#CC> · <alpha=#FF>Uno mismo\n<alpha=#CC>Coste <alpha=#FF><b>3</b><alpha=#CC>   ·   Lanzamiento <alpha=#FF><b>0.2 s</b>",
+      "width": 306.0,
+      "height": 50.0,
+      "renderWidth": 307.355927,
+      "renderHeight": 44.2000046
+    },
+    {
+      "lang": "Spanish",
+      "context": "Skill_Silence/0/info",
+      "text": "<color=#C6AAFF>Interrupción</color><alpha=#CC> · <alpha=#FF><color=#E3E7ED>Un enemigo</color>\n<alpha=#CC>Coste <alpha=#FF><b>2</b><alpha=#CC>   ·   Lanzamiento <alpha=#FF><b>0.2 s</b>",
+      "width": 306.0,
+      "height": 50.0,
+      "renderWidth": 307.355927,
+      "renderHeight": 44.2000046
+    },
+    {
+      "lang": "Spanish",
+      "context": "Skill_Silence/1/info",
+      "text": "<color=#C6AAFF>Interrupción</color><alpha=#CC> · <alpha=#FF><color=#E3E7ED>Un enemigo</color>\n<alpha=#CC>Coste <alpha=#FF><b>2</b><alpha=#CC>   ·   Lanzamiento <alpha=#FF><b>0.2 s</b>",
+      "width": 306.0,
+      "height": 50.0,
+      "renderWidth": 307.355927,
+      "renderHeight": 44.2000046
+    },
+    {
+      "lang": "Spanish",
+      "context": "Skill_SK02_IceArrow/0/info",
+      "text": "<color=#FFB38A>Ataque</color><alpha=#CC> · <alpha=#FF><color=#E3E7ED>Un enemigo</color>\n<alpha=#CC>Coste <alpha=#FF><b>5</b><alpha=#CC>   ·   Canalización <alpha=#FF><b>2.8 s</b>",
+      "width": 306.0,
+      "height": 50.0,
+      "renderWidth": 307.262146,
+      "renderHeight": 44.6160049
+    },
+    {
+      "lang": "Spanish",
+      "context": "Skill_SK02_IceArrow/1/info",
+      "text": "<color=#FFB38A>Ataque</color><alpha=#CC> · <alpha=#FF><color=#E3E7ED>Un enemigo</color>\n<alpha=#CC>Coste <alpha=#FF><b>5</b><alpha=#CC>   ·   Canalización <alpha=#FF><b>2.8 s</b>",
+      "width": 306.0,
+      "height": 50.0,
+      "renderWidth": 307.262146,
+      "renderHeight": 44.6160049
+    },
+    {
+      "lang": "Spanish",
+      "context": "Skill_SK05_LightningSpear/0/info",
+      "text": "<color=#FFB38A>Ataque</color><alpha=#CC> · <alpha=#FF><color=#E3E7ED>Un enemigo</color>\n<alpha=#CC>Coste <alpha=#FF><b>4</b><alpha=#CC>   ·   Lanzamiento <alpha=#FF><b>0.8 s</b>",
+      "width": 306.0,
+      "height": 50.0,
+      "renderWidth": 307.355927,
+      "renderHeight": 44.2000046
+    },
+    {
+      "lang": "Spanish",
+      "context": "Skill_SK05_LightningSpear/1/info",
+      "text": "<color=#FFB38A>Ataque</color><alpha=#CC> · <alpha=#FF><color=#E3E7ED>Un enemigo</color>\n<alpha=#CC>Coste <alpha=#FF><b>4</b><alpha=#CC>   ·   Lanzamiento <alpha=#FF><b>0.8 s</b>",
+      "width": 306.0,
+      "height": 50.0,
+      "renderWidth": 307.355927,
+      "renderHeight": 44.2000046
+    },
+    {
+      "lang": "Spanish",
+      "context": "Skill_SK06_MagicSpark/0/info",
+      "text": "<color=#FFB38A>Ataque</color><alpha=#CC> · <alpha=#FF><color=#F2D06B>Todos los enemigos</color>\n<alpha=#CC>Coste <alpha=#FF><b>3</b><alpha=#CC>   ·   Canalización <alpha=#FF><b>2.2 s</b>",
+      "width": 306.0,
+      "height": 50.0,
+      "renderWidth": 307.262146,
+      "renderHeight": 44.6160049
+    },
+    {
+      "lang": "Spanish",
+      "context": "Skill_SK06_MagicSpark/1/info",
+      "text": "<color=#FFB38A>Ataque</color><alpha=#CC> · <alpha=#FF><color=#F2D06B>Todos los enemigos</color>\n<alpha=#CC>Coste <alpha=#FF><b>3</b><alpha=#CC>   ·   Canalización <alpha=#FF><b>2.2 s</b>",
+      "width": 306.0,
+      "height": 50.0,
+      "renderWidth": 307.262146,
+      "renderHeight": 44.6160049
+    },
+    {
+      "lang": "Spanish",
+      "context": "Skill_SK08_Judgment/0/info",
+      "text": "<color=#FFB38A>Ataque</color><alpha=#CC> · <alpha=#FF><color=#E3E7ED>Un enemigo</color>\n<alpha=#CC>Coste <alpha=#FF><b>7</b><alpha=#CC>   ·   Lanzamiento <alpha=#FF><b>2.75 s</b>",
+      "width": 306.0,
+      "height": 50.0,
+      "renderWidth": 307.363129,
+      "renderHeight": 42.3280029
+    },
+    {
+      "lang": "Spanish",
+      "context": "Skill_SK08_Judgment/1/info",
+      "text": "<color=#FFB38A>Ataque</color><alpha=#CC> · <alpha=#FF><color=#E3E7ED>Un enemigo</color>\n<alpha=#CC>Coste <alpha=#FF><b>7</b><alpha=#CC>   ·   Lanzamiento <alpha=#FF><b>2.75 s</b>",
+      "width": 306.0,
+      "height": 50.0,
+      "renderWidth": 307.363129,
+      "renderHeight": 42.3280029
+    },
+    {
+      "lang": "Spanish",
+      "context": "Skill_SK10_DarkEruption/0/info",
+      "text": "<color=#FFB38A>Ataque</color><alpha=#CC> · <alpha=#FF><color=#F2D06B>Todos los enemigos</color>\n<alpha=#CC>Coste <alpha=#FF><b>2</b><alpha=#CC>   ·   Lanzamiento <alpha=#FF><b>0.5 s</b>",
+      "width": 306.0,
+      "height": 50.0,
+      "renderWidth": 307.355927,
+      "renderHeight": 44.2000046
+    },
+    {
+      "lang": "Spanish",
+      "context": "Skill_SK10_DarkEruption/1/info",
+      "text": "<color=#FFB38A>Ataque</color><alpha=#CC> · <alpha=#FF><color=#F2D06B>Todos los enemigos</color>\n<alpha=#CC>Coste <alpha=#FF><b>2</b><alpha=#CC>   ·   Lanzamiento <alpha=#FF><b>0.5 s</b>",
+      "width": 306.0,
+      "height": 50.0,
+      "renderWidth": 307.355927,
+      "renderHeight": 44.2000046
+    },
+    {
+      "lang": "Spanish",
+      "context": "Skill_SK12_Suppression/0/info",
+      "text": "<color=#C6AAFF>Interrupción</color><alpha=#CC> · <alpha=#FF><color=#E3E7ED>Un enemigo</color>\n<alpha=#CC>Coste <alpha=#FF><b>2</b><alpha=#CC>   ·   Lanzamiento <alpha=#FF><b>0.2 s</b>",
+      "width": 306.0,
+      "height": 50.0,
+      "renderWidth": 307.355927,
+      "renderHeight": 44.2000046
+    },
+    {
+      "lang": "Spanish",
+      "context": "Skill_SK12_Suppression/1/info",
+      "text": "<color=#C6AAFF>Interrupción</color><alpha=#CC> · <alpha=#FF><color=#E3E7ED>Un enemigo</color>\n<alpha=#CC>Coste <alpha=#FF><b>2</b><alpha=#CC>   ·   Lanzamiento <alpha=#FF><b>0.2 s</b>",
+      "width": 306.0,
+      "height": 50.0,
+      "renderWidth": 307.355927,
+      "renderHeight": 44.2000046
+    },
+    {
+      "lang": "Spanish",
+      "context": "Skill_SK14_Sanctuary/0/info",
+      "text": "<color=#91CFFF>Escudo</color><alpha=#CC> · <alpha=#FF>Uno mismo\n<alpha=#CC>Coste <alpha=#FF><b>5</b><alpha=#CC>   ·   Canalización <alpha=#FF><b>2.5 s</b>",
+      "width": 306.0,
+      "height": 50.0,
+      "renderWidth": 307.262146,
+      "renderHeight": 44.6160049
+    },
+    {
+      "lang": "Spanish",
+      "context": "Skill_SK14_Sanctuary/1/info",
+      "text": "<color=#91CFFF>Escudo</color><alpha=#CC> · <alpha=#FF>Uno mismo\n<alpha=#CC>Coste <alpha=#FF><b>5</b><alpha=#CC>   ·   Canalización <alpha=#FF><b>2.5 s</b>",
+      "width": 306.0,
+      "height": 50.0,
+      "renderWidth": 307.262146,
+      "renderHeight": 44.6160049
+    }
+  ]
+}

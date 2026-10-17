@@ -1,0 +1,2 @@
+Dialogue options: 25 passed. Isolated progress and restored preferences.
+Retry checks passed: 85. Isolated save; preference restored. Not a manual playthrough.

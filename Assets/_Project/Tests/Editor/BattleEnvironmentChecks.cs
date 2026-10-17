@@ -120,7 +120,7 @@ public static class BattleEnvironmentChecks
         try
         {
             tutorial.enabled=false; EditorApplication.isPaused=true; Time.captureDeltaTime=.02f;
-            foreach (float speed in new[]{1f,.5f})
+            foreach (float speed in new[]{1f,2f})
             {
                 Call(flow,"BeginBattle",3,true,null);
                 if (info.BattleSpeed!=speed) info.ToggleSpeed();
@@ -171,7 +171,7 @@ public static class BattleEnvironmentChecks
                 UnityEngine.Object.FindFirstObjectByType<Player>().TakeDamage(100000);steps(1);
                 check(!wave.enabled,"defeat removes wave");
             }
-            return "Phase VFX frames passed: "+passed+" / frames "+frames+" (1x, 0.5x, manual pause, restart, phase skip, defeat)";
+            return "Phase VFX frames passed: "+passed+" / frames "+frames+" (1x, 2x, manual pause, restart, phase skip, defeat)";
         }
         finally
         {

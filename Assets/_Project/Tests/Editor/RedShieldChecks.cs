@@ -40,7 +40,7 @@ public static class RedShieldChecks
         {
             reset(0);
             check(player.MaxHp == 500 && player.Defense == 20 && player.RedShieldDamageMultiplier == 0.5f, "saved player defaults");
-            check(c.Data.Find(CastColor.Red).Damage == 240 && c.Data.Find(CastColor.Red).CastTime == 4.8f, "saved C red damage240 / cast4.8");
+            check(c.Data.Find(CastColor.Red).Damage == 240 && c.Data.Find(CastColor.Red).CastTime == 4f, "saved C red damage240 / cast4");
             check(a.Data.Find(CastColor.Green).Damage == 20 && b.Data.Find(CastColor.Green).Damage == 25 && b.Data.Find(CastColor.Orange).Damage == 40, "A38 green20/25 and orange40");
             check(info.DescribeEnemy(c).Contains("240") && info.DescribeEnemy(c).Contains("50%")
                 && info.DescribeEnemy(c).Contains("차단 불가"), "red information uses live data and reduction");

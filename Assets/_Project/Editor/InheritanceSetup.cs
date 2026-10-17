@@ -19,7 +19,7 @@ public static class InheritanceSetup
             entry.FindPropertyRelative("inheritanceId").stringValue = AssetDatabase.AssetPathToGUID(AssetDatabase.GetAssetPath(asset));
             entry.FindPropertyRelative("inheritable").boolValue = !asset.name.StartsWith("PS02_");
         }
-        f.FindProperty("defeatFormat").stringValue = BattleFlow.DefeatMessage;
+        f.FindProperty("defeatWithInheritanceFormat").stringValue = BattleFlow.DefeatMessage;
         f.ApplyModifiedPropertiesWithoutUndo();
         var ui = f.FindProperty("rewardUI").objectReferenceValue as BattleRewardUI;
         var u = new SerializedObject(ui);

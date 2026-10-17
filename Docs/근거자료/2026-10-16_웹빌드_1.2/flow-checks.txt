@@ -1,0 +1,4 @@
+TutorialChecks: FAIL Tutorial: next battle A+B
+RetryFlowChecks: Retry checks passed: 80. Isolated save; preference restored. Not a manual playthrough.
+KeyboardTooltipChecks: Keyboard tooltip checks passed: 74. Isolated save; routed inputs, not physical keyboard events.
+CombatScreenFeedbackChecks: Combat screen feedback: 50 passed (function checks; human comfort and browser not measured)

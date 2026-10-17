@@ -1,0 +1,3 @@
+Cost gem checks passed: 114. Four hand gems + shared resource symbol; exact values; insufficient cost; ordering; hotkey separation; 5-language number fit.
+Keyboard/mouse routing: existing KeyboardTooltipChecks 74 passed.
+Legacy CombatReadabilityChecks stops at victory-waits: it kills one target while this scene has two enemies; no production victory logic changed.

@@ -1,0 +1,3 @@
+14 frame checks passed
+1x: 10 frames, game seconds=0.200, cost gained=0.160
+2x: 10 frames, game seconds=0.400, cost gained=0.320

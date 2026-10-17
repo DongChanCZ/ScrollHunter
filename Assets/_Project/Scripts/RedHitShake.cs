@@ -2,7 +2,7 @@ using UnityEngine;
 
 /// <summary>무방어 빨강 피격에 화면과 HUD를 함께 흔든다. 전투 난수·판정은 유지한다.</summary>
 [DisallowMultipleComponent, DefaultExecutionOrder(10000)]
-public class RedHitShake : MonoBehaviour
+public partial class RedHitShake : MonoBehaviour
 {
     [SerializeField, Min(0.01f)] private float duration = 0.24f;
     [SerializeField, Min(0f)] private float amplitude = 16f; // 1080 높이 기준 화면 픽셀
@@ -23,6 +23,8 @@ public class RedHitShake : MonoBehaviour
         player = FindFirstObjectByType<Player>();
         metrics = FindFirstObjectByType<CombatMetrics>();
         view = GetComponent<Camera>();
+        feedbackMenu = FindFirstObjectByType<MainMenuUI>();
+        feedbackFlow = FindFirstObjectByType<BattleFlow>();
     }
     private void Start()
     {
@@ -34,6 +36,7 @@ public class RedHitShake : MonoBehaviour
         hud.anchorMin = Vector2.zero; hud.anchorMax = Vector2.one;
         hud.sizeDelta = Vector2.zero;
         CollectHud();
+        BuildScreenFeedback();
     }
     private void CollectHud()
     {
@@ -49,17 +52,30 @@ public class RedHitShake : MonoBehaviour
     {
         if (player == null) return;
         player.UnshieldedRedHit += Shake;
+        player.Damaged += OnScreenDamage;
         player.BattleReset += Clear;
     }
     private void OnDisable()
     {
-        if (player != null) { player.UnshieldedRedHit -= Shake; player.BattleReset -= Clear; }
+        if (player != null) { player.UnshieldedRedHit -= Shake; player.Damaged -= OnScreenDamage; player.BattleReset -= Clear; }
         Clear();
     }
-    private void Shake() => remaining = duration;
+    [SerializeField, Min(0f)] private float shakeCooldown = 0.6f;
+    private float nextShake;
+    private void Shake()
+    {
+        if ((feedbackMenu != null && !feedbackMenu.ScreenShakeEnabled) || Time.unscaledTime < nextShake) return;
+        remaining = duration;
+        nextShake = Time.unscaledTime + shakeCooldown;
+    }
     // UI가 화면 좌표를 계산하기 전에 이전 표시 오프셋을 제거한다.
     private void Update() => RestoreView();
-    private void LateUpdate() => Advance(metrics != null && metrics.Ended ? Time.unscaledDeltaTime : Time.deltaTime);
+    private void LateUpdate()
+    {
+        if (feedbackMenu != null && !feedbackMenu.ScreenShakeEnabled) { remaining = 0f; RestoreView(); }
+        Advance(metrics != null && metrics.Ended ? Time.unscaledDeltaTime : Time.deltaTime);
+        AdvanceScreenFeedback(Time.timeScale > 0f || (player != null && !player.IsAlive) ? Time.unscaledDeltaTime : 0f);
+    }
     private void Advance(float dt)
     {
         RestoreView();
@@ -93,5 +109,7 @@ public class RedHitShake : MonoBehaviour
         RestoreView();
         offset = Vector2.zero;
         remaining = 0f;
+        nextShake = 0f;
+        ClearScreenFeedback();
     }
 }

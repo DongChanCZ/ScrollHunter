@@ -6477,6 +6477,58 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 383b6e7cee519ef44aa365fff34bd92b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BattleRewardUI
+  rewardPreviewHeading: "\uD68D\uB4DD\uD560 \uC2A4\uD0AC"
+  oldCardHeading: "\uAD50\uCCB4\uD560 \uAE30\uC874 \uCE74\uB4DC"
+  comparisonArrow: "\u2192"
+  rewardPreviewRect: {x: -748, y: -45, z: 350, w: 440}
+  replacementCardSize: {x: 350, y: 410}
+  replacementFirstCard: {x: -365, y: 175}
+  replacementCardStep: {x: 366, y: -426}
+  rewardHeadingRect: {x: -748, y: 207, z: 330, w: 40}
+  replacementDividerRect: {x: -557, y: -73, z: 1, w: 720}
+  replacementBackY: -500
+  formationReorderX: 0
+  formationNextX: 600
+  comparisonHeadingSize: 25
+  comparisonGold: {r: 0.91, g: 0.8, b: 0.53, a: 1}
+  comparisonDividerColor: {r: 0.64, g: 0.51, b: 0.31, a: 0.45}
+  comparisonBodySize: {x: 1200, y: 800}
+  comparisonFramePadding: {x: 14, y: 14}
+  comparisonTitleRect: {x: 0, y: 332, z: 1100, w: 60}
+  comparisonPromptRect: {x: 0, y: 263, z: 1100, w: 64}
+  comparisonOldRect: {x: -280, y: -10, z: 440, w: 400}
+  comparisonNewRect: {x: 280, y: -10, z: 440, w: 400}
+  comparisonButtonY: -320
+  comparisonCardHeadingY: 214
+  comparisonArrowSize: 48
+  compactSlotLayout: {x: 22, y: 18, z: 22, w: 24}
+  compactNameLayout: {x: 18, y: 140, z: 18, w: 44}
+  compactInfoLayout: {x: 18, y: 188, z: 18, w: 50}
+  compactDetailLayout: {x: 22, y: 246, z: 22, w: 22}
+  compactIconLayout: {x: 0, y: 54, z: 80, w: 80}
+  compactLineSpacing: 8
+  compactGlyphPadding: 3
+  comparisonTitleOffset: 52
+  comparisonInstructionOffset: 50
+  comparisonSectionBreak: "\n<line-height=12> \n</line-height>"
+  formationFirstCard: {x: -549, y: 175}
+  retryPreparationTitle: "\uB2E4\uC2DC \uB3C4\uC804 \uC900\uBE44"
+  retryConfirmTitle: "\uB2E4\uC2DC \uB3C4\uC804"
+  retryConfirmMessage: "\uC2A4\uD14C\uC774\uC9C0\uC758 \uB9E8 \uCC98\uC74C\uBD80\uD130
+    \uB2E4\uC2DC \uC2DC\uC791\uD569\uB2C8\uB2E4."
+  skipDialogueLabel: "\uC774\uBBF8 \uBCF8 \uC804\uD22C \uB300\uD654 \uAC74\uB108\uB6F0\uAE30"
+  retryConfirmLabel: "\uD655\uC778"
+  retryCancelLabel: "\uCDE8\uC18C"
+  retryPopupSize: {x: 1080, y: 420}
+  retryTitleY: 150
+  retryMessageRect: {x: 0, y: 60, z: 960, w: 96}
+  retryMessageFontSize: 30
+  retryToggleSize: {x: 880, y: 44}
+  retryToggleY: -36
+  retryToggleFontSize: 22
+  retryToggleBoxSize: 38
+  retryToggleLabelInset: 52
+  retryActionPosition: {x: 190, y: -146}
   flow: {fileID: 414053925}
   information: {fileID: 598019852}
   player: {fileID: 1146574286}
@@ -6574,9 +6626,8 @@ MonoBehaviour:
   replaceFormat: "{0} \uC120\uD0DD \xB7 \uAD50\uCCB4\uD560 \uCE74\uB4DC\uB97C \uACE0\uB974\uC138\uC694."
   readyText: "\uD3B8\uC131\uC744 \uD655\uC778\uD558\uACE0 \uB2E4\uC74C \uC804\uD22C\uB85C
     \uC9C4\uD589\uD558\uC138\uC694."
-  deckSlotFormat: "{0}\uBC88 \xB7 {1}"
-  handLabel: "\uC2DC\uC791 \uC190\uD328"
-  queueLabel: "\uB300\uAE30 \uC21C\uC11C"
+  compactHandLabel: "\uC190\uD328"
+  compactQueueLabel: "\uB300\uAE30"
   reorderButton: {fileID: 310495996}
   saveOrderButton: {fileID: 2017363448}
   cancelOrderButton: {fileID: 628537611}
@@ -16041,7 +16092,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 140153994b7b6ef4cac0b6d18a58c617, type: 2}
   handKeys: 71000000770000006500000072000000
   minGcd: 0.4
-  interruptStagger: 2.5
+  interruptStagger: 2.7
   phaseTransitionLabel: "\uC0AC\uC6A9 \uBD88\uAC00 \u2014 \uD398\uC774\uC988 \uC804\uD658"
 --- !u!114 &414053920
 MonoBehaviour:
@@ -16093,6 +16144,7 @@ MonoBehaviour:
   metrics: {fileID: 0}
   costText: {fileID: 334317893}
   costGauge: {fileID: 991676883}
+  costGaugeHeight: 30
   hpText: {fileID: 636272131}
   potionText: {fileID: 1689575147}
   potionFormat: '{0}/{1}'
@@ -16105,6 +16157,12 @@ MonoBehaviour:
   shieldIcon: {fileID: 1200829988}
   shieldDisplayScale: 1.5
   shieldEmptyIconColor: {r: 0.55, g: 0.55, b: 0.55, a: 0.6}
+  handCostGemSize: {x: 60, y: 64}
+  handCostGemPosition: {x: 6, y: -6}
+  handCostGemFontSize: 38
+  resourceCostTextSize: {x: 156, y: 40}
+  resourceCostTextPosition: {x: -48, y: 0}
+  resourceCostFontSize: 32
   stunText: {fileID: 2076175165}
   stunFormat: "\uAE30\uC808 {0:0.0}"
   costBlockingStunSuffix: "\n<size=55%>\uCF54\uC2A4\uD2B8 \uCDA9\uC804 \uBD88\uAC00</size>"
@@ -16149,6 +16207,7 @@ MonoBehaviour:
   nextCardIcon: {fileID: 440047075}
   iconColor: {r: 1, g: 1, b: 1, a: 1}
   inactiveIconColor: {r: 1, g: 1, b: 1, a: 0.35}
+  costPoorIconColor: {r: 0.42, g: 0.42, b: 0.42, a: 1}
   castRoot: {fileID: 661650952}
   castFill: {fileID: 562178067}
   castNameText: {fileID: 396201548}
@@ -16269,6 +16328,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abda056cdfe9ac048bf3bef8f3f99fbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BattleFlow
+  retryButtonText: "\uB2E4\uC2DC \uB3C4\uC804"
+  skipDialoguePreference: ScrollHunter.Options.SkipSeenDialogue
+  skipSeenDialogueByDefault: 1
+  resultBodySize: {x: 1280, y: 620}
+  resultMessageSize: {x: 1160, y: 420}
+  resultMessagePosition: {x: 0, y: 60}
+  resultButtonY: -218
+  defeatDimAlpha: 0.8
+  defeatFadeSeconds: 0.35
   encounters:
   - label: "\uC778\uC801 \uB4DC\uBB38 \uC624\uC194\uAE38"
     enemies:
@@ -16320,9 +16388,14 @@ MonoBehaviour:
     HP\uB85C \uB2E4\uC74C \uC804\uD22C\uB97C \uC2DC\uC791\uD569\uB2C8\uB2E4."
   completeFormat: "<size=135%><b><color=#E6CA90>\uBAA8\uD5D8 \uC644\uB8CC</color></b></size>\n<size=45%>
     </size>\n<alpha=#CC>\uB0A8\uC740 HP <alpha=#FF><b>{0:0} / {1:0}</b>"
-  defeatFormat: "<size=200%><b><color=#E87878>\uD328\uBC30</color></b></size>\n<size=40%>
-    </size>\n\uC774\uBC88 \uB7F0\uC5D0\uC11C \uC5BB\uC740 \uC2A4\uD0AC\xB7\uD328\uC2DC\uBE0C
-    \uC911 1\uAC1C\uB97C \uACC4\uC2B9\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
+  defeatWithInheritanceFormat: "<size=260%><b><color=#D56B75>\uD328\uBC30</color></b></size>\n<size=50%>
+    </size>\n\uBAA8\uD5D8\uAC00\uAC00 \uC4F0\uB7EC\uC84C\uC2B5\uB2C8\uB2E4.\n\uC774\uBC88
+    \uB3C4\uC804\uC740 \uC885\uB8CC\uB418\uC5C8\uC2B5\uB2C8\uB2E4.\n<size=50%> </size>\n\uACC4\uC2B9\uC744
+    \uB9C8\uCE58\uBA74 \uCC98\uC74C\uBD80\uD130 \uB2E4\uC2DC \uB3C4\uC804\uD569\uB2C8\uB2E4."
+  defeatWithoutInheritanceFormat: "<size=260%><b><color=#D56B75>\uD328\uBC30</color></b></size>\n<size=50%>
+    </size>\n\uBAA8\uD5D8\uAC00\uAC00 \uC4F0\uB7EC\uC84C\uC2B5\uB2C8\uB2E4.\n\uC774\uBC88
+    \uB3C4\uC804\uC740 \uC885\uB8CC\uB418\uC5C8\uC2B5\uB2C8\uB2E4.\n<size=50%> </size>\n\uCC98\uC74C\uBD80\uD130
+    \uB2E4\uC2DC \uB3C4\uC804\uD569\uB2C8\uB2E4."
   inheritanceFileName: save.json
   inheritanceButtonText: "\uACC4\uC2B9 \uC120\uD0DD"
   restartButtonText: "\uCC98\uC74C\uBD80\uD130 \uB2E4\uC2DC \uC2DC\uC791"
@@ -16609,6 +16682,26 @@ MonoBehaviour:
   continueHintText: Space
   enemyInfoPrompt: "\uD574\uB2F9 \uAD6C\uC5ED\uC740 \uD0C0\uAC9F\uD305 \uB41C \uC801\uC758
     \uACF5\uACA9\uC5D0 \uB300\uD55C \uC815\uBCF4\uB97C \uBCF4\uC5EC\uC90D\uB2C8\uB2E4"
+  targetingPrompt: "\uC774 \uD45C\uC2DC\uB294 \uD604\uC7AC \uD0C0\uAC9F\uD305\uD55C
+    \uC801\uC744 \uBCF4\uC5EC\uC90D\uB2C8\uB2E4.\n\uC801\uC774 \uC5EC\uB7EC \uBA85\uC774\uBA74
+    \uC88C\uC6B0 \uBC29\uD5A5\uD0A4 \uB610\uB294 \uB2E4\uB978 \uC801 \uD074\uB9AD\uC73C\uB85C
+    \uD0C0\uAC9F\uC744 \uBC14\uAFC0 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
+  interruptExplanationPrompt: "\uC8FC\uD669\uC0C9 \uACF5\uACA9\uC740 \uAE30\uC808\uC744
+    \uC77C\uC73C\uD0B5\uB2C8\uB2E4.\n\uBC1C\uB3D9 \uC804\uC5D0 \uCC28\uB2E8\uD558\uBA74
+    \uACF5\uACA9\uC744 \uCDE8\uC18C\uD558\uACE0 \uC801\uC744 2.7\uCD08 \uB3D9\uC548
+    \uACBD\uC9C1\uC2DC\uD0B5\uB2C8\uB2E4."
+  interruptTimingPrompt: "\uACF5\uACA9 \uBC1C\uB3D9 \uC9C1\uC804\uC5D0 \uCC28\uB2E8\uD558\uBA74\n\uC801\uC774
+    \uC2DC\uC804\uC5D0 \uC4F4 \uC2DC\uAC04\uAE4C\uC9C0 \uCD5C\uB300\uD55C \uBC8C
+    \uC218 \uC788\uC2B5\uB2C8\uB2E4.\n\uCE68\uBB35\uB3C4 \uC2DC\uC804\uC5D0 0.2\uCD08\uAC00
+    \uD544\uC694\uD558\uB2C8 \uB108\uBB34 \uB2A6\uAC8C \uB204\uB974\uC9C0 \uB9C8\uC138\uC694."
+  shieldExplanationPrompt: "\uBE68\uAC04\uC0C9 \uACF5\uACA9\uC740 \uCC28\uB2E8\uD560
+    \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.\n\uB9DE\uB294 \uC21C\uAC04 \uBC29\uC5B4\uB3C4\uAC00
+    \uB0A8\uC544 \uC788\uC73C\uBA74 \uD53C\uD574\uAC00 \uC808\uBC18\uC73C\uB85C \uC904\uC5B4\uB4ED\uB2C8\uB2E4."
+  shieldConceptPrompt: "\uBC29\uC5B4\uB3C4\uB294 \uBBF8\uB9AC \uC313\uC544\uB458
+    \uC218 \uC788\uC73C\uBA70, \uC5EC\uB7EC \uBC88 \uC0AC\uC6A9\uD558\uBA74 \uB204\uC801\uB429\uB2C8\uB2E4.\n\uD53C\uD574\uB97C
+    \uBC1B\uC73C\uBA74 \uCCB4\uB825\uBCF4\uB2E4 \uBC29\uC5B4\uB3C4\uAC00 \uBA3C\uC800
+    \uC904\uC5B4\uB4ED\uB2C8\uB2E4.\n\uB0A8\uC740 \uBC29\uC5B4\uB3C4\uB294 \uC804\uD22C\uAC00
+    \uB05D\uB098\uBA74 \uC0AC\uB77C\uC9D1\uB2C8\uB2E4."
   tooltipGuidePosition: {x: -250, y: 255}
   tooltipGuideWidth: 900
   tooltipPrompt: "Space\uB97C \uB204\uB978 \uCC44 Q\uB97C \uB20C\uB7EC \uD30C\uC774\uC5B4\uBCFC\uC758
@@ -16641,6 +16734,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5495147f3bdc154bb932eb1b1457385, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenuUI
+  screenFeedbackText: "\uD53C\uACA9\xB7\uAE30\uC808 \uD654\uBA74 \uD6A8\uACFC"
+  screenShakeText: "\uD654\uBA74 \uD754\uB4E4\uB9BC"
+  feedbackOptionY: -332
+  feedbackWebOptionY: -255
+  feedbackOptionX: 335
+  feedbackOptionFontSize: 24
+  feedbackOptionsHint: "\uBCC0\uACBD\uD55C \uC124\uC815\uC740 \uC801\uC6A9\uD558\uBA74
+    \uC800\uC7A5\uB418\uACE0, \uCDE8\uC18C\uD558\uBA74 \uB3CC\uC544\uAC11\uB2C8\uB2E4."
   titlePanel: {fileID: 1021302190}
   controlsPanel: {fileID: 1476022738}
   optionsPanel: {fileID: 1245761489}
@@ -17476,10 +17577,10 @@ RectTransform:
   - {fileID: 1031915755}
   m_Father: {fileID: 1684798577}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 97.5, y: -97.5}
+  m_SizeDelta: {x: 195, y: 195}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &430042659
 CanvasRenderer:
@@ -22695,17 +22796,20 @@ MonoBehaviour:
   variedDamageFormat: "\uD53C\uD574 <b>{0}</b> \xB7 \uCD1D\uD569 \uD53C\uD574 <b>{1}</b>\n<size=80%><alpha=#CC>\uC801
     1\uCCB4\xB7\uC804 \uD0C0\uACA9\xB7\uD06C\uB9AC\uD2F0\uCEEC/\uBC29\uC5B4 \uC801\uC6A9
     \uC804<alpha=#FF></size>"
+  totalDamageFormat: "\uCD1D\uD569 \uD53C\uD574 <b>{0}</b>"
+  totalDamageColor: {r: 1, g: 0.7019608, b: 0.5411765, a: 1}
+  singleTargetColor: {r: 0.8901961, g: 0.90588236, b: 0.92941177, a: 1}
+  areaTargetColor: {r: 0.9490196, g: 0.8156863, b: 0.41960785, a: 1}
+  protectionColor: {r: 0.5686275, g: 0.8117647, b: 1, a: 1}
+  interruptColor: {r: 0.7764706, g: 0.6666667, b: 1, a: 1}
+  interruptSuccessFormat: "\uC131\uACF5 \uC2DC \uACBD\uC9C1 <b>{0:0.##}\uCD08</b>"
+  damageThenInterruptLabel: "\uD53C\uD574 \uD6C4 \uCC28\uB2E8"
+  sanctuaryProtectionLabel: "\uC989\uC2DC \uBB34\uC801\xB7\uAE30\uC808 \uBA74\uC5ED"
+  skillDescriptionExtraLineSpacing: 4
   shieldFormat: "\uBC29\uC5B4\uB3C4 <b>+{0}</b>"
-  interruptFormat: "\uCE90\uC2A4\uD305 \uC911\uC778 \uB300\uC0C1\uC5D0\uAC8C \uC0AC\uC6A9\n\uD6A8\uACFC
-    \uC801\uC6A9 \uB54C\uB3C4 \uCD08\uB85D\xB7\uC8FC\uD669\n\uC2DC\uC804 \uC911\uC774\uBA74
-    \uC131\uACF5\n\uC131\uACF5 \uACBD\uC9C1 <b>{0:0.##}\uCD08</b>\n\uBE68\uAC15\xB7\uC801
-    \uC120\uBC1C\uB3D9: \uC2E4\uD328, \uCF54\uC2A4\uD2B8\xB7\uCE74\uB4DC \uC18C\uBAA8"
-  damagingInterruptFormat: "\uD53C\uD574 <b>{0}\xD7{1}\uD68C</b> \xB7 \uCD1D\uD569
-    \uD53C\uD574 <b>{3}</b>\n<size=80%><alpha=#CC>\uC801 1\uCCB4\xB7\uC804 \uD0C0\uACA9\xB7\uD06C\uB9AC\uD2F0\uCEEC/\uBC29\uC5B4
-    \uC801\uC6A9 \uC804<alpha=#FF></size>\n\uC801 \uCE90\uC2A4\uD305 \uC911\uC5D0\uB9CC
-    \uC0AC\uC6A9. \uD53C\uD574 \uD6C4 \uCC28\uB2E8\n\uCD08\uB85D\xB7\uC8FC\uD669:
-    \uACBD\uC9C1 <b>{2:0.##}\uCD08</b>\n\uBE68\uAC15\xB7\uC2DC\uC804 \uC885\uB8CC:
-    \uD53C\uD574\uB9CC \uC801\uC6A9"
+  interruptRulesWithDetailFormat: "\uC801 \uCE90\uC2A4\uD305 \uC911\uC5D0\uB9CC \uC0AC\uC6A9{1}\n\uC131\uACF5
+    \uC2DC \uACBD\uC9C1 <b>{0:0.##}\uCD08</b>\n\uBE68\uAC15\xB7\uCE90\uC2A4\uD305
+    \uC885\uB8CC \uC2DC \uC2E4\uD328"
   enemyFormat: "<size=125%><b><color=#F5EBD6>{0}</color></b></size>\n<size=80%> </size>\n<b><color=#F5EBD6>{1}</color></b>\n<alpha=#CC>\uAE30\uBCF8
     \uD53C\uD574 <alpha=#FF><b>{2}</b><alpha=#CC> (\uBC29\uC5B4\uB825 \uC801\uC6A9
     \uC804)\n\uC2DC\uC804 <alpha=#FF><b>{3:0.##}\uCD08</b><alpha=#CC> \xB7 <alpha=#FF><color=#F5EBD6>{4}</color>{6}\n<size=85%>{5}</size>"
@@ -22730,7 +22834,7 @@ MonoBehaviour:
   panelMaxHeight: 640
   speedButton: {fileID: 1517031096}
   speedLabel: {fileID: 1270239338}
-  slowSpeed: 0.5
+  fastSpeed: 2
   normalSpeed: 1
   speedFormat: "\uC18D\uB3C4 {0:0.#}\uBC30\uC18D"
   keyboardHint: "Space \uB204\uB978 \uCC44 Q/W/E/R: \uC2A4\uD0AC \uC815\uBCF4"
@@ -27891,10 +27995,10 @@ RectTransform:
   - {fileID: 1013850688}
   m_Father: {fileID: 1684798577}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 742.5, y: -97.5}
+  m_SizeDelta: {x: 195, y: 195}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &734759149
 CanvasRenderer:
@@ -38830,10 +38934,10 @@ RectTransform:
   - {fileID: 70588053}
   m_Father: {fileID: 1684798577}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 312.5, y: -97.5}
+  m_SizeDelta: {x: 195, y: 195}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &902055543
 CanvasRenderer:
@@ -53114,10 +53218,10 @@ RectTransform:
   - {fileID: 147334643}
   m_Father: {fileID: 1684798577}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 527.5, y: -97.5}
+  m_SizeDelta: {x: 195, y: 195}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1318527014
 CanvasRenderer:

@@ -1,0 +1,56 @@
+[
+  {
+    "path": "C:\\Users\\MBC-501-19\\Documents\\ScrollHunter\\Assets\\_Project\\Fonts\\GmarketSansMedium SDF.asset",
+    "reference": "prebuild",
+    "matches": true,
+    "sha256": "AC50C09B835A8AD441037CD0A752DEA3CFBE26C387DA140FC0BF6E70E706D5E1"
+  },
+  {
+    "path": "C:\\Users\\MBC-501-19\\Documents\\ScrollHunter\\Assets\\_Project\\Fonts\\NotoSansCJK\\NotoSansJP-Medium SDF.asset",
+    "reference": "prebuild",
+    "matches": true,
+    "sha256": "346A137D7C06160A43A7AABF0A8DA3610E192942BCE522011229913F228FBBCE"
+  },
+  {
+    "path": "C:\\Users\\MBC-501-19\\Documents\\ScrollHunter\\Assets\\_Project\\Fonts\\NotoSansCJK\\NotoSansSC-Medium SDF.asset",
+    "reference": "prebuild",
+    "matches": true,
+    "sha256": "416286EFE7EB2F69F8E455F76E6751FDD7A658C8AADA8DFEF08687DD7967114E"
+  },
+  {
+    "path": "C:\\Users\\MBC-501-19\\Documents\\ScrollHunter\\Assets\\Settings\\Mobile_RPAsset.asset",
+    "reference": "prebuild",
+    "matches": true,
+    "sha256": "3E1AD0B0D6F5B7F8D4A8897148D9D3005A907FF75903EDBA98E5E12DD1513B11"
+  },
+  {
+    "path": "C:\\Users\\MBC-501-19\\Documents\\ScrollHunter\\Assets\\Settings\\PC_RPAsset.asset",
+    "reference": "prebuild",
+    "matches": true,
+    "sha256": "70B76A59FB5B3EE0BBC0269DF512833053EFB96FD7ABD681FD0B064A6C5CB564"
+  },
+  {
+    "path": "C:\\Users\\MBC-501-19\\Documents\\ScrollHunter\\Assets\\_Project\\Scenes\\Battle.unity",
+    "reference": "prebuild",
+    "matches": true,
+    "sha256": "A57D2FCB35D42FF915AC0DDBD5E22E165293BC5AFD1331FB493014C0C70656D8"
+  },
+  {
+    "path": "C:\\Users\\MBC-501-19\\AppData\\LocalLow\\DefaultCompany\\ScrollHunter\\save.json",
+    "reference": "baseline",
+    "matches": true,
+    "sha256": "A9741AF2B004ADCBE2C5344E2E4849C7B089472D1B921A5F5B22F4B79B50F6F2"
+  },
+  {
+    "path": "C:\\Users\\MBC-501-19\\AppData\\LocalLow\\DefaultCompany\\ScrollHunter\\save.json.bak",
+    "reference": "baseline",
+    "matches": true,
+    "sha256": "0B269DEA741AE2C955124BA2BD71E3CD4A98DC1997601678602EE36BEE8B12EE"
+  },
+  {
+    "path": "C:\\Users\\MBC-501-19\\Desktop\\ScrollHunter_Web_1.1.zip",
+    "reference": "baseline",
+    "matches": true,
+    "sha256": "DD8429CB1105A7A0FC157CA848C0C49C217E32080EB2FA70C96146231EC95797"
+  }
+]

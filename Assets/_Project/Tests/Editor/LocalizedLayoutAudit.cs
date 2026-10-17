@@ -26,6 +26,10 @@ public static class LocalizedLayoutAudit
             foreach (GameLanguage language in Enum.GetValues(typeof(GameLanguage)))
             {
                 GameText.SetLanguage(language);
+                // HUD는 언어 이벤트 대신 LateUpdate에서 갱신하므로 측정 전에 같은 표시 갱신을 수행한다.
+                foreach (var view in new MonoBehaviour[] { UnityEngine.Object.FindFirstObjectByType<CombatUI>(), UnityEngine.Object.FindFirstObjectByType<CombatInfoUI>(), UnityEngine.Object.FindFirstObjectByType<StatsPanelUI>(), UnityEngine.Object.FindFirstObjectByType<BattleRewardUI>() })
+                    if (view != null) view.GetType().GetMethod("LateUpdate", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).Invoke(view, null);
+                Canvas.ForceUpdateCanvases();
                 foreach (var text in texts)
                 {
                     text.ForceMeshUpdate(true, true);
@@ -40,6 +44,11 @@ public static class LocalizedLayoutAudit
                     var over = new Vector2(text.renderedWidth - rect.width, text.renderedHeight - rect.height);
                     if (language == GameLanguage.Korean) { korean[text] = over; continue; }
                     var baseline = korean[text];
+                    if (System.Text.RegularExpressions.Regex.IsMatch(text.text, "[가-힣]") && !GameText.NativeNames.Contains(text.text))
+                    {
+                        issues++;
+                        report.AppendLine(language + " | untranslated " + text.transform.parent.name + "/" + text.name + " | " + text.text);
+                    }
                     if ((over.x > 2f && over.x > baseline.x + 2f) || (over.y > 2f && over.y > baseline.y + 2f))
                     {
                         issues++;

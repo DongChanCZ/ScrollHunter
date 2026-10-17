@@ -1,0 +1,3 @@
+Combat screen feedback: 45 passed (function checks; human comfort and browser not measured)
+Information text: 77 passed / 14 cards
+Keyboard tooltip checks passed: 74. Isolated save; routed inputs, not physical keyboard events.

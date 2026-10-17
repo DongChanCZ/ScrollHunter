@@ -1,0 +1,4 @@
+System.Exception: All passives: shield card starts
+  at AllPassiveChecks+<>c__DisplayClass8_0.<Run>b__2 (System.Boolean ok, System.String name) [0x00024] in C:\Users\MBC-501-19\Documents\ScrollHunter\Assets\_Project\Tests\Editor\AllPassiveChecks.cs:50 
+  at AllPassiveChecks.Run () [0x00aa9] in C:\Users\MBC-501-19\Documents\ScrollHunter\Assets\_Project\Tests\Editor\AllPassiveChecks.cs:130 
+  at MCPDynamicCode.Execute () [0x000c5] in <1fb666f59da747a78ee1ad1db7b31760>:0 

@@ -15,18 +15,21 @@ public sealed class InheritanceSave
         public bool tutorialDismissed;
         public bool introDismissed;
         public int clearedBattles;
+        public int seenDialogues;
+        public bool hasRetried;
     }
     private readonly string path;
     private readonly BattleRewardOption[] catalog;
     private readonly List<SkillData> baseDeck;
     private Data data = Empty();
     private static Data Empty() => new Data { version = 1, cards = new string[DeckSystem.DeckSize], passives = new List<Passive>() };
+    public bool HasRetried => data.hasRetried;
     public bool IntroDismissed => data.introDismissed;
     public bool TutorialDismissed => data.tutorialDismissed || data.clearedBattles != 0;
     public int ClearedBattles => data.clearedBattles;
     public bool LoadFailed { get; private set; }
     public bool UsedBackup { get; private set; }
-    public bool HasProgress => HasAny || IntroDismissed || TutorialDismissed;
+    public bool HasProgress => HasAny || IntroDismissed || TutorialDismissed || data.seenDialogues != 0 || HasRetried;
     public bool HasAny => data.passives.Count > 0 || Array.Exists(data.cards, id => !string.IsNullOrEmpty(id));
 
     public InheritanceSave(string path, BattleRewardOption[] catalog, List<SkillData> baseDeck)
@@ -93,6 +96,8 @@ public sealed class InheritanceSave
         next.introDismissed = data.introDismissed;
         next.tutorialDismissed = data.tutorialDismissed;
         next.clearedBattles = data.clearedBattles;
+        next.seenDialogues = data.seenDialogues;
+        next.hasRetried = data.hasRetried;
         return TryWrite(next, false);
     }
     public bool TryResetGame() => TryWrite(Empty(), false);
@@ -120,6 +125,27 @@ public sealed class InheritanceSave
         return TryWrite(next);
     }
 
+    // 이전 저장에는 대화 기록이 없으므로 클리어한 전투만 이미 본 것으로 취급한다.
+    public bool HasSeenDialogue(int index) => index >= 0 && index < 30
+        && ((data.seenDialogues | data.clearedBattles) & (1 << index)) != 0;
+
+    public bool TryRecordDialogue(int index)
+    {
+        if (index < 0 || index >= 30) return false;
+        if (HasSeenDialogue(index)) return true;
+        var next = JsonUtility.FromJson<Data>(JsonUtility.ToJson(data));
+        next.seenDialogues |= 1 << index;
+        return TryWrite(next);
+    }
+
+    public bool TryRecordRetry()
+    {
+        if (data.hasRetried) return true;
+        var next = JsonUtility.FromJson<Data>(JsonUtility.ToJson(data));
+        next.hasRetried = true;
+        return TryWrite(next);
+    }
+
     private bool TryRead(string filename, out Data value)
     {
         value = null;
@@ -135,7 +161,7 @@ public sealed class InheritanceSave
     private bool Valid(Data value)
     {
         if (value == null || value.version != 1 || value.cards == null || value.cards.Length != DeckSystem.DeckSize
-            || value.passives == null || value.clearedBattles < 0 || baseDeck.Count != DeckSystem.DeckSize) return false;
+            || value.passives == null || value.clearedBattles < 0 || value.seenDialogues < 0 || baseDeck.Count != DeckSystem.DeckSize) return false;
         foreach (string id in value.cards)
             if (!string.IsNullOrEmpty(id) && (Find(id) == null || Find(id).Card == null || !Find(id).Inheritable)) return false;
         var deck = BuildDeck(value);

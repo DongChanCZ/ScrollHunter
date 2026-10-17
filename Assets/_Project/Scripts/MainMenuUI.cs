@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 /// <summary>시작 메뉴 표시·설정. 전투 진행과 계승 데이터는 기존 컴포넌트가 처리한다.</summary>
 [DefaultExecutionOrder(-300)]
-public class MainMenuUI : MonoBehaviour
+public partial class MainMenuUI : MonoBehaviour
 {
     [SerializeField] private GameObject titlePanel, controlsPanel, optionsPanel, inheritancePanel;
     [SerializeField] private Button controlsOpen, controlsClose, optionsOpen, optionsCancel, optionsApply, quitButton, inheritanceOpen;
@@ -58,6 +58,7 @@ public class MainMenuUI : MonoBehaviour
     private int frameLimit;
     [Header("프레임 설정")]
     [SerializeField] private Toggle vSyncToggle;
+    public Toggle CheckBoxTemplate => vSyncToggle;
     [SerializeField] private TMP_Text performanceHint;
     [SerializeField] private TMP_Dropdown frameLimitDropdown;
     [SerializeField] private string exclusiveFullscreenText = "전체화면";
@@ -73,6 +74,9 @@ public class MainMenuUI : MonoBehaviour
     {
         flow = GetComponent<BattleFlow>();
         ConfigureWebOptions();
+        BuildFeedbackOptions();
+        BuildScrollableOptions();
+        controlsDescription = controlsDescription.Replace("0.5배속", "2배속");
         if (languageDropdown != null)
         {
             languageDropdown.ClearOptions();
@@ -245,6 +249,8 @@ public class MainMenuUI : MonoBehaviour
     private void ReadSavedOptions()
     {
         GameText.LoadSaved();
+        ReadFeedbackOptions();
+        ReadDialogueOption();
         if (languageDropdown != null) languageDropdown.SetValueWithoutNotify((int)GameText.Current);
         // 이전 빌드의 창모드 선택을 새 저장 형식으로 이어받는다.
         var legacyMode = PlayerPrefs.GetInt(preferencesPrefix + "Windowed", 0) == 1 ? FullScreenMode.Windowed : FullScreenMode.FullScreenWindow;
@@ -319,7 +325,7 @@ public class MainMenuUI : MonoBehaviour
         flow.StartRun();
     }
 
-    public const string ControlsDescription = "<line-height=56>Q / W / E / R 또는 카드 좌클릭\n적 좌클릭 또는 좌우 방향키\nSpace 누른 채 Q/W/E/R 또는 카드에 마우스 올리기\nA 또는 우클릭 / 상단 버튼 · Esc 메뉴\nS 또는 상단 속도 버튼 (1배속 / 0.5배속)\nShift 또는 물약 아이콘 좌클릭\n전투 중 우측 상단 버튼 (게임은 멈추지 않음)";
+    public const string ControlsDescription = "<line-height=56>Q / W / E / R 또는 카드 좌클릭\n적 좌클릭 또는 좌우 방향키\nSpace 누른 채 Q/W/E/R 또는 카드에 마우스 올리기\nA 또는 우클릭 / 상단 버튼 · Esc 메뉴\nS 또는 상단 속도 버튼 (1배속 / 2배속)\nShift 또는 물약 아이콘 좌클릭\n전투 중 우측 상단 버튼 (게임은 멈추지 않음)";
 
     [SerializeField, TextArea] private string controlsDescription = ControlsDescription;
 
@@ -340,6 +346,7 @@ public class MainMenuUI : MonoBehaviour
         if (!titlePanel.activeInHierarchy && !PauseMenuVisible) return;
         ClosePanels(); inheritancePanel.SetActive(false); ReadSavedOptions();
         optionsPanel.SetActive(true); optionsPanel.transform.SetAsLastSibling();
+        if (optionsScroll != null) { optionsScroll.StopMovement(); optionsScroll.verticalNormalizedPosition = 1f; }
         ClearSelection();
     }
 
@@ -363,6 +370,8 @@ public class MainMenuUI : MonoBehaviour
 
     public void HandleEscape()
     {
+        var rewardUI = FindFirstObjectByType<BattleRewardUI>();
+        if (rewardUI != null && rewardUI.CloseRetryConfirmation()) return;
         if (OptionsVisible && languageDropdown != null && languageDropdown.IsExpanded)
         { languageDropdown.Hide(); return; }
         if (OptionsVisible && resolutionDropdown != null && resolutionDropdown.IsExpanded)
@@ -459,6 +468,8 @@ public class MainMenuUI : MonoBehaviour
         PlayerPrefs.SetInt(preferencesPrefix + "Width", r.x);
         PlayerPrefs.SetInt(preferencesPrefix + "Height", r.y);
         for (int i = 0; i < volumeSliders.Length; i++) PlayerPrefs.SetFloat(preferencesPrefix + mixerParameters[i], volumeSliders[i].value);
+        SaveFeedbackOptions();
+        SaveDialogueOption();
         GameText.Save();
         ApplyAudio(); ApplyDisplay(); ApplyPerformance(); ClosePanels();
     }

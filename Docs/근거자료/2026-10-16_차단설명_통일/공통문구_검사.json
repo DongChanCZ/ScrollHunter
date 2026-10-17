@@ -1,0 +1,62 @@
+[
+  {
+    "language": 0,
+    "bonus": 0.0,
+    "silence": "적 캐스팅 중에만 사용\n<color=#C6AAFF>성공 시 경직 <b>3초</b></color>\n빨강·캐스팅 종료 시 실패",
+    "suppression": "피해 <b>40×1회</b> · <color=#FFB38A>총합 피해 <b>40</b></color>\n<size=80%><alpha=#CC>적 1체·전 타격·크리티컬/방어 적용 전<alpha=#FF></size>\n적 캐스팅 중에만 사용 · <color=#C6AAFF>피해 후 차단</color>\n<color=#C6AAFF>성공 시 경직 <b>3초</b></color>\n빨강·캐스팅 종료 시 실패"
+  },
+  {
+    "language": 1,
+    "bonus": 0.0,
+    "silence": "Only usable on a casting enemy\n<color=#C6AAFF>On success: stagger <b>3s</b></color>\nFails on red or after casting ends",
+    "suppression": "Damage <b>40 × 1 hits</b> · <color=#FFB38A>Total <b>40</b></color>\n<size=80%><alpha=#CC>Per enemy · All hits · Before crit/defense<alpha=#FF></size>\nOnly usable on a casting enemy · <color=#C6AAFF>Damage, then interrupt</color>\n<color=#C6AAFF>On success: stagger <b>3s</b></color>\nFails on red or after casting ends"
+  },
+  {
+    "language": 2,
+    "bonus": 0.0,
+    "silence": "敵の詠唱中のみ使用可\n<color=#C6AAFF>成功時の硬直 <b>3秒</b></color>\n赤・詠唱終了時は失敗",
+    "suppression": "ダメージ <b>40×1回</b> · <color=#FFB38A>合計ダメージ <b>40</b></color>\n<size=80%><alpha=#CC>敵1体・全ヒット・クリティカル/防御適用前<alpha=#FF></size>\n敵の詠唱中のみ使用可 · <color=#C6AAFF>ダメージ後に妨害</color>\n<color=#C6AAFF>成功時の硬直 <b>3秒</b></color>\n赤・詠唱終了時は失敗"
+  },
+  {
+    "language": 3,
+    "bonus": 0.0,
+    "silence": "仅可在敌人施法时使用\n<color=#C6AAFF>成功硬直 <b>3秒</b></color>\n红色·施法结束时失败",
+    "suppression": "伤害 <b>40×1次</b> · <color=#FFB38A>总伤害 <b>40</b></color>\n<size=80%><alpha=#CC>单个敌人·全部命中·暴击/防御计算前<alpha=#FF></size>\n仅可在敌人施法时使用 · <color=#C6AAFF>造成伤害后打断</color>\n<color=#C6AAFF>成功硬直 <b>3秒</b></color>\n红色·施法结束时失败"
+  },
+  {
+    "language": 4,
+    "bonus": 0.0,
+    "silence": "Solo si el enemigo lanza\n<color=#C6AAFF>Al acertar: tambaleo <b>3 s</b></color>\nFalla en rojo o si ya terminó de lanzar",
+    "suppression": "Daño <b>40×1 golpes</b> · <color=#FFB38A>Total <b>40</b></color>\n<size=80%><alpha=#CC>Por enemigo · Todos los golpes · Sin crítico/defensa<alpha=#FF></size>\nSolo si el enemigo lanza · <color=#C6AAFF>Daña y luego interrumpe</color>\n<color=#C6AAFF>Al acertar: tambaleo <b>3 s</b></color>\nFalla en rojo o si ya terminó de lanzar"
+  },
+  {
+    "language": 0,
+    "bonus": 0.5,
+    "silence": "적 캐스팅 중에만 사용\n<color=#C6AAFF>성공 시 경직 <b>3.5초</b></color>\n빨강·캐스팅 종료 시 실패",
+    "suppression": "피해 <b>40×1회</b> · <color=#FFB38A>총합 피해 <b>40</b></color>\n<size=80%><alpha=#CC>적 1체·전 타격·크리티컬/방어 적용 전<alpha=#FF></size>\n적 캐스팅 중에만 사용 · <color=#C6AAFF>피해 후 차단</color>\n<color=#C6AAFF>성공 시 경직 <b>3.5초</b></color>\n빨강·캐스팅 종료 시 실패"
+  },
+  {
+    "language": 1,
+    "bonus": 0.5,
+    "silence": "Only usable on a casting enemy\n<color=#C6AAFF>On success: stagger <b>3.5s</b></color>\nFails on red or after casting ends",
+    "suppression": "Damage <b>40 × 1 hits</b> · <color=#FFB38A>Total <b>40</b></color>\n<size=80%><alpha=#CC>Per enemy · All hits · Before crit/defense<alpha=#FF></size>\nOnly usable on a casting enemy · <color=#C6AAFF>Damage, then interrupt</color>\n<color=#C6AAFF>On success: stagger <b>3.5s</b></color>\nFails on red or after casting ends"
+  },
+  {
+    "language": 2,
+    "bonus": 0.5,
+    "silence": "敵の詠唱中のみ使用可\n<color=#C6AAFF>成功時の硬直 <b>3.5秒</b></color>\n赤・詠唱終了時は失敗",
+    "suppression": "ダメージ <b>40×1回</b> · <color=#FFB38A>合計ダメージ <b>40</b></color>\n<size=80%><alpha=#CC>敵1体・全ヒット・クリティカル/防御適用前<alpha=#FF></size>\n敵の詠唱中のみ使用可 · <color=#C6AAFF>ダメージ後に妨害</color>\n<color=#C6AAFF>成功時の硬直 <b>3.5秒</b></color>\n赤・詠唱終了時は失敗"
+  },
+  {
+    "language": 3,
+    "bonus": 0.5,
+    "silence": "仅可在敌人施法时使用\n<color=#C6AAFF>成功硬直 <b>3.5秒</b></color>\n红色·施法结束时失败",
+    "suppression": "伤害 <b>40×1次</b> · <color=#FFB38A>总伤害 <b>40</b></color>\n<size=80%><alpha=#CC>单个敌人·全部命中·暴击/防御计算前<alpha=#FF></size>\n仅可在敌人施法时使用 · <color=#C6AAFF>造成伤害后打断</color>\n<color=#C6AAFF>成功硬直 <b>3.5秒</b></color>\n红色·施法结束时失败"
+  },
+  {
+    "language": 4,
+    "bonus": 0.5,
+    "silence": "Solo si el enemigo lanza\n<color=#C6AAFF>Al acertar: tambaleo <b>3.5 s</b></color>\nFalla en rojo o si ya terminó de lanzar",
+    "suppression": "Daño <b>40×1 golpes</b> · <color=#FFB38A>Total <b>40</b></color>\n<size=80%><alpha=#CC>Por enemigo · Todos los golpes · Sin crítico/defensa<alpha=#FF></size>\nSolo si el enemigo lanza · <color=#C6AAFF>Daña y luego interrumpe</color>\n<color=#C6AAFF>Al acertar: tambaleo <b>3.5 s</b></color>\nFalla en rojo o si ya terminó de lanzar"
+  }
+]

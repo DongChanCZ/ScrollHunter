@@ -1,0 +1,5 @@
+1920: texts 68, issues 0
+
+1366: texts 68, issues 0
+
+Checkbox OFF -> confirmation -> seen dialogue replay: passed

@@ -1,0 +1,11 @@
+{
+  "comparison": "10/15 saved snapshot vs 10/16 final",
+  "compared": 458,
+  "differences": [
+    {
+      "path": "Assets/_Project/Data/ScrollHunter/EnemyData/Enemy_Boss.asset.MonoBehaviour.attacks[4].castTime",
+      "old": 20.0,
+      "current": 25.0
+    }
+  ]
+}

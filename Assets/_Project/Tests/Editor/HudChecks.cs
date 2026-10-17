@@ -215,7 +215,7 @@ public static class HudChecks
             Check(value("maxHp").text == "500" && value("defense").text == "20" && detail("defense").text.Contains("16.7"), "survival rows");
             Check(value("criticalChance").text == "15%" && value("criticalMultiplier").text == "×1.5", "critical rows");
             Check(value("costRegeneration").text == "0.8" && value("startingCost").text == "3" && value("maximumCost").text == "10", "cost rows");
-            Check(value("shieldGain").text == "100%" && value("interruptStagger").text == "2.5초", "response rows");
+            Check(value("shieldGain").text == "100%" && value("interruptStagger").text == "2.7초", "response rows");
             Check(!detail("maxHp").gameObject.activeSelf && !detail("criticalChance").gameObject.activeSelf, "no bonus detail without passives");
             Check(stats.DescribePassives().Contains("패시브 없음"), "no passives line");
             player.AddMaxHpBonus(50); maxHpAdded += 50;
@@ -229,7 +229,7 @@ public static class HudChecks
             Check(value("maxHp").text == "550" && detail("maxHp").gameObject.activeSelf && detail("maxHp").text == "기본 500 · 패시브 +50", "max HP final first, base and bonus second");
             Check(value("criticalChance").text == "20%" && detail("criticalChance").text.Contains("+5%p"), "crit chance with percentage points");
             Check(value("costRegeneration").text == "0.9" && value("startingCost").text == "4" && value("maximumCost").text == "12", "cost final values");
-            Check(value("shieldGain").text == "120%" && value("interruptStagger").text == "3.0초" && detail("interruptStagger").text == "기본 2.5초 · 패시브 +0.5초", "response final values");
+            Check(value("shieldGain").text == "120%" && value("interruptStagger").text == "3.2초" && detail("interruptStagger").text == "기본 2.7초 · 패시브 +0.5초", "response final values");
             // 카드 정보창은 능력치 창 왼쪽으로 비켜난다.
             var cardPanel = (GameObject)Get(info, "cardPanel");
             float baseX = (float)Get(info, "cardPanelBaseX");

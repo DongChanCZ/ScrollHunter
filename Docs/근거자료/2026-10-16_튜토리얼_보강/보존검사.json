@@ -1,0 +1,23 @@
+{
+  "Assets": [
+    {
+      "Path": "C:\\Users\\MBC-501-19\\Documents\\ScrollHunter\\Assets\\_Project\\Scenes\\Battle.unity",
+      "Same": true
+    },
+    {
+      "Path": "C:\\Users\\MBC-501-19\\Documents\\ScrollHunter\\Assets\\_Project\\Fonts\\GmarketSansMedium SDF.asset",
+      "Same": true
+    }
+  ],
+  "Saves": [
+    {
+      "Path": "C:\\Users\\MBC-501-19\\AppData\\LocalLow\\DefaultCompany\\ScrollHunter\\save.json",
+      "Same": true
+    },
+    {
+      "Path": "C:\\Users\\MBC-501-19\\AppData\\LocalLow\\DefaultCompany\\ScrollHunter\\save.json.bak",
+      "Same": true
+    }
+  ],
+  "AgentMatch": true
+}

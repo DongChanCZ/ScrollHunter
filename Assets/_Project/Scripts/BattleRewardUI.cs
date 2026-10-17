@@ -4,7 +4,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 /// <summary>전투 사이 보상/교체 화면. 편성의 변경과 진행 조건은 BattleFlow에서 처리한다.</summary>
-public class BattleRewardUI : MonoBehaviour
+public partial class BattleRewardUI : MonoBehaviour
 {
     [SerializeField] private BattleFlow flow;
     [SerializeField] private CombatInfoUI information;
@@ -46,10 +46,8 @@ public class BattleRewardUI : MonoBehaviour
     [SerializeField] private string noChoicesText = "받을 수 있는 보상이 없습니다. 스킵 후 진행하세요.";
     [SerializeField] private string replaceFormat = "{0} 선택 · 교체할 카드를 고르세요.";
     [SerializeField] private string readyText = "편성을 확인하고 다음 전투로 진행하세요.";
-    [Tooltip("{0} 순번, {1} 시작 손패·대기열")]
-    [SerializeField] private string deckSlotFormat = "{0}번 · {1}";
-    [SerializeField] private string handLabel = "시작 손패";
-    [SerializeField] private string queueLabel = "대기 순서";
+    [SerializeField] private string compactHandLabel = "손패";
+    [SerializeField] private string compactQueueLabel = "대기";
 
     [Header("편성 순서")]
     [SerializeField] private Button reorderButton;
@@ -91,9 +89,29 @@ public class BattleRewardUI : MonoBehaviour
         if (flow == null) flow = FindFirstObjectByType<BattleFlow>();
         if (information == null) information = FindFirstObjectByType<CombatInfoUI>();
         if (player == null) player = FindFirstObjectByType<Player>();
+        if (information != null)
+        {
+            if (deckInfoLabels != null) foreach (var label in deckInfoLabels) information.AddSkillDescriptionSpacing(label);
+            if (deckLabels != null) foreach (var label in deckLabels) information.AddSkillDescriptionSpacing(label);
+            if (skillSlots != null) foreach (var slot in skillSlots)
+            {
+                if (slot == null) continue;
+                information.AddSkillDescriptionSpacing(slot.info);
+                information.AddSkillDescriptionSpacing(slot.detail);
+            }
+        }
+        LayoutFormationCards();
+        if (skillSlots != null) foreach (var slot in skillSlots)
+            if (slot != null && slot.detail != null) slot.detail.alignment = TextAlignmentOptions.Center;
+        if (passiveSlots != null) foreach (var slot in passiveSlots)
+            if (slot != null && slot.effect != null) slot.effect.alignment = TextAlignmentOptions.Center;
         rewardSkipText = "보상 스킵";
         rewardBackText = "보상 다시 선택";
         inheritanceBackPosition = ((RectTransform)backButton.transform).anchoredPosition;
+        originalTitlePosition = title.rectTransform.anchoredPosition;
+        originalInstructionPosition = instruction.rectTransform.anchoredPosition;
+        comparisonTitleDivider = panel.transform.Find("TitleDivider") as RectTransform;
+        if (comparisonTitleDivider != null) originalTitleDividerPosition = comparisonTitleDivider.anchoredPosition;
 
         if (inheritanceOpen != null) inheritanceOpen.onClick.AddListener(() =>
         { if (flow.State == BattleFlowState.Title) { inheritancePanel.SetActive(true); RefreshInheritance(); } });
@@ -189,13 +207,15 @@ public class BattleRewardUI : MonoBehaviour
         bool between = flow != null && flow.State == BattleFlowState.BetweenBattles;
         bool inheriting = flow != null && flow.State == BattleFlowState.Inheriting;
         RefreshInheritance();
+        RefreshRetryConfirmation(preparing);
         panel.SetActive(between || preparing || inheriting);
         if ((!between && !preparing) || !flow.IsEditingOrder) EndOrderDrag();
+        if (replacementLayout != null) replacementLayout.SetActive(false);
         if (!between && !preparing && !inheriting) return;
         bool editing = flow.IsEditingOrder;
         bool replacing = (between || inheriting) && flow.SelectedReward != null && !flow.RewardResolved;
         bool choosing = (between || inheriting) && !replacing && !flow.RewardResolved;
-        title.text = GameText.T(inheriting ? GameText.T(inheritanceTitle) : preparing ? GameText.T(preparationTitle) : GameText.Format(GameText.T(titleFormat), flow.BattleNumber, player.CurrentHp, player.MaxHp));
+        title.text = GameText.T(inheriting ? GameText.T(inheritanceTitle) : preparing ? GameText.T(flow.IsRetryPreparation ? retryPreparationTitle : preparationTitle) : GameText.Format(GameText.T(titleFormat), flow.BattleNumber, player.CurrentHp, player.MaxHp));
         instruction.text = GameText.T(editing ? GameText.T(orderText) : preparing ? GameText.T(preparationText) : flow.RewardResolved ? GameText.T(readyText)
             : replacing ? GameText.Format(GameText.T(replaceFormat), flow.SelectedReward.DisplayName)
             : flow.RewardChoiceCount == 0 ? GameText.T(noChoicesText) : GameText.T(chooseText));
@@ -209,15 +229,14 @@ public class BattleRewardUI : MonoBehaviour
         choicesRoot.SetActive(choosing);
         deckRoot.SetActive(!choosing);
         RefreshSkipButton();
-        skipButton.gameObject.SetActive(!flow.RewardResolved && (inheriting || (between && choosing)));
+        skipButton.gameObject.SetActive(!flow.RewardResolved && choosing);
         if (reorderButton != null) reorderButton.gameObject.SetActive(flow.CanEditOrder && !editing);
         if (saveOrderButton != null) saveOrderButton.gameObject.SetActive(editing);
         if (cancelOrderButton != null) cancelOrderButton.gameObject.SetActive(editing);
-        ((RectTransform)backButton.transform).anchoredPosition = inheriting
-            ? inheritanceBackPosition : new Vector2(0f, inheritanceBackPosition.y);
+        ((RectTransform)backButton.transform).anchoredPosition = new Vector2(0f, inheritanceBackPosition.y);
         backButton.gameObject.SetActive(replacing);
         bool selected = replacing && flow.SelectedReplacementIndex >= 0;
-        bool confirmingReward = between && selected && rewardReplacementConfirmation != null;
+        bool confirmingReward = selected && rewardReplacementConfirmation != null;
         if (rewardReplacementConfirmation != null)
         {
             bool wasOpen = rewardReplacementConfirmation.activeSelf;
@@ -232,7 +251,7 @@ public class BattleRewardUI : MonoBehaviour
         backButton.interactable = !confirmingReward;
         if (confirmReplacementButton != null)
         {
-            confirmReplacementButton.gameObject.SetActive(replacing && (inheriting || rewardReplacementConfirmation == null));
+            confirmReplacementButton.gameObject.SetActive(replacing && rewardReplacementConfirmation == null);
             confirmReplacementButton.interactable = selected;
             if (confirmReplacementVisual != null) confirmReplacementVisual.alpha = selected ? 1f : disabledConfirmAlpha;
         }
@@ -271,14 +290,15 @@ public class BattleRewardUI : MonoBehaviour
             deckButtons[i].gameObject.SetActive(card != null);
             deckButtons[i].interactable = (replacing && !confirmingReward) || editing;
             SetText(deckSlotLabels, i, card == null ? string.Empty
-                : GameText.Format(GameText.T(deckSlotFormat), i + 1, i < DeckSystem.HandSize
-                    ? "<color=#E7CB87>" + GameText.T(handLabel) + " " + "QWER"[i] + "</color>"
-                    : "<color=#ADC8D8>" + GameText.T(queueLabel) + " " + (i - DeckSystem.HandSize + 1) + "</color>"));
+                : (i < DeckSystem.HandSize
+                    ? "<color=#E7CB87>" + GameText.T(compactHandLabel) + " " + "QWER"[i] + "</color>"
+                    : "<color=#ADC8D8>" + GameText.T(compactQueueLabel) + " " + (i - DeckSystem.HandSize + 1) + "</color>"));
             SetText(deckNameLabels, i, card == null ? string.Empty : card.DisplayName);
             SetText(deckInfoLabels, i, card == null ? string.Empty : information.DescribeCardInfo(card));
-            SetText(deckLabels, i, card == null ? string.Empty : information.DescribeCardEffect(card));
+            SetText(deckLabels, i, card == null ? string.Empty : CardEffectText(card));
             if (deckIcons != null && i < deckIcons.Length) CombatInfoUI.ShowIcon(deckIcons[i], card);
         }
+        RefreshRewardComparison(replacing, confirmingReward);
     }
 
     public void RefreshSkipButton()
@@ -330,7 +350,7 @@ public class BattleRewardUI : MonoBehaviour
         if (slot.root.activeSelf != show) slot.root.SetActive(show);
         SetLabel(slot.title, show ? card.DisplayName : string.Empty);
         SetLabel(slot.info, show ? information.DescribeCardInfo(card) : string.Empty);
-        SetLabel(slot.detail, show ? information.DescribeCardEffect(card) : string.Empty);
+        SetLabel(slot.detail, show ? CardEffectText(card) : string.Empty);
     }
 
     /// <summary>패시브 영역이 연결되지 않은 슬롯용 한 덩어리 설명.</summary>

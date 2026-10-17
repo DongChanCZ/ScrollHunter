@@ -57,18 +57,18 @@ public static class BossOrbChecks
             }
             check(o.Ruin.transform.position.x<e.transform.position.x && o.Cycle.transform.position.x>e.transform.position.x,"left/right");
             check(m.GetAliveEnemies().Count==3 && m.EnemyCount==1,"targets 3, encounter enemy 1");
-            Tick(.5f);check(Near(e.CurrentCastTime,1.44f) && Near(e.CurrentDamageMultiplier,1.1f),"phase2 snapshot 60% and 110%");
+            Tick(.5f);check(Near(e.CurrentCastTime,1.2f) && Near(e.CurrentDamageMultiplier,1.1f),"phase2 snapshot 60% and 110%");
             hp=e.CurrentHp;o.Ruin.TakeDamage(400);check(e.CurrentHp==hp-75 && m.OrbsDestroyed==1,"fixed 75 once");
             o.Ruin.TakeDamage(400);check(e.CurrentHp==hp-75,"dead orb cannot retrigger");
-            o.Cycle.TakeDamage(400);check(Near(e.CurrentCastTime,1.44f) && Near(e.CurrentDamageMultiplier,1.1f),"destroy during cast preserves snapshot");
+            o.Cycle.TakeDamage(400);check(Near(e.CurrentCastTime,1.2f) && Near(e.CurrentDamageMultiplier,1.1f),"destroy during cast preserves snapshot");
             p.BeginBattle(true);Call(e,"Fire");check(p.CurrentHp==468,"35 x1.1 /1.2 rounded once to32");Tick(1);
-            check(Near(e.CurrentCastTime,1.92f) && Near(e.CurrentDamageMultiplier,1),"next cast resamples missing orbs");
+            check(Near(e.CurrentCastTime,1.6f) && Near(e.CurrentDamageMultiplier,1),"next cast resamples missing orbs");
 
             o=Enter(2);o.Ruin.TakeDamage(50);o.Cycle.TakeDamage(90);e.TakeDamage(1050);e.TryInterrupt(2.5f);
             check(e.PhaseNumber==3 && o.Ruin.CurrentHp==350 && o.Cycle.CurrentHp==310,"phase3 keeps existing HP");
             hp=e.CurrentHp;o.Ruin.TakeDamage(400);check(e.CurrentHp==hp && !o.RuinActive,"transition invulnerability blocks destruction damage");
             Tick(2.5f);check(e.CurrentHp==hp && !o.RuinActive && o.Cycle.CurrentHp==310,"no deferred damage or refill");
-            check(Near(e.CurrentCastTime,17.6f),"phase3 only cycle reduction");
+            check(Near(e.CurrentCastTime,20f),"phase3 only cycle reduction");
             o=Enter(3);check(o.Ruin.CurrentHp==400 && o.Cycle.CurrentHp==400,"phase2 skip summons both");
 
             for(int index=1;index<=5;index++)
@@ -88,7 +88,7 @@ public static class BossOrbChecks
             p.SetSanctuary(false);p.ApplyCostBlockingStun(5);p.BeginBattle(true);check(!p.IsStunned && !p.IsCostRecoveryBlocked,"restart clears stun/lock");
 
             o=Enter(3);o.Ruin.TakeDamage(400);o.Cycle.TakeDamage(400);Attack(3);p.AddShield(10000);
-            check(e.CurrentDamageMultiplier==1 && Near(e.CurrentCastTime,7.2f),"dark hole begins unbuffed");
+            check(e.CurrentDamageMultiplier==1 && Near(e.CurrentCastTime,6f),"dark hole begins unbuffed");
             check(e.TryInterrupt(2.5f)==InterruptResult.FailedRed && !o.RuinActive,"red interrupt failure does not summon");
             Call(e,"Fire");check(o.RuinActive && !o.CycleActive && o.Ruin.CurrentHp==400,"dark hole refills ruin first");
             check(e.CurrentDamageMultiplier==1,"new orb not retroactive");
@@ -205,7 +205,7 @@ public static class BossOrbChecks
                 if(!e.IsPhaseTransitioning && (!o.RuinActive || !o.CycleActive))throw new Exception("activation missing at transition end");
                 if(e.IsCasting)
                 {
-                    if(!Near(e.CurrentCastTime,1.44f) || Mathf.Abs(Time.time-started-2.5f)>.06f)throw new Exception("transition/stagger/cast timing");
+                    if(!Near(e.CurrentCastTime,1.2f) || Mathf.Abs(Time.time-started-2.5f)>.06f)throw new Exception("transition/stagger/cast timing");
                     Set(e,"phasePatternIndex",6);Call(e,"BeginNextCast"); // 실제 2페이즈 사일런스 시전부터 관측
                     c.TrySpend(c.Current);stage=2;
                 }
@@ -221,7 +221,7 @@ public static class BossOrbChecks
                 if(Time.time>=lockedUntil+.3f)
                 {
                     if(p.IsStunned || p.IsCostRecoveryBlocked || c.Current<lockedCost+.2f)throw new Exception("recovery did not resume");
-                    frameLines+=(mode==0?"1x":"0.5x")+": "+ticks+" frames; transition/stagger, active orbs, silence, paused lock, orb destruction, recovery PASS\n";
+                    frameLines+=(mode==0?"1x":"2x")+": "+ticks+" frames; transition/stagger, active orbs, silence, paused lock, orb destruction, recovery PASS\n";
                     if(mode++==0)ConfigureFrames();else{FinishFrames("passed\n"+frameLines);return;}
                 }
             }

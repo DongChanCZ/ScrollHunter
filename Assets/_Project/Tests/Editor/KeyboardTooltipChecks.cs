@@ -76,7 +76,7 @@ public static class KeyboardTooltipChecks
             info.ToggleSpeed(); info.TogglePause();
             inspect(true, 0, -1); check(info.IsInfoPaused && Time.timeScale == 0f, "works during A pause");
             inspect(false, -1, -1); check(info.IsInfoPaused && Time.timeScale == 0f, "release preserves A pause");
-            info.Resume(); nextFrame(); check(Time.timeScale == .5f, "pause resumes original speed");
+            info.Resume(); nextFrame(); check(Time.timeScale == 2f, "pause resumes original speed");
             info.ToggleSpeed();
             check(deck.TryUseSlot(1) && deck.IsCasting, "normal cast works after inspection");
             float remaining = deck.CastRemaining;

@@ -1,0 +1,559 @@
+Tour done
+[title] texts 33, issues 32
+English | untranslated TypeRow/TypeText | 차단
+English | untranslated TypeRow/TypeText | 방어
+English | untranslated TypeRow/TypeText | 광역
+English | untranslated TypeRow/TypeText | 단일
+English | untranslated Screen shake content/NextCardText | 매직 스파크
+English | untranslated InfoHint/Label | 전투 종료
+English | untranslated Slot2/LockText | 잠김
+English | untranslated PauseButton/Label | 전투 종료
+Japanese | untranslated TypeRow/TypeText | 차단
+Japanese | untranslated TypeRow/TypeText | 방어
+Japanese | untranslated TypeRow/TypeText | 광역
+Japanese | untranslated TypeRow/TypeText | 단일
+Japanese | untranslated Screen shake content/NextCardText | 매직 스파크
+Japanese | untranslated InfoHint/Label | 전투 종료
+Japanese | untranslated Slot2/LockText | 잠김
+Japanese | untranslated PauseButton/Label | 전투 종료
+ChineseSimplified | untranslated TypeRow/TypeText | 차단
+ChineseSimplified | untranslated TypeRow/TypeText | 방어
+ChineseSimplified | untranslated TypeRow/TypeText | 광역
+ChineseSimplified | untranslated TypeRow/TypeText | 단일
+ChineseSimplified | untranslated Screen shake content/NextCardText | 매직 스파크
+ChineseSimplified | untranslated InfoHint/Label | 전투 종료
+ChineseSimplified | untranslated Slot2/LockText | 잠김
+ChineseSimplified | untranslated PauseButton/Label | 전투 종료
+Spanish | untranslated TypeRow/TypeText | 차단
+Spanish | untranslated TypeRow/TypeText | 방어
+Spanish | untranslated TypeRow/TypeText | 광역
+Spanish | untranslated TypeRow/TypeText | 단일
+Spanish | untranslated Screen shake content/NextCardText | 매직 스파크
+Spanish | untranslated InfoHint/Label | 전투 종료
+Spanish | untranslated Slot2/LockText | 잠김
+Spanish | untranslated PauseButton/Label | 전투 종료
+
+[options] texts 51, issues 32
+English | untranslated TypeRow/TypeText | 차단
+English | untranslated TypeRow/TypeText | 방어
+English | untranslated TypeRow/TypeText | 광역
+English | untranslated TypeRow/TypeText | 단일
+English | untranslated Screen shake content/NextCardText | 매직 스파크
+English | untranslated InfoHint/Label | 전투 종료
+English | untranslated Slot2/LockText | 잠김
+English | untranslated PauseButton/Label | 전투 종료
+Japanese | untranslated TypeRow/TypeText | 차단
+Japanese | untranslated TypeRow/TypeText | 방어
+Japanese | untranslated TypeRow/TypeText | 광역
+Japanese | untranslated TypeRow/TypeText | 단일
+Japanese | untranslated Screen shake content/NextCardText | 매직 스파크
+Japanese | untranslated InfoHint/Label | 전투 종료
+Japanese | untranslated Slot2/LockText | 잠김
+Japanese | untranslated PauseButton/Label | 전투 종료
+ChineseSimplified | untranslated TypeRow/TypeText | 차단
+ChineseSimplified | untranslated TypeRow/TypeText | 방어
+ChineseSimplified | untranslated TypeRow/TypeText | 광역
+ChineseSimplified | untranslated TypeRow/TypeText | 단일
+ChineseSimplified | untranslated Screen shake content/NextCardText | 매직 스파크
+ChineseSimplified | untranslated InfoHint/Label | 전투 종료
+ChineseSimplified | untranslated Slot2/LockText | 잠김
+ChineseSimplified | untranslated PauseButton/Label | 전투 종료
+Spanish | untranslated TypeRow/TypeText | 차단
+Spanish | untranslated TypeRow/TypeText | 방어
+Spanish | untranslated TypeRow/TypeText | 광역
+Spanish | untranslated TypeRow/TypeText | 단일
+Spanish | untranslated Screen shake content/NextCardText | 매직 스파크
+Spanish | untranslated InfoHint/Label | 전투 종료
+Spanish | untranslated Slot2/LockText | 잠김
+Spanish | untranslated PauseButton/Label | 전투 종료
+
+[controls] texts 37, issues 32
+English | untranslated TypeRow/TypeText | 차단
+English | untranslated TypeRow/TypeText | 방어
+English | untranslated TypeRow/TypeText | 광역
+English | untranslated TypeRow/TypeText | 단일
+English | untranslated Screen shake content/NextCardText | 매직 스파크
+English | untranslated InfoHint/Label | 전투 종료
+English | untranslated Slot2/LockText | 잠김
+English | untranslated PauseButton/Label | 전투 종료
+Japanese | untranslated TypeRow/TypeText | 차단
+Japanese | untranslated TypeRow/TypeText | 방어
+Japanese | untranslated TypeRow/TypeText | 광역
+Japanese | untranslated TypeRow/TypeText | 단일
+Japanese | untranslated Screen shake content/NextCardText | 매직 스파크
+Japanese | untranslated InfoHint/Label | 전투 종료
+Japanese | untranslated Slot2/LockText | 잠김
+Japanese | untranslated PauseButton/Label | 전투 종료
+ChineseSimplified | untranslated TypeRow/TypeText | 차단
+ChineseSimplified | untranslated TypeRow/TypeText | 방어
+ChineseSimplified | untranslated TypeRow/TypeText | 광역
+ChineseSimplified | untranslated TypeRow/TypeText | 단일
+ChineseSimplified | untranslated Screen shake content/NextCardText | 매직 스파크
+ChineseSimplified | untranslated InfoHint/Label | 전투 종료
+ChineseSimplified | untranslated Slot2/LockText | 잠김
+ChineseSimplified | untranslated PauseButton/Label | 전투 종료
+Spanish | untranslated TypeRow/TypeText | 차단
+Spanish | untranslated TypeRow/TypeText | 방어
+Spanish | untranslated TypeRow/TypeText | 광역
+Spanish | untranslated TypeRow/TypeText | 단일
+Spanish | untranslated Screen shake content/NextCardText | 매직 스파크
+Spanish | untranslated InfoHint/Label | 전투 종료
+Spanish | untranslated Slot2/LockText | 잠김
+Spanish | untranslated PauseButton/Label | 전투 종료
+
+[inheritance-info] texts 42, issues 32
+English | untranslated TypeRow/TypeText | 차단
+English | untranslated TypeRow/TypeText | 방어
+English | untranslated TypeRow/TypeText | 광역
+English | untranslated TypeRow/TypeText | 단일
+English | untranslated Screen shake content/NextCardText | 매직 스파크
+English | untranslated InfoHint/Label | 전투 종료
+English | untranslated Slot2/LockText | 잠김
+English | untranslated PauseButton/Label | 전투 종료
+Japanese | untranslated TypeRow/TypeText | 차단
+Japanese | untranslated TypeRow/TypeText | 방어
+Japanese | untranslated TypeRow/TypeText | 광역
+Japanese | untranslated TypeRow/TypeText | 단일
+Japanese | untranslated Screen shake content/NextCardText | 매직 스파크
+Japanese | untranslated InfoHint/Label | 전투 종료
+Japanese | untranslated Slot2/LockText | 잠김
+Japanese | untranslated PauseButton/Label | 전투 종료
+ChineseSimplified | untranslated TypeRow/TypeText | 차단
+ChineseSimplified | untranslated TypeRow/TypeText | 방어
+ChineseSimplified | untranslated TypeRow/TypeText | 광역
+ChineseSimplified | untranslated TypeRow/TypeText | 단일
+ChineseSimplified | untranslated Screen shake content/NextCardText | 매직 스파크
+ChineseSimplified | untranslated InfoHint/Label | 전투 종료
+ChineseSimplified | untranslated Slot2/LockText | 잠김
+ChineseSimplified | untranslated PauseButton/Label | 전투 종료
+Spanish | untranslated TypeRow/TypeText | 차단
+Spanish | untranslated TypeRow/TypeText | 방어
+Spanish | untranslated TypeRow/TypeText | 광역
+Spanish | untranslated TypeRow/TypeText | 단일
+Spanish | untranslated Screen shake content/NextCardText | 매직 스파크
+Spanish | untranslated InfoHint/Label | 전투 종료
+Spanish | untranslated Slot2/LockText | 잠김
+Spanish | untranslated PauseButton/Label | 전투 종료
+
+[deck] texts 64, issues 32
+English | untranslated TypeRow/TypeText | 차단
+English | untranslated TypeRow/TypeText | 방어
+English | untranslated TypeRow/TypeText | 광역
+English | untranslated TypeRow/TypeText | 단일
+English | untranslated Screen shake content/NextCardText | 매직 스파크
+English | untranslated InfoHint/Label | 전투 종료
+English | untranslated Slot2/LockText | 잠김
+English | untranslated PauseButton/Label | 전투 종료
+Japanese | untranslated TypeRow/TypeText | 차단
+Japanese | untranslated TypeRow/TypeText | 방어
+Japanese | untranslated TypeRow/TypeText | 광역
+Japanese | untranslated TypeRow/TypeText | 단일
+Japanese | untranslated Screen shake content/NextCardText | 매직 스파크
+Japanese | untranslated InfoHint/Label | 전투 종료
+Japanese | untranslated Slot2/LockText | 잠김
+Japanese | untranslated PauseButton/Label | 전투 종료
+ChineseSimplified | untranslated TypeRow/TypeText | 차단
+ChineseSimplified | untranslated TypeRow/TypeText | 방어
+ChineseSimplified | untranslated TypeRow/TypeText | 광역
+ChineseSimplified | untranslated TypeRow/TypeText | 단일
+ChineseSimplified | untranslated Screen shake content/NextCardText | 매직 스파크
+ChineseSimplified | untranslated InfoHint/Label | 전투 종료
+ChineseSimplified | untranslated Slot2/LockText | 잠김
+ChineseSimplified | untranslated PauseButton/Label | 전투 종료
+Spanish | untranslated TypeRow/TypeText | 차단
+Spanish | untranslated TypeRow/TypeText | 방어
+Spanish | untranslated TypeRow/TypeText | 광역
+Spanish | untranslated TypeRow/TypeText | 단일
+Spanish | untranslated Screen shake content/NextCardText | 매직 스파크
+Spanish | untranslated InfoHint/Label | 전투 종료
+Spanish | untranslated Slot2/LockText | 잠김
+Spanish | untranslated PauseButton/Label | 전투 종료
+
+[dialogue] texts 30, issues 32
+English | untranslated TypeRow/TypeText | 차단
+English | untranslated TypeRow/TypeText | 방어
+English | untranslated TypeRow/TypeText | 광역
+English | untranslated TypeRow/TypeText | 단일
+English | untranslated Screen shake content/NextCardText | 매직 스파크
+English | untranslated InfoHint/Label | 전투 종료
+English | untranslated Slot2/LockText | 잠김
+English | untranslated PauseButton/Label | 전투 종료
+Japanese | untranslated TypeRow/TypeText | 차단
+Japanese | untranslated TypeRow/TypeText | 방어
+Japanese | untranslated TypeRow/TypeText | 광역
+Japanese | untranslated TypeRow/TypeText | 단일
+Japanese | untranslated Screen shake content/NextCardText | 매직 스파크
+Japanese | untranslated InfoHint/Label | 전투 종료
+Japanese | untranslated Slot2/LockText | 잠김
+Japanese | untranslated PauseButton/Label | 전투 종료
+ChineseSimplified | untranslated TypeRow/TypeText | 차단
+ChineseSimplified | untranslated TypeRow/TypeText | 방어
+ChineseSimplified | untranslated TypeRow/TypeText | 광역
+ChineseSimplified | untranslated TypeRow/TypeText | 단일
+ChineseSimplified | untranslated Screen shake content/NextCardText | 매직 스파크
+ChineseSimplified | untranslated InfoHint/Label | 전투 종료
+ChineseSimplified | untranslated Slot2/LockText | 잠김
+ChineseSimplified | untranslated PauseButton/Label | 전투 종료
+Spanish | untranslated TypeRow/TypeText | 차단
+Spanish | untranslated TypeRow/TypeText | 방어
+Spanish | untranslated TypeRow/TypeText | 광역
+Spanish | untranslated TypeRow/TypeText | 단일
+Spanish | untranslated Screen shake content/NextCardText | 매직 스파크
+Spanish | untranslated InfoHint/Label | 전투 종료
+Spanish | untranslated Slot2/LockText | 잠김
+Spanish | untranslated PauseButton/Label | 전투 종료
+
+[battle-card-info] texts 34, issues 28
+English | untranslated TypeRow/TypeText | 차단
+English | untranslated TypeRow/TypeText | 방어
+English | untranslated TypeRow/TypeText | 광역
+English | untranslated TargetInfo/Description | <size=125%><b><color=#F5EBD6>약탈자</color></b></size>
+<size=80%> </size>
+<b><color=#F5EBD6>휘두르기</color></b>
+<alpha=#CC>기본 피해 <alpha=#FF><b>20</b><alpha=#CC> (방어력 적용 전)
+시전 <alpha=#FF><b>2.5초</b><alpha=#CC> · <alpha=#FF><color=#F5EBD6>차단 가능</color>
+<size=80%> </size>
+<size=85%>추가 효과 없음</size>
+English | untranslated TypeRow/TypeText | 단일
+English | untranslated Screen shake content/NextCardText | 매직 스파크
+English | untranslated InfoHint/Label | A 정지·재개 · S 배속 · 카드에 마우스: 정보
+Space 누른 채 Q/W/E/R: 스킬 정보
+Japanese | untranslated TypeRow/TypeText | 차단
+Japanese | untranslated TypeRow/TypeText | 방어
+Japanese | untranslated TypeRow/TypeText | 광역
+Japanese | untranslated TargetInfo/Description | <size=125%><b><color=#F5EBD6>약탈자</color></b></size>
+<size=80%> </size>
+<b><color=#F5EBD6>휘두르기</color></b>
+<alpha=#CC>기본 피해 <alpha=#FF><b>20</b><alpha=#CC> (방어력 적용 전)
+시전 <alpha=#FF><b>2.5초</b><alpha=#CC> · <alpha=#FF><color=#F5EBD6>차단 가능</color>
+<size=80%> </size>
+<size=85%>추가 효과 없음</size>
+Japanese | untranslated TypeRow/TypeText | 단일
+Japanese | untranslated Screen shake content/NextCardText | 매직 스파크
+Japanese | untranslated InfoHint/Label | A 정지·재개 · S 배속 · 카드에 마우스: 정보
+Space 누른 채 Q/W/E/R: 스킬 정보
+ChineseSimplified | untranslated TypeRow/TypeText | 차단
+ChineseSimplified | untranslated TypeRow/TypeText | 방어
+ChineseSimplified | untranslated TypeRow/TypeText | 광역
+ChineseSimplified | untranslated TargetInfo/Description | <size=125%><b><color=#F5EBD6>약탈자</color></b></size>
+<size=80%> </size>
+<b><color=#F5EBD6>휘두르기</color></b>
+<alpha=#CC>기본 피해 <alpha=#FF><b>20</b><alpha=#CC> (방어력 적용 전)
+시전 <alpha=#FF><b>2.5초</b><alpha=#CC> · <alpha=#FF><color=#F5EBD6>차단 가능</color>
+<size=80%> </size>
+<size=85%>추가 효과 없음</size>
+ChineseSimplified | untranslated TypeRow/TypeText | 단일
+ChineseSimplified | untranslated Screen shake content/NextCardText | 매직 스파크
+ChineseSimplified | untranslated InfoHint/Label | A 정지·재개 · S 배속 · 카드에 마우스: 정보
+Space 누른 채 Q/W/E/R: 스킬 정보
+Spanish | untranslated TypeRow/TypeText | 차단
+Spanish | untranslated TypeRow/TypeText | 방어
+Spanish | untranslated TypeRow/TypeText | 광역
+Spanish | untranslated TargetInfo/Description | <size=125%><b><color=#F5EBD6>약탈자</color></b></size>
+<size=80%> </size>
+<b><color=#F5EBD6>휘두르기</color></b>
+<alpha=#CC>기본 피해 <alpha=#FF><b>20</b><alpha=#CC> (방어력 적용 전)
+시전 <alpha=#FF><b>2.5초</b><alpha=#CC> · <alpha=#FF><color=#F5EBD6>차단 가능</color>
+<size=80%> </size>
+<size=85%>추가 효과 없음</size>
+Spanish | untranslated TypeRow/TypeText | 단일
+Spanish | untranslated Screen shake content/NextCardText | 매직 스파크
+Spanish | untranslated InfoHint/Label | A 정지·재개 · S 배속 · 카드에 마우스: 정보
+Space 누른 채 Q/W/E/R: 스킬 정보
+
+[battle-stats] texts 61, issues 40
+English | untranslated Row_interruptStagger/Value | 3.0초
+English | untranslated TypeRow/TypeText | 차단
+English | untranslated TypeRow/TypeText | 방어
+English | untranslated TypeRow/TypeText | 광역
+English | untranslated StatsPanel/Detail_defense | 받는 피해 16.7% 감소 · 방어도와 별개
+English | untranslated TargetInfo/Description | <size=125%><b><color=#F5EBD6>약탈자</color></b></size>
+<size=80%> </size>
+<b><color=#F5EBD6>휘두르기</color></b>
+<alpha=#CC>기본 피해 <alpha=#FF><b>20</b><alpha=#CC> (방어력 적용 전)
+시전 <alpha=#FF><b>2.5초</b><alpha=#CC> · <alpha=#FF><color=#F5EBD6>차단 가능</color>
+<size=80%> </size>
+<size=85%>추가 효과 없음</size>
+English | untranslated TypeRow/TypeText | 단일
+English | untranslated Screen shake content/NextCardText | 매직 스파크
+English | untranslated InfoHint/Label | 일시정지 · A/우클릭 재개 · S 배속
+Space 누른 채 Q/W/E/R: 스킬 정보
+English | untranslated PauseButton/Label | 재개
+Japanese | untranslated Row_interruptStagger/Value | 3.0초
+Japanese | untranslated TypeRow/TypeText | 차단
+Japanese | untranslated TypeRow/TypeText | 방어
+Japanese | untranslated TypeRow/TypeText | 광역
+Japanese | untranslated StatsPanel/Detail_defense | 받는 피해 16.7% 감소 · 방어도와 별개
+Japanese | untranslated TargetInfo/Description | <size=125%><b><color=#F5EBD6>약탈자</color></b></size>
+<size=80%> </size>
+<b><color=#F5EBD6>휘두르기</color></b>
+<alpha=#CC>기본 피해 <alpha=#FF><b>20</b><alpha=#CC> (방어력 적용 전)
+시전 <alpha=#FF><b>2.5초</b><alpha=#CC> · <alpha=#FF><color=#F5EBD6>차단 가능</color>
+<size=80%> </size>
+<size=85%>추가 효과 없음</size>
+Japanese | untranslated TypeRow/TypeText | 단일
+Japanese | untranslated Screen shake content/NextCardText | 매직 스파크
+Japanese | untranslated InfoHint/Label | 일시정지 · A/우클릭 재개 · S 배속
+Space 누른 채 Q/W/E/R: 스킬 정보
+Japanese | untranslated PauseButton/Label | 재개
+ChineseSimplified | untranslated Row_interruptStagger/Value | 3.0초
+ChineseSimplified | untranslated TypeRow/TypeText | 차단
+ChineseSimplified | untranslated TypeRow/TypeText | 방어
+ChineseSimplified | untranslated TypeRow/TypeText | 광역
+ChineseSimplified | untranslated StatsPanel/Detail_defense | 받는 피해 16.7% 감소 · 방어도와 별개
+ChineseSimplified | untranslated TargetInfo/Description | <size=125%><b><color=#F5EBD6>약탈자</color></b></size>
+<size=80%> </size>
+<b><color=#F5EBD6>휘두르기</color></b>
+<alpha=#CC>기본 피해 <alpha=#FF><b>20</b><alpha=#CC> (방어력 적용 전)
+시전 <alpha=#FF><b>2.5초</b><alpha=#CC> · <alpha=#FF><color=#F5EBD6>차단 가능</color>
+<size=80%> </size>
+<size=85%>추가 효과 없음</size>
+ChineseSimplified | untranslated TypeRow/TypeText | 단일
+ChineseSimplified | untranslated Screen shake content/NextCardText | 매직 스파크
+ChineseSimplified | untranslated InfoHint/Label | 일시정지 · A/우클릭 재개 · S 배속
+Space 누른 채 Q/W/E/R: 스킬 정보
+ChineseSimplified | untranslated PauseButton/Label | 재개
+Spanish | untranslated Row_interruptStagger/Value | 3.0초
+Spanish | untranslated TypeRow/TypeText | 차단
+Spanish | untranslated TypeRow/TypeText | 방어
+Spanish | untranslated TypeRow/TypeText | 광역
+Spanish | untranslated StatsPanel/Detail_defense | 받는 피해 16.7% 감소 · 방어도와 별개
+Spanish | untranslated TargetInfo/Description | <size=125%><b><color=#F5EBD6>약탈자</color></b></size>
+<size=80%> </size>
+<b><color=#F5EBD6>휘두르기</color></b>
+<alpha=#CC>기본 피해 <alpha=#FF><b>20</b><alpha=#CC> (방어력 적용 전)
+시전 <alpha=#FF><b>2.5초</b><alpha=#CC> · <alpha=#FF><color=#F5EBD6>차단 가능</color>
+<size=80%> </size>
+<size=85%>추가 효과 없음</size>
+Spanish | untranslated TypeRow/TypeText | 단일
+Spanish | untranslated Screen shake content/NextCardText | 매직 스파크
+Spanish | untranslated InfoHint/Label | 일시정지 · A/우클릭 재개 · S 배속
+Space 누른 채 Q/W/E/R: 스킬 정보
+Spanish | untranslated PauseButton/Label | 재개
+
+[reward] texts 42, issues 32
+English | untranslated TypeRow/TypeText | 차단
+English | untranslated TypeRow/TypeText | 방어
+English | untranslated TypeRow/TypeText | 광역
+English | untranslated TypeRow/TypeText | 단일
+English | untranslated Screen shake content/NextCardText | 매직 스파크
+English | untranslated InfoHint/Label | 전투 종료
+English | untranslated Slot2/LockText | 잠김
+English | untranslated PauseButton/Label | 전투 종료
+Japanese | untranslated TypeRow/TypeText | 차단
+Japanese | untranslated TypeRow/TypeText | 방어
+Japanese | untranslated TypeRow/TypeText | 광역
+Japanese | untranslated TypeRow/TypeText | 단일
+Japanese | untranslated Screen shake content/NextCardText | 매직 스파크
+Japanese | untranslated InfoHint/Label | 전투 종료
+Japanese | untranslated Slot2/LockText | 잠김
+Japanese | untranslated PauseButton/Label | 전투 종료
+ChineseSimplified | untranslated TypeRow/TypeText | 차단
+ChineseSimplified | untranslated TypeRow/TypeText | 방어
+ChineseSimplified | untranslated TypeRow/TypeText | 광역
+ChineseSimplified | untranslated TypeRow/TypeText | 단일
+ChineseSimplified | untranslated Screen shake content/NextCardText | 매직 스파크
+ChineseSimplified | untranslated InfoHint/Label | 전투 종료
+ChineseSimplified | untranslated Slot2/LockText | 잠김
+ChineseSimplified | untranslated PauseButton/Label | 전투 종료
+Spanish | untranslated TypeRow/TypeText | 차단
+Spanish | untranslated TypeRow/TypeText | 방어
+Spanish | untranslated TypeRow/TypeText | 광역
+Spanish | untranslated TypeRow/TypeText | 단일
+Spanish | untranslated Screen shake content/NextCardText | 매직 스파크
+Spanish | untranslated InfoHint/Label | 전투 종료
+Spanish | untranslated Slot2/LockText | 잠김
+Spanish | untranslated PauseButton/Label | 전투 종료
+
+[replace-confirm] texts 83, issues 32
+English | untranslated TypeRow/TypeText | 차단
+English | untranslated TypeRow/TypeText | 방어
+English | untranslated TypeRow/TypeText | 광역
+English | untranslated TypeRow/TypeText | 단일
+English | untranslated Screen shake content/NextCardText | 매직 스파크
+English | untranslated InfoHint/Label | 전투 종료
+English | untranslated Slot2/LockText | 잠김
+English | untranslated PauseButton/Label | 전투 종료
+Japanese | untranslated TypeRow/TypeText | 차단
+Japanese | untranslated TypeRow/TypeText | 방어
+Japanese | untranslated TypeRow/TypeText | 광역
+Japanese | untranslated TypeRow/TypeText | 단일
+Japanese | untranslated Screen shake content/NextCardText | 매직 스파크
+Japanese | untranslated InfoHint/Label | 전투 종료
+Japanese | untranslated Slot2/LockText | 잠김
+Japanese | untranslated PauseButton/Label | 전투 종료
+ChineseSimplified | untranslated TypeRow/TypeText | 차단
+ChineseSimplified | untranslated TypeRow/TypeText | 방어
+ChineseSimplified | untranslated TypeRow/TypeText | 광역
+ChineseSimplified | untranslated TypeRow/TypeText | 단일
+ChineseSimplified | untranslated Screen shake content/NextCardText | 매직 스파크
+ChineseSimplified | untranslated InfoHint/Label | 전투 종료
+ChineseSimplified | untranslated Slot2/LockText | 잠김
+ChineseSimplified | untranslated PauseButton/Label | 전투 종료
+Spanish | untranslated TypeRow/TypeText | 차단
+Spanish | untranslated TypeRow/TypeText | 방어
+Spanish | untranslated TypeRow/TypeText | 광역
+Spanish | untranslated TypeRow/TypeText | 단일
+Spanish | untranslated Screen shake content/NextCardText | 매직 스파크
+Spanish | untranslated InfoHint/Label | 전투 종료
+Spanish | untranslated Slot2/LockText | 잠김
+Spanish | untranslated PauseButton/Label | 전투 종료
+
+[next-deck] texts 64, issues 32
+English | untranslated TypeRow/TypeText | 차단
+English | untranslated TypeRow/TypeText | 방어
+English | untranslated TypeRow/TypeText | 광역
+English | untranslated TypeRow/TypeText | 단일
+English | untranslated Screen shake content/NextCardText | 매직 스파크
+English | untranslated InfoHint/Label | 전투 종료
+English | untranslated Slot2/LockText | 잠김
+English | untranslated PauseButton/Label | 전투 종료
+Japanese | untranslated TypeRow/TypeText | 차단
+Japanese | untranslated TypeRow/TypeText | 방어
+Japanese | untranslated TypeRow/TypeText | 광역
+Japanese | untranslated TypeRow/TypeText | 단일
+Japanese | untranslated Screen shake content/NextCardText | 매직 스파크
+Japanese | untranslated InfoHint/Label | 전투 종료
+Japanese | untranslated Slot2/LockText | 잠김
+Japanese | untranslated PauseButton/Label | 전투 종료
+ChineseSimplified | untranslated TypeRow/TypeText | 차단
+ChineseSimplified | untranslated TypeRow/TypeText | 방어
+ChineseSimplified | untranslated TypeRow/TypeText | 광역
+ChineseSimplified | untranslated TypeRow/TypeText | 단일
+ChineseSimplified | untranslated Screen shake content/NextCardText | 매직 스파크
+ChineseSimplified | untranslated InfoHint/Label | 전투 종료
+ChineseSimplified | untranslated Slot2/LockText | 잠김
+ChineseSimplified | untranslated PauseButton/Label | 전투 종료
+Spanish | untranslated TypeRow/TypeText | 차단
+Spanish | untranslated TypeRow/TypeText | 방어
+Spanish | untranslated TypeRow/TypeText | 광역
+Spanish | untranslated TypeRow/TypeText | 단일
+Spanish | untranslated Screen shake content/NextCardText | 매직 스파크
+Spanish | untranslated InfoHint/Label | 전투 종료
+Spanish | untranslated Slot2/LockText | 잠김
+Spanish | untranslated PauseButton/Label | 전투 종료
+
+[defeat] texts 32, issues 28
+English | untranslated TypeRow/TypeText | 차단
+English | untranslated TypeRow/TypeText | 방어
+English | untranslated TypeRow/TypeText | 광역
+English | untranslated TypeRow/TypeText | 방어
+English | untranslated Screen shake content/NextCardText | 매직 스파크
+English | untranslated InfoHint/Label | 전투 종료
+English | untranslated PauseButton/Label | 전투 종료
+Japanese | untranslated TypeRow/TypeText | 차단
+Japanese | untranslated TypeRow/TypeText | 방어
+Japanese | untranslated TypeRow/TypeText | 광역
+Japanese | untranslated TypeRow/TypeText | 방어
+Japanese | untranslated Screen shake content/NextCardText | 매직 스파크
+Japanese | untranslated InfoHint/Label | 전투 종료
+Japanese | untranslated PauseButton/Label | 전투 종료
+ChineseSimplified | untranslated TypeRow/TypeText | 차단
+ChineseSimplified | untranslated TypeRow/TypeText | 방어
+ChineseSimplified | untranslated TypeRow/TypeText | 광역
+ChineseSimplified | untranslated TypeRow/TypeText | 방어
+ChineseSimplified | untranslated Screen shake content/NextCardText | 매직 스파크
+ChineseSimplified | untranslated InfoHint/Label | 전투 종료
+ChineseSimplified | untranslated PauseButton/Label | 전투 종료
+Spanish | untranslated TypeRow/TypeText | 차단
+Spanish | untranslated TypeRow/TypeText | 방어
+Spanish | untranslated TypeRow/TypeText | 광역
+Spanish | untranslated TypeRow/TypeText | 방어
+Spanish | untranslated Screen shake content/NextCardText | 매직 스파크
+Spanish | untranslated InfoHint/Label | 전투 종료
+Spanish | untranslated PauseButton/Label | 전투 종료
+
+[inheritance] texts 36, issues 28
+English | untranslated TypeRow/TypeText | 차단
+English | untranslated TypeRow/TypeText | 방어
+English | untranslated TypeRow/TypeText | 광역
+English | untranslated TypeRow/TypeText | 방어
+English | untranslated Screen shake content/NextCardText | 매직 스파크
+English | untranslated InfoHint/Label | 전투 종료
+English | untranslated PauseButton/Label | 전투 종료
+Japanese | untranslated TypeRow/TypeText | 차단
+Japanese | untranslated TypeRow/TypeText | 방어
+Japanese | untranslated TypeRow/TypeText | 광역
+Japanese | untranslated TypeRow/TypeText | 방어
+Japanese | untranslated Screen shake content/NextCardText | 매직 스파크
+Japanese | untranslated InfoHint/Label | 전투 종료
+Japanese | untranslated PauseButton/Label | 전투 종료
+ChineseSimplified | untranslated TypeRow/TypeText | 차단
+ChineseSimplified | untranslated TypeRow/TypeText | 방어
+ChineseSimplified | untranslated TypeRow/TypeText | 광역
+ChineseSimplified | untranslated TypeRow/TypeText | 방어
+ChineseSimplified | untranslated Screen shake content/NextCardText | 매직 스파크
+ChineseSimplified | untranslated InfoHint/Label | 전투 종료
+ChineseSimplified | untranslated PauseButton/Label | 전투 종료
+Spanish | untranslated TypeRow/TypeText | 차단
+Spanish | untranslated TypeRow/TypeText | 방어
+Spanish | untranslated TypeRow/TypeText | 광역
+Spanish | untranslated TypeRow/TypeText | 방어
+Spanish | untranslated Screen shake content/NextCardText | 매직 스파크
+Spanish | untranslated InfoHint/Label | 전투 종료
+Spanish | untranslated PauseButton/Label | 전투 종료
+
+[inheritance-confirm] texts 85, issues 28
+English | untranslated TypeRow/TypeText | 차단
+English | untranslated TypeRow/TypeText | 방어
+English | untranslated TypeRow/TypeText | 광역
+English | untranslated TypeRow/TypeText | 방어
+English | untranslated Screen shake content/NextCardText | 매직 스파크
+English | untranslated InfoHint/Label | 전투 종료
+English | untranslated PauseButton/Label | 전투 종료
+Japanese | untranslated TypeRow/TypeText | 차단
+Japanese | untranslated TypeRow/TypeText | 방어
+Japanese | untranslated TypeRow/TypeText | 광역
+Japanese | untranslated TypeRow/TypeText | 방어
+Japanese | untranslated Screen shake content/NextCardText | 매직 스파크
+Japanese | untranslated InfoHint/Label | 전투 종료
+Japanese | untranslated PauseButton/Label | 전투 종료
+ChineseSimplified | untranslated TypeRow/TypeText | 차단
+ChineseSimplified | untranslated TypeRow/TypeText | 방어
+ChineseSimplified | untranslated TypeRow/TypeText | 광역
+ChineseSimplified | untranslated TypeRow/TypeText | 방어
+ChineseSimplified | untranslated Screen shake content/NextCardText | 매직 스파크
+ChineseSimplified | untranslated InfoHint/Label | 전투 종료
+ChineseSimplified | untranslated PauseButton/Label | 전투 종료
+Spanish | untranslated TypeRow/TypeText | 차단
+Spanish | untranslated TypeRow/TypeText | 방어
+Spanish | untranslated TypeRow/TypeText | 광역
+Spanish | untranslated TypeRow/TypeText | 방어
+Spanish | untranslated Screen shake content/NextCardText | 매직 스파크
+Spanish | untranslated InfoHint/Label | 전투 종료
+Spanish | untranslated PauseButton/Label | 전투 종료
+
+[retry-preparation] texts 64, issues 32
+English | untranslated TypeRow/TypeText | 차단
+English | untranslated TypeRow/TypeText | 방어
+English | untranslated TypeRow/TypeText | 광역
+English | untranslated TypeRow/TypeText | 방어
+English | untranslated Screen shake content/NextCardText | 매직 스파크
+English | untranslated InfoHint/Label | 전투 종료
+English | untranslated Slot2/LockText | 잠김
+English | untranslated PauseButton/Label | 전투 종료
+Japanese | untranslated TypeRow/TypeText | 차단
+Japanese | untranslated TypeRow/TypeText | 방어
+Japanese | untranslated TypeRow/TypeText | 광역
+Japanese | untranslated TypeRow/TypeText | 방어
+Japanese | untranslated Screen shake content/NextCardText | 매직 스파크
+Japanese | untranslated InfoHint/Label | 전투 종료
+Japanese | untranslated Slot2/LockText | 잠김
+Japanese | untranslated PauseButton/Label | 전투 종료
+ChineseSimplified | untranslated TypeRow/TypeText | 차단
+ChineseSimplified | untranslated TypeRow/TypeText | 방어
+ChineseSimplified | untranslated TypeRow/TypeText | 광역
+ChineseSimplified | untranslated TypeRow/TypeText | 방어
+ChineseSimplified | untranslated Screen shake content/NextCardText | 매직 스파크
+ChineseSimplified | untranslated InfoHint/Label | 전투 종료
+ChineseSimplified | untranslated Slot2/LockText | 잠김
+ChineseSimplified | untranslated PauseButton/Label | 전투 종료
+Spanish | untranslated TypeRow/TypeText | 차단
+Spanish | untranslated TypeRow/TypeText | 방어
+Spanish | untranslated TypeRow/TypeText | 광역
+Spanish | untranslated TypeRow/TypeText | 방어
+Spanish | untranslated Screen shake content/NextCardText | 매직 스파크
+Spanish | untranslated InfoHint/Label | 전투 종료
+Spanish | untranslated Slot2/LockText | 잠김
+Spanish | untranslated PauseButton/Label | 전투 종료
+

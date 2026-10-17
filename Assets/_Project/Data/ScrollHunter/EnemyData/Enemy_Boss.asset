@@ -18,31 +18,31 @@ MonoBehaviour:
   attacks:
   - skillName: "\uB9E4\uC9C1\uBBF8\uC0AC\uC77C"
     castColor: 0
-    castTime: 2.4
+    castTime: 2
     damage: 35
     staggerAfterCast: 1
     stunSeconds: 0
   - skillName: "\uC0AC\uC77C\uB7F0\uC2A4"
     castColor: 1
-    castTime: 3.6
+    castTime: 3
     damage: 40
     staggerAfterCast: 1.5
     stunSeconds: 2
   - skillName: "\uB2E4\uD06C\uD640"
     castColor: 2
-    castTime: 7.2
+    castTime: 6
     damage: 300
     staggerAfterCast: 2
     stunSeconds: 0
   - skillName: "\uB098\uC774\uD2B8\uBA54\uC5B4"
     castColor: 1
-    castTime: 6
+    castTime: 5
     damage: 60
     staggerAfterCast: 1.5
     stunSeconds: 5
   - skillName: "\uB514\uC5D4\uB4DC"
     castColor: 2
-    castTime: 22
+    castTime: 25
     damage: 600
     staggerAfterCast: 2
     stunSeconds: 0

@@ -26,6 +26,12 @@ public class TutorialFlow : MonoBehaviour
     [SerializeField, TextArea] private string enemyInfoPrompt = "해당 구역은 타겟팅 된 적의 공격에 대한 정보를 보여줍니다";
     private string guideSource;
     private bool showingEnemyInfo;
+    private bool showingCombatTip;
+    [SerializeField, TextArea] private string targetingPrompt = "이 표시는 현재 타겟팅한 적을 보여줍니다.\n적이 여러 명이면 좌우 방향키 또는 다른 적 클릭으로 타겟을 바꿀 수 있습니다.";
+    [SerializeField, TextArea] private string interruptExplanationPrompt = "주황색 공격은 기절을 일으킵니다.\n발동 전에 차단하면 공격을 취소하고 적을 2.7초 동안 경직시킵니다.";
+    [SerializeField, TextArea] private string interruptTimingPrompt = "공격 발동 직전에 차단하면\n적이 시전에 쓴 시간까지 최대한 벌 수 있습니다.\n침묵도 시전에 0.2초가 필요하니 너무 늦게 누르지 마세요.";
+    [SerializeField, TextArea] private string shieldExplanationPrompt = "빨간색 공격은 차단할 수 없습니다.\n맞는 순간 방어도가 남아 있으면 피해가 절반으로 줄어듭니다.";
+    [SerializeField, TextArea] private string shieldConceptPrompt = "방어도는 미리 쌓아둘 수 있으며, 여러 번 사용하면 누적됩니다.\n피해를 받으면 체력보다 방어도가 먼저 줄어듭니다.\n남은 방어도는 전투가 끝나면 사라집니다.";
     private int tooltipGuideStep;
     [SerializeField] private Vector2 tooltipGuidePosition = new Vector2(-250f, 255f);
     [SerializeField] private float tooltipGuideWidth = 900f;
@@ -90,7 +96,7 @@ public class TutorialFlow : MonoBehaviour
             tutorialEnemy.AttackFired -= OnAttackFired;
             tutorialEnemy.HoldTutorialDefeat = false;
         }
-        Active = ShowingGuide = WaitingForSkill = showingEnemyInfo = pendingCycleGuide = false;
+        Active = ShowingGuide = WaitingForSkill = showingEnemyInfo = showingCombatTip = pendingCycleGuide = false;
         cycleGuideStep = tooltipGuideStep = 0;
         if (overlay != null) overlay.SetActive(false);
         if (skipRect != null) skipRect.gameObject.SetActive(false);
@@ -102,7 +108,7 @@ public class TutorialFlow : MonoBehaviour
         cycleGuideStep = tooltipGuideStep = 0;
         if (!retry) CompletedLessons = 0;
         Active = true;
-        ShowingGuide = WaitingForSkill = false;
+        ShowingGuide = WaitingForSkill = showingCombatTip = false;
         Lesson = CompletedLessons + 1;
         int patternIndex = Lesson == 4 ? 1 : Lesson == 5 || Lesson == 6 ? 2 : 0;
         tutorialEnemy.BeginTutorial(hp, patternIndex);
@@ -156,15 +162,15 @@ public class TutorialFlow : MonoBehaviour
         if (Active && player.IsAlive && CompletedLessons == 5 && color == CastColor.Red) ShowLesson(6);
     }
 
-    private static string Explanation(int lesson)
+    private string Explanation(int lesson)
     {
         switch (lesson)
         {
             case 1: return "스킬에 맞는 코스트가 모이면 스킬을 사용할 수 있습니다.";
             case 2: return "스킬은 사용 방법에 따라 즉발, 캐스팅, 채널링으로 나뉘며 그 중에서 공격 스킬은 단일기와 광역기로 나뉩니다.";
-            case 3: return "이 표시는 어떤 적을 타겟팅하고 있는지 보여줍니다.";
-            case 4: return "적의 주황색 게이지의 공격은 상태이상을 일으키는 공격입니다.";
-            case 5: return "적의 빨간색 게이지 공격은 차단이 불가능하고 방어도가 없을 시 치명적인 피해를 입힙니다.";
+            case 3: return targetingPrompt;
+            case 4: return interruptExplanationPrompt;
+            case 5: return shieldExplanationPrompt;
             case 6: return "체력이 떨어졌을 때, 게임 시간이 흐르는 중 Shift 또는 물약 아이콘 좌클릭으로 물약을 사용할 수 있습니다.";
             default: return "순서 변경 버튼을 누르고 스킬을 드래그하면 해당 위치의 순번으로 배치할 수 있습니다. 저장하면 적용되고 취소하면 편집 전 순서로 돌아갑니다.";
         }
@@ -188,7 +194,7 @@ public class TutorialFlow : MonoBehaviour
     {
         ShowingGuide = true;
         tooltipGuideStep = 0;
-        WaitingForSkill = showingDefeatPrompt = showingEnemyInfo = false;
+        WaitingForSkill = showingDefeatPrompt = showingEnemyInfo = showingCombatTip = false;
         Time.timeScale = 0f;
         if (information != null) information.BeginBattle();
         highlight = focus;
@@ -235,6 +241,12 @@ public class TutorialFlow : MonoBehaviour
         }
         if (Lesson >= 4 && Lesson <= 5)
         {
+            if (!showingCombatTip)
+            {
+                ShowGuide(Lesson == 4 ? interruptTimingPrompt : shieldConceptPrompt, null);
+                showingCombatTip = true;
+                return true;
+            }
             WaitingForSkill = true;
             continueHint.gameObject.SetActive(false);
             highlight = slotHighlights[RequiredSlot];
@@ -307,7 +319,7 @@ public class TutorialFlow : MonoBehaviour
     private void ResumeTime() => Time.timeScale = information != null ? information.BattleSpeed : 1f;
     private void HideGuide()
     {
-        ShowingGuide = WaitingForSkill = showingDefeatPrompt = showingEnemyInfo = pendingCycleGuide = false;
+        ShowingGuide = WaitingForSkill = showingDefeatPrompt = showingEnemyInfo = showingCombatTip = pendingCycleGuide = false;
         cycleGuideStep = tooltipGuideStep = 0;
         if (information != null) information.BeginBattle();
         overlay.SetActive(false);
@@ -408,7 +420,7 @@ public class TutorialFlow : MonoBehaviour
         guideText = Label(guide, "", 29);
         guideText.lineSpacing = guideLineSpacing;
         guideText.rectTransform.offsetMin = new Vector2(30, 60);
-        guideText.rectTransform.offsetMax = new Vector2(-30, -20);
+        guideText.rectTransform.offsetMax = new Vector2(-30, -60);
         continueHint = Label(guide, continueHintText, 25);
         continueHint.alignment = TextAlignmentOptions.BottomRight;
         continueHint.color = new Color32(231, 203, 135, 255);
@@ -436,9 +448,10 @@ public class TutorialFlow : MonoBehaviour
         // 실습 중 오른쪽 스킬 설명을 가리지 않도록 안내는 왼쪽에 둔다.
         guide.anchoredPosition = WaitingForTooltip ? tooltipGuidePosition : defaultGuidePosition;
         guide.sizeDelta = new Vector2(WaitingForTooltip ? tooltipGuideWidth : defaultGuideWidth, guide.sizeDelta.y);
-        // 넓힌 행간에도 안내와 Space가 겹치지 않도록 위쪽으로 확장한다.
+        // 위아래 여백을 같게 두어 본문을 박스 중앙에 맞추고 Space 공간을 확보한다.
         guide.sizeDelta = new Vector2(guide.sizeDelta.x, Mathf.Max(guideMinimumHeight,
-            guideText.GetPreferredValues(guideText.text, guide.sizeDelta.x - 60f, Mathf.Infinity).y + 80f));
+            guideText.GetPreferredValues(guideText.text, guide.sizeDelta.x - 60f, Mathf.Infinity).y
+            + guideText.rectTransform.offsetMin.y - guideText.rectTransform.offsetMax.y));
         // 대상 UI를 복제하거나 확대하지 않고 네 사각형으로 주변만 어둡게 한다.
         Rect bounds = canvasRoot.rect;
         Rect hole = new Rect(bounds.center, Vector2.zero);

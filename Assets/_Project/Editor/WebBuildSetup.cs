@@ -58,8 +58,8 @@ public static class WebBuildSetup
         Debug.Log("[Web UI] Bound " + count + " original Korean labels. English titles left unchanged.");
     }
 
-    [MenuItem("Tools/Scroll Hunter/Build Web 1.1")]
-    public static void Build() => BuildTo("Docs/근거자료/2026-10-14_웹빌드_언어");
+    [MenuItem("Tools/Scroll Hunter/Build Web 1.2")]
+    public static void Build() => BuildTo("Docs/근거자료/2026-10-16_웹빌드_1.2");
 
     private const string ScheduledKey = "ScrollHunter.WebBuildScheduled";
     public static string ScheduleState => SessionState.GetString(ScheduledKey, "");
@@ -89,6 +89,7 @@ public static class WebBuildSetup
     private static void BuildTo(string evidenceFolder)
     {
         if (Application.isPlaying) throw new InvalidOperationException("Stop Play first.");
+        PlayerSettings.bundleVersion = "1.2";
         PlayerSettings.WebGL.compressionFormat = WebGLCompressionFormat.Gzip;
         PlayerSettings.WebGL.decompressionFallback = false;
         PlayerSettings.WebGL.threadsSupport = false;
@@ -100,7 +101,7 @@ public static class WebBuildSetup
         PlayerSettings.WebGL.powerPreference = WebGLPowerPreference.HighPerformance;
         PlayerSettings.defaultWebScreenWidth = 1280;
         PlayerSettings.defaultWebScreenHeight = 720;
-        var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "ScrollHunter_Web_1.1");
+        var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "ScrollHunter_Web_1.2");
         var report = BuildPipeline.BuildPlayer(new BuildPlayerOptions {
             scenes = new[] { "Assets/_Project/Scenes/Battle.unity" }, locationPathName = path,
             target = BuildTarget.WebGL, options = BuildOptions.None

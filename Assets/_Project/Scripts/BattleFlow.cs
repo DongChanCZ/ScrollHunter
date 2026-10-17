@@ -8,7 +8,7 @@ public enum BattleFlowState { Fighting, BetweenBattles, Victory, Defeat, Title, 
 
 /// <summary>한 씬의 적을 재사용하는 시연 전투 진행. 승리 후 보상·덱 교체를 거쳐 다음 전투에 편성을 이월한다.</summary>
 [DefaultExecutionOrder(-50)]
-public class BattleFlow : MonoBehaviour
+public partial class BattleFlow : MonoBehaviour
 {
     [Serializable]
     public class Encounter
@@ -67,8 +67,9 @@ public class BattleFlow : MonoBehaviour
     [SerializeField] private string tutorialMapName = "오솔길 입구";
     [SerializeField] private string victoryFormat = "전투 {0} 승리\n남은 HP {1:0} / {2:0}\n이 HP로 다음 전투를 시작합니다.";
     [SerializeField] private string completeFormat = "모험 완료\n남은 HP {0:0} / {1:0}";
-    public const string DefeatMessage = "<size=200%><b><color=#E87878>패배</color></b></size>\n<size=40%> </size>\n이번 런에서 얻은 스킬·패시브 중 1개를 계승할 수 있습니다.";
-    [SerializeField] private string defeatFormat = DefeatMessage;
+    public const string DefeatMessage = "<size=260%><b><color=#D56B75>패배</color></b></size>\n<size=50%> </size>\n모험가가 쓰러졌습니다.\n이번 도전은 종료되었습니다.\n<size=50%> </size>\n계승을 마치면 처음부터 다시 도전합니다.";
+    [SerializeField] private string defeatWithInheritanceFormat = DefeatMessage;
+    [SerializeField] private string defeatWithoutInheritanceFormat = "<size=260%><b><color=#D56B75>패배</color></b></size>\n<size=50%> </size>\n모험가가 쓰러졌습니다.\n이번 도전은 종료되었습니다.\n<size=50%> </size>\n처음부터 다시 도전합니다.";
 
     [Header("계승")]
     [SerializeField] private string inheritanceFileName = "save.json";
@@ -81,7 +82,7 @@ public class BattleFlow : MonoBehaviour
     private bool NeedsTutorial => HasTutorial && !inheritance.TutorialDismissed;
     public bool IsMenuPaused { get; private set; }
     private int menuInputFrame = -1;
-    public bool MenuBlocksInput => IsMenuPaused || menuInputFrame == Time.frameCount || (story != null && story.isActiveAndEnabled && story.BlocksInput);
+    public bool MenuBlocksInput => (rewardUI != null && rewardUI.RetryConfirmationVisible) || IsMenuPaused || menuInputFrame == Time.frameCount || (story != null && story.isActiveAndEnabled && story.BlocksInput);
     internal void SetMenuPaused(bool paused) { IsMenuPaused = paused; menuInputFrame = Time.frameCount; }
     [SerializeField] private string progressSaveError = "진행 기록 저장 실패. 저장 경로를 확인하세요.";
     // 에디터 전용 미리보기는 정식 클리어 기록에 포함하지 않는다.
@@ -191,6 +192,7 @@ public class BattleFlow : MonoBehaviour
         inheritance = new InheritanceSave(System.IO.Path.Combine(Application.persistentDataPath, inheritanceFileName),
             rewardPool, deck.CopyStartingDeck());
         BuildCountdownUI();
+        BuildRetryPresentation();
         if (Camera.main != null && Camera.main.GetComponent<RedHitShake>() == null)
             Camera.main.gameObject.AddComponent<RedHitShake>();
     }
@@ -403,6 +405,7 @@ public class BattleFlow : MonoBehaviour
     {
         if (!inheritance.TryInherit(option, slot))
         {
+            SelectedReplacementIndex = -1;
             InheritanceSaveFailed = true;
             RefreshUI();
             return false;
@@ -424,6 +427,7 @@ public class BattleFlow : MonoBehaviour
     {
         ReturnToTitle();
         ApplyInheritance();
+        IsRetryPreparation = true;
         State = BattleFlowState.Preparing;
         RefreshUI();
     }
@@ -438,6 +442,7 @@ public class BattleFlow : MonoBehaviour
 
     public void ReturnToTitle()
     {
+        IsRetryPreparation = false;
         if (stageClear != null) stageClear.Cancel();
         if (story != null) story.Cancel();
         Time.timeScale = 0f;
@@ -472,13 +477,18 @@ public class BattleFlow : MonoBehaviour
     public void NextBattle()
     {
         if (MenuBlocksInput || IsEditingOrder || PanelHeld || (HasTutorial && (tutorial.ShowingGuide || tutorial.BlocksInputThisFrame))) return;
-        if (State == BattleFlowState.Preparing) StartBattleStory(0, true);
+        if (State == BattleFlowState.Preparing)
+        {
+            if (IsRetryPreparation && rewardUI != null) rewardUI.OpenRetryConfirmation();
+            else StartBattleStory(0, true);
+        }
         else if (State == BattleFlowState.BetweenBattles && BattleNumber < BattleCount && RewardResolved)
             StartBattleStory(BattleNumber, false);
     }
 
     public bool BeginOrderEdit()
     {
+        if (rewardUI != null && rewardUI.RetryConfirmationVisible) return false;
         if (!CanEditOrder || IsEditingOrder) return false;
         orderDraft = new List<SkillData>(runDeck);
         RefreshUI();
@@ -570,7 +580,7 @@ public class BattleFlow : MonoBehaviour
 
     public void CancelReplacementSlot()
     {
-        if (IsMenuPaused || State != BattleFlowState.BetweenBattles || RewardResolved) return;
+        if (IsMenuPaused || (State != BattleFlowState.BetweenBattles && State != BattleFlowState.Inheriting) || RewardResolved) return;
         SelectedReplacementIndex = -1;
         RefreshUI();
     }
@@ -748,7 +758,8 @@ public class BattleFlow : MonoBehaviour
 
     private void StartBattleStory(int index, bool restoreHp)
     {
-        if (story == null || !story.isActiveAndEnabled || !story.HasBattleDialogue(index))
+        if (story == null || !story.isActiveAndEnabled || !story.HasBattleDialogue(index)
+            || (SkipSeenDialogue && inheritance.HasSeenDialogue(index)))
         {
             StartBattleCountdown(index, restoreHp);
             return;
@@ -757,7 +768,11 @@ public class BattleFlow : MonoBehaviour
         State = BattleFlowState.Story;
         Time.timeScale = 0f;
         RefreshUI();
-        story.ShowBattleDialogue(index, () => StartBattleCountdown(index, restoreHp));
+        story.ShowBattleDialogue(index, () =>
+        {
+            if (CanSaveProgress && !inheritance.TryRecordDialogue(index)) Debug.LogWarning(GameText.T(progressSaveError), this);
+            StartBattleCountdown(index, restoreHp);
+        });
     }
 
     private void StartBattleCountdown(int index, bool restoreHp)
@@ -813,6 +828,7 @@ public class BattleFlow : MonoBehaviour
 
     private void BeginBattle(int index, bool restoreHp, Enemy[] tutorialEnemies = null)
     {
+        IsRetryPreparation = false;
         countdownRemaining = 0f;
         if (countdownPanel != null) countdownPanel.SetActive(false);
         Time.timeScale = 0f;
@@ -952,18 +968,28 @@ public class BattleFlow : MonoBehaviour
         bool shown = !PanelHeld;
         bool ending = State == BattleFlowState.Victory && stageClear != null && stageClear.isActiveAndEnabled;
         if (ending && shown) stageClear.Show();
+        bool wasResultVisible = resultPanel != null && resultPanel.activeSelf;
         if (resultPanel != null) resultPanel.SetActive(ended && shown && !ending);
-        if (nextButton != null) nextButton.gameObject.SetActive(shown && CanEditOrder && !IsEditingOrder);
-        if (nextButtonLabel != null) nextButtonLabel.text = GameText.T(preparing ? GameText.T(firstBattleText) : GameText.T(nextBattleText));
+        RefreshRetryPresentation(wasResultVisible);
+        if (nextButton != null)
+        {
+            nextButton.gameObject.SetActive(shown && CanEditOrder && !IsEditingOrder);
+            if (rewardUI != null)
+            {
+                var rect = (RectTransform)nextButton.transform;
+                rect.anchoredPosition = new Vector2(rewardUI.CardNextX, rewardUI.CardFooterY);
+            }
+        }
+        if (nextButtonLabel != null) nextButtonLabel.text = GameText.T(preparing ? (IsRetryPreparation ? retryButtonText : firstBattleText) : nextBattleText);
         if (restartButton != null)
         {
             restartButton.gameObject.SetActive(shown && ended && !ending);
             var label = restartButton.GetComponentInChildren<TMP_Text>();
-            if (label != null) label.text = GameText.T(State == BattleFlowState.Defeat ? GameText.T(inheritanceButtonText) : GameText.T(restartButtonText));
+            if (label != null) label.text = GameText.T(State == BattleFlowState.Defeat ? (HasInheritanceCandidates ? inheritanceButtonText : retryButtonText) : restartButtonText);
         }
         if (rewardUI != null && shown) rewardUI.Refresh();
         if (resultText == null || !ended) return;
-        resultText.text = GameText.T(State == BattleFlowState.Defeat ? GameText.Format(defeatFormat, BattleNumber)
+        resultText.text = GameText.T(State == BattleFlowState.Defeat ? (HasInheritanceCandidates ? defeatWithInheritanceFormat : defeatWithoutInheritanceFormat)
             : State == BattleFlowState.Victory ? GameText.Format(GameText.T(completeFormat), player.CurrentHp, player.MaxHp)
             : GameText.Format(GameText.T(victoryFormat), BattleNumber, player.CurrentHp, player.MaxHp));
     }

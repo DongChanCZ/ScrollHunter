@@ -1,0 +1,1326 @@
+[
+  {
+    "path": "Assets/_Project/Data/ScrollHunter/SkillData/Skill_ChainLightning.asset",
+    "data": {
+      "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "Skill_ChainLightning",
+        "m_EditorClassIdentifier": "Assembly-CSharp::SkillData",
+        "displayName": "연쇄번개",
+        "icon": {
+          "instanceID": 0
+        },
+        "cost": 3.0,
+        "category": 0,
+        "damage": 25,
+        "finalHitBonus": 0,
+        "hitCount": 3,
+        "resolveHitsSeparately": false,
+        "activation": 0,
+        "castTime": 1.0,
+        "shieldAmount": 0,
+        "isAreaOfEffect": false,
+        "channelEffect": {
+          "instanceID": 0
+        }
+      }
+    }
+  },
+  {
+    "path": "Assets/_Project/Data/ScrollHunter/SkillData/Skill_CrystalShield.asset",
+    "data": {
+      "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "Skill_CrystalShield",
+        "m_EditorClassIdentifier": "Assembly-CSharp::SkillData",
+        "displayName": "매직아머",
+        "icon": {
+          "fileID": 21300000,
+          "guid": "215ee099b5cad744b8eceea7712e1be0",
+          "type": 3
+        },
+        "cost": 3.0,
+        "category": 2,
+        "damage": 0,
+        "finalHitBonus": 0,
+        "hitCount": 1,
+        "resolveHitsSeparately": false,
+        "activation": 0,
+        "castTime": 0.20000000298023224,
+        "shieldAmount": 120,
+        "isAreaOfEffect": false,
+        "channelEffect": {
+          "instanceID": 0
+        }
+      }
+    }
+  },
+  {
+    "path": "Assets/_Project/Data/ScrollHunter/SkillData/Skill_Explosion.asset",
+    "data": {
+      "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "Skill_Explosion",
+        "m_EditorClassIdentifier": "Assembly-CSharp::SkillData",
+        "displayName": "폭발",
+        "icon": {
+          "instanceID": 0
+        },
+        "cost": 2.0,
+        "category": 0,
+        "damage": 44,
+        "finalHitBonus": 0,
+        "hitCount": 1,
+        "resolveHitsSeparately": false,
+        "activation": 0,
+        "castTime": 0.800000011920929,
+        "shieldAmount": 0,
+        "isAreaOfEffect": false,
+        "channelEffect": {
+          "instanceID": 0
+        }
+      }
+    }
+  },
+  {
+    "path": "Assets/_Project/Data/ScrollHunter/SkillData/Skill_Fireball.asset",
+    "data": {
+      "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "Skill_Fireball",
+        "m_EditorClassIdentifier": "Assembly-CSharp::SkillData",
+        "displayName": "화염탄",
+        "icon": {
+          "instanceID": 0
+        },
+        "cost": 2.0,
+        "category": 0,
+        "damage": 67,
+        "finalHitBonus": 0,
+        "hitCount": 1,
+        "resolveHitsSeparately": false,
+        "activation": 0,
+        "castTime": 0.30000001192092896,
+        "shieldAmount": 0,
+        "isAreaOfEffect": false,
+        "channelEffect": {
+          "instanceID": 0
+        }
+      }
+    }
+  },
+  {
+    "path": "Assets/_Project/Data/ScrollHunter/SkillData/Skill_FlamePillar.asset",
+    "data": {
+      "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "Skill_FlamePillar",
+        "m_EditorClassIdentifier": "Assembly-CSharp::SkillData",
+        "displayName": "불기둥",
+        "icon": {
+          "instanceID": 0
+        },
+        "cost": 3.0,
+        "category": 0,
+        "damage": 39,
+        "finalHitBonus": 0,
+        "hitCount": 2,
+        "resolveHitsSeparately": false,
+        "activation": 0,
+        "castTime": 1.2000000476837158,
+        "shieldAmount": 0,
+        "isAreaOfEffect": false,
+        "channelEffect": {
+          "instanceID": 0
+        }
+      }
+    }
+  },
+  {
+    "path": "Assets/_Project/Data/ScrollHunter/SkillData/Skill_FlamePillar_AoeTest.asset",
+    "data": {
+      "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "Skill_FlamePillar_AoeTest",
+        "m_EditorClassIdentifier": "Assembly-CSharp::SkillData",
+        "displayName": "불기둥(광역)",
+        "icon": {
+          "instanceID": 0
+        },
+        "cost": 3.0,
+        "category": 0,
+        "damage": 30,
+        "finalHitBonus": 0,
+        "hitCount": 2,
+        "resolveHitsSeparately": false,
+        "activation": 0,
+        "castTime": 2.0,
+        "shieldAmount": 0,
+        "isAreaOfEffect": true,
+        "channelEffect": {
+          "instanceID": 0
+        }
+      }
+    }
+  },
+  {
+    "path": "Assets/_Project/Data/ScrollHunter/SkillData/Skill_Frostbolt.asset",
+    "data": {
+      "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "Skill_Frostbolt",
+        "m_EditorClassIdentifier": "Assembly-CSharp::SkillData",
+        "displayName": "서리화살",
+        "icon": {
+          "instanceID": 0
+        },
+        "cost": 2.0,
+        "category": 0,
+        "damage": 60,
+        "finalHitBonus": 0,
+        "hitCount": 1,
+        "resolveHitsSeparately": false,
+        "activation": 0,
+        "castTime": 0.30000001192092896,
+        "shieldAmount": 0,
+        "isAreaOfEffect": false,
+        "channelEffect": {
+          "instanceID": 0
+        }
+      }
+    }
+  },
+  {
+    "path": "Assets/_Project/Data/ScrollHunter/SkillData/Skill_Pierce.asset",
+    "data": {
+      "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "Skill_Pierce",
+        "m_EditorClassIdentifier": "Assembly-CSharp::SkillData",
+        "displayName": "관통",
+        "icon": {
+          "instanceID": 0
+        },
+        "cost": 2.0,
+        "category": 0,
+        "damage": 60,
+        "finalHitBonus": 0,
+        "hitCount": 1,
+        "resolveHitsSeparately": false,
+        "activation": 0,
+        "castTime": 0.60000002384185791,
+        "shieldAmount": 0,
+        "isAreaOfEffect": false,
+        "channelEffect": {
+          "instanceID": 0
+        }
+      }
+    }
+  },
+  {
+    "path": "Assets/_Project/Data/ScrollHunter/SkillData/Skill_Silence.asset",
+    "data": {
+      "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "Skill_Silence",
+        "m_EditorClassIdentifier": "Assembly-CSharp::SkillData",
+        "displayName": "침묵",
+        "icon": {
+          "fileID": 21300000,
+          "guid": "e21653c3d4b79b6458521f1fbdf54aba",
+          "type": 3
+        },
+        "cost": 2.0,
+        "category": 1,
+        "damage": 0,
+        "finalHitBonus": 0,
+        "hitCount": 1,
+        "resolveHitsSeparately": false,
+        "activation": 0,
+        "castTime": 0.20000000298023224,
+        "shieldAmount": 0,
+        "isAreaOfEffect": false,
+        "channelEffect": {
+          "instanceID": 0
+        }
+      }
+    }
+  },
+  {
+    "path": "Assets/_Project/Data/ScrollHunter/SkillData/Skill_SK01_Fireball.asset",
+    "data": {
+      "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "Skill_SK01_Fireball",
+        "m_EditorClassIdentifier": "Assembly-CSharp::SkillData",
+        "displayName": "파이어볼",
+        "icon": {
+          "fileID": 21300000,
+          "guid": "d4f33346f9999b74b9c351e91ef568db",
+          "type": 3
+        },
+        "cost": 1.0,
+        "category": 0,
+        "damage": 30,
+        "finalHitBonus": 0,
+        "hitCount": 1,
+        "resolveHitsSeparately": true,
+        "activation": 0,
+        "castTime": 0.0,
+        "shieldAmount": 0,
+        "isAreaOfEffect": false,
+        "channelEffect": {
+          "instanceID": 0
+        }
+      }
+    }
+  },
+  {
+    "path": "Assets/_Project/Data/ScrollHunter/SkillData/Skill_SK02_IceArrow.asset",
+    "data": {
+      "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "Skill_SK02_IceArrow",
+        "m_EditorClassIdentifier": "Assembly-CSharp::SkillData",
+        "displayName": "아이스애로우",
+        "icon": {
+          "fileID": 21300000,
+          "guid": "6269c3a44082644469310ba1ab0a5ab8",
+          "type": 3
+        },
+        "cost": 5.0,
+        "category": 0,
+        "damage": 35,
+        "finalHitBonus": 0,
+        "hitCount": 5,
+        "resolveHitsSeparately": true,
+        "activation": 1,
+        "castTime": 2.7999999523162842,
+        "shieldAmount": 0,
+        "isAreaOfEffect": false,
+        "channelEffect": {
+          "fileID": 11400000,
+          "guid": "20ef077b6c95d7b4c93d3e1ecbf857aa",
+          "type": 2
+        }
+      }
+    }
+  },
+  {
+    "path": "Assets/_Project/Data/ScrollHunter/SkillData/Skill_SK03_MagicCutter.asset",
+    "data": {
+      "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "Skill_SK03_MagicCutter",
+        "m_EditorClassIdentifier": "Assembly-CSharp::SkillData",
+        "displayName": "매직 커터",
+        "icon": {
+          "fileID": 21300000,
+          "guid": "c6e802cfff7906a48bb2f86296ccf5df",
+          "type": 3
+        },
+        "cost": 2.0,
+        "category": 0,
+        "damage": 30,
+        "finalHitBonus": 0,
+        "hitCount": 2,
+        "resolveHitsSeparately": true,
+        "activation": 0,
+        "castTime": 0.0,
+        "shieldAmount": 0,
+        "isAreaOfEffect": false,
+        "channelEffect": {
+          "instanceID": 0
+        }
+      }
+    }
+  },
+  {
+    "path": "Assets/_Project/Data/ScrollHunter/SkillData/Skill_SK04_FirePillar.asset",
+    "data": {
+      "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "Skill_SK04_FirePillar",
+        "m_EditorClassIdentifier": "Assembly-CSharp::SkillData",
+        "displayName": "파이어 필라",
+        "icon": {
+          "fileID": 21300000,
+          "guid": "9b975af258571024d80e2ca99c1ead57",
+          "type": 3
+        },
+        "cost": 4.0,
+        "category": 0,
+        "damage": 90,
+        "finalHitBonus": 0,
+        "hitCount": 1,
+        "resolveHitsSeparately": true,
+        "activation": 0,
+        "castTime": 1.0,
+        "shieldAmount": 0,
+        "isAreaOfEffect": true,
+        "channelEffect": {
+          "instanceID": 0
+        }
+      }
+    }
+  },
+  {
+    "path": "Assets/_Project/Data/ScrollHunter/SkillData/Skill_SK05_LightningSpear.asset",
+    "data": {
+      "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "Skill_SK05_LightningSpear",
+        "m_EditorClassIdentifier": "Assembly-CSharp::SkillData",
+        "displayName": "라이트닝 스피어",
+        "icon": {
+          "fileID": 21300000,
+          "guid": "50b44ff1c625d124189dd9e7c7d3f602",
+          "type": 3
+        },
+        "cost": 4.0,
+        "category": 0,
+        "damage": 135,
+        "finalHitBonus": 0,
+        "hitCount": 1,
+        "resolveHitsSeparately": true,
+        "activation": 0,
+        "castTime": 0.800000011920929,
+        "shieldAmount": 0,
+        "isAreaOfEffect": false,
+        "channelEffect": {
+          "instanceID": 0
+        }
+      }
+    }
+  },
+  {
+    "path": "Assets/_Project/Data/ScrollHunter/SkillData/Skill_SK06_MagicSpark.asset",
+    "data": {
+      "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "Skill_SK06_MagicSpark",
+        "m_EditorClassIdentifier": "Assembly-CSharp::SkillData",
+        "displayName": "매직 스파크",
+        "icon": {
+          "fileID": 21300000,
+          "guid": "8b6e61b025140574b9361f3ad830127f",
+          "type": 3
+        },
+        "cost": 3.0,
+        "category": 0,
+        "damage": 10,
+        "finalHitBonus": 0,
+        "hitCount": 8,
+        "resolveHitsSeparately": true,
+        "activation": 1,
+        "castTime": 2.2000000476837158,
+        "shieldAmount": 0,
+        "isAreaOfEffect": true,
+        "channelEffect": {
+          "fileID": 11400000,
+          "guid": "61868f79165a3d54ab39803f84973b8f",
+          "type": 2
+        }
+      }
+    }
+  },
+  {
+    "path": "Assets/_Project/Data/ScrollHunter/SkillData/Skill_SK07_MagicImpact.asset",
+    "data": {
+      "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "Skill_SK07_MagicImpact",
+        "m_EditorClassIdentifier": "Assembly-CSharp::SkillData",
+        "displayName": "매직 임팩트",
+        "icon": {
+          "fileID": 21300000,
+          "guid": "a352e10c649019445932bbbd27e24f36",
+          "type": 3
+        },
+        "cost": 3.0,
+        "category": 0,
+        "damage": 40,
+        "finalHitBonus": 10,
+        "hitCount": 3,
+        "resolveHitsSeparately": true,
+        "activation": 0,
+        "castTime": 0.0,
+        "shieldAmount": 0,
+        "isAreaOfEffect": false,
+        "channelEffect": {
+          "instanceID": 0
+        }
+      }
+    }
+  },
+  {
+    "path": "Assets/_Project/Data/ScrollHunter/SkillData/Skill_SK08_Judgment.asset",
+    "data": {
+      "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "Skill_SK08_Judgment",
+        "m_EditorClassIdentifier": "Assembly-CSharp::SkillData",
+        "displayName": "저지먼트",
+        "icon": {
+          "fileID": 21300000,
+          "guid": "b6b9abacfc8c54247b632613a90319c3",
+          "type": 3
+        },
+        "cost": 7.0,
+        "category": 0,
+        "damage": 365,
+        "finalHitBonus": 0,
+        "hitCount": 1,
+        "resolveHitsSeparately": true,
+        "activation": 0,
+        "castTime": 2.75,
+        "shieldAmount": 0,
+        "isAreaOfEffect": false,
+        "channelEffect": {
+          "instanceID": 0
+        }
+      }
+    }
+  },
+  {
+    "path": "Assets/_Project/Data/ScrollHunter/SkillData/Skill_SK09_Blizzard.asset",
+    "data": {
+      "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "Skill_SK09_Blizzard",
+        "m_EditorClassIdentifier": "Assembly-CSharp::SkillData",
+        "displayName": "블리자드",
+        "icon": {
+          "fileID": 21300000,
+          "guid": "1847c76bbe65b014da6224d663349bc4",
+          "type": 3
+        },
+        "cost": 5.0,
+        "category": 0,
+        "damage": 30,
+        "finalHitBonus": 0,
+        "hitCount": 4,
+        "resolveHitsSeparately": true,
+        "activation": 0,
+        "castTime": 1.0,
+        "shieldAmount": 0,
+        "isAreaOfEffect": true,
+        "channelEffect": {
+          "instanceID": 0
+        }
+      }
+    }
+  },
+  {
+    "path": "Assets/_Project/Data/ScrollHunter/SkillData/Skill_SK10_DarkEruption.asset",
+    "data": {
+      "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "Skill_SK10_DarkEruption",
+        "m_EditorClassIdentifier": "Assembly-CSharp::SkillData",
+        "displayName": "다크 이럽션",
+        "icon": {
+          "fileID": 21300000,
+          "guid": "9f8d37fad5e38f14692de24082dabc19",
+          "type": 3
+        },
+        "cost": 2.0,
+        "category": 0,
+        "damage": 50,
+        "finalHitBonus": 0,
+        "hitCount": 1,
+        "resolveHitsSeparately": true,
+        "activation": 0,
+        "castTime": 0.5,
+        "shieldAmount": 0,
+        "isAreaOfEffect": true,
+        "channelEffect": {
+          "instanceID": 0
+        }
+      }
+    }
+  },
+  {
+    "path": "Assets/_Project/Data/ScrollHunter/SkillData/Skill_SK12_Suppression.asset",
+    "data": {
+      "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "Skill_SK12_Suppression",
+        "m_EditorClassIdentifier": "Assembly-CSharp::SkillData",
+        "displayName": "제압",
+        "icon": {
+          "fileID": 21300000,
+          "guid": "8cec949fb4a0b774ea31a80c5a2b7888",
+          "type": 3
+        },
+        "cost": 2.0,
+        "category": 1,
+        "damage": 40,
+        "finalHitBonus": 0,
+        "hitCount": 1,
+        "resolveHitsSeparately": true,
+        "activation": 0,
+        "castTime": 0.20000000298023224,
+        "shieldAmount": 0,
+        "isAreaOfEffect": false,
+        "channelEffect": {
+          "instanceID": 0
+        }
+      }
+    }
+  },
+  {
+    "path": "Assets/_Project/Data/ScrollHunter/SkillData/Skill_SK14_Sanctuary.asset",
+    "data": {
+      "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "Skill_SK14_Sanctuary",
+        "m_EditorClassIdentifier": "Assembly-CSharp::SkillData",
+        "displayName": "생츄어리",
+        "icon": {
+          "fileID": 21300000,
+          "guid": "1cf70bb8136eeeb47bca6f48e0a1b464",
+          "type": 3
+        },
+        "cost": 5.0,
+        "category": 2,
+        "damage": 0,
+        "finalHitBonus": 0,
+        "hitCount": 1,
+        "resolveHitsSeparately": true,
+        "activation": 1,
+        "castTime": 2.5,
+        "shieldAmount": 0,
+        "isAreaOfEffect": false,
+        "channelEffect": {
+          "fileID": 11400000,
+          "guid": "71cd24f7503d3524e9aaf94117040497",
+          "type": 2
+        }
+      }
+    }
+  },
+  {
+    "path": "Assets/_Project/Data/Enemy_Tutorial.asset",
+    "data": {
+      "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "Enemy_Tutorial",
+        "m_EditorClassIdentifier": "Assembly-CSharp::EnemyData",
+        "displayName": "깡패",
+        "maxHp": 300,
+        "defense": 0.0,
+        "attacks": [
+          {
+            "skillName": "펀치",
+            "castColor": 0,
+            "castTime": 3.0,
+            "damage": 20,
+            "staggerAfterCast": 1.0,
+            "stunSeconds": 0.0
+          },
+          {
+            "skillName": "전력펀치",
+            "castColor": 1,
+            "castTime": 4.0,
+            "damage": 30,
+            "staggerAfterCast": 1.5,
+            "stunSeconds": 2.0
+          },
+          {
+            "skillName": "발차기",
+            "castColor": 2,
+            "castTime": 4.0,
+            "damage": 350,
+            "staggerAfterCast": 2.0,
+            "stunSeconds": 0.0
+          }
+        ],
+        "phases": [],
+        "phaseTransitionSeconds": 2.0,
+        "ruinOrb": {
+          "instanceID": 0
+        },
+        "cycleOrb": {
+          "instanceID": 0
+        },
+        "passiveDescription": "",
+        "orbDamageMultiplier": 1.1000000238418579,
+        "orbCastTimeReduction": 0.20000000298023224,
+        "orbDestructionDamage": 75,
+        "orbVisual": {
+          "instanceID": 0
+        },
+        "orbBreak": {
+          "instanceID": 0
+        }
+      }
+    }
+  },
+  {
+    "path": "Assets/_Project/Data/ScrollHunter/EnemyData/Enemy_A_Green.asset",
+    "data": {
+      "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "Enemy_A_Green",
+        "m_EditorClassIdentifier": "Assembly-CSharp::EnemyData",
+        "displayName": "약탈자",
+        "maxHp": 350,
+        "defense": 0.0,
+        "attacks": [
+          {
+            "skillName": "휘두르기",
+            "castColor": 0,
+            "castTime": 2.5,
+            "damage": 20,
+            "staggerAfterCast": 1.0,
+            "stunSeconds": 0.0
+          }
+        ],
+        "phases": [],
+        "phaseTransitionSeconds": 2.0,
+        "ruinOrb": {
+          "instanceID": 0
+        },
+        "cycleOrb": {
+          "instanceID": 0
+        },
+        "passiveDescription": "",
+        "orbDamageMultiplier": 1.1000000238418579,
+        "orbCastTimeReduction": 0.20000000298023224,
+        "orbDestructionDamage": 75,
+        "orbVisual": {
+          "instanceID": 0
+        },
+        "orbBreak": {
+          "instanceID": 0
+        }
+      }
+    }
+  },
+  {
+    "path": "Assets/_Project/Data/ScrollHunter/EnemyData/Enemy_B_Orange.asset",
+    "data": {
+      "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "Enemy_B_Orange",
+        "m_EditorClassIdentifier": "Assembly-CSharp::EnemyData",
+        "displayName": "궁병",
+        "maxHp": 300,
+        "defense": 0.0,
+        "attacks": [
+          {
+            "skillName": "속공술",
+            "castColor": 0,
+            "castTime": 2.5,
+            "damage": 25,
+            "staggerAfterCast": 1.0,
+            "stunSeconds": 0.0
+          },
+          {
+            "skillName": "조준술",
+            "castColor": 1,
+            "castTime": 3.0,
+            "damage": 40,
+            "staggerAfterCast": 1.5,
+            "stunSeconds": 2.0
+          }
+        ],
+        "phases": [],
+        "phaseTransitionSeconds": 2.0,
+        "ruinOrb": {
+          "instanceID": 0
+        },
+        "cycleOrb": {
+          "instanceID": 0
+        },
+        "passiveDescription": "",
+        "orbDamageMultiplier": 1.1000000238418579,
+        "orbCastTimeReduction": 0.20000000298023224,
+        "orbDestructionDamage": 75,
+        "orbVisual": {
+          "instanceID": 0
+        },
+        "orbBreak": {
+          "instanceID": 0
+        }
+      }
+    }
+  },
+  {
+    "path": "Assets/_Project/Data/ScrollHunter/EnemyData/Enemy_Boss.asset",
+    "data": {
+      "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "Enemy_Boss",
+        "m_EditorClassIdentifier": "Assembly-CSharp::EnemyData",
+        "displayName": "마법사",
+        "maxHp": 3000,
+        "defense": 0.0,
+        "attacks": [
+          {
+            "skillName": "매직미사일",
+            "castColor": 0,
+            "castTime": 2.0,
+            "damage": 35,
+            "staggerAfterCast": 1.0,
+            "stunSeconds": 0.0
+          },
+          {
+            "skillName": "사일런스",
+            "castColor": 1,
+            "castTime": 3.0,
+            "damage": 40,
+            "staggerAfterCast": 1.5,
+            "stunSeconds": 2.0
+          },
+          {
+            "skillName": "다크홀",
+            "castColor": 2,
+            "castTime": 6.0,
+            "damage": 300,
+            "staggerAfterCast": 2.0,
+            "stunSeconds": 0.0
+          },
+          {
+            "skillName": "나이트메어",
+            "castColor": 1,
+            "castTime": 5.0,
+            "damage": 60,
+            "staggerAfterCast": 1.5,
+            "stunSeconds": 5.0
+          },
+          {
+            "skillName": "디엔드",
+            "castColor": 2,
+            "castTime": 25.0,
+            "damage": 600,
+            "staggerAfterCast": 2.0,
+            "stunSeconds": 0.0
+          }
+        ],
+        "phases": [
+          {
+            "hpThreshold": 1.0,
+            "pattern": [
+              1,
+              2,
+              1,
+              3
+            ],
+            "castTimeMultiplier": 1.0
+          },
+          {
+            "hpThreshold": 0.60000002384185791,
+            "pattern": [
+              1,
+              1,
+              4,
+              1,
+              3,
+              1,
+              2
+            ],
+            "castTimeMultiplier": 0.800000011920929
+          },
+          {
+            "hpThreshold": 0.25,
+            "pattern": [
+              5,
+              1,
+              4,
+              1,
+              3,
+              1
+            ],
+            "castTimeMultiplier": 1.0
+          }
+        ],
+        "phaseTransitionSeconds": 2.0,
+        "ruinOrb": {
+          "fileID": 11400000,
+          "guid": "fe9ef653d6a149945bfa9e4fed5d25e3",
+          "type": 2
+        },
+        "cycleOrb": {
+          "fileID": 11400000,
+          "guid": "bac7b832cf77ed14b96ff2f8d5f5085a",
+          "type": 2
+        },
+        "passiveDescription": "",
+        "orbDamageMultiplier": 1.1000000238418579,
+        "orbCastTimeReduction": 0.20000000298023224,
+        "orbDestructionDamage": 75,
+        "orbVisual": {
+          "instanceID": 0
+        },
+        "orbBreak": {
+          "instanceID": 0
+        }
+      }
+    }
+  },
+  {
+    "path": "Assets/_Project/Data/ScrollHunter/EnemyData/Enemy_C_Red.asset",
+    "data": {
+      "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "Enemy_C_Red",
+        "m_EditorClassIdentifier": "Assembly-CSharp::EnemyData",
+        "displayName": "우두머리",
+        "maxHp": 500,
+        "defense": 0.0,
+        "attacks": [
+          {
+            "skillName": "참격",
+            "castColor": 0,
+            "castTime": 2.5,
+            "damage": 30,
+            "staggerAfterCast": 1.0,
+            "stunSeconds": 0.0
+          },
+          {
+            "skillName": "회심참",
+            "castColor": 2,
+            "castTime": 4.0,
+            "damage": 240,
+            "staggerAfterCast": 2.0,
+            "stunSeconds": 0.0
+          }
+        ],
+        "phases": [],
+        "phaseTransitionSeconds": 2.0,
+        "ruinOrb": {
+          "instanceID": 0
+        },
+        "cycleOrb": {
+          "instanceID": 0
+        },
+        "passiveDescription": "",
+        "orbDamageMultiplier": 1.1000000238418579,
+        "orbCastTimeReduction": 0.20000000298023224,
+        "orbDestructionDamage": 75,
+        "orbVisual": {
+          "instanceID": 0
+        },
+        "orbBreak": {
+          "instanceID": 0
+        }
+      }
+    }
+  },
+  {
+    "path": "Assets/_Project/Data/ScrollHunter/EnemyData/Enemy_D_Mixed.asset",
+    "data": {
+      "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "Enemy_D_Mixed",
+        "m_EditorClassIdentifier": "Assembly-CSharp::EnemyData",
+        "displayName": "잡몹 D",
+        "maxHp": 800,
+        "defense": 0.0,
+        "attacks": [
+          {
+            "skillName": "일반 공격",
+            "castColor": 0,
+            "castTime": 2.5,
+            "damage": 30,
+            "staggerAfterCast": 1.0,
+            "stunSeconds": 0.0
+          },
+          {
+            "skillName": "기절 공격",
+            "castColor": 1,
+            "castTime": 2.5,
+            "damage": 40,
+            "staggerAfterCast": 1.5,
+            "stunSeconds": 2.0
+          },
+          {
+            "skillName": "대형 피해",
+            "castColor": 2,
+            "castTime": 3.5,
+            "damage": 150,
+            "staggerAfterCast": 2.0,
+            "stunSeconds": 0.0
+          }
+        ],
+        "phases": [],
+        "phaseTransitionSeconds": 2.0,
+        "ruinOrb": {
+          "instanceID": 0
+        },
+        "cycleOrb": {
+          "instanceID": 0
+        },
+        "passiveDescription": "",
+        "orbDamageMultiplier": 1.1000000238418579,
+        "orbCastTimeReduction": 0.20000000298023224,
+        "orbDestructionDamage": 75,
+        "orbVisual": {
+          "instanceID": 0
+        },
+        "orbBreak": {
+          "instanceID": 0
+        }
+      }
+    }
+  },
+  {
+    "path": "Assets/_Project/Data/ScrollHunter/EnemyData/Enemy_Orb_Cycle.asset",
+    "data": {
+      "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "Enemy_Orb_Cycle",
+        "m_EditorClassIdentifier": "Assembly-CSharp::EnemyData",
+        "displayName": "순환의 오브",
+        "maxHp": 400,
+        "defense": 0.0,
+        "attacks": [],
+        "phases": [],
+        "phaseTransitionSeconds": 2.0,
+        "ruinOrb": {
+          "instanceID": 0
+        },
+        "cycleOrb": {
+          "instanceID": 0
+        },
+        "passiveDescription": "보스 시전 시간 추가 20%p 감소\n2페이즈 총 40% / 3페이즈 20%",
+        "orbDamageMultiplier": 1.1000000238418579,
+        "orbCastTimeReduction": 0.20000000298023224,
+        "orbDestructionDamage": 150,
+        "orbVisual": {
+          "fileID": 6082803473862479110,
+          "guid": "4b5d021aa1a1fc94e89909fb8c4da796",
+          "type": 3
+        },
+        "orbBreak": {
+          "fileID": 4071046027223118604,
+          "guid": "5cd404849d9cfef419d78892e2901a9e",
+          "type": 3
+        }
+      }
+    }
+  },
+  {
+    "path": "Assets/_Project/Data/ScrollHunter/EnemyData/Enemy_Orb_Ruin.asset",
+    "data": {
+      "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "Enemy_Orb_Ruin",
+        "m_EditorClassIdentifier": "Assembly-CSharp::EnemyData",
+        "displayName": "파멸의 오브",
+        "maxHp": 400,
+        "defense": 0.0,
+        "attacks": [],
+        "phases": [],
+        "phaseTransitionSeconds": 2.0,
+        "ruinOrb": {
+          "instanceID": 0
+        },
+        "cycleOrb": {
+          "instanceID": 0
+        },
+        "passiveDescription": "보스 피해 +10%\n강화 사일런스·나이트메어의\n기절 중 코스트 충전 불가",
+        "orbDamageMultiplier": 1.1000000238418579,
+        "orbCastTimeReduction": 0.20000000298023224,
+        "orbDestructionDamage": 150,
+        "orbVisual": {
+          "fileID": 5682857288883393236,
+          "guid": "ae6d670eeec615c4d985ae59d9dbb123",
+          "type": 3
+        },
+        "orbBreak": {
+          "fileID": 5276250973655601812,
+          "guid": "9cc3d3e45d58ca5429b2fb25eafe6706",
+          "type": 3
+        }
+      }
+    }
+  },
+  {
+    "path": "Assets/_Project/Data/ScrollHunter/PS01_EmergencyPotion.asset",
+    "data": {
+      "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "PS01_EmergencyPotion",
+        "m_EditorClassIdentifier": "Assembly-CSharp::StatRewardEffect",
+        "displayName": "응급 물약",
+        "description": "",
+        "maxStacks": 3,
+        "rareReward": false,
+        "offerChance": 0.0099999997764825821,
+        "stat": 7,
+        "amount": 1.0,
+        "additionalBonuses": [
+          {
+            "stat": 9,
+            "amount": 1.0
+          }
+        ]
+      }
+    }
+  },
+  {
+    "path": "Assets/_Project/Data/ScrollHunter/PS02_Healing.asset",
+    "data": {
+      "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "PS02_Healing",
+        "m_EditorClassIdentifier": "Assembly-CSharp::StatRewardEffect",
+        "displayName": "치유의 스크롤",
+        "description": "최대 HP를 넘는 회복은 버림",
+        "maxStacks": 0,
+        "rareReward": false,
+        "offerChance": 0.0099999997764825821,
+        "stat": 8,
+        "amount": 150.0,
+        "additionalBonuses": []
+      }
+    }
+  },
+  {
+    "path": "Assets/_Project/Data/ScrollHunter/PS03_Endurance.asset",
+    "data": {
+      "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "PS03_Endurance",
+        "m_EditorClassIdentifier": "Assembly-CSharp::StatRewardEffect",
+        "displayName": "인내의 스크롤",
+        "description": "현재 HP는 회복하지 않음",
+        "maxStacks": 0,
+        "rareReward": false,
+        "offerChance": 0.0099999997764825821,
+        "stat": 2,
+        "amount": 50.0,
+        "additionalBonuses": []
+      }
+    }
+  },
+  {
+    "path": "Assets/_Project/Data/ScrollHunter/PS04_Circulation.asset",
+    "data": {
+      "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "PS04_Circulation",
+        "m_EditorClassIdentifier": "Assembly-CSharp::StatRewardEffect",
+        "displayName": "순환의 스크롤",
+        "description": "",
+        "maxStacks": 4,
+        "rareReward": false,
+        "offerChance": 0.0099999997764825821,
+        "stat": 0,
+        "amount": 0.10000000149011612,
+        "additionalBonuses": []
+      }
+    }
+  },
+  {
+    "path": "Assets/_Project/Data/ScrollHunter/PS05_Origin.asset",
+    "data": {
+      "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "PS05_Origin",
+        "m_EditorClassIdentifier": "Assembly-CSharp::StatRewardEffect",
+        "displayName": "태초의 스크롤",
+        "description": "현재 코스트는 보충하지 않음",
+        "maxStacks": 3,
+        "rareReward": false,
+        "offerChance": 0.0099999997764825821,
+        "stat": 3,
+        "amount": 1.0,
+        "additionalBonuses": []
+      }
+    }
+  },
+  {
+    "path": "Assets/_Project/Data/ScrollHunter/PS06_Abyss.asset",
+    "data": {
+      "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "PS06_Abyss",
+        "m_EditorClassIdentifier": "Assembly-CSharp::StatRewardEffect",
+        "displayName": "심연의 스크롤",
+        "description": "현재 코스트는 보충하지 않음",
+        "maxStacks": 2,
+        "rareReward": false,
+        "offerChance": 0.0099999997764825821,
+        "stat": 4,
+        "amount": 2.0,
+        "additionalBonuses": []
+      }
+    }
+  },
+  {
+    "path": "Assets/_Project/Data/ScrollHunter/PS07_Bulwark.asset",
+    "data": {
+      "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "PS07_Bulwark",
+        "m_EditorClassIdentifier": "Assembly-CSharp::StatRewardEffect",
+        "displayName": "철벽의 스크롤",
+        "description": "기본 부여량 기준으로 합산",
+        "maxStacks": 5,
+        "rareReward": false,
+        "offerChance": 0.0099999997764825821,
+        "stat": 5,
+        "amount": 0.20000000298023224,
+        "additionalBonuses": []
+      }
+    }
+  },
+  {
+    "path": "Assets/_Project/Data/ScrollHunter/PS08_Binding.asset",
+    "data": {
+      "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "PS08_Binding",
+        "m_EditorClassIdentifier": "Assembly-CSharp::StatRewardEffect",
+        "displayName": "속박의 스크롤",
+        "description": "플레이어 기절 시간은 유지",
+        "maxStacks": 2,
+        "rareReward": false,
+        "offerChance": 0.0099999997764825821,
+        "stat": 6,
+        "amount": 0.5,
+        "additionalBonuses": []
+      }
+    }
+  },
+  {
+    "path": "Assets/_Project/Data/ScrollHunter/PS09_Precision.asset",
+    "data": {
+      "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "PS09_Precision",
+        "m_EditorClassIdentifier": "Assembly-CSharp::StatRewardEffect",
+        "displayName": "정밀의 스크롤",
+        "description": "",
+        "maxStacks": 3,
+        "rareReward": false,
+        "offerChance": 0.0099999997764825821,
+        "stat": 1,
+        "amount": 5.0,
+        "additionalBonuses": []
+      }
+    }
+  },
+  {
+    "path": "Assets/_Project/Data/ScrollHunter/PS10_Devil.asset",
+    "data": {
+      "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "PS10_Devil",
+        "m_EditorClassIdentifier": "Assembly-CSharp::StatRewardEffect",
+        "displayName": "악마의 스크롤",
+        "description": "",
+        "maxStacks": 1,
+        "rareReward": true,
+        "offerChance": 0.0099999997764825821,
+        "stat": 2,
+        "amount": 50.0,
+        "additionalBonuses": [
+          {
+            "stat": 0,
+            "amount": 0.10000000149011612
+          },
+          {
+            "stat": 3,
+            "amount": 1.0
+          },
+          {
+            "stat": 4,
+            "amount": 1.0
+          },
+          {
+            "stat": 5,
+            "amount": 0.20000000298023224
+          },
+          {
+            "stat": 6,
+            "amount": 0.5
+          },
+          {
+            "stat": 1,
+            "amount": 10.0
+          }
+        ]
+      }
+    }
+  },
+  {
+    "path": "Assets/_Project/Data/ScrollHunter/SkillData/Channel_SK02_IceArrow.asset",
+    "data": {
+      "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "Channel_SK02_IceArrow",
+        "m_EditorClassIdentifier": "Assembly-CSharp::DamageChannelEffect",
+        "description": "",
+        "firstHitDelay": 0.5,
+        "hitInterval": 0.5,
+        "targetDeathRecovery": 0.30000001192092896,
+        "timingFormat": "피해 <b>{0}×{1}회</b> · 총합 피해 <b>{2}</b>\n<size=80%><alpha=#CC>적 1체·전 타격·크리티컬/방어 적용 전<alpha=#FF></size>\n{3}",
+        "singleTargetFormat": "입력 대상 고정",
+        "areaTargetText": "매 타격 시 생존 적 전체"
+      }
+    }
+  },
+  {
+    "path": "Assets/_Project/Data/ScrollHunter/SkillData/Channel_SK06_MagicSpark.asset",
+    "data": {
+      "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "Channel_SK06_MagicSpark",
+        "m_EditorClassIdentifier": "Assembly-CSharp::DamageChannelEffect",
+        "description": "",
+        "firstHitDelay": 0.25,
+        "hitInterval": 0.25,
+        "targetDeathRecovery": 0.0,
+        "timingFormat": "피해 <b>{0}×{1}회</b> · 총합 피해 <b>{2}</b>\n<size=80%><alpha=#CC>적 1체·전 타격·크리티컬/방어 적용 전<alpha=#FF></size>\n{3}",
+        "singleTargetFormat": "입력 대상 고정",
+        "areaTargetText": "매 타격 시 생존 적 전체"
+      }
+    }
+  }
+]

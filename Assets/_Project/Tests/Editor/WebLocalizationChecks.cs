@@ -22,7 +22,9 @@ public static class WebLocalizationChecks
     private const string Placeholder=@"\{\d+(:[^}]*)?\}", Tag=@"<[^>]+>";
 
     [MenuItem("Tools/Scroll Hunter/Check Web Localization (Fresh Play)")]
-    public static void Run()
+    public static void Run() => Run("Docs/근거자료/2026-10-15_다국어");
+
+    public static void Run(string folder)
     {
         if(!Application.isPlaying) throw new Exception("Fresh Play required");
         var flow=UnityEngine.Object.FindFirstObjectByType<BattleFlow>();
@@ -209,8 +211,8 @@ public static class WebLocalizationChecks
             PlayerPrefs.SetInt(GameText.PreferenceKey,99);GameText.LoadSaved();check(GameText.Current==GameLanguage.English,"invalid web value falls back to English");
             check(missingGlyphs.Count==0,"TMP missing glyph warnings: "+string.Join(" / ",missingGlyphs.Take(3)));
             var result=new{passed=count,warnings=warnings.ToArray(),platform=EditorUserBuildSettings.activeBuildTarget.ToString()};
-            Directory.CreateDirectory("Docs/근거자료/2026-10-15_다국어");
-            File.WriteAllText("Docs/근거자료/2026-10-15_다국어/localization-checks.json",Newtonsoft.Json.JsonConvert.SerializeObject(result,Newtonsoft.Json.Formatting.Indented));
+            Directory.CreateDirectory(folder);
+            File.WriteAllText(Path.Combine(folder,"localization-checks.json"),Newtonsoft.Json.JsonConvert.SerializeObject(result,Newtonsoft.Json.Formatting.Indented));
             Debug.Log("[Web Localization] "+count+" passed; layout warnings "+warnings.Count);
         }
         finally

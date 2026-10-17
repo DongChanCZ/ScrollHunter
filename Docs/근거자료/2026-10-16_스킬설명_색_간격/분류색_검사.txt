@@ -1,0 +1,1 @@
+14 skills x 5 languages: 70 passed. Attack FFB38A, shield 91CFFF, interrupt C6AAFF. Target colors unchanged.

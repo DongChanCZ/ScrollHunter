@@ -77,7 +77,7 @@ public static class CriticalChecks
                 check(b.CurrentHp == Mathf.Max(0, hpB - targetDamage)
                     && (!card.IsAreaOfEffect || c.CurrentHp == Mathf.Max(0, hpC - targetDamage)), "actual HP " + card.DisplayName);
                 if (card.Category == SkillCategory.Shield) check(player.Shield == card.ShieldAmount, "shield unaffected");
-                if (card.Category == SkillCategory.Interrupt) check(b.IsStaggered && (float)Get(b, "staggerTimer") == 2.5f, "stagger unaffected");
+                if (card.Category == SkillCategory.Interrupt) check(b.IsStaggered && (float)Get(b, "staggerTimer") == 2.7f, "stagger unaffected");
             }
 
             var cutter = original[6]; var pillar = original[1]; var spark = original[4];

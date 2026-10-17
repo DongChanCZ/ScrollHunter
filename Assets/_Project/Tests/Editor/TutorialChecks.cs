@@ -57,6 +57,11 @@ public static class TutorialChecks
             Call(t, "OnCastAdvanced");
             check(t.Lesson == lesson && t.ShowingGuide && !t.WaitingForSkill && Time.timeScale == 0, "halfway pauses lesson " + lesson);
             Advance(t); NextFrame(t);
+            check(!t.WaitingForSkill && (bool)Get(t,"showingCombatTip") && Time.timeScale==0, "combat tip precedes required skill " + lesson);
+            var tip=(TMPro.TMP_Text)Get(t,"guideText");
+            check(lesson==4 ? tip.text.Contains("직전에") && tip.text.Contains("0.2초") : tip.text.Contains("누적") && tip.text.Contains("체력보다") && tip.text.Contains("전투가 끝나면"), "combat tip content " + lesson);
+            check(Enumerable.Range(0,4).All(i=>!d.TryUseSlot(i)), "combat tip blocks skills " + lesson);
+            Advance(t); NextFrame(t);
         };
         try
         {
@@ -68,6 +73,7 @@ public static class TutorialChecks
             var hint = (TMPro.TMP_Text)Get(t,"continueHint");
             check(!body.text.Contains("학습") && !body.text.Contains("/ 7") && !body.text.Contains("Enter") && hint.text=="Space", "no lesson count; only Space hint");
             check(hint.alignment==TMPro.TextAlignmentOptions.BottomRight && hint.rectTransform.anchorMax.y==0, "hint anchored at guide bottom right");
+            check(body.alignment==TMPro.TextAlignmentOptions.Center && Mathf.Approximately(body.rectTransform.offsetMin.y,-body.rectTransform.offsetMax.y), "guide body vertically centered with equal margins");
             check(!f.CanEditOrder && !f.BeginOrderEdit() && !f.SkipReward() && f.RewardChoiceCount == 0, "no initial editor or reward");
             check(p.CurrentHp == 500 && p.PotionsRemaining == 3 && c.Current == 3 && e.CurrentHp == 300 && e.Data.Defense == 0, "saved starting values");
             check(m.EnemyCount == 1 && m.CurrentTarget == e && e.transform.position.x == m.FormationCenter.x, "single centered target");
@@ -77,6 +83,7 @@ public static class TutorialChecks
             check(Time.timeScale == 0 && !info.IsInfoPaused, "manual controls cannot release guide pause");
             Advance(t); check(t.Lesson == 2 && !t.AdvanceGuide(), "one advance per frame");
             Advance(t); check(t.Lesson == 3 && !t.WaitingForSkill, "target marker explanation precedes input");
+            check(body.text.Contains("좌우 방향키") && body.text.Contains("다른 적 클릭"), "target controls taught in tutorial");
             Advance(t);
             check(t.Lesson == 3 && t.CompletedLessons == 2 && !t.WaitingForSkill && Time.timeScale == 0,
                 "enemy information is a paused substep before fireball");
@@ -134,7 +141,7 @@ public static class TutorialChecks
             check(c.Current == d.GetHandCard(2).Cost && !d.TryUseSlot(1), "only needed cost supplied, wrong slot rejected");
             check(d.TryUseSlot(2) && t.CompletedLessons==4 && !e.IsStaggered && d.IsCasting, "E acceptance precedes effect");
             CastTime(d, 0.19f); check(!e.IsStaggered, "no early silence effect");
-            CastTime(d, 0.02f); check(e.IsStaggered && (float)Get(e,"staggerTimer")==2.5f, "normal silence effect at completion");
+            CastTime(d, 0.02f); check(e.IsStaggered && (float)Get(e,"staggerTimer")==2.7f, "normal silence effect at completion");
             Call(e, "BeginNextCast"); check(e.CastColor==CastColor.Red, "interrupted orange advances directly to red");
             CastTime(d,0.4f);
             halfway(5,CastColor.Red);
@@ -181,7 +188,7 @@ public static class TutorialChecks
             check(t.CompletedLessons==3 && t.Lesson==4 && t.ShowingGuide && e.CurrentHp==kept && e.CastColor==CastColor.Orange, "retry preserves progress and enemy HP, chooses orange");
             check(p.CurrentHp==500 && p.Shield==0 && !p.IsStunned && !d.IsCasting && !d.IsLocked && c.Current==3 && p.PotionsRemaining == 3, "retry clears player states and restores resources");
             check(Enumerable.Range(0,4).All(i=>d.GetHandCard(i)==original[i]), "retry restores base hand");
-            Advance(t);NextFrame(t);check(d.TryUseSlot(2), "retry prompt accepts E");
+            Advance(t);Advance(t);NextFrame(t);check(d.TryUseSlot(2), "retry prompt accepts E");
             p.TakeDamage(10000);t.TickCombat();NextFrame(t);
             check(t.CompletedLessons==4 && t.Lesson==5 && e.CastColor==CastColor.Red && !d.IsCasting, "retry during silence cast cleans cast and advances by accepted input");
 
@@ -191,7 +198,7 @@ public static class TutorialChecks
             Application.logMessageReceived+=capture;
             try
             {
-                Advance(t);NextFrame(t);d.TryUseSlot(3);p.SetSanctuary(true);p.ApplyStun(2);
+                Advance(t);Advance(t);NextFrame(t);d.TryUseSlot(3);p.SetSanctuary(true);p.ApplyStun(2);
                 var skip=((RectTransform)Get(t,"skipRect")).GetComponent<Button>();
                 ExecuteEvents.Execute(skip.gameObject,new PointerEventData(EventSystem.current){button=PointerEventData.InputButton.Left},ExecuteEvents.pointerClickHandler);
                 check(!t.Active && !t.ShowingGuide && f.State==BattleFlowState.Preparing && !f.CanEditOrder, "skip button opens optional order editor without lesson seven");

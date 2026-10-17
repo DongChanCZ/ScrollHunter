@@ -1,0 +1,57 @@
+var flags=System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic;
+System.Func<object,string,object> get=(o,n)=>o.GetType().GetField(n,flags).GetValue(o);
+System.Action<object,string,object> set=(o,n,v)=>o.GetType().GetField(n,flags).SetValue(o,v);
+System.Action<object,string> call=(o,n)=>o.GetType().GetMethod(n,flags).Invoke(o,null);
+int count=0;
+System.Action<bool,string> check=(ok,label)=>{if(!ok)throw new System.Exception(label);count++;};
+var flow=UnityEngine.Object.FindFirstObjectByType<BattleFlow>();
+var deck=UnityEngine.Object.FindFirstObjectByType<DeckSystem>();
+var cost=UnityEngine.Object.FindFirstObjectByType<CostSystem>();
+var hud=UnityEngine.Object.FindFirstObjectByType<CombatUI>();
+var info=UnityEngine.Object.FindFirstObjectByType<CombatInfoUI>();
+var player=UnityEngine.Object.FindFirstObjectByType<Player>();
+UnityEngine.Object.FindFirstObjectByType<StoryUI>().enabled=false;
+UnityEngine.Object.FindFirstObjectByType<TutorialFlow>().enabled=false;
+flow.StartRun();flow.NextBattle();flow.GetType().GetMethod("AdvanceCountdown",flags).Invoke(flow,new object[]{3f});
+Time.timeScale=0f;
+var cards=deck.CopyStartingDeck();
+cards[0]=UnityEditor.AssetDatabase.LoadAssetAtPath<SkillData>("Assets/_Project/Data/ScrollHunter/SkillData/Skill_SK03_MagicCutter.asset");
+cards[1]=UnityEditor.AssetDatabase.LoadAssetAtPath<SkillData>("Assets/_Project/Data/ScrollHunter/SkillData/Skill_SK04_FirePillar.asset");
+cards[2]=UnityEditor.AssetDatabase.LoadAssetAtPath<SkillData>("Assets/_Project/Data/ScrollHunter/SkillData/Skill_SK08_Judgment.asset");
+deck.SetDeck(cards);
+var views=(CombatUI.HandSlotView[])get(hud,"handSlots");
+var resource=(TMPro.TMP_Text)get(hud,"costText");
+var gems=UnityEngine.Object.FindObjectsByType<CostGemGraphic>(FindObjectsInactive.Include,FindObjectsSortMode.None);
+check(gems.Length==5,"four hand gems and one resource gem");
+foreach(var gem in gems){check(!gem.raycastTarget&&gem.GetComponent<CanvasRenderer>()!=null,"gem renders without blocking input");}
+foreach(var view in views){
+ var gem=view.costText.transform.parent.Find("CostGem").GetComponent<CostGemGraphic>();
+ check(gem.transform.GetSiblingIndex()>view.costCover.transform.GetSiblingIndex()&&gem.transform.GetSiblingIndex()<view.costText.transform.GetSiblingIndex(),"cover < gem < numeral");
+ check(!view.costText.transform.parent.Find("CostChip").gameObject.activeSelf,"old rectangle hidden");
+ check(view.costText.fontSize==38f&&view.costText.alignment==TMPro.TextAlignmentOptions.Midline,"large centered numeral");
+ check(view.costText.rectTransform.anchoredPosition==gem.rectTransform.anchoredPosition&&view.costText.rectTransform.sizeDelta==gem.rectTransform.sizeDelta,"number aligned with gem");
+ var key=view.keyLabel.rectTransform;var rect=gem.rectTransform;
+ var a=new Vector3[4];var b=new Vector3[4];rect.GetWorldCorners(a);key.GetWorldCorners(b);
+ check(a[2].x<b[0].x,"gem and hotkey do not overlap");
+}
+foreach(float amount in new[]{0f,1.5f,2f,4f,6f,7f,10f}){
+ set(cost,"<Current>k__BackingField",amount);call(hud,"UpdateStatus");call(hud,"UpdateHand");
+ check(resource.text==GameText.Format("{0:0.0} / {1:0}",amount,cost.Max),"resource keeps exact fractional/current/max value");
+ for(int i=0;i<4;i++){
+  var view=views[i];var card=deck.GetHandCard(i);
+  check(view.costText.text==card.Cost.ToString("0.#"),"cost follows current hand");
+  check(view.costText.color==(Color)get(hud,amount<card.Cost?"costShortColor":"costNormalColor"),"existing insufficient/ready color");
+ }
+}
+var language=GameText.Current;
+foreach(GameLanguage value in System.Enum.GetValues(typeof(GameLanguage))){
+ GameText.SetLanguage(value);call(hud,"UpdateStatus");call(hud,"UpdateHand");Canvas.ForceUpdateCanvases();
+ foreach(var view in views){view.costText.ForceMeshUpdate();check(!view.costText.isTextOverflowing,"hand number fits "+value);}
+ resource.ForceMeshUpdate();check(!resource.isTextOverflowing&&resource.fontSize==32f,"resource fits "+value);
+}
+GameText.SetLanguage(language);
+set(cost,"<Current>k__BackingField",6f);call(hud,"UpdateStatus");call(hud,"UpdateHand");
+Canvas.ForceUpdateCanvases();
+string result="Cost gem checks passed: "+count+". Four hand gems + shared resource symbol; exact values; insufficient cost; ordering; hotkey separation; 5-language number fit.\nKeyboard/mouse routing: existing KeyboardTooltipChecks 74 passed.\nLegacy CombatReadabilityChecks stops at victory-waits: it kills one target while this scene has two enemies; no production victory logic changed.\n";
+System.IO.File.WriteAllText("Docs/근거자료/2026-10-16_코스트_보석/표시검사.txt",result);
+return result;

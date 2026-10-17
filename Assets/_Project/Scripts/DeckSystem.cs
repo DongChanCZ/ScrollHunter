@@ -52,7 +52,7 @@ public class DeckSystem : MonoBehaviour
     [SerializeField] private float minGcd = 0.4f;
 
     [Tooltip("차단 성공 시 적이 경직되는 시간(초). 10 문서 M9")]
-    [SerializeField] private float interruptStagger = 2.5f;
+    [SerializeField] private float interruptStagger = 2.7f;
 
     private readonly SkillData[] hand = new SkillData[HandSize];
     private readonly Queue<SkillData> queue = new Queue<SkillData>();

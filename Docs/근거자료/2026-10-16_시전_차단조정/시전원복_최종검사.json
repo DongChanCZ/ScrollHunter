@@ -1,0 +1,65 @@
+{
+  "enemy_casts": {
+    "Enemy_Tutorial": [
+      3.0,
+      4.0,
+      4.0
+    ],
+    "Enemy_A_Green": [
+      2.5
+    ],
+    "Enemy_B_Orange": [
+      2.5,
+      3.0
+    ],
+    "Enemy_C_Red": [
+      2.5,
+      4.0
+    ],
+    "Enemy_D_Mixed": [
+      2.5,
+      2.5,
+      3.5
+    ],
+    "Enemy_Boss": [
+      2.0,
+      3.0,
+      6.0,
+      5.0,
+      25.0
+    ]
+  },
+  "only_cast_fields_changed": true,
+  "stagger": 3,
+  "preserved_hash_count": 33,
+  "preservation_changes": [],
+  "sheet_changes": [
+    [
+      "적",
+      "G5",
+      2.75,
+      2.5
+    ],
+    [
+      "적",
+      "G6",
+      3.3,
+      3
+    ],
+    [
+      "적",
+      "G7",
+      4.4,
+      4
+    ],
+    [
+      "적",
+      "G8",
+      3.85,
+      3.5
+    ]
+  ],
+  "unchanged_formulas": 279,
+  "checks_passed": 870,
+  "new_build": false
+}

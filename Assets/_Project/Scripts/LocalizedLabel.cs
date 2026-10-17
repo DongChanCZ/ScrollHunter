@@ -8,7 +8,7 @@ public class LocalizedLabel : MonoBehaviour
     private TMP_Text label;
     private string last;
     public void Initialize(string value) { source = last = value; if (label == null) label = GetComponent<TMP_Text>(); Refresh(); }
-    private void Awake() { label = GetComponent<TMP_Text>(); last = source; GameText.Changed += Refresh; Refresh(); }
+    private void Awake() { if (label == null) { label = GetComponent<TMP_Text>(); last = source; } GameText.Changed += Refresh; Refresh(); }
     private void OnDestroy() { GameText.Changed -= Refresh; }
     private void Refresh()
     {

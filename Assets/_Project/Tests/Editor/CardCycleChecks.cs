@@ -33,8 +33,8 @@ public static class CardCycleChecks
             var label=(TMP_Text)Get(reward,"instruction");
             check(f.State==BattleFlowState.Preparing && label.text.Contains(BattleRewardUI.CycleHint),"preparation explains same slot and retained cards");
             var headings=(TMP_Text[])Get(reward,"deckSlotLabels");
-            check(headings.Take(4).Select((h,i)=>h.text.Contains("시작 손패 "+"QWER"[i])).All(x=>x),"initial hand has four key labels");
-            check(headings.Skip(4).Select((h,i)=>h.text.Contains("대기 순서 "+(i+1))).All(x=>x),"queue ranks 1-4");
+            check(headings.Take(4).Select((h,i)=>h.text.Contains("손패 "+"QWER"[i])).All(x=>x),"initial hand has four key labels");
+            check(headings.Skip(4).Select((h,i)=>h.text.Contains("대기 "+(i+1))).All(x=>x),"queue ranks 1-4");
             var initial=d.CopyStartingDeck(); f.BeginOrderEdit();f.MoveOrderCard(0,5);
             check(label.text.Contains(BattleRewardUI.CycleHint) && f.GetOrderCard(5)==initial[0],"editing retains explanation");
             f.CancelOrderEdit();check(f.GetOrderCard(0)==initial[0],"cancel retains order");

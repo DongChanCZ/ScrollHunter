@@ -1,0 +1,37 @@
+Tour done
+[title] texts 33, issues 0
+
+[options] texts 51, issues 0
+
+[controls] texts 37, issues 0
+
+[inheritance-info] texts 42, issues 0
+
+[deck] texts 64, issues 1
+Spanish | Deck3/Name rect 314x44 over 2,-11 (ko -174,-10) | Armadura mágica
+
+[dialogue] texts 30, issues 0
+
+[battle-card-info] texts 34, issues 0
+
+[battle-stats] texts 61, issues 0
+
+[reward] texts 42, issues 0
+
+[replace-confirm] texts 83, issues 2
+English | Back/Label rect 274x46 over -37,8 (ko -103,-19) | Choose Reward Again
+Spanish | ReplacementCard/Name rect 314x44 over 2,-11 (ko -174,-10) | Armadura mágica
+
+[next-deck] texts 64, issues 1
+Spanish | Deck3/Name rect 314x44 over 2,-11 (ko -174,-10) | Armadura mágica
+
+[defeat] texts 33, issues 0
+
+[inheritance] texts 36, issues 0
+
+[inheritance-confirm] texts 85, issues 1
+Spanish | ReplacementCard/Name rect 314x44 over 2,-11 (ko -174,-10) | Armadura mágica
+
+[retry-preparation] texts 64, issues 1
+Spanish | Deck3/Name rect 314x44 over 2,-11 (ko -174,-10) | Armadura mágica
+

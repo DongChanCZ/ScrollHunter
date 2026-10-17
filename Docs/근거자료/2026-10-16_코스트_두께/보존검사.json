@@ -1,0 +1,42 @@
+{
+  "ComparedTo": "Previous cost-dimming task baseline, not this task start",
+  "ThisTaskStarted": "2026-10-16T17:40:59+09:00",
+  "Files": [
+    {
+      "Path": "C:\\Users\\MBC-501-19\\Documents\\ScrollHunter\\Assets\\_Project\\Scenes\\Battle.unity",
+      "MatchesPreviousTaskHash": false,
+      "LastWriteTime": "2026-10-16T17:38:29.9950779+09:00",
+      "WrittenBeforeThisTask": true
+    },
+    {
+      "Path": "C:\\Users\\MBC-501-19\\Documents\\ScrollHunter\\Assets\\_Project\\Fonts\\GmarketSansMedium SDF.asset",
+      "MatchesPreviousTaskHash": false,
+      "LastWriteTime": "2026-10-16T17:38:29.8011213+09:00",
+      "WrittenBeforeThisTask": true
+    },
+    {
+      "Path": "C:\\Users\\MBC-501-19\\Documents\\ScrollHunter\\Assets\\_Project\\Fonts\\NotoSansCJK\\NotoSansJP-Medium SDF.asset",
+      "MatchesPreviousTaskHash": true,
+      "LastWriteTime": "2026-10-16T15:40:41.1828186+09:00",
+      "WrittenBeforeThisTask": true
+    },
+    {
+      "Path": "C:\\Users\\MBC-501-19\\Documents\\ScrollHunter\\Assets\\_Project\\Fonts\\NotoSansCJK\\NotoSansSC-Medium SDF.asset",
+      "MatchesPreviousTaskHash": true,
+      "LastWriteTime": "2026-10-16T15:40:41.5248799+09:00",
+      "WrittenBeforeThisTask": true
+    },
+    {
+      "Path": "C:\\Users\\MBC-501-19\\AppData\\LocalLow\\DefaultCompany\\ScrollHunter\\save.json",
+      "MatchesPreviousTaskHash": false,
+      "LastWriteTime": "2026-10-16T17:39:32.1096860+09:00",
+      "WrittenBeforeThisTask": true
+    },
+    {
+      "Path": "C:\\Users\\MBC-501-19\\AppData\\LocalLow\\DefaultCompany\\ScrollHunter\\save.json.bak",
+      "MatchesPreviousTaskHash": false,
+      "LastWriteTime": "2026-10-16T17:39:16.8380402+09:00",
+      "WrittenBeforeThisTask": true
+    }
+  ]
+}

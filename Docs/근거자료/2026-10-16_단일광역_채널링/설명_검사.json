@@ -1,0 +1,632 @@
+[
+  {
+    "name": "Skill_CrystalShield",
+    "language": 0,
+    "summary": "<color=#91CFFF>방어</color><alpha=#CC> · <alpha=#FF>자신\n<alpha=#CC>코스트 <alpha=#FF><b>3</b><alpha=#CC>   ·   시전 <alpha=#FF><b>0.2초</b>",
+    "detail": "<color=#91CFFF>방어도 <b>+120</b></color>",
+    "firstHit": -1.0,
+    "interval": -1.0,
+    "recovery": -1.0
+  },
+  {
+    "name": "Skill_Silence",
+    "language": 0,
+    "summary": "<color=#C6AAFF>차단</color><alpha=#CC> · <alpha=#FF><color=#E3E7ED>적 1체</color>\n<alpha=#CC>코스트 <alpha=#FF><b>2</b><alpha=#CC>   ·   시전 <alpha=#FF><b>0.2초</b>",
+    "detail": "캐스팅 중인 대상에게 사용\n효과 적용 때도 초록·주황\n시전 중이면 성공\n<color=#C6AAFF>성공 경직 <b>3초</b></color>\n빨강·적 선발동: 실패, 코스트·카드 소모",
+    "firstHit": -1.0,
+    "interval": -1.0,
+    "recovery": -1.0
+  },
+  {
+    "name": "Skill_SK01_Fireball",
+    "language": 0,
+    "summary": "<color=#FFB38A>공격</color><alpha=#CC> · <alpha=#FF><color=#E3E7ED>적 1체</color>\n<alpha=#CC>코스트 <alpha=#FF><b>1</b><alpha=#CC>   ·   시전 <alpha=#FF><b>0초</b>",
+    "detail": "피해 <b>30×1회</b> · <color=#FFB38A>총합 피해 <b>30</b></color>\n<size=80%><alpha=#CC>적 1체·전 타격·크리티컬/방어 적용 전<alpha=#FF></size>",
+    "firstHit": -1.0,
+    "interval": -1.0,
+    "recovery": -1.0
+  },
+  {
+    "name": "Skill_SK02_IceArrow",
+    "language": 0,
+    "summary": "<color=#FFB38A>공격</color><alpha=#CC> · <alpha=#FF><color=#E3E7ED>적 1체</color>\n<alpha=#CC>코스트 <alpha=#FF><b>5</b><alpha=#CC>   ·   채널링 <alpha=#FF><b>2.8초</b>",
+    "detail": "피해 <b>35×5회</b> · <color=#FFB38A>총합 피해 <b>175</b></color>\n<size=80%><alpha=#CC>적 1체·전 타격·크리티컬/방어 적용 전<alpha=#FF></size>\n입력 대상 고정",
+    "firstHit": 0.5,
+    "interval": 0.5,
+    "recovery": 0.3
+  },
+  {
+    "name": "Skill_SK03_MagicCutter",
+    "language": 0,
+    "summary": "<color=#FFB38A>공격</color><alpha=#CC> · <alpha=#FF><color=#E3E7ED>적 1체</color>\n<alpha=#CC>코스트 <alpha=#FF><b>2</b><alpha=#CC>   ·   시전 <alpha=#FF><b>0초</b>",
+    "detail": "피해 <b>30×2회</b> · <color=#FFB38A>총합 피해 <b>60</b></color>\n<size=80%><alpha=#CC>적 1체·전 타격·크리티컬/방어 적용 전<alpha=#FF></size>",
+    "firstHit": -1.0,
+    "interval": -1.0,
+    "recovery": -1.0
+  },
+  {
+    "name": "Skill_SK04_FirePillar",
+    "language": 0,
+    "summary": "<color=#FFB38A>공격</color><alpha=#CC> · <alpha=#FF><color=#F2D06B>적 전체</color>\n<alpha=#CC>코스트 <alpha=#FF><b>4</b><alpha=#CC>   ·   시전 <alpha=#FF><b>1초</b>",
+    "detail": "피해 <b>90×1회</b> · <color=#FFB38A>총합 피해 <b>90</b></color>\n<size=80%><alpha=#CC>적 1체·전 타격·크리티컬/방어 적용 전<alpha=#FF></size>",
+    "firstHit": -1.0,
+    "interval": -1.0,
+    "recovery": -1.0
+  },
+  {
+    "name": "Skill_SK05_LightningSpear",
+    "language": 0,
+    "summary": "<color=#FFB38A>공격</color><alpha=#CC> · <alpha=#FF><color=#E3E7ED>적 1체</color>\n<alpha=#CC>코스트 <alpha=#FF><b>4</b><alpha=#CC>   ·   시전 <alpha=#FF><b>0.8초</b>",
+    "detail": "피해 <b>135×1회</b> · <color=#FFB38A>총합 피해 <b>135</b></color>\n<size=80%><alpha=#CC>적 1체·전 타격·크리티컬/방어 적용 전<alpha=#FF></size>",
+    "firstHit": -1.0,
+    "interval": -1.0,
+    "recovery": -1.0
+  },
+  {
+    "name": "Skill_SK06_MagicSpark",
+    "language": 0,
+    "summary": "<color=#FFB38A>공격</color><alpha=#CC> · <alpha=#FF><color=#F2D06B>적 전체</color>\n<alpha=#CC>코스트 <alpha=#FF><b>3</b><alpha=#CC>   ·   채널링 <alpha=#FF><b>2.2초</b>",
+    "detail": "피해 <b>10×8회</b> · <color=#FFB38A>총합 피해 <b>80</b></color>\n<size=80%><alpha=#CC>적 1체·전 타격·크리티컬/방어 적용 전<alpha=#FF></size>\n매 타격 시 생존 적 전체",
+    "firstHit": 0.25,
+    "interval": 0.25,
+    "recovery": 0.0
+  },
+  {
+    "name": "Skill_SK07_MagicImpact",
+    "language": 0,
+    "summary": "<color=#FFB38A>공격</color><alpha=#CC> · <alpha=#FF><color=#E3E7ED>적 1체</color>\n<alpha=#CC>코스트 <alpha=#FF><b>3</b><alpha=#CC>   ·   시전 <alpha=#FF><b>0초</b>",
+    "detail": "피해 <b>40·40·50</b> · <color=#FFB38A>총합 피해 <b>130</b></color>\n<size=80%><alpha=#CC>적 1체·전 타격·크리티컬/방어 적용 전<alpha=#FF></size>",
+    "firstHit": -1.0,
+    "interval": -1.0,
+    "recovery": -1.0
+  },
+  {
+    "name": "Skill_SK08_Judgment",
+    "language": 0,
+    "summary": "<color=#FFB38A>공격</color><alpha=#CC> · <alpha=#FF><color=#E3E7ED>적 1체</color>\n<alpha=#CC>코스트 <alpha=#FF><b>7</b><alpha=#CC>   ·   시전 <alpha=#FF><b>2.75초</b>",
+    "detail": "피해 <b>365×1회</b> · <color=#FFB38A>총합 피해 <b>365</b></color>\n<size=80%><alpha=#CC>적 1체·전 타격·크리티컬/방어 적용 전<alpha=#FF></size>",
+    "firstHit": -1.0,
+    "interval": -1.0,
+    "recovery": -1.0
+  },
+  {
+    "name": "Skill_SK09_Blizzard",
+    "language": 0,
+    "summary": "<color=#FFB38A>공격</color><alpha=#CC> · <alpha=#FF><color=#F2D06B>적 전체</color>\n<alpha=#CC>코스트 <alpha=#FF><b>5</b><alpha=#CC>   ·   시전 <alpha=#FF><b>1초</b>",
+    "detail": "피해 <b>30×4회</b> · <color=#FFB38A>총합 피해 <b>120</b></color>\n<size=80%><alpha=#CC>적 1체·전 타격·크리티컬/방어 적용 전<alpha=#FF></size>",
+    "firstHit": -1.0,
+    "interval": -1.0,
+    "recovery": -1.0
+  },
+  {
+    "name": "Skill_SK10_DarkEruption",
+    "language": 0,
+    "summary": "<color=#FFB38A>공격</color><alpha=#CC> · <alpha=#FF><color=#F2D06B>적 전체</color>\n<alpha=#CC>코스트 <alpha=#FF><b>2</b><alpha=#CC>   ·   시전 <alpha=#FF><b>0.5초</b>",
+    "detail": "피해 <b>50×1회</b> · <color=#FFB38A>총합 피해 <b>50</b></color>\n<size=80%><alpha=#CC>적 1체·전 타격·크리티컬/방어 적용 전<alpha=#FF></size>",
+    "firstHit": -1.0,
+    "interval": -1.0,
+    "recovery": -1.0
+  },
+  {
+    "name": "Skill_SK12_Suppression",
+    "language": 0,
+    "summary": "<color=#C6AAFF>차단</color><alpha=#CC> · <alpha=#FF><color=#E3E7ED>적 1체</color>\n<alpha=#CC>코스트 <alpha=#FF><b>2</b><alpha=#CC>   ·   시전 <alpha=#FF><b>0.2초</b>",
+    "detail": "피해 <b>40×1회</b> · <color=#FFB38A>총합 피해 <b>40</b></color>\n<size=80%><alpha=#CC>적 1체·전 타격·크리티컬/방어 적용 전<alpha=#FF></size>\n적 캐스팅 중에만 사용. <color=#C6AAFF>피해 후 차단</color>\n초록·주황: <color=#C6AAFF>경직 <b>3초</b></color>\n빨강·시전 종료: 피해만 적용",
+    "firstHit": -1.0,
+    "interval": -1.0,
+    "recovery": -1.0
+  },
+  {
+    "name": "Skill_SK14_Sanctuary",
+    "language": 0,
+    "summary": "<color=#91CFFF>방어</color><alpha=#CC> · <alpha=#FF>자신\n<alpha=#CC>코스트 <alpha=#FF><b>5</b><alpha=#CC>   ·   채널링 <alpha=#FF><b>2.5초</b>",
+    "detail": "<color=#91CFFF>즉시 무적·기절 면역</color>\n채널링 동안 HP·방어도 피해 무효화\n다른 카드 사용 불가\n종료 시 모두 해제\n이미 기절 중이면 사용 불가",
+    "firstHit": -1.0,
+    "interval": -1.0,
+    "recovery": -1.0
+  },
+  {
+    "name": "Skill_CrystalShield",
+    "language": 1,
+    "summary": "<color=#91CFFF>Shield</color><alpha=#CC> · <alpha=#FF>Self\n<alpha=#CC>Cost <alpha=#FF><b>3</b><alpha=#CC>   ·   Cast <alpha=#FF><b>0.2s</b>",
+    "detail": "<color=#91CFFF>Shield <b>+120</b></color>",
+    "firstHit": -1.0,
+    "interval": -1.0,
+    "recovery": -1.0
+  },
+  {
+    "name": "Skill_Silence",
+    "language": 1,
+    "summary": "<color=#C6AAFF>Interrupt</color><alpha=#CC> · <alpha=#FF><color=#E3E7ED>One enemy</color>\n<alpha=#CC>Cost <alpha=#FF><b>2</b><alpha=#CC>   ·   Cast <alpha=#FF><b>0.2s</b>",
+    "detail": "Use on a casting enemy\nInterrupts a green/orange cast\nif it is still casting on impact\n<color=#C6AAFF>Stagger: <b>3s</b></color>\nRed/cast finished: fails; cost and card consumed",
+    "firstHit": -1.0,
+    "interval": -1.0,
+    "recovery": -1.0
+  },
+  {
+    "name": "Skill_SK01_Fireball",
+    "language": 1,
+    "summary": "<color=#FFB38A>Attack</color><alpha=#CC> · <alpha=#FF><color=#E3E7ED>One enemy</color>\n<alpha=#CC>Cost <alpha=#FF><b>1</b><alpha=#CC>   ·   Cast <alpha=#FF><b>0s</b>",
+    "detail": "Damage <b>30 × 1 hits</b> · <color=#FFB38A>Total <b>30</b></color>\n<size=80%><alpha=#CC>Per enemy · All hits · Before crit/defense<alpha=#FF></size>",
+    "firstHit": -1.0,
+    "interval": -1.0,
+    "recovery": -1.0
+  },
+  {
+    "name": "Skill_SK02_IceArrow",
+    "language": 1,
+    "summary": "<color=#FFB38A>Attack</color><alpha=#CC> · <alpha=#FF><color=#E3E7ED>One enemy</color>\n<alpha=#CC>Cost <alpha=#FF><b>5</b><alpha=#CC>   ·   Channel <alpha=#FF><b>2.8s</b>",
+    "detail": "Damage <b>35 × 5 hits</b> · <color=#FFB38A>Total <b>175</b></color>\n<size=80%><alpha=#CC>Per enemy · All hits · Before crit/defense<alpha=#FF></size>\nTarget locked",
+    "firstHit": 0.5,
+    "interval": 0.5,
+    "recovery": 0.3
+  },
+  {
+    "name": "Skill_SK03_MagicCutter",
+    "language": 1,
+    "summary": "<color=#FFB38A>Attack</color><alpha=#CC> · <alpha=#FF><color=#E3E7ED>One enemy</color>\n<alpha=#CC>Cost <alpha=#FF><b>2</b><alpha=#CC>   ·   Cast <alpha=#FF><b>0s</b>",
+    "detail": "Damage <b>30 × 2 hits</b> · <color=#FFB38A>Total <b>60</b></color>\n<size=80%><alpha=#CC>Per enemy · All hits · Before crit/defense<alpha=#FF></size>",
+    "firstHit": -1.0,
+    "interval": -1.0,
+    "recovery": -1.0
+  },
+  {
+    "name": "Skill_SK04_FirePillar",
+    "language": 1,
+    "summary": "<color=#FFB38A>Attack</color><alpha=#CC> · <alpha=#FF><color=#F2D06B>All enemies</color>\n<alpha=#CC>Cost <alpha=#FF><b>4</b><alpha=#CC>   ·   Cast <alpha=#FF><b>1s</b>",
+    "detail": "Damage <b>90 × 1 hits</b> · <color=#FFB38A>Total <b>90</b></color>\n<size=80%><alpha=#CC>Per enemy · All hits · Before crit/defense<alpha=#FF></size>",
+    "firstHit": -1.0,
+    "interval": -1.0,
+    "recovery": -1.0
+  },
+  {
+    "name": "Skill_SK05_LightningSpear",
+    "language": 1,
+    "summary": "<color=#FFB38A>Attack</color><alpha=#CC> · <alpha=#FF><color=#E3E7ED>One enemy</color>\n<alpha=#CC>Cost <alpha=#FF><b>4</b><alpha=#CC>   ·   Cast <alpha=#FF><b>0.8s</b>",
+    "detail": "Damage <b>135 × 1 hits</b> · <color=#FFB38A>Total <b>135</b></color>\n<size=80%><alpha=#CC>Per enemy · All hits · Before crit/defense<alpha=#FF></size>",
+    "firstHit": -1.0,
+    "interval": -1.0,
+    "recovery": -1.0
+  },
+  {
+    "name": "Skill_SK06_MagicSpark",
+    "language": 1,
+    "summary": "<color=#FFB38A>Attack</color><alpha=#CC> · <alpha=#FF><color=#F2D06B>All enemies</color>\n<alpha=#CC>Cost <alpha=#FF><b>3</b><alpha=#CC>   ·   Channel <alpha=#FF><b>2.2s</b>",
+    "detail": "Damage <b>10 × 8 hits</b> · <color=#FFB38A>Total <b>80</b></color>\n<size=80%><alpha=#CC>Per enemy · All hits · Before crit/defense<alpha=#FF></size>\nHits all living enemies on each tick",
+    "firstHit": 0.25,
+    "interval": 0.25,
+    "recovery": 0.0
+  },
+  {
+    "name": "Skill_SK07_MagicImpact",
+    "language": 1,
+    "summary": "<color=#FFB38A>Attack</color><alpha=#CC> · <alpha=#FF><color=#E3E7ED>One enemy</color>\n<alpha=#CC>Cost <alpha=#FF><b>3</b><alpha=#CC>   ·   Cast <alpha=#FF><b>0s</b>",
+    "detail": "Damage <b>40·40·50</b> · <color=#FFB38A>Total <b>130</b></color>\n<size=80%><alpha=#CC>Per enemy · All hits · Before crit/defense<alpha=#FF></size>",
+    "firstHit": -1.0,
+    "interval": -1.0,
+    "recovery": -1.0
+  },
+  {
+    "name": "Skill_SK08_Judgment",
+    "language": 1,
+    "summary": "<color=#FFB38A>Attack</color><alpha=#CC> · <alpha=#FF><color=#E3E7ED>One enemy</color>\n<alpha=#CC>Cost <alpha=#FF><b>7</b><alpha=#CC>   ·   Cast <alpha=#FF><b>2.75s</b>",
+    "detail": "Damage <b>365 × 1 hits</b> · <color=#FFB38A>Total <b>365</b></color>\n<size=80%><alpha=#CC>Per enemy · All hits · Before crit/defense<alpha=#FF></size>",
+    "firstHit": -1.0,
+    "interval": -1.0,
+    "recovery": -1.0
+  },
+  {
+    "name": "Skill_SK09_Blizzard",
+    "language": 1,
+    "summary": "<color=#FFB38A>Attack</color><alpha=#CC> · <alpha=#FF><color=#F2D06B>All enemies</color>\n<alpha=#CC>Cost <alpha=#FF><b>5</b><alpha=#CC>   ·   Cast <alpha=#FF><b>1s</b>",
+    "detail": "Damage <b>30 × 4 hits</b> · <color=#FFB38A>Total <b>120</b></color>\n<size=80%><alpha=#CC>Per enemy · All hits · Before crit/defense<alpha=#FF></size>",
+    "firstHit": -1.0,
+    "interval": -1.0,
+    "recovery": -1.0
+  },
+  {
+    "name": "Skill_SK10_DarkEruption",
+    "language": 1,
+    "summary": "<color=#FFB38A>Attack</color><alpha=#CC> · <alpha=#FF><color=#F2D06B>All enemies</color>\n<alpha=#CC>Cost <alpha=#FF><b>2</b><alpha=#CC>   ·   Cast <alpha=#FF><b>0.5s</b>",
+    "detail": "Damage <b>50 × 1 hits</b> · <color=#FFB38A>Total <b>50</b></color>\n<size=80%><alpha=#CC>Per enemy · All hits · Before crit/defense<alpha=#FF></size>",
+    "firstHit": -1.0,
+    "interval": -1.0,
+    "recovery": -1.0
+  },
+  {
+    "name": "Skill_SK12_Suppression",
+    "language": 1,
+    "summary": "<color=#C6AAFF>Interrupt</color><alpha=#CC> · <alpha=#FF><color=#E3E7ED>One enemy</color>\n<alpha=#CC>Cost <alpha=#FF><b>2</b><alpha=#CC>   ·   Cast <alpha=#FF><b>0.2s</b>",
+    "detail": "Damage <b>40 × 1 hits</b> · <color=#FFB38A>Total <b>40</b></color>\n<size=80%><alpha=#CC>Per enemy · All hits · Before crit/defense<alpha=#FF></size>\nOnly usable on a casting enemy. <color=#C6AAFF>Damage, then interrupt</color>\nGreen/orange: <color=#C6AAFF>stagger <b>3s</b></color>\nRed/cast finished: damage only",
+    "firstHit": -1.0,
+    "interval": -1.0,
+    "recovery": -1.0
+  },
+  {
+    "name": "Skill_SK14_Sanctuary",
+    "language": 1,
+    "summary": "<color=#91CFFF>Shield</color><alpha=#CC> · <alpha=#FF>Self\n<alpha=#CC>Cost <alpha=#FF><b>5</b><alpha=#CC>   ·   Channel <alpha=#FF><b>2.5s</b>",
+    "detail": "<color=#91CFFF>Immediate invulnerability and stun immunity</color>\nPrevents HP and Shield damage while channeling\nCannot use other cards\nAll effects end when channeling ends\nCannot use while already stunned",
+    "firstHit": -1.0,
+    "interval": -1.0,
+    "recovery": -1.0
+  },
+  {
+    "name": "Skill_CrystalShield",
+    "language": 2,
+    "summary": "<color=#91CFFF>防御</color><alpha=#CC> · <alpha=#FF>自分\n<alpha=#CC>コスト <alpha=#FF><b>3</b><alpha=#CC>   ·   詠唱 <alpha=#FF><b>0.2秒</b>",
+    "detail": "<color=#91CFFF>シールド <b>+120</b></color>",
+    "firstHit": -1.0,
+    "interval": -1.0,
+    "recovery": -1.0
+  },
+  {
+    "name": "Skill_Silence",
+    "language": 2,
+    "summary": "<color=#C6AAFF>妨害</color><alpha=#CC> · <alpha=#FF><color=#E3E7ED>敵1体</color>\n<alpha=#CC>コスト <alpha=#FF><b>2</b><alpha=#CC>   ·   詠唱 <alpha=#FF><b>0.2秒</b>",
+    "detail": "詠唱中の敵に使用\n効果発動時も緑・オレンジの\n詠唱中なら成功\n<color=#C6AAFF>成功時の硬直 <b>3秒</b></color>\n赤・敵の先行発動: 失敗、コスト・カード消費",
+    "firstHit": -1.0,
+    "interval": -1.0,
+    "recovery": -1.0
+  },
+  {
+    "name": "Skill_SK01_Fireball",
+    "language": 2,
+    "summary": "<color=#FFB38A>攻撃</color><alpha=#CC> · <alpha=#FF><color=#E3E7ED>敵1体</color>\n<alpha=#CC>コスト <alpha=#FF><b>1</b><alpha=#CC>   ·   詠唱 <alpha=#FF><b>0秒</b>",
+    "detail": "ダメージ <b>30×1回</b> · <color=#FFB38A>合計ダメージ <b>30</b></color>\n<size=80%><alpha=#CC>敵1体・全ヒット・クリティカル/防御適用前<alpha=#FF></size>",
+    "firstHit": -1.0,
+    "interval": -1.0,
+    "recovery": -1.0
+  },
+  {
+    "name": "Skill_SK02_IceArrow",
+    "language": 2,
+    "summary": "<color=#FFB38A>攻撃</color><alpha=#CC> · <alpha=#FF><color=#E3E7ED>敵1体</color>\n<alpha=#CC>コスト <alpha=#FF><b>5</b><alpha=#CC>   ·   チャネリング <alpha=#FF><b>2.8秒</b>",
+    "detail": "ダメージ <b>35×5回</b> · <color=#FFB38A>合計ダメージ <b>175</b></color>\n<size=80%><alpha=#CC>敵1体・全ヒット・クリティカル/防御適用前<alpha=#FF></size>\n入力時のターゲットに固定",
+    "firstHit": 0.5,
+    "interval": 0.5,
+    "recovery": 0.3
+  },
+  {
+    "name": "Skill_SK03_MagicCutter",
+    "language": 2,
+    "summary": "<color=#FFB38A>攻撃</color><alpha=#CC> · <alpha=#FF><color=#E3E7ED>敵1体</color>\n<alpha=#CC>コスト <alpha=#FF><b>2</b><alpha=#CC>   ·   詠唱 <alpha=#FF><b>0秒</b>",
+    "detail": "ダメージ <b>30×2回</b> · <color=#FFB38A>合計ダメージ <b>60</b></color>\n<size=80%><alpha=#CC>敵1体・全ヒット・クリティカル/防御適用前<alpha=#FF></size>",
+    "firstHit": -1.0,
+    "interval": -1.0,
+    "recovery": -1.0
+  },
+  {
+    "name": "Skill_SK04_FirePillar",
+    "language": 2,
+    "summary": "<color=#FFB38A>攻撃</color><alpha=#CC> · <alpha=#FF><color=#F2D06B>敵全体</color>\n<alpha=#CC>コスト <alpha=#FF><b>4</b><alpha=#CC>   ·   詠唱 <alpha=#FF><b>1秒</b>",
+    "detail": "ダメージ <b>90×1回</b> · <color=#FFB38A>合計ダメージ <b>90</b></color>\n<size=80%><alpha=#CC>敵1体・全ヒット・クリティカル/防御適用前<alpha=#FF></size>",
+    "firstHit": -1.0,
+    "interval": -1.0,
+    "recovery": -1.0
+  },
+  {
+    "name": "Skill_SK05_LightningSpear",
+    "language": 2,
+    "summary": "<color=#FFB38A>攻撃</color><alpha=#CC> · <alpha=#FF><color=#E3E7ED>敵1体</color>\n<alpha=#CC>コスト <alpha=#FF><b>4</b><alpha=#CC>   ·   詠唱 <alpha=#FF><b>0.8秒</b>",
+    "detail": "ダメージ <b>135×1回</b> · <color=#FFB38A>合計ダメージ <b>135</b></color>\n<size=80%><alpha=#CC>敵1体・全ヒット・クリティカル/防御適用前<alpha=#FF></size>",
+    "firstHit": -1.0,
+    "interval": -1.0,
+    "recovery": -1.0
+  },
+  {
+    "name": "Skill_SK06_MagicSpark",
+    "language": 2,
+    "summary": "<color=#FFB38A>攻撃</color><alpha=#CC> · <alpha=#FF><color=#F2D06B>敵全体</color>\n<alpha=#CC>コスト <alpha=#FF><b>3</b><alpha=#CC>   ·   チャネリング <alpha=#FF><b>2.2秒</b>",
+    "detail": "ダメージ <b>10×8回</b> · <color=#FFB38A>合計ダメージ <b>80</b></color>\n<size=80%><alpha=#CC>敵1体・全ヒット・クリティカル/防御適用前<alpha=#FF></size>\nヒットごとに生存中の敵全体",
+    "firstHit": 0.25,
+    "interval": 0.25,
+    "recovery": 0.0
+  },
+  {
+    "name": "Skill_SK07_MagicImpact",
+    "language": 2,
+    "summary": "<color=#FFB38A>攻撃</color><alpha=#CC> · <alpha=#FF><color=#E3E7ED>敵1体</color>\n<alpha=#CC>コスト <alpha=#FF><b>3</b><alpha=#CC>   ·   詠唱 <alpha=#FF><b>0秒</b>",
+    "detail": "ダメージ <b>40·40·50</b> · <color=#FFB38A>合計ダメージ <b>130</b></color>\n<size=80%><alpha=#CC>敵1体・全ヒット・クリティカル/防御適用前<alpha=#FF></size>",
+    "firstHit": -1.0,
+    "interval": -1.0,
+    "recovery": -1.0
+  },
+  {
+    "name": "Skill_SK08_Judgment",
+    "language": 2,
+    "summary": "<color=#FFB38A>攻撃</color><alpha=#CC> · <alpha=#FF><color=#E3E7ED>敵1体</color>\n<alpha=#CC>コスト <alpha=#FF><b>7</b><alpha=#CC>   ·   詠唱 <alpha=#FF><b>2.75秒</b>",
+    "detail": "ダメージ <b>365×1回</b> · <color=#FFB38A>合計ダメージ <b>365</b></color>\n<size=80%><alpha=#CC>敵1体・全ヒット・クリティカル/防御適用前<alpha=#FF></size>",
+    "firstHit": -1.0,
+    "interval": -1.0,
+    "recovery": -1.0
+  },
+  {
+    "name": "Skill_SK09_Blizzard",
+    "language": 2,
+    "summary": "<color=#FFB38A>攻撃</color><alpha=#CC> · <alpha=#FF><color=#F2D06B>敵全体</color>\n<alpha=#CC>コスト <alpha=#FF><b>5</b><alpha=#CC>   ·   詠唱 <alpha=#FF><b>1秒</b>",
+    "detail": "ダメージ <b>30×4回</b> · <color=#FFB38A>合計ダメージ <b>120</b></color>\n<size=80%><alpha=#CC>敵1体・全ヒット・クリティカル/防御適用前<alpha=#FF></size>",
+    "firstHit": -1.0,
+    "interval": -1.0,
+    "recovery": -1.0
+  },
+  {
+    "name": "Skill_SK10_DarkEruption",
+    "language": 2,
+    "summary": "<color=#FFB38A>攻撃</color><alpha=#CC> · <alpha=#FF><color=#F2D06B>敵全体</color>\n<alpha=#CC>コスト <alpha=#FF><b>2</b><alpha=#CC>   ·   詠唱 <alpha=#FF><b>0.5秒</b>",
+    "detail": "ダメージ <b>50×1回</b> · <color=#FFB38A>合計ダメージ <b>50</b></color>\n<size=80%><alpha=#CC>敵1体・全ヒット・クリティカル/防御適用前<alpha=#FF></size>",
+    "firstHit": -1.0,
+    "interval": -1.0,
+    "recovery": -1.0
+  },
+  {
+    "name": "Skill_SK12_Suppression",
+    "language": 2,
+    "summary": "<color=#C6AAFF>妨害</color><alpha=#CC> · <alpha=#FF><color=#E3E7ED>敵1体</color>\n<alpha=#CC>コスト <alpha=#FF><b>2</b><alpha=#CC>   ·   詠唱 <alpha=#FF><b>0.2秒</b>",
+    "detail": "ダメージ <b>40×1回</b> · <color=#FFB38A>合計ダメージ <b>40</b></color>\n<size=80%><alpha=#CC>敵1体・全ヒット・クリティカル/防御適用前<alpha=#FF></size>\n敵の詠唱中のみ使用可。<color=#C6AAFF>ダメージ後に妨害</color>\n緑・オレンジ: <color=#C6AAFF>硬直 <b>3秒</b></color>\n赤・詠唱終了: ダメージのみ適用",
+    "firstHit": -1.0,
+    "interval": -1.0,
+    "recovery": -1.0
+  },
+  {
+    "name": "Skill_SK14_Sanctuary",
+    "language": 2,
+    "summary": "<color=#91CFFF>防御</color><alpha=#CC> · <alpha=#FF>自分\n<alpha=#CC>コスト <alpha=#FF><b>5</b><alpha=#CC>   ·   チャネリング <alpha=#FF><b>2.5秒</b>",
+    "detail": "<color=#91CFFF>即座に無敵・気絶無効</color>\nチャネリング中はHP・シールドへのダメージ無効\n他のカード使用不可\n終了時にすべて解除\nすでに気絶中なら使用不可",
+    "firstHit": -1.0,
+    "interval": -1.0,
+    "recovery": -1.0
+  },
+  {
+    "name": "Skill_CrystalShield",
+    "language": 3,
+    "summary": "<color=#91CFFF>防御</color><alpha=#CC> · <alpha=#FF>自身\n<alpha=#CC>费用 <alpha=#FF><b>3</b><alpha=#CC>   ·   施法 <alpha=#FF><b>0.2秒</b>",
+    "detail": "<color=#91CFFF>护盾 <b>+120</b></color>",
+    "firstHit": -1.0,
+    "interval": -1.0,
+    "recovery": -1.0
+  },
+  {
+    "name": "Skill_Silence",
+    "language": 3,
+    "summary": "<color=#C6AAFF>打断</color><alpha=#CC> · <alpha=#FF><color=#E3E7ED>单个敌人</color>\n<alpha=#CC>费用 <alpha=#FF><b>2</b><alpha=#CC>   ·   施法 <alpha=#FF><b>0.2秒</b>",
+    "detail": "对施法中的敌人使用\n生效时若绿色·橙色\n仍在施法则成功\n<color=#C6AAFF>成功硬直 <b>3秒</b></color>\n红色·敌人先发动：失败，消耗费用和卡牌",
+    "firstHit": -1.0,
+    "interval": -1.0,
+    "recovery": -1.0
+  },
+  {
+    "name": "Skill_SK01_Fireball",
+    "language": 3,
+    "summary": "<color=#FFB38A>攻击</color><alpha=#CC> · <alpha=#FF><color=#E3E7ED>单个敌人</color>\n<alpha=#CC>费用 <alpha=#FF><b>1</b><alpha=#CC>   ·   施法 <alpha=#FF><b>0秒</b>",
+    "detail": "伤害 <b>30×1次</b> · <color=#FFB38A>总伤害 <b>30</b></color>\n<size=80%><alpha=#CC>单个敌人·全部命中·暴击/防御计算前<alpha=#FF></size>",
+    "firstHit": -1.0,
+    "interval": -1.0,
+    "recovery": -1.0
+  },
+  {
+    "name": "Skill_SK02_IceArrow",
+    "language": 3,
+    "summary": "<color=#FFB38A>攻击</color><alpha=#CC> · <alpha=#FF><color=#E3E7ED>单个敌人</color>\n<alpha=#CC>费用 <alpha=#FF><b>5</b><alpha=#CC>   ·   引导 <alpha=#FF><b>2.8秒</b>",
+    "detail": "伤害 <b>35×5次</b> · <color=#FFB38A>总伤害 <b>175</b></color>\n<size=80%><alpha=#CC>单个敌人·全部命中·暴击/防御计算前<alpha=#FF></size>\n目标锁定",
+    "firstHit": 0.5,
+    "interval": 0.5,
+    "recovery": 0.3
+  },
+  {
+    "name": "Skill_SK03_MagicCutter",
+    "language": 3,
+    "summary": "<color=#FFB38A>攻击</color><alpha=#CC> · <alpha=#FF><color=#E3E7ED>单个敌人</color>\n<alpha=#CC>费用 <alpha=#FF><b>2</b><alpha=#CC>   ·   施法 <alpha=#FF><b>0秒</b>",
+    "detail": "伤害 <b>30×2次</b> · <color=#FFB38A>总伤害 <b>60</b></color>\n<size=80%><alpha=#CC>单个敌人·全部命中·暴击/防御计算前<alpha=#FF></size>",
+    "firstHit": -1.0,
+    "interval": -1.0,
+    "recovery": -1.0
+  },
+  {
+    "name": "Skill_SK04_FirePillar",
+    "language": 3,
+    "summary": "<color=#FFB38A>攻击</color><alpha=#CC> · <alpha=#FF><color=#F2D06B>全体敌人</color>\n<alpha=#CC>费用 <alpha=#FF><b>4</b><alpha=#CC>   ·   施法 <alpha=#FF><b>1秒</b>",
+    "detail": "伤害 <b>90×1次</b> · <color=#FFB38A>总伤害 <b>90</b></color>\n<size=80%><alpha=#CC>单个敌人·全部命中·暴击/防御计算前<alpha=#FF></size>",
+    "firstHit": -1.0,
+    "interval": -1.0,
+    "recovery": -1.0
+  },
+  {
+    "name": "Skill_SK05_LightningSpear",
+    "language": 3,
+    "summary": "<color=#FFB38A>攻击</color><alpha=#CC> · <alpha=#FF><color=#E3E7ED>单个敌人</color>\n<alpha=#CC>费用 <alpha=#FF><b>4</b><alpha=#CC>   ·   施法 <alpha=#FF><b>0.8秒</b>",
+    "detail": "伤害 <b>135×1次</b> · <color=#FFB38A>总伤害 <b>135</b></color>\n<size=80%><alpha=#CC>单个敌人·全部命中·暴击/防御计算前<alpha=#FF></size>",
+    "firstHit": -1.0,
+    "interval": -1.0,
+    "recovery": -1.0
+  },
+  {
+    "name": "Skill_SK06_MagicSpark",
+    "language": 3,
+    "summary": "<color=#FFB38A>攻击</color><alpha=#CC> · <alpha=#FF><color=#F2D06B>全体敌人</color>\n<alpha=#CC>费用 <alpha=#FF><b>3</b><alpha=#CC>   ·   引导 <alpha=#FF><b>2.2秒</b>",
+    "detail": "伤害 <b>10×8次</b> · <color=#FFB38A>总伤害 <b>80</b></color>\n<size=80%><alpha=#CC>单个敌人·全部命中·暴击/防御计算前<alpha=#FF></size>\n每次命中时攻击所有存活敌人",
+    "firstHit": 0.25,
+    "interval": 0.25,
+    "recovery": 0.0
+  },
+  {
+    "name": "Skill_SK07_MagicImpact",
+    "language": 3,
+    "summary": "<color=#FFB38A>攻击</color><alpha=#CC> · <alpha=#FF><color=#E3E7ED>单个敌人</color>\n<alpha=#CC>费用 <alpha=#FF><b>3</b><alpha=#CC>   ·   施法 <alpha=#FF><b>0秒</b>",
+    "detail": "伤害 <b>40·40·50</b> · <color=#FFB38A>总伤害 <b>130</b></color>\n<size=80%><alpha=#CC>单个敌人·全部命中·暴击/防御计算前<alpha=#FF></size>",
+    "firstHit": -1.0,
+    "interval": -1.0,
+    "recovery": -1.0
+  },
+  {
+    "name": "Skill_SK08_Judgment",
+    "language": 3,
+    "summary": "<color=#FFB38A>攻击</color><alpha=#CC> · <alpha=#FF><color=#E3E7ED>单个敌人</color>\n<alpha=#CC>费用 <alpha=#FF><b>7</b><alpha=#CC>   ·   施法 <alpha=#FF><b>2.75秒</b>",
+    "detail": "伤害 <b>365×1次</b> · <color=#FFB38A>总伤害 <b>365</b></color>\n<size=80%><alpha=#CC>单个敌人·全部命中·暴击/防御计算前<alpha=#FF></size>",
+    "firstHit": -1.0,
+    "interval": -1.0,
+    "recovery": -1.0
+  },
+  {
+    "name": "Skill_SK09_Blizzard",
+    "language": 3,
+    "summary": "<color=#FFB38A>攻击</color><alpha=#CC> · <alpha=#FF><color=#F2D06B>全体敌人</color>\n<alpha=#CC>费用 <alpha=#FF><b>5</b><alpha=#CC>   ·   施法 <alpha=#FF><b>1秒</b>",
+    "detail": "伤害 <b>30×4次</b> · <color=#FFB38A>总伤害 <b>120</b></color>\n<size=80%><alpha=#CC>单个敌人·全部命中·暴击/防御计算前<alpha=#FF></size>",
+    "firstHit": -1.0,
+    "interval": -1.0,
+    "recovery": -1.0
+  },
+  {
+    "name": "Skill_SK10_DarkEruption",
+    "language": 3,
+    "summary": "<color=#FFB38A>攻击</color><alpha=#CC> · <alpha=#FF><color=#F2D06B>全体敌人</color>\n<alpha=#CC>费用 <alpha=#FF><b>2</b><alpha=#CC>   ·   施法 <alpha=#FF><b>0.5秒</b>",
+    "detail": "伤害 <b>50×1次</b> · <color=#FFB38A>总伤害 <b>50</b></color>\n<size=80%><alpha=#CC>单个敌人·全部命中·暴击/防御计算前<alpha=#FF></size>",
+    "firstHit": -1.0,
+    "interval": -1.0,
+    "recovery": -1.0
+  },
+  {
+    "name": "Skill_SK12_Suppression",
+    "language": 3,
+    "summary": "<color=#C6AAFF>打断</color><alpha=#CC> · <alpha=#FF><color=#E3E7ED>单个敌人</color>\n<alpha=#CC>费用 <alpha=#FF><b>2</b><alpha=#CC>   ·   施法 <alpha=#FF><b>0.2秒</b>",
+    "detail": "伤害 <b>40×1次</b> · <color=#FFB38A>总伤害 <b>40</b></color>\n<size=80%><alpha=#CC>单个敌人·全部命中·暴击/防御计算前<alpha=#FF></size>\n仅可在敌人施法时使用。<color=#C6AAFF>造成伤害后打断</color>\n绿色·橙色：<color=#C6AAFF>硬直 <b>3秒</b></color>\n红色·施法结束：仅造成伤害",
+    "firstHit": -1.0,
+    "interval": -1.0,
+    "recovery": -1.0
+  },
+  {
+    "name": "Skill_SK14_Sanctuary",
+    "language": 3,
+    "summary": "<color=#91CFFF>防御</color><alpha=#CC> · <alpha=#FF>自身\n<alpha=#CC>费用 <alpha=#FF><b>5</b><alpha=#CC>   ·   引导 <alpha=#FF><b>2.5秒</b>",
+    "detail": "<color=#91CFFF>立即无敌·眩晕免疫</color>\n引导期间HP·护盾伤害无效\n无法使用其他卡牌\n结束时全部解除\n已处于眩晕时无法使用",
+    "firstHit": -1.0,
+    "interval": -1.0,
+    "recovery": -1.0
+  },
+  {
+    "name": "Skill_CrystalShield",
+    "language": 4,
+    "summary": "<color=#91CFFF>Escudo</color><alpha=#CC> · <alpha=#FF>Uno mismo\n<alpha=#CC>Coste <alpha=#FF><b>3</b><alpha=#CC>   ·   Lanzamiento <alpha=#FF><b>0.2 s</b>",
+    "detail": "<color=#91CFFF>Escudo <b>+120</b></color>",
+    "firstHit": -1.0,
+    "interval": -1.0,
+    "recovery": -1.0
+  },
+  {
+    "name": "Skill_Silence",
+    "language": 4,
+    "summary": "<color=#C6AAFF>Interrupción</color><alpha=#CC> · <alpha=#FF><color=#E3E7ED>Un enemigo</color>\n<alpha=#CC>Coste <alpha=#FF><b>2</b><alpha=#CC>   ·   Lanzamiento <alpha=#FF><b>0.2 s</b>",
+    "detail": "Úsala si el enemigo lanza\nInterrumpe verde/naranja\nsi sigue lanzando al impactar\n<color=#C6AAFF>Tambaleo: <b>3 s</b></color>\nRojo/ya lanzado: falla; gasta coste y carta",
+    "firstHit": -1.0,
+    "interval": -1.0,
+    "recovery": -1.0
+  },
+  {
+    "name": "Skill_SK01_Fireball",
+    "language": 4,
+    "summary": "<color=#FFB38A>Ataque</color><alpha=#CC> · <alpha=#FF><color=#E3E7ED>Un enemigo</color>\n<alpha=#CC>Coste <alpha=#FF><b>1</b><alpha=#CC>   ·   Lanzamiento <alpha=#FF><b>0 s</b>",
+    "detail": "Daño <b>30×1 golpes</b> · <color=#FFB38A>Total <b>30</b></color>\n<size=80%><alpha=#CC>Por enemigo · Todos los golpes · Sin crítico/defensa<alpha=#FF></size>",
+    "firstHit": -1.0,
+    "interval": -1.0,
+    "recovery": -1.0
+  },
+  {
+    "name": "Skill_SK02_IceArrow",
+    "language": 4,
+    "summary": "<color=#FFB38A>Ataque</color><alpha=#CC> · <alpha=#FF><color=#E3E7ED>Un enemigo</color>\n<alpha=#CC>Coste <alpha=#FF><b>5</b><alpha=#CC>   ·   Canalización <alpha=#FF><b>2.8 s</b>",
+    "detail": "Daño <b>35×5 golpes</b> · <color=#FFB38A>Total <b>175</b></color>\n<size=80%><alpha=#CC>Por enemigo · Todos los golpes · Sin crítico/defensa<alpha=#FF></size>\nObjetivo fijo",
+    "firstHit": 0.5,
+    "interval": 0.5,
+    "recovery": 0.3
+  },
+  {
+    "name": "Skill_SK03_MagicCutter",
+    "language": 4,
+    "summary": "<color=#FFB38A>Ataque</color><alpha=#CC> · <alpha=#FF><color=#E3E7ED>Un enemigo</color>\n<alpha=#CC>Coste <alpha=#FF><b>2</b><alpha=#CC>   ·   Lanzamiento <alpha=#FF><b>0 s</b>",
+    "detail": "Daño <b>30×2 golpes</b> · <color=#FFB38A>Total <b>60</b></color>\n<size=80%><alpha=#CC>Por enemigo · Todos los golpes · Sin crítico/defensa<alpha=#FF></size>",
+    "firstHit": -1.0,
+    "interval": -1.0,
+    "recovery": -1.0
+  },
+  {
+    "name": "Skill_SK04_FirePillar",
+    "language": 4,
+    "summary": "<color=#FFB38A>Ataque</color><alpha=#CC> · <alpha=#FF><color=#F2D06B>Todos los enemigos</color>\n<alpha=#CC>Coste <alpha=#FF><b>4</b><alpha=#CC>   ·   Lanzamiento <alpha=#FF><b>1 s</b>",
+    "detail": "Daño <b>90×1 golpes</b> · <color=#FFB38A>Total <b>90</b></color>\n<size=80%><alpha=#CC>Por enemigo · Todos los golpes · Sin crítico/defensa<alpha=#FF></size>",
+    "firstHit": -1.0,
+    "interval": -1.0,
+    "recovery": -1.0
+  },
+  {
+    "name": "Skill_SK05_LightningSpear",
+    "language": 4,
+    "summary": "<color=#FFB38A>Ataque</color><alpha=#CC> · <alpha=#FF><color=#E3E7ED>Un enemigo</color>\n<alpha=#CC>Coste <alpha=#FF><b>4</b><alpha=#CC>   ·   Lanzamiento <alpha=#FF><b>0.8 s</b>",
+    "detail": "Daño <b>135×1 golpes</b> · <color=#FFB38A>Total <b>135</b></color>\n<size=80%><alpha=#CC>Por enemigo · Todos los golpes · Sin crítico/defensa<alpha=#FF></size>",
+    "firstHit": -1.0,
+    "interval": -1.0,
+    "recovery": -1.0
+  },
+  {
+    "name": "Skill_SK06_MagicSpark",
+    "language": 4,
+    "summary": "<color=#FFB38A>Ataque</color><alpha=#CC> · <alpha=#FF><color=#F2D06B>Todos los enemigos</color>\n<alpha=#CC>Coste <alpha=#FF><b>3</b><alpha=#CC>   ·   Canalización <alpha=#FF><b>2.2 s</b>",
+    "detail": "Daño <b>10×8 golpes</b> · <color=#FFB38A>Total <b>80</b></color>\n<size=80%><alpha=#CC>Por enemigo · Todos los golpes · Sin crítico/defensa<alpha=#FF></size>\nGolpea a todos los enemigos vivos en cada impacto",
+    "firstHit": 0.25,
+    "interval": 0.25,
+    "recovery": 0.0
+  },
+  {
+    "name": "Skill_SK07_MagicImpact",
+    "language": 4,
+    "summary": "<color=#FFB38A>Ataque</color><alpha=#CC> · <alpha=#FF><color=#E3E7ED>Un enemigo</color>\n<alpha=#CC>Coste <alpha=#FF><b>3</b><alpha=#CC>   ·   Lanzamiento <alpha=#FF><b>0 s</b>",
+    "detail": "Daño <b>40·40·50</b> · <color=#FFB38A>Total <b>130</b></color>\n<size=80%><alpha=#CC>Por enemigo · Todos los golpes · Sin crítico/defensa<alpha=#FF></size>",
+    "firstHit": -1.0,
+    "interval": -1.0,
+    "recovery": -1.0
+  },
+  {
+    "name": "Skill_SK08_Judgment",
+    "language": 4,
+    "summary": "<color=#FFB38A>Ataque</color><alpha=#CC> · <alpha=#FF><color=#E3E7ED>Un enemigo</color>\n<alpha=#CC>Coste <alpha=#FF><b>7</b><alpha=#CC>   ·   Lanzamiento <alpha=#FF><b>2.75 s</b>",
+    "detail": "Daño <b>365×1 golpes</b> · <color=#FFB38A>Total <b>365</b></color>\n<size=80%><alpha=#CC>Por enemigo · Todos los golpes · Sin crítico/defensa<alpha=#FF></size>",
+    "firstHit": -1.0,
+    "interval": -1.0,
+    "recovery": -1.0
+  },
+  {
+    "name": "Skill_SK09_Blizzard",
+    "language": 4,
+    "summary": "<color=#FFB38A>Ataque</color><alpha=#CC> · <alpha=#FF><color=#F2D06B>Todos los enemigos</color>\n<alpha=#CC>Coste <alpha=#FF><b>5</b><alpha=#CC>   ·   Lanzamiento <alpha=#FF><b>1 s</b>",
+    "detail": "Daño <b>30×4 golpes</b> · <color=#FFB38A>Total <b>120</b></color>\n<size=80%><alpha=#CC>Por enemigo · Todos los golpes · Sin crítico/defensa<alpha=#FF></size>",
+    "firstHit": -1.0,
+    "interval": -1.0,
+    "recovery": -1.0
+  },
+  {
+    "name": "Skill_SK10_DarkEruption",
+    "language": 4,
+    "summary": "<color=#FFB38A>Ataque</color><alpha=#CC> · <alpha=#FF><color=#F2D06B>Todos los enemigos</color>\n<alpha=#CC>Coste <alpha=#FF><b>2</b><alpha=#CC>   ·   Lanzamiento <alpha=#FF><b>0.5 s</b>",
+    "detail": "Daño <b>50×1 golpes</b> · <color=#FFB38A>Total <b>50</b></color>\n<size=80%><alpha=#CC>Por enemigo · Todos los golpes · Sin crítico/defensa<alpha=#FF></size>",
+    "firstHit": -1.0,
+    "interval": -1.0,
+    "recovery": -1.0
+  },
+  {
+    "name": "Skill_SK12_Suppression",
+    "language": 4,
+    "summary": "<color=#C6AAFF>Interrupción</color><alpha=#CC> · <alpha=#FF><color=#E3E7ED>Un enemigo</color>\n<alpha=#CC>Coste <alpha=#FF><b>2</b><alpha=#CC>   ·   Lanzamiento <alpha=#FF><b>0.2 s</b>",
+    "detail": "Daño <b>40×1 golpes</b> · <color=#FFB38A>Total <b>40</b></color>\n<size=80%><alpha=#CC>Por enemigo · Todos los golpes · Sin crítico/defensa<alpha=#FF></size>\nSolo si el enemigo lanza. <color=#C6AAFF>Daña y luego interrumpe</color>\nVerde/naranja: <color=#C6AAFF>tambaleo <b>3 s</b></color>\nRojo/ya lanzado: solo daño",
+    "firstHit": -1.0,
+    "interval": -1.0,
+    "recovery": -1.0
+  },
+  {
+    "name": "Skill_SK14_Sanctuary",
+    "language": 4,
+    "summary": "<color=#91CFFF>Escudo</color><alpha=#CC> · <alpha=#FF>Uno mismo\n<alpha=#CC>Coste <alpha=#FF><b>5</b><alpha=#CC>   ·   Canalización <alpha=#FF><b>2.5 s</b>",
+    "detail": "<color=#91CFFF>Invulnerable e inmune al aturdimiento al instante</color>\nAnula el daño a HP y escudo al canalizar\nNo puedes usar otras cartas\nTodos los efectos acaban al terminar\nNo se puede usar durante un aturdimiento",
+    "firstHit": -1.0,
+    "interval": -1.0,
+    "recovery": -1.0
+  }
+]

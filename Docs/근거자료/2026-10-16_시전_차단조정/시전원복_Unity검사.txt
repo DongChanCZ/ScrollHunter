@@ -1,0 +1,4 @@
+StartingDeckChecks: Starting deck checks passed: 117
+BossChecks: Boss checks passed: 315
+BossOrbChecks: Boss orb checks passed: 79
+Enemy attack timing checks passed: 359, attacks/phases: 23, models: 5. Function/Animator checks; real frames separate.

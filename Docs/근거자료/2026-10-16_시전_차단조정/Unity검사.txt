@@ -1,0 +1,18 @@
+BossChecks: Boss checks passed: 315
+BossOrbChecks: Boss orb checks passed: 79
+CriticalChecks: FAIL critical included in final summary
+RewardFlowChecks: FAIL acquired impact immediately playable
+AllPassiveChecks: FAIL All passives: shield card starts
+HudChecks: FAIL HUD: stats panel blocks clicks
+Retry fixture: countdownSeconds=0, finishingEffectHold=0; isolated save; story/tutorial disabled
+CriticalChecks: FAIL saved default 15% / 1.5x
+RewardFlowChecks: FAIL final victory has no reward
+AllPassiveChecks: FAIL All passives: PS10 response and critical contribution
+Fresh Play / saved critical baseline: All passive checks passed: 75. Synthetic function/UI state checks; physical input and natural balance are separate.
+Fresh Play / saved critical baseline: All passive checks passed: 75. Synthetic function/UI state checks; physical input and natural balance are separate.
+Fresh Play / saved critical baseline: All passive checks passed: 75. Synthetic function/UI state checks; physical input and natural balance are separate.
+
+StartingDeckChecks: 117 passed
+EnemyAnimationLinkChecks.RunTiming: 359 passed (23 attacks/phases, 5 models)
+Targeted card path: 146 passed; 5-language descriptions and stats included
+Total passed: 1091 (full-suite failures listed above remain separate)

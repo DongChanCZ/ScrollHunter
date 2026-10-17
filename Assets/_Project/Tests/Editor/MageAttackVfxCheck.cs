@@ -303,7 +303,7 @@ public static class MageAttackVfxCheck
                 if (counts.ContainsKey("fx VFX_Mage_DarkHoleBurst") && counts["fx VFX_Mage_DarkHoleBurst"] >= 2) { Note("FORCE " + Force(4, 2)); Next("the end"); }
                 break;
             }
-            case 6: // 3페이즈 디엔드 기본 22초: 성장 → 유지 → 발동
+            case 6: // 3페이즈 디엔드 기본 25초: 성장 → 유지 → 발동
                 if (vfx.PreparedSkill == 4 && vfx.ChargeObject != null)
                 {
                     float s = vfx.ChargeScale;
