@@ -131,7 +131,7 @@ public static class RewardFlowChecks
             try { deck.TryUseSlot(0); Call(deck, "AdvanceCast", 0.21f); Call(flow, "Update"); }
             finally { Application.logMessageReceived -= capture; }
             check(!b.IsAlive && metrics.DamageApplied == 30 && (int)Get(metrics, "interruptSuccesses") == 0, "lethal suppression has damage but no interrupt success");
-            check(logs.Last().Contains("전투 종료 요약") && logs.Last().Contains("실피해 30"), "lethal suppression summary last and complete");
+            check(logs.Count == 0, "lethal suppression without combat log or summary"); // 2026-10-17 출력 중단
             check(info.DescribeCard(suppression).Contains("피해 후") && info.DescribeCard(suppression).Contains("40"), "damaging interrupt tooltip");
 
             flow.RestartRun(); probe = ScriptableObject.CreateInstance<RewardProbeEffect>();

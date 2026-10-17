@@ -44,7 +44,7 @@ public static class DialogueOptionsChecks
             var toggle = (Toggle)Get(menu, "skipSeenDialogueToggle");
             var hint = (TMP_Text)Get(menu, "dialogueLockedLabel");
             var scroll = (ScrollRect)Get(menu, "optionsScroll");
-            check(toggle.isOn && !toggle.interactable && hint.gameObject.activeSelf, "locked before retry, default checked");
+            check(toggle.isOn && !toggle.interactable && hint.gameObject.activeSelf, "locked without retry or victory, default checked");
             check(scroll.content.rect.height > scroll.viewport.rect.height && !scroll.horizontal, "vertical scroll overflow");
             var before = scroll.content.anchoredPosition.y;
             scroll.OnScroll(new PointerEventData(EventSystem.current) { scrollDelta = new Vector2(0f, -4f) });
@@ -55,11 +55,41 @@ public static class DialogueOptionsChecks
                 var label = toggle.GetComponentInChildren<TMP_Text>(); label.ForceMeshUpdate(true);
                 hint.ForceMeshUpdate(true);
                 check(label.text == GameText.T("이미 본 전투 대화 건너뛰기") && !label.isTextOverflowing, "checkbox language " + language);
-                check(hint.text == GameText.T("첫 재도전을 시작하면 변경할 수 있습니다.") && !hint.isTextOverflowing, "locked hint " + language);
+                check(hint.text == GameText.T("재도전 또는 전투 승리 후 변경할 수 있습니다.") && !hint.isTextOverflowing, "locked hint " + language);
+                if (language != GameLanguage.Korean) check(hint.text != "재도전 또는 전투 승리 후 변경할 수 있습니다.", "hint translated " + language);
+                for (int i = 0; i < hint.textInfo.characterCount; i++) check(hint.textInfo.characterInfo[i].character != '□', "hint glyph " + language);
             }
-            menu.ClosePanels(); check(save.TryRecordRetry(), "record actual retry");
+            GameText.SetLanguage(GameLanguage.Korean); LanguageFonts.ApplyAll();
+            // 잠긴 상태에서는 코드로 값을 바꿔도 적용 시 저장하지 않는다.
+            toggle.isOn = false; menu.ApplyOptions();
+            check(flow.SkipSeenDialogue && !PlayerPrefs.HasKey(key), "locked option is not saved on apply");
+            // 승리 없이 재도전한 경우도 옵션이 열리고 적용/재읽기가 가능하다.
+            check(save.TryRecordRetry() && save.HasRetried && !save.HasStageVictory, "retry record kept, no victory");
+            menu.OpenOptions(); check(toggle.interactable && !hint.gameObject.activeSelf, "retry alone unlocks");
+            toggle.isOn = false; menu.ApplyOptions(); check(!flow.SkipSeenDialogue, "retry-only apply works");
+            var retryOnly = new InheritanceSave(path, pool, deck);
+            flow.GetType().GetField("inheritance", Hidden).SetValue(flow, retryOnly);
+            menu.OpenOptions(); check(toggle.interactable && !toggle.isOn, "retry-only reload stays unlocked and remembers off");
+            menu.ClosePanels(); flow.SetSkipSeenDialogue(true);
+            flow.GetType().GetField("inheritance", Hidden).SetValue(flow, save);
+            menu.ClosePanels();
+            // 이전 버전 저장: hasRetried 필드가 없고 승리 기록만 있는 파일.
+            var legacyPath = Path.Combine(Application.temporaryCachePath, "dialogue-legacy-" + Guid.NewGuid(), "save.json");
+            var legacy = new InheritanceSave(legacyPath, pool, deck);
+            check(legacy.TryRecordBattle(1), "legacy victory setup");
+            var json = File.ReadAllText(legacyPath);
+            File.WriteAllText(legacyPath, System.Text.RegularExpressions.Regex.Replace(json, ",?\\s*\"hasRetried\"\\s*:\\s*(true|false)", ""));
+            check(!File.ReadAllText(legacyPath).Contains("hasRetried"), "legacy file has no retry field");
+            var legacyLoaded = new InheritanceSave(legacyPath, pool, deck);
+            check(!legacyLoaded.LoadFailed && legacyLoaded.HasStageVictory && !legacyLoaded.HasRetried, "legacy victory loads");
+            flow.GetType().GetField("inheritance", Hidden).SetValue(flow, legacyLoaded);
+            menu.OpenOptions(); check(toggle.interactable && !hint.gameObject.activeSelf, "legacy victory unlocks without retry");
+            menu.ClosePanels(); flow.GetType().GetField("inheritance", Hidden).SetValue(flow, save);
+            // 다시 새 저장으로 만들어 승리만으로도 같은 실행 안에서 열리는지 확인한다.
+            check(save.TryResetGame() && !save.HasRetried, "clear retry before victory-only case");
+            check(save.TryRecordBattle(1) && save.HasStageVictory, "victory recorded this session");
             menu.OpenOptions();
-            check(toggle.interactable && !hint.gameObject.activeSelf, "unlocked after retry");
+            check(toggle.interactable && !hint.gameObject.activeSelf, "unlocked after victory without restart");
             toggle.isOn = false;
             check(flow.SkipSeenDialogue, "unsaved change is not persisted");
             menu.ClosePanels(); menu.OpenOptions(); check(toggle.isOn, "cancel restores");
@@ -68,13 +98,21 @@ public static class DialogueOptionsChecks
             menu.OpenOptions(); check(!toggle.isOn, "reopen remembers off");
             menu.ClosePanels(); flow.SetSkipSeenDialogue(true); menu.OpenOptions();
             check(toggle.isOn, "retry checkbox preference shared");
-            check(new InheritanceSave(path, pool, deck).HasRetried, "reload keeps unlock");
-            check(save.TryResetGame(), "full reset"); menu.ClosePanels(); menu.OpenOptions();
+            // 재실행 대신 저장 파일을 새로 읽어 확인: 승리 기록과 옵션 값이 남는다.
+            var reloaded = new InheritanceSave(path, pool, deck);
+            check(reloaded.HasStageVictory && !reloaded.HasRetried, "victory-only reload unlocks without retry");
+            flow.GetType().GetField("inheritance", Hidden).SetValue(flow, reloaded);
+            menu.ClosePanels(); menu.OpenOptions(); check(toggle.interactable && toggle.isOn == flow.SkipSeenDialogue, "reloaded save unlocked with saved value");
+            menu.ClosePanels(); flow.GetType().GetField("inheritance", Hidden).SetValue(flow, save);
+            check(save.TryRecordRetry() && save.HasRetried && save.HasStageVictory, "both conditions present");
+            menu.OpenOptions(); check(toggle.interactable, "both conditions unlock"); menu.ClosePanels();
+            check(save.TryReset() && save.HasStageVictory && save.HasRetried, "inheritance reset keeps both unlock records");
+            check(save.TryResetGame() && !save.HasStageVictory && !save.HasRetried, "full reset"); menu.ClosePanels(); menu.OpenOptions();
             check(!toggle.interactable && hint.gameObject.activeSelf, "full reset locks option");
             check(scroll.verticalNormalizedPosition > .99f, "reopen resets scroll top");
             var blocked = Path.Combine(Application.temporaryCachePath, "blocked-retry-" + Guid.NewGuid()); Directory.CreateDirectory(blocked);
             var failed = new InheritanceSave(blocked, pool, deck);
-            check(!failed.TryRecordRetry() && !failed.HasRetried, "write failure cannot unlock");
+            check(!failed.TryRecordBattle(1) && !failed.HasStageVictory, "write failure cannot unlock");
         }
         finally
         {

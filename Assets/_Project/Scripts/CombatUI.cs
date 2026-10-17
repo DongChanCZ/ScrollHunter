@@ -66,9 +66,16 @@ public class CombatUI : MonoBehaviour
     [SerializeField] private Vector2 handCostGemSize = new Vector2(60f, 64f);
     [SerializeField] private Vector2 handCostGemPosition = new Vector2(6f, -6f);
     [SerializeField] private float handCostGemFontSize = 38f;
-    [SerializeField] private Vector2 resourceCostTextSize = new Vector2(156f, 40f);
-    [SerializeField] private Vector2 resourceCostTextPosition = new Vector2(-48f, 0f);
-    [SerializeField] private float resourceCostFontSize = 32f;
+    [SerializeField] private Vector2 resourceCostGemSize = new Vector2(60f, 64f);
+    [SerializeField] private Vector2 resourceCostGemPosition = new Vector2(-35f, 4f);
+    [SerializeField] private float resourceCostGemFontSize = 38f;
+    [SerializeField] private float maximumCostFontSize = 28f;
+    [SerializeField] private float maximumCostGap = 8f;
+    [SerializeField, Min(.01f)] private float costBounceSeconds = .2f;
+    [SerializeField, Min(1f)] private float costBounceScale = 1.12f;
+    private RectTransform resourceCostGem;
+    private TMP_Text maximumCostText;
+    private float costBounceRemaining;
 
     [Header("기절 표시 (화면 중앙)")]
     [Tooltip("기절 중에만 켜진다. 슬롯 색만으로는 손패를 안 볼 때 놓친다. (02 §6.5.4)")]
@@ -192,7 +199,6 @@ public class CombatUI : MonoBehaviour
     [Tooltip("{0}=방어도")]
     [SerializeField] private string shieldFormat = "{0}";
 
-    [SerializeField] private string costFormat = "{0:0.0} / {1:0}";
 
     [Header("생츄어리 — 무적 중 금빛 화면 테두리")]
     [SerializeField] private GameObject sanctuaryFrame;
@@ -207,6 +213,13 @@ public class CombatUI : MonoBehaviour
     private void OnDisable()
     {
         if (sanctuaryFrame != null) sanctuaryFrame.SetActive(false);
+        costBounceRemaining = 0f;
+        if (resourceCostGem != null) resourceCostGem.localScale = Vector3.one;
+    }
+
+    private void OnDestroy()
+    {
+        if (costSystem != null) costSystem.WholeCostRecovered -= BounceCostGem;
     }
 
     private Vector3 markerBaseScale = Vector3.one;
@@ -279,6 +292,7 @@ public class CombatUI : MonoBehaviour
             }
         }
         BuildCostGems();
+        if (costSystem != null) costSystem.WholeCostRecovered += BounceCostGem;
         if (costGauge != null)
             ((RectTransform)costGauge.transform).SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, costGaugeHeight);
         CacheDefaultTextColors();
@@ -306,15 +320,30 @@ public class CombatUI : MonoBehaviour
             label.alignment = TextAlignmentOptions.Midline;
             label.raycastTarget = false;
         }
-        if (costText == null) return;
+        if (costText == null || costGauge == null) return;
+        resourceCostGem = CreateCostGem(costGauge.transform, "ResourceCostGem", new Vector2(0f, .5f),
+            new Vector2(.5f, .5f), resourceCostGemPosition, resourceCostGemSize).rectTransform;
         var resource = costText.rectTransform;
-        resource.anchorMin = resource.anchorMax = resource.pivot = new Vector2(0f, .5f);
-        resource.anchoredPosition = resourceCostTextPosition;
-        resource.sizeDelta = resourceCostTextSize;
-        costText.fontSize = resourceCostFontSize;
+        resource.SetParent(resourceCostGem, false);
+        resource.anchorMin = Vector2.zero;
+        resource.anchorMax = Vector2.one;
+        resource.pivot = new Vector2(.5f, .5f);
+        resource.offsetMin = resource.offsetMax = Vector2.zero;
+        costText.fontSize = resourceCostGemFontSize;
         costText.enableAutoSizing = false;
         costText.fontStyle = FontStyles.Bold;
-        costText.alignment = TextAlignmentOptions.MidlineRight;
+        costText.alignment = TextAlignmentOptions.Midline;
+        costText.raycastTarget = false;
+
+        maximumCostText = Instantiate(costText, costGauge.transform);
+        maximumCostText.name = "MaximumCostText";
+        maximumCostText.fontSize = maximumCostFontSize;
+        maximumCostText.alignment = TextAlignmentOptions.MidlineLeft;
+        var maximum = maximumCostText.rectTransform;
+        maximum.anchorMin = maximum.anchorMax = maximum.pivot = new Vector2(1f, .5f);
+        maximum.pivot = new Vector2(0f, .5f);
+        maximum.anchoredPosition = new Vector2(maximumCostGap, 0f);
+        maximum.sizeDelta = resourceCostGemSize;
     }
 
     private static CostGemGraphic CreateCostGem(Transform parent, string name, Vector2 anchor,
@@ -330,6 +359,20 @@ public class CombatUI : MonoBehaviour
         rect.anchoredPosition = position;
         rect.sizeDelta = size;
         return gem;
+    }
+
+    private void BounceCostGem()
+    {
+        if (isActiveAndEnabled) costBounceRemaining = costBounceSeconds;
+    }
+
+    private void TickCostBounce(float deltaTime)
+    {
+        if (resourceCostGem == null) return;
+        costBounceRemaining = Mathf.Max(0f, costBounceRemaining - deltaTime);
+        float progress = 1f - costBounceRemaining / Mathf.Max(.01f, costBounceSeconds);
+        float scale = 1f + (costBounceScale - 1f) * Mathf.Sin(progress * Mathf.PI);
+        resourceCostGem.localScale = Vector3.one * scale;
     }
 
     private void CacheDefaultTextColors()
@@ -350,6 +393,7 @@ public class CombatUI : MonoBehaviour
     private void LateUpdate()
     {
         UpdateStatus();
+        TickCostBounce(Time.timeScale > 0f ? Time.unscaledDeltaTime : 0f);
         UpdateSanctuary();
         UpdateHand();
         UpdateCast();
@@ -360,7 +404,8 @@ public class CombatUI : MonoBehaviour
     {
         if (costSystem != null)
         {
-            if (costText != null) costText.text = GameText.T(GameText.Format(costFormat, costSystem.Current, costSystem.Max));
+            if (costText != null) costText.text = Mathf.FloorToInt(costSystem.Current).ToString();
+            if (maximumCostText != null) maximumCostText.text = costSystem.Max.ToString("0.#");
             if (costGauge != null) costGauge.Set(costSystem.Current, costSystem.Max);
         }
 

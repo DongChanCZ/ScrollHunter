@@ -1,0 +1,6 @@
+Error:True
+Assert:True
+Warning:True
+Log:False
+Exception:True
+Editor logger: Log

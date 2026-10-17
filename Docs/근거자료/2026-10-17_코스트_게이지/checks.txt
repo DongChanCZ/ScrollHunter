@@ -1,0 +1,1 @@
+Cost resource: 105 checks passed. Integer flooring, max10..15 and tick positions, fractional fill, charge-only event, spend/reset/tutorial topup exclusions, bounce peak/return/freeze, 5 language numeric labels. Runtime values restored; no saves written.

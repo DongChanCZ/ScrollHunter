@@ -203,7 +203,7 @@ public static class TutorialChecks
                 ExecuteEvents.Execute(skip.gameObject,new PointerEventData(EventSystem.current){button=PointerEventData.InputButton.Left},ExecuteEvents.pointerClickHandler);
                 check(!t.Active && !t.ShowingGuide && f.State==BattleFlowState.Preparing && !f.CanEditOrder, "skip button opens optional order editor without lesson seven");
                 check(!d.IsCasting && !d.IsLocked && !p.IsInvulnerable && !p.IsStunned && m.CombatEnded && metrics.Ended, "skip clears combat and maintained states");
-                check(!logs.Any(s=>s.Contains("승패: 승리")) && f.RewardChoiceCount==0, "skip not victory or reward");
+                check(logs.Count==0 && f.RewardChoiceCount==0, "skip has no reward and no tutorial/combat log");
                 NextFrame(t); f.NextBattle(); Call(f,"AdvanceCountdown",3f);check(p.CurrentHp==500 && p.PotionsRemaining == 3 && m.EnemyCount==2, "skip starts fresh AB");
             }
             finally{Application.logMessageReceived-=capture;}

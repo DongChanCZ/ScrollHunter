@@ -115,7 +115,7 @@ public class TutorialFlow : MonoBehaviour
         skipRect.gameObject.SetActive(true);
         // 시작 버튼을 누른 클릭이 첫 안내까지 넘기지 않게 한다.
         consumedFrame = Time.frameCount;
-        Debug.Log("[튜토리얼] " + (retry ? "재도전" : "시작") + " / 완료 학습 " + CompletedLessons + " / 적 HP " + hp, this);
+        // Debug.Log("[튜토리얼] " + (retry ? "재도전" : "시작") + " / 완료 학습 " + CompletedLessons + " / 적 HP " + hp, this);
         if (CompletedLessons >= 6)
         {
             HideGuide();
@@ -310,7 +310,7 @@ public class TutorialFlow : MonoBehaviour
     {
         if (!Active || !WaitingForSkill || !AllowsSlot(slot, card)) return;
         CompletedLessons = Lesson;
-        Debug.Log("[튜토리얼] 학습 " + Lesson + " 입력 수락 / " + card.DisplayName, this);
+        // Debug.Log("[튜토리얼] 학습 " + Lesson + " 입력 수락 / " + card.DisplayName, this);
         HideGuide();
         pendingCycleGuide = Lesson == 3;
         ResumeTime();

@@ -9,7 +9,7 @@ public partial class MainMenuUI
     [SerializeField] private Vector2 optionsScrollPosition = new Vector2(0f, 14f);
     [SerializeField] private float optionsRowSpacing = 110f;
     [SerializeField] private string skipSeenDialogueText = "이미 본 전투 대화 건너뛰기";
-    [SerializeField] private string dialogueLockedText = "첫 재도전을 시작하면 변경할 수 있습니다.";
+    [SerializeField] private string dialogueLockedText = "재도전 또는 전투 승리 후 변경할 수 있습니다.";
     private ScrollRect optionsScroll;
     private Toggle skipSeenDialogueToggle;
     private TMP_Text dialogueLockedLabel;
@@ -120,10 +120,13 @@ public partial class MainMenuUI
         label.rectTransform.anchoredPosition = new Vector2(24f, 0f);
     }
 
+    // 재도전 시작 또는 본편 승리 기록이 있으면 조작 가능. 옵션을 열 때마다 다시 읽어 재실행 없이 반영한다.
+    private bool DialogueOptionUnlocked => flow != null && flow.Inheritance != null && (flow.Inheritance.HasRetried || flow.Inheritance.HasStageVictory);
+
     private void ReadDialogueOption()
     {
         if (skipSeenDialogueToggle == null || flow == null) return;
-        bool unlocked = flow.Inheritance != null && flow.Inheritance.HasRetried;
+        bool unlocked = DialogueOptionUnlocked;
         skipSeenDialogueToggle.SetIsOnWithoutNotify(flow.SkipSeenDialogue);
         skipSeenDialogueToggle.interactable = unlocked;
         if (dialogueLockedLabel != null) dialogueLockedLabel.gameObject.SetActive(!unlocked);
@@ -131,7 +134,7 @@ public partial class MainMenuUI
 
     private void SaveDialogueOption()
     {
-        if (skipSeenDialogueToggle != null && skipSeenDialogueToggle.interactable)
+        if (skipSeenDialogueToggle != null && skipSeenDialogueToggle.interactable && DialogueOptionUnlocked)
             flow.SetSkipSeenDialogue(skipSeenDialogueToggle.isOn);
     }
 }

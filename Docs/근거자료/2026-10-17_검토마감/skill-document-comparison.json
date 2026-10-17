@@ -1,0 +1,388 @@
+{
+  "skills": 14,
+  "checks": 53,
+  "mismatches": [],
+  "details": [
+    {
+      "skill": "01",
+      "field": "cost",
+      "document": 1.0,
+      "game": 1.0,
+      "match": true
+    },
+    {
+      "skill": "01",
+      "field": "castTime",
+      "document": 0.0,
+      "game": 0.0,
+      "match": true
+    },
+    {
+      "skill": "01",
+      "field": "damage",
+      "document": 30.0,
+      "game": 30,
+      "match": true
+    },
+    {
+      "skill": "01",
+      "field": "hitCount",
+      "document": 1.0,
+      "game": 1,
+      "match": true
+    },
+    {
+      "skill": "02",
+      "field": "cost",
+      "document": 5.0,
+      "game": 5.0,
+      "match": true
+    },
+    {
+      "skill": "02",
+      "field": "castTime",
+      "document": 2.8,
+      "game": 2.799999952316284,
+      "match": true
+    },
+    {
+      "skill": "02",
+      "field": "damage",
+      "document": 35.0,
+      "game": 35,
+      "match": true
+    },
+    {
+      "skill": "02",
+      "field": "hitCount",
+      "document": 5.0,
+      "game": 5,
+      "match": true
+    },
+    {
+      "skill": "03",
+      "field": "cost",
+      "document": 2.0,
+      "game": 2.0,
+      "match": true
+    },
+    {
+      "skill": "03",
+      "field": "castTime",
+      "document": 0.0,
+      "game": 0.0,
+      "match": true
+    },
+    {
+      "skill": "03",
+      "field": "damage",
+      "document": 30.0,
+      "game": 30,
+      "match": true
+    },
+    {
+      "skill": "03",
+      "field": "hitCount",
+      "document": 2.0,
+      "game": 2,
+      "match": true
+    },
+    {
+      "skill": "04",
+      "field": "cost",
+      "document": 4.0,
+      "game": 4.0,
+      "match": true
+    },
+    {
+      "skill": "04",
+      "field": "castTime",
+      "document": 1.0,
+      "game": 1.0,
+      "match": true
+    },
+    {
+      "skill": "04",
+      "field": "damage",
+      "document": 90.0,
+      "game": 90,
+      "match": true
+    },
+    {
+      "skill": "04",
+      "field": "hitCount",
+      "document": 1.0,
+      "game": 1,
+      "match": true
+    },
+    {
+      "skill": "05",
+      "field": "cost",
+      "document": 4.0,
+      "game": 4.0,
+      "match": true
+    },
+    {
+      "skill": "05",
+      "field": "castTime",
+      "document": 0.8,
+      "game": 0.800000011920929,
+      "match": true
+    },
+    {
+      "skill": "05",
+      "field": "damage",
+      "document": 135.0,
+      "game": 135,
+      "match": true
+    },
+    {
+      "skill": "05",
+      "field": "hitCount",
+      "document": 1.0,
+      "game": 1,
+      "match": true
+    },
+    {
+      "skill": "06",
+      "field": "cost",
+      "document": 3.0,
+      "game": 3.0,
+      "match": true
+    },
+    {
+      "skill": "06",
+      "field": "castTime",
+      "document": 2.2,
+      "game": 2.200000047683716,
+      "match": true
+    },
+    {
+      "skill": "06",
+      "field": "damage",
+      "document": 10.0,
+      "game": 10,
+      "match": true
+    },
+    {
+      "skill": "06",
+      "field": "hitCount",
+      "document": 8.0,
+      "game": 8,
+      "match": true
+    },
+    {
+      "skill": "07",
+      "field": "cost",
+      "document": 3.0,
+      "game": 3.0,
+      "match": true
+    },
+    {
+      "skill": "07",
+      "field": "castTime",
+      "document": 0.0,
+      "game": 0.0,
+      "match": true
+    },
+    {
+      "skill": "07",
+      "field": "damage",
+      "document": 40.0,
+      "game": 40,
+      "match": true
+    },
+    {
+      "skill": "07",
+      "field": "hitCount",
+      "document": 3.0,
+      "game": 3,
+      "match": true
+    },
+    {
+      "skill": "07",
+      "field": "hit distribution/total",
+      "document": [
+        40,
+        40,
+        50,
+        130
+      ],
+      "game": [
+        40,
+        40,
+        50,
+        130
+      ],
+      "match": true
+    },
+    {
+      "skill": "08",
+      "field": "cost",
+      "document": 7.0,
+      "game": 7.0,
+      "match": true
+    },
+    {
+      "skill": "08",
+      "field": "castTime",
+      "document": 2.75,
+      "game": 2.75,
+      "match": true
+    },
+    {
+      "skill": "08",
+      "field": "damage",
+      "document": 365.0,
+      "game": 365,
+      "match": true
+    },
+    {
+      "skill": "08",
+      "field": "hitCount",
+      "document": 1.0,
+      "game": 1,
+      "match": true
+    },
+    {
+      "skill": "09",
+      "field": "cost",
+      "document": 5.0,
+      "game": 5.0,
+      "match": true
+    },
+    {
+      "skill": "09",
+      "field": "castTime",
+      "document": 1.0,
+      "game": 1.0,
+      "match": true
+    },
+    {
+      "skill": "09",
+      "field": "damage",
+      "document": 30.0,
+      "game": 30,
+      "match": true
+    },
+    {
+      "skill": "09",
+      "field": "hitCount",
+      "document": 4.0,
+      "game": 4,
+      "match": true
+    },
+    {
+      "skill": "10",
+      "field": "cost",
+      "document": 2.0,
+      "game": 2.0,
+      "match": true
+    },
+    {
+      "skill": "10",
+      "field": "castTime",
+      "document": 0.5,
+      "game": 0.5,
+      "match": true
+    },
+    {
+      "skill": "10",
+      "field": "damage",
+      "document": 50.0,
+      "game": 50,
+      "match": true
+    },
+    {
+      "skill": "10",
+      "field": "hitCount",
+      "document": 1.0,
+      "game": 1,
+      "match": true
+    },
+    {
+      "skill": "11",
+      "field": "cost",
+      "document": 2.0,
+      "game": 2.0,
+      "match": true
+    },
+    {
+      "skill": "11",
+      "field": "castTime",
+      "document": 0.2,
+      "game": 0.20000000298023224,
+      "match": true
+    },
+    {
+      "skill": "11",
+      "field": "damage",
+      "document": 0.0,
+      "game": 0,
+      "match": true
+    },
+    {
+      "skill": "12",
+      "field": "cost",
+      "document": 2.0,
+      "game": 2.0,
+      "match": true
+    },
+    {
+      "skill": "12",
+      "field": "castTime",
+      "document": 0.2,
+      "game": 0.20000000298023224,
+      "match": true
+    },
+    {
+      "skill": "12",
+      "field": "damage",
+      "document": 40.0,
+      "game": 40,
+      "match": true
+    },
+    {
+      "skill": "13",
+      "field": "cost",
+      "document": 3.0,
+      "game": 3.0,
+      "match": true
+    },
+    {
+      "skill": "13",
+      "field": "castTime",
+      "document": 0.2,
+      "game": 0.20000000298023224,
+      "match": true
+    },
+    {
+      "skill": "13",
+      "field": "damage",
+      "document": 0.0,
+      "game": 0,
+      "match": true
+    },
+    {
+      "skill": "13",
+      "field": "shieldAmount",
+      "document": 120.0,
+      "game": 120,
+      "match": true
+    },
+    {
+      "skill": "14",
+      "field": "cost",
+      "document": 5.0,
+      "game": 5.0,
+      "match": true
+    },
+    {
+      "skill": "14",
+      "field": "castTime",
+      "document": 2.5,
+      "game": 2.5,
+      "match": true
+    }
+  ]
+}

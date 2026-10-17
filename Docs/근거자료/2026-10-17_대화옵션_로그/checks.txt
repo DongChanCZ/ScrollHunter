@@ -1,0 +1,17 @@
+2026-10-17 대화 스킵 옵션 활성화·전투 로그 출력 중단 — Unity Play 검사 (임시 저장)
+
+통과
+- DialogueOptionsChecks: 152 (승리 없음 잠금 / 재도전만 잠금 / hasRetried 없는 이전 승리 저장 활성 / 이번 실행 승리 후 재실행 없이 활성 / 잠김 중 적용 미저장 / 적용·취소 / 저장 재로딩 유지 / 계승 초기화 유지 / 게임 초기화 잠금 / 저장 실패 / 5언어 안내 문구·번역·글리프·넘침)
+- RetryFlowChecks: 85 (재도전 기록 유지·잠금 해제에 미사용, 처음 보는 대화 재생, 확인창 체크박스)
+- BattleFlowChecks.CheckNoCombatLogs (StoryUI 끔·임시 저장 단독 실행): 48 (스킬6종 승리, 광역/채널링 패배, 즉시 재시작, 비활성화 종료, 상세 로그 설정 켬/끔 모두 일반 로그0·집계 유지)
+- CriticalChecks 100, RedShieldChecks 33, TutorialChecks 130 (StoryUI 끔), StartingDeckChecks 117, RemainingSkillChecks 77, MenuProgressChecks 58 (StoryUI 끔), StartEndingChecks 56, ChannelingChecks 42 (Edit), WebLocalizationChecks 70,427 (경고0)
+- 실제 전투 경로 (real-battle-console.txt): 시작 편성→대화 스킵→카운트다운→스킬 사용·입력 거절·채널링·방어→승리→Esc 옵션 활성 확인→보상 스킵→다음 전투→패배→재도전 준비. 콘솔은 기존 Gmarket 반입 경고1·보상 스킵 기록1뿐.
+
+이번 변경 전 지점에서 멈춘 기존 검사 (현행 편성·카운트다운·재도전 확인창 이전 가정)
+- BattleFlowChecks.Run: "first encounter B" (구 B 단독 첫 전투)
+- RewardFlowChecks: "two card choices visible" (구 후보 2개)
+- InheritanceChecks: "new run countdown" (재도전 확인창 도입 전 흐름)
+- CombatReadabilityChecks: "victory waits"/"C retains speed" (구 편성)
+- AllPassiveChecks "shield card starts", PassiveRewardChecks "next battle normal HP carry" (카운트다운 중 입력 차단)
+
+보존: 사용자 save.json/.bak 해시·옵션 값(대화 스킵0·언어0) 작업 전과 동일. 저장 씬·폰트3종 해시 아침 기준과 동일.

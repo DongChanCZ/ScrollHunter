@@ -1,0 +1,2 @@
+Warning	Importer(NativeFormatImporter) generated inconsistent result for asset(guid:7b1e16cbc5ea6b246a1276679ec44837) "Assets/_Project/Fonts/GmarketSansMedium SDF.asset"
+Log	[보상 전투 1] 스킵 — 편성 유지

@@ -11,12 +11,15 @@ body{display:flex;align-items:center;justify-content:center}
 #screen{position:relative;aspect-ratio:16/9;background:#080a10}
 canvas{width:100%;height:100%;display:block;outline:none}
 #loading{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:clamp(8px,2vw,20px);background:#080a10}
-h1{font-size:clamp(28px,5vw,64px);font-weight:normal;letter-spacing:.08em;margin:0}
+@font-face{font-family:Cinzel;src:url('Cinzel-Bold.ttf') format('truetype');font-weight:700;font-display:swap}
+h1{font-family:Cinzel,Georgia,serif;font-size:clamp(28px,5vw,64px);font-weight:700;color:#e6c98f;margin:0 0 clamp(20px,4vw,48px);text-shadow:0 3px 4px #000;white-space:nowrap}
+.launch-controls{display:flex;align-items:center;justify-content:center;flex-wrap:nowrap;gap:clamp(12px,3vw,28px);max-width:96%}
+#play{white-space:nowrap;padding:10px clamp(16px,3vw,40px)}
 button,select{background:#151c25;border:1px solid #a58c53;color:#ead5ab;cursor:pointer;font:inherit}
 button{padding:10px 40px}
 button:focus-visible,select:focus-visible{outline:2px solid #fff;outline-offset:3px}
 button:disabled,select:disabled{opacity:.5;cursor:wait}
-.language-choice{display:flex;align-items:center;gap:12px;font:14px sans-serif}
+.language-choice{display:flex;align-items:center;gap:8px;font:14px sans-serif;white-space:nowrap}
 #language{min-width:145px;padding:7px 12px;font:15px sans-serif;color-scheme:dark}
 #status:empty{display:none}
 #status{max-width:90%;text-align:center;font:14px sans-serif}
@@ -34,6 +37,7 @@ footer button{font-size:13px;padding:2px 14px}footer a{color:#bca67f}
     <canvas id="unity-canvas" width="1280" height="720" tabindex="0" aria-label="Scroll Hunter game"></canvas>
     <div id="loading">
       <h1>Scroll Hunter</h1>
+      <div class="launch-controls">
       <div class="language-choice">
         <label id="language-label" for="language">Language</label>
         <select id="language">
@@ -45,6 +49,7 @@ footer button{font-size:13px;padding:2px 14px}footer a{color:#bca67f}
         </select>
       </div>
       <button id="play" type="button">Play</button>
+      </div>
       <progress id="progress" value="0" max="1" hidden></progress>
       <span id="status" role="status"></span>
     </div>
@@ -95,7 +100,7 @@ start.onclick=async()=>{
       dataUrl:'Build/{{{ DATA_FILENAME }}}',frameworkUrl:'Build/{{{ FRAMEWORK_FILENAME }}}',codeUrl:'Build/{{{ CODE_FILENAME }}}',
       streamingAssetsUrl:'StreamingAssets',companyName:{{{ JSON.stringify(COMPANY_NAME) }}},productName:{{{ JSON.stringify(PRODUCT_NAME) }}},productVersion:{{{ JSON.stringify(PRODUCT_VERSION) }}},
       devicePixelRatio:1,autoSyncPersistentDataPath:true,
-      showBanner:(message,type)=>{if(type==='error'){status.textContent=message;console.error(message);}}
+      showBanner:(message,type)=>{if(type==='error'){status.textContent=message;console.error(message);}else if(type==='warning'){console.warn(message);}}
     },p=>{progress.value=p;status.textContent=text.loading+' '+Math.round(p*100)+'%';});
     document.getElementById('loading').hidden=true;document.getElementById('loading').style.display='none';canvas.focus();
   }catch(error){status.textContent=text.error;console.error(error);}

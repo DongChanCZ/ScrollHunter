@@ -173,6 +173,15 @@ public partial class BattleFlow : MonoBehaviour
                 || GetPassiveStacks(option.Effect) < option.Effect.MaxStacks);
     }
 
+#if UNITY_WEBGL && !UNITY_EDITOR
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    private static void ConfigureWebLogging()
+    {
+        // 웹에서는 보상·편성 등 일반 기록도 숨기고 경고·오류·예외는 남긴다.
+        Debug.unityLogger.filterLogType = LogType.Warning;
+    }
+#endif
+
     private void Awake()
     {
         story = GetComponent<StoryUI>();
@@ -734,7 +743,7 @@ public partial class BattleFlow : MonoBehaviour
             if (skillVfx != null) skillVfx.PlayOutUnscaled();
         }
         else FinishTutorialPresentation();
-        Debug.Log(skipped ? "[튜토리얼] 스킵 — 보상 없이 편성" : "[튜토리얼] 학습·처치 완료 — 완료 안내 확인 대기", this);
+        // Debug.Log(skipped ? "[튜토리얼] 스킵 — 보상 없이 편성" : "[튜토리얼] 학습·처치 완료 — 완료 안내 확인 대기", this);
         RefreshUI();
     }
 
@@ -750,7 +759,7 @@ public partial class BattleFlow : MonoBehaviour
     {
         if (State != BattleFlowState.TutorialComplete || PanelHeld) return;
         State = BattleFlowState.Preparing;
-        Debug.Log("[튜토리얼] 완료 안내 확인 — 편성 학습", this);
+        // Debug.Log("[튜토리얼] 완료 안내 확인 — 편성 학습", this);
         RefreshUI();
     }
 

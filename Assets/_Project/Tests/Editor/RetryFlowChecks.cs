@@ -50,7 +50,7 @@ public static class RetryFlowChecks
             f.SetSkipSeenDialogue(true); check(f.SkipSeenDialogue && PlayerPrefs.GetInt(key) == 1, "on persisted");
             File.WriteAllText(path, "{\"version\":1,\"cards\":[null,null,null,null,null,null,null,null],\"passives\":[],\"clearedBattles\":2}");
             var old = load();
-            check(!old.HasRetried, "legacy retry option locked");
+            check(!old.HasRetried && old.HasStageVictory, "legacy save: no retry record, existing victory unlocks dialogue option");
             check(!old.LoadFailed && old.HasSeenDialogue(1) && !old.HasSeenDialogue(0), "old cleared record only");
             check(old.TryRecordDialogue(3) && load().HasSeenDialogue(3) && load().ClearedBattles == 2, "dialogue saved independently");
             check(old.TryReset() && load().HasSeenDialogue(3), "inheritance reset preserves dialogue");
@@ -108,7 +108,7 @@ public static class RetryFlowChecks
             ui.OpenRetryConfirmation();
             ((Button)Get(ui, "retryCancelButton")).onClick.Invoke();
             check(!ui.RetryConfirmationVisible && !toggle.gameObject.activeInHierarchy && !f.IsCountingDown, "cancel keeps preparation");
-            check(!save.HasRetried && !load().HasRetried, "cancel does not unlock dialogue option");
+            check(!save.HasRetried && !load().HasRetried && !save.HasStageVictory, "cancel records no retry; no victory keeps option locked");
             f.ConfirmRetry(); check(!f.IsCountingDown, "closed popup cannot confirm");
             check(((TMP_Text)Get(ui, "title")).text == "다시 도전 준비", "retry title");
             check(((TMP_Text)Get(f, "nextButtonLabel")).text == "다시 도전", "retry action");
@@ -116,7 +116,7 @@ public static class RetryFlowChecks
             check(!ui.RetryConfirmationVisible, "no confirmation during order edit"); f.CancelOrderEdit();
             unlock(); f.NextBattle(); ((Button)Get(ui, "retryConfirmButton")).onClick.Invoke();
             check(f.IsCountingDown && f.BattleNumber == 1 && !story.Active, "confirmation starts first battle with skip");
-            check(save.HasRetried && load().HasRetried, "confirmed retry unlock persists");
+            check(save.HasRetried && load().HasRetried && !load().HasStageVictory, "confirmed retry record persists and qualifies for option unlock");
             f.ConfirmRetry(); check(f.IsCountingDown && f.BattleNumber == 1, "double confirmation ignored");
             var card = pool.First(x => x.Card != null && save.CanInherit(x));
             unlock(); f.RestartRun(); ((List<BattleRewardOption>)Get(f, "earnedRewards")).Add(card); lose();
@@ -130,8 +130,8 @@ public static class RetryFlowChecks
             unlock(); f.RestartRun(); ((List<BattleRewardOption>)Get(f, "earnedRewards")).Add(pool.First(x => x.Card != null && save.CanInherit(x))); lose(); f.ContinueAfterResult();
             check(f.SkipReward() && f.State == BattleFlowState.Preparing && f.IsRetryPreparation, "skip then retry");
             f.ReturnToTitle(); check(!f.IsRetryPreparation, "title clears retry label");
-            check(save.TryReset() && load().HasRetried, "inheritance reset preserves retry unlock");
-            check(save.TryResetGame() && !load().HasRetried, "full reset locks dialogue option");
+            check(save.TryReset() && load().HasRetried, "inheritance reset preserves retry record");
+            check(save.TryResetGame() && !load().HasRetried && !load().HasStageVictory, "full reset clears retry and victory records");
         }
         finally
         {

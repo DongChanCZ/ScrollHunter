@@ -13,7 +13,9 @@ using UnityEngine;
 ///  - 코스트 부족 입력: 잠금·기절·대상 조건이 모두 통과하고 코스트만 모자라 거절된 키 누름
 ///
 /// 시간은 <see cref="Time.time"/> 기준이라 배속이 반영되고 일시정지(timeScale 0) 동안은 멈춘다.
-/// 승리 또는 패배가 확정되면 집계가 멈추고 요약은 **한 번만** 출력된다.
+/// 승리 또는 패배가 확정되면 집계가 멈춘다.
+/// 2026-10-17: 입력·결과·타격 로그와 전투 종료 요약의 콘솔 출력은 주석 처리했다(Docs/10#combat-log-off-20261017).
+/// 집계 값은 그대로 누적되며, 요약을 다시 보려면 주석 처리한 출력문을 되살린다.
 ///
 /// 「필요한 카드를 끌어오려고 쓴 사용」은 추정하지 않는다. 사용 순서와 시각만 남기고
 /// 의도는 플레이어가 07 개발일지에 직접 메모한다.
@@ -23,7 +25,7 @@ public class CombatMetrics : MonoBehaviour
     [SerializeField] private EnemyManager enemyManager;
     [SerializeField] private Player player;
 
-    [Tooltip("카드 입력 한 건마다 로그를 남긴다. 끄면 전투 종료 요약만 출력한다.")]
+    [Tooltip("카드 입력 한 건마다 로그를 남긴다. 현재 출력문은 주석 처리되어 값과 무관하게 출력하지 않는다.")]
     [SerializeField] private bool logEachInput = true;
 
     /// <summary>전투가 끝났는지. 끝나면 모든 집계가 멈춘다.</summary>
@@ -31,6 +33,8 @@ public class CombatMetrics : MonoBehaviour
     public int BattleNumber { get; private set; }
 
     [SerializeField] private string speedEntryFormat = "{0:0.00}s: {1:0.#}배";
+    // 아래 로그·요약 문구는 출력 중단(2026-10-17) 뒤 쓰이지 않지만, 출력문을 되살릴 때를 위해 남긴다.
+#pragma warning disable 0414
     [SerializeField] private string speedSummaryFormat = "배속 이력(게임 초): {0}";
     [SerializeField] private string criticalHitLabel = " / 크리티컬";
     [SerializeField] private string criticalSummaryFormat = "크리티컬 {0}회 / 유효 피해 타격 {1}회 (사망 후 잔여 연출 제외)";
@@ -41,6 +45,7 @@ public class CombatMetrics : MonoBehaviour
     [SerializeField] private string invulnerabilitySummaryFormat = "무적 무효화 피해 {0} (방어도 흡수와 별도)";
     public int InvulnerabilityPrevented { get; private set; }
     [SerializeField] private string redShieldSummaryFormat = "빨강 반감 감소 피해 {0} (방어도 흡수·무적과 별도)";
+#pragma warning restore 0414
     public int RedShieldPrevented { get; private set; }
     public void RecordRedShieldPrevented(int amount)
     {
@@ -50,7 +55,7 @@ public class CombatMetrics : MonoBehaviour
     {
         if (Ended || amount <= 0) return;
         InvulnerabilityPrevented += amount;
-        if (logEachInput) Debug.Log(string.Format(invulnerabilityLogFormat, Elapsed, amount), this);
+        // if (logEachInput) Debug.Log(string.Format(invulnerabilityLogFormat, Elapsed, amount), this);
     }
     public int PotionUses { get; private set; }
     public float PotionHealing { get; private set; }
@@ -59,7 +64,7 @@ public class CombatMetrics : MonoBehaviour
         if (Ended) return;
         PotionUses++;
         PotionHealing += healed;
-        Debug.Log(string.Format(potionLogFormat, Elapsed, healed, remaining, maximum), this);
+        // Debug.Log(string.Format(potionLogFormat, Elapsed, healed, remaining, maximum), this);
     }
     private string runModifiers;
     public void RecordRunModifiers(float regeneration, float criticalChance, string passives, string resources = null)
@@ -72,7 +77,7 @@ public class CombatMetrics : MonoBehaviour
 
     private float startTime;
     private float endTime;
-    private string pendingSummary;
+    // private string pendingSummary; // 전투 종료 요약 출력용(출력 중단)
 
     private int nextUseId = 1;
     private int totalUses;
@@ -172,13 +177,13 @@ public class CombatMetrics : MonoBehaviour
         if (card.Category == SkillCategory.Interrupt) interruptAttempts++;
         if (card.Category == SkillCategory.Shield) shieldUses++;
 
-        if (logEachInput)
-        {
-            Debug.Log("[#" + id + " 입력 " + Elapsed.ToString("F2") + "s / " + slotLabel
-                      + " / " + name + " / 코스트 " + card.Cost.ToString("0.#")
-                      + " / " + targetLabel
-                      + " / 보유 " + costBefore.ToString("F2") + "→" + costAfter.ToString("F2") + "]", this);
-        }
+        // if (logEachInput)
+        // {
+        //     Debug.Log("[#" + id + " 입력 " + Elapsed.ToString("F2") + "s / " + slotLabel
+        //               + " / " + name + " / 코스트 " + card.Cost.ToString("0.#")
+        //               + " / " + targetLabel
+        //               + " / 보유 " + costBefore.ToString("F2") + "→" + costAfter.ToString("F2") + "]", this);
+        // }
         return id;
     }
 
@@ -193,7 +198,7 @@ public class CombatMetrics : MonoBehaviour
         if (useId <= 0) return;
         if (!logEachInput) return;
 
-        Debug.Log("[#" + useId + " 결과 " + Elapsed.ToString("F2") + "s / " + resultLabel + "]", this);
+        // Debug.Log("[#" + useId + " 결과 " + Elapsed.ToString("F2") + "s / " + resultLabel + "]", this);
     }
 
     /// <summary>
@@ -205,7 +210,7 @@ public class CombatMetrics : MonoBehaviour
         cancelledUses++;
         if (!logEachInput || useId <= 0) return;
 
-        Debug.Log("[#" + useId + " 취소 " + Elapsed.ToString("F2") + "s / " + resultLabel + "]", this);
+        // Debug.Log("[#" + useId + " 취소 " + Elapsed.ToString("F2") + "s / " + resultLabel + "]", this);
     }
 
     /// <summary>새 시작 덱의 타격별 피해. 사망 뒤 잔여 연출은 실피해 0으로 구분.</summary>
@@ -221,10 +226,10 @@ public class CombatMetrics : MonoBehaviour
             CriticalEligibleHits++;
             if (critical) CriticalHits++;
         }
-        if (logEachInput) Debug.Log("[#" + useId + " 타격 " + Elapsed.ToString("F2") + "s / "
-            + card.DisplayName + " / " + hitIndex + "타 / " + target + " / 표시 " + displayed
-            + " / 실피해 " + actual + " / 과잉 " + overkill + (critical ? criticalHitLabel : "")
-            + (visualOnly ? " / 잔여 연출" : "") + "]", this);
+        // if (logEachInput) Debug.Log("[#" + useId + " 타격 " + Elapsed.ToString("F2") + "s / "
+        //     + card.DisplayName + " / " + hitIndex + "타 / " + target + " / 표시 " + displayed
+        //     + " / 실피해 " + actual + " / 과잉 " + overkill + (critical ? criticalHitLabel : "")
+        //     + (visualOnly ? " / 잔여 연출" : "") + "]", this);
     }
 
     /// <summary>효과 적용 시 실제로 적 캐스팅을 취소했다.</summary>
@@ -265,13 +270,16 @@ public class CombatMetrics : MonoBehaviour
     public void ReportVictory() => Report(true);
     public void ReportDefeat() => Report(false);
 
-    /// <summary>전투 종료 정리를 마친 호출자가 한 번 출력. 새 전투 값과 섞이지 않는다.</summary>
+    /// <summary>
+    /// 전투 종료 정리를 마친 호출자가 한 번 출력하던 자리. 요약 출력을 중단해 지금은 아무것도 하지 않는다.
+    /// 되살리려면 아래 주석과 Report의 요약 작성부, pendingSummary 필드를 함께 되살린다.
+    /// </summary>
     public void FlushPendingSummary()
     {
-        if (pendingSummary == null) return;
-        string summary = pendingSummary;
-        pendingSummary = null;
-        Debug.Log(summary, this);
+        // if (pendingSummary == null) return;
+        // string summary = pendingSummary;
+        // pendingSummary = null;
+        // Debug.Log(summary, this);
     }
 
     private void Report(bool won)
@@ -281,39 +289,39 @@ public class CombatMetrics : MonoBehaviour
         Ended = true;
         endTime = Time.time;
 
-        var sb = new StringBuilder();
-        sb.AppendLine("──────── 전투 종료 요약 ────────");
-        sb.AppendLine("전투 번호: " + BattleNumber);
-        sb.AppendLine("승패: " + (won ? "승리" : "패배"));
-        sb.AppendLine("전투 시간: " + Elapsed.ToString("F2") + "초 (게임 내, 배속 반영·일시정지 제외)");
-        sb.AppendLine(string.Format(speedSummaryFormat, string.Join(" → ", battleSpeeds)));
-        if (runModifiers != null) sb.AppendLine(runModifiers);
-        sb.AppendLine("남은 HP: " + (player != null ? player.CurrentHp.ToString("F0") + " / " + player.MaxHp.ToString("F0") : "-"));
-        sb.AppendLine("처치 수: " + (enemyManager != null ? enemyManager.DeadCount + " / " + enemyManager.EnemyCount : "-"));
-        if (enemyManager != null && enemyManager.OrbsDestroyed > 0) sb.AppendLine("오브 파괴: " + enemyManager.OrbsDestroyed);
-        sb.AppendLine();
-
-        sb.AppendLine("카드 사용 " + totalUses + "회 (기절 취소 " + cancelledUses + "회 포함)");
-        for (int i = 0; i < cardOrder.Count; i++)
-        {
-            string name = cardOrder[i];
-            sb.AppendLine("  " + name + " : " + cardUses[name] + "회");
-        }
-        if (cardOrder.Count == 0) sb.AppendLine("  (없음)");
-        sb.AppendLine();
-
-        sb.AppendLine("타격별 기록 " + RecordedHits + "건 / 실피해 " + DamageApplied + " / 과잉 피해 " + OverkillDamage);
-        sb.AppendLine(string.Format(criticalSummaryFormat, CriticalHits, CriticalEligibleHits));
-        sb.AppendLine("차단 시도 " + interruptAttempts + "회 / 성공 " + interruptSuccesses + "회");
-        sb.AppendLine("방어 카드 사용 " + shieldUses + "회 / 실제 방어도 흡수 " + shieldAbsorbed);
-        sb.AppendLine(string.Format(invulnerabilitySummaryFormat, InvulnerabilityPrevented));
-        sb.AppendLine(string.Format(redShieldSummaryFormat, RedShieldPrevented));
-        sb.AppendLine(string.Format(potionSummaryFormat, PotionUses, PotionHealing));
-        sb.AppendLine("코스트 부족으로 거절된 입력 " + costShortInputs + "회");
-        sb.AppendLine("상한 초과로 버린 코스트 " + costWasted.ToString("F2"));
-        sb.AppendLine("────────────────────────────");
-
-        // 승패·시간·집계는 지금 고정하고, 마지막 행동 로그 뒤에 출력한다.
-        pendingSummary = sb.ToString();
+        // var sb = new StringBuilder();
+        // sb.AppendLine("──────── 전투 종료 요약 ────────");
+        // sb.AppendLine("전투 번호: " + BattleNumber);
+        // sb.AppendLine("승패: " + (won ? "승리" : "패배"));
+        // sb.AppendLine("전투 시간: " + Elapsed.ToString("F2") + "초 (게임 내, 배속 반영·일시정지 제외)");
+        // sb.AppendLine(string.Format(speedSummaryFormat, string.Join(" → ", battleSpeeds)));
+        // if (runModifiers != null) sb.AppendLine(runModifiers);
+        // sb.AppendLine("남은 HP: " + (player != null ? player.CurrentHp.ToString("F0") + " / " + player.MaxHp.ToString("F0") : "-"));
+        // sb.AppendLine("처치 수: " + (enemyManager != null ? enemyManager.DeadCount + " / " + enemyManager.EnemyCount : "-"));
+        // if (enemyManager != null && enemyManager.OrbsDestroyed > 0) sb.AppendLine("오브 파괴: " + enemyManager.OrbsDestroyed);
+        // sb.AppendLine();
+        //
+        // sb.AppendLine("카드 사용 " + totalUses + "회 (기절 취소 " + cancelledUses + "회 포함)");
+        // for (int i = 0; i < cardOrder.Count; i++)
+        // {
+        //     string name = cardOrder[i];
+        //     sb.AppendLine("  " + name + " : " + cardUses[name] + "회");
+        // }
+        // if (cardOrder.Count == 0) sb.AppendLine("  (없음)");
+        // sb.AppendLine();
+        //
+        // sb.AppendLine("타격별 기록 " + RecordedHits + "건 / 실피해 " + DamageApplied + " / 과잉 피해 " + OverkillDamage);
+        // sb.AppendLine(string.Format(criticalSummaryFormat, CriticalHits, CriticalEligibleHits));
+        // sb.AppendLine("차단 시도 " + interruptAttempts + "회 / 성공 " + interruptSuccesses + "회");
+        // sb.AppendLine("방어 카드 사용 " + shieldUses + "회 / 실제 방어도 흡수 " + shieldAbsorbed);
+        // sb.AppendLine(string.Format(invulnerabilitySummaryFormat, InvulnerabilityPrevented));
+        // sb.AppendLine(string.Format(redShieldSummaryFormat, RedShieldPrevented));
+        // sb.AppendLine(string.Format(potionSummaryFormat, PotionUses, PotionHealing));
+        // sb.AppendLine("코스트 부족으로 거절된 입력 " + costShortInputs + "회");
+        // sb.AppendLine("상한 초과로 버린 코스트 " + costWasted.ToString("F2"));
+        // sb.AppendLine("────────────────────────────");
+        //
+        // // 승패·시간·집계는 지금 고정하고, 마지막 행동 로그 뒤에 출력한다.
+        // pendingSummary = sb.ToString();
     }
 }

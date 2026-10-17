@@ -23,7 +23,10 @@ public sealed class InheritanceSave
     private readonly List<SkillData> baseDeck;
     private Data data = Empty();
     private static Data Empty() => new Data { version = 1, cards = new string[DeckSystem.DeckSize], passives = new List<Passive>() };
+    // 재도전 기록은 진행 여부 판단과 대화 스킵 옵션 잠금 해제에 사용한다.
     public bool HasRetried => data.hasRetried;
+    /// <summary>본편 전투를 한 번이라도 이긴 기록(clearedBattles). 이전 버전 저장의 승리 기록도 그대로 인정한다.</summary>
+    public bool HasStageVictory => data.clearedBattles != 0;
     public bool IntroDismissed => data.introDismissed;
     public bool TutorialDismissed => data.tutorialDismissed || data.clearedBattles != 0;
     public int ClearedBattles => data.clearedBattles;

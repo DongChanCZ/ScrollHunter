@@ -140,7 +140,7 @@ public static class BattleFlowChecks
             Check(enemies.CurrentTarget == a && a.transform.position.x == centerX - offset
                 && b.transform.position.x == centerX + offset, "death skips target without moving survivors");
             typeof(BattleFlow).GetField("encounters", Hidden).SetValue(flow, originalEncounters);
-            CheckLogOrder(flow, deck, player, cost, enemies, metrics);
+            CheckNoCombatLogs(flow, deck, player, cost, enemies, metrics);
             return "BattleFlow checks passed: " + passed + ". Function/event verification; not a manual-input or balance test.";
         }
         finally
@@ -151,7 +151,9 @@ public static class BattleFlowChecks
         }
     }
 
-    private static void CheckLogOrder(BattleFlow flow, DeckSystem deck, Player player,
+    // 2026-10-17: 전투 로그·종료 요약 출력 중단(Docs/10#combat-log-off-20261017).
+    // 이전 A21 출력 순서 검사 대신, 같은 승패·재시작 경로에서 일반 로그가 없고 상태·집계가 유지되는지 본다.
+    private static void CheckNoCombatLogs(BattleFlow flow, DeckSystem deck, Player player,
         CostSystem cost, EnemyManager enemies, CombatMetrics metrics)
     {
         var logs = new System.Collections.Generic.List<string>();
@@ -171,37 +173,34 @@ public static class BattleFlowChecks
         Action<SkillData> reset = card =>
         {
             flow.RestartRun();
-            if (card.IsAreaOfEffect)
-                enemies.BeginBattle(new[] { encounters[0].enemies[0], encounters[1].enemies[0] });
+            // 현행 첫 전투는 2체라 단일기는 1체, 광역기는 2체로 맞춘다.
+            enemies.BeginBattle(card.IsAreaOfEffect
+                ? new[] { encounters[0].enemies[0], encounters[1].enemies[0] }
+                : new[] { encounters[0].enemies[0] });
             typeof(CostSystem).GetProperty("Current").SetValue(cost, 10f);
             deck.SetDeck(new[] { card, fire, fire, fire, fire, fire, fire, fire });
             logs.Clear();
         };
+        Action<string> noLogs = label => Check(logs.Count == 0, "no combat log: " + label + (logs.Count > 0 ? " / " + logs[0] : ""));
         Application.logMessageReceived += capture;
         try
         {
+            // 로그 설정을 켜도 출력문이 주석 처리되어 있어 아무것도 찍히지 않아야 한다.
             typeof(CombatMetrics).GetField("logEachInput", Hidden).SetValue(metrics, true);
             foreach (var card in new[] { fire, cutter, pillar, spear, ice, spark })
             {
                 reset(card);
                 foreach (var enemy in enemies.GetAliveEnemies())
                     typeof(Enemy).GetProperty("CurrentHp").SetValue(enemy, 1);
-                Check(deck.TryUseSlot(0), "log test input: " + card.DisplayName);
+                Check(deck.TryUseSlot(0), "input: " + card.DisplayName);
                 Call(deck, "AdvanceCast", card.CastTime);
-                Check(metrics.Ended && !deck.TryUseSlot(1) && !logs.Exists(IsSummary), "end blocks input before summary");
+                Check(metrics.Ended && !deck.TryUseSlot(1), "end blocks input: " + card.DisplayName);
                 float elapsed = metrics.Elapsed;
                 Call(flow, "Update");
-                CheckSummaryLast(logs, "결과");
-                Check(logs[logs.Count - 1].Contains("실피해 " + metrics.DamageApplied)
-                    && metrics.Elapsed == elapsed, "final hit included and end time frozen");
-                int count = logs.Count;
+                Check(metrics.DamageApplied > 0 && metrics.RecordedHits > 0 && metrics.Elapsed == elapsed, "final hit counted and end time frozen");
                 metrics.ReportVictory(); metrics.FlushPendingSummary(); Call(flow, "Update");
-                Check(logs.Count == count, "summary emitted once");
-                flow.SkipReward();
-                count = logs.Count; // 보상 로그는 전투 요약 이후 별도 단계.
-                flow.NextBattle();
-                Check(deck.TryUseSlot(0) && logs[count].StartsWith("[#1 입력 ")
-                    && metrics.BattleNumber == 2, "next input follows old summary with new id");
+                Check(flow.State == BattleFlowState.BetweenBattles, "victory moves to reward stage");
+                noLogs("victory " + card.DisplayName);
             }
 
             foreach (var card in new[] { pillar, ice, spark })
@@ -209,45 +208,39 @@ public static class BattleFlowChecks
                 reset(card); deck.TryUseSlot(0);
                 typeof(Player).GetField("currentHp", Hidden).SetValue(player, 1f);
                 Call(enemies.CurrentTarget, "Fire");
-                Check(metrics.Ended && !logs.Exists(IsSummary), "defeat deferred while action finishes");
+                Check(metrics.Ended, "defeat ends metrics");
                 Call(flow, "Update");
-                CheckSummaryLast(logs, "CombatEnded");
-                Check(logs.FindIndex(s => s.Contains("발동:")) < logs.Count - 1
-                    && logs[logs.Count - 1].Contains("남은 HP: 0 / 500") && !deck.IsCasting,
-                    "fatal enemy action and cast cleanup precede defeat summary");
+                Check(player.CurrentHp == 0f && !deck.IsCasting, "fatal enemy action and cast cleanup");
+                noLogs("defeat " + card.DisplayName);
             }
 
             reset(ice); deck.TryUseSlot(0);
             typeof(Player).GetField("currentHp", Hidden).SetValue(player, 1f);
             Call(enemies.CurrentTarget, "Fire");
             flow.RestartRun(); // 종료 Update보다 먼저 재시작.
-            CheckSummaryLast(logs, "CombatEnded");
-            Check(logs[logs.Count - 1].Contains("남은 HP: 0 / 500")
-                && player.CurrentHp == 500 && !metrics.Ended && metrics.RecordedHits == 0,
-                "immediate restart preserves old defeat snapshot");
+            Check(player.CurrentHp == 500 && !metrics.Ended && metrics.RecordedHits == 0, "immediate restart resets defeat");
+            noLogs("restart after defeat");
 
             reset(cutter);
             typeof(Player).GetField("currentHp", Hidden).SetValue(player, 223f);
             typeof(Enemy).GetProperty("CurrentHp").SetValue(enemies.CurrentTarget, 1);
-            deck.TryUseSlot(0); flow.RestartRun();
-            CheckSummaryLast(logs, "결과");
-            Check(logs[logs.Count - 1].Contains("남은 HP: 223 / 500")
-                && logs[logs.Count - 1].Contains("실피해 1 / 과잉 피해 59") && player.CurrentHp == 500,
-                "immediate victory restart preserves HP and overkill snapshot");
+            deck.TryUseSlot(0);
+            Check(metrics.Ended && metrics.DamageApplied == 1 && metrics.OverkillDamage == 59, "victory hit and overkill still counted");
+            flow.RestartRun();
+            Check(player.CurrentHp == 500 && metrics.DamageApplied == 0, "immediate victory restart resets");
+            noLogs("restart after victory");
 
             reset(ice); deck.TryUseSlot(0); player.TakeDamage(10000);
-            Call(flow, "OnDisable");
-            CheckSummaryLast(logs, "CombatEnded");
-            int stoppedCount = logs.Count;
-            Call(flow, "OnDisable"); metrics.FlushPendingSummary();
-            Check(logs.Count == stoppedCount, "disable fallback emits once");
+            Call(flow, "OnDisable"); Call(flow, "OnDisable"); metrics.FlushPendingSummary();
+            Check(metrics.Ended, "disable fallback keeps end state");
+            noLogs("disable fallback");
 
             reset(fire);
             typeof(CombatMetrics).GetField("logEachInput", Hidden).SetValue(metrics, false);
             typeof(Enemy).GetProperty("CurrentHp").SetValue(enemies.CurrentTarget, 1);
             deck.TryUseSlot(0); Call(flow, "Update");
-            CheckSummaryLast(logs, null);
-            Check(!logs.Exists(s => s.StartsWith("[#")), "summary still emitted with detail logging disabled");
+            Check(metrics.Ended, "victory with detail setting off");
+            noLogs("detail setting off");
         }
         finally
         {
@@ -255,16 +248,6 @@ public static class BattleFlowChecks
             typeof(CombatMetrics).GetField("logEachInput", Hidden).SetValue(metrics, wasLogging);
             flow.RestartRun();
         }
-    }
-
-    private static bool IsSummary(string message) => message.Contains("전투 종료 요약");
-
-    private static void CheckSummaryLast(System.Collections.Generic.List<string> logs, string result)
-    {
-        Check(logs.FindAll(IsSummary).Count == 1 && IsSummary(logs[logs.Count - 1]), "summary is last and unique");
-        if (result != null)
-            Check(logs.FindIndex(s => s.StartsWith("[#") && s.Contains(result)) >= 0,
-                "last action result retained: " + result);
     }
 
     private static void Win(EnemyManager enemies, BattleFlow flow)

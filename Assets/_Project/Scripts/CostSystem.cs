@@ -24,6 +24,8 @@ public class CostSystem : MonoBehaviour
     public void AddRegenerationBonus(float amount) => regenerationBonus += amount;
 
     public float Current { get; private set; }
+    // 실제 충전으로 정수 경계를 넘을 때만 알린다. 소비·초기화·튜토리얼 보충은 제외한다.
+    public event System.Action WholeCostRecovered;
     private float startingCostBonus;
     private float maximumCostBonus;
     public float Max => Mathf.Max(0f, maxCost + maximumCostBonus);
@@ -64,7 +66,9 @@ public class CostSystem : MonoBehaviour
             if (metrics != null) metrics.RecordCostWasted(charged - Max);
             charged = Max;
         }
+        bool recoveredUnit = Mathf.FloorToInt(charged) > Mathf.FloorToInt(Current);
         Current = charged;
+        if (recoveredUnit) WholeCostRecovered?.Invoke();
     }
 
     public void EnsureTutorialCost(float amount) => Current = Mathf.Clamp(Mathf.Max(Current, amount), 0f, Max);

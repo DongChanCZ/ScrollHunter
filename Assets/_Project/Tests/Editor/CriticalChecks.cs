@@ -127,12 +127,17 @@ public static class CriticalChecks
             reset(zero, false); beforeRandom = Random.state; deck.TryUseSlot(0);
             check(amounts.Count == 0 && metrics.CriticalEligibleHits == 0 && Random.state.Equals(beforeRandom), "zero damage excluded");
             reset(cutter, false); Set(player, "criticalChance", 100f);
+            // 현행 첫 전투는 2체라, 처치로 전투가 끝나도록 대상 1체만 남긴다.
+            enemies.BeginBattle(new[] { b });
+            { var hand = new List<SkillData>(original); hand[0] = cutter; deck.SetDeck(hand); }
+            typeof(CostSystem).GetProperty("Current").SetValue(cost, 10f);
             typeof(Enemy).GetProperty("CurrentHp").SetValue(b, 35);
             deck.TryUseSlot(0); Call(flow, "Update");
             check(amounts.SequenceEqual(new[] { 45, 30 }) && flags.SequenceEqual(new[] { true, false }), "lethal crit then ordinary residual visual");
             check(metrics.CriticalHits == 1 && metrics.CriticalEligibleHits == 1 && metrics.RecordedHits == 2
                 && metrics.DamageApplied == 35 && metrics.OverkillDamage == 40, "lethal/visual accounting");
-            check(logs.Last().Contains("전투 종료 요약") && logs.Last().Contains("크리티컬 1회 / 유효 피해 타격 1회"), "critical included in final summary");
+            // 2026-10-17: 종료 요약 출력 중단. 집계 값은 위에서 확인하고, 로그는 남지 않아야 한다.
+            check(metrics.Ended && logs.Count == 0, "critical counted without combat log or summary" + (logs.Count > 0 ? ": " + logs[0] : ""));
             beforeRandom = Random.state; int recorded = amounts.Count;
             check(!deck.TryUseSlot(0) && Random.state.Equals(beforeRandom) && amounts.Count == recorded, "ended battle cannot roll");
             flow.RestartRun();

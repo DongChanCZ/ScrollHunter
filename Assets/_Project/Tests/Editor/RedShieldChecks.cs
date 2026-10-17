@@ -91,15 +91,15 @@ public static class RedShieldChecks
             check(c.TryInterrupt(2.5f) == InterruptResult.FailedRed && c.IsCasting, "red still cannot be interrupted");
 
             reset(1); logs.Clear(); Call(c, "Fire"); metrics.ReportVictory(); metrics.FlushPendingSummary();
-            check(logs.Any(s => s.Contains("피격 100 (원본 240)") && s.Contains("방어도 흡수 1")
-                && s.Contains("빨강 반감 감소 100")), "hit log separates mitigation and absorption");
-            check(logs.Last().Contains("전투 종료 요약") && logs.Last().Contains("실제 방어도 흡수 1")
-                && logs.Last().Contains("빨강 반감 감소 피해 100"), "summary records separately and appears last");
+            // 2026-10-17: 피격 로그·종료 요약 출력 중단. 반감과 흡수는 집계 값으로 따로 확인한다.
+            check((int)Get(metrics, "shieldAbsorbed") == 1 && metrics.RedShieldPrevented == 100,
+                "mitigation and absorption counted separately");
+            check(logs.Count == 0, "no hit log or summary");
             reset(1);
             check(metrics.RedShieldPrevented == 0 && metrics.InvulnerabilityPrevented == 0, "restart resets counters");
             typeof(Player).GetField("currentHp", Hidden).SetValue(player, 50f); logs.Clear(); Call(c, "Fire"); Call(flow, "Update");
             check(!player.IsAlive && metrics.Ended && metrics.RedShieldPrevented == 100, "fatal red reduction captured");
-            check(logs.Last().Contains("전투 종료 요약") && logs.Last().Contains("빨강 반감 감소 피해 100"), "fatal summary last");
+            check(logs.Count == 0, "fatal red without combat log or summary");
             return "Red shield checks passed: " + passed;
         }
         finally

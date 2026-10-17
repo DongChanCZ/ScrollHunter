@@ -21,8 +21,11 @@ public class Player : MonoBehaviour
     [Tooltip("빨강 피격 직전 방어도가 남아 있을 때의 피해 배율. 방어력 계산 후, 반올림 전에 적용한다.")]
     [SerializeField, Range(0f, 1f)] private float redShieldDamageMultiplier = 0.5f;
     public float RedShieldDamageMultiplier => Mathf.Clamp01(redShieldDamageMultiplier);
+    // 로그 문구는 출력 중단(2026-10-17) 뒤 쓰이지 않지만, 출력문을 되살릴 때를 위해 남긴다.
+#pragma warning disable 0414
     [SerializeField] private string damageLogFormat = "[Player] 피격 {0} (원본 {1}) 방어도 흡수 {2} → HP -{3} = {4:F0}/{5:F0} (방어도 {6}){7}";
     [SerializeField] private string redShieldLogFormat = " / 빨강 반감 감소 {0}";
+#pragma warning restore 0414
 
     [Tooltip("4단계 계측. 비워두면 씬에서 자동으로 찾는다.")]
     [SerializeField] private CombatMetrics metrics;
@@ -119,13 +122,15 @@ public class Player : MonoBehaviour
     public int GetShieldAmount(int baseAmount) => baseAmount <= 0 ? 0
         : Mathf.Max(0, Mathf.FloorToInt(baseAmount * ShieldGainMultiplier + 0.5f));
 
+#pragma warning disable 0414 // 로그 문구(출력 중단)
     [SerializeField] private string healLogFormat = "[Player] 회복 {0:0} / 요청 {1:0} → HP {2:0}/{3:0}";
+#pragma warning restore 0414
     public float Heal(float amount)
     {
         if (!IsAlive || amount <= 0f || float.IsNaN(amount) || float.IsInfinity(amount)) return 0f;
         float restored = Mathf.Min(amount, MaxHp - currentHp);
         currentHp += restored;
-        Debug.Log(string.Format(healLogFormat, restored, amount, currentHp, MaxHp), this);
+        // Debug.Log(string.Format(healLogFormat, restored, amount, currentHp, MaxHp), this);
         if (restored > 0f) Healed?.Invoke(restored);
         return restored;
     }
@@ -150,7 +155,7 @@ public class Player : MonoBehaviour
         if (seconds <= 0f || !IsAlive || IsStunImmune || (metrics != null && metrics.Ended)) return;
         ApplyStun(seconds);
         costRecoveryBlockedUntil = Mathf.Max(costRecoveryBlockedUntil, Time.time + seconds);
-        Debug.Log($"[Player] 파멸 강화 기절 — 코스트 충전 금지 {seconds:0.#}초", this);
+        // Debug.Log($"[Player] 파멸 강화 기절 — 코스트 충전 금지 {seconds:0.#}초", this);
     }
 
     // 생츄어리 채널링 1회가 소유하는 상태. 전투·오브젝트 종료 시에도 해제한다.
@@ -230,7 +235,7 @@ public class Player : MonoBehaviour
         if (seconds <= 0f || !IsAlive || IsStunImmune || (metrics != null && metrics.Ended)) return;
 
         StunRemaining = Mathf.Max(StunRemaining, seconds);
-        Debug.Log($"[{nameof(Player)}] 기절 {StunRemaining:0.#}초", this);
+        // Debug.Log($"[{nameof(Player)}] 기절 {StunRemaining:0.#}초", this);
     }
 
     /// <param name="incomingDamage">방어력 적용 전 피해량(절대값).</param>
@@ -270,8 +275,9 @@ public class Player : MonoBehaviour
         // 계측은 부여량이 아니라 실제로 방어도가 막아낸 양을 센다 (09 문서 4단계 ②).
         if (metrics != null) metrics.RecordShieldAbsorbed(absorbed);
 
-        Debug.Log(string.Format(damageLogFormat, taken, incomingDamage, absorbed, toHp, currentHp, MaxHp, Shield,
-            redShield ? string.Format(redShieldLogFormat, prevented) : string.Empty), this);
+        // 전투 로그 출력 중단(2026-10-17)
+        // Debug.Log(string.Format(damageLogFormat, taken, incomingDamage, absorbed, toHp, currentHp, MaxHp, Shield,
+        //     redShield ? string.Format(redShieldLogFormat, prevented) : string.Empty), this);
         // 표시는 실제로 줄어든 HP만 알린다(남은 HP를 넘는 피해는 제외).
         int hpLost = Mathf.RoundToInt(hpBefore - currentHp);
         if (hpLost > 0 || absorbed > 0) Damaged?.Invoke(hpLost, absorbed);
@@ -285,7 +291,7 @@ public class Player : MonoBehaviour
         defeatHandled = true;
         EndBattle();
         if (metrics != null) metrics.ReportDefeat();
-        Debug.Log($"[{nameof(Player)}] 패배", this);
+        // Debug.Log($"[{nameof(Player)}] 패배", this);
         Time.timeScale = 0f;
     }
 

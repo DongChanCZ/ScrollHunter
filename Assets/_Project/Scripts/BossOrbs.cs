@@ -40,7 +40,7 @@ public sealed class BossOrbs : MonoBehaviour
         initialShown = initialPending = true;
         EnsureOrbs();
         ShowPreview(Ruin); ShowPreview(Cycle);
-        Debug.Log("[보스 오브] 최초 소환 준비 — 전환 종료 때 활성화", this);
+        // Debug.Log("[보스 오브] 최초 소환 준비 — 전환 종료 때 활성화", this);
     }
 
     private void EnsureOrbs()
@@ -108,7 +108,7 @@ public sealed class BossOrbs : MonoBehaviour
         if (respawn) OrbSummoning?.Invoke(orb, true);
         orb.GetComponent<Collider>().enabled = true;
         if (manager != null) manager.RegisterOrb(orb);
-        Debug.Log("[보스 오브] " + orb.Data.DisplayName + " 활성화 / HP " + orb.CurrentHp, this);
+        // Debug.Log("[보스 오브] " + orb.Data.DisplayName + " 활성화 / HP " + orb.CurrentHp, this);
     }
 
     private void RuinDestroyed() => OnOrbDestroyed(Ruin);
@@ -118,10 +118,10 @@ public sealed class BossOrbs : MonoBehaviour
         SpawnBreak(orb);   // Died는 실제 피해로 HP가 0이 될 때만 온다(정리 제거 HideOrb는 Died 없음)
         if (!CanSpawn) return;
         if (manager != null) manager.RecordOrbDestroyed();
-        int before = boss.CurrentHp;
+        // int before = boss.CurrentHp;  // 로그 전용(출력 중단)
         boss.TakeDamage(boss.Data.OrbDestructionDamage);
-        Debug.Log("[보스 오브] " + orb.Data.DisplayName + " 파괴 / 보스 고정 피해 "
-            + (before - boss.CurrentHp) + (boss.IsInvulnerable ? " (전환 무적)" : ""), this);
+        // Debug.Log("[보스 오브] " + orb.Data.DisplayName + " 파괴 / 보스 고정 피해 "
+        //     + (before - boss.CurrentHp) + (boss.IsInvulnerable ? " (전환 무적)" : ""), this);
         // 카드/채널링의 기존 종료 경로가 마지막 효과 로그 뒤에 승리 요약을 마감한다.
     }
 

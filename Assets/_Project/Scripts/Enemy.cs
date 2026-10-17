@@ -254,7 +254,7 @@ public class Enemy : MonoBehaviour
         current = null;
         phaseTransitionRemaining = data.PhaseTransitionSeconds;
         if (orbs != null) { orbs.BeginTransition(); if (!IsPhaseTransitioning) orbs.ActivateInitial(); }
-        Debug.Log($"[{name}] {PhaseNumber}페이즈 전환 {phaseTransitionRemaining:0.0}초", this);
+        // Debug.Log($"[{name}] {PhaseNumber}페이즈 전환 {phaseTransitionRemaining:0.0}초", this);
         RefreshBar();
     }
 
@@ -310,8 +310,9 @@ public class Enemy : MonoBehaviour
                 else player.ApplyStun(current.StunSeconds);
             }
         }
-        Debug.Log($"[{DisplayName}] 발동: {current.SkillName} ({current.CastColor}) 피해 {CurrentAttackDamage}" +
-            (ruinAtCastStart ? $" ×{CurrentDamageMultiplier:0.##} (파멸 강화)" : ""), this);
+        // 전투 로그 출력 중단(2026-10-17)
+        // Debug.Log($"[{DisplayName}] 발동: {current.SkillName} ({current.CastColor}) 피해 {CurrentAttackDamage}" +
+        //     (ruinAtCastStart ? $" ×{CurrentDamageMultiplier:0.##} (파멸 강화)" : ""), this);
 
         // 쿨다운 상태 갱신
         if (current.CastColor == CastColor.Green)
@@ -411,7 +412,7 @@ public class Enemy : MonoBehaviour
         staggerTimer = 0f;
         resting = false;
         phaseTransitionRemaining = 0f;
-        Debug.Log($"[{name}] 사망", this);
+        // Debug.Log($"[{name}] 사망", this);
         if (orbs != null) orbs.Clear();
         Died?.Invoke();   // 모델은 이때 적에서 떼어 사망 동작을 보인다(EnemyAnimationDriver). 판정은 아래 그대로
 

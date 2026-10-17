@@ -172,10 +172,10 @@ public static class HudChecks
             typeof(CostSystem).GetProperty("Current").SetValue(cost, 3.5f);
             Call(ui, "UpdateStatus");
             Check(Near(costGauge.FillRatio, 0.35f) && costGauge.TickCount == 9, "fractional cost fill and 9 ticks at max 10");
-            Check(((TMP_Text)Get(ui, "costText")).text == "3.5 / 10", "cost text current/max");
+            Check(((TMP_Text)Get(ui, "costText")).text == "3" && ((TMP_Text)Get(ui, "maximumCostText")).text == "10", "integer current and separate max cost");
             cost.AddMaximumCostBonus(2); maxCostAdded += 2;
             Call(ui, "UpdateStatus");
-            Check(costGauge.TickCount == 11 && Near(costGauge.FillRatio, 3.5f / 12f) && ((TMP_Text)Get(ui, "costText")).text == "3.5 / 12", "max cost change rebuilds ticks");
+            Check(costGauge.TickCount == 11 && Near(costGauge.FillRatio, 3.5f / 12f) && ((TMP_Text)Get(ui, "costText")).text == "3" && ((TMP_Text)Get(ui, "maximumCostText")).text == "12", "max cost change rebuilds ticks");
             cost.AddMaximumCostBonus(-2); maxCostAdded -= 2;
             Call(ui, "UpdateStatus");
             Check(costGauge.TickCount == 9, "ticks follow restored max");

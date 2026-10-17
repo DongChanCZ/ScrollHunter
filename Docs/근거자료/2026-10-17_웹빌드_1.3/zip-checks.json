@@ -1,0 +1,52 @@
+{
+  "zip": "C:\\Users\\MBC-501-19\\Desktop\\ScrollHunter_Web_1.3.zip",
+  "bytes": 135220578,
+  "sha256": "0359fb82bc825a4c777451dbbaefe3ff9cb439852128fd5fc0cf8c96e3f0c89d",
+  "files": [
+    {
+      "file": "Build/ScrollHunter_Web_1.3.data.gz",
+      "bytes": 121244260,
+      "sha256": "ef82862e8832756c42042b0ba03ed9254c7c9846bf91c490f4ae7c937c3e5411"
+    },
+    {
+      "file": "Build/ScrollHunter_Web_1.3.framework.js.gz",
+      "bytes": 91756,
+      "sha256": "403dac54c4d7a256f9fd71bb9fb3c657ee22a4b8bb3cd3e60b815d5d9ee7cf3f"
+    },
+    {
+      "file": "Build/ScrollHunter_Web_1.3.loader.js",
+      "bytes": 26982,
+      "sha256": "4e3f32386eb0d5f90d217b65adaf7211da0f7bf4a6457360f819a9a76124142c"
+    },
+    {
+      "file": "Build/ScrollHunter_Web_1.3.wasm.gz",
+      "bytes": 14404628,
+      "sha256": "9ef48d576c6d42f717f8e0cbe83e5988babea241dcb3cc50ee4520e4580fb5cd"
+    },
+    {
+      "file": "Cinzel-Bold.ttf",
+      "bytes": 68768,
+      "sha256": "0c23ec565db45c5508ee95889c60ad87debd167ca07167a43a5d68572b4e2eac"
+    },
+    {
+      "file": "CREDITS.md",
+      "bytes": 43711,
+      "sha256": "a56a86cf0985a6a1e63f76d3946908148b927eceb834385d6eb93e5ae7019a70"
+    },
+    {
+      "file": "index.html",
+      "bytes": 6976,
+      "sha256": "424e267e3b28386cb0ff0c6e741295b3b4d94afd8f6296d49cdded568001786f"
+    },
+    {
+      "file": "OFL_Cinzel.txt",
+      "bytes": 4486,
+      "sha256": "a46624198eeb4c2e442c38b0ff3bd8f52caeefd76675c36f410e2fb69014a239"
+    },
+    {
+      "file": "OFL_NotoSansCJK.txt",
+      "bytes": 4301,
+      "sha256": "6a73f9541c2de74158c0e7cf6b0a58ef774f5a780bf191f2d7ec9cc53efe2bf2"
+    }
+  ]
+}

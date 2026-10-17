@@ -293,7 +293,7 @@ public class DeckSystem : MonoBehaviour
             if (state == SlotState.NotEnoughCost && metrics != null) metrics.RecordCostShortInput();
 
             // 비활성 사유는 코스트를 쓰지 않는다.
-            if (state != SlotState.Empty) LogUse(card, "-", StateToLabel(state));
+            // if (state != SlotState.Empty) LogUse(card, "-", StateToLabel(state));
             if (state != SlotState.Empty) NotifyVfx(() => SlotRejected?.Invoke(slot, state));
             return false;
         }
@@ -303,7 +303,7 @@ public class DeckSystem : MonoBehaviour
         if (!costSystem.TrySpend(card.Cost))
         {
             if (metrics != null) metrics.RecordCostShortInput();
-            LogUse(card, "-", "코스트 부족");
+            // LogUse(card, "-", "코스트 부족");
             NotifyVfx(() => SlotRejected?.Invoke(slot, SlotState.NotEnoughCost));
             return false;
         }
@@ -316,8 +316,9 @@ public class DeckSystem : MonoBehaviour
         CycleSlot(card, slot);
 
         // 사용 1회는 여기서 센다. 효과 적용 때 다시 세지 않는다 (09 문서 4단계 ②).
+        // 슬롯·대상 문구는 로그 전용이라 출력 중단 뒤에는 만들지 않는다(SlotLabel(slot), DescribeTarget(card)).
         castingUseId = metrics != null
-            ? metrics.RecordUseAccepted(SlotLabel(slot), card, DescribeTarget(card), costBefore, costSystem.Current)
+            ? metrics.RecordUseAccepted(null, card, null, costBefore, costSystem.Current)
             : 0;
 
         castingCard = card;
@@ -378,17 +379,18 @@ public class DeckSystem : MonoBehaviour
         string resultLabel;
         if (reason == ChannelEndReason.Completed && !card.IsChanneling)
             ApplyCard(card, useId, out targetLabel, out resultLabel);
-        else
-            resultLabel = (card.IsChanneling ? "채널링 종료 — " : "시전 종료 — ") + reason;
+        // else  // 로그 전용 문구(출력 중단)
+        //     resultLabel = (card.IsChanneling ? "채널링 종료 — " : "시전 종료 — ") + reason;
 
         // 완료된 채널링에는 기존 ApplyCard를 덧붙이지 않는다.
+        // 결과 문구는 로그 전용이라 출력 중단 뒤에는 만들지 않는다. 기절 취소 집계는 유지한다.
         if (metrics != null)
         {
-            string label = card.DisplayName + " / " + targetLabel + " / " + resultLabel;
-            if (reason == ChannelEndReason.Stunned) metrics.RecordUseCancelled(useId, label);
-            else metrics.RecordUseResult(useId, label);
+            // string label = card.DisplayName + " / " + targetLabel + " / " + resultLabel;
+            if (reason == ChannelEndReason.Stunned) metrics.RecordUseCancelled(useId, null);
+            // else metrics.RecordUseResult(useId, label);
         }
-        else LogUse(card, targetLabel, resultLabel);
+        // else LogUse(card, targetLabel, resultLabel);
         RecordCastEnd(card, reason == ChannelEndReason.Stunned);
     }
 
@@ -518,7 +520,7 @@ public class DeckSystem : MonoBehaviour
         if (visualOnly) target.ShowOverkill(amount);
         else target.TakeDamage(amount, critical);
         int actual = Mathf.Max(0, before - target.CurrentHp);
-        if (metrics != null) metrics.RecordHit(useId, card, target.name, hitIndex,
+        if (metrics != null) metrics.RecordHit(useId, card, null, hitIndex,
             amount, actual, amount - actual, visualOnly, critical);
         NotifyVfx(() => HitApplied?.Invoke(card, target));
         return amount;
@@ -562,9 +564,10 @@ public class DeckSystem : MonoBehaviour
 
     private void LogUse(SkillData card, string targetLabel, string resultLabel)
     {
-        string cardName = card != null ? card.DisplayName : "-";
-        string cost = card != null ? card.Cost.ToString("0.#") : "-";
-        Debug.Log("[" + Time.time.ToString("F2") + "s / " + cardName + " / " + cost
-                  + " / " + targetLabel + " / " + resultLabel + "]", this);
+        // 전투 로그 출력 중단(2026-10-17). 호출부도 주석 처리했다.
+        // string cardName = card != null ? card.DisplayName : "-";
+        // string cost = card != null ? card.Cost.ToString("0.#") : "-";
+        // Debug.Log("[" + Time.time.ToString("F2") + "s / " + cardName + " / " + cost
+        //           + " / " + targetLabel + " / " + resultLabel + "]", this);
     }
 }

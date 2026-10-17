@@ -153,7 +153,7 @@ public static class CombatReadabilityChecks
             info.ToggleSpeed();
             info.Resume();
             Check(flow.State == BattleFlowState.Defeat && Time.timeScale == 0f, "defeat stays stopped");
-            Check(((string)Get(metrics, "pendingSummary")) == null, "summary flushed at end");
+            Check(metrics.Ended, "metrics ended at defeat"); // 2026-10-17: 요약 출력 중단으로 pendingSummary 삭제
             flow.RestartRun();
             Call(info, "LateUpdate");
             Check(((TMP_Text)Get(info, "speedLabel")).text.Contains("2"), "speed label");

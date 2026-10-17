@@ -1,0 +1,2 @@
+1x: frames=38, events=1, peak=1.12, endScale=1
+2x: frames=36, events=1, peak=1.119994, endScale=1

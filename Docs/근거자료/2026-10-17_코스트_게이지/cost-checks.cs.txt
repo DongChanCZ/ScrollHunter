@@ -1,0 +1,66 @@
+var flags=System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic;
+var ui=UnityEngine.Object.FindFirstObjectByType<CombatUI>();
+var cost=UnityEngine.Object.FindFirstObjectByType<CostSystem>();
+var ct=typeof(CostSystem);var ut=typeof(CombatUI);
+System.Func<string,object> get=n=>ut.GetField(n,flags).GetValue(ui);
+System.Action<string,object[]> call=(n,a)=>ut.GetMethod(n,flags).Invoke(ui,a);
+var current=ct.GetField("<Current>k__BackingField",flags);
+var oldCurrent=cost.Current;var oldMetrics=ct.GetField("metrics",flags).GetValue(cost);
+var oldPlayer=ct.GetField("player",flags).GetValue(cost);var oldLanguage=GameText.Current;
+var oldBonus=ct.GetField("maximumCostBonus",flags).GetValue(cost);
+var oldBase=ct.GetField("maxCost",flags).GetValue(cost);
+var oldRegen=ct.GetField("regenerationBonus",flags).GetValue(cost);
+var gauge=(SegmentedGaugeUI)get("costGauge");
+var label=(TMPro.TMP_Text)get("costText");var maxLabel=(TMPro.TMP_Text)get("maximumCostText");
+var gem=(RectTransform)get("resourceCostGem");
+int passed=0,events=0;
+System.Action received=()=>events++;
+System.Action<bool,string> check=(ok,msg)=>{if(!ok)throw new System.Exception(msg);passed++;};
+System.Action<float> advance=dt=>ct.GetMethod("AdvanceCost",flags).Invoke(cost,new object[]{dt});
+System.Action status=()=>call("UpdateStatus",new object[0]);
+System.Action<float> tick=dt=>call("TickCostBounce",new object[]{dt});
+System.Func<float> remaining=()=> (float)get("costBounceRemaining");
+cost.WholeCostRecovered+=received;
+try {
+ ct.GetField("metrics",flags).SetValue(cost,null);ct.GetField("player",flags).SetValue(cost,null);
+ ct.GetField("maxCost",flags).SetValue(cost,10f);ct.GetField("maximumCostBonus",flags).SetValue(cost,0f);
+ ct.GetField("regenerationBonus",flags).SetValue(cost,0f);
+ current.SetValue(cost,3.99f);status();tick(1f);
+ check(label.text=="3"&&maxLabel.text=="10","integer display and separate max");
+ check(Mathf.Abs(gauge.FillRatio-.399f)<.001f&&gauge.TickCount==9,"smooth fill and ten units");
+ check(label.transform.parent==gem && maxLabel.transform.parent==gauge.transform,"gem child and stationary maximum");
+ check(!label.raycastTarget&&!maxLabel.raycastTarget&&!gem.GetComponent<CostGemGraphic>().raycastTarget,"input passes through");
+ advance(.02f);status();check(events==1&&label.text=="4"&&remaining()>0f,"3.99 to 4 starts one bounce");
+ tick(.1f);check(Mathf.Abs(gem.localScale.x-1.12f)<.001f,"bounce reaches 112 percent");
+ var frozen=gem.localScale;tick(0f);check(gem.localScale==frozen,"pause freezes bounce");
+ check(maxLabel.transform.localScale==Vector3.one,"maximum does not bounce");
+ tick(.11f);check(Mathf.Abs(gem.localScale.x-1f)<.001f,"bounce returns to normal");
+ cost.TrySpend(1f);status();check(events==1&&label.text=="3"&&remaining()==0f,"spend does not bounce");
+ advance(.2f);check(events==1,"fractional regeneration does not bounce");
+ cost.BeginBattle();check(events==1,"battle reset does not bounce");
+ cost.EnsureTutorialCost(8f);check(events==1,"tutorial topup does not bounce");
+ cost.AddMaximumCostBonus(2f);status();check(events==1&&maxLabel.text=="12"&&gauge.TickCount==11,"maximum grows without topup or bounce");
+ for(int maximum=10;maximum<=15;maximum++){
+  ct.GetField("maximumCostBonus",flags).SetValue(cost,(float)(maximum-10));current.SetValue(cost,3.5f);status();
+  check(gauge.TickCount==maximum-1&&maxLabel.text==maximum.ToString(),"tick capacity "+maximum);
+  check(Mathf.Abs(gauge.FillRatio-3.5f/maximum)<.001f,"fill ratio "+maximum);
+  var ticks=(System.Collections.IList)typeof(SegmentedGaugeUI).GetField("ticks",flags).GetValue(gauge);
+  for(int i=0;i<maximum-1;i++)check(Mathf.Abs(((RectTransform)ticks[i]).anchorMin.x-(float)(i+1)/maximum)<.001f,"unit tick position");
+ }
+ current.SetValue(cost,14.99f);advance(.02f);check(events==2&&Mathf.Abs(cost.Current-15f)<.001f,"reaching maximum bounces once");
+ tick(1f);advance(5f);check(events==2&&remaining()==0f,"full capacity never repeats");
+ current.SetValue(cost,1.1f);advance(4f);check(events==3,"one bounce when one frame crosses multiple units");
+ tick(1f);advance(0f);check(events==3,"zero game delta never charges");
+ foreach(GameLanguage language in System.Enum.GetValues(typeof(GameLanguage))){
+  GameText.SetLanguage(language);LanguageFonts.ApplyAll();status();label.ForceMeshUpdate(true);maxLabel.ForceMeshUpdate(true);
+  check(label.text=="4"&&maxLabel.text=="15"&&!label.isTextOverflowing&&!maxLabel.isTextOverflowing,"numeric labels "+language);
+ }
+ call("OnDisable",new object[0]);check(gem.localScale==Vector3.one&&remaining()==0f,"disable resets bounce");
+} finally {
+ cost.WholeCostRecovered-=received;
+ ct.GetField("metrics",flags).SetValue(cost,oldMetrics);ct.GetField("player",flags).SetValue(cost,oldPlayer);
+ ct.GetField("maxCost",flags).SetValue(cost,oldBase);ct.GetField("maximumCostBonus",flags).SetValue(cost,oldBonus);
+ ct.GetField("regenerationBonus",flags).SetValue(cost,oldRegen);current.SetValue(cost,oldCurrent);
+ GameText.SetLanguage(oldLanguage);LanguageFonts.ApplyAll();status();tick(1f);
+}
+return "Cost resource: "+passed+" checks passed. Runtime values restored; no saves written.";

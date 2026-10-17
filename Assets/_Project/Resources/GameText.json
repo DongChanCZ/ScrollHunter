@@ -2850,11 +2850,11 @@
       "es": "Volverás al principio de la etapa."
     },
     {
-      "ko": "첫 재도전을 시작하면 변경할 수 있습니다.",
-      "en": "Available after you start your first retry.",
-      "ja": "初めて再挑戦を開始すると変更できます。",
-      "zh": "开始首次重新挑战后即可更改。",
-      "es": "Disponible al iniciar tu primer reintento."
+      "ko": "재도전 또는 전투 승리 후 변경할 수 있습니다.",
+      "en": "Available after starting a retry or winning a battle.",
+      "ja": "再挑戦を開始するか、戦闘に勝利すると変更できます。",
+      "zh": "开始重新挑战或战斗胜利后可更改。",
+      "es": "Disponible al reintentar o ganar un combate."
     }
   ]
 }

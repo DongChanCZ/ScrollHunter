@@ -306,7 +306,7 @@ public class EnemyManager : MonoBehaviour
     {
         combatEnded = true;
         CurrentTarget = null;
-        Debug.Log($"[{nameof(EnemyManager)}] 승리", this);
+        // Debug.Log($"[{nameof(EnemyManager)}] 승리", this);
 
         // 방어도는 전투 종료 시 소멸한다.
         if (player != null) player.ClearShield();

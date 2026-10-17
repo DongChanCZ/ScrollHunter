@@ -1,0 +1,1 @@
+No combat logs: 48 passed, isolated save, normal combat state and metrics preserved.
