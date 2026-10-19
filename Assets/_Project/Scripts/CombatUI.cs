@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -220,6 +221,8 @@ public class CombatUI : MonoBehaviour
     private void OnDestroy()
     {
         if (costSystem != null) costSystem.WholeCostRecovered -= BounceCostGem;
+        foreach (var material in hudTextMaterials.Values) if (material != null) Destroy(material);
+        hudTextMaterials.Clear();
     }
 
     private Vector3 markerBaseScale = Vector3.one;
@@ -232,6 +235,12 @@ public class CombatUI : MonoBehaviour
     private Color defaultNameColor = Color.black;
     private Color defaultKeyLabelColor = Color.black;
     private Color defaultLockTextColor = Color.black;
+
+    [Header("전투 HUD 글자 외곽선")]
+    [SerializeField, Range(0f, 1f)] private float hudTextOutlineWidth = 0.875f;
+    [SerializeField] private Color hudTextOutlineColor = new Color(0.06f, 0.06f, 0.075f, 0.78f);
+    [SerializeField, Range(0f, 1f)] private float hudTextOutlineSoftness = 0.04f;
+    private readonly Dictionary<Material, Material> hudTextMaterials = new Dictionary<Material, Material>();
 
     private void Awake()
     {
@@ -295,7 +304,64 @@ public class CombatUI : MonoBehaviour
         if (costSystem != null) costSystem.WholeCostRecovered += BounceCostGem;
         if (costGauge != null)
             ((RectTransform)costGauge.transform).SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, costGaugeHeight);
+        ApplyHudTextStyle();
         CacheDefaultTextColors();
+    }
+
+    private void ApplyHudTextStyle()
+    {
+        foreach (var view in handSlots)
+        {
+            if (view == null) continue;
+            ApplyHudTextOutline(view.keyLabel);
+            ApplyHudTextOutline(view.costText);
+            ApplyHudTextOutline(view.nameText);
+            ApplyHudTextOutline(view.lockText);
+            ApplyHudTextOutline(view.typeText);
+            if (view.background == null) continue;
+            HideTextBackdrop(view.background.transform.Find("KeyChip"));
+            HideTextBackdrop(view.background.transform.Find("TypeChip"));
+        }
+        ApplyHudTextOutline(potionKeyText);
+        ApplyHudTextOutline(potionText);
+        if (potionKeyText != null) HideTextBackdrop(potionKeyText.transform.parent);
+        ApplyHudTextOutline(costText);
+        ApplyHudTextOutline(maximumCostText);
+        ApplyHudTextOutline(nextCardText);
+        if (nextCardIcon != null)
+            foreach (var label in nextCardIcon.GetComponentsInChildren<TMP_Text>(true)) ApplyHudTextOutline(label);
+        if (information != null) information.ApplyControlTextStyle(ApplyHudTextOutline);
+    }
+
+    internal static void HideTextBackdrop(Transform backdrop)
+    {
+        // 키 글자가 자식인 경우에도 글자는 남기고 검은 바탕 Image만 숨긴다.
+        var image = backdrop != null ? backdrop.GetComponent<Image>() : null;
+        if (image != null) image.enabled = false;
+    }
+
+    private void ApplyHudTextOutline(TMP_Text label)
+    {
+        if (label == null || label.fontSharedMaterial == null) return;
+        var source = label.fontSharedMaterial;
+        if (!hudTextMaterials.TryGetValue(source, out var material))
+        {
+            // 공용 폰트/메뉴 재질을 건드리지 않고, 언어 전환에서도 복제되는 HUD 전용 재질을 쓴다.
+            material = new Material(source) { name = source.name + " (Combat HUD Outline)" };
+            material.DisableKeyword("UNDERLAY_ON");
+            material.DisableKeyword("UNDERLAY_INNER");
+            material.EnableKeyword("OUTLINE_ON");
+            material.SetColor(ShaderUtilities.ID_UnderlayColor, Color.clear);
+            material.SetColor(ShaderUtilities.ID_OutlineColor, hudTextOutlineColor);
+            // 외곽선을 키워도 밝은 글자 내부가 검은 선에 잠식되지 않도록 함께 보정한다.
+            material.SetFloat(ShaderUtilities.ID_FaceDilate, source.GetFloat(ShaderUtilities.ID_FaceDilate)
+                + hudTextOutlineWidth - source.GetFloat(ShaderUtilities.ID_OutlineWidth));
+            material.SetFloat(ShaderUtilities.ID_OutlineWidth, hudTextOutlineWidth);
+            material.SetFloat(ShaderUtilities.ID_OutlineSoftness, hudTextOutlineSoftness);
+            hudTextMaterials.Add(source, material);
+        }
+        label.fontSharedMaterial = material;
+        label.UpdateMeshPadding();
     }
 
     private void BuildCostGems()

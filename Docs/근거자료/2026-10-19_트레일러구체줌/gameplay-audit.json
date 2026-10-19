@@ -1,0 +1,41 @@
+{
+  "sourceFrames": 5682,
+  "sourceSeconds": 189.4,
+  "matchedActions": 47,
+  "matchedSkills": 38,
+  "minimumSkillInputGap": 0.7,
+  "phaseTransitions": [
+    [
+      2297,
+      1
+    ],
+    [
+      4077,
+      2
+    ],
+    [
+      4962,
+      3
+    ]
+  ],
+  "rejectedInputs": 0,
+  "gameplaySpeed": 1,
+  "forcedDamage": false,
+  "costRefills": false,
+  "notes": "Actual reward selection, replacement confirmation, and natural boss Phase 3/The End. Same input replay and independent per-hit PRNG seed for both languages. Critical probability, damage, cast time, Cost recovery and enemy patterns unchanged. Temporary PRNG hook is restored after filming. Combat footage plays at 1x with no removed delays within each shot.",
+  "noncombatCostDifferences": [],
+  "theEndImpactFrame": 5622,
+  "clips": [
+    {
+      "name": "reward",
+      "startFrame": 1937,
+      "frames": 210
+    },
+    {
+      "name": "ending",
+      "startFrame": 4962,
+      "frames": 720
+    }
+  ],
+  "noncombatNote": "Small remaining-cost differences during the death-animation/reward screen are recorded separately. Cost is hidden there and the independent boss encounter resets to the normal 3 Cost. All combat-action HP, Cost, cast and lock values must match."
+}

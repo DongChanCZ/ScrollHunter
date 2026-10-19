@@ -1,0 +1,12 @@
+{
+  "zoomStart": 4,
+  "holdSeconds": 0.65,
+  "zoomOutCompleteSeconds": 52.1,
+  "impactSeconds": 53.1,
+  "frameCount": 264,
+  "matchingLanguageCamera": true,
+  "inBounds": true,
+  "monotonicZoomOut": true,
+  "floatingPointAffine": true,
+  "maximumSourcePixelShiftPerFrame": 7.352671947040562
+}

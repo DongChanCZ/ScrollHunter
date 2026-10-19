@@ -16160,9 +16160,13 @@ MonoBehaviour:
   handCostGemSize: {x: 60, y: 64}
   handCostGemPosition: {x: 6, y: -6}
   handCostGemFontSize: 38
-  resourceCostTextSize: {x: 156, y: 40}
-  resourceCostTextPosition: {x: -48, y: 0}
-  resourceCostFontSize: 32
+  resourceCostGemSize: {x: 60, y: 64}
+  resourceCostGemPosition: {x: -35, y: 4}
+  resourceCostGemFontSize: 38
+  maximumCostFontSize: 28
+  maximumCostGap: 8
+  costBounceSeconds: 0.2
+  costBounceScale: 1.12
   stunText: {fileID: 2076175165}
   stunFormat: "\uAE30\uC808 {0:0.0}"
   costBlockingStunSuffix: "\n<size=55%>\uCF54\uC2A4\uD2B8 \uCDA9\uC804 \uBD88\uAC00</size>"
@@ -16251,10 +16255,12 @@ MonoBehaviour:
   invalidSkillLabel: "\uC124\uC815 \uD544\uC694"
   hpFormat: '{0} / {1}'
   shieldFormat: '{0}'
-  costFormat: '{0:0.0} / {1:0}'
   sanctuaryFrame: {fileID: 2080180379}
   inspectionFramePadding: 5
   inspectionColor: {r: 1, g: 0.84, b: 0.35, a: 1}
+  hudTextOutlineWidth: 0.875
+  hudTextOutlineColor: {r: 0.06, g: 0.06, b: 0.075, a: 0.78}
+  hudTextOutlineSoftness: 0.04
   phaseTransitionLabel: "\uC804\uD658 \uC911"
 --- !u!114 &414053923
 MonoBehaviour:
@@ -16742,6 +16748,12 @@ MonoBehaviour:
   feedbackOptionFontSize: 24
   feedbackOptionsHint: "\uBCC0\uACBD\uD55C \uC124\uC815\uC740 \uC801\uC6A9\uD558\uBA74
     \uC800\uC7A5\uB418\uACE0, \uCDE8\uC18C\uD558\uBA74 \uB3CC\uC544\uAC11\uB2C8\uB2E4."
+  optionsScrollSize: {x: 1360, y: 610}
+  optionsScrollPosition: {x: 0, y: 14}
+  optionsRowSpacing: 110
+  skipSeenDialogueText: "\uC774\uBBF8 \uBCF8 \uC804\uD22C \uB300\uD654 \uAC74\uB108\uB6F0\uAE30"
+  dialogueLockedText: "\uC7AC\uB3C4\uC804 \uB610\uB294 \uC804\uD22C \uC2B9\uB9AC
+    \uD6C4 \uBCC0\uACBD\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
   titlePanel: {fileID: 1021302190}
   controlsPanel: {fileID: 1476022738}
   optionsPanel: {fileID: 1245761489}
@@ -17577,10 +17589,10 @@ RectTransform:
   - {fileID: 1031915755}
   m_Father: {fileID: 1684798577}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 97.5, y: -97.5}
-  m_SizeDelta: {x: 195, y: 195}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &430042659
 CanvasRenderer:
@@ -27995,10 +28007,10 @@ RectTransform:
   - {fileID: 1013850688}
   m_Father: {fileID: 1684798577}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 742.5, y: -97.5}
-  m_SizeDelta: {x: 195, y: 195}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &734759149
 CanvasRenderer:
@@ -38934,10 +38946,10 @@ RectTransform:
   - {fileID: 70588053}
   m_Father: {fileID: 1684798577}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 312.5, y: -97.5}
-  m_SizeDelta: {x: 195, y: 195}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &902055543
 CanvasRenderer:
@@ -53218,10 +53230,10 @@ RectTransform:
   - {fileID: 147334643}
   m_Father: {fileID: 1684798577}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 527.5, y: -97.5}
-  m_SizeDelta: {x: 195, y: 195}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1318527014
 CanvasRenderer:

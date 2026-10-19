@@ -1,0 +1,102 @@
+[
+  {
+    "path": "C:\\Users\\MBC-501-19\\Documents\\ScrollHunter\\Assets\\_Project\\Scenes\\Battle.unity",
+    "backup": "C:\\Users\\MBC-50~1\\AppData\\Local\\Temp\\ScrollHunter_Web13_20261019\\0_Battle.unity",
+    "sha256": "2ff9ab1899a596d216797c313253645c2f39a99702530b6596ec1da1d48c8c70"
+  },
+  {
+    "path": "C:\\Users\\MBC-501-19\\Documents\\ScrollHunter\\Assets\\_Project\\Fonts\\GmarketSansMedium SDF.asset",
+    "backup": "C:\\Users\\MBC-50~1\\AppData\\Local\\Temp\\ScrollHunter_Web13_20261019\\1_GmarketSansMedium SDF.asset",
+    "sha256": "dca3fc7939f257b6d2b17aa386f37085615970b85831d5eed8414c174d743b16"
+  },
+  {
+    "path": "C:\\Users\\MBC-501-19\\Documents\\ScrollHunter\\Assets\\_Project\\Fonts\\Cinzel\\Cinzel Bold Title SDF.asset",
+    "backup": "C:\\Users\\MBC-50~1\\AppData\\Local\\Temp\\ScrollHunter_Web13_20261019\\2_Cinzel Bold Title SDF.asset",
+    "sha256": "a2ce5203dfe38cddc1fff7ae85e0d4d8445a41c07ae13d308aa497a42420274c"
+  },
+  {
+    "path": "C:\\Users\\MBC-501-19\\Documents\\ScrollHunter\\Assets\\_Project\\Fonts\\NEXON_Maplestory\\Maplestory Bold Damage SDF.asset",
+    "backup": "C:\\Users\\MBC-50~1\\AppData\\Local\\Temp\\ScrollHunter_Web13_20261019\\3_Maplestory Bold Damage SDF.asset",
+    "sha256": "1308e9bdf3dbc1df000db7cd34217913d4a5ce060f334f40e96620a887991682"
+  },
+  {
+    "path": "C:\\Users\\MBC-501-19\\Documents\\ScrollHunter\\Assets\\_Project\\Fonts\\NotoSansCJK\\NotoSansJP-Medium SDF.asset",
+    "backup": "C:\\Users\\MBC-50~1\\AppData\\Local\\Temp\\ScrollHunter_Web13_20261019\\4_NotoSansJP-Medium SDF.asset",
+    "sha256": "346a137d7c06160a43a7aabf0a8da3610e192942bce522011229913f228fbbce"
+  },
+  {
+    "path": "C:\\Users\\MBC-501-19\\Documents\\ScrollHunter\\Assets\\_Project\\Fonts\\NotoSansCJK\\NotoSansSC-Medium SDF.asset",
+    "backup": "C:\\Users\\MBC-50~1\\AppData\\Local\\Temp\\ScrollHunter_Web13_20261019\\5_NotoSansSC-Medium SDF.asset",
+    "sha256": "416286efe7eb2f69f8e455f76e6751fdd7a658c8aada8dfef08687dd7967114e"
+  },
+  {
+    "path": "C:\\Users\\MBC-501-19\\Documents\\ScrollHunter\\Assets\\Settings\\DefaultVolumeProfile.asset",
+    "backup": "C:\\Users\\MBC-50~1\\AppData\\Local\\Temp\\ScrollHunter_Web13_20261019\\6_DefaultVolumeProfile.asset",
+    "sha256": "463776c51ae49d4fef980e8fd268081b2f505610d79315003faae1acff8f4115"
+  },
+  {
+    "path": "C:\\Users\\MBC-501-19\\Documents\\ScrollHunter\\Assets\\Settings\\Mobile_Renderer.asset",
+    "backup": "C:\\Users\\MBC-50~1\\AppData\\Local\\Temp\\ScrollHunter_Web13_20261019\\7_Mobile_Renderer.asset",
+    "sha256": "aa93274c9521fa941170becec9e87c5fa36b8587eefd5eeb5c0eed0d1d4b1dbe"
+  },
+  {
+    "path": "C:\\Users\\MBC-501-19\\Documents\\ScrollHunter\\Assets\\Settings\\Mobile_RPAsset.asset",
+    "backup": "C:\\Users\\MBC-50~1\\AppData\\Local\\Temp\\ScrollHunter_Web13_20261019\\8_Mobile_RPAsset.asset",
+    "sha256": "3e1ad0b0d6f5b7f8d4a8897148d9d3005a907ff75903edba98e5e12dd1513b11"
+  },
+  {
+    "path": "C:\\Users\\MBC-501-19\\Documents\\ScrollHunter\\Assets\\Settings\\PC_Renderer.asset",
+    "backup": "C:\\Users\\MBC-50~1\\AppData\\Local\\Temp\\ScrollHunter_Web13_20261019\\9_PC_Renderer.asset",
+    "sha256": "3d0b01d8ded3327263b6690be128a3de58d17c514943ae42fe743a3e084a9c79"
+  },
+  {
+    "path": "C:\\Users\\MBC-501-19\\Documents\\ScrollHunter\\Assets\\Settings\\PC_RPAsset.asset",
+    "backup": "C:\\Users\\MBC-50~1\\AppData\\Local\\Temp\\ScrollHunter_Web13_20261019\\10_PC_RPAsset.asset",
+    "sha256": "70b76a59fb5b3ee0bbc0269df512833053efb96fd7abd681fd0b064a6c5cb564"
+  },
+  {
+    "path": "C:\\Users\\MBC-501-19\\Documents\\ScrollHunter\\Assets\\Settings\\SampleSceneProfile.asset",
+    "backup": "C:\\Users\\MBC-50~1\\AppData\\Local\\Temp\\ScrollHunter_Web13_20261019\\11_SampleSceneProfile.asset",
+    "sha256": "a8677d4bac051d24caa11cd622e39f968155ee277bfce132274f1de225692fe9"
+  },
+  {
+    "path": "C:\\Users\\MBC-501-19\\Documents\\ScrollHunter\\Assets\\Settings\\UniversalRenderPipelineGlobalSettings.asset",
+    "backup": "C:\\Users\\MBC-50~1\\AppData\\Local\\Temp\\ScrollHunter_Web13_20261019\\12_UniversalRenderPipelineGlobalSettings.asset",
+    "sha256": "f089066b2a5cc4675181371eb03e781bac130e7093cc0cc05c83afaf9c829c91"
+  },
+  {
+    "path": "C:\\Users\\MBC-501-19\\Documents\\ScrollHunter\\ProjectSettings\\ProjectSettings.asset",
+    "backup": "C:\\Users\\MBC-50~1\\AppData\\Local\\Temp\\ScrollHunter_Web13_20261019\\13_ProjectSettings.asset",
+    "sha256": "b57a8e61aeb9ee86dbd199ca460e4d3dbbead1235511bbef6173bd9e8db2cc4d"
+  },
+  {
+    "path": "C:\\Users\\MBC-501-19\\Documents\\ScrollHunter\\Assets\\_Project\\Scripts\\CombatUI.cs",
+    "backup": "C:\\Users\\MBC-50~1\\AppData\\Local\\Temp\\ScrollHunter_Web13_20261019\\14_CombatUI.cs",
+    "sha256": "e2a009ea3772c04f06c7127d9efc7485790d41757b980ffcbb0cfee509093107"
+  },
+  {
+    "path": "C:\\Users\\MBC-501-19\\Documents\\ScrollHunter\\Assets\\_Project\\Scripts\\CombatInfoUI.cs",
+    "backup": "C:\\Users\\MBC-50~1\\AppData\\Local\\Temp\\ScrollHunter_Web13_20261019\\15_CombatInfoUI.cs",
+    "sha256": "e04d60e03c970e4ecf4125ec5b5cc56b13119fe749cfa74c507231c0ac80c2ca"
+  },
+  {
+    "path": "C:\\Users\\MBC-501-19\\Documents\\ScrollHunter\\Assets\\_Project\\Scripts\\Player.cs",
+    "backup": "C:\\Users\\MBC-50~1\\AppData\\Local\\Temp\\ScrollHunter_Web13_20261019\\16_Player.cs",
+    "sha256": "3088b8bda1dedb7d8356b3ac4fd49ba2239453bebf7ac0c5b00c0d41ff7caca4"
+  },
+  {
+    "path": "C:\\Users\\MBC-501-19\\AppData\\LocalLow\\DefaultCompany\\ScrollHunter\\Player-prev.log",
+    "backup": "C:\\Users\\MBC-50~1\\AppData\\Local\\Temp\\ScrollHunter_Web13_20261019\\17_Player-prev.log",
+    "sha256": "6027e5f5a1c9129951c9ab6d17bbda61546d02787aef2ce11b581e7c26c842e5"
+  },
+  {
+    "path": "C:\\Users\\MBC-501-19\\AppData\\LocalLow\\DefaultCompany\\ScrollHunter\\Player.log",
+    "backup": "C:\\Users\\MBC-50~1\\AppData\\Local\\Temp\\ScrollHunter_Web13_20261019\\18_Player.log",
+    "sha256": "a71cf5f8fde2e3039244a13cd520e44c679f3e0a7bc865d2300a9057e2e905e0"
+  },
+  {
+    "path": "C:\\Users\\MBC-501-19\\AppData\\LocalLow\\DefaultCompany\\ScrollHunter\\save.json",
+    "backup": "C:\\Users\\MBC-50~1\\AppData\\Local\\Temp\\ScrollHunter_Web13_20261019\\19_save.json",
+    "sha256": "26b8cb80df393e94121ee0bf73eb0799c8761513dc2e34cdc3c38545b5e48b96"
+  }
+]

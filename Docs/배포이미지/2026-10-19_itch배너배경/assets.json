@@ -1,0 +1,18 @@
+[
+  {
+    "asset": "Banner",
+    "path": "C:\\Users\\MBC-501-19\\Documents\\ScrollHunter\\Docs\\\ubc30\ud3ec\uc774\ubbf8\uc9c0\\2026-10-19_itch\ubc30\ub108\ubc30\uacbd\\ScrollHunter_Itch_Banner_2172x724.png",
+    "width": 2172,
+    "height": 724,
+    "bytes": 2315853,
+    "sha256": "cea78d0dec5dd234afcd8d2ac05d39adc9900adcec8dbcbcb3f3ec711d6d1e64"
+  },
+  {
+    "asset": "Background",
+    "path": "C:\\Users\\MBC-501-19\\Documents\\ScrollHunter\\Docs\\\ubc30\ud3ec\uc774\ubbf8\uc9c0\\2026-10-19_itch\ubc30\ub108\ubc30\uacbd\\ScrollHunter_Itch_Background_1672x941.png",
+    "width": 1672,
+    "height": 941,
+    "bytes": 2173789,
+    "sha256": "fd8962dc7d6bf58ee45b68c8ac8c6a914aa2988003dacd2ff1a2f82ca07ad396"
+  }
+]

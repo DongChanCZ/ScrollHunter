@@ -1,0 +1,22 @@
+[
+  {
+    "language": "ko",
+    "source": "C:\\Users\\MBC-501-19\\AppData\\Local\\Temp\\ScrollHunter_HonestTrailer_20261019\\render-final-ko\\ScrollHunter_Trailer_KO_20261019_60s.mp4",
+    "bytes": 35581053,
+    "sha256": "74218b374cadd83e88ca893a81358bc5e1cd0accc06f1b35cc49d00e2e95502d",
+    "duration": 60,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30
+  },
+  {
+    "language": "en",
+    "source": "C:\\Users\\MBC-501-19\\AppData\\Local\\Temp\\ScrollHunter_HonestTrailer_20261019\\render-final-en\\ScrollHunter_Trailer_EN_20261019_60s.mp4",
+    "bytes": 36118200,
+    "sha256": "e766922e8374b19758d20b3e59f241f54def43eca456b167f13c28c7c86852b5",
+    "duration": 60,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30
+  }
+]

@@ -1,0 +1,413 @@
+{
+  "duration": 60,
+  "shots": [
+    {
+      "name": "origin-war",
+      "still": "Intro01_War.png",
+      "d": 2.7,
+      "z": [
+        1.02,
+        1.12
+      ],
+      "c": [
+        0.5,
+        0.48
+      ],
+      "text": "FORGED IN WAR\nAn empire created the Arcane Scrolls.",
+      "pos": "story",
+      "start": 0,
+      "fixedZoom": 1.035
+    },
+    {
+      "name": "origin-scroll",
+      "still": "Intro02_Scroll.png",
+      "d": 2.7,
+      "z": [
+        1.04,
+        1.16
+      ],
+      "c": [
+        0.5,
+        0.45
+      ],
+      "text": "POWER, PASSED ON\nMagic. Skill. Knowledge. Sealed in scrolls.",
+      "pos": "story",
+      "start": 2.4,
+      "fixedZoom": 1.045
+    },
+    {
+      "name": "origin-fall",
+      "still": "Intro03_Conflict.png",
+      "d": 2.7,
+      "z": [
+        1.12,
+        1.2
+      ],
+      "c": [
+        0.5,
+        0.38
+      ],
+      "text": "UNDONE BY GREED\nTheir power tore the empire apart.",
+      "pos": "story",
+      "start": 4.8,
+      "fixedZoom": 1.12
+    },
+    {
+      "name": "origin-peace",
+      "still": "Intro04_Peace.png",
+      "d": 2.7,
+      "z": [
+        1.03,
+        1.1
+      ],
+      "c": [
+        0.5,
+        0.48
+      ],
+      "text": "LOST TO LEGEND\nAges passed. Their true power was forgotten.",
+      "pos": "story",
+      "start": 7.2,
+      "fixedZoom": 1.035
+    },
+    {
+      "name": "origin-hunter",
+      "still": "Intro05_Traveler.png",
+      "d": 3.2,
+      "z": [
+        1.03,
+        1.15
+      ],
+      "c": [
+        0.5,
+        0.5
+      ],
+      "text": "SEEKERS OF LEGEND\nTheir name: Scroll Hunters.",
+      "pos": "story",
+      "start": 9.6,
+      "fixedZoom": 1.045
+    },
+    {
+      "name": "combat",
+      "src": 3.15,
+      "d": 5.6,
+      "z": [
+        1.0,
+        1.06
+      ],
+      "c": [
+        0.5,
+        0.5
+      ],
+      "text": "FOUR CARDS. ENDLESS CHOICES.\nReal-time roguelike card combat",
+      "pos": "top",
+      "start": 12.5,
+      "fixedZoom": 1.035
+    },
+    {
+      "name": "interrupt",
+      "src": 12.35,
+      "d": 3.2,
+      "z": [
+        1.45,
+        1.82
+      ],
+      "c": [
+        0.68,
+        0.45
+      ],
+      "text": "READ THE CAST.\nBREAK THE SPELL.\nStrike before their attack lands.",
+      "pos": "left",
+      "start": 17.8,
+      "fixedZoom": 1.55
+    },
+    {
+      "name": "boss-action",
+      "src": 51.3,
+      "d": 4.0,
+      "z": [
+        1.02,
+        1.16
+      ],
+      "c": [
+        0.5,
+        0.5
+      ],
+      "text": null,
+      "start": 20.7,
+      "fixedZoom": 1.035
+    },
+    {
+      "name": "hand",
+      "src": 8.9,
+      "d": 4.2,
+      "z": [
+        1.35,
+        1.85
+      ],
+      "c": [
+        0.63,
+        0.81
+      ],
+      "text": "BUILD UP. STRIKE HARD.\nMake every point of Cost count.",
+      "pos": "top",
+      "start": 24.4,
+      "fixedZoom": 1.65
+    },
+    {
+      "name": "skill-release",
+      "src": 23.2,
+      "d": 3.4,
+      "z": [
+        1.15,
+        1.48
+      ],
+      "c": [
+        0.5,
+        0.44
+      ],
+      "text": "MAKE YOUR NEXT MOVE COUNT\nUnleash the power you prepared.",
+      "pos": "top",
+      "start": 28.3,
+      "fixedZoom": 1.25
+    },
+    {
+      "name": "deck",
+      "still": "reward",
+      "d": 4.6,
+      "z": [
+        1.0,
+        1.05
+      ],
+      "c": [
+        0.5,
+        0.5
+      ],
+      "text": null,
+      "start": 31.4,
+      "fixedZoom": 1.0
+    },
+    {
+      "name": "reward-detail",
+      "still": "reward",
+      "d": 3.8,
+      "z": [
+        1.5,
+        1.65
+      ],
+      "c": [
+        0.25,
+        0.51
+      ],
+      "text": "YOUR DECK.\nYOUR STRATEGY.\nChoose your rewards.\nBuild your own strategy.",
+      "pos": "right",
+      "start": 35.7,
+      "fixedZoom": 1.5
+    },
+    {
+      "name": "multi-target",
+      "src": 33.05,
+      "d": 3.6,
+      "z": [
+        1.0,
+        1.08
+      ],
+      "c": [
+        0.5,
+        0.5
+      ],
+      "text": "CHOOSE WHO FALLS FIRST\nPick your target. Seize the advantage.",
+      "pos": "top",
+      "start": 39.2,
+      "fixedZoom": 1.035
+    },
+    {
+      "name": "orbs",
+      "src": 45.7,
+      "d": 3.8,
+      "z": [
+        1.6,
+        1.78
+      ],
+      "c": [
+        0.49,
+        0.47
+      ],
+      "text": null,
+      "start": 42.5,
+      "fixedZoom": 1.55
+    },
+    {
+      "name": "pillar",
+      "src": 25.3,
+      "d": 3.6,
+      "z": [
+        1.55,
+        1.75
+      ],
+      "c": [
+        0.5,
+        0.43
+      ],
+      "text": "TURN THE TIDE\nYour choices decide the battle.",
+      "pos": "top",
+      "start": 46.0,
+      "fixedZoom": 1.5
+    },
+    {
+      "name": "climax",
+      "src": 51.7,
+      "d": 5.0,
+      "z": [
+        1.38,
+        1.67
+      ],
+      "c": [
+        0.5,
+        0.43
+      ],
+      "text": null,
+      "start": 49.3,
+      "fixedZoom": 1.4
+    },
+    {
+      "name": "end",
+      "still": "Intro02_Scroll.png",
+      "d": 6.0,
+      "z": [
+        1.02,
+        1.08
+      ],
+      "c": [
+        0.5,
+        0.5
+      ],
+      "text": "SCROLL HUNTER\nRead their casts. Choose your moment to strike.",
+      "pos": "center",
+      "start": 54.0,
+      "fixedZoom": 1.04
+    }
+  ],
+  "stabilization": [
+    {
+      "shot": "origin-war",
+      "correctedFrames": 0,
+      "maxOriginalPixels": 0,
+      "maxResidualPixels": 0,
+      "samples": []
+    },
+    {
+      "shot": "origin-scroll",
+      "correctedFrames": 0,
+      "maxOriginalPixels": 0,
+      "maxResidualPixels": 0,
+      "samples": []
+    },
+    {
+      "shot": "origin-fall",
+      "correctedFrames": 0,
+      "maxOriginalPixels": 0,
+      "maxResidualPixels": 0,
+      "samples": []
+    },
+    {
+      "shot": "origin-peace",
+      "correctedFrames": 0,
+      "maxOriginalPixels": 0,
+      "maxResidualPixels": 0,
+      "samples": []
+    },
+    {
+      "shot": "origin-hunter",
+      "correctedFrames": 0,
+      "maxOriginalPixels": 0,
+      "maxResidualPixels": 0,
+      "samples": []
+    },
+    {
+      "shot": "combat",
+      "correctedFrames": 0,
+      "maxOriginalPixels": 0,
+      "maxResidualPixels": 0,
+      "samples": []
+    },
+    {
+      "shot": "interrupt",
+      "correctedFrames": 0,
+      "maxOriginalPixels": 0,
+      "maxResidualPixels": 0,
+      "samples": []
+    },
+    {
+      "shot": "boss-action",
+      "correctedFrames": 0,
+      "maxOriginalPixels": 0,
+      "maxResidualPixels": 0,
+      "samples": []
+    },
+    {
+      "shot": "hand",
+      "correctedFrames": 0,
+      "maxOriginalPixels": 0,
+      "maxResidualPixels": 0,
+      "samples": []
+    },
+    {
+      "shot": "skill-release",
+      "correctedFrames": 0,
+      "maxOriginalPixels": 0,
+      "maxResidualPixels": 0,
+      "samples": []
+    },
+    {
+      "shot": "deck",
+      "correctedFrames": 0,
+      "maxOriginalPixels": 0,
+      "maxResidualPixels": 0,
+      "samples": []
+    },
+    {
+      "shot": "reward-detail",
+      "correctedFrames": 0,
+      "maxOriginalPixels": 0,
+      "maxResidualPixels": 0,
+      "samples": []
+    },
+    {
+      "shot": "multi-target",
+      "correctedFrames": 0,
+      "maxOriginalPixels": 0,
+      "maxResidualPixels": 0,
+      "samples": []
+    },
+    {
+      "shot": "orbs",
+      "correctedFrames": 0,
+      "maxOriginalPixels": 0,
+      "maxResidualPixels": 0,
+      "samples": []
+    },
+    {
+      "shot": "pillar",
+      "correctedFrames": 0,
+      "maxOriginalPixels": 0,
+      "maxResidualPixels": 0,
+      "samples": []
+    },
+    {
+      "shot": "climax",
+      "correctedFrames": 0,
+      "maxOriginalPixels": 0,
+      "maxResidualPixels": 0,
+      "samples": []
+    },
+    {
+      "shot": "end",
+      "correctedFrames": 0,
+      "maxOriginalPixels": 0,
+      "maxResidualPixels": 0,
+      "samples": []
+    }
+  ],
+  "transitions": "0.3-second fade through dark; no cross-dissolved moving frames",
+  "notes": "Fixed gameplay framing; HUD-based subpixel translation correction. 1.2% floating-point push-in on intro art only. Animated gradient lettering, single glyph-only light sweep, no decorative lines. Fresh English gameplay capture with screen shake disabled temporarily. English trailer copy and English in-game UI. Original game and saves unchanged."
+}

@@ -1,0 +1,28 @@
+[
+  {
+    "Language": "ko",
+    "Path": "C:\\Users\\MBC-501-19\\Desktop\\발표자료\\ScrollHunter_트레일러_한글_60초_수정본.mp4",
+    "Backup": "C:\\Users\\MBC-501-19\\AppData\\Local\\Temp\\ScrollHunter_HonestTrailer_20261019\\BeforeOrbZoom\\ScrollHunter_트레일러_한글_60초_수정본.mp4",
+    "Bytes": 38631918,
+    "SHA256": "c9e8fa9fcb0335774d93d40e94abc3c94a5720202c21f6f49dcdbd8cdc89eeaf",
+    "Duration": 60,
+    "Width": 1920,
+    "Height": 1080,
+    "FPS": 30,
+    "ZoomOutComplete": 52.1,
+    "TheEndImpact": 53.1
+  },
+  {
+    "Language": "en",
+    "Path": "C:\\Users\\MBC-501-19\\Desktop\\발표자료\\ScrollHunter_트레일러_영문_60초_수정본.mp4",
+    "Backup": "C:\\Users\\MBC-501-19\\AppData\\Local\\Temp\\ScrollHunter_HonestTrailer_20261019\\BeforeOrbZoom\\ScrollHunter_트레일러_영문_60초_수정본.mp4",
+    "Bytes": 39344742,
+    "SHA256": "ae76b592f73a10e031d6c6b174617859c1eedfcaba2e248ad1ccd9584e967d61",
+    "Duration": 60,
+    "Width": 1920,
+    "Height": 1080,
+    "FPS": 30,
+    "ZoomOutComplete": 52.1,
+    "TheEndImpact": 53.1
+  }
+]

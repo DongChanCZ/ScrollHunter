@@ -1,0 +1,286 @@
+{
+  "duration": 60,
+  "shots": [
+    {
+      "name": "threat",
+      "src": 53.0,
+      "d": 3.2,
+      "z": [
+        1.55,
+        1.78
+      ],
+      "c": [
+        0.5,
+        0.44
+      ],
+      "text": "숲의 끝에\n도사린 위협",
+      "pos": "left",
+      "start": 0
+    },
+    {
+      "name": "journey",
+      "still": "Intro05_Traveler.png",
+      "d": 4.0,
+      "z": [
+        1.02,
+        1.13
+      ],
+      "c": [
+        0.5,
+        0.48
+      ],
+      "text": "전설의 힘을 찾아",
+      "pos": "center",
+      "start": 2.9
+    },
+    {
+      "name": "combat",
+      "src": 3.15,
+      "d": 4.8,
+      "z": [
+        1.0,
+        1.04
+      ],
+      "c": [
+        0.5,
+        0.5
+      ],
+      "text": "네 장의 손패.\n실시간으로 바뀌는 전장.",
+      "pos": "top",
+      "start": 6.6
+    },
+    {
+      "name": "hand",
+      "src": 9.0,
+      "d": 3.6,
+      "z": [
+        1.35,
+        1.85
+      ],
+      "c": [
+        0.63,
+        0.81
+      ],
+      "text": "코스트를 모으고",
+      "pos": "top",
+      "start": 11.1
+    },
+    {
+      "name": "interrupt",
+      "src": 12.35,
+      "d": 3.2,
+      "z": [
+        1.45,
+        1.82
+      ],
+      "c": [
+        0.68,
+        0.45
+      ],
+      "text": "발동 직전, 차단!",
+      "pos": "left",
+      "start": 14.4
+    },
+    {
+      "name": "decision",
+      "still": "Intro02_Scroll.png",
+      "d": 2.4,
+      "z": [
+        1.1,
+        1.17
+      ],
+      "c": [
+        0.5,
+        0.5
+      ],
+      "text": "한 번의 선택이\n전투를 바꾼다",
+      "pos": "center",
+      "start": 17.3
+    },
+    {
+      "name": "deck",
+      "still": "reward",
+      "d": 4.4,
+      "z": [
+        1.0,
+        1.05
+      ],
+      "c": [
+        0.5,
+        0.5
+      ],
+      "text": null,
+      "start": 19.4
+    },
+    {
+      "name": "reward-detail",
+      "still": "reward",
+      "d": 3.4,
+      "z": [
+        1.5,
+        1.65
+      ],
+      "c": [
+        0.25,
+        0.51
+      ],
+      "text": "보상을 고르고\n나만의 덱을 완성하라",
+      "pos": "right",
+      "start": 23.5
+    },
+    {
+      "name": "leader",
+      "src": 23.2,
+      "d": 3.4,
+      "z": [
+        1.15,
+        1.48
+      ],
+      "c": [
+        0.5,
+        0.44
+      ],
+      "text": null,
+      "start": 26.6
+    },
+    {
+      "name": "outnumbered",
+      "src": 33.05,
+      "d": 3.6,
+      "z": [
+        1.0,
+        1.08
+      ],
+      "c": [
+        0.5,
+        0.5
+      ],
+      "text": "몰려드는 적을 넘어",
+      "pos": "top",
+      "start": 29.7
+    },
+    {
+      "name": "pillar",
+      "src": 25.3,
+      "d": 3.6,
+      "z": [
+        1.55,
+        1.75
+      ],
+      "c": [
+        0.5,
+        0.43
+      ],
+      "text": null,
+      "start": 33.0
+    },
+    {
+      "name": "counterattack",
+      "src": 38.8,
+      "d": 3.2,
+      "z": [
+        1.2,
+        1.35
+      ],
+      "c": [
+        0.58,
+        0.47
+      ],
+      "text": null,
+      "start": 36.3
+    },
+    {
+      "name": "cave",
+      "src": 43.05,
+      "speed": 0.3,
+      "d": 4.5,
+      "z": [
+        1.02,
+        1.18
+      ],
+      "c": [
+        0.5,
+        0.48
+      ],
+      "text": "불길한 동굴의 주인",
+      "pos": "top",
+      "start": 39.2
+    },
+    {
+      "name": "orbs",
+      "src": 45.7,
+      "d": 3.8,
+      "z": [
+        1.6,
+        1.78
+      ],
+      "c": [
+        0.49,
+        0.47
+      ],
+      "text": "두 개의 오브,\n강화되는 위협",
+      "pos": "left",
+      "start": 43.4
+    },
+    {
+      "name": "phase-three",
+      "src": 51.3,
+      "d": 4.0,
+      "z": [
+        1.02,
+        1.16
+      ],
+      "c": [
+        0.5,
+        0.5
+      ],
+      "text": null,
+      "start": 46.9
+    },
+    {
+      "name": "climax",
+      "src": 53.0,
+      "d": 3.7,
+      "z": [
+        1.38,
+        1.67
+      ],
+      "c": [
+        0.5,
+        0.43
+      ],
+      "text": "끝까지 살아남아라",
+      "pos": "top",
+      "start": 50.6
+    },
+    {
+      "name": "end",
+      "still": "Intro02_Scroll.png",
+      "d": 6.0,
+      "z": [
+        1.02,
+        1.08
+      ],
+      "c": [
+        0.5,
+        0.5
+      ],
+      "text": "END",
+      "pos": "center",
+      "start": 54.0
+    }
+  ],
+  "transitions": "0.3-second crossfade / fade through black",
+  "soundEvents": 108,
+  "sourceMenuIntervalsExcluded": [
+    [
+      0,
+      3
+    ],
+    [
+      57,
+      60
+    ]
+  ],
+  "notes": "Edited gameplay and original story art. No main-menu footage. Promotional capture, not an uninterrupted normal run."
+}

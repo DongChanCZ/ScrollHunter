@@ -1,0 +1,160 @@
+{
+  "duration": 60,
+  "shots": [
+    {
+      "name": "origin-war",
+      "still": "Intro01_War.png",
+      "d": 2.8,
+      "c": [
+        0.5,
+        0.48
+      ],
+      "fixedZoom": 1.035,
+      "pos": "story",
+      "start": 0,
+      "text": "FORGED IN WAR\nAn empire created the Arcane Scrolls."
+    },
+    {
+      "name": "origin-scroll",
+      "still": "Intro02_Scroll.png",
+      "d": 2.8,
+      "c": [
+        0.5,
+        0.45
+      ],
+      "fixedZoom": 1.045,
+      "pos": "story",
+      "start": 2.5,
+      "text": "POWER, PASSED ON\nMagic. Skill. Knowledge. Sealed in scrolls."
+    },
+    {
+      "name": "origin-fall",
+      "still": "Intro03_Conflict.png",
+      "d": 2.8,
+      "c": [
+        0.5,
+        0.38
+      ],
+      "fixedZoom": 1.12,
+      "pos": "story",
+      "start": 5.0,
+      "text": "UNDONE BY GREED\nTheir power tore the empire apart."
+    },
+    {
+      "name": "origin-peace",
+      "still": "Intro04_Peace.png",
+      "d": 2.8,
+      "c": [
+        0.5,
+        0.48
+      ],
+      "fixedZoom": 1.035,
+      "pos": "story",
+      "start": 7.5,
+      "text": "LOST TO LEGEND\nAges passed. Their true power was forgotten."
+    },
+    {
+      "name": "origin-hunter",
+      "still": "Intro05_Traveler.png",
+      "d": 2.8,
+      "c": [
+        0.5,
+        0.5
+      ],
+      "fixedZoom": 1.045,
+      "pos": "story",
+      "start": 10.0,
+      "text": "SEEKERS OF LEGEND\nTheir name: Scroll Hunters."
+    },
+    {
+      "name": "combat",
+      "src": 0.5,
+      "d": 10.3,
+      "c": [
+        0.5,
+        0.5
+      ],
+      "fixedZoom": 1,
+      "pos": "top",
+      "start": 12.5,
+      "text": "FOUR SKILLS. COUNTLESS CHOICES.\nReal-time tactical skill combat"
+    },
+    {
+      "name": "hand",
+      "src": 10.5,
+      "d": 8.3,
+      "c": [
+        0.55,
+        0.64
+      ],
+      "fixedZoom": 1.12,
+      "pos": "top",
+      "start": 22.5,
+      "text": "PREPARE YOUR NEXT MOVE\nManage your Cost. Commit to each cast."
+    },
+    {
+      "name": "reward",
+      "src": 0.2,
+      "d": 6.3,
+      "c": [
+        0.5,
+        0.5
+      ],
+      "fixedZoom": 1,
+      "recording": "reward",
+      "globalSrc": 64.76666666666667,
+      "pos": "top",
+      "start": 30.5,
+      "text": "REWARD YOUR VICTORY\nChoose a skill. Make it your own."
+    },
+    {
+      "name": "boss",
+      "src": 123.26666666666667,
+      "d": 9.3,
+      "c": [
+        0.5,
+        0.5
+      ],
+      "fixedZoom": 1,
+      "pos": "top",
+      "start": 36.5,
+      "text": "READ THE CAST. FIGHT BACK.\nKnow when to interrupt. Know when to defend."
+    },
+    {
+      "name": "boss-detail",
+      "src": 14.400000000000006,
+      "d": 8.8,
+      "c": [
+        0.5,
+        0.5
+      ],
+      "fixedZoom": 1,
+      "recording": "ending",
+      "globalSrc": 179.8,
+      "zoomStart": 4.0,
+      "focus": [
+        0.4895833333333333,
+        0.20833333333333334
+      ],
+      "hold": 0.65,
+      "fullAt": 6.6,
+      "start": 45.5,
+      "text": null
+    },
+    {
+      "name": "end",
+      "still": "Intro02_Scroll.png",
+      "d": 6,
+      "c": [
+        0.5,
+        0.5
+      ],
+      "fixedZoom": 1.04,
+      "pos": "center",
+      "start": 54.0,
+      "text": "SCROLL HUNTER\nRead their casts. Choose your moment to strike."
+    }
+  ],
+  "playbackSpeed": 1,
+  "notes": "New gameplay. No cast/cost/damage edits. Separate forest and boss encounters. Matching input replay for English. Orb close-up smoothly expands to full frame at 52.1s, before the unchanged 53.1s impact. Floating-point affine transform. No removed waiting within clips."
+}

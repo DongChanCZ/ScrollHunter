@@ -1,0 +1,456 @@
+{
+  "duration": 60,
+  "shots": [
+    {
+      "name": "origin-war",
+      "still": "Intro01_War.png",
+      "d": 2.7,
+      "z": [
+        1.02,
+        1.12
+      ],
+      "c": [
+        0.5,
+        0.48
+      ],
+      "text": "전쟁이 낳은 힘\n고대의 제국, 비전 스크롤을 만들다",
+      "pos": "story",
+      "start": 0,
+      "fixedZoom": 1.035
+    },
+    {
+      "name": "origin-scroll",
+      "still": "Intro02_Scroll.png",
+      "d": 2.7,
+      "z": [
+        1.04,
+        1.16
+      ],
+      "c": [
+        0.5,
+        0.45
+      ],
+      "text": "힘을 전하는 마법\n기술과 지식까지 담아낸 스크롤",
+      "pos": "story",
+      "start": 2.4,
+      "fixedZoom": 1.045
+    },
+    {
+      "name": "origin-fall",
+      "still": "Intro03_Conflict.png",
+      "d": 2.7,
+      "z": [
+        1.12,
+        1.2
+      ],
+      "c": [
+        0.5,
+        0.38
+      ],
+      "text": "탐욕이 부른 몰락\n끝없는 다툼 속에 무너진 제국",
+      "pos": "story",
+      "start": 4.8,
+      "fixedZoom": 1.12
+    },
+    {
+      "name": "origin-peace",
+      "still": "Intro04_Peace.png",
+      "d": 2.7,
+      "z": [
+        1.03,
+        1.1
+      ],
+      "c": [
+        0.5,
+        0.48
+      ],
+      "text": "전설이 된 힘\n긴 세월 뒤, 잊혀진 비전",
+      "pos": "story",
+      "start": 7.2,
+      "fixedZoom": 1.035
+    },
+    {
+      "name": "origin-hunter",
+      "still": "Intro05_Traveler.png",
+      "d": 3.2,
+      "z": [
+        1.03,
+        1.15
+      ],
+      "c": [
+        0.5,
+        0.5
+      ],
+      "text": "전설을 쫓는 자들\n그 이름, 스크롤 헌터",
+      "pos": "story",
+      "start": 9.6,
+      "fixedZoom": 1.045
+    },
+    {
+      "name": "combat",
+      "src": 3.15,
+      "d": 5.6,
+      "z": [
+        1.0,
+        1.06
+      ],
+      "c": [
+        0.5,
+        0.5
+      ],
+      "text": "네 장으로 뒤집는 전장\n실시간 로그라이크 카드 전투",
+      "pos": "top",
+      "start": 12.5,
+      "fixedZoom": 1.035
+    },
+    {
+      "name": "interrupt",
+      "src": 12.35,
+      "d": 3.2,
+      "z": [
+        1.45,
+        1.82
+      ],
+      "c": [
+        0.68,
+        0.45
+      ],
+      "text": "찰나를 읽고\n차단하라\n공격이 발동하기 직전",
+      "pos": "left",
+      "start": 17.8,
+      "fixedZoom": 1.55
+    },
+    {
+      "name": "boss-action",
+      "src": 51.3,
+      "d": 4.0,
+      "z": [
+        1.02,
+        1.16
+      ],
+      "c": [
+        0.5,
+        0.5
+      ],
+      "text": null,
+      "start": 20.7,
+      "fixedZoom": 1.035
+    },
+    {
+      "name": "hand",
+      "src": 8.9,
+      "d": 4.2,
+      "z": [
+        1.35,
+        1.85
+      ],
+      "c": [
+        0.63,
+        0.81
+      ],
+      "text": "모으고, 터뜨려라\n코스트를 계산하는 전략",
+      "pos": "top",
+      "start": 24.4,
+      "fixedZoom": 1.65
+    },
+    {
+      "name": "skill-release",
+      "src": 23.2,
+      "d": 3.4,
+      "z": [
+        1.15,
+        1.48
+      ],
+      "c": [
+        0.5,
+        0.44
+      ],
+      "text": "한 방에 담은 선택\n준비한 힘을 해방하라",
+      "pos": "top",
+      "start": 28.3,
+      "fixedZoom": 1.25
+    },
+    {
+      "name": "deck",
+      "still": "reward",
+      "d": 4.6,
+      "z": [
+        1.0,
+        1.05
+      ],
+      "c": [
+        0.5,
+        0.5
+      ],
+      "text": null,
+      "start": 31.4,
+      "fixedZoom": 1.0
+    },
+    {
+      "name": "reward-detail",
+      "still": "reward",
+      "d": 3.8,
+      "z": [
+        1.5,
+        1.65
+      ],
+      "c": [
+        0.25,
+        0.51
+      ],
+      "text": "당신만의 덱\n보상을 선택하고\n조합을 완성하라",
+      "pos": "right",
+      "start": 35.7,
+      "fixedZoom": 1.5
+    },
+    {
+      "name": "multi-target",
+      "src": 33.05,
+      "d": 3.6,
+      "z": [
+        1.0,
+        1.08
+      ],
+      "c": [
+        0.5,
+        0.5
+      ],
+      "text": "누구부터 무너뜨릴 것인가\n공격할 대상을 선택하라",
+      "pos": "top",
+      "start": 39.2,
+      "fixedZoom": 1.035
+    },
+    {
+      "name": "orbs",
+      "src": 45.7,
+      "d": 3.8,
+      "z": [
+        1.6,
+        1.78
+      ],
+      "c": [
+        0.49,
+        0.47
+      ],
+      "text": null,
+      "start": 42.5,
+      "fixedZoom": 1.55
+    },
+    {
+      "name": "pillar",
+      "src": 25.3,
+      "d": 3.6,
+      "z": [
+        1.55,
+        1.75
+      ],
+      "c": [
+        0.5,
+        0.43
+      ],
+      "text": "반격의 순간\n선택이 승부를 가른다",
+      "pos": "top",
+      "start": 46.0,
+      "fixedZoom": 1.5
+    },
+    {
+      "name": "climax",
+      "src": 51.7,
+      "d": 5.0,
+      "z": [
+        1.38,
+        1.67
+      ],
+      "c": [
+        0.5,
+        0.43
+      ],
+      "text": null,
+      "start": 49.3,
+      "fixedZoom": 1.4
+    },
+    {
+      "name": "end",
+      "still": "Intro02_Scroll.png",
+      "d": 6.0,
+      "z": [
+        1.02,
+        1.08
+      ],
+      "c": [
+        0.5,
+        0.5
+      ],
+      "text": "SCROLL HUNTER\n적의 시전을 읽고, 반격의 순간을 선택하라",
+      "pos": "center",
+      "start": 54.0,
+      "fixedZoom": 1.04
+    }
+  ],
+  "stabilization": [
+    {
+      "shot": "origin-war",
+      "correctedFrames": 0,
+      "maxOriginalPixels": 0,
+      "maxResidualPixels": 0,
+      "samples": []
+    },
+    {
+      "shot": "origin-scroll",
+      "correctedFrames": 0,
+      "maxOriginalPixels": 0,
+      "maxResidualPixels": 0,
+      "samples": []
+    },
+    {
+      "shot": "origin-fall",
+      "correctedFrames": 0,
+      "maxOriginalPixels": 0,
+      "maxResidualPixels": 0,
+      "samples": []
+    },
+    {
+      "shot": "origin-peace",
+      "correctedFrames": 0,
+      "maxOriginalPixels": 0,
+      "maxResidualPixels": 0,
+      "samples": []
+    },
+    {
+      "shot": "origin-hunter",
+      "correctedFrames": 0,
+      "maxOriginalPixels": 0,
+      "maxResidualPixels": 0,
+      "samples": []
+    },
+    {
+      "shot": "combat",
+      "correctedFrames": 0,
+      "maxOriginalPixels": 0,
+      "maxResidualPixels": 0,
+      "samples": []
+    },
+    {
+      "shot": "interrupt",
+      "correctedFrames": 0,
+      "maxOriginalPixels": 0,
+      "maxResidualPixels": 0,
+      "samples": []
+    },
+    {
+      "shot": "boss-action",
+      "correctedFrames": 0,
+      "maxOriginalPixels": 0,
+      "maxResidualPixels": 0,
+      "samples": []
+    },
+    {
+      "shot": "hand",
+      "correctedFrames": 0,
+      "maxOriginalPixels": 0,
+      "maxResidualPixels": 0,
+      "samples": []
+    },
+    {
+      "shot": "skill-release",
+      "correctedFrames": 0,
+      "maxOriginalPixels": 0,
+      "maxResidualPixels": 0,
+      "samples": []
+    },
+    {
+      "shot": "deck",
+      "correctedFrames": 0,
+      "maxOriginalPixels": 0,
+      "maxResidualPixels": 0,
+      "samples": []
+    },
+    {
+      "shot": "reward-detail",
+      "correctedFrames": 0,
+      "maxOriginalPixels": 0,
+      "maxResidualPixels": 0,
+      "samples": []
+    },
+    {
+      "shot": "multi-target",
+      "correctedFrames": 0,
+      "maxOriginalPixels": 0,
+      "maxResidualPixels": 0,
+      "samples": []
+    },
+    {
+      "shot": "orbs",
+      "correctedFrames": 0,
+      "maxOriginalPixels": 0,
+      "maxResidualPixels": 0,
+      "samples": []
+    },
+    {
+      "shot": "pillar",
+      "correctedFrames": 7,
+      "maxOriginalPixels": 13.415267142980392,
+      "maxResidualPixels": 0.0,
+      "samples": [
+        {
+          "frame": 51,
+          "dx": -13.026102184385826,
+          "dy": -3.2078114656987147,
+          "residual": 0.0
+        },
+        {
+          "frame": 52,
+          "dx": -6.93282670816388,
+          "dy": -5.561362145180078,
+          "residual": 0.0
+        },
+        {
+          "frame": 53,
+          "dx": 5.3841157217432265,
+          "dy": -6.317853099967587,
+          "residual": 0.0
+        },
+        {
+          "frame": 54,
+          "dx": 6.866110529892579,
+          "dy": -6.003927102037813,
+          "residual": 0.0
+        },
+        {
+          "frame": 55,
+          "dx": 0.0,
+          "dy": -4.828389600644585,
+          "residual": 0.0
+        },
+        {
+          "frame": 56,
+          "dx": -2.69564069172101,
+          "dy": -2.8231347597178424,
+          "residual": 0.0
+        },
+        {
+          "frame": 57,
+          "dx": -0.13218578443674553,
+          "dy": -0.3156861619441881,
+          "residual": 0.0
+        }
+      ]
+    },
+    {
+      "shot": "climax",
+      "correctedFrames": 0,
+      "maxOriginalPixels": 0,
+      "maxResidualPixels": 0,
+      "samples": []
+    },
+    {
+      "shot": "end",
+      "correctedFrames": 0,
+      "maxOriginalPixels": 0,
+      "maxResidualPixels": 0,
+      "samples": []
+    }
+  ],
+  "transitions": "0.3-second fade through dark; no cross-dissolved moving frames",
+  "notes": "Fixed gameplay framing; HUD-based subpixel translation correction. 1.2% floating-point push-in on intro art only. Animated gradient lettering, single glyph-only light sweep, no decorative lines. Original game and saves unchanged."
+}

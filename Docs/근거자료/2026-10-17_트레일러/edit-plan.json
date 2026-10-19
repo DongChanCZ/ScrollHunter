@@ -1,0 +1,118 @@
+{
+  "duration": 60,
+  "shots": [
+    {
+      "name": "boss-hook",
+      "source": 51,
+      "start": 0,
+      "duration": 3
+    },
+    {
+      "name": "title",
+      "source": 0,
+      "start": 3,
+      "duration": 3
+    },
+    {
+      "name": "story",
+      "source": null,
+      "start": 6,
+      "duration": 5
+    },
+    {
+      "name": "forest",
+      "source": 3,
+      "start": 11,
+      "duration": 13
+    },
+    {
+      "name": "reward",
+      "source": 18,
+      "start": 24,
+      "duration": 5
+    },
+    {
+      "name": "leader",
+      "source": 23,
+      "start": 29,
+      "duration": 4
+    },
+    {
+      "name": "party",
+      "source": 33,
+      "start": 33,
+      "duration": 10
+    },
+    {
+      "name": "boss",
+      "source": 43,
+      "start": 43,
+      "duration": 14
+    },
+    {
+      "name": "end",
+      "source": 57,
+      "start": 57,
+      "duration": 3
+    }
+  ],
+  "captions": [
+    [
+      0,
+      3,
+      "끝까지 살아남을 수 있을까?"
+    ],
+    [
+      3,
+      6,
+      "실시간 로그라이크 카드 전투"
+    ],
+    [
+      6,
+      11,
+      "비전 스크롤의 힘을 찾아"
+    ],
+    [
+      11,
+      17,
+      "적의 시전을 읽고"
+    ],
+    [
+      17,
+      24,
+      "공격과 차단의 순간을 선택하라"
+    ],
+    [
+      24,
+      29,
+      "보상으로 나만의 덱을 완성하라"
+    ],
+    [
+      29,
+      33,
+      "강력한 스킬로 돌파하라"
+    ],
+    [
+      33,
+      43,
+      "몰려드는 적을 상대하라"
+    ],
+    [
+      43,
+      50,
+      "숲 깊은 곳, 마법사가 기다린다"
+    ],
+    [
+      50,
+      57,
+      "강화되는 위협을 넘어, 끝까지"
+    ],
+    [
+      57,
+      60,
+      "SCROLL HUNTER · itch.io에서 플레이"
+    ]
+  ],
+  "soundEvents": 116,
+  "preMixPeak": 0.8541926741600037
+}

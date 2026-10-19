@@ -1,0 +1,20 @@
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'C:\Users\MBC-501-19\AppData\Local\Temp\ScrollHunter_HonestTrailer_20261019\render-final-en\ScrollHunter_Trailer_EN_20261019_60s.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf61.7.100
+  Duration: 00:01:00.00, start: 0.000000, bitrate: 4815 kb/s
+  Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(progressive), 1920x1080, 4612 kb/s, 30 fps, 30 tbr, 15360 tbn (default)
+      Metadata:
+        handler_name    : VideoHandler
+        vendor_id       : [0][0][0][0]
+        encoder         : Lavc61.19.100 libx264
+  Stream #0:1[0x2](und): Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 194 kb/s (default)
+      Metadata:
+        handler_name    : SoundHandler
+        vendor_id       : [0][0][0][0]
+At least one output file must be specified
+
+Full decode: 1800 frames, no errors.
+No card wording in captions.

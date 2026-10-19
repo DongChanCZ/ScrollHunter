@@ -1,0 +1,305 @@
+using UnityEngine;
+
+/// <summary>
+/// 플레이어의 HP·방어도·기절 상태와 피격 처리.
+/// 플레이어에게 공격력 스탯은 없다. 피해는 카드에 적힌 피해량으로만 결정된다.
+/// </summary>
+public class Player : MonoBehaviour
+{
+    [SerializeField] private float maxHp = 500f;
+
+    [Tooltip("현재 HP. 플레이 중 인스펙터에서 직접 조절해 테스트할 수 있다.")]
+    [SerializeField] private float currentHp = 500f;
+
+    [Tooltip("체크하면 시작 시 HP를 최대치로 되돌린다. " +
+             "끄면 위 현재 HP 값으로 시작한다 — 전투 간 HP 이월을 테스트할 때 쓴다.")]
+    [SerializeField] private bool resetHpOnStart = true;
+
+    [Tooltip("피해 감소에 쓰인다. 감소율 = 방어력 / (방어력 + 100)")]
+    [SerializeField] private float defense = 20f;
+
+    [Tooltip("빨강 피격 직전 방어도가 남아 있을 때의 피해 배율. 방어력 계산 후, 반올림 전에 적용한다.")]
+    [SerializeField, Range(0f, 1f)] private float redShieldDamageMultiplier = 0.5f;
+    public float RedShieldDamageMultiplier => Mathf.Clamp01(redShieldDamageMultiplier);
+    // 로그 문구는 출력 중단(2026-10-17) 뒤 쓰이지 않지만, 출력문을 되살릴 때를 위해 남긴다.
+#pragma warning disable 0414
+    [SerializeField] private string damageLogFormat = "[Player] 피격 {0} (원본 {1}) 방어도 흡수 {2} → HP -{3} = {4:F0}/{5:F0} (방어도 {6}){7}";
+    [SerializeField] private string redShieldLogFormat = " / 빨강 반감 감소 {0}";
+#pragma warning restore 0414
+
+    [Tooltip("4단계 계측. 비워두면 씬에서 자동으로 찾는다.")]
+    [SerializeField] private CombatMetrics metrics;
+
+    [Tooltip("플레이어 공격의 타격·적마다 판정하는 크리티컬 확률(%).")]
+    [SerializeField, Range(0f, 100f)] private float criticalChance = 15f;
+    [SerializeField, Min(1f)] private float criticalMultiplier = 1.5f;
+
+    private float criticalChanceBonus;
+    public void AddCriticalChanceBonus(float percentagePoints) => criticalChanceBonus += percentagePoints;
+    public float CriticalChance => Mathf.Clamp(criticalChance + criticalChanceBonus, 0f, 100f);
+    // 능력치 창 표시용 기본값·증가분(읽기 전용).
+    public float BaseCriticalChance => criticalChance;
+    public float CriticalChanceBonus => criticalChanceBonus;
+    public float BaseMaxHp => maxHp;
+    public float MaxHpBonus => maxHpBonus;
+    public float ShieldGainBonus => shieldGainBonus;
+
+    /// <summary>HUD 피격 표시용 알림(실제 HP 감소량, 방어도 흡수량). 무적으로 막은 피해는 알리지 않는다.</summary>
+    public event System.Action<int, int> Damaged;
+    /// <summary>피격 직전 방어도 없이 빨강 공격에 실제 HP를 잃었다. 표시 전용.</summary>
+    public event System.Action UnshieldedRedHit;
+    /// <summary>실제 회복량. 최대 HP를 넘어 버려진 양은 포함하지 않는다.</summary>
+    public event System.Action<float> Healed;
+    /// <summary>전투 시작·재시작으로 HP·방어도를 새로 맞췄다. HUD 잔상·피해 표시 정리용.</summary>
+    public event System.Action BattleReset;
+    public float CriticalMultiplier => Mathf.Max(1f, criticalMultiplier);
+
+    public bool RollCritical()
+    {
+        float chance = CriticalChance;
+        return chance > 0f && (chance >= 100f || Random.value * 100f < chance);
+    }
+
+    private float maxHpBonus;
+    private float shieldGainBonus;
+    private float interruptStaggerBonus;
+    private int potionCapacityBonus;
+    [SerializeField, Min(0)] private int basePotionCapacity = 3;
+    [SerializeField, Range(0f, 1f)] private float potionHealFraction = 0.3f;
+    [SerializeField] private KeyCode potionKey = KeyCode.LeftShift;
+    [SerializeField] private KeyCode alternatePotionKey = KeyCode.RightShift;
+    public int PotionsRemaining { get; private set; }
+    public float PotionHealAmount => Mathf.Max(0, Mathf.FloorToInt(MaxHp * potionHealFraction + 0.5f));
+    private BattleFlow flow;
+    private int potionInputFrame = -1;
+    private bool PotionInputAllowed => flow == null || (flow.State == BattleFlowState.Fighting && !flow.MenuBlocksInput);
+    public bool CanUsePotion => PotionInputAllowed && Time.timeScale > 0f && IsAlive && !IsStunned
+        && (tutorial == null || !tutorial.BlocksOtherControls)
+        && PotionsRemaining > 0 && currentHp < MaxHp && PotionHealAmount > 0f
+        && (metrics == null || !metrics.Ended);
+    public bool TryUsePotion()
+    {
+        if (!CanUsePotion) return false;
+        float healed = Heal(PotionHealAmount);
+        PotionsRemaining--;
+        if (metrics != null) metrics.RecordPotionUsed(healed, PotionsRemaining, PotionCapacity);
+        PotionUsed?.Invoke();
+        return true;
+    }
+    /// <summary>Shift와 아이콘 좌클릭의 공통 입력. 같은 프레임에는 한 번만 처리한다.</summary>
+    public void RequestPotionUse()
+    {
+        if (potionInputFrame == Time.frameCount) return;
+        potionInputFrame = Time.frameCount;
+        if (!TryUsePotion() && PotionInputAllowed && Time.timeScale > 0f && IsAlive
+            && (metrics == null || !metrics.Ended) && (tutorial == null || !tutorial.BlocksOtherControls))
+            PotionRejected?.Invoke();
+    }
+    /// <summary>포션 사용이 수락됐다(HUD 사용 연출용). 거절된 입력은 알리지 않는다.</summary>
+    public event System.Action PotionUsed;
+    /// <summary>전투 중 포션 사용 입력이 거절됐다(0개·만피·기절). 거절음 전용, 판정과 무관.</summary>
+    public event System.Action PotionRejected;
+    public int PotionCapacity => Mathf.Max(0, basePotionCapacity + potionCapacityBonus);
+    public float MaxHp => Mathf.Max(1f, maxHp + maxHpBonus);
+    public float ShieldGainMultiplier => Mathf.Max(0f, 1f + shieldGainBonus);
+    public float InterruptStaggerBonus => interruptStaggerBonus;
+    public void AddShieldGainBonus(float amount) => shieldGainBonus += amount;
+    public void AddInterruptStaggerBonus(float seconds) => interruptStaggerBonus += seconds;
+    public void AddMaxHpBonus(float amount)
+    {
+        maxHpBonus += amount;
+        currentHp = Mathf.Min(currentHp, MaxHp);
+    }
+    public void AddPotionCapacityBonus(int amount)
+    {
+        potionCapacityBonus += amount;
+        PotionsRemaining = Mathf.Min(PotionsRemaining, PotionCapacity);
+    }
+    public void RefillPotions(int amount)
+    {
+        if (amount > 0) PotionsRemaining += Mathf.Min(amount, PotionCapacity - PotionsRemaining);
+    }
+    public int GetShieldAmount(int baseAmount) => baseAmount <= 0 ? 0
+        : Mathf.Max(0, Mathf.FloorToInt(baseAmount * ShieldGainMultiplier + 0.5f));
+
+#pragma warning disable 0414 // 로그 문구(출력 중단)
+    [SerializeField] private string healLogFormat = "[Player] 회복 {0:0} / 요청 {1:0} → HP {2:0}/{3:0}";
+#pragma warning restore 0414
+    public float Heal(float amount)
+    {
+        if (!IsAlive || amount <= 0f || float.IsNaN(amount) || float.IsInfinity(amount)) return 0f;
+        float restored = Mathf.Min(amount, MaxHp - currentHp);
+        currentHp += restored;
+        // Debug.Log(string.Format(healLogFormat, restored, amount, currentHp, MaxHp), this);
+        if (restored > 0f) Healed?.Invoke(restored);
+        return restored;
+    }
+    public float Defense => defense;
+    public float CurrentHp => currentHp;
+    public bool IsAlive => currentHp > 0f;
+
+    /// <summary>방어도. 합산 누적, 상한 없음. 전투 종료 시 소멸한다.</summary>
+    public int Shield { get; private set; }
+
+    /// <summary>남은 기절 시간(초). 주황 캐스팅에 대응하지 못하면 걸린다.</summary>
+    public float StunRemaining { get; private set; }
+
+    public bool IsStunned => StunRemaining > 0f;
+    private float costRecoveryBlockedUntil = float.NegativeInfinity;
+    public bool IsCostRecoveryBlocked => IsStunned && Time.time < costRecoveryBlockedUntil;
+    // 절대 게임 시간으로 계산해 Player/CostSystem의 Update 순서에 영향받지 않는다.
+    public float CostRecoveryTime(float deltaTime) => Mathf.Clamp(Time.time - costRecoveryBlockedUntil, 0f, deltaTime);
+
+    public void ApplyCostBlockingStun(float seconds)
+    {
+        if (seconds <= 0f || !IsAlive || IsStunImmune || (metrics != null && metrics.Ended)) return;
+        ApplyStun(seconds);
+        costRecoveryBlockedUntil = Mathf.Max(costRecoveryBlockedUntil, Time.time + seconds);
+        // Debug.Log($"[Player] 파멸 강화 기절 — 코스트 충전 금지 {seconds:0.#}초", this);
+    }
+
+    // 생츄어리 채널링 1회가 소유하는 상태. 전투·오브젝트 종료 시에도 해제한다.
+    public bool IsInvulnerable { get; private set; }
+    public bool IsStunImmune => IsInvulnerable;
+    public void SetSanctuary(bool active) => IsInvulnerable = active;
+    private void OnDisable() { SetSanctuary(false); costRecoveryBlockedUntil = float.NegativeInfinity; }
+
+    private bool defeatHandled;
+    private TutorialFlow tutorial;
+
+    private void Awake()
+    {
+        tutorial = FindFirstObjectByType<TutorialFlow>();
+        flow = FindFirstObjectByType<BattleFlow>();
+        // 직전 실행이 패배로 끝나 timeScale이 0인 채 남는 것을 막는다.
+        Time.timeScale = 1f;
+
+        if (resetHpOnStart) currentHp = MaxHp;
+        PotionsRemaining = PotionCapacity;
+        currentHp = Mathf.Clamp(currentHp, 0f, MaxHp);
+
+        Shield = 0;
+        StunRemaining = 0f;
+        defeatHandled = false;
+
+        if (metrics == null) metrics = FindFirstObjectByType<CombatMetrics>();
+    }
+
+    private void Update()
+    {
+        if (StunRemaining > 0f)
+        {
+            StunRemaining = Mathf.Max(0f, StunRemaining - Time.deltaTime);
+        }
+
+        if (Input.GetKeyDown(potionKey) || Input.GetKeyDown(alternatePotionKey)) RequestPotionUse();
+
+        // 인스펙터에서 HP를 0으로 내린 경우에도 패배가 걸리게 한다.
+        if (!IsAlive && !defeatHandled) Defeat();
+    }
+
+    public void BeginBattle(bool restoreHp)
+    {
+        potionInputFrame = -1;
+        if (restoreHp) { currentHp = MaxHp; PotionsRemaining = PotionCapacity; }
+        EndBattle();
+        defeatHandled = false;
+        BattleReset?.Invoke();
+    }
+
+    public void EndBattle()
+    {
+        SetSanctuary(false);
+        ClearShield();
+        StunRemaining = 0f;
+        costRecoveryBlockedUntil = float.NegativeInfinity;
+    }
+
+    public int AddShield(int baseAmount)
+    {
+        int granted = GetShieldAmount(baseAmount);
+        Shield += granted;
+        return granted;
+    }
+
+    /// <summary>전투 종료 시 호출. 방어도는 이월되지 않는다.</summary>
+    public void ClearShield() => Shield = 0;
+
+    /// <summary>
+    /// 기절을 건다. 이미 기절 중이면 남은 시간을 갱신한다 (02 문서 E15).
+    /// 더 짧은 기절이 긴 기절을 덮어쓰지 않도록 둘 중 큰 값을 쓴다.
+    /// 일반 기절은 충전 유지. A43의 파멸 강화 기절만 별도 충전 금지.
+    /// </summary>
+    public void ApplyStun(float seconds)
+    {
+        if (seconds <= 0f || !IsAlive || IsStunImmune || (metrics != null && metrics.Ended)) return;
+
+        StunRemaining = Mathf.Max(StunRemaining, seconds);
+        // Debug.Log($"[{nameof(Player)}] 기절 {StunRemaining:0.#}초", this);
+    }
+
+    /// <param name="incomingDamage">방어력 적용 전 피해량(절대값).</param>
+    public void TakeDamage(int incomingDamage, CastColor attackColor = CastColor.Green)
+        => TakeModifiedDamage(incomingDamage, attackColor, 1f);
+
+    public void TakeModifiedDamage(int incomingDamage, CastColor attackColor, float multiplier)
+    {
+        if (!IsAlive || (metrics != null && metrics.Ended)) return;
+
+        int taken = DamageFormula.Compute(incomingDamage, 1, defense, 1f, multiplier);
+        if (IsInvulnerable)
+        {
+            if (metrics != null) metrics.RecordInvulnerabilityPrevented(taken);
+            return;
+        }
+
+        bool redShield = attackColor == CastColor.Red && Shield > 0;
+        int prevented = 0;
+        if (redShield)
+        {
+            // 이미 반올림한 taken을 나누지 않는다. 원본에서 배율까지 계산한 뒤 한 번만 정수화.
+            int reduced = DamageFormula.Compute(incomingDamage, 1, defense, 1f, multiplier * RedShieldDamageMultiplier);
+            prevented = taken - reduced;
+            taken = reduced;
+            if (metrics != null) metrics.RecordRedShieldPrevented(prevented);
+        }
+
+        // 방어도에서 먼저 차감하고 남은 피해만 HP로 간다.
+        int absorbed = Mathf.Min(Shield, taken);
+        Shield -= absorbed;
+        int toHp = taken - absorbed;
+
+        float hpBefore = currentHp;
+        currentHp = Mathf.Max(0f, currentHp - toHp);
+
+        // 계측은 부여량이 아니라 실제로 방어도가 막아낸 양을 센다 (09 문서 4단계 ②).
+        if (metrics != null) metrics.RecordShieldAbsorbed(absorbed);
+
+        // 전투 로그 출력 중단(2026-10-17)
+        // Debug.Log(string.Format(damageLogFormat, taken, incomingDamage, absorbed, toHp, currentHp, MaxHp, Shield,
+        //     redShield ? string.Format(redShieldLogFormat, prevented) : string.Empty), this);
+        // 표시는 실제로 줄어든 HP만 알린다(남은 HP를 넘는 피해는 제외).
+        int hpLost = Mathf.RoundToInt(hpBefore - currentHp);
+        if (hpLost > 0 || absorbed > 0) Damaged?.Invoke(hpLost, absorbed);
+
+        if (attackColor == CastColor.Red && !redShield && hpLost > 0) UnshieldedRedHit?.Invoke();
+        if (!IsAlive) Defeat();
+    }
+
+    private void Defeat()
+    {
+        defeatHandled = true;
+        EndBattle();
+        if (metrics != null) metrics.ReportDefeat();
+        // Debug.Log($"[{nameof(Player)}] 패배", this);
+        Time.timeScale = 0f;
+    }
+
+#if UNITY_EDITOR
+    private void OnValidate()
+    {
+        if (maxHp < 1f) maxHp = 1f;
+        currentHp = Mathf.Clamp(currentHp, 0f, MaxHp);
+    }
+#endif
+}

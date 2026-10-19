@@ -1,0 +1,1553 @@
+{
+    "frames": 5682,
+    "actions": [
+        {
+            "frame": 0,
+            "arg": 0,
+            "action": "begin",
+            "target": "",
+            "skill": "",
+            "hp": 500.0,
+            "cost": 3.0,
+            "lockBefore": 0.0,
+            "castBefore": 0.0
+        },
+        {
+            "frame": 36,
+            "arg": 3,
+            "action": "skill",
+            "target": "",
+            "skill": "Skill_CrystalShield",
+            "hp": 500.0,
+            "cost": 3.9599990844726564,
+            "lockBefore": 0.0,
+            "castBefore": 0.0
+        },
+        {
+            "frame": 78,
+            "arg": 0,
+            "action": "target",
+            "target": "Enemy_B_Orange",
+            "skill": "",
+            "hp": 500.0,
+            "cost": 2.079998016357422,
+            "lockBefore": 0.0,
+            "castBefore": 0.0
+        },
+        {
+            "frame": 78,
+            "arg": 2,
+            "action": "skill",
+            "target": "",
+            "skill": "Skill_Silence",
+            "hp": 500.0,
+            "cost": 2.079998016357422,
+            "lockBefore": 0.0,
+            "castBefore": 0.0
+        },
+        {
+            "frame": 114,
+            "arg": 0,
+            "action": "skill",
+            "target": "",
+            "skill": "Skill_SK01_Fireball",
+            "hp": 500.0,
+            "cost": 1.0399975776672364,
+            "lockBefore": 0.0,
+            "castBefore": 0.0
+        },
+        {
+            "frame": 189,
+            "arg": 0,
+            "action": "skill",
+            "target": "",
+            "skill": "Skill_SK03_MagicCutter",
+            "hp": 500.0,
+            "cost": 2.039996385574341,
+            "lockBefore": 0.0,
+            "castBefore": 0.0
+        },
+        {
+            "frame": 426,
+            "arg": 3,
+            "action": "skill",
+            "target": "",
+            "skill": "Skill_SK06_MagicSpark",
+            "hp": 498.0,
+            "cost": 6.359991073608398,
+            "lockBefore": 0.0,
+            "castBefore": 0.0
+        },
+        {
+            "frame": 498,
+            "arg": 3,
+            "action": "skill",
+            "target": "",
+            "skill": "Skill_CrystalShield",
+            "hp": 477.0,
+            "cost": 5.279989242553711,
+            "lockBefore": 0.0,
+            "castBefore": 0.0
+        },
+        {
+            "frame": 576,
+            "arg": 3,
+            "action": "skill",
+            "target": "",
+            "skill": "Skill_Silence",
+            "hp": 460.0,
+            "cost": 4.359987258911133,
+            "lockBefore": 0.0,
+            "castBefore": 0.0
+        },
+        {
+            "frame": 597,
+            "arg": 3,
+            "action": "skill",
+            "target": "",
+            "skill": "Skill_SK01_Fireball",
+            "hp": 460.0,
+            "cost": 2.9199867248535158,
+            "lockBefore": 0.0,
+            "castBefore": 0.0
+        },
+        {
+            "frame": 618,
+            "arg": 3,
+            "action": "skill",
+            "target": "",
+            "skill": "Skill_SK03_MagicCutter",
+            "hp": 460.0,
+            "cost": 2.4799861907958986,
+            "lockBefore": 0.0,
+            "castBefore": 0.0
+        },
+        {
+            "frame": 714,
+            "arg": 3,
+            "action": "skill",
+            "target": "",
+            "skill": "Skill_SK06_MagicSpark",
+            "hp": 460.0,
+            "cost": 3.0399837493896486,
+            "lockBefore": 0.0,
+            "castBefore": 0.0
+        },
+        {
+            "frame": 828,
+            "arg": 3,
+            "action": "skill",
+            "target": "",
+            "skill": "Skill_CrystalShield",
+            "hp": 460.0,
+            "cost": 3.079981565475464,
+            "lockBefore": 0.0,
+            "castBefore": 0.0
+        },
+        {
+            "frame": 903,
+            "arg": 3,
+            "action": "skill",
+            "target": "",
+            "skill": "Skill_Silence",
+            "hp": 460.0,
+            "cost": 2.0799801349639894,
+            "lockBefore": 0.0,
+            "castBefore": 0.0
+        },
+        {
+            "frame": 939,
+            "arg": 3,
+            "action": "skill",
+            "target": "",
+            "skill": "Skill_SK01_Fireball",
+            "hp": 460.0,
+            "cost": 1.0399796962738038,
+            "lockBefore": 0.0,
+            "castBefore": 0.0
+        },
+        {
+            "frame": 1014,
+            "arg": 3,
+            "action": "skill",
+            "target": "",
+            "skill": "Skill_SK03_MagicCutter",
+            "hp": 460.0,
+            "cost": 2.039978504180908,
+            "lockBefore": 0.0,
+            "castBefore": 0.0
+        },
+        {
+            "frame": 1128,
+            "arg": 3,
+            "action": "skill",
+            "target": "",
+            "skill": "Skill_SK06_MagicSpark",
+            "hp": 460.0,
+            "cost": 3.0799763202667238,
+            "lockBefore": 0.0,
+            "castBefore": 0.0
+        },
+        {
+            "frame": 1967,
+            "arg": 0,
+            "action": "reward",
+            "target": "",
+            "skill": "",
+            "hp": 460.0,
+            "cost": 1.2533090114593506,
+            "lockBefore": 0.0,
+            "castBefore": 0.0
+        },
+        {
+            "frame": 2027,
+            "arg": 4,
+            "action": "replace",
+            "target": "",
+            "skill": "",
+            "hp": 460.0,
+            "cost": 1.2533090114593506,
+            "lockBefore": 0.0,
+            "castBefore": 0.0
+        },
+        {
+            "frame": 2075,
+            "arg": 0,
+            "action": "confirm",
+            "target": "",
+            "skill": "",
+            "hp": 460.0,
+            "cost": 1.2533090114593506,
+            "lockBefore": 0.0,
+            "castBefore": 0.0
+        },
+        {
+            "frame": 2297,
+            "arg": 3,
+            "action": "begin",
+            "target": "",
+            "skill": "",
+            "hp": 460.0,
+            "cost": 1.2533090114593506,
+            "lockBefore": 0.0,
+            "castBefore": 0.0
+        },
+        {
+            "frame": 2343,
+            "arg": 2,
+            "action": "skill",
+            "target": "",
+            "skill": "Skill_Silence",
+            "hp": 500.0,
+            "cost": 4.226665496826172,
+            "lockBefore": 0.0,
+            "castBefore": 0.0
+        },
+        {
+            "frame": 2373,
+            "arg": 3,
+            "action": "skill",
+            "target": "",
+            "skill": "Skill_CrystalShield",
+            "hp": 500.0,
+            "cost": 3.0266647338867189,
+            "lockBefore": 0.0,
+            "castBefore": 0.0
+        },
+        {
+            "frame": 2676,
+            "arg": 2,
+            "action": "skill",
+            "target": "",
+            "skill": "Skill_SK08_Judgment",
+            "hp": 500.0,
+            "cost": 8.106657981872559,
+            "lockBefore": 0.0,
+            "castBefore": 0.0
+        },
+        {
+            "frame": 2766,
+            "arg": 0,
+            "action": "skill",
+            "target": "",
+            "skill": "Skill_SK01_Fireball",
+            "hp": 500.0,
+            "cost": 3.506655693054199,
+            "lockBefore": 0.0,
+            "castBefore": 0.0
+        },
+        {
+            "frame": 2787,
+            "arg": 2,
+            "action": "skill",
+            "target": "",
+            "skill": "Skill_SK03_MagicCutter",
+            "hp": 500.0,
+            "cost": 3.066655158996582,
+            "lockBefore": 0.0,
+            "castBefore": 0.0
+        },
+        {
+            "frame": 2898,
+            "arg": 3,
+            "action": "skill",
+            "target": "",
+            "skill": "Skill_SK05_LightningSpear",
+            "hp": 500.0,
+            "cost": 4.0266523361206059,
+            "lockBefore": 0.0,
+            "castBefore": 0.0
+        },
+        {
+            "frame": 3012,
+            "arg": 3,
+            "action": "skill",
+            "target": "",
+            "skill": "Skill_CrystalShield",
+            "hp": 404.0,
+            "cost": 3.066649913787842,
+            "lockBefore": 0.0,
+            "castBefore": 0.0
+        },
+        {
+            "frame": 3144,
+            "arg": 2,
+            "action": "skill",
+            "target": "",
+            "skill": "Skill_Silence",
+            "hp": 404.0,
+            "cost": 3.5866470336914064,
+            "lockBefore": 0.0,
+            "castBefore": 0.0
+        },
+        {
+            "frame": 3348,
+            "arg": 3,
+            "action": "skill",
+            "target": "",
+            "skill": "Skill_SK08_Judgment",
+            "hp": 404.0,
+            "cost": 7.026641845703125,
+            "lockBefore": 0.0,
+            "castBefore": 0.0
+        },
+        {
+            "frame": 3438,
+            "arg": 2,
+            "action": "skill",
+            "target": "",
+            "skill": "Skill_SK01_Fireball",
+            "hp": 404.0,
+            "cost": 2.426640033721924,
+            "lockBefore": 0.0,
+            "castBefore": 0.0
+        },
+        {
+            "frame": 3462,
+            "arg": 3,
+            "action": "skill",
+            "target": "",
+            "skill": "Skill_SK03_MagicCutter",
+            "hp": 404.0,
+            "cost": 2.0666394233703615,
+            "lockBefore": 0.0,
+            "castBefore": 0.0
+        },
+        {
+            "frame": 3573,
+            "arg": 3,
+            "action": "skill",
+            "target": "",
+            "skill": "Skill_CrystalShield",
+            "hp": 341.0,
+            "cost": 3.026637077331543,
+            "lockBefore": 0.0,
+            "castBefore": 0.0
+        },
+        {
+            "frame": 3717,
+            "arg": 3,
+            "action": "skill",
+            "target": "",
+            "skill": "Skill_Silence",
+            "hp": 341.0,
+            "cost": 3.866633892059326,
+            "lockBefore": 0.0,
+            "castBefore": 0.0
+        },
+        {
+            "frame": 3912,
+            "arg": 3,
+            "action": "skill",
+            "target": "",
+            "skill": "Skill_SK08_Judgment",
+            "hp": 341.0,
+            "cost": 7.066628932952881,
+            "lockBefore": 0.0,
+            "castBefore": 0.0
+        },
+        {
+            "frame": 4002,
+            "arg": 3,
+            "action": "skill",
+            "target": "",
+            "skill": "Skill_SK01_Fireball",
+            "hp": 341.0,
+            "cost": 2.4666271209716799,
+            "lockBefore": 0.0,
+            "castBefore": 0.0
+        },
+        {
+            "frame": 4023,
+            "arg": 3,
+            "action": "skill",
+            "target": "",
+            "skill": "Skill_SK03_MagicCutter",
+            "hp": 341.0,
+            "cost": 2.0266265869140627,
+            "lockBefore": 0.0,
+            "castBefore": 0.0
+        },
+        {
+            "frame": 4140,
+            "arg": 3,
+            "action": "skill",
+            "target": "",
+            "skill": "Skill_CrystalShield",
+            "hp": 278.0,
+            "cost": 3.1466240882873537,
+            "lockBefore": 0.0,
+            "castBefore": 0.0
+        },
+        {
+            "frame": 4230,
+            "arg": 3,
+            "action": "skill",
+            "target": "",
+            "skill": "Skill_Silence",
+            "hp": 278.0,
+            "cost": 2.5466222763061525,
+            "lockBefore": 0.0,
+            "castBefore": 0.0
+        },
+        {
+            "frame": 4473,
+            "arg": 1,
+            "action": "skill",
+            "target": "",
+            "skill": "Skill_SK04_FirePillar",
+            "hp": 278.0,
+            "cost": 7.026616096496582,
+            "lockBefore": 0.0,
+            "castBefore": 0.0
+        },
+        {
+            "frame": 4626,
+            "arg": 0,
+            "action": "potion",
+            "target": "",
+            "skill": "",
+            "hp": 247.0,
+            "cost": 3.1066160202026369,
+            "lockBefore": 0.0,
+            "castBefore": 0.0
+        },
+        {
+            "frame": 4698,
+            "arg": 0,
+            "action": "potion",
+            "target": "",
+            "skill": "",
+            "hp": 122.0,
+            "cost": 5.026614189147949,
+            "lockBefore": 0.0,
+            "castBefore": 0.0
+        },
+        {
+            "frame": 4716,
+            "arg": 0,
+            "action": "potion",
+            "target": "",
+            "skill": "",
+            "hp": 272.0,
+            "cost": 5.506613731384277,
+            "lockBefore": 0.0,
+            "castBefore": 0.0
+        },
+        {
+            "frame": 4773,
+            "arg": 3,
+            "action": "skill",
+            "target": "",
+            "skill": "Skill_SK08_Judgment",
+            "hp": 422.0,
+            "cost": 7.026612281799316,
+            "lockBefore": 0.0,
+            "castBefore": 0.0
+        },
+        {
+            "frame": 4941,
+            "arg": 1,
+            "action": "skill",
+            "target": "",
+            "skill": "Skill_SK01_Fireball",
+            "hp": 353.0,
+            "cost": 2.906609535217285,
+            "lockBefore": 0.0,
+            "castBefore": 0.0
+        },
+        {
+            "frame": 4962,
+            "arg": 3,
+            "action": "skill",
+            "target": "",
+            "skill": "Skill_SK03_MagicCutter",
+            "hp": 321.0,
+            "cost": 2.466609001159668,
+            "lockBefore": 0.0,
+            "castBefore": 0.0
+        },
+        {
+            "frame": 5058,
+            "arg": 1,
+            "action": "skill",
+            "target": "",
+            "skill": "Skill_CrystalShield",
+            "hp": 321.0,
+            "cost": 3.026606798171997,
+            "lockBefore": 0.0,
+            "castBefore": 0.0
+        }
+    ],
+    "sounds": [
+        {
+            "frame": 0,
+            "volume": 0.6000000238418579,
+            "path": "Assets/_Project/Audio/Weapons/jc_bow_draw.wav"
+        },
+        {
+            "frame": 42,
+            "volume": 0.699999988079071,
+            "path": "Assets/_Project/Audio/Magic/jc_magic_shield.wav"
+        },
+        {
+            "frame": 75,
+            "volume": 0.6499999761581421,
+            "path": "Assets/_Project/Audio/Impacts/plate_medium_01.ogg"
+        },
+        {
+            "frame": 75,
+            "volume": 0.75,
+            "path": "Assets/_Project/Audio/Weapons/jc_dagger_swing_02.wav"
+        },
+        {
+            "frame": 75,
+            "volume": 0.5,
+            "path": "Assets/_Project/Audio/Weapons/knife_slice.ogg"
+        },
+        {
+            "frame": 84,
+            "volume": 0.8500000238418579,
+            "path": "Assets/_Project/Audio/Magic/sh_interrupt_seal.wav"
+        },
+        {
+            "frame": 114,
+            "volume": 0.8500000238418579,
+            "path": "Assets/_Project/Audio/Magic/jc_fire_impact_03.wav"
+        },
+        {
+            "frame": 165,
+            "volume": 0.6000000238418579,
+            "path": "Assets/_Project/Audio/Weapons/jc_bow_draw.wav"
+        },
+        {
+            "frame": 181,
+            "volume": 0.6499999761581421,
+            "path": "Assets/_Project/Audio/Impacts/plate_medium_02.ogg"
+        },
+        {
+            "frame": 181,
+            "volume": 0.75,
+            "path": "Assets/_Project/Audio/Weapons/jc_dagger_swing_03.wav"
+        },
+        {
+            "frame": 181,
+            "volume": 0.5,
+            "path": "Assets/_Project/Audio/Weapons/knife_slice.ogg"
+        },
+        {
+            "frame": 189,
+            "volume": 0.8999999761581421,
+            "path": "Assets/_Project/Audio/Magic/sel_sword_slash3.mp3"
+        },
+        {
+            "frame": 241,
+            "volume": 0.6499999761581421,
+            "path": "Assets/_Project/Audio/Impacts/plate_medium_01.ogg"
+        },
+        {
+            "frame": 241,
+            "volume": 0.8500000238418579,
+            "path": "Assets/_Project/Audio/Weapons/jc_bow_shoot_01.wav"
+        },
+        {
+            "frame": 247,
+            "volume": 0.75,
+            "path": "Assets/_Project/Audio/Weapons/jc_arrow_hit_02.wav"
+        },
+        {
+            "frame": 271,
+            "volume": 0.6000000238418579,
+            "path": "Assets/_Project/Audio/Weapons/jc_bow_draw.wav"
+        },
+        {
+            "frame": 287,
+            "volume": 0.6499999761581421,
+            "path": "Assets/_Project/Audio/Impacts/plate_medium_01.ogg"
+        },
+        {
+            "frame": 287,
+            "volume": 0.75,
+            "path": "Assets/_Project/Audio/Weapons/jc_dagger_swing_01.wav"
+        },
+        {
+            "frame": 287,
+            "volume": 0.5,
+            "path": "Assets/_Project/Audio/Weapons/knife_slice.ogg"
+        },
+        {
+            "frame": 362,
+            "volume": 0.6499999761581421,
+            "path": "Assets/_Project/Audio/Impacts/plate_medium_01.ogg"
+        },
+        {
+            "frame": 362,
+            "volume": 0.8500000238418579,
+            "path": "Assets/_Project/Audio/Weapons/jc_bow_shoot_02.wav"
+        },
+        {
+            "frame": 368,
+            "volume": 0.75,
+            "path": "Assets/_Project/Audio/Weapons/jc_arrow_hit_02.wav"
+        },
+        {
+            "frame": 393,
+            "volume": 0.8500000238418579,
+            "path": "Assets/_Project/Audio/Impacts/glass_medium_01.ogg"
+        },
+        {
+            "frame": 393,
+            "volume": 0.800000011920929,
+            "path": "Assets/_Project/Audio/Impacts/soft_heavy_00.ogg"
+        },
+        {
+            "frame": 393,
+            "volume": 0.75,
+            "path": "Assets/_Project/Audio/Weapons/jc_dagger_swing_02.wav"
+        },
+        {
+            "frame": 393,
+            "volume": 0.5,
+            "path": "Assets/_Project/Audio/Weapons/knife_slice.ogg"
+        },
+        {
+            "frame": 408,
+            "volume": 0.6000000238418579,
+            "path": "Assets/_Project/Audio/Weapons/jc_bow_draw.wav"
+        },
+        {
+            "frame": 426,
+            "volume": 0.44999998807907107,
+            "path": "Assets/_Project/Audio/Magic/jc_electric_hold_loop.wav"
+        },
+        {
+            "frame": 433,
+            "volume": 0.800000011920929,
+            "path": "Assets/_Project/Audio/Magic/jc_electric_hit_03.wav"
+        },
+        {
+            "frame": 440,
+            "volume": 0.5,
+            "path": "Assets/_Project/Audio/Magic/jc_electric_hit_02.wav"
+        },
+        {
+            "frame": 455,
+            "volume": 0.5,
+            "path": "Assets/_Project/Audio/Magic/jc_electric_hit_03.wav"
+        },
+        {
+            "frame": 470,
+            "volume": 0.5,
+            "path": "Assets/_Project/Audio/Magic/jc_electric_hit_02.wav"
+        },
+        {
+            "frame": 484,
+            "volume": 0.800000011920929,
+            "path": "Assets/_Project/Audio/Impacts/soft_heavy_00.ogg"
+        },
+        {
+            "frame": 484,
+            "volume": 0.8500000238418579,
+            "path": "Assets/_Project/Audio/Weapons/jc_bow_shoot_02.wav"
+        },
+        {
+            "frame": 485,
+            "volume": 0.5,
+            "path": "Assets/_Project/Audio/Magic/jc_electric_hit_03.wav"
+        },
+        {
+            "frame": 490,
+            "volume": 0.75,
+            "path": "Assets/_Project/Audio/Weapons/jc_arrow_hit_01.wav"
+        },
+        {
+            "frame": 499,
+            "volume": 0.800000011920929,
+            "path": "Assets/_Project/Audio/Impacts/soft_heavy_00.ogg"
+        },
+        {
+            "frame": 499,
+            "volume": 0.75,
+            "path": "Assets/_Project/Audio/Weapons/jc_dagger_swing_03.wav"
+        },
+        {
+            "frame": 499,
+            "volume": 0.5,
+            "path": "Assets/_Project/Audio/Weapons/knife_slice.ogg"
+        },
+        {
+            "frame": 504,
+            "volume": 0.699999988079071,
+            "path": "Assets/_Project/Audio/Magic/jc_magic_shield.wav"
+        },
+        {
+            "frame": 514,
+            "volume": 0.6000000238418579,
+            "path": "Assets/_Project/Audio/Weapons/jc_bow_draw.wav"
+        },
+        {
+            "frame": 582,
+            "volume": 0.8500000238418579,
+            "path": "Assets/_Project/Audio/Magic/sh_interrupt_seal.wav"
+        },
+        {
+            "frame": 597,
+            "volume": 0.8500000238418579,
+            "path": "Assets/_Project/Audio/Magic/jc_fire_impact_03.wav"
+        },
+        {
+            "frame": 605,
+            "volume": 0.6499999761581421,
+            "path": "Assets/_Project/Audio/Impacts/plate_medium_00.ogg"
+        },
+        {
+            "frame": 605,
+            "volume": 0.75,
+            "path": "Assets/_Project/Audio/Weapons/jc_dagger_swing_01.wav"
+        },
+        {
+            "frame": 605,
+            "volume": 0.5,
+            "path": "Assets/_Project/Audio/Weapons/knife_slice.ogg"
+        },
+        {
+            "frame": 618,
+            "volume": 0.8999999761581421,
+            "path": "Assets/_Project/Audio/Magic/sel_sword_slash3.mp3"
+        },
+        {
+            "frame": 663,
+            "volume": 0.6000000238418579,
+            "path": "Assets/_Project/Audio/Weapons/jc_bow_draw.wav"
+        },
+        {
+            "frame": 711,
+            "volume": 0.6499999761581421,
+            "path": "Assets/_Project/Audio/Impacts/plate_medium_01.ogg"
+        },
+        {
+            "frame": 711,
+            "volume": 0.75,
+            "path": "Assets/_Project/Audio/Weapons/jc_dagger_swing_01.wav"
+        },
+        {
+            "frame": 711,
+            "volume": 0.5,
+            "path": "Assets/_Project/Audio/Weapons/knife_slice.ogg"
+        },
+        {
+            "frame": 714,
+            "volume": 0.44999998807907107,
+            "path": "Assets/_Project/Audio/Magic/jc_electric_hold_loop.wav"
+        },
+        {
+            "frame": 721,
+            "volume": 0.800000011920929,
+            "path": "Assets/_Project/Audio/Magic/jc_electric_hit_01.wav"
+        },
+        {
+            "frame": 728,
+            "volume": 0.5,
+            "path": "Assets/_Project/Audio/Magic/jc_electric_hit_01.wav"
+        },
+        {
+            "frame": 743,
+            "volume": 0.5,
+            "path": "Assets/_Project/Audio/Magic/jc_electric_hit_01.wav"
+        },
+        {
+            "frame": 758,
+            "volume": 0.5,
+            "path": "Assets/_Project/Audio/Magic/jc_electric_hit_01.wav"
+        },
+        {
+            "frame": 773,
+            "volume": 0.5,
+            "path": "Assets/_Project/Audio/Magic/jc_electric_hit_02.wav"
+        },
+        {
+            "frame": 817,
+            "volume": 0.6499999761581421,
+            "path": "Assets/_Project/Audio/Impacts/plate_medium_02.ogg"
+        },
+        {
+            "frame": 817,
+            "volume": 0.75,
+            "path": "Assets/_Project/Audio/Weapons/jc_dagger_swing_03.wav"
+        },
+        {
+            "frame": 817,
+            "volume": 0.5,
+            "path": "Assets/_Project/Audio/Weapons/knife_slice.ogg"
+        },
+        {
+            "frame": 834,
+            "volume": 0.699999988079071,
+            "path": "Assets/_Project/Audio/Magic/jc_magic_shield.wav"
+        },
+        {
+            "frame": 909,
+            "volume": 0.8500000238418579,
+            "path": "Assets/_Project/Audio/Magic/sh_interrupt_seal.wav"
+        },
+        {
+            "frame": 939,
+            "volume": 0.8500000238418579,
+            "path": "Assets/_Project/Audio/Magic/jc_fire_impact_01.wav"
+        },
+        {
+            "frame": 1014,
+            "volume": 0.8999999761581421,
+            "path": "Assets/_Project/Audio/Magic/sel_sword_slash3.mp3"
+        },
+        {
+            "frame": 1066,
+            "volume": 0.6499999761581421,
+            "path": "Assets/_Project/Audio/Impacts/plate_medium_00.ogg"
+        },
+        {
+            "frame": 1066,
+            "volume": 0.75,
+            "path": "Assets/_Project/Audio/Weapons/jc_dagger_swing_03.wav"
+        },
+        {
+            "frame": 1066,
+            "volume": 0.5,
+            "path": "Assets/_Project/Audio/Weapons/knife_slice.ogg"
+        },
+        {
+            "frame": 1128,
+            "volume": 0.44999998807907107,
+            "path": "Assets/_Project/Audio/Magic/jc_electric_hold_loop.wav"
+        },
+        {
+            "frame": 1135,
+            "volume": 0.800000011920929,
+            "path": "Assets/_Project/Audio/Magic/jc_electric_hit_01.wav"
+        },
+        {
+            "frame": 1142,
+            "volume": 0.5,
+            "path": "Assets/_Project/Audio/Magic/jc_electric_hit_03.wav"
+        },
+        {
+            "frame": 1157,
+            "volume": 0.5,
+            "path": "Assets/_Project/Audio/Magic/jc_electric_hit_02.wav"
+        },
+        {
+            "frame": 1172,
+            "volume": 0.5,
+            "path": "Assets/_Project/Audio/Magic/jc_electric_hit_01.wav"
+        },
+        {
+            "frame": 1723,
+            "volume": 0.6000000238418579,
+            "path": "Assets/_Project/Audio/UI/lrsf_jingle_battle_win.mp3"
+        },
+        {
+            "frame": 2297,
+            "volume": 0.44999998807907107,
+            "path": "Assets/_Project/Audio/Magic/jc_fire_buildup.wav"
+        },
+        {
+            "frame": 2349,
+            "volume": 0.8500000238418579,
+            "path": "Assets/_Project/Audio/Magic/sh_interrupt_seal.wav"
+        },
+        {
+            "frame": 2379,
+            "volume": 0.699999988079071,
+            "path": "Assets/_Project/Audio/Magic/jc_magic_shield.wav"
+        },
+        {
+            "frame": 2430,
+            "volume": 0.44999998807907107,
+            "path": "Assets/_Project/Audio/Magic/jc_fire_buildup.wav"
+        },
+        {
+            "frame": 2491,
+            "volume": 0.6499999761581421,
+            "path": "Assets/_Project/Audio/Impacts/plate_medium_02.ogg"
+        },
+        {
+            "frame": 2491,
+            "volume": 0.699999988079071,
+            "path": "Assets/_Project/Audio/Magic/jc_fire_launch.wav"
+        },
+        {
+            "frame": 2498,
+            "volume": 0.800000011920929,
+            "path": "Assets/_Project/Audio/Magic/jc_fire_impact_01.wav"
+        },
+        {
+            "frame": 2521,
+            "volume": 0.5,
+            "path": "Assets/_Project/Audio/Magic/jc_mana_drain_start.wav"
+        },
+        {
+            "frame": 2612,
+            "volume": 0.6499999761581421,
+            "path": "Assets/_Project/Audio/Impacts/plate_medium_01.ogg"
+        },
+        {
+            "frame": 2612,
+            "volume": 0.800000011920929,
+            "path": "Assets/_Project/Audio/Magic/jc_teleport_in.wav"
+        },
+        {
+            "frame": 2658,
+            "volume": 0.44999998807907107,
+            "path": "Assets/_Project/Audio/Magic/jc_fire_buildup.wav"
+        },
+        {
+            "frame": 2676,
+            "volume": 0.3499999940395355,
+            "path": "Assets/_Project/Audio/Magic/jc_mana_drain_loop.wav"
+        },
+        {
+            "frame": 2719,
+            "volume": 0.6499999761581421,
+            "path": "Assets/_Project/Audio/Impacts/plate_medium_02.ogg"
+        },
+        {
+            "frame": 2719,
+            "volume": 0.699999988079071,
+            "path": "Assets/_Project/Audio/Magic/jc_fire_launch.wav"
+        },
+        {
+            "frame": 2726,
+            "volume": 0.800000011920929,
+            "path": "Assets/_Project/Audio/Magic/jc_fire_impact_03.wav"
+        },
+        {
+            "frame": 2749,
+            "volume": 0.8999999761581421,
+            "path": "Assets/_Project/Audio/Impacts/bell_heavy_short.ogg"
+        },
+        {
+            "frame": 2749,
+            "volume": 0.75,
+            "path": "Assets/_Project/Audio/Magic/jc_dark_chant_loop.wav"
+        },
+        {
+            "frame": 2758,
+            "volume": 0.949999988079071,
+            "path": "Assets/_Project/Audio/Magic/sel_beam_cannon2.mp3"
+        },
+        {
+            "frame": 2766,
+            "volume": 0.8500000238418579,
+            "path": "Assets/_Project/Audio/Magic/jc_fire_impact_02.wav"
+        },
+        {
+            "frame": 2787,
+            "volume": 0.8999999761581421,
+            "path": "Assets/_Project/Audio/Magic/sel_sword_slash3.mp3"
+        },
+        {
+            "frame": 2898,
+            "volume": 0.550000011920929,
+            "path": "Assets/_Project/Audio/Magic/jc_electric_buildup.wav"
+        },
+        {
+            "frame": 2921,
+            "volume": 1.0,
+            "path": "Assets/_Project/Audio/Magic/jc_electric_hit_02.wav"
+        },
+        {
+            "frame": 2930,
+            "volume": 0.8500000238418579,
+            "path": "Assets/_Project/Audio/Impacts/glass_medium_01.ogg"
+        },
+        {
+            "frame": 2930,
+            "volume": 0.800000011920929,
+            "path": "Assets/_Project/Audio/Impacts/soft_heavy_00.ogg"
+        },
+        {
+            "frame": 2930,
+            "volume": 0.8999999761581421,
+            "path": "Assets/_Project/Audio/Magic/sh_darkhole_blast_clean.wav"
+        },
+        {
+            "frame": 2991,
+            "volume": 0.44999998807907107,
+            "path": "Assets/_Project/Audio/Magic/jc_fire_buildup.wav"
+        },
+        {
+            "frame": 3018,
+            "volume": 0.699999988079071,
+            "path": "Assets/_Project/Audio/Magic/jc_magic_shield.wav"
+        },
+        {
+            "frame": 3052,
+            "volume": 0.6499999761581421,
+            "path": "Assets/_Project/Audio/Impacts/plate_medium_02.ogg"
+        },
+        {
+            "frame": 3052,
+            "volume": 0.699999988079071,
+            "path": "Assets/_Project/Audio/Magic/jc_fire_launch.wav"
+        },
+        {
+            "frame": 3059,
+            "volume": 0.800000011920929,
+            "path": "Assets/_Project/Audio/Magic/jc_fire_impact_02.wav"
+        },
+        {
+            "frame": 3082,
+            "volume": 0.5,
+            "path": "Assets/_Project/Audio/Magic/jc_mana_drain_start.wav"
+        },
+        {
+            "frame": 3150,
+            "volume": 0.8500000238418579,
+            "path": "Assets/_Project/Audio/Magic/sh_interrupt_seal.wav"
+        },
+        {
+            "frame": 3231,
+            "volume": 0.44999998807907107,
+            "path": "Assets/_Project/Audio/Magic/jc_fire_buildup.wav"
+        },
+        {
+            "frame": 3292,
+            "volume": 0.6499999761581421,
+            "path": "Assets/_Project/Audio/Impacts/plate_medium_01.ogg"
+        },
+        {
+            "frame": 3292,
+            "volume": 0.699999988079071,
+            "path": "Assets/_Project/Audio/Magic/jc_fire_launch.wav"
+        },
+        {
+            "frame": 3299,
+            "volume": 0.800000011920929,
+            "path": "Assets/_Project/Audio/Magic/jc_fire_impact_02.wav"
+        },
+        {
+            "frame": 3322,
+            "volume": 0.8999999761581421,
+            "path": "Assets/_Project/Audio/Impacts/bell_heavy_short.ogg"
+        },
+        {
+            "frame": 3322,
+            "volume": 0.75,
+            "path": "Assets/_Project/Audio/Magic/jc_dark_chant_loop.wav"
+        },
+        {
+            "frame": 3348,
+            "volume": 0.3499999940395355,
+            "path": "Assets/_Project/Audio/Magic/jc_mana_drain_loop.wav"
+        },
+        {
+            "frame": 3430,
+            "volume": 0.949999988079071,
+            "path": "Assets/_Project/Audio/Magic/sel_beam_cannon2.mp3"
+        },
+        {
+            "frame": 3438,
+            "volume": 0.8500000238418579,
+            "path": "Assets/_Project/Audio/Magic/jc_fire_impact_02.wav"
+        },
+        {
+            "frame": 3462,
+            "volume": 0.8999999761581421,
+            "path": "Assets/_Project/Audio/Magic/sel_sword_slash3.mp3"
+        },
+        {
+            "frame": 3503,
+            "volume": 0.8500000238418579,
+            "path": "Assets/_Project/Audio/Impacts/glass_medium_00.ogg"
+        },
+        {
+            "frame": 3503,
+            "volume": 0.800000011920929,
+            "path": "Assets/_Project/Audio/Impacts/soft_heavy_00.ogg"
+        },
+        {
+            "frame": 3503,
+            "volume": 0.8999999761581421,
+            "path": "Assets/_Project/Audio/Magic/sh_darkhole_blast_clean.wav"
+        },
+        {
+            "frame": 3564,
+            "volume": 0.44999998807907107,
+            "path": "Assets/_Project/Audio/Magic/jc_fire_buildup.wav"
+        },
+        {
+            "frame": 3579,
+            "volume": 0.699999988079071,
+            "path": "Assets/_Project/Audio/Magic/jc_magic_shield.wav"
+        },
+        {
+            "frame": 3625,
+            "volume": 0.6499999761581421,
+            "path": "Assets/_Project/Audio/Impacts/plate_medium_02.ogg"
+        },
+        {
+            "frame": 3625,
+            "volume": 0.699999988079071,
+            "path": "Assets/_Project/Audio/Magic/jc_fire_launch.wav"
+        },
+        {
+            "frame": 3632,
+            "volume": 0.800000011920929,
+            "path": "Assets/_Project/Audio/Magic/jc_fire_impact_03.wav"
+        },
+        {
+            "frame": 3655,
+            "volume": 0.5,
+            "path": "Assets/_Project/Audio/Magic/jc_mana_drain_start.wav"
+        },
+        {
+            "frame": 3723,
+            "volume": 0.8500000238418579,
+            "path": "Assets/_Project/Audio/Magic/sh_interrupt_seal.wav"
+        },
+        {
+            "frame": 3804,
+            "volume": 0.44999998807907107,
+            "path": "Assets/_Project/Audio/Magic/jc_fire_buildup.wav"
+        },
+        {
+            "frame": 3865,
+            "volume": 0.6499999761581421,
+            "path": "Assets/_Project/Audio/Impacts/plate_medium_02.ogg"
+        },
+        {
+            "frame": 3865,
+            "volume": 0.699999988079071,
+            "path": "Assets/_Project/Audio/Magic/jc_fire_launch.wav"
+        },
+        {
+            "frame": 3872,
+            "volume": 0.800000011920929,
+            "path": "Assets/_Project/Audio/Magic/jc_fire_impact_02.wav"
+        },
+        {
+            "frame": 3895,
+            "volume": 0.8999999761581421,
+            "path": "Assets/_Project/Audio/Impacts/bell_heavy_short.ogg"
+        },
+        {
+            "frame": 3895,
+            "volume": 0.75,
+            "path": "Assets/_Project/Audio/Magic/jc_dark_chant_loop.wav"
+        },
+        {
+            "frame": 3912,
+            "volume": 0.3499999940395355,
+            "path": "Assets/_Project/Audio/Magic/jc_mana_drain_loop.wav"
+        },
+        {
+            "frame": 3994,
+            "volume": 0.949999988079071,
+            "path": "Assets/_Project/Audio/Magic/sel_beam_cannon2.mp3"
+        },
+        {
+            "frame": 4002,
+            "volume": 0.8500000238418579,
+            "path": "Assets/_Project/Audio/Magic/jc_fire_impact_02.wav"
+        },
+        {
+            "frame": 4023,
+            "volume": 0.8999999761581421,
+            "path": "Assets/_Project/Audio/Magic/sel_sword_slash3.mp3"
+        },
+        {
+            "frame": 4076,
+            "volume": 0.8500000238418579,
+            "path": "Assets/_Project/Audio/Impacts/glass_medium_01.ogg"
+        },
+        {
+            "frame": 4076,
+            "volume": 0.800000011920929,
+            "path": "Assets/_Project/Audio/Impacts/soft_heavy_01.ogg"
+        },
+        {
+            "frame": 4076,
+            "volume": 0.6000000238418579,
+            "path": "Assets/_Project/Audio/Magic/jc_teleport_in.wav"
+        },
+        {
+            "frame": 4076,
+            "volume": 0.8999999761581421,
+            "path": "Assets/_Project/Audio/Magic/sh_darkhole_blast_clean.wav"
+        },
+        {
+            "frame": 4077,
+            "volume": 0.75,
+            "path": "Assets/_Project/Audio/Impacts/bell_heavy_long.ogg"
+        },
+        {
+            "frame": 4137,
+            "volume": 0.44999998807907107,
+            "path": "Assets/_Project/Audio/Magic/jc_fire_buildup.wav"
+        },
+        {
+            "frame": 4146,
+            "volume": 0.699999988079071,
+            "path": "Assets/_Project/Audio/Magic/jc_magic_shield.wav"
+        },
+        {
+            "frame": 4173,
+            "volume": 0.6499999761581421,
+            "path": "Assets/_Project/Audio/Impacts/plate_medium_02.ogg"
+        },
+        {
+            "frame": 4173,
+            "volume": 0.699999988079071,
+            "path": "Assets/_Project/Audio/Magic/jc_fire_launch.wav"
+        },
+        {
+            "frame": 4180,
+            "volume": 0.800000011920929,
+            "path": "Assets/_Project/Audio/Magic/jc_fire_impact_03.wav"
+        },
+        {
+            "frame": 4203,
+            "volume": 0.44999998807907107,
+            "path": "Assets/_Project/Audio/Magic/jc_fire_buildup.wav"
+        },
+        {
+            "frame": 4236,
+            "volume": 0.8500000238418579,
+            "path": "Assets/_Project/Audio/Magic/sh_interrupt_seal.wav"
+        },
+        {
+            "frame": 4317,
+            "volume": 0.44999998807907107,
+            "path": "Assets/_Project/Audio/Magic/jc_fire_buildup.wav"
+        },
+        {
+            "frame": 4353,
+            "volume": 0.6499999761581421,
+            "path": "Assets/_Project/Audio/Impacts/plate_medium_00.ogg"
+        },
+        {
+            "frame": 4353,
+            "volume": 0.699999988079071,
+            "path": "Assets/_Project/Audio/Magic/jc_fire_launch.wav"
+        },
+        {
+            "frame": 4360,
+            "volume": 0.800000011920929,
+            "path": "Assets/_Project/Audio/Magic/jc_fire_impact_02.wav"
+        },
+        {
+            "frame": 4383,
+            "volume": 0.4000000059604645,
+            "path": "Assets/_Project/Audio/Magic/jc_mana_drain_loop.wav"
+        },
+        {
+            "frame": 4473,
+            "volume": 0.6000000238418579,
+            "path": "Assets/_Project/Audio/Magic/jc_fire_buildup.wav"
+        },
+        {
+            "frame": 4474,
+            "volume": 0.6499999761581421,
+            "path": "Assets/_Project/Audio/Impacts/plate_medium_02.ogg"
+        },
+        {
+            "frame": 4474,
+            "volume": 0.800000011920929,
+            "path": "Assets/_Project/Audio/Magic/jc_teleport_out.wav"
+        },
+        {
+            "frame": 4520,
+            "volume": 0.44999998807907107,
+            "path": "Assets/_Project/Audio/Magic/jc_fire_buildup.wav"
+        },
+        {
+            "frame": 4556,
+            "volume": 0.8500000238418579,
+            "path": "Assets/_Project/Audio/Impacts/glass_medium_00.ogg"
+        },
+        {
+            "frame": 4556,
+            "volume": 0.800000011920929,
+            "path": "Assets/_Project/Audio/Impacts/soft_heavy_00.ogg"
+        },
+        {
+            "frame": 4556,
+            "volume": 0.699999988079071,
+            "path": "Assets/_Project/Audio/Magic/jc_fire_launch.wav"
+        },
+        {
+            "frame": 4563,
+            "volume": 0.800000011920929,
+            "path": "Assets/_Project/Audio/Magic/jc_fire_impact_03.wav"
+        },
+        {
+            "frame": 4586,
+            "volume": 0.8999999761581421,
+            "path": "Assets/_Project/Audio/Impacts/bell_heavy_short.ogg"
+        },
+        {
+            "frame": 4586,
+            "volume": 0.75,
+            "path": "Assets/_Project/Audio/Magic/jc_dark_chant_loop.wav"
+        },
+        {
+            "frame": 4626,
+            "volume": 0.800000011920929,
+            "path": "Assets/_Project/Audio/UI/potion_glass.ogg"
+        },
+        {
+            "frame": 4626,
+            "volume": 0.550000011920929,
+            "path": "Assets/_Project/Audio/Magic/jc_healing_chime_02.wav"
+        },
+        {
+            "frame": 4695,
+            "volume": 0.800000011920929,
+            "path": "Assets/_Project/Audio/Impacts/soft_heavy_00.ogg"
+        },
+        {
+            "frame": 4695,
+            "volume": 0.8999999761581421,
+            "path": "Assets/_Project/Audio/Magic/sh_darkhole_blast_clean.wav"
+        },
+        {
+            "frame": 4698,
+            "volume": 0.800000011920929,
+            "path": "Assets/_Project/Audio/UI/potion_glass.ogg"
+        },
+        {
+            "frame": 4698,
+            "volume": 0.550000011920929,
+            "path": "Assets/_Project/Audio/Magic/jc_healing_chime_02.wav"
+        },
+        {
+            "frame": 4716,
+            "volume": 0.800000011920929,
+            "path": "Assets/_Project/Audio/UI/potion_glass.ogg"
+        },
+        {
+            "frame": 4716,
+            "volume": 0.550000011920929,
+            "path": "Assets/_Project/Audio/Magic/jc_healing_chime_02.wav"
+        },
+        {
+            "frame": 4756,
+            "volume": 0.44999998807907107,
+            "path": "Assets/_Project/Audio/Magic/jc_fire_buildup.wav"
+        },
+        {
+            "frame": 4773,
+            "volume": 0.3499999940395355,
+            "path": "Assets/_Project/Audio/Magic/jc_mana_drain_loop.wav"
+        },
+        {
+            "frame": 4792,
+            "volume": 0.800000011920929,
+            "path": "Assets/_Project/Audio/Impacts/soft_heavy_02.ogg"
+        },
+        {
+            "frame": 4792,
+            "volume": 0.699999988079071,
+            "path": "Assets/_Project/Audio/Magic/jc_fire_launch.wav"
+        },
+        {
+            "frame": 4799,
+            "volume": 0.800000011920929,
+            "path": "Assets/_Project/Audio/Magic/jc_fire_impact_02.wav"
+        },
+        {
+            "frame": 4822,
+            "volume": 0.5,
+            "path": "Assets/_Project/Audio/Magic/jc_mana_drain_start.wav"
+        },
+        {
+            "frame": 4855,
+            "volume": 0.949999988079071,
+            "path": "Assets/_Project/Audio/Magic/sel_beam_cannon2.mp3"
+        },
+        {
+            "frame": 4877,
+            "volume": 0.800000011920929,
+            "path": "Assets/_Project/Audio/Impacts/soft_heavy_01.ogg"
+        },
+        {
+            "frame": 4877,
+            "volume": 0.800000011920929,
+            "path": "Assets/_Project/Audio/Magic/jc_teleport_in.wav"
+        },
+        {
+            "frame": 4923,
+            "volume": 0.44999998807907107,
+            "path": "Assets/_Project/Audio/Magic/jc_fire_buildup.wav"
+        },
+        {
+            "frame": 4941,
+            "volume": 0.8500000238418579,
+            "path": "Assets/_Project/Audio/Magic/jc_fire_impact_01.wav"
+        },
+        {
+            "frame": 4959,
+            "volume": 0.800000011920929,
+            "path": "Assets/_Project/Audio/Impacts/soft_heavy_00.ogg"
+        },
+        {
+            "frame": 4959,
+            "volume": 0.699999988079071,
+            "path": "Assets/_Project/Audio/Magic/jc_fire_launch.wav"
+        },
+        {
+            "frame": 4962,
+            "volume": 0.8999999761581421,
+            "path": "Assets/_Project/Audio/Magic/sel_sword_slash3.mp3"
+        },
+        {
+            "frame": 4962,
+            "volume": 0.75,
+            "path": "Assets/_Project/Audio/Impacts/bell_heavy_long.ogg"
+        },
+        {
+            "frame": 4966,
+            "volume": 0.800000011920929,
+            "path": "Assets/_Project/Audio/Magic/jc_fire_impact_03.wav"
+        },
+        {
+            "frame": 5022,
+            "volume": 0.8999999761581421,
+            "path": "Assets/_Project/Audio/Impacts/bell_heavy_short.ogg"
+        },
+        {
+            "frame": 5022,
+            "volume": 0.949999988079071,
+            "path": "Assets/_Project/Audio/Magic/jc_dark_chant_loop.wav"
+        },
+        {
+            "frame": 5064,
+            "volume": 0.699999988079071,
+            "path": "Assets/_Project/Audio/Magic/jc_magic_shield.wav"
+        },
+        {
+            "frame": 5622,
+            "volume": 0.8500000238418579,
+            "path": "Assets/_Project/Audio/Impacts/glass_medium_01.ogg"
+        },
+        {
+            "frame": 5622,
+            "volume": 0.800000011920929,
+            "path": "Assets/_Project/Audio/Impacts/soft_heavy_02.ogg"
+        },
+        {
+            "frame": 5622,
+            "volume": 1.0,
+            "path": "Assets/_Project/Audio/Magic/sh_dark_blast.wav"
+        },
+        {
+            "frame": 5622,
+            "volume": 1.0,
+            "path": "Assets/_Project/Audio/Magic/thunder_rumble.ogg"
+        }
+    ],
+    "marks": [
+        {
+            "frame": 0,
+            "battle": 1,
+            "phase": 0,
+            "hp": 500,
+            "name": "forest-start"
+        },
+        {
+            "frame": 1967,
+            "battle": 1,
+            "phase": 0,
+            "hp": 460,
+            "name": "reward-comparison"
+        },
+        {
+            "frame": 2297,
+            "battle": 4,
+            "phase": 0,
+            "hp": 500,
+            "name": "boss-start"
+        },
+        {
+            "frame": 2297,
+            "battle": 4,
+            "phase": 1,
+            "hp": 500,
+            "name": "phase"
+        },
+        {
+            "frame": 4077,
+            "battle": 4,
+            "phase": 2,
+            "hp": 278,
+            "name": "phase"
+        },
+        {
+            "frame": 4962,
+            "battle": 4,
+            "phase": 3,
+            "hp": 321,
+            "name": "phase"
+        },
+        {
+            "frame": 5622,
+            "battle": 4,
+            "phase": 0,
+            "hp": 166,
+            "name": "the-end-impact"
+        }
+    ],
+    "errors": [],
+    "clips": [
+        {
+            "name": "reward",
+            "startFrame": 1937,
+            "frames": 210
+        },
+        {
+            "name": "ending",
+            "startFrame": 4962,
+            "frames": 720
+        }
+    ]
+}

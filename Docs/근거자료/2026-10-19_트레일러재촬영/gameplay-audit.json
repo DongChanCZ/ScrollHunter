@@ -1,0 +1,49 @@
+{
+  "sourceFrames": 5071,
+  "sourceSeconds": 169.03333333333333,
+  "matchedActions": 57,
+  "matchedSkills": 49,
+  "minimumSkillInputGap": 0.7,
+  "phaseTransitions": [
+    [
+      1770,
+      1
+    ],
+    [
+      3788,
+      2
+    ]
+  ],
+  "rejectedInputs": 0,
+  "gameplaySpeed": 1,
+  "forcedDamage": false,
+  "costRefills": false,
+  "notes": "Temporary encounter selection; normal skill acceptance/casting/cost/HP/damage. Per-frame RNG seeds match both languages without changing critical probability. No gap removal or speed-up within gameplay shots.",
+  "noncombatCostDifferences": [
+    [
+      1500,
+      "cost",
+      1.466642141342163,
+      1.653308629989624
+    ],
+    [
+      1680,
+      "cost",
+      1.466642141342163,
+      1.653308629989624
+    ],
+    [
+      1680,
+      "cost",
+      1.466642141342163,
+      1.653308629989624
+    ],
+    [
+      1770,
+      "cost",
+      1.466642141342163,
+      1.653308629989624
+    ]
+  ],
+  "noncombatNote": "Small remaining-cost differences during the death-animation/reward screen are recorded separately. Cost is hidden there and the independent boss encounter resets to the normal 3 Cost. All combat-action HP, Cost, cast and lock values must match."
+}

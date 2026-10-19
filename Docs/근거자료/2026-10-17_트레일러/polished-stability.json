@@ -1,0 +1,9 @@
+{
+  "deckFrameMeanAbsoluteDifference": [
+    0.00034384645061728397,
+    0.00045476466049382714
+  ],
+  "correctedFrames": 7,
+  "maximumRecordedShift": 13.415267142980394,
+  "maximumResidualShift": 0.0
+}

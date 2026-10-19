@@ -1,0 +1,160 @@
+{
+  "duration": 60,
+  "shots": [
+    {
+      "name": "origin-war",
+      "still": "Intro01_War.png",
+      "d": 2.8,
+      "c": [
+        0.5,
+        0.48
+      ],
+      "fixedZoom": 1.035,
+      "pos": "story",
+      "start": 0,
+      "text": "전쟁이 낳은 힘\n고대의 제국, 비전 스크롤을 만들다"
+    },
+    {
+      "name": "origin-scroll",
+      "still": "Intro02_Scroll.png",
+      "d": 2.8,
+      "c": [
+        0.5,
+        0.45
+      ],
+      "fixedZoom": 1.045,
+      "pos": "story",
+      "start": 2.5,
+      "text": "힘을 전하는 마법\n기술과 지식까지 담아낸 스크롤"
+    },
+    {
+      "name": "origin-fall",
+      "still": "Intro03_Conflict.png",
+      "d": 2.8,
+      "c": [
+        0.5,
+        0.38
+      ],
+      "fixedZoom": 1.12,
+      "pos": "story",
+      "start": 5.0,
+      "text": "탐욕이 부른 몰락\n끝없는 다툼 속에 무너진 제국"
+    },
+    {
+      "name": "origin-peace",
+      "still": "Intro04_Peace.png",
+      "d": 2.8,
+      "c": [
+        0.5,
+        0.48
+      ],
+      "fixedZoom": 1.035,
+      "pos": "story",
+      "start": 7.5,
+      "text": "전설이 된 힘\n긴 세월 뒤, 잊혀진 비전"
+    },
+    {
+      "name": "origin-hunter",
+      "still": "Intro05_Traveler.png",
+      "d": 2.8,
+      "c": [
+        0.5,
+        0.5
+      ],
+      "fixedZoom": 1.045,
+      "pos": "story",
+      "start": 10.0,
+      "text": "전설을 쫓는 자들\n그 이름, 스크롤 헌터"
+    },
+    {
+      "name": "combat",
+      "src": 0.5,
+      "d": 10.3,
+      "c": [
+        0.5,
+        0.5
+      ],
+      "fixedZoom": 1,
+      "pos": "top",
+      "start": 12.5,
+      "text": "네 가지 스킬, 무수한 선택\n실시간 반응형 전략 전투"
+    },
+    {
+      "name": "hand",
+      "src": 10.5,
+      "d": 8.3,
+      "c": [
+        0.55,
+        0.64
+      ],
+      "fixedZoom": 1.12,
+      "pos": "top",
+      "start": 22.5,
+      "text": "다음 수를 준비하라\n시전과 코스트를 고려하는 전투"
+    },
+    {
+      "name": "reward",
+      "src": 0.2,
+      "d": 6.3,
+      "c": [
+        0.5,
+        0.5
+      ],
+      "fixedZoom": 1,
+      "recording": "reward",
+      "globalSrc": 64.76666666666667,
+      "pos": "top",
+      "start": 30.5,
+      "text": "승리를 새로운 힘으로\n보상을 고르고, 나만의 스킬 구성을 완성하라"
+    },
+    {
+      "name": "boss",
+      "src": 123.26666666666667,
+      "d": 9.3,
+      "c": [
+        0.5,
+        0.5
+      ],
+      "fixedZoom": 1,
+      "pos": "top",
+      "start": 36.5,
+      "text": "시전을 읽고, 반격하라\n차단할 순간과 방어할 순간"
+    },
+    {
+      "name": "boss-detail",
+      "src": 14.400000000000006,
+      "d": 8.8,
+      "c": [
+        0.5,
+        0.5
+      ],
+      "fixedZoom": 1,
+      "recording": "ending",
+      "globalSrc": 179.8,
+      "zoomStart": 4.0,
+      "focus": [
+        0.4895833333333333,
+        0.20833333333333334
+      ],
+      "hold": 0.65,
+      "fullAt": 6.6,
+      "start": 45.5,
+      "text": null
+    },
+    {
+      "name": "end",
+      "still": "Intro02_Scroll.png",
+      "d": 6,
+      "c": [
+        0.5,
+        0.5
+      ],
+      "fixedZoom": 1.04,
+      "pos": "center",
+      "start": 54.0,
+      "text": "SCROLL HUNTER\n적의 시전을 읽고, 반격의 순간을 선택하라"
+    }
+  ],
+  "playbackSpeed": 1,
+  "notes": "New gameplay. No cast/cost/damage edits. Separate forest and boss encounters. Matching input replay for English. Orb close-up smoothly expands to full frame at 52.1s, before the unchanged 53.1s impact. Floating-point affine transform. No removed waiting within clips."
+}

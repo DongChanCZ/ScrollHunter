@@ -1,0 +1,22 @@
+[
+  {
+    "language": "ko",
+    "source": "C:\\Users\\MBC-501-19\\AppData\\Local\\Temp\\ScrollHunter_HonestTrailer_20261019\\orbzoom-render-ko\\ScrollHunter_Trailer_KO_20261019_orbzoom_60s.mp4",
+    "bytes": 38631918,
+    "sha256": "c9e8fa9fcb0335774d93d40e94abc3c94a5720202c21f6f49dcdbd8cdc89eeaf",
+    "duration": 60,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30
+  },
+  {
+    "language": "en",
+    "source": "C:\\Users\\MBC-501-19\\AppData\\Local\\Temp\\ScrollHunter_HonestTrailer_20261019\\orbzoom-render-en\\ScrollHunter_Trailer_EN_20261019_orbzoom_60s.mp4",
+    "bytes": 39344742,
+    "sha256": "ae76b592f73a10e031d6c6b174617859c1eedfcaba2e248ad1ccd9584e967d61",
+    "duration": 60,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30
+  }
+]

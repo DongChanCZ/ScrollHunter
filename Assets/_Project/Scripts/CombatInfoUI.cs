@@ -132,6 +132,18 @@ public class CombatInfoUI : MonoBehaviour
         hintText.fontSizeMin = keyboardHintMinSize;
     }
 
+    public void ApplyControlTextStyle(System.Action<TMP_Text> apply)
+    {
+        foreach (var button in new[] { pauseButton, speedButton })
+        {
+            if (button == null) continue;
+            var shortcut = button.Find("ShortcutKey");
+            if (shortcut == null) continue;
+            foreach (var label in shortcut.GetComponentsInChildren<TMP_Text>(true)) apply(label);
+            CombatUI.HideTextBackdrop(shortcut);
+        }
+    }
+
     private bool Contains(RectTransform rect)
     {
         if (rect == null) return false;

@@ -1,0 +1,22 @@
+[
+  {
+    "Language": "ko",
+    "Path": "C:\\Users\\MBC-501-19\\Desktop\\발표자료\\ScrollHunter_트레일러_한글_60초_수정본.mp4",
+    "Bytes": 35581053,
+    "SHA256": "74218b374cadd83e88ca893a81358bc5e1cd0accc06f1b35cc49d00e2e95502d",
+    "Duration": 60,
+    "Width": 1920,
+    "Height": 1080,
+    "FPS": 30
+  },
+  {
+    "Language": "en",
+    "Path": "C:\\Users\\MBC-501-19\\Desktop\\발표자료\\ScrollHunter_트레일러_영문_60초_수정본.mp4",
+    "Bytes": 36118200,
+    "SHA256": "e766922e8374b19758d20b3e59f241f54def43eca456b167f13c28c7c86852b5",
+    "Duration": 60,
+    "Width": 1920,
+    "Height": 1080,
+    "FPS": 30
+  }
+]
