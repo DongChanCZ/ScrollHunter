@@ -1,5 +1,22 @@
 # CREDITS
 
+<a id="arcane-barrier-audio"></a>
+### 비전 배리어 효과음 (2026-10-20)
+
+- **Sacred Rune Lock – Holy Magic Seal Activation — Coghezzi**: https://pixabay.com/sound-effects/film-special-effects-sacred-rune-lock-holy-magic-seal-activation-533277/
+- **Pixabay Content License**: https://pixabay.com/service/license-summary/ (2026-10-20 확인). 게임에 포함하여 사용·수정 가능, 출처 표기 의무 없음. 음원 자체를 별도 상품으로 재배포하지 않는다.
+- 사용 파일: `Assets/_Project/Audio/Magic/sh_arcane_barrier.wav`. 원본의 0.09~2.85초 사용, 시작 0.005초·끝 0.15초 페이드, 모노 44.1kHz 변환. 피치 변경 없음.
+- 비전 배리어의 실제 방어도 부여 시점에 재생. 매직아머 효과음과 구분한다. [적용 사양](10_결정사항_로그.md#arcane-barrier-audio-20261020).
+
+<a id="arcane-barrier-art"></a>
+### 비전 배리어 룬 방패·아이콘 (2026-10-20)
+
+- **Colored summoning circles — johndh**: https://opengameart.org/content/colored-summoning-circles
+- **CC BY 3.0**: https://creativecommons.org/licenses/by/3.0/
+- 원형 문양의 원작: **4 summoning circles — Luke.RUSTLTD**, CC0. https://opengameart.org/content/4-summoning-circles
+- `circle5a.png`를 사용. Scroll Hunter에서 황금·아이보리색 매핑, 밝기를 투명도로 변환, 외곽/안쪽 분리, 반투명 막·어두운 아이콘 배경, 생성·확대·페이드 애니메이션을 추가했다.
+- 원본·가공본·출처: `Assets/_Project/UI/ArcaneBarrier/`. 해당 폴더의 `CREDITS.txt`를 포함하고 게임 배포 시 이 크레딧을 유지한다.
+
 <a id="itch-art-20261015"></a>
 ### itch.io 페이지 이미지 (2026-10-15)
 

@@ -1,0 +1,21 @@
+{
+  "method": "minimal XML fallback; artifact import font-size error 1000",
+  "changedParts": [
+    "xl/worksheets/sheet1.xml",
+    "xl/worksheets/sheet3.xml"
+  ],
+  "unchangedCells": 1854,
+  "skillCount": 15,
+  "defenseCount": 3,
+  "cost": 5,
+  "cast": 0.2,
+  "shield": 250,
+  "actionLock": 0.4,
+  "formulaRefsValid": true,
+  "otherZipEntriesIdentical": true,
+  "newFormulasRecalculated": true,
+  "cachedActionLock": 0.4,
+  "cachedDefenseCount": 3,
+  "formulaErrors": [],
+  "preview": "sheet-preview.png (temporary rich text font normalization only)"
+}

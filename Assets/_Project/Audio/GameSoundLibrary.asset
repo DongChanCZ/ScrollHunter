@@ -417,6 +417,28 @@ MonoBehaviour:
       volume: 1
       pitch: {x: 1, y: 1}
       cooldown: 0
+  - skill: {fileID: 11400000, guid: 7e98a5b8f8e3f48448ca9b6c33559e03, type: 2}
+    cast:
+      clips: []
+      volume: 1
+      pitch: {x: 1, y: 1}
+      cooldown: 0
+    castLoop:
+      clips: []
+      volume: 1
+      pitch: {x: 1, y: 1}
+      cooldown: 0
+    major:
+      clips:
+      - {fileID: 8300000, guid: 3ec711b162054a049a9901b2bd1eedd8, type: 3}
+      volume: 1
+      pitch: {x: 1, y: 1}
+      cooldown: 0.1
+    minor:
+      clips: []
+      volume: 1
+      pitch: {x: 1, y: 1}
+      cooldown: 0
   enemies:
   - enemy: {fileID: 11400000, guid: b8aafab413a6f8947bfae1674f21fd2a, type: 2}
     attacks:

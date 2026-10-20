@@ -1,0 +1,171 @@
+{
+    "passed": [
+        "dedicated self effect; Magic Armor unchanged",
+        "dedicated icon",
+        "5 cost / 0.2 cast / 250 shield unchanged",
+        "scaled animator",
+        "Membrane cannot block clicks",
+        "Inner cannot block clicks",
+        "Outer cannot block clicks",
+        "dedicated audio imported: 2.76 seconds",
+        "real TryUseSlot input accepted",
+        "exact 5 cost consumption",
+        "effect absent before cast completes",
+        "actual ShieldApplied grants 250",
+        "actual ShieldApplied starts only rune shield",
+        "one dedicated sound at shield grant; common shield sound absent",
+        "recorded cast completed, not cancelled",
+        "effect auto hides after 1.1 game seconds",
+        "original Magic Armor still usable",
+        "recorded Arcane Barrier and Magic Armor use separate sounds once each",
+        "actual Unity stereo output matches video within one capture frame (DSP buffer rounding)",
+        "real TryUseSlot input accepted",
+        "exact 5 cost consumption",
+        "effect absent before cast completes",
+        "actual ShieldApplied grants 250",
+        "actual ShieldApplied starts only rune shield",
+        "pause suspends active combat audio",
+        "pause freezes shield",
+        "real speed control switches to 2x",
+        "2x resume completes and hides shield",
+        "real TryUseSlot input accepted",
+        "exact 5 cost consumption",
+        "effect absent before cast completes",
+        "actual ShieldApplied grants 250",
+        "actual ShieldApplied starts only rune shield",
+        "combat cleanup stops barrier audio",
+        "real TryUseSlot input accepted",
+        "exact 5 cost consumption",
+        "effect absent before cast completes",
+        "stun cancellation emits no shield sound or effect",
+        "battle cleanup removes shield immediately"
+    ],
+    "failed": [],
+    "sounds": [
+        {
+            "frame": 0,
+            "volume": 0.6000000238418579,
+            "path": "Assets/_Project/Audio/Weapons/jc_bow_draw.wav"
+        },
+        {
+            "frame": 75,
+            "volume": 0.800000011920929,
+            "path": "Assets/_Project/Audio/Impacts/soft_heavy_02.ogg"
+        },
+        {
+            "frame": 75,
+            "volume": 0.75,
+            "path": "Assets/_Project/Audio/Weapons/jc_dagger_swing_02.wav"
+        },
+        {
+            "frame": 75,
+            "volume": 0.5,
+            "path": "Assets/_Project/Audio/Weapons/knife_slice.ogg"
+        },
+        {
+            "frame": 90,
+            "volume": 0.800000011920929,
+            "path": "Assets/_Project/Audio/Impacts/soft_heavy_02.ogg"
+        },
+        {
+            "frame": 90,
+            "volume": 0.8500000238418579,
+            "path": "Assets/_Project/Audio/Weapons/jc_bow_shoot_01.wav"
+        },
+        {
+            "frame": 96,
+            "volume": 0.75,
+            "path": "Assets/_Project/Audio/Weapons/jc_arrow_hit_01.wav"
+        },
+        {
+            "frame": 136,
+            "volume": 0.6000000238418579,
+            "path": "Assets/_Project/Audio/Weapons/jc_bow_draw.wav"
+        },
+        {
+            "frame": 168,
+            "volume": 0.800000011920929,
+            "path": "Assets/_Project/Audio/Magic/sh_arcane_barrier.wav"
+        },
+        {
+            "frame": 181,
+            "volume": 0.6499999761581421,
+            "path": "Assets/_Project/Audio/Impacts/plate_medium_02.ogg"
+        },
+        {
+            "frame": 181,
+            "volume": 0.75,
+            "path": "Assets/_Project/Audio/Weapons/jc_dagger_swing_03.wav"
+        },
+        {
+            "frame": 181,
+            "volume": 0.5,
+            "path": "Assets/_Project/Audio/Weapons/knife_slice.ogg"
+        },
+        {
+            "frame": 212,
+            "volume": 0.6499999761581421,
+            "path": "Assets/_Project/Audio/Impacts/plate_medium_00.ogg"
+        },
+        {
+            "frame": 212,
+            "volume": 0.8500000238418579,
+            "path": "Assets/_Project/Audio/Weapons/jc_bow_shoot_01.wav"
+        },
+        {
+            "frame": 218,
+            "volume": 0.75,
+            "path": "Assets/_Project/Audio/Weapons/jc_arrow_hit_01.wav"
+        },
+        {
+            "frame": 242,
+            "volume": 0.6000000238418579,
+            "path": "Assets/_Project/Audio/Weapons/jc_bow_draw.wav"
+        },
+        {
+            "frame": 287,
+            "volume": 0.6499999761581421,
+            "path": "Assets/_Project/Audio/Impacts/plate_medium_01.ogg"
+        },
+        {
+            "frame": 287,
+            "volume": 0.75,
+            "path": "Assets/_Project/Audio/Weapons/jc_dagger_swing_01.wav"
+        },
+        {
+            "frame": 287,
+            "volume": 0.5,
+            "path": "Assets/_Project/Audio/Weapons/knife_slice.ogg"
+        },
+        {
+            "frame": 291,
+            "volume": 0.699999988079071,
+            "path": "Assets/_Project/Audio/Magic/jc_magic_shield.wav"
+        },
+        {
+            "frame": 333,
+            "volume": 0.6499999761581421,
+            "path": "Assets/_Project/Audio/Impacts/plate_medium_02.ogg"
+        },
+        {
+            "frame": 333,
+            "volume": 0.8500000238418579,
+            "path": "Assets/_Project/Audio/Weapons/jc_bow_shoot_02.wav"
+        },
+        {
+            "frame": 339,
+            "volume": 0.75,
+            "path": "Assets/_Project/Audio/Weapons/jc_arrow_hit_02.wav"
+        }
+    ],
+    "inputCost": 10.0,
+    "afterCost": 5.0,
+    "castTime": 0.20000000298023225,
+    "effectTime": 0.23333358764648438,
+    "frames": 360,
+    "granted": 250,
+    "barrierSounds": 3,
+    "armorSounds": 1,
+    "sampleRate": 48000,
+    "audioSamples": 1150976
+}

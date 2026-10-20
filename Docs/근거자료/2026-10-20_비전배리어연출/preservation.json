@@ -1,0 +1,38 @@
+[
+  {
+    "passed": true,
+    "check": "Assets/_Project/Fonts/GmarketSansMedium SDF.asset"
+  },
+  {
+    "passed": true,
+    "check": "Assets/_Project/Fonts/NotoSansCJK/NotoSansJP-Medium SDF.asset"
+  },
+  {
+    "passed": true,
+    "check": "Assets/_Project/Fonts/NotoSansCJK/NotoSansSC-Medium SDF.asset"
+  },
+  {
+    "passed": true,
+    "check": "C:\\Users\\MBC-501-19\\AppData\\LocalLow\\DefaultCompany\\ScrollHunter\\Player-prev.log"
+  },
+  {
+    "passed": true,
+    "check": "C:\\Users\\MBC-501-19\\AppData\\LocalLow\\DefaultCompany\\ScrollHunter\\Player.log"
+  },
+  {
+    "passed": true,
+    "check": "C:\\Users\\MBC-501-19\\AppData\\LocalLow\\DefaultCompany\\ScrollHunter\\save.json"
+  },
+  {
+    "passed": true,
+    "check": "AGENTS/CLAUDE identical"
+  },
+  {
+    "passed": true,
+    "check": "temporary capture helper removed"
+  },
+  {
+    "passed": true,
+    "check": "SkillData only icon changed"
+  }
+]

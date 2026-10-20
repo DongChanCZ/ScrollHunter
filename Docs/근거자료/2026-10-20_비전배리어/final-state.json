@@ -1,0 +1,14 @@
+{
+  "playing": false,
+  "compiling": false,
+  "sceneDirty": false,
+  "cost": 5,
+  "cast": 0.2,
+  "rewardSkills": 7,
+  "passives": 10,
+  "barrierEntries": 1,
+  "jpNewGlyphs": true,
+  "zhNewGlyph": true,
+  "jpStatic": "Static",
+  "zhStatic": "Static"
+}

@@ -129,6 +129,7 @@ public static class GameAudioSetup
             new SkillSound { skill = S("Skill_SK12_Suppression"), major = Cue(0.45f, 0.97f, 1.03f, 0f, "Magic/sh_suppress_hit.wav") },   // 봉인음 아래 낮은 마력 충격(금속음 제거)
             // 방어·회복
             new SkillSound { skill = S("Skill_CrystalShield") },
+            new SkillSound { skill = S("Skill_SK15_ArcaneBarrier"), major = Cue(1f, 1f, 1f, 0.1f, "Magic/sh_arcane_barrier.wav") },
             new SkillSound { skill = S("Skill_SK14_Sanctuary"), castLoop = Cue(0.6f, 1f, 1f, 0f, "Magic/sh_sanctuary_soft_loop.wav") },
         };
 

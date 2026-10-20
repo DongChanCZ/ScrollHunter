@@ -1,0 +1,29 @@
+
+var f=UnityEngine.Object.FindFirstObjectByType<BattleFlow>();var p=UnityEngine.Object.FindFirstObjectByType<Player>();var d=UnityEngine.Object.FindFirstObjectByType<DeckSystem>();var c=UnityEngine.Object.FindFirstObjectByType<CostSystem>();var e=UnityEngine.Object.FindFirstObjectByType<EnemyManager>();var ui=UnityEngine.Object.FindFirstObjectByType<BattleRewardUI>();var info=UnityEngine.Object.FindFirstObjectByType<CombatInfoUI>();
+var flags=System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic;
+Func<object,string,object> get=(o,n)=>o.GetType().GetField(n,flags).GetValue(o);
+Action<object,string,object> set=(o,n,v)=>o.GetType().GetField(n,flags).SetValue(o,v);
+var pool=(BattleRewardOption[])get(f,"rewardPool");var card=pool.Single(x=>x.Card!=null&&x.Card.name=="Skill_SK15_ArcaneBarrier").Card;
+var oldSave=f.Inheritance;var lang=GameText.Current;var t=UnityEngine.Object.FindFirstObjectByType<TutorialFlow>();var s=UnityEngine.Object.FindFirstObjectByType<StoryUI>();bool te=t.enabled,se=s.enabled;float hold=(float)get(f,"finishingEffectHold");
+var checks=new List<string>();var layouts=new List<object>(); Action<bool,string> check=(ok,n)=>{if(!ok)throw new Exception(n);checks.Add(n);};
+RunRewardEffect passive=null;
+try{
+t.enabled=false;s.enabled=false;set(f,"inheritance",new InheritanceSave(System.IO.Path.Combine(Application.temporaryCachePath,"BarrierUI-"+Guid.NewGuid()+".json"),pool,d.CopyStartingDeck()));set(f,"finishingEffectHold",0f);f.RestartRun();
+passive=UnityEngine.Object.Instantiate(pool.Single(x=>x.Effect!=null&&x.Effect.name=="PS07_Bulwark").Effect);passive.Apply(p,c);
+var trial=d.CopyStartingDeck();trial[0]=card;d.SetDeck(trial);typeof(CostSystem).GetProperty("Current").SetValue(c,5f,null);
+check(p.GetShieldAmount(250)==300,"Bulwark +20% gives 300");
+check(d.TryUseSlot(0),"buffed skill usable");typeof(DeckSystem).GetMethod("AdvanceCast",flags).Invoke(d,new object[]{.2f});check(p.Shield==300&&info.DescribeCardEffect(card).Contains("300"),"buffed shield and description agree");
+passive.Remove();UnityEngine.Object.Destroy(passive);passive=null;f.RestartRun();set(f,"rewardPool",new[]{pool.Single(x=>x.Card==card)});
+foreach(var enemy in e.GetAliveEnemies().ToArray())enemy.TakeDamage(enemy.CurrentHp);e.NotifyEnemyDied();typeof(BattleFlow).GetMethod("Update",flags).Invoke(f,null);
+foreach(GameLanguage language in Enum.GetValues(typeof(GameLanguage))){
+GameText.SetLanguage(language);typeof(BattleFlow).GetMethod("RefreshUI",flags).Invoke(f,null);Canvas.ForceUpdateCanvases();
+var texts=ui.GetComponentsInChildren<TMPro.TMP_Text>(false).Where(x=>x.text.Contains(card.DisplayName)).ToArray();
+check(texts.Length>0,"visible reward name "+language);
+foreach(var text in texts){text.ForceMeshUpdate(true);check(!text.isTextOverflowing,"reward text fits "+language+" "+text.name);layouts.Add(new{lang=language.ToString(),text=text.text,size=text.fontSize,rect=text.rectTransform.rect.ToString()});}
+}
+GameText.SetLanguage(GameLanguage.Korean);typeof(BattleFlow).GetMethod("RefreshUI",flags).Invoke(f,null);
+}finally{
+if(passive!=null){passive.Remove();UnityEngine.Object.Destroy(passive);}
+f.ReturnToTitle();set(f,"rewardPool",pool);set(f,"inheritance",oldSave);set(f,"finishingEffectHold",hold);t.enabled=te;s.enabled=se;GameText.SetLanguage(lang);
+}
+return Newtonsoft.Json.JsonConvert.SerializeObject(new{passed=checks.Count,checks,layouts});

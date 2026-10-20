@@ -60,7 +60,7 @@ public static class RemainingSkillChecks
             if (tutorial != null) tutorial.enabled = false;
             Set(flow, "countdownSeconds", 0f); Set(flow, "finishingEffectHold", 0f);
             Set(player, "criticalChance", 0f); Set(metrics, "logEachInput", false);
-            Check(pool.Count(o => o.Card != null) == 6 && pool.Count(o => o.Effect != null) == 10, "six reward cards and ten passives");
+            Check(pool.Count(o => o.Card != null) == 7 && pool.Count(o => o.Effect != null) == 10, "seven reward cards and ten passives");
             Check(judgment.Cost == 7 && judgment.CastTime == 2.75f && judgment.Damage == 365 && judgment.HitCount == 1 && !judgment.IsAreaOfEffect && !judgment.IsChanneling, "SK08 saved specification");
             Check(blizzard.Cost == 5 && blizzard.CastTime == 1 && blizzard.Damage == 30 && blizzard.HitCount == 4 && blizzard.IsAreaOfEffect && !blizzard.IsChanneling, "SK09 saved specification");
             Check(sanctuary.Cost == 5 && sanctuary.CastTime == 2.5f && sanctuary.Category == SkillCategory.Shield && sanctuary.IsChanneling && sanctuary.HasValidChannel, "SK14 saved specification");

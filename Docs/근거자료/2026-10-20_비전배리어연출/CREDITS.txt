@@ -1,0 +1,15 @@
+Arcane Barrier rune artwork
+
+"Colored summoning circles" by johndh
+https://opengameart.org/content/colored-summoning-circles
+License: Creative Commons Attribution 3.0 (CC BY 3.0)
+https://creativecommons.org/licenses/by/3.0/
+
+Based on "4 summoning circles" by Luke.RUSTLTD (CC0)
+https://opengameart.org/content/4-summoning-circles
+
+Source: circle5a.png (red rune circle).
+Scroll Hunter modifications: gold/ivory colour mapping; brightness-to-alpha;
+inner/outer rune separation; transparent membrane; dark icon background;
+front-facing reveal, scale and fade animation.
+The original source is retained as circle5a-source.png.
