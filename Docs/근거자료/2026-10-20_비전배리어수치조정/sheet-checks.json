@@ -1,0 +1,17 @@
+{
+  "method": "single-cell XML edit after artifact font-size import failure",
+  "changedCells": [
+    [
+      "스킬",
+      "O19",
+      250,
+      230
+    ]
+  ],
+  "formattingPreserved": true,
+  "otherZipEntriesIdentical": true,
+  "formulasUnchanged": true,
+  "shieldPerCost": 46.0,
+  "magicArmorPerCost": 40.0,
+  "rewardEfficiencyBonus": 0.1499999999999999
+}

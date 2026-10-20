@@ -1,0 +1,43 @@
+{
+  "passed": 16,
+  "checks": [
+    "SK15: 5 cost / 0.2 seconds / 230 shield",
+    "actual AddShield gives 230",
+    "normal The End consumes 230 shield, 20 HP",
+    "ruin The End consumes 230 shield, 45 HP",
+    "Korean base description 230",
+    "English base description 230",
+    "Japanese base description 230",
+    "ChineseSimplified base description 230",
+    "Spanish base description 230",
+    "20 percent passive grants 276",
+    "Korean buffed description 276",
+    "English buffed description 276",
+    "Japanese buffed description 276",
+    "ChineseSimplified buffed description 276",
+    "Spanish buffed description 276",
+    "Magic Armor remains 3 cost / 120 shield"
+  ],
+  "descriptions": [
+    {
+      "language": "Korean",
+      "text": "<color=#91CFFF>방어도 <b>+230</b></color>"
+    },
+    {
+      "language": "English",
+      "text": "<color=#91CFFF>Shield <b>+230</b></color>"
+    },
+    {
+      "language": "Japanese",
+      "text": "<color=#91CFFF>シールド <b>+230</b></color>"
+    },
+    {
+      "language": "ChineseSimplified",
+      "text": "<color=#91CFFF>护盾 <b>+230</b></color>"
+    },
+    {
+      "language": "Spanish",
+      "text": "<color=#91CFFF>Escudo <b>+230</b></color>"
+    }
+  ]
+}

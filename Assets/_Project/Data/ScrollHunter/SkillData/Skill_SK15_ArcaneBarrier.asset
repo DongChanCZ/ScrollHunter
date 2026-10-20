@@ -22,6 +22,6 @@ MonoBehaviour:
   resolveHitsSeparately: 0
   activation: 0
   castTime: 0.2
-  shieldAmount: 250
+  shieldAmount: 230
   isAreaOfEffect: 0
   channelEffect: {fileID: 0}
