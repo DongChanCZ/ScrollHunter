@@ -1,0 +1,307 @@
+{
+  "models": [
+    {
+      "name": "DESERT_E01_SCORPION",
+      "bytes": 9774384,
+      "triangles": 38744,
+      "meshes": 1,
+      "embedded_textures": 2,
+      "skins": 0,
+      "animations": 0,
+      "sha256": "7fb1bc785020c98213731f3a0924ded89fbc85aca99f076f29225d382cea04d0",
+      "texture_sizes": [
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ]
+      ],
+      "fbx_embedded_png_count": 2
+    },
+    {
+      "name": "DESERT_E02_SANDWORM",
+      "bytes": 9714940,
+      "triangles": 31842,
+      "meshes": 1,
+      "embedded_textures": 2,
+      "skins": 0,
+      "animations": 0,
+      "sha256": "3c4f4129fd22a07cc9c70f4303799f6cf70e52fe41b1bdca87ef88368864e76f",
+      "texture_sizes": [
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ]
+      ],
+      "fbx_embedded_png_count": 2
+    },
+    {
+      "name": "DESERT_E03_MUMMY",
+      "bytes": 9607076,
+      "triangles": 36292,
+      "meshes": 1,
+      "embedded_textures": 2,
+      "skins": 0,
+      "animations": 0,
+      "sha256": "cd8e163c25ef069524b1785435671980667fc045c9e18370f15d960a450c2d47",
+      "texture_sizes": [
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ]
+      ],
+      "fbx_embedded_png_count": 2
+    },
+    {
+      "name": "DESERT_E04_SAND_GIANT",
+      "bytes": 10102208,
+      "triangles": 35580,
+      "meshes": 1,
+      "embedded_textures": 2,
+      "skins": 0,
+      "animations": 0,
+      "sha256": "d79fbe11771cda88abedd97ad72db90f9f05b09515a8e79ec13ba2d2cfced04e",
+      "texture_sizes": [
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ]
+      ],
+      "fbx_embedded_png_count": 2
+    },
+    {
+      "name": "DESERT_E05_GUARDIAN_GOLEM",
+      "bytes": 9989124,
+      "triangles": 34008,
+      "meshes": 1,
+      "embedded_textures": 2,
+      "skins": 0,
+      "animations": 0,
+      "sha256": "0cad426607fb895f44bb8c3eed29e8285250ebadd67fb06299ddd561718931e7",
+      "texture_sizes": [
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ]
+      ],
+      "fbx_embedded_png_count": 2
+    },
+    {
+      "name": "DESERT_P01_ADOBE_HOUSE",
+      "bytes": 9012128,
+      "triangles": 29024,
+      "meshes": 1,
+      "embedded_textures": 2,
+      "skins": 0,
+      "animations": 0,
+      "sha256": "28167b14c1a095c80003bd5b26fc3be8ac88efcb85dc9a0aa2b01dd9e7d948b8",
+      "texture_sizes": [
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ]
+      ],
+      "fbx_embedded_png_count": 2
+    },
+    {
+      "name": "DESERT_P02_AWNING_STALL",
+      "bytes": 10247744,
+      "triangles": 32994,
+      "meshes": 1,
+      "embedded_textures": 2,
+      "skins": 0,
+      "animations": 0,
+      "sha256": "ab8967dbffe678f6d3fb9f44a81d94144948e311a22a8134a8b26556f48c0a52",
+      "texture_sizes": [
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ]
+      ],
+      "fbx_embedded_png_count": 2
+    },
+    {
+      "name": "DESERT_P03_SANDSTONE_ROCKS",
+      "bytes": 9214124,
+      "triangles": 28230,
+      "meshes": 1,
+      "embedded_textures": 2,
+      "skins": 0,
+      "animations": 0,
+      "sha256": "4375697d37d89e13113e9e63df39972c01866fe3c8b8879d71737d0ad5111feb",
+      "texture_sizes": [
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ]
+      ],
+      "fbx_embedded_png_count": 2
+    },
+    {
+      "name": "DESERT_P04_RUIN_GATEWAY",
+      "bytes": 9405708,
+      "triangles": 28544,
+      "meshes": 1,
+      "embedded_textures": 2,
+      "skins": 0,
+      "animations": 0,
+      "sha256": "526e0e3eccd2bd760c0f5fc19897bc4a417c322c96c43b5cac4df80b57aab6bd",
+      "texture_sizes": [
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ]
+      ],
+      "fbx_embedded_png_count": 2
+    },
+    {
+      "name": "DESERT_P05_RUIN_COLUMN",
+      "bytes": 8800804,
+      "triangles": 29890,
+      "meshes": 1,
+      "embedded_textures": 2,
+      "skins": 0,
+      "animations": 0,
+      "sha256": "3b88dea6d184c3160cd8fa5a72b7d9750bd6724b3d8ccb62696f380888bd8ff5",
+      "texture_sizes": [
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ]
+      ],
+      "fbx_embedded_png_count": 2
+    },
+    {
+      "name": "DESERT_P06_SARCOPHAGUS",
+      "bytes": 9284456,
+      "triangles": 30028,
+      "meshes": 1,
+      "embedded_textures": 2,
+      "skins": 0,
+      "animations": 0,
+      "sha256": "5ad92cebb13871ba6bb79ee25b0b99c13d71a7a9f22f0ae8cf797ed068bdd0dd",
+      "texture_sizes": [
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ]
+      ],
+      "fbx_embedded_png_count": 2
+    },
+    {
+      "name": "DESERT_P07_ALTAR",
+      "bytes": 9610584,
+      "triangles": 29402,
+      "meshes": 1,
+      "embedded_textures": 2,
+      "skins": 0,
+      "animations": 0,
+      "sha256": "9e7c65d3d99ffe9364a7e83d867638440b2be19eca327d56a38a6b51c2ae96f6",
+      "texture_sizes": [
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ]
+      ],
+      "fbx_embedded_png_count": 2
+    },
+    {
+      "name": "DESERT_P08_BRAZIER",
+      "bytes": 8933232,
+      "triangles": 28754,
+      "meshes": 1,
+      "embedded_textures": 2,
+      "skins": 0,
+      "animations": 0,
+      "sha256": "04d87b30b28d7a4cc458fe089d08e2938006be7fdfbc6697b00991168398dc1f",
+      "texture_sizes": [
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ]
+      ],
+      "fbx_embedded_png_count": 2
+    }
+  ],
+  "backgrounds": [
+    {
+      "name": "DESERT_BG01_VILLAGE.png",
+      "size": [
+        1536,
+        864
+      ]
+    },
+    {
+      "name": "DESERT_BG02_OPEN_DESERT.png",
+      "size": [
+        1536,
+        864
+      ]
+    },
+    {
+      "name": "DESERT_BG03_RUINS_ENTRANCE.png",
+      "size": [
+        1536,
+        864
+      ]
+    },
+    {
+      "name": "DESERT_BG04_RUINS_ALTAR.png",
+      "size": [
+        1536,
+        864
+      ]
+    }
+  ]
+}

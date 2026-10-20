@@ -104,3 +104,6 @@ InitTestScene*.unity*
 
 # Auto-generated cache in Assets folder
 /[Aa]ssets/[Ss]ceneDependencyCache*
+
+# Large asset archive is stored in Google Drive.
+/Docs/사막스테이지_사전제작/ScrollHunter_Desert_Assets_20261019.zip

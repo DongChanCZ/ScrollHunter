@@ -1,0 +1,630 @@
+{
+  "date": "2026-10-19",
+  "workflows": {
+    "scorpion": "https://3d.varco.ai/flow/b686afb0-e976-4bcc-b41f-b53e20b6de72",
+    "assets": "https://3d.varco.ai/flow/4f9bb0a7-0bab-4c9c-8bf5-8134c8e5aefa",
+    "backgrounds": "https://3d.varco.ai/flow/5682f772-42a9-4470-ae21-3875c6e0f806"
+  },
+  "models": [
+    {
+      "name": "DESERT_E01_SCORPION",
+      "fbx": "C:\\Users\\MBC-501-19\\Downloads\\ScrollHunter-Generate 3D-Tan Scorpion-1-6c57276a29739517ffa2edd848f81615.fbx",
+      "glb": "C:\\Users\\MBC-501-19\\Downloads\\ScrollHunter-Generate 3D-Tan Scorpion-1-88b58d992d0d15502f5834dee0253cb2.glb"
+    },
+    {
+      "name": "DESERT_E02_SANDWORM",
+      "fbx": "C:\\Users\\MBC-501-19\\Downloads\\ScrollHunter Desert Assets 2026-10-19-Generate 3D-Toothed Sandworm-1-888f28683c6c90cc18cb79e68e690a9a.fbx",
+      "glb": "C:\\Users\\MBC-501-19\\Downloads\\ScrollHunter Desert Assets 2026-10-19-Generate 3D-Toothed Sandworm-1-9e1f117f3dd591705e5fd21b6eb152ec.glb"
+    },
+    {
+      "name": "DESERT_E03_MUMMY",
+      "fbx": "C:\\Users\\MBC-501-19\\Downloads\\ScrollHunter Desert Assets 2026-10-19-Generate 3D-Egyptian Mummy Character-1-9fbeecaf9b9d6d34ab318c948794bf57.fbx",
+      "glb": "C:\\Users\\MBC-501-19\\Downloads\\ScrollHunter Desert Assets 2026-10-19-Generate 3D-Egyptian Mummy Character-1-89fab27ffc4824b2a7076b0726dea8f3.glb"
+    },
+    {
+      "name": "DESERT_E04_SAND_GIANT",
+      "fbx": "C:\\Users\\MBC-501-19\\Downloads\\ScrollHunter Desert Assets 2026-10-19-Generate 3D-Carved Wood Golem-1-1495f26c0072404af7a455c11479a682.fbx",
+      "glb": "C:\\Users\\MBC-501-19\\Downloads\\ScrollHunter Desert Assets 2026-10-19-Generate 3D-Carved Wood Golem-1-b9056e53fe681b9ed8686bdf00d37e9f.glb"
+    },
+    {
+      "name": "DESERT_E05_GUARDIAN_GOLEM",
+      "fbx": "C:\\Users\\MBC-501-19\\Downloads\\ScrollHunter Desert Assets 2026-10-19-Generate 3D-Egyptian Stone Golem-1-f933240d7fbea8715fb6fe168778890f.fbx",
+      "glb": "C:\\Users\\MBC-501-19\\Downloads\\ScrollHunter Desert Assets 2026-10-19-Generate 3D-Egyptian Stone Golem-1-b1ea2f73e74658a9fecd5ecf7270caf4.glb"
+    },
+    {
+      "name": "DESERT_P01_ADOBE_HOUSE",
+      "fbx": "C:\\Users\\MBC-501-19\\Downloads\\ScrollHunter Desert Assets 2026-10-19-Generate 3D-Stylized Adobe House-1-4aaf56eece7ff296f2d62584abcfa51f.fbx",
+      "glb": "C:\\Users\\MBC-501-19\\Downloads\\ScrollHunter Desert Assets 2026-10-19-Generate 3D-Stylized Adobe House-1-3d1f529ffdaa89cacbe50c0397a1ebb0.glb"
+    },
+    {
+      "name": "DESERT_P02_AWNING_STALL",
+      "fbx": "C:\\Users\\MBC-501-19\\Downloads\\ScrollHunter Desert Assets 2026-10-19-Generate 3D-Wooden Market Stall-1-8d77ad2412d5611efa94a5641bef4e28.fbx",
+      "glb": "C:\\Users\\MBC-501-19\\Downloads\\ScrollHunter Desert Assets 2026-10-19-Generate 3D-Wooden Market Stall-1-8c0893eadee5bb7bdac61dc3771e685c.glb"
+    },
+    {
+      "name": "DESERT_P03_SANDSTONE_ROCKS",
+      "fbx": "C:\\Users\\MBC-501-19\\Downloads\\ScrollHunter Desert Assets 2026-10-19-Generate 3D-Sandstone Rock Formation-1-1e24c5c3c754403bfb401ebdf7f99a77.fbx",
+      "glb": "C:\\Users\\MBC-501-19\\Downloads\\ScrollHunter Desert Assets 2026-10-19-Generate 3D-Sandstone Rock Formation-1-17e46d65818ff287be0f24f05be23771.glb"
+    },
+    {
+      "name": "DESERT_P04_RUIN_GATEWAY",
+      "fbx": "C:\\Users\\MBC-501-19\\Downloads\\ScrollHunter Desert Assets 2026-10-19-Generate 3D-Ruined Ornate Stone Arch-1-8099465acb57614b271e044f5f899096.fbx",
+      "glb": "C:\\Users\\MBC-501-19\\Downloads\\ScrollHunter Desert Assets 2026-10-19-Generate 3D-Ruined Ornate Stone Arch-1-b67f63797d113d60eee97ea21d83254e.glb"
+    },
+    {
+      "name": "DESERT_P05_RUIN_COLUMN",
+      "fbx": "C:\\Users\\MBC-501-19\\Downloads\\ScrollHunter Desert Assets 2026-10-19-Generate 3D-Ancient Sandstone Column-1-c81f1b4b36057f274fe484975adfd5a5.fbx",
+      "glb": "C:\\Users\\MBC-501-19\\Downloads\\ScrollHunter Desert Assets 2026-10-19-Generate 3D-Ancient Sandstone Column-1-061dfa759bf53b013589d1554ed15a4d.glb"
+    },
+    {
+      "name": "DESERT_P06_SARCOPHAGUS",
+      "fbx": "C:\\Users\\MBC-501-19\\Downloads\\ScrollHunter Desert Assets 2026-10-19-Generate 3D-Stone Pharaoh Sarcophagus-1-f729ef1c14b15bb4f875e33a2277b7d3.fbx",
+      "glb": "C:\\Users\\MBC-501-19\\Downloads\\ScrollHunter Desert Assets 2026-10-19-Generate 3D-Stone Pharaoh Sarcophagus-1-3fd088723a76dede10473d20c1a3bd3f.glb"
+    },
+    {
+      "name": "DESERT_P07_ALTAR",
+      "fbx": "C:\\Users\\MBC-501-19\\Downloads\\ScrollHunter Desert Assets 2026-10-19-Generate 3D-Ancient Stone Pedestal-1-0862bcf8af7e8205f3715d483f080c3a.fbx",
+      "glb": "C:\\Users\\MBC-501-19\\Downloads\\ScrollHunter Desert Assets 2026-10-19-Generate 3D-Ancient Stone Pedestal-1-bd1a27c3d5ab7424d429a00523a17a13.glb"
+    },
+    {
+      "name": "DESERT_P08_BRAZIER",
+      "fbx": "C:\\Users\\MBC-501-19\\Downloads\\ScrollHunter Desert Assets 2026-10-19-Generate 3D-Ancient Ritual Basin-1-a78b51380fd750fba8a94fe990e58bc0.fbx",
+      "glb": "C:\\Users\\MBC-501-19\\Downloads\\ScrollHunter Desert Assets 2026-10-19-Generate 3D-Ancient Ritual Basin-1-74be699def4415b920ab73b584826251.glb"
+    }
+  ],
+  "references": [
+    {
+      "name": "DESERT_E01_SCORPION",
+      "path": "C:\\Users\\MBC-501-19\\Downloads\\354e280495b0fab465e1c214c00c57d1.png"
+    },
+    {
+      "name": "DESERT_E02_SANDWORM",
+      "path": "C:\\Users\\MBC-501-19\\Downloads\\6ac3118fab7d0977a931f0f7e6331b7c.png"
+    },
+    {
+      "name": "DESERT_E03_MUMMY",
+      "path": "C:\\Users\\MBC-501-19\\Downloads\\2c6ba7dd60e7d2aac75a1e087dfd2fa0.png"
+    },
+    {
+      "name": "DESERT_E04_SAND_GIANT",
+      "path": "C:\\Users\\MBC-501-19\\Downloads\\f99242f010d870ac62ead17d30e9aa6d.png"
+    },
+    {
+      "name": "DESERT_E05_GUARDIAN_GOLEM",
+      "path": "C:\\Users\\MBC-501-19\\Downloads\\e15031620225f047e35be3914166af28.png"
+    },
+    {
+      "name": "DESERT_P01_ADOBE_HOUSE",
+      "path": "C:\\Users\\MBC-501-19\\Downloads\\24ea4cf8af6e225445213d4b6b7c9579.png"
+    },
+    {
+      "name": "DESERT_P02_AWNING_STALL",
+      "path": "C:\\Users\\MBC-501-19\\Downloads\\499115a5e85903ba40130112d7dbc115.png"
+    },
+    {
+      "name": "DESERT_P03_SANDSTONE_ROCKS",
+      "path": "C:\\Users\\MBC-501-19\\Downloads\\784469e730bf1c047fbfda2c354155bd.png"
+    },
+    {
+      "name": "DESERT_P04_RUIN_GATEWAY",
+      "path": "C:\\Users\\MBC-501-19\\Downloads\\1af8a6a243881070a31f652c6cb03f2d.png"
+    },
+    {
+      "name": "DESERT_P05_RUIN_COLUMN",
+      "path": "C:\\Users\\MBC-501-19\\Downloads\\be45e0b880fab8f1f818e65132db8b8e.png"
+    },
+    {
+      "name": "DESERT_P06_SARCOPHAGUS",
+      "path": "C:\\Users\\MBC-501-19\\Downloads\\7e229b06cbf6269f3984557aa35ff9e0.png"
+    },
+    {
+      "name": "DESERT_P07_ALTAR",
+      "path": "C:\\Users\\MBC-501-19\\Downloads\\0ad78c342d8b1a77edc5f031605b4006.png"
+    },
+    {
+      "name": "DESERT_P08_BRAZIER",
+      "path": "C:\\Users\\MBC-501-19\\Downloads\\9889a15ee56a6b42ec24fc252a6a4198.png"
+    }
+  ],
+  "backgrounds": [
+    {
+      "name": "DESERT_BG01_VILLAGE",
+      "path": "C:\\Users\\MBC-501-19\\Downloads\\d5531c14f90010cbdbd72de6b34b8d80.png"
+    },
+    {
+      "name": "DESERT_BG02_OPEN_DESERT",
+      "path": "C:\\Users\\MBC-501-19\\Downloads\\1b441d86108ba7f51253ecaa0b739da4.png"
+    },
+    {
+      "name": "DESERT_BG03_RUINS_ENTRANCE",
+      "path": "C:\\Users\\MBC-501-19\\Downloads\\50171695248be27d855f6616f23e4b28.png"
+    },
+    {
+      "name": "DESERT_BG04_RUINS_ALTAR",
+      "path": "C:\\Users\\MBC-501-19\\Downloads\\ec19fdd53b9fe1425dbd93edc449803c.png"
+    }
+  ],
+  "prompts": {
+    "scorpion": "DESERT_E01_SCORPION. Create ONE complete desert scorpion monster asset concept for Scroll Hunter, matching a restrained stylized medieval fantasy 3D game: matte hand-painted materials, chunky readable shapes, soft cartoon shading, moderate detail, no photorealism and no overly angular polygon facets. Sandy ochre chitin with darker umber joints and muted amber eyes. Accurate readable scorpion anatomy: compact armored body, exactly eight separate walking legs in four pairs, exactly two large front pincers, one articulated segmented tail with a single stinger. Neutral relaxed symmetric stance for future skeletal rigging, all legs clearly spread apart and not merged with body, pincers separated and slightly open. Tail rises behind the body with a gentle arch; tail segments do not intersect or wrap tightly around body. Full creature visible, front three-quarter slightly elevated view so all limb roots can be understood, entire feet and stinger inside frame, ample margins. One creature centered on plain uniform light warm-gray background, diffuse neutral studio light, tiny contact shadow only. No terrain, sand pile, rocks, pedestal, base, effects, text, labels, frame, cropped limbs or other creatures. Not humanoid, no clothing or weapons.",
+    "sandworm": "DESERT_E02_SANDWORM. One complete sandworm creature for Scroll Hunter, a stylized medieval fantasy game. Long thick limbless segmented sand-colored body, darker ochre armored ridges, broad round mouth with a simple ring of large triangular teeth and a clear jaw opening, no human face. Body shown fully above ground for 3D reconstruction, uncoiled in a gentle shallow S curve with head raised slightly, all segments visible and no self-intersections. The lower body will later be buried in sand in-game, but model the complete intact body now. Front three-quarter asset view, whole body and tail inside frame with ample margin. Matte hand-painted textures, clean readable chunky anatomy, soft cartoon shading, restrained weathering, match Scroll Hunter fantasy models; not photorealistic, not tiny chibi, not excessively faceted. Uniform light warm-gray background, soft neutral studio lighting. Exactly one creature, no terrain, sand mound, pedestal, particles, effects, text, labels, frame or extra creatures.",
+    "mummy": "DESERT_E03_MUMMY. One complete humanoid mummy enemy for Scroll Hunter, restrained stylized medieval desert fantasy, matte hand-painted textures and soft cartoon shading. Ancient dried lean adult human wrapped in aged ivory linen bandages, muted turquoise belt and small tarnished bronze collar, dim amber eyes, eerie but not gore. Full body neutral symmetric T pose, straight arms held horizontally, palms facing down, five separate relaxed fingers each hand, legs slightly apart, feet forward and all joints anatomically clear for humanoid auto-rigging. Bandages stay close to body; no long loose cloth, no robe skirt, no weapons, no pedestal or terrain. Front three-quarter view, complete hands and feet visible with generous frame margins. One character on uniform light warm-gray background, neutral diffuse studio lighting. Readable medium-detail shapes, not photorealistic, not chibi, no text or extra characters.",
+    "assets": [
+      "DESERT_E04_SAND_GIANT. A towering humanoid sand giant with exactly two arms and two legs, broad shoulders and a heavy torso made from compact weathered sandstone and packed sand. Thick sturdy fingers, ancient carved face, muted ochre body with darker seams. Clearly connected shoulder elbow hip knee joints, human proportions adapted to a stocky giant for humanoid rigging. Neutral symmetric T pose, arms horizontal, legs slightly apart, five fingers per hand, all hands and feet visible. No weapon or loose cloth. Match Scroll Hunter: restrained stylized medieval desert fantasy, matte hand-painted textures, soft cartoon shading, chunky readable forms, moderate detail, no photorealism, no excessive polygon facets, no glossy plastic. One complete isolated asset on plain light warm-gray background, front three-quarter view, diffuse neutral studio light. Entire silhouette in frame with generous margins. No text, watermark, scene, terrain base, particles, effects or other assets.",
+      "DESERT_E05_GUARDIAN_GOLEM. An ancient desert guardian golem, monumental humanoid sentinel with exactly two arms and two legs. Layered sandstone armor blocks over clearly connected dark bronze joint supports, broad chest inset with one small turquoise gem, simple stern mask head, large squared hands and planted feet. Restrained Egyptian-inspired geometric carvings, stone weight and age, no floating parts. Neutral symmetric T pose with horizontal arms and legs slightly apart, separated fingers and anatomically readable shoulders elbows hips knees for humanoid rigging. No weapon, no pedestal. Match Scroll Hunter: restrained stylized medieval desert fantasy, matte hand-painted textures, soft cartoon shading, chunky readable forms, moderate detail, no photorealism, no excessive polygon facets, no glossy plastic. One complete isolated asset on plain light warm-gray background, front three-quarter view, diffuse neutral studio light. Entire silhouette in frame with generous margins. No text, watermark, scene, terrain base, particles, effects or other assets.",
+      "DESERT_P01_ADOBE_HOUSE. One small modular desert village adobe house, simple warm sandy plaster walls, flat roof with low parapet, rounded corners, one recessed wooden door, two small shuttered windows, exposed short wooden roof beams. Single story, intact self-contained building, simple flat bottom, no ground tile, no neighboring buildings, no interior cutaway. Match Scroll Hunter: restrained stylized medieval desert fantasy, matte hand-painted textures, soft cartoon shading, chunky readable forms, moderate detail, no photorealism, no excessive polygon facets, no glossy plastic. One complete isolated asset on plain light warm-gray background, front three-quarter view, diffuse neutral studio light. Entire silhouette in frame with generous margins. No text, watermark, scene, terrain base, particles, effects or other assets.",
+      "DESERT_P02_AWNING_STALL. One modular desert market awning stall, four sturdy timber posts, low wooden counter and muted terracotta cloth canopy stretched over a simple frame. A few securely attached clay jars and rolled fabric on the counter, readable large shapes. Open sides, no character, no ground tile, no floor slab, no surrounding market. Match Scroll Hunter: restrained stylized medieval desert fantasy, matte hand-painted textures, soft cartoon shading, chunky readable forms, moderate detail, no photorealism, no excessive polygon facets, no glossy plastic. One complete isolated asset on plain light warm-gray background, front three-quarter view, diffuse neutral studio light. Entire silhouette in frame with generous margins. No text, watermark, scene, terrain base, particles, effects or other assets.",
+      "DESERT_P03_SANDSTONE_ROCKS. One compact reusable cluster of three naturally weathered sandstone rocks joined at their lower contact area, one tall rock and two smaller rocks. Wind-smoothed layered warm ochre stone, rounded erosion and subtle cracks, asymmetric silhouette. Flat stable underside for placing in dunes, no sand base, no ground plane, no plants. Match Scroll Hunter: restrained stylized medieval desert fantasy, matte hand-painted textures, soft cartoon shading, chunky readable forms, moderate detail, no photorealism, no excessive polygon facets, no glossy plastic. One complete isolated asset on plain light warm-gray background, front three-quarter view, diffuse neutral studio light. Entire silhouette in frame with generous margins. No text, watermark, scene, terrain base, particles, effects or other assets.",
+      "DESERT_P04_RUIN_GATEWAY. One freestanding ancient desert ruin entrance gateway, two thick sandstone pillars supporting a heavy carved lintel, wide open unobstructed doorway, worn geometric sun motifs and tiny desaturated turquoise inlays. A few chipped corners but structurally complete. Self-contained modular arch portal, no door panel, no floor slab, no back wall or terrain. Match Scroll Hunter: restrained stylized medieval desert fantasy, matte hand-painted textures, soft cartoon shading, chunky readable forms, moderate detail, no photorealism, no excessive polygon facets, no glossy plastic. One complete isolated asset on plain light warm-gray background, front three-quarter view, diffuse neutral studio light. Entire silhouette in frame with generous margins. No text, watermark, scene, terrain base, particles, effects or other assets.",
+      "DESERT_P05_RUIN_COLUMN. One freestanding ancient sandstone ruin column with a square stable foot, thick round segmented shaft, simple geometric capital, weathered carved bands with tiny muted turquoise traces. Upright and intact with small age chips, readable low complexity silhouette. No surrounding ruins or floor tile. Match Scroll Hunter: restrained stylized medieval desert fantasy, matte hand-painted textures, soft cartoon shading, chunky readable forms, moderate detail, no photorealism, no excessive polygon facets, no glossy plastic. One complete isolated asset on plain light warm-gray background, front three-quarter view, diffuse neutral studio light. Entire silhouette in frame with generous margins. No text, watermark, scene, terrain base, particles, effects or other assets.",
+      "DESERT_P06_SARCOPHAGUS. One closed ancient desert stone sarcophagus upright on its own flat bottom, worn sandstone body, sculpted stylized human mask and folded-arm relief on lid, geometric bands in faded bronze and muted turquoise. Solid thick readable forms, no loose props, no mummy emerging, no platform or ground. Match Scroll Hunter: restrained stylized medieval desert fantasy, matte hand-painted textures, soft cartoon shading, chunky readable forms, moderate detail, no photorealism, no excessive polygon facets, no glossy plastic. One complete isolated asset on plain light warm-gray background, front three-quarter view, diffuse neutral studio light. Entire silhouette in frame with generous margins. No text, watermark, scene, terrain base, particles, effects or other assets.",
+      "DESERT_P07_ALTAR. One low broad ancient desert ritual altar made of sandstone, rectangular stepped base integrated into the object, thick slab top, circular recessed ritual pattern and modest turquoise inlays, geometric sun symbol on front. Complete freestanding compact prop, no beam, no magic effects, no surrounding floor or temple. Match Scroll Hunter: restrained stylized medieval desert fantasy, matte hand-painted textures, soft cartoon shading, chunky readable forms, moderate detail, no photorealism, no excessive polygon facets, no glossy plastic. One complete isolated asset on plain light warm-gray background, front three-quarter view, diffuse neutral studio light. Entire silhouette in frame with generous margins. No text, watermark, scene, terrain base, particles, effects or other assets.",
+      "DESERT_P08_BRAZIER. One tall freestanding ancient desert brazier, broad shallow bronze bowl on a sturdy carved sandstone pedestal, three thick bronze support braces, weathered ochre stone and dark patinated metal. Empty dark bowl, NO fire, NO smoke, NO glowing particles, so fire can be added separately later. Stable integrated foot, no ground tile. Match Scroll Hunter: restrained stylized medieval desert fantasy, matte hand-painted textures, soft cartoon shading, chunky readable forms, moderate detail, no photorealism, no excessive polygon facets, no glossy plastic. One complete isolated asset on plain light warm-gray background, front three-quarter view, diffuse neutral studio light. Entire silhouette in frame with generous margins. No text, watermark, scene, terrain base, particles, effects or other assets."
+    ],
+    "backgrounds": [
+      "DESERT_BG01_VILLAGE. A small abandoned desert village at the edge of the dunes. Warm adobe houses with flat parapet roofs, wooden shutters and modest terracotta cloth awnings frame a sandy open plaza. A few clay jars and dry palm silhouettes near the outer edges. Midday haze with soft warm sunlight, welcoming but deserted atmosphere. A widescreen 16:9 empty battle background for Scroll Hunter, restrained stylized medieval desert fantasy, painterly matte textures, soft cartoon shading, natural silhouettes without hard polygon boundaries, match handcrafted game environments, not photorealistic. Camera at human chest height looking slightly down, horizon near upper third. Broad flat unobstructed fighting ground in lower middle two-thirds, room for three full-body enemies side by side at midground, scenery framing left and right, bottom quarter quiet for HUD. No people, creatures, text, UI, weapons, magical effects or close foreground obstruction. Muted warm sand and stone palette with restrained teal accents, consistent soft directional lighting.",
+      "DESERT_BG02_OPEN_DESERT. The deep open desert, a broad level sandy hollow between sweeping wind-shaped dunes. Distant eroded sandstone outcrops and faint mountain silhouettes, sparse half-buried ancient fragments only at the side edges. Vast scale, dry golden afternoon, subtle heat haze in distance only, clear readable sandy combat area. A widescreen 16:9 empty battle background for Scroll Hunter, restrained stylized medieval desert fantasy, painterly matte textures, soft cartoon shading, natural silhouettes without hard polygon boundaries, match handcrafted game environments, not photorealistic. Camera at human chest height looking slightly down, horizon near upper third. Broad flat unobstructed fighting ground in lower middle two-thirds, room for three full-body enemies side by side at midground, scenery framing left and right, bottom quarter quiet for HUD. No people, creatures, text, UI, weapons, magical effects or close foreground obstruction. Muted warm sand and stone palette with restrained teal accents, consistent soft directional lighting.",
+      "DESERT_BG03_RUINS_ENTRANCE. The entrance to ancient desert ruins built into a sandstone escarpment. A monumental rectangular gateway with two carved sandstone pillars and lintel stands in the upper central background; worn column fragments and weathered sarcophagi at the far sides. The broad empty forecourt extends toward camera. Late afternoon amber light, deeper cool shadows in doorway, mysterious ancient atmosphere. A widescreen 16:9 empty battle background for Scroll Hunter, restrained stylized medieval desert fantasy, painterly matte textures, soft cartoon shading, natural silhouettes without hard polygon boundaries, match handcrafted game environments, not photorealistic. Camera at human chest height looking slightly down, horizon near upper third. Broad flat unobstructed fighting ground in lower middle two-thirds, room for three full-body enemies side by side at midground, scenery framing left and right, bottom quarter quiet for HUD. No people, creatures, text, UI, weapons, magical effects or close foreground obstruction. Muted warm sand and stone palette with restrained teal accents, consistent soft directional lighting.",
+      "DESERT_BG04_RUINS_ALTAR. The inner sanctuary of ancient desert ruins, a large sandstone ceremonial chamber with a low ritual altar centered far behind the fighting ground. Tall carved columns frame both sides, weathered geometric sun motifs and small turquoise mineral inlays. A narrow shaft of warm sunlight from a broken high ceiling illuminates airborne dust above the distant altar, cool muted teal shadows elsewhere. Broad flat stone arena in front, solemn guardian chamber, no actual glowing spell or creatures. A widescreen 16:9 empty battle background for Scroll Hunter, restrained stylized medieval desert fantasy, painterly matte textures, soft cartoon shading, natural silhouettes without hard polygon boundaries, match handcrafted game environments, not photorealistic. Camera at human chest height looking slightly down, horizon near upper third. Broad flat unobstructed fighting ground in lower middle two-thirds, room for three full-body enemies side by side at midground, scenery framing left and right, bottom quarter quiet for HUD. No people, creatures, text, UI, weapons, magical effects or close foreground obstruction. Muted warm sand and stone palette with restrained teal accents, consistent soft directional lighting."
+    ]
+  },
+  "rigged": false,
+  "animated": false,
+  "integratedIntoGame": false,
+  "local_files": [
+    {
+      "path": "Backgrounds/DESERT_BG01_VILLAGE.png",
+      "bytes": 1900667,
+      "sha256": "f5c4dde7bad13cbe6912a173bdaf094fe7dcedf2d4c7ab3efa24928a4bdfe10b"
+    },
+    {
+      "path": "Backgrounds/DESERT_BG02_OPEN_DESERT.png",
+      "bytes": 1658186,
+      "sha256": "9e7784af54d3932239f8a4b31422882159520e672ec82e360d23e77309fe0863"
+    },
+    {
+      "path": "Backgrounds/DESERT_BG03_RUINS_ENTRANCE.png",
+      "bytes": 2030127,
+      "sha256": "b8b7a8a01181ec873395e9e2e75da180034d63b3d81251a6ad08fce8347d4b74"
+    },
+    {
+      "path": "Backgrounds/DESERT_BG04_RUINS_ALTAR.png",
+      "bytes": 1891296,
+      "sha256": "63560853ae1ae8694d07bd225467686bba0eb0a79c9d24d5fc884203249a6af2"
+    },
+    {
+      "path": "Enemies/DESERT_E01_SCORPION.fbx",
+      "bytes": 11243228,
+      "sha256": "aae06efdf04c4f47d545c3f9798a5decd5439defd418a199f34bc2185772f759"
+    },
+    {
+      "path": "Enemies/DESERT_E01_SCORPION.glb",
+      "bytes": 9774384,
+      "sha256": "7fb1bc785020c98213731f3a0924ded89fbc85aca99f076f29225d382cea04d0"
+    },
+    {
+      "path": "Enemies/DESERT_E02_SANDWORM.fbx",
+      "bytes": 10926060,
+      "sha256": "7853b18ed1861bc2b8317726609fb4db0172c91166e13a00ad03822189d522ed"
+    },
+    {
+      "path": "Enemies/DESERT_E02_SANDWORM.glb",
+      "bytes": 9714940,
+      "sha256": "3c4f4129fd22a07cc9c70f4303799f6cf70e52fe41b1bdca87ef88368864e76f"
+    },
+    {
+      "path": "Enemies/DESERT_E03_MUMMY.fbx",
+      "bytes": 11005660,
+      "sha256": "434849e3463c0cd643fb635bffba900d2c0d32face145cba02b2809cd9897d8f"
+    },
+    {
+      "path": "Enemies/DESERT_E03_MUMMY.glb",
+      "bytes": 9607076,
+      "sha256": "cd8e163c25ef069524b1785435671980667fc045c9e18370f15d960a450c2d47"
+    },
+    {
+      "path": "Enemies/DESERT_E04_SAND_GIANT.fbx",
+      "bytes": 11469180,
+      "sha256": "5238bcd74626f6ae08941aa156995017b3f0713a9e9454d7b7a1f6e89ad33348"
+    },
+    {
+      "path": "Enemies/DESERT_E04_SAND_GIANT.glb",
+      "bytes": 10102208,
+      "sha256": "d79fbe11771cda88abedd97ad72db90f9f05b09515a8e79ec13ba2d2cfced04e"
+    },
+    {
+      "path": "Enemies/DESERT_E05_GUARDIAN_GOLEM.fbx",
+      "bytes": 11296604,
+      "sha256": "43ad5ea1b47228238db4044c55d0c85b4de922c8fa4bcdbc98ee5ea7f51c75a7"
+    },
+    {
+      "path": "Enemies/DESERT_E05_GUARDIAN_GOLEM.glb",
+      "bytes": 9989124,
+      "sha256": "0cad426607fb895f44bb8c3eed29e8285250ebadd67fb06299ddd561718931e7"
+    },
+    {
+      "path": "Enemies/Textures/DESERT_E01_SCORPION/BaseColor.png",
+      "bytes": 4909299,
+      "sha256": "1fa34397c1c1446959a49ffc337dae21b6f09c9c7b52cdb2118bbcbf6d801f38"
+    },
+    {
+      "path": "Enemies/Textures/DESERT_E01_SCORPION/Normal.png",
+      "bytes": 3868271,
+      "sha256": "0c7f2ec4a9ef7a29c72fda586f5e0ec53f8528c41016f9e1a49ab8cbfeb3512a"
+    },
+    {
+      "path": "Enemies/Textures/DESERT_E02_SANDWORM/BaseColor.png",
+      "bytes": 5154566,
+      "sha256": "826b80e4181a048566ae4b2a889c6d08debc8c0e38160652673c5bd55db98811"
+    },
+    {
+      "path": "Enemies/Textures/DESERT_E02_SANDWORM/Normal.png",
+      "bytes": 3740812,
+      "sha256": "470f81365a551144f17c8d8fb17abe1e019786c7f7448e0bca15c8e49fae1536"
+    },
+    {
+      "path": "Enemies/Textures/DESERT_E03_MUMMY/BaseColor.png",
+      "bytes": 5391718,
+      "sha256": "101db531edb876ea679794a585d6d70e2cffdea7154a39612f755a20d237ace0"
+    },
+    {
+      "path": "Enemies/Textures/DESERT_E03_MUMMY/Normal.png",
+      "bytes": 3266467,
+      "sha256": "9d06a7730b325d9c644a4d054f44b8f2d8061eebecd9fa067fa64a7cdf026593"
+    },
+    {
+      "path": "Enemies/Textures/DESERT_E04_SAND_GIANT/BaseColor.png",
+      "bytes": 5378105,
+      "sha256": "46b6cb8fa53143ca3de27371f17769b2963d5c00d1ad937fb5b8837ac1a68bb1"
+    },
+    {
+      "path": "Enemies/Textures/DESERT_E04_SAND_GIANT/Normal.png",
+      "bytes": 3796441,
+      "sha256": "157f893ad40fa74252c0582fe969a89f66b98db91f98e1b1cfe32395677c9cec"
+    },
+    {
+      "path": "Enemies/Textures/DESERT_E05_GUARDIAN_GOLEM/BaseColor.png",
+      "bytes": 5226754,
+      "sha256": "8bb33ca0f0ee4135b9cb1d322807ed6440e2164aa5dfb0c649f4d3b3c0e50550"
+    },
+    {
+      "path": "Enemies/Textures/DESERT_E05_GUARDIAN_GOLEM/Normal.png",
+      "bytes": 3875791,
+      "sha256": "8d0fe51965cb7d799e5a7ecca4c3fc90d8de447b650270fd525b5e60755fd3ef"
+    },
+    {
+      "path": "Previews/DESERT_BG01_VILLAGE_page.png",
+      "bytes": 51914,
+      "sha256": "d040ff8e971b698cad5864ff04918fb60716e9b4682a2a94de70d8314ff49d8a"
+    },
+    {
+      "path": "Previews/DESERT_BG02_OPEN_DESERT_page.png",
+      "bytes": 43782,
+      "sha256": "620ae61213195d7882fd3bdc3b036d019b6b44fde267497bd2cca670bde8fe61"
+    },
+    {
+      "path": "Previews/DESERT_BG03_RUINS_ENTRANCE_page.png",
+      "bytes": 57065,
+      "sha256": "dfe1b8092a4030b00239bc046c84e98774c76a090ef081d6a062219bc04a4960"
+    },
+    {
+      "path": "Previews/DESERT_BG04_RUINS_ALTAR_page.png",
+      "bytes": 47924,
+      "sha256": "bb3fc02f72feaf332071ed276888f31727f900c5bd9c63dc035628b701169918"
+    },
+    {
+      "path": "Previews/DESERT_E01_SCORPION.png",
+      "bytes": 50372,
+      "sha256": "2d39082c1ba83c971bf3da23856e8b98863b68cb7cafbc324e485c359245d07d"
+    },
+    {
+      "path": "Previews/DESERT_E02_SANDWORM.png",
+      "bytes": 50028,
+      "sha256": "c4f34b680afbbc9ebf088ddb50a6275f5e5793656dc627ebee19ae0ace01133c"
+    },
+    {
+      "path": "Previews/DESERT_E03_MUMMY.png",
+      "bytes": 44887,
+      "sha256": "add643e693fd0ca91101de966e97b32b5ac8cbfb45f9fdf47cedaa7ede7f945e"
+    },
+    {
+      "path": "Previews/DESERT_E04_SAND_GIANT.png",
+      "bytes": 46766,
+      "sha256": "01ba4863ed9b7e5ed710a91bd3db7a8f0f67a5ab840e4c0f9b833d75ef8d207b"
+    },
+    {
+      "path": "Previews/DESERT_E05_GUARDIAN_GOLEM.png",
+      "bytes": 47776,
+      "sha256": "9177fb92d0568bde3ea7b1004770d60d4cd150882cbaccab4728c17590db2865"
+    },
+    {
+      "path": "Previews/DESERT_P01_ADOBE_HOUSE.png",
+      "bytes": 48499,
+      "sha256": "a12d86d3ceb7c432666e63229b16b9c63e6a5ae95a296e2bca57477fd84e9c31"
+    },
+    {
+      "path": "Previews/DESERT_P02_AWNING_STALL.png",
+      "bytes": 61142,
+      "sha256": "c917d4550deb2c49fca61c96d68c6ed99c8626a440bbce1354a56099e34b92b3"
+    },
+    {
+      "path": "Previews/DESERT_P03_SANDSTONE_ROCKS.png",
+      "bytes": 55084,
+      "sha256": "0f9fe571bfa807f17ff94141f85224e90e8eb46843e9259b59484ca94b8914de"
+    },
+    {
+      "path": "Previews/DESERT_P04_RUIN_GATEWAY.png",
+      "bytes": 77553,
+      "sha256": "b439dd44de6143c78f3091b34d1830d78970c7f582e9e1c6c52b0fd8f1ef1a12"
+    },
+    {
+      "path": "Previews/DESERT_P05_RUIN_COLUMN.png",
+      "bytes": 38507,
+      "sha256": "30573fa0ea52581155b0f4ea9b51ddb5deca2213ee0adba3ac2f697ae3cfa20d"
+    },
+    {
+      "path": "Previews/DESERT_P06_SARCOPHAGUS.png",
+      "bytes": 46205,
+      "sha256": "5f897364472c9e20731de1094a4ee8faa40f3dc1eb78d6f832523697d03ce21b"
+    },
+    {
+      "path": "Previews/DESERT_P07_ALTAR.png",
+      "bytes": 60920,
+      "sha256": "81e976c8f2fd740f85a6382e7076afa1c4056e66bd285458c836bb52ab03cde2"
+    },
+    {
+      "path": "Previews/DESERT_P08_BRAZIER.png",
+      "bytes": 49942,
+      "sha256": "32eb946fd5c2f87bfc518e66d712e056bebdbfea5a91fdfd0f2dc531285046e0"
+    },
+    {
+      "path": "Previews/배경_4종_미리보기.jpg",
+      "bytes": 210029,
+      "sha256": "49516f4ccf68a777aa8fb0cdb8f37098df988cda693b51fe6e6c5a7d71fc69a3"
+    },
+    {
+      "path": "Previews/소품_8종_모델_미리보기.jpg",
+      "bytes": 121811,
+      "sha256": "3ea93f89040195b151624b8a9a5f3c476b86e4bf5f8a3d150f36acff96cda603"
+    },
+    {
+      "path": "Previews/적_5종_모델_미리보기.jpg",
+      "bytes": 93053,
+      "sha256": "99cdb0775b94d53a25f3d5c651ff20c31b7e927d480c7ee3fc0528d08939cf18"
+    },
+    {
+      "path": "Props/DESERT_P01_ADOBE_HOUSE.fbx",
+      "bytes": 10073724,
+      "sha256": "4bcc610dc3714d18afacc72398dd506edd9d89b5a6b8bde9a9e4acbb4d78e4a7"
+    },
+    {
+      "path": "Props/DESERT_P01_ADOBE_HOUSE.glb",
+      "bytes": 9012128,
+      "sha256": "28167b14c1a095c80003bd5b26fc3be8ac88efcb85dc9a0aa2b01dd9e7d948b8"
+    },
+    {
+      "path": "Props/DESERT_P02_AWNING_STALL.fbx",
+      "bytes": 11568828,
+      "sha256": "f6ade3fcb2ea8081692aeed6fbff85a439ade033f3589bb692feeee23297a5ab"
+    },
+    {
+      "path": "Props/DESERT_P02_AWNING_STALL.glb",
+      "bytes": 10247744,
+      "sha256": "ab8967dbffe678f6d3fb9f44a81d94144948e311a22a8134a8b26556f48c0a52"
+    },
+    {
+      "path": "Props/DESERT_P03_SANDSTONE_ROCKS.fbx",
+      "bytes": 10242620,
+      "sha256": "afb197018f54a9fbd37df84a20cc3380f4b511efb86fb9b0edfd9fa90d0426b8"
+    },
+    {
+      "path": "Props/DESERT_P03_SANDSTONE_ROCKS.glb",
+      "bytes": 9214124,
+      "sha256": "4375697d37d89e13113e9e63df39972c01866fe3c8b8879d71737d0ad5111feb"
+    },
+    {
+      "path": "Props/DESERT_P04_RUIN_GATEWAY.fbx",
+      "bytes": 10443724,
+      "sha256": "b521e80491acf3c0420919c33e42e1b24bbaeb616bacec8ca4a8983d10841098"
+    },
+    {
+      "path": "Props/DESERT_P04_RUIN_GATEWAY.glb",
+      "bytes": 9405708,
+      "sha256": "526e0e3eccd2bd760c0f5fc19897bc4a417c322c96c43b5cac4df80b57aab6bd"
+    },
+    {
+      "path": "Props/DESERT_P05_RUIN_COLUMN.fbx",
+      "bytes": 9913660,
+      "sha256": "ff1f200171721c35f4c07537fa2df0e980a8215a2f4d5968932572a4eeb78b56"
+    },
+    {
+      "path": "Props/DESERT_P05_RUIN_COLUMN.glb",
+      "bytes": 8800804,
+      "sha256": "3b88dea6d184c3160cd8fa5a72b7d9750bd6724b3d8ccb62696f380888bd8ff5"
+    },
+    {
+      "path": "Props/DESERT_P06_SARCOPHAGUS.fbx",
+      "bytes": 10399308,
+      "sha256": "f41ccc5242d9210e9ebca38f3ed1e6a3660d74114b07aa516f11ff5c7fa7dc06"
+    },
+    {
+      "path": "Props/DESERT_P06_SARCOPHAGUS.glb",
+      "bytes": 9284456,
+      "sha256": "5ad92cebb13871ba6bb79ee25b0b99c13d71a7a9f22f0ae8cf797ed068bdd0dd"
+    },
+    {
+      "path": "Props/DESERT_P07_ALTAR.fbx",
+      "bytes": 10673708,
+      "sha256": "36d28023c7996518dfa7d6efd3885896a8a799dfb65cfe84be875916c5d670cb"
+    },
+    {
+      "path": "Props/DESERT_P07_ALTAR.glb",
+      "bytes": 9610584,
+      "sha256": "9e7c65d3d99ffe9364a7e83d867638440b2be19eca327d56a38a6b51c2ae96f6"
+    },
+    {
+      "path": "Props/DESERT_P08_BRAZIER.fbx",
+      "bytes": 9982508,
+      "sha256": "a09c5e8c2415bce2c6bc39d3bc101a05272eb3e3513a8f1cf44e5c46f5a20658"
+    },
+    {
+      "path": "Props/DESERT_P08_BRAZIER.glb",
+      "bytes": 8933232,
+      "sha256": "04d87b30b28d7a4cc458fe089d08e2938006be7fdfbc6697b00991168398dc1f"
+    },
+    {
+      "path": "Props/Textures/DESERT_P01_ADOBE_HOUSE/BaseColor.png",
+      "bytes": 6202786,
+      "sha256": "a89631fa122662e8427a1b333899f72ab3b32ae12c551eab4dba6480d2911c5e"
+    },
+    {
+      "path": "Props/Textures/DESERT_P01_ADOBE_HOUSE/Normal.png",
+      "bytes": 2100510,
+      "sha256": "2075ed9be7ad8bb52aafb8b2e88ed6c342254e98e099d78ecef0bb814f8ec67d"
+    },
+    {
+      "path": "Props/Textures/DESERT_P02_AWNING_STALL/BaseColor.png",
+      "bytes": 5733573,
+      "sha256": "d981ae32b224d2ee1ffbe8ecbae55c079ba2dfabe02881a3776013ed6cdb4db9"
+    },
+    {
+      "path": "Props/Textures/DESERT_P02_AWNING_STALL/Normal.png",
+      "bytes": 3614828,
+      "sha256": "9f62b116035f0f67b2ae9f6d0193305fd74561cc01e54647fcd6e5336e4d4708"
+    },
+    {
+      "path": "Props/Textures/DESERT_P03_SANDSTONE_ROCKS/BaseColor.png",
+      "bytes": 5671137,
+      "sha256": "1df18081026b4b3c8dfc5cca0f149a3ec2956e7fb94012ded5a78934c7702967"
+    },
+    {
+      "path": "Props/Textures/DESERT_P03_SANDSTONE_ROCKS/Normal.png",
+      "bytes": 2856452,
+      "sha256": "9aa5ab7f99eb60cda78400d42807393596e78537c63cfab67eca715a5604d451"
+    },
+    {
+      "path": "Props/Textures/DESERT_P04_RUIN_GATEWAY/BaseColor.png",
+      "bytes": 5677115,
+      "sha256": "4a8c8b3a56879927cf173e2e4380c3f4853c642e0da76d0079f1d579712a44be"
+    },
+    {
+      "path": "Props/Textures/DESERT_P04_RUIN_GATEWAY/Normal.png",
+      "bytes": 3038063,
+      "sha256": "769c36d35a4dc4e816cb6cf8779dc466bf55f1804a7dbedddacfff07618ddb8e"
+    },
+    {
+      "path": "Props/Textures/DESERT_P05_RUIN_COLUMN/BaseColor.png",
+      "bytes": 5478662,
+      "sha256": "4c0889d0e3ed3eee7323714b82dc04e4d4274ee9f56613c2b925a6f369cfca05"
+    },
+    {
+      "path": "Props/Textures/DESERT_P05_RUIN_COLUMN/Normal.png",
+      "bytes": 2576206,
+      "sha256": "710cf5f0875cd5b3619f27c55ffced1c33c4e9bf02f2b12e03cbe8a09075d346"
+    },
+    {
+      "path": "Props/Textures/DESERT_P06_SARCOPHAGUS/BaseColor.png",
+      "bytes": 5924262,
+      "sha256": "f3ba177deef416c9133047b5a454e9797086514241d2686f548fe2d3a752c947"
+    },
+    {
+      "path": "Props/Textures/DESERT_P06_SARCOPHAGUS/Normal.png",
+      "bytes": 2614073,
+      "sha256": "552fdb38418a36a7a860cd36ff18bb953c51a5dab218f47f16d837f253afa44e"
+    },
+    {
+      "path": "Props/Textures/DESERT_P07_ALTAR/BaseColor.png",
+      "bytes": 6384183,
+      "sha256": "5400b5009f88e8a075efe5c2288221fbb3eb5aef52eb1a5d2a248eee48aa7ad8"
+    },
+    {
+      "path": "Props/Textures/DESERT_P07_ALTAR/Normal.png",
+      "bytes": 2519970,
+      "sha256": "f782593c2c1e3c4c4ba49ba04f2ac73e1cb6f4463979a239995c686f9635c26a"
+    },
+    {
+      "path": "Props/Textures/DESERT_P08_BRAZIER/BaseColor.png",
+      "bytes": 5769949,
+      "sha256": "252595e7514253fe264add22f273f4b82043a058f0144477c90a4368ca415e1a"
+    },
+    {
+      "path": "Props/Textures/DESERT_P08_BRAZIER/Normal.png",
+      "bytes": 2463400,
+      "sha256": "5c5ea40d6bcc1dd58579cacfb9df69272c8246de07cdd4435dd02c34acba8a33"
+    },
+    {
+      "path": "References/DESERT_E01_SCORPION.png",
+      "bytes": 1179601,
+      "sha256": "0e9658a297f52c51ae94d248d788d12328889e1937e749f41d58acb7ff811e8c"
+    },
+    {
+      "path": "References/DESERT_E02_SANDWORM.png",
+      "bytes": 1146840,
+      "sha256": "19f4854895fd6ce8497c9287b8e8eddf3291166d9bdba531ad7277fe360ed264"
+    },
+    {
+      "path": "References/DESERT_E03_MUMMY.png",
+      "bytes": 1058132,
+      "sha256": "0cae363e9f409eec4b51b9d3cce3da369b063029fe8cbbc81f2ccda794cb5d7d"
+    },
+    {
+      "path": "References/DESERT_E04_SAND_GIANT.png",
+      "bytes": 1140385,
+      "sha256": "211d376a1e41b35dbf2162c196b055435987f4d07b7512c82a3d62be9b101126"
+    },
+    {
+      "path": "References/DESERT_E05_GUARDIAN_GOLEM.png",
+      "bytes": 1120503,
+      "sha256": "426d7d6724ea31c02b1864a974fb198238055d77cb64c81c2b1c45b5d1626e09"
+    },
+    {
+      "path": "References/DESERT_P01_ADOBE_HOUSE.png",
+      "bytes": 1184988,
+      "sha256": "1dd11e7faa64672579d20e4273ab2c0353136a3cb468f19f3053deca7e07287b"
+    },
+    {
+      "path": "References/DESERT_P02_AWNING_STALL.png",
+      "bytes": 1084232,
+      "sha256": "a4bd9ee41459fd5dfc8bed2e36e0f806b101f52dd5c7d0b54bedc3491e47dc35"
+    },
+    {
+      "path": "References/DESERT_P03_SANDSTONE_ROCKS.png",
+      "bytes": 1072368,
+      "sha256": "2266b034aa7633861222fa198c0b828b38500a1404e461eb55c6c0f38a088fcd"
+    },
+    {
+      "path": "References/DESERT_P04_RUIN_GATEWAY.png",
+      "bytes": 1251695,
+      "sha256": "e155183fed92c3d7d15728dad6c8d62edd7b5e386a572a903f95a26afa73056e"
+    },
+    {
+      "path": "References/DESERT_P05_RUIN_COLUMN.png",
+      "bytes": 963402,
+      "sha256": "6b17e9f8ff632873d37cd1264edf95eab5149ec6b7a67ab4824ce9a6245830da"
+    },
+    {
+      "path": "References/DESERT_P06_SARCOPHAGUS.png",
+      "bytes": 1062521,
+      "sha256": "0b7e3e4be21e15d78f035fbf534b55338702b95713d42ec4670783992ad71a5a"
+    },
+    {
+      "path": "References/DESERT_P07_ALTAR.png",
+      "bytes": 1257208,
+      "sha256": "41f7bcb4e52fc70e57064289f73afbf238218797feae44f4f0b466c84c6f46bd"
+    },
+    {
+      "path": "References/DESERT_P08_BRAZIER.png",
+      "bytes": 1096617,
+      "sha256": "85d235a6162f34c10f994c80aac815e6aaac724544c139bfda6d84c2123765eb"
+    },
+    {
+      "path": "validation.json",
+      "bytes": 6592,
+      "sha256": "651d54ab1fe3f9e5195076ec5a067ee9757b76bda0e79591e691d117d20285de"
+    },
+    {
+      "path": "사용안내.txt",
+      "bytes": 3271,
+      "sha256": "b316bdc14dcea484b0fc9fea9fa6b2d181732278c2b574cd44fb45300f0f694f"
+    }
+  ]
+}
